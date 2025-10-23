@@ -1,10 +1,21 @@
 {
   "name": "kicad-to-circuit-json",
-  "module": "index.ts",
+  "main": "dist/index.js",
   "type": "module",
-  "private": true,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup lib/index.ts --format esm --dts",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "pull:reference": "git clone --depth 1 https://github.com/tscircuit/circuit-json-to-kicad circuit-json-to-kicad && rm -rf circuit-json-to-kicad/tests"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@biomejs/biome": "^2.2.7",
+    "@types/bun": "latest",
+    "circuit-to-svg": "^0.0.252",
+    "tsup": "^8.5.0"
   },
   "peerDependencies": {
     "typescript": "^5"
