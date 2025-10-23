@@ -6,7 +6,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup lib/index.ts --format esm --dts",
+    "build": "tsup-node lib/index.ts --format esm --dts",
     "format": "biome format --write .",
     "format:check": "biome format .",
     "pull:reference": "git clone --depth 1 https://github.com/tscircuit/circuit-json-to-kicad circuit-json-to-kicad && rm -rf circuit-json-to-kicad/tests"
