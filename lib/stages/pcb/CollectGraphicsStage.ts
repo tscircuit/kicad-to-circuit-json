@@ -131,7 +131,8 @@ export class CollectGraphicsStage extends ConverterStage {
   private createSilkscreenText(text: any) {
     if (!this.ctx.k2cMatPcb) return
 
-    const at = text.at
+    // Get position from either at or _sxPosition (kicadts internal field)
+    const at = text.at || text._sxPosition
     const pos = applyToPoint(this.ctx.k2cMatPcb, { x: at?.x ?? 0, y: at?.y ?? 0 })
 
     const layer = this.mapLayer(text.layer)
@@ -139,7 +140,7 @@ export class CollectGraphicsStage extends ConverterStage {
 
     this.ctx.db.pcb_silkscreen_text.insert({
       pcb_component_id: "",
-      text: text.text || "",
+      text: text.text || text._text || "",
       anchor_position: pos,
       layer: layer,
       font_size: fontSize,
