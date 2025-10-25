@@ -156,6 +156,8 @@ export class CollectFootprintsStage extends ConverterStage {
 
     this.ctx.db.pcb_smtpad.insert({
       pcb_component_id: componentId,
+      x: pos.x,
+      y: pos.y,
       layer: layer,
       shape: shape === "circle" ? "circle" : "rect",
       width: size.x,
@@ -188,6 +190,8 @@ export class CollectFootprintsStage extends ConverterStage {
 
     this.ctx.db.pcb_plated_hole.insert({
       pcb_component_id: componentId,
+      x: pos.x,
+      y: pos.y,
       hole_diameter: holeDiameter,
       shape: holeShape,
       port_hints: [pad.number?.toString()],
@@ -207,6 +211,8 @@ export class CollectFootprintsStage extends ConverterStage {
     const holeDiameter = drill?.diameter || drill || 1.0
 
     this.ctx.db.pcb_hole.insert({
+      x: pos.x,
+      y: pos.y,
       hole_diameter: holeDiameter,
       hole_shape: "circle",
     } as any)

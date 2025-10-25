@@ -16,13 +16,10 @@ export class InitializePcbContextStage extends ConverterStage {
       return false
     }
 
-    // Build the inverse transform for PCB
-    // The forward transform translates then flips Y
-    // The inverse flips Y then translates back
-    this.ctx.k2cMatPcb = compose(
-      scale(1, -1),
-      translate(-100, -100)
-    )
+    // Build the transform for PCB
+    // For MVP, just flip Y axis. KiCad PCB coordinates are in mm, Circuit JSON also uses mm.
+    // KiCad has Y increasing downward, Circuit JSON has Y increasing upward
+    this.ctx.k2cMatPcb = scale(1, -1)
 
     // Initialize net mapping
     this.ctx.netNumToName = new Map()
