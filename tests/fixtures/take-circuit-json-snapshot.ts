@@ -17,7 +17,11 @@ export const takeCircuitJsonSnapshot = async (params: {
   }
   if (outputType === "pcb") {
     const svg = await convertCircuitJsonToPcbSvg(circuitJson)
-    const png = await sharp(Buffer.from(svg)).png().toBuffer()
+    // Ensure minimum height of 800px for the pcb image
+    const png = await sharp(Buffer.from(svg))
+      .resize({ height: 1280, withoutEnlargement: false })
+      .png()
+      .toBuffer()
     return png
   }
   throw new Error(`Unknown output type: ${outputType}`)
