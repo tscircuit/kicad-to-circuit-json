@@ -121,14 +121,28 @@ export function createPlatedHole(
 
   const holeDiameter = drill?.diameter || drill || 0.8
 
-  ctx.db.pcb_plated_hole.insert({
+  // Calculate outer diameter from pad size
+  // For circular pads, use the diameter (or the larger dimension)
+  // For rectangular pads, the outer diameter represents the pad size
+  const outerDiameter = Math.max(size.x, size.y)
+
+  const platedHole: any = {
     pcb_component_id: componentId,
     x: pos.x,
     y: pos.y,
     hole_diameter: holeDiameter,
+    outer_diameter: outerDiameter,
     shape: holeShape,
     port_hints: [pad.number?.toString()],
-  } as any)
+  }
+
+  // For non-circular shapes, include width and height
+  if (holeShape === "circular_hole_with_rect_pad" || holeShape === "pill_hole_with_rect_pad" || holeShape === "rotated_pill_hole_with_rect_pad") {
+    platedHole.outer_width = size.x
+    platedHole.outer_height = size.y
+  }
+
+  ctx.db.pcb_plated_hole.insert(platedHole)
 
   if (ctx.stats) {
     ctx.stats.pads = (ctx.stats.pads || 0) + 1

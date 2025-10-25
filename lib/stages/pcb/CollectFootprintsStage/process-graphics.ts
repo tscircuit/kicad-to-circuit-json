@@ -145,7 +145,38 @@ export function createFootprintCircle(
 }
 
 /**
- * Creates a silkscreen arc from a footprint arc element (approximated as a path)
+ * Calculates the center and radius of a circle passing through three points
+ */
+function calculateArcCenter(
+  p1: { x: number; y: number },
+  p2: { x: number; y: number },
+  p3: { x: number; y: number }
+): { center: { x: number; y: number }; radius: number } | null {
+  const ax = p1.x - p2.x
+  const ay = p1.y - p2.y
+  const bx = p2.x - p3.x
+  const by = p2.y - p3.y
+
+  const denom = 2 * (ax * by - ay * bx)
+
+  // Points are collinear
+  if (Math.abs(denom) < 1e-10) {
+    return null
+  }
+
+  const d1 = p1.x * p1.x + p1.y * p1.y - p2.x * p2.x - p2.y * p2.y
+  const d2 = p2.x * p2.x + p2.y * p2.y - p3.x * p3.x - p3.y * p3.y
+
+  const cx = (d1 * by - d2 * ay) / denom
+  const cy = (ax * d2 - bx * d1) / denom
+
+  const radius = Math.sqrt((p1.x - cx) ** 2 + (p1.y - cy) ** 2)
+
+  return { center: { x: cx, y: cy }, radius }
+}
+
+/**
+ * Creates a silkscreen arc from a footprint arc element with 0.1mm resolution
  */
 export function createFootprintArc(
   ctx: ConverterContext,
@@ -178,30 +209,65 @@ export function createFootprintArc(
   const layer = mapTextLayer(arc.layer)
   const strokeWidth = arc.stroke?.width || arc.width || 0.12
 
-  // Approximate arc with multiple line segments
-  // For simplicity, use start-mid-end as a rough approximation
-  // A better implementation would calculate the actual arc
-  const numSegments = 8
-  const arcRoute: Array<{ x: number; y: number }> = [startPos]
+  // Calculate the arc center and radius
+  const arcInfo = calculateArcCenter(startPos, midPos, endPos)
 
-  // Simple linear interpolation for now (not a true arc, but better than nothing)
-  for (let i = 1; i < numSegments; i++) {
-    const t = i / numSegments
-    if (t < 0.5) {
-      const t2 = t * 2
-      arcRoute.push({
-        x: startPos.x + (midPos.x - startPos.x) * t2,
-        y: startPos.y + (midPos.y - startPos.y) * t2,
-      })
-    } else {
-      const t2 = (t - 0.5) * 2
-      arcRoute.push({
-        x: midPos.x + (endPos.x - midPos.x) * t2,
-        y: midPos.y + (endPos.y - midPos.y) * t2,
-      })
-    }
+  if (!arcInfo) {
+    // If points are collinear, fall back to straight line
+    ctx.db.pcb_silkscreen_path.insert({
+      pcb_component_id: componentId,
+      layer: layer,
+      route: [startPos, endPos],
+      stroke_width: strokeWidth,
+    })
+    return
   }
-  arcRoute.push(endPos)
+
+  const { center, radius } = arcInfo
+
+  // Calculate angles for start, mid, and end points
+  const startAngle = Math.atan2(startPos.y - center.y, startPos.x - center.x)
+  const midAngle = Math.atan2(midPos.y - center.y, midPos.x - center.x)
+  const endAngle = Math.atan2(endPos.y - center.y, endPos.x - center.x)
+
+  // Determine arc direction (clockwise or counter-clockwise)
+  // by checking if mid angle is between start and end angles
+  let sweepAngle = endAngle - startAngle
+  let midSweep = midAngle - startAngle
+
+  // Normalize angles to [-π, π]
+  while (sweepAngle > Math.PI) sweepAngle -= 2 * Math.PI
+  while (sweepAngle < -Math.PI) sweepAngle += 2 * Math.PI
+  while (midSweep > Math.PI) midSweep -= 2 * Math.PI
+  while (midSweep < -Math.PI) midSweep += 2 * Math.PI
+
+  // Check if we need to go the long way around
+  const isCCW = sweepAngle > 0
+  const midIsBetween = (isCCW && midSweep > 0 && midSweep < sweepAngle) ||
+                       (!isCCW && midSweep < 0 && midSweep > sweepAngle)
+
+  if (!midIsBetween) {
+    // Take the long way around
+    sweepAngle = sweepAngle > 0 ? sweepAngle - 2 * Math.PI : sweepAngle + 2 * Math.PI
+  }
+
+  // Calculate arc length
+  const arcLength = Math.abs(radius * sweepAngle)
+
+  // Create segments at 0.1mm resolution (Circuit JSON is in mm)
+  const segmentLength = 0.1
+  const numSegments = Math.max(2, Math.ceil(arcLength / segmentLength))
+
+  const arcRoute: Array<{ x: number; y: number }> = []
+
+  for (let i = 0; i <= numSegments; i++) {
+    const t = i / numSegments
+    const angle = startAngle + sweepAngle * t
+    arcRoute.push({
+      x: center.x + radius * Math.cos(angle),
+      y: center.y + radius * Math.sin(angle),
+    })
+  }
 
   ctx.db.pcb_silkscreen_path.insert({
     pcb_component_id: componentId,
