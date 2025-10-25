@@ -2,6 +2,19 @@ import { cju } from "@tscircuit/circuit-json-util"
 import type { ConverterContext, ConverterStage } from "./types"
 import { parseKicadPcb, parseKicadSch } from "kicadts"
 
+// Import schematic stages
+import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
+import { CollectLibrarySymbolsStage } from "./stages/schematic/CollectLibrarySymbolsStage"
+import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematicTracesStage"
+
+// Import PCB stages
+import { InitializePcbContextStage } from "./stages/pcb/InitializePcbContextStage"
+import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
+import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
+import { CollectTracesStage } from "./stages/pcb/CollectTracesStage"
+import { CollectViasStage } from "./stages/pcb/CollectViasStage"
+import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
+
 export class KicadToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
   ctx?: ConverterContext
@@ -22,9 +35,9 @@ export class KicadToCircuitJsonConverter {
     const filesWithExtension = Object.keys(this.fsMap).filter((key) =>
       key.endsWith(extension),
     )
-    if (filesWithExtension.length !== 1) {
+    if (filesWithExtension.length > 1) {
       throw new Error(
-        `Expected 1 file with extension ${extension}, got ${filesWithExtension.length}. Files: ${filesWithExtension.join(", ")}`,
+        `Expected 0 or 1 file with extension ${extension}, got ${filesWithExtension.length}. Files: ${filesWithExtension.join(", ")}`,
       )
     }
     return filesWithExtension[0] ?? null
@@ -38,14 +51,92 @@ export class KicadToCircuitJsonConverter {
       db: cju([]),
       kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
+      warnings: [],
+      stats: {},
     }
 
+    // Build the pipeline based on what files are present
     this.pipeline = []
+
+    // Schematic stages (if schematic file exists)
+    if (this.ctx.kicadSch) {
+      this.pipeline.push(
+        new InitializeSchematicContextStage(this.ctx),
+        new CollectLibrarySymbolsStage(this.ctx),
+        new CollectSchematicTracesStage(this.ctx),
+      )
+    }
+
+    // PCB stages (if PCB file exists)
+    if (this.ctx.kicadPcb) {
+      this.pipeline.push(
+        new InitializePcbContextStage(this.ctx),
+        new CollectNetsStage(this.ctx),
+        new CollectFootprintsStage(this.ctx),
+        new CollectTracesStage(this.ctx),
+        new CollectViasStage(this.ctx),
+        new CollectGraphicsStage(this.ctx),
+      )
+    }
   }
 
   step() {
     if (!this.pipeline) {
       this.initializePipeline()
     }
+
+    if (!this.currentStage) {
+      return false
+    }
+
+    const hasMoreWork = this.currentStage.step()
+
+    if (!hasMoreWork || this.currentStage.finished) {
+      this.currentStageIndex++
+    }
+
+    return this.currentStageIndex < (this.pipeline?.length || 0)
+  }
+
+  runUntilFinished() {
+    if (!this.pipeline) {
+      this.initializePipeline()
+    }
+
+    for (const stage of this.pipeline || []) {
+      stage.runUntilFinished()
+    }
+  }
+
+  getOutput() {
+    if (!this.ctx) {
+      this.initializePipeline()
+      this.runUntilFinished()
+    }
+
+    // Convert the database to a plain array of Circuit JSON elements
+    const elements: any[] = []
+
+    // Collect all elements from different tables
+    for (const tableName of Object.keys(this.ctx!.db)) {
+      const table = (this.ctx!.db as any)[tableName]
+      if (table && typeof table.list === 'function') {
+        elements.push(...table.list())
+      }
+    }
+
+    return elements
+  }
+
+  getOutputString() {
+    return JSON.stringify(this.getOutput(), null, 2)
+  }
+
+  getWarnings() {
+    return this.ctx?.warnings || []
+  }
+
+  getStats() {
+    return this.ctx?.stats || {}
   }
 }
