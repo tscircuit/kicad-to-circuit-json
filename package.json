@@ -9,6 +9,7 @@
     "build": "tsup-node lib/index.ts --format esm --dts",
     "format": "biome format --write .",
     "format:check": "biome format .",
+    "download-demos": "git clone --depth 1 --filter=blob:none --sparse https://gitlab.com/kicad/code/kicad.git kicad-demos && cd kicad-demos && git sparse-checkout set demos",
     "pull:reference:notests": "git clone --depth 1 https://github.com/tscircuit/circuit-json-to-kicad circuit-json-to-kicad && rm -rf circuit-json-to-kicad/tests",
     "pull:reference": "git clone --depth 1 https://github.com/tscircuit/circuit-json-to-kicad circuit-json-to-kicad"
   },
@@ -17,8 +18,10 @@
     "@tscircuit/circuit-json-util": "^0.0.72",
     "@types/bun": "latest",
     "bun-match-svg": "^0.0.14",
+    "circuit-json-to-connectivity-map": "^0.0.22",
     "circuit-to-svg": "^0.0.252",
     "kicadts": "^0.0.11",
+    "react": "^19.2.0",
     "tsup": "^8.5.0"
   },
   "peerDependencies": {
