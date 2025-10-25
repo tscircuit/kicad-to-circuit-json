@@ -3,7 +3,7 @@ import { applyToPoint } from "transformation-matrix"
 
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
- * Groups segments by net and layer to create trace routes.
+ * Each segment becomes its own trace with a simple 2-point route.
  */
 export class CollectTracesStage extends ConverterStage {
   step(): boolean {
@@ -15,77 +15,55 @@ export class CollectTracesStage extends ConverterStage {
     const segments = this.ctx.kicadPcb.segments || []
     const segmentArray = Array.isArray(segments) ? segments : [segments]
 
-    // Group segments by net and layer
-    const traceGroups = new Map<string, any[]>()
-
+    // Create a separate trace for each segment
     for (const segment of segmentArray) {
-      const netNum = segment.net || 0
-      const layer = segment.layer
-      const layerNames = layer?.names || []
-      const layerStr = layerNames.join(" ")
-      const mappedLayer = this.mapLayer(layerStr)
-      const key = `${netNum}_${mappedLayer}`
-
-      if (!traceGroups.has(key)) {
-        traceGroups.set(key, [])
-      }
-      traceGroups.get(key)!.push(segment)
-    }
-
-    // Create traces for each group
-    for (const [key, segments] of traceGroups) {
-      this.createTrace(segments, key)
+      this.createTraceFromSegment(segment)
     }
 
     this.finished = true
     return false
   }
 
-  private createTrace(segments: any[], groupKey: string) {
+  private createTraceFromSegment(segment: any) {
     if (!this.ctx.k2cMatPcb || !this.ctx.netNumToName) return
 
-    // Extract net info from first segment
-    const firstSegment = segments[0]
-    const netNum = firstSegment.net || 0
-    const layer = firstSegment.layer
+    const start = segment.start || { x: 0, y: 0 }
+    const end = segment.end || { x: 0, y: 0 }
+    const width = segment.width || 0.2 // Default trace width
+
+    // Get layer info
+    const layer = segment.layer
     const layerNames = layer?.names || []
     const layerStr = layerNames.join(" ")
     const mappedLayer = this.mapLayer(layerStr)
+
+    // Get net info
+    const netNum = segment.net || 0
     const netName = this.ctx.netNumToName.get(netNum) || ""
 
-    // Build route from segments with proper layer and width information
-    const route: Array<{ route_type: "wire"; x: number; y: number; width: number; layer: string }> = []
+    // Transform coordinates
+    const startPos = applyToPoint(this.ctx.k2cMatPcb, { x: start.x, y: start.y })
+    const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
-    for (const segment of segments) {
-      const start = segment.start || { x: 0, y: 0 }
-      const end = segment.end || { x: 0, y: 0 }
-      const width = segment.width || 0.2 // Default trace width
-
-      const startPos = applyToPoint(this.ctx.k2cMatPcb, { x: start.x, y: start.y })
-      const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
-
-      // Add start point if route is empty
-      if (route.length === 0) {
-        route.push({
-          route_type: "wire",
-          x: startPos.x,
-          y: startPos.y,
-          width: width,
-          layer: mappedLayer,
-        })
-      }
-
-      // Add end point
-      route.push({
-        route_type: "wire",
+    // Create a simple 2-point route
+    const route = [
+      {
+        route_type: "wire" as const,
+        x: startPos.x,
+        y: startPos.y,
+        width: width,
+        layer: mappedLayer,
+      },
+      {
+        route_type: "wire" as const,
         x: endPos.x,
         y: endPos.y,
         width: width,
         layer: mappedLayer,
-      })
-    }
+      },
+    ]
 
-    // Create pcb_trace with proper route format
+    // Create pcb_trace for this segment
     this.ctx.db.pcb_trace.insert({
       route: route as any,
       pcb_port_id: undefined, // Not connected to a specific port yet
