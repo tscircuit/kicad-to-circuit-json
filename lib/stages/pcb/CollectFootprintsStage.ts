@@ -257,14 +257,60 @@ export class CollectFootprintsStage extends ConverterStage {
   private processFootprintText(footprint: Footprint, componentId: string, kicadComponentPos: { x: number; y: number }, componentRotation: number) {
     if (!this.ctx.k2cMatPcb) return
 
+    // Process properties (Reference, Value, etc.) that are on silkscreen layers
+    this.processFootprintProperties(footprint, componentId, kicadComponentPos, componentRotation)
+
+    // Process additional fp_text elements
     const texts = footprint.fpTexts || []
     const textArray = Array.isArray(texts) ? texts : [texts]
 
     for (const text of textArray) {
-      // Skip reference and value text for now (they're metadata)
+      // Skip reference and value text (they're handled by properties)
       if (text.type === "reference" || text.type === "value") continue
 
-      this.createSilkscreenText(text, componentId, kicadComponentPos, componentRotation, footprint)
+      // Only process text on silkscreen layers (filter out F.Fab, etc.)
+      const layerStr = typeof text.layer === "string" ? text.layer : (text.layer?.names?.join(" ") || "")
+      const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")
+      if (!isSilkscreen) continue
+
+      // Create a properly structured text element with _sxPosition mapped to at
+      const textElement = {
+        text: text.text,
+        at: (text as any)._sxPosition || text.at,  // Use _sxPosition for position
+        layer: text.layer,
+        effects: text.effects,
+      }
+
+      this.createSilkscreenText(textElement, componentId, kicadComponentPos, componentRotation, footprint)
+    }
+  }
+
+  private processFootprintProperties(footprint: Footprint, componentId: string, kicadComponentPos: { x: number; y: number }, componentRotation: number) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const properties = footprint.properties || []
+    const propertyArray = Array.isArray(properties) ? properties : [properties]
+
+    for (const property of propertyArray) {
+      // Only process properties with a layer field
+      if (!property.layer) continue
+
+      // Check if the property is on a silkscreen layer
+      const layerStr = typeof property.layer === "string" ? property.layer : (property.layer?.names?.join(" ") || "")
+      const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")
+
+      if (!isSilkscreen) continue
+
+      // Create silkscreen text for this property
+      // Property structure uses _sxAt for position (kicadts internal field)
+      const textElement = {
+        text: property.value,
+        at: (property as any)._sxAt,  // Use _sxAt instead of at
+        layer: property.layer,
+        effects: (property as any)._sxEffects || property.effects,
+      }
+
+      this.createSilkscreenText(textElement, componentId, kicadComponentPos, componentRotation, footprint)
     }
   }
 
