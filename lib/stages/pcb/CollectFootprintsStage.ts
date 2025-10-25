@@ -251,8 +251,10 @@ export class CollectFootprintsStage extends ConverterStage {
     } as any)
   }
 
-  private mapTextLayer(kicadLayer: string): "top" | "bottom" {
-    if (kicadLayer?.includes("B.") || kicadLayer?.includes("Back")) {
+  private mapTextLayer(kicadLayer: any): "top" | "bottom" {
+    // Handle both string and Layer object
+    const layerStr = typeof kicadLayer === "string" ? kicadLayer : (kicadLayer?.names?.join(" ") || "")
+    if (layerStr.includes("B.") || layerStr.includes("Back")) {
       return "bottom"
     }
     return "top"
