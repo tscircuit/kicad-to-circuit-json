@@ -100,7 +100,8 @@ export function createSilkscreenText(
   const textLocalX = at?.x ?? 0
   const textLocalY = at?.y ?? 0
 
-  const rotationRad = (componentRotation * Math.PI) / 180
+  // Negate rotation to account for Y-axis flip in coordinate transform
+  const rotationRad = (-componentRotation * Math.PI) / 180
   const rotatedTextX = textLocalX * Math.cos(rotationRad) - textLocalY * Math.sin(rotationRad)
   const rotatedTextY = textLocalX * Math.sin(rotationRad) + textLocalY * Math.cos(rotationRad)
 

@@ -41,7 +41,8 @@ export function processPad(
 
   // Get pad position in KiCad global coordinates
   // Pad position is relative to component and needs to be rotated
-  const rotationRad = (componentRotation * Math.PI) / 180
+  // Negate rotation to account for Y-axis flip in coordinate transform
+  const rotationRad = (-componentRotation * Math.PI) / 180
   const rotatedPadX = padAt.x * Math.cos(rotationRad) - padAt.y * Math.sin(rotationRad)
   const rotatedPadY = padAt.x * Math.sin(rotationRad) + padAt.y * Math.cos(rotationRad)
 

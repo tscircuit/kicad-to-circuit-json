@@ -30,6 +30,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const inserted = ctx.db.pcb_component.insert({
     center: { x: cjPos.x, y: cjPos.y },
     layer: getComponentLayer(footprint),
+    rotation: -rotation, // Negate rotation due to Y-axis flip in coordinate transform
     width: 0, // Will be computed from pads if needed
     height: 0,
   } as any)

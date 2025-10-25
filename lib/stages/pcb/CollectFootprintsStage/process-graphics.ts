@@ -63,9 +63,9 @@ export function createFootprintLine(
   const start = line.start || { x: 0, y: 0 }
   const end = line.end || { x: 0, y: 0 }
 
-  // Rotate line points by component rotation
-  const rotatedStart = rotatePoint(start.x, start.y, componentRotation)
-  const rotatedEnd = rotatePoint(end.x, end.y, componentRotation)
+  // Rotate line points by component rotation (negated for Y-axis flip)
+  const rotatedStart = rotatePoint(start.x, start.y, -componentRotation)
+  const rotatedEnd = rotatePoint(end.x, end.y, -componentRotation)
 
   // Apply component position
   const startKicadPos = {
@@ -110,8 +110,8 @@ export function createFootprintCircle(
   // Calculate radius (distance from center to end point)
   const radius = Math.sqrt((end.x - center.x) ** 2 + (end.y - center.y) ** 2)
 
-  // Rotate center by component rotation
-  const rotatedCenter = rotatePoint(center.x, center.y, componentRotation)
+  // Rotate center by component rotation (negated for Y-axis flip)
+  const rotatedCenter = rotatePoint(center.x, center.y, -componentRotation)
 
   // Apply component position
   const centerKicadPos = {
@@ -160,10 +160,10 @@ export function createFootprintArc(
   const mid = arc.mid || { x: 0, y: 0 }
   const end = arc.end || { x: 0, y: 0 }
 
-  // Rotate arc points by component rotation
-  const rotatedStart = rotatePoint(start.x, start.y, componentRotation)
-  const rotatedMid = rotatePoint(mid.x, mid.y, componentRotation)
-  const rotatedEnd = rotatePoint(end.x, end.y, componentRotation)
+  // Rotate arc points by component rotation (negated for Y-axis flip)
+  const rotatedStart = rotatePoint(start.x, start.y, -componentRotation)
+  const rotatedMid = rotatePoint(mid.x, mid.y, -componentRotation)
+  const rotatedEnd = rotatePoint(end.x, end.y, -componentRotation)
 
   // Apply component position
   const startKicadPos = { x: kicadComponentPos.x + rotatedStart.x, y: kicadComponentPos.y + rotatedStart.y }
