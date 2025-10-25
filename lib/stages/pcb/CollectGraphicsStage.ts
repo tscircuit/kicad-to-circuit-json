@@ -48,8 +48,11 @@ export class CollectGraphicsStage extends ConverterStage {
 
     for (const text of textArray) {
       const layer = text.layer
-      const layerNames = layer?.names || []
-      if (layerNames.some((name: string) => name.includes("SilkS"))) {
+      const layerNames = typeof layer === "string" ? [layer] : (layer?.names || [])
+      // Include text from silk, copper, and fab layers
+      if (layerNames.some((name: string) =>
+        name.includes("SilkS") || name.includes(".Cu") || name.includes("Fab")
+      )) {
         this.createSilkscreenText(text)
       }
     }
@@ -144,8 +147,9 @@ export class CollectGraphicsStage extends ConverterStage {
     } as any)
   }
 
-  private mapLayer(kicadLayer: string): "top" | "bottom" {
-    if (kicadLayer?.includes("B.") || kicadLayer?.includes("Back")) {
+  private mapLayer(kicadLayer: any): "top" | "bottom" {
+    const layerStr = typeof kicadLayer === "string" ? kicadLayer : (kicadLayer?.names?.join(" ") || "")
+    if (layerStr.includes("B.") || layerStr.includes("Back")) {
       return "bottom"
     }
     return "top"

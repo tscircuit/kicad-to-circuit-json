@@ -53,28 +53,42 @@ export class CollectTracesStage extends ConverterStage {
     const mappedLayer = this.mapLayer(layerStr)
     const netName = this.ctx.netNumToName.get(netNum) || ""
 
-    // Build route from segments
-    const route: Array<{ x: number; y: number; via?: boolean; to_layer?: string }> = []
+    // Build route from segments with proper layer and width information
+    const route: Array<{ route_type: "wire"; x: number; y: number; width: number; layer: string }> = []
 
     for (const segment of segments) {
       const start = segment.start || { x: 0, y: 0 }
       const end = segment.end || { x: 0, y: 0 }
+      const width = segment.width || 0.2 // Default trace width
 
       const startPos = applyToPoint(this.ctx.k2cMatPcb, { x: start.x, y: start.y })
       const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
       // Add start point if route is empty
       if (route.length === 0) {
-        route.push(startPos)
+        route.push({
+          route_type: "wire",
+          x: startPos.x,
+          y: startPos.y,
+          width: width,
+          layer: mappedLayer,
+        })
       }
 
       // Add end point
-      route.push(endPos)
+      route.push({
+        route_type: "wire",
+        x: endPos.x,
+        y: endPos.y,
+        width: width,
+        layer: mappedLayer,
+      })
     }
 
-    // Create pcb_trace
+    // Create pcb_trace with proper route format
     this.ctx.db.pcb_trace.insert({
-      route: route as any, // TODO: Fix route type - CJ expects wire/via segments with layer/width
+      route: route as any,
+      pcb_port_id: undefined, // Not connected to a specific port yet
     } as any)
 
     // Update stats
