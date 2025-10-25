@@ -8,7 +8,8 @@ import "./fixtures/png-matcher"
 
 test("kicad-to-circuit-json: pic_programmer PCB", async () => {
   // Load the KiCad PCB file
-  const kicadPcbPath = "kicad-demos/demos/pic_programmer/pic_programmer.kicad_pcb"
+  const kicadPcbPath =
+    "kicad-demos/demos/pic_programmer/pic_programmer.kicad_pcb"
   const kicadPcbContent = readFileSync(kicadPcbPath, "utf-8")
 
   // Convert to Circuit JSON
@@ -28,28 +29,41 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
 
   // Debug: Log sample of output
   console.log("\nCircuit JSON element count:", circuitJson.length)
-  console.log("\nElement types:", [...new Set(circuitJson.map((el: any) => el.type))].sort())
+  console.log(
+    "\nElement types:",
+    [...new Set(circuitJson.map((el: any) => el.type))].sort(),
+  )
 
   // Check a few components
-  const components = circuitJson.filter((el: any) => el.type === "pcb_component")
+  const components = circuitJson.filter(
+    (el: any) => el.type === "pcb_component",
+  )
   console.log("\nSample components:")
   components.slice(0, 3).forEach((c: any) => {
-    console.log(`  - ${c.pcb_component_id}: center=(${c.center?.x?.toFixed(2)}, ${c.center?.y?.toFixed(2)}), layer=${c.layer}`)
+    console.log(
+      `  - ${c.pcb_component_id}: center=(${c.center?.x?.toFixed(2)}, ${c.center?.y?.toFixed(2)}), layer=${c.layer}`,
+    )
   })
 
   // Check pads
-  const pads = circuitJson.filter((el: any) => el.type === "pcb_smtpad" || el.type === "pcb_plated_hole")
+  const pads = circuitJson.filter(
+    (el: any) => el.type === "pcb_smtpad" || el.type === "pcb_plated_hole",
+  )
   console.log("\nSample pads:")
   pads.slice(0, 3).forEach((p: any) => {
-    console.log(`  - ${p.type}: x=${p.x ?? 'N/A'}, y=${p.y ?? 'N/A'}`)
+    console.log(`  - ${p.type}: x=${p.x ?? "N/A"}, y=${p.y ?? "N/A"}`)
   })
 
   // Check coordinate ranges
   const allX = pads.map((p: any) => p.x).filter((x: number) => x !== undefined)
   const allY = pads.map((p: any) => p.y).filter((y: number) => y !== undefined)
   console.log("\nCoordinate ranges:")
-  console.log(`  X: ${Math.min(...allX).toFixed(2)} to ${Math.max(...allX).toFixed(2)}`)
-  console.log(`  Y: ${Math.min(...allY).toFixed(2)} to ${Math.max(...allY).toFixed(2)}`)
+  console.log(
+    `  X: ${Math.min(...allX).toFixed(2)} to ${Math.max(...allX).toFixed(2)}`,
+  )
+  console.log(
+    `  Y: ${Math.min(...allY).toFixed(2)} to ${Math.max(...allY).toFixed(2)}`,
+  )
 
   // Check board
   const boards = circuitJson.filter((el: any) => el.type === "pcb_board")
@@ -68,7 +82,7 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
   const fs = await import("node:fs/promises")
   await fs.writeFile(
     "tests/__snapshots__/pic_programmer-circuit-json.json",
-    JSON.stringify(circuitJson, null, 2)
+    JSON.stringify(circuitJson, null, 2),
   )
 
   // Take snapshots
@@ -90,6 +104,6 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
   // Save as snapshot for visual comparison
   await expect(stackedPng).toMatchPngSnapshot(
     import.meta.path,
-    "pic_programmer-pcb"
+    "pic_programmer-pcb",
   )
 })
