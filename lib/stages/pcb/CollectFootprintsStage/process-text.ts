@@ -37,7 +37,8 @@ export function processFootprintText(
       text: text.text,
       at: (text as any)._sxPosition || (text as any).at,  // Use _sxPosition for position
       layer: text.layer,
-      effects: text.effects,
+      effects: (text as any)._sxEffects || text.effects,
+      _sxEffects: (text as any)._sxEffects,  // Pass _sxEffects for font size access
     }
 
     createSilkscreenText(ctx, textElement, componentId, kicadComponentPos, componentRotation, footprint)
@@ -76,6 +77,7 @@ export function processFootprintProperties(
       at: (property as any)._sxAt,  // Use _sxAt instead of at
       layer: property.layer,
       effects: (property as any)._sxEffects || property.effects,
+      _sxEffects: (property as any)._sxEffects,  // Pass _sxEffects for font size access
     }
 
     createSilkscreenText(ctx, textElement, componentId, kicadComponentPos, componentRotation, footprint)
@@ -116,10 +118,13 @@ export function createSilkscreenText(
   // Substitute KiCad variables in text
   const processedText = substituteKicadVariables(text.text || "", footprint)
 
+  // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
+  const kicadFontSize = text._sxEffects?._sxFont?._sxSize?._height || text.effects?.font?.size?.y || 1
+
   ctx.db.pcb_silkscreen_text.insert({
     pcb_component_id: componentId,
     font: "tscircuit2024",
-    font_size: text.effects?.font?.size?.y || 1,
+    font_size: kicadFontSize * 1.5,
     text: processedText,
     anchor_position: pos,
     layer: layer,

@@ -136,7 +136,9 @@ export class CollectGraphicsStage extends ConverterStage {
     const pos = applyToPoint(this.ctx.k2cMatPcb, { x: at?.x ?? 0, y: at?.y ?? 0 })
 
     const layer = this.mapLayer(text.layer)
-    const fontSize = text.effects?.font?.size?.y || 1
+    // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
+    const kicadFontSize = text._sxEffects?._sxFont?._sxSize?._height || text.effects?.font?.size?.y || 1
+    const fontSize = kicadFontSize * 1.5
 
     this.ctx.db.pcb_silkscreen_text.insert({
       pcb_component_id: "",
