@@ -82,12 +82,19 @@ export class CollectGraphicsStage extends ConverterStage {
       }
     }
 
+    // Remove the last point if it's the same as the first (closed polygon)
+    if (points.length > 2 && this.pointsEqual(points[0], points[points.length - 1])) {
+      points.pop()
+    }
+
     // Create pcb_board with outline
     // Check if board already exists
     const existingBoard = this.ctx.db.pcb_board.list()[0]
     if (existingBoard) {
       // Update outline
       existingBoard.outline = points
+      existingBoard.width = this.calculateWidth(points)
+      existingBoard.height = this.calculateHeight(points)
     } else {
       // Create new board
       this.ctx.db.pcb_board.insert({

@@ -59,11 +59,11 @@ export class CollectFootprintsStage extends ConverterStage {
     // Map footprint UUID to component ID
     this.ctx.footprintUuidToComponentId?.set(uuid, componentId)
 
-    // Process pads
-    this.processPads(footprint, componentId, cjPos, rotation)
+    // Process pads - pass KiCad position for correct transformation
+    this.processPads(footprint, componentId, kicadPos, rotation)
 
-    // Process footprint text as silkscreen
-    this.processFootprintText(footprint, componentId)
+    // Process footprint text as silkscreen - pass KiCad position for correct transformation
+    this.processFootprintText(footprint, componentId, kicadPos)
 
     // Update stats
     if (this.ctx.stats) {
@@ -91,7 +91,7 @@ export class CollectFootprintsStage extends ConverterStage {
   private processPads(
     footprint: Footprint,
     componentId: string,
-    componentCenter: { x: number; y: number },
+    kicadComponentPos: { x: number; y: number },
     componentRotation: number
   ) {
     if (!this.ctx.k2cMatPcb) return
@@ -100,14 +100,14 @@ export class CollectFootprintsStage extends ConverterStage {
     const padArray = Array.isArray(pads) ? pads : [pads]
 
     for (const pad of padArray) {
-      this.processPad(pad, componentId, componentCenter, componentRotation)
+      this.processPad(pad, componentId, kicadComponentPos, componentRotation)
     }
   }
 
   private processPad(
     pad: any,
     componentId: string,
-    componentCenter: { x: number; y: number },
+    kicadComponentPos: { x: number; y: number },
     componentRotation: number
   ) {
     if (!this.ctx.k2cMatPcb) return
@@ -116,18 +116,15 @@ export class CollectFootprintsStage extends ConverterStage {
     const padType = pad.type || "thru_hole"
     const padShape = pad.shape || "circle"
 
-    // Transform pad position relative to component
-    // First rotate around component center, then apply global transform
-    const relativePos = { x: padAt.x, y: padAt.y }
-    const rotMatrix = compose(
-      translate(componentCenter.x, componentCenter.y),
-      rotateDEG(componentRotation),
-      translate(0, 0)
-    )
-    const globalPos = applyToPoint(this.ctx.k2cMatPcb, {
-      x: componentCenter.x + relativePos.x,
-      y: componentCenter.y + relativePos.y,
-    })
+    // Get pad position in KiCad global coordinates
+    // Pad position is relative to component, so add component position
+    const padKicadPos = {
+      x: kicadComponentPos.x + padAt.x,
+      y: kicadComponentPos.y + padAt.y,
+    }
+
+    // Transform from KiCad to Circuit JSON coordinates
+    const globalPos = applyToPoint(this.ctx.k2cMatPcb, padKicadPos)
 
     // Get pad size
     const size = pad.size || { x: 1, y: 1 }
@@ -225,7 +222,7 @@ export class CollectFootprintsStage extends ConverterStage {
     return "top"
   }
 
-  private processFootprintText(footprint: Footprint, componentId: string) {
+  private processFootprintText(footprint: Footprint, componentId: string, kicadComponentPos: { x: number; y: number }) {
     if (!this.ctx.k2cMatPcb) return
 
     const texts = footprint.fpTexts || []
@@ -235,15 +232,20 @@ export class CollectFootprintsStage extends ConverterStage {
       // Skip reference and value text for now (they're metadata)
       if (text.type === "reference" || text.type === "value") continue
 
-      this.createSilkscreenText(text, componentId)
+      this.createSilkscreenText(text, componentId, kicadComponentPos)
     }
   }
 
-  private createSilkscreenText(text: any, componentId: string) {
+  private createSilkscreenText(text: any, componentId: string, kicadComponentPos: { x: number; y: number }) {
     if (!this.ctx.k2cMatPcb) return
 
     const at = text.at
-    const pos = applyToPoint(this.ctx.k2cMatPcb, { x: at?.x ?? 0, y: at?.y ?? 0 })
+    // Text position in footprint is relative to footprint position
+    const textKicadPos = {
+      x: kicadComponentPos.x + (at?.x ?? 0),
+      y: kicadComponentPos.y + (at?.y ?? 0),
+    }
+    const pos = applyToPoint(this.ctx.k2cMatPcb, textKicadPos)
 
     const layer = this.mapTextLayer(text.layer)
 

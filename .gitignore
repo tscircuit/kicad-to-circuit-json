@@ -35,3 +35,5 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .vscode
 circuit-json-to-kicad
 kicad-demos
+debug*.ts
+*.diff.png

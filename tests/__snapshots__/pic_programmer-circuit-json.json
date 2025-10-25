@@ -3,8 +3,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_0",
     "center": {
-      "x": 110.49,
-      "y": -78.867
+      "x": -43.18000000000002,
+      "y": 11.302999999999983
     },
     "layer": "top",
     "width": 0,
@@ -14,8 +14,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_1",
     "center": {
-      "x": 84.582,
-      "y": -90.17
+      "x": -69.08800000000002,
+      "y": -1.4210854715202004e-14
     },
     "layer": "top",
     "width": 0,
@@ -25,8 +25,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_2",
     "center": {
-      "x": 77.47,
-      "y": -135.89
+      "x": -76.20000000000002,
+      "y": -45.72
     },
     "layer": "top",
     "width": 0,
@@ -36,8 +36,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_3",
     "center": {
-      "x": 158.75,
-      "y": -135.89
+      "x": 5.079999999999984,
+      "y": -45.72
     },
     "layer": "top",
     "width": 0,
@@ -47,8 +47,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_4",
     "center": {
-      "x": 229.87,
-      "y": -135.89
+      "x": 76.19999999999999,
+      "y": -45.72
     },
     "layer": "top",
     "width": 0,
@@ -58,8 +58,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_5",
     "center": {
-      "x": 229.87,
-      "y": -44.45
+      "x": 76.19999999999999,
+      "y": 45.719999999999985
     },
     "layer": "top",
     "width": 0,
@@ -69,8 +69,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_6",
     "center": {
-      "x": 158.75,
-      "y": -44.45
+      "x": 5.079999999999984,
+      "y": 45.719999999999985
     },
     "layer": "top",
     "width": 0,
@@ -80,8 +80,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_7",
     "center": {
-      "x": 77.47,
-      "y": -44.45
+      "x": -76.20000000000002,
+      "y": 45.719999999999985
     },
     "layer": "top",
     "width": 0,
@@ -91,8 +91,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_8",
     "center": {
-      "x": 175.26,
-      "y": -50.8
+      "x": 21.589999999999975,
+      "y": 39.36999999999999
     },
     "layer": "top",
     "width": 0,
@@ -102,8 +102,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_9",
     "center": {
-      "x": 179.07,
-      "y": -120.65
+      "x": 25.399999999999977,
+      "y": -30.480000000000018
     },
     "layer": "top",
     "width": 0,
@@ -113,8 +113,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_10",
     "center": {
-      "x": 179.07,
-      "y": -109.22
+      "x": 25.399999999999977,
+      "y": -19.05000000000001
     },
     "layer": "top",
     "width": 0,
@@ -124,8 +124,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_11",
     "center": {
-      "x": 110.49,
-      "y": -57.15
+      "x": -43.18000000000002,
+      "y": 33.01999999999999
     },
     "layer": "top",
     "width": 0,
@@ -135,8 +135,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_12",
     "center": {
-      "x": 207.645,
-      "y": -50.8
+      "x": 53.974999999999994,
+      "y": 39.36999999999999
     },
     "layer": "top",
     "width": 0,
@@ -146,8 +146,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_13",
     "center": {
-      "x": 207.899,
-      "y": -107.95
+      "x": 54.228999999999985,
+      "y": -17.780000000000015
     },
     "layer": "top",
     "width": 0,
@@ -157,8 +157,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_14",
     "center": {
-      "x": 115.57,
-      "y": -119.38
+      "x": -38.10000000000002,
+      "y": -29.210000000000008
     },
     "layer": "top",
     "width": 0,
@@ -168,8 +168,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_15",
     "center": {
-      "x": 107.95,
-      "y": -118.237
+      "x": -45.72000000000001,
+      "y": -28.067000000000007
     },
     "layer": "top",
     "width": 0,
@@ -179,8 +179,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_16",
     "center": {
-      "x": 107.95,
-      "y": -121.92
+      "x": -45.72000000000001,
+      "y": -31.750000000000014
     },
     "layer": "top",
     "width": 0,
@@ -190,8 +190,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_17",
     "center": {
-      "x": 107.95,
-      "y": -111.887
+      "x": -45.72000000000001,
+      "y": -21.717000000000013
     },
     "layer": "top",
     "width": 0,
@@ -201,8 +201,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_18",
     "center": {
-      "x": 107.95,
-      "y": -108.585
+      "x": -45.72000000000001,
+      "y": -18.415000000000006
     },
     "layer": "top",
     "width": 0,
@@ -212,8 +212,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_19",
     "center": {
-      "x": 139.065,
-      "y": -80.645
+      "x": -14.605000000000018,
+      "y": 9.524999999999991
     },
     "layer": "top",
     "width": 0,
@@ -223,8 +223,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_20",
     "center": {
-      "x": 107.95,
-      "y": -115.316
+      "x": -45.72000000000001,
+      "y": -25.146000000000015
     },
     "layer": "top",
     "width": 0,
@@ -234,8 +234,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_21",
     "center": {
-      "x": 107.95,
-      "y": -125.095
+      "x": -45.72000000000001,
+      "y": -34.92500000000001
     },
     "layer": "top",
     "width": 0,
@@ -245,8 +245,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_22",
     "center": {
-      "x": 82.6,
-      "y": -120.2
+      "x": -71.07000000000002,
+      "y": -30.030000000000015
     },
     "layer": "top",
     "width": 0,
@@ -256,8 +256,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_23",
     "center": {
-      "x": 142.24,
-      "y": -97.79
+      "x": -11.430000000000007,
+      "y": -7.620000000000019
     },
     "layer": "top",
     "width": 0,
@@ -267,8 +267,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_24",
     "center": {
-      "x": 148.082,
-      "y": -60.706
+      "x": -5.588000000000022,
+      "y": 29.463999999999984
     },
     "layer": "top",
     "width": 0,
@@ -278,8 +278,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_25",
     "center": {
-      "x": 146.05,
-      "y": -69.85
+      "x": -7.6200000000000045,
+      "y": 20.319999999999993
     },
     "layer": "top",
     "width": 0,
@@ -289,8 +289,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_26",
     "center": {
-      "x": 152.4,
-      "y": -68.58
+      "x": -1.2700000000000102,
+      "y": 21.58999999999999
     },
     "layer": "top",
     "width": 0,
@@ -300,8 +300,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_27",
     "center": {
-      "x": 114.3,
-      "y": -48.26
+      "x": -39.37000000000002,
+      "y": 41.90999999999999
     },
     "layer": "top",
     "width": 0,
@@ -311,8 +311,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_28",
     "center": {
-      "x": 139.065,
-      "y": -77.47
+      "x": -14.605000000000018,
+      "y": 12.699999999999989
     },
     "layer": "top",
     "width": 0,
@@ -322,8 +322,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_29",
     "center": {
-      "x": 87.63,
-      "y": -118.11
+      "x": -66.04000000000002,
+      "y": -27.940000000000012
     },
     "layer": "top",
     "width": 0,
@@ -333,8 +333,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_30",
     "center": {
-      "x": 87.63,
-      "y": -114.554
+      "x": -66.04000000000002,
+      "y": -24.384000000000015
     },
     "layer": "top",
     "width": 0,
@@ -344,8 +344,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_31",
     "center": {
-      "x": 87.63,
-      "y": -111.125
+      "x": -66.04000000000002,
+      "y": -20.955000000000013
     },
     "layer": "top",
     "width": 0,
@@ -355,8 +355,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_32",
     "center": {
-      "x": 87.63,
-      "y": -107.823
+      "x": -66.04000000000002,
+      "y": -17.653000000000006
     },
     "layer": "top",
     "width": 0,
@@ -366,8 +366,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_33",
     "center": {
-      "x": 87.757,
-      "y": -125.476
+      "x": -65.91300000000001,
+      "y": -35.30600000000001
     },
     "layer": "top",
     "width": 0,
@@ -377,8 +377,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_34",
     "center": {
-      "x": 139.7,
-      "y": -54.61
+      "x": -13.970000000000027,
+      "y": 35.55999999999999
     },
     "layer": "top",
     "width": 0,
@@ -388,8 +388,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_35",
     "center": {
-      "x": 87.757,
-      "y": -121.92
+      "x": -65.91300000000001,
+      "y": -31.750000000000014
     },
     "layer": "top",
     "width": 0,
@@ -399,8 +399,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_36",
     "center": {
-      "x": 158.115,
-      "y": -102.235
+      "x": 4.444999999999993,
+      "y": -12.065000000000012
     },
     "layer": "top",
     "width": 0,
@@ -410,8 +410,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_37",
     "center": {
-      "x": 144.78,
-      "y": -102.235
+      "x": -8.890000000000015,
+      "y": -12.065000000000012
     },
     "layer": "top",
     "width": 0,
@@ -421,8 +421,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_38",
     "center": {
-      "x": 149.225,
-      "y": -83.82
+      "x": -4.445000000000022,
+      "y": 6.349999999999994
     },
     "layer": "top",
     "width": 0,
@@ -432,8 +432,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_39",
     "center": {
-      "x": 156.21,
-      "y": -68.58
+      "x": 2.539999999999992,
+      "y": 21.58999999999999
     },
     "layer": "top",
     "width": 0,
@@ -443,8 +443,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_40",
     "center": {
-      "x": 118.11,
-      "y": -75.184
+      "x": -35.56000000000002,
+      "y": 14.98599999999999
     },
     "layer": "top",
     "width": 0,
@@ -454,8 +454,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_41",
     "center": {
-      "x": 118.11,
-      "y": -78.74
+      "x": -35.56000000000002,
+      "y": 11.429999999999993
     },
     "layer": "top",
     "width": 0,
@@ -465,8 +465,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_42",
     "center": {
-      "x": 139.065,
-      "y": -87.63
+      "x": -14.605000000000018,
+      "y": 2.539999999999992
     },
     "layer": "top",
     "width": 0,
@@ -476,8 +476,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_43",
     "center": {
-      "x": 140.335,
-      "y": -111.76
+      "x": -13.335000000000008,
+      "y": -21.590000000000018
     },
     "layer": "top",
     "width": 0,
@@ -487,8 +487,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_44",
     "center": {
-      "x": 139.065,
-      "y": -91.059
+      "x": -14.605000000000018,
+      "y": -0.88900000000001
     },
     "layer": "top",
     "width": 0,
@@ -498,8 +498,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_45",
     "center": {
-      "x": 135.255,
-      "y": -121.92
+      "x": -18.41500000000002,
+      "y": -31.750000000000014
     },
     "layer": "top",
     "width": 0,
@@ -509,8 +509,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_46",
     "center": {
-      "x": 156.21,
-      "y": -77.47
+      "x": 2.539999999999992,
+      "y": 12.699999999999989
     },
     "layer": "top",
     "width": 0,
@@ -520,8 +520,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_47",
     "center": {
-      "x": 156.21,
-      "y": -87.63
+      "x": 2.539999999999992,
+      "y": 2.539999999999992
     },
     "layer": "top",
     "width": 0,
@@ -531,8 +531,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_48",
     "center": {
-      "x": 156.21,
-      "y": -97.155
+      "x": 2.539999999999992,
+      "y": -6.985000000000014
     },
     "layer": "top",
     "width": 0,
@@ -542,8 +542,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_49",
     "center": {
-      "x": 114.3,
-      "y": -52.07
+      "x": -39.37000000000002,
+      "y": 38.09999999999999
     },
     "layer": "top",
     "width": 0,
@@ -553,8 +553,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_50",
     "center": {
-      "x": 129.54,
-      "y": -49.53
+      "x": -24.130000000000024,
+      "y": 40.639999999999986
     },
     "layer": "top",
     "width": 0,
@@ -564,8 +564,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_51",
     "center": {
-      "x": 198.755,
-      "y": -71.12
+      "x": 45.08499999999998,
+      "y": 19.049999999999983
     },
     "layer": "top",
     "width": 0,
@@ -575,8 +575,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_52",
     "center": {
-      "x": 143.002,
-      "y": -49.784
+      "x": -10.668000000000006,
+      "y": 40.38599999999999
     },
     "layer": "top",
     "width": 0,
@@ -586,8 +586,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_53",
     "center": {
-      "x": 196.85,
-      "y": -112.395
+      "x": 43.17999999999998,
+      "y": -22.22500000000001
     },
     "layer": "top",
     "width": 0,
@@ -597,8 +597,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_54",
     "center": {
-      "x": 137.16,
-      "y": -57.15
+      "x": -16.51000000000002,
+      "y": 33.01999999999999
     },
     "layer": "top",
     "width": 0,
@@ -608,8 +608,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_55",
     "center": {
-      "x": 127.635,
-      "y": -90.805
+      "x": -26.03500000000001,
+      "y": -0.6350000000000193
     },
     "layer": "top",
     "width": 0,
@@ -619,8 +619,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_56",
     "center": {
-      "x": 81.8,
-      "y": -60
+      "x": -71.87000000000002,
+      "y": 30.169999999999987
     },
     "layer": "top",
     "width": 0,
@@ -630,8 +630,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_57",
     "center": {
-      "x": 96.52,
-      "y": -71.12
+      "x": -57.15000000000002,
+      "y": 19.049999999999983
     },
     "layer": "top",
     "width": 0,
@@ -641,8 +641,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_58",
     "center": {
-      "x": 140.081,
-      "y": -70.993
+      "x": -13.589000000000027,
+      "y": 19.176999999999992
     },
     "layer": "top",
     "width": 0,
@@ -652,8 +652,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_59",
     "center": {
-      "x": 134.112,
-      "y": -62.23
+      "x": -19.55800000000002,
+      "y": 27.93999999999999
     },
     "layer": "top",
     "width": 0,
@@ -663,8 +663,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_60",
     "center": {
-      "x": 125.73,
-      "y": -62.23
+      "x": -27.940000000000012,
+      "y": 27.93999999999999
     },
     "layer": "top",
     "width": 0,
@@ -674,8 +674,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_61",
     "center": {
-      "x": 78.3,
-      "y": -89.7
+      "x": -75.37000000000002,
+      "y": 0.46999999999998465
     },
     "layer": "top",
     "width": 0,
@@ -685,8 +685,8 @@
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_62",
     "center": {
-      "x": 148.082,
-      "y": -97.79
+      "x": -5.588000000000022,
+      "y": -7.620000000000019
     },
     "layer": "bottom",
     "width": 0,
@@ -696,8 +696,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_0",
     "pcb_component_id": "pcb_component_0",
-    "x": 110.49,
-    "y": 78.867,
+    "x": -43.18000000000002,
+    "y": 11.302999999999983,
     "hole_diameter": 1.2,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -708,8 +708,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_1",
     "pcb_component_id": "pcb_component_0",
-    "x": 135.49,
-    "y": 78.867,
+    "x": -18.180000000000007,
+    "y": 11.302999999999983,
     "hole_diameter": 1.2,
     "shape": "pill",
     "port_hints": [
@@ -720,8 +720,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_2",
     "pcb_component_id": "pcb_component_1",
-    "x": 84.582,
-    "y": 90.17,
+    "x": -69.08800000000002,
+    "y": -1.4210854715202004e-14,
     "hole_diameter": 1.2,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -732,8 +732,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_3",
     "pcb_component_id": "pcb_component_1",
-    "x": 109.582,
-    "y": 90.17,
+    "x": -44.08800000000002,
+    "y": -1.4210854715202004e-14,
     "hole_diameter": 1.2,
     "shape": "pill",
     "port_hints": [
@@ -744,8 +744,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_4",
     "pcb_component_id": "pcb_component_2",
-    "x": 77.47,
-    "y": 135.89,
+    "x": -76.20000000000002,
+    "y": -45.72,
     "hole_diameter": 4.3,
     "shape": "circle",
     "port_hints": [
@@ -756,8 +756,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_5",
     "pcb_component_id": "pcb_component_3",
-    "x": 158.75,
-    "y": 135.89,
+    "x": 5.079999999999984,
+    "y": -45.72,
     "hole_diameter": 4.3,
     "shape": "circle",
     "port_hints": [
@@ -768,8 +768,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_6",
     "pcb_component_id": "pcb_component_4",
-    "x": 229.87,
-    "y": 135.89,
+    "x": 76.19999999999999,
+    "y": -45.72,
     "hole_diameter": 4.3,
     "shape": "circle",
     "port_hints": [
@@ -780,8 +780,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_7",
     "pcb_component_id": "pcb_component_5",
-    "x": 229.87,
-    "y": 44.45,
+    "x": 76.19999999999999,
+    "y": 45.719999999999985,
     "hole_diameter": 4.3,
     "shape": "circle",
     "port_hints": [
@@ -792,8 +792,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_8",
     "pcb_component_id": "pcb_component_6",
-    "x": 158.75,
-    "y": 44.45,
+    "x": 5.079999999999984,
+    "y": 45.719999999999985,
     "hole_diameter": 4.3,
     "shape": "circle",
     "port_hints": [
@@ -804,8 +804,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_9",
     "pcb_component_id": "pcb_component_7",
-    "x": 77.47,
-    "y": 44.45,
+    "x": -76.20000000000002,
+    "y": 45.719999999999985,
     "hole_diameter": 4.3,
     "shape": "circle",
     "port_hints": [
@@ -816,8 +816,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_10",
     "pcb_component_id": "pcb_component_8",
-    "x": 168.91,
-    "y": 5.079999999999998,
+    "x": 15.23999999999998,
+    "y": -6.3500000000000085,
     "hole_diameter": 2,
     "shape": "circle",
     "port_hints": [
@@ -828,8 +828,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_11",
     "pcb_component_id": "pcb_component_8",
-    "x": 196.85,
-    "y": 53.339999999999996,
+    "x": 43.17999999999998,
+    "y": 41.90999999999999,
     "hole_diameter": 2,
     "shape": "circle",
     "port_hints": [
@@ -840,8 +840,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_12",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 50.8,
+    "x": 21.589999999999975,
+    "y": 39.36999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -852,8 +852,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_13",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 48.26,
+    "x": 21.589999999999975,
+    "y": 36.82999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -864,8 +864,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_14",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 45.72,
+    "x": 21.589999999999975,
+    "y": 34.28999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -876,8 +876,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_15",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 43.18,
+    "x": 21.589999999999975,
+    "y": 31.749999999999993,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -888,8 +888,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_16",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 40.64,
+    "x": 21.589999999999975,
+    "y": 29.209999999999994,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -900,8 +900,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_17",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 38.099999999999994,
+    "x": 21.589999999999975,
+    "y": 26.669999999999987,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -912,8 +912,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_18",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 35.559999999999995,
+    "x": 21.589999999999975,
+    "y": 24.129999999999995,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -924,8 +924,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_19",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 33.019999999999996,
+    "x": 21.589999999999975,
+    "y": 21.58999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -936,8 +936,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_20",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 30.479999999999997,
+    "x": 21.589999999999975,
+    "y": 19.049999999999983,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -948,8 +948,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_21",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 27.939999999999998,
+    "x": 21.589999999999975,
+    "y": 16.50999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -960,8 +960,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_22",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 25.4,
+    "x": 21.589999999999975,
+    "y": 13.969999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -972,8 +972,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_23",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 22.859999999999996,
+    "x": 21.589999999999975,
+    "y": 11.429999999999993,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -984,8 +984,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_24",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 20.319999999999997,
+    "x": 21.589999999999975,
+    "y": 8.889999999999986,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -996,8 +996,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_25",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 17.779999999999994,
+    "x": 21.589999999999975,
+    "y": 6.349999999999994,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1008,8 +1008,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_26",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 15.239999999999995,
+    "x": 21.589999999999975,
+    "y": 3.809999999999988,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1020,8 +1020,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_27",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 12.699999999999996,
+    "x": 21.589999999999975,
+    "y": 1.2699999999999818,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1032,8 +1032,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_28",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 10.159999999999997,
+    "x": 21.589999999999975,
+    "y": -1.2700000000000102,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1044,8 +1044,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_29",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 7.619999999999997,
+    "x": 21.589999999999975,
+    "y": -3.8100000000000023,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1056,8 +1056,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_30",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 5.079999999999998,
+    "x": 21.589999999999975,
+    "y": -6.3500000000000085,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1068,8 +1068,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_31",
     "pcb_component_id": "pcb_component_8",
-    "x": 175.26,
-    "y": 2.539999999999999,
+    "x": 21.589999999999975,
+    "y": -8.890000000000015,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1080,8 +1080,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_32",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 2.539999999999999,
+    "x": 36.829999999999984,
+    "y": -8.890000000000015,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1092,8 +1092,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_33",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 5.079999999999998,
+    "x": 36.829999999999984,
+    "y": -6.3500000000000085,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1104,8 +1104,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_34",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 7.619999999999997,
+    "x": 36.829999999999984,
+    "y": -3.8100000000000023,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1116,8 +1116,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_35",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 10.159999999999997,
+    "x": 36.829999999999984,
+    "y": -1.2700000000000102,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1128,8 +1128,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_36",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 12.699999999999996,
+    "x": 36.829999999999984,
+    "y": 1.2699999999999818,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1140,8 +1140,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_37",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 15.239999999999995,
+    "x": 36.829999999999984,
+    "y": 3.809999999999988,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1152,8 +1152,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_38",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 17.779999999999994,
+    "x": 36.829999999999984,
+    "y": 6.349999999999994,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1164,8 +1164,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_39",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 20.319999999999997,
+    "x": 36.829999999999984,
+    "y": 8.889999999999986,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1176,8 +1176,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_40",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 22.859999999999996,
+    "x": 36.829999999999984,
+    "y": 11.429999999999993,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1188,8 +1188,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_41",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 25.4,
+    "x": 36.829999999999984,
+    "y": 13.969999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1200,8 +1200,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_42",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 27.939999999999998,
+    "x": 36.829999999999984,
+    "y": 16.50999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1212,8 +1212,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_43",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 30.479999999999997,
+    "x": 36.829999999999984,
+    "y": 19.049999999999983,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1224,8 +1224,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_44",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 33.019999999999996,
+    "x": 36.829999999999984,
+    "y": 21.58999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1236,8 +1236,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_45",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 35.559999999999995,
+    "x": 36.829999999999984,
+    "y": 24.129999999999995,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1248,8 +1248,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_46",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 38.099999999999994,
+    "x": 36.829999999999984,
+    "y": 26.669999999999987,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1260,8 +1260,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_47",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 40.64,
+    "x": 36.829999999999984,
+    "y": 29.209999999999994,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1272,8 +1272,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_48",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 43.18,
+    "x": 36.829999999999984,
+    "y": 31.749999999999993,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1284,8 +1284,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_49",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 45.72,
+    "x": 36.829999999999984,
+    "y": 34.28999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1296,8 +1296,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_50",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 48.26,
+    "x": 36.829999999999984,
+    "y": 36.82999999999999,
     "hole_diameter": 1,
     "shape": "pill",
     "port_hints": [
@@ -1308,8 +1308,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_51",
     "pcb_component_id": "pcb_component_8",
-    "x": 190.5,
-    "y": 50.8,
+    "x": 36.829999999999984,
+    "y": 39.36999999999999,
     "hole_diameter": 1,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -1320,8 +1320,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_52",
     "pcb_component_id": "pcb_component_9",
-    "x": 179.07,
-    "y": 120.65,
+    "x": 25.399999999999977,
+    "y": -30.480000000000018,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -1332,8 +1332,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_53",
     "pcb_component_id": "pcb_component_9",
-    "x": 179.07,
-    "y": 118.11,
+    "x": 25.399999999999977,
+    "y": -33.020000000000024,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1344,8 +1344,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_54",
     "pcb_component_id": "pcb_component_9",
-    "x": 179.07,
-    "y": 115.57000000000001,
+    "x": 25.399999999999977,
+    "y": -35.56000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1356,8 +1356,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_55",
     "pcb_component_id": "pcb_component_9",
-    "x": 179.07,
-    "y": 113.03,
+    "x": 25.399999999999977,
+    "y": -38.10000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1368,8 +1368,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_56",
     "pcb_component_id": "pcb_component_9",
-    "x": 186.69,
-    "y": 113.03,
+    "x": 33.01999999999998,
+    "y": -38.10000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1380,8 +1380,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_57",
     "pcb_component_id": "pcb_component_9",
-    "x": 186.69,
-    "y": 115.57000000000001,
+    "x": 33.01999999999998,
+    "y": -35.56000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1392,8 +1392,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_58",
     "pcb_component_id": "pcb_component_9",
-    "x": 186.69,
-    "y": 118.11,
+    "x": 33.01999999999998,
+    "y": -33.020000000000024,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1404,8 +1404,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_59",
     "pcb_component_id": "pcb_component_9",
-    "x": 186.69,
-    "y": 120.65,
+    "x": 33.01999999999998,
+    "y": -30.480000000000018,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1416,8 +1416,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_60",
     "pcb_component_id": "pcb_component_10",
-    "x": 179.07,
-    "y": 109.22,
+    "x": 25.399999999999977,
+    "y": -19.05000000000001,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -1428,8 +1428,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_61",
     "pcb_component_id": "pcb_component_10",
-    "x": 179.07,
-    "y": 106.67999999999999,
+    "x": 25.399999999999977,
+    "y": -21.590000000000018,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1440,8 +1440,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_62",
     "pcb_component_id": "pcb_component_10",
-    "x": 179.07,
-    "y": 104.14,
+    "x": 25.399999999999977,
+    "y": -24.13000000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1452,8 +1452,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_63",
     "pcb_component_id": "pcb_component_10",
-    "x": 179.07,
-    "y": 101.6,
+    "x": 25.399999999999977,
+    "y": -26.670000000000016,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1464,8 +1464,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_64",
     "pcb_component_id": "pcb_component_10",
-    "x": 186.69,
-    "y": 101.6,
+    "x": 33.01999999999998,
+    "y": -26.670000000000016,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1476,8 +1476,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_65",
     "pcb_component_id": "pcb_component_10",
-    "x": 186.69,
-    "y": 104.14,
+    "x": 33.01999999999998,
+    "y": -24.13000000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1488,8 +1488,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_66",
     "pcb_component_id": "pcb_component_10",
-    "x": 186.69,
-    "y": 106.67999999999999,
+    "x": 33.01999999999998,
+    "y": -21.590000000000018,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1500,8 +1500,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_67",
     "pcb_component_id": "pcb_component_10",
-    "x": 186.69,
-    "y": 109.22,
+    "x": 33.01999999999998,
+    "y": -19.05000000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1512,8 +1512,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_68",
     "pcb_component_id": "pcb_component_11",
-    "x": 110.49,
-    "y": 57.15,
+    "x": -43.18000000000002,
+    "y": 33.01999999999999,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -1524,8 +1524,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_69",
     "pcb_component_id": "pcb_component_11",
-    "x": 110.49,
-    "y": 54.61,
+    "x": -43.18000000000002,
+    "y": 30.47999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1536,8 +1536,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_70",
     "pcb_component_id": "pcb_component_11",
-    "x": 110.49,
-    "y": 52.07,
+    "x": -43.18000000000002,
+    "y": 27.93999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1548,8 +1548,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_71",
     "pcb_component_id": "pcb_component_11",
-    "x": 110.49,
-    "y": 49.53,
+    "x": -43.18000000000002,
+    "y": 25.39999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1560,8 +1560,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_72",
     "pcb_component_id": "pcb_component_11",
-    "x": 118.11,
-    "y": 49.53,
+    "x": -35.56000000000002,
+    "y": 25.39999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1572,8 +1572,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_73",
     "pcb_component_id": "pcb_component_11",
-    "x": 118.11,
-    "y": 52.07,
+    "x": -35.56000000000002,
+    "y": 27.93999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1584,8 +1584,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_74",
     "pcb_component_id": "pcb_component_11",
-    "x": 118.11,
-    "y": 54.61,
+    "x": -35.56000000000002,
+    "y": 30.47999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1596,8 +1596,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_75",
     "pcb_component_id": "pcb_component_11",
-    "x": 118.11,
-    "y": 57.15,
+    "x": -35.56000000000002,
+    "y": 33.01999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1608,8 +1608,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_76",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 50.8,
+    "x": 53.974999999999994,
+    "y": 39.36999999999999,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -1620,8 +1620,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_77",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 48.26,
+    "x": 53.974999999999994,
+    "y": 36.82999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1632,8 +1632,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_78",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 45.72,
+    "x": 53.974999999999994,
+    "y": 34.28999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1644,8 +1644,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_79",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 43.18,
+    "x": 53.974999999999994,
+    "y": 31.749999999999993,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1656,8 +1656,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_80",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 40.64,
+    "x": 53.974999999999994,
+    "y": 29.209999999999994,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1668,8 +1668,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_81",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 38.099999999999994,
+    "x": 53.974999999999994,
+    "y": 26.669999999999987,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1680,8 +1680,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_82",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 35.559999999999995,
+    "x": 53.974999999999994,
+    "y": 24.129999999999995,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1692,8 +1692,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_83",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 33.019999999999996,
+    "x": 53.974999999999994,
+    "y": 21.58999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1704,8 +1704,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_84",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 30.479999999999997,
+    "x": 53.974999999999994,
+    "y": 19.049999999999983,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1716,8 +1716,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_85",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 27.939999999999998,
+    "x": 53.974999999999994,
+    "y": 16.50999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1728,8 +1728,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_86",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 25.4,
+    "x": 53.974999999999994,
+    "y": 13.969999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1740,8 +1740,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_87",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 22.859999999999996,
+    "x": 53.974999999999994,
+    "y": 11.429999999999993,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1752,8 +1752,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_88",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 20.319999999999997,
+    "x": 53.974999999999994,
+    "y": 8.889999999999986,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1764,8 +1764,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_89",
     "pcb_component_id": "pcb_component_12",
-    "x": 207.645,
-    "y": 17.779999999999994,
+    "x": 53.974999999999994,
+    "y": 6.349999999999994,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1776,8 +1776,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_90",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 17.779999999999994,
+    "x": 61.595,
+    "y": 6.349999999999994,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1788,8 +1788,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_91",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 20.319999999999997,
+    "x": 61.595,
+    "y": 8.889999999999986,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1800,8 +1800,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_92",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 22.859999999999996,
+    "x": 61.595,
+    "y": 11.429999999999993,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1812,8 +1812,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_93",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 25.4,
+    "x": 61.595,
+    "y": 13.969999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1824,8 +1824,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_94",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 27.939999999999998,
+    "x": 61.595,
+    "y": 16.50999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1836,8 +1836,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_95",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 30.479999999999997,
+    "x": 61.595,
+    "y": 19.049999999999983,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1848,8 +1848,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_96",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 33.019999999999996,
+    "x": 61.595,
+    "y": 21.58999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1860,8 +1860,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_97",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 35.559999999999995,
+    "x": 61.595,
+    "y": 24.129999999999995,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1872,8 +1872,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_98",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 38.099999999999994,
+    "x": 61.595,
+    "y": 26.669999999999987,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1884,8 +1884,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_99",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 40.64,
+    "x": 61.595,
+    "y": 29.209999999999994,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1896,8 +1896,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_100",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 43.18,
+    "x": 61.595,
+    "y": 31.749999999999993,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1908,8 +1908,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_101",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 45.72,
+    "x": 61.595,
+    "y": 34.28999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1920,8 +1920,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_102",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 48.26,
+    "x": 61.595,
+    "y": 36.82999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1932,8 +1932,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_103",
     "pcb_component_id": "pcb_component_12",
-    "x": 215.26500000000001,
-    "y": 50.8,
+    "x": 61.595,
+    "y": 39.36999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1944,8 +1944,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_104",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 107.95,
+    "x": 54.228999999999985,
+    "y": -17.780000000000015,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -1956,8 +1956,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_105",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 105.41,
+    "x": 54.228999999999985,
+    "y": -20.32000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1968,8 +1968,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_106",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 102.87,
+    "x": 54.228999999999985,
+    "y": -22.860000000000014,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1980,8 +1980,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_107",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 100.33,
+    "x": 54.228999999999985,
+    "y": -25.40000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -1992,8 +1992,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_108",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 97.79,
+    "x": 54.228999999999985,
+    "y": -27.940000000000012,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2004,8 +2004,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_109",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 95.25,
+    "x": 54.228999999999985,
+    "y": -30.480000000000018,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2016,8 +2016,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_110",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 92.71000000000001,
+    "x": 54.228999999999985,
+    "y": -33.02000000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2028,8 +2028,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_111",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 90.17,
+    "x": 54.228999999999985,
+    "y": -35.56000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2040,8 +2040,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_112",
     "pcb_component_id": "pcb_component_13",
-    "x": 207.899,
-    "y": 87.63,
+    "x": 54.228999999999985,
+    "y": -38.10000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2052,8 +2052,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_113",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 87.63,
+    "x": 61.84899999999999,
+    "y": -38.10000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2064,8 +2064,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_114",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 90.17,
+    "x": 61.84899999999999,
+    "y": -35.56000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2076,8 +2076,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_115",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 92.71000000000001,
+    "x": 61.84899999999999,
+    "y": -33.02000000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2088,8 +2088,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_116",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 95.25,
+    "x": 61.84899999999999,
+    "y": -30.480000000000018,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2100,8 +2100,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_117",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 97.79,
+    "x": 61.84899999999999,
+    "y": -27.940000000000012,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2112,8 +2112,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_118",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 100.33,
+    "x": 61.84899999999999,
+    "y": -25.40000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2124,8 +2124,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_119",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 102.87,
+    "x": 61.84899999999999,
+    "y": -22.860000000000014,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2136,8 +2136,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_120",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 105.41,
+    "x": 61.84899999999999,
+    "y": -20.32000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2148,8 +2148,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_121",
     "pcb_component_id": "pcb_component_13",
-    "x": 215.519,
-    "y": 107.95,
+    "x": 61.84899999999999,
+    "y": -17.780000000000015,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2160,8 +2160,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_122",
     "pcb_component_id": "pcb_component_14",
-    "x": 115.57,
-    "y": 119.38,
+    "x": -38.10000000000002,
+    "y": -29.210000000000008,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2172,8 +2172,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_123",
     "pcb_component_id": "pcb_component_14",
-    "x": 115.57,
-    "y": 116.83999999999999,
+    "x": -38.10000000000002,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2184,8 +2184,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_124",
     "pcb_component_id": "pcb_component_14",
-    "x": 115.57,
-    "y": 114.3,
+    "x": -38.10000000000002,
+    "y": -34.290000000000006,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2196,8 +2196,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_125",
     "pcb_component_id": "pcb_component_14",
-    "x": 115.57,
-    "y": 111.75999999999999,
+    "x": -38.10000000000002,
+    "y": -36.83000000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2208,8 +2208,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_126",
     "pcb_component_id": "pcb_component_14",
-    "x": 115.57,
-    "y": 109.22,
+    "x": -38.10000000000002,
+    "y": -39.370000000000005,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2220,8 +2220,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_127",
     "pcb_component_id": "pcb_component_14",
-    "x": 115.57,
-    "y": 106.67999999999999,
+    "x": -38.10000000000002,
+    "y": -41.91,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2232,8 +2232,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_128",
     "pcb_component_id": "pcb_component_14",
-    "x": 115.57,
-    "y": 104.14,
+    "x": -38.10000000000002,
+    "y": -44.45000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2244,8 +2244,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_129",
     "pcb_component_id": "pcb_component_14",
-    "x": 123.19,
-    "y": 104.14,
+    "x": -30.480000000000018,
+    "y": -44.45000000000002,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2256,8 +2256,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_130",
     "pcb_component_id": "pcb_component_14",
-    "x": 123.19,
-    "y": 106.67999999999999,
+    "x": -30.480000000000018,
+    "y": -41.91,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2268,8 +2268,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_131",
     "pcb_component_id": "pcb_component_14",
-    "x": 123.19,
-    "y": 109.22,
+    "x": -30.480000000000018,
+    "y": -39.370000000000005,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2280,8 +2280,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_132",
     "pcb_component_id": "pcb_component_14",
-    "x": 123.19,
-    "y": 111.75999999999999,
+    "x": -30.480000000000018,
+    "y": -36.83000000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2292,8 +2292,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_133",
     "pcb_component_id": "pcb_component_14",
-    "x": 123.19,
-    "y": 114.3,
+    "x": -30.480000000000018,
+    "y": -34.290000000000006,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2304,8 +2304,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_134",
     "pcb_component_id": "pcb_component_14",
-    "x": 123.19,
-    "y": 116.83999999999999,
+    "x": -30.480000000000018,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2316,8 +2316,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_135",
     "pcb_component_id": "pcb_component_14",
-    "x": 123.19,
-    "y": 119.38,
+    "x": -30.480000000000018,
+    "y": -29.210000000000008,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2328,8 +2328,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_136",
     "pcb_component_id": "pcb_component_15",
-    "x": 107.95,
-    "y": 118.237,
+    "x": -45.72000000000001,
+    "y": -28.067000000000007,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2340,8 +2340,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_137",
     "pcb_component_id": "pcb_component_15",
-    "x": 115.57000000000001,
-    "y": 118.237,
+    "x": -38.10000000000001,
+    "y": -28.067000000000007,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2352,8 +2352,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_138",
     "pcb_component_id": "pcb_component_16",
-    "x": 107.95,
-    "y": 121.92,
+    "x": -45.72000000000001,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2364,8 +2364,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_139",
     "pcb_component_id": "pcb_component_16",
-    "x": 115.57000000000001,
-    "y": 121.92,
+    "x": -38.10000000000001,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2376,8 +2376,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_140",
     "pcb_component_id": "pcb_component_17",
-    "x": 107.95,
-    "y": 111.887,
+    "x": -45.72000000000001,
+    "y": -21.717000000000013,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2388,8 +2388,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_141",
     "pcb_component_id": "pcb_component_17",
-    "x": 115.57000000000001,
-    "y": 111.887,
+    "x": -38.10000000000001,
+    "y": -21.717000000000013,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2400,8 +2400,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_142",
     "pcb_component_id": "pcb_component_18",
-    "x": 107.95,
-    "y": 108.585,
+    "x": -45.72000000000001,
+    "y": -18.415000000000006,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2412,8 +2412,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_143",
     "pcb_component_id": "pcb_component_18",
-    "x": 115.57000000000001,
-    "y": 108.585,
+    "x": -38.10000000000001,
+    "y": -18.415000000000006,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2424,8 +2424,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_144",
     "pcb_component_id": "pcb_component_19",
-    "x": 139.065,
-    "y": 80.645,
+    "x": -14.605000000000018,
+    "y": 9.524999999999991,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2436,8 +2436,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_145",
     "pcb_component_id": "pcb_component_19",
-    "x": 146.685,
-    "y": 80.645,
+    "x": -6.985000000000014,
+    "y": 9.524999999999991,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2448,8 +2448,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_146",
     "pcb_component_id": "pcb_component_20",
-    "x": 107.95,
-    "y": 115.316,
+    "x": -45.72000000000001,
+    "y": -25.146000000000015,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2460,8 +2460,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_147",
     "pcb_component_id": "pcb_component_20",
-    "x": 115.57000000000001,
-    "y": 115.316,
+    "x": -38.10000000000001,
+    "y": -25.146000000000015,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2472,8 +2472,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_148",
     "pcb_component_id": "pcb_component_21",
-    "x": 107.95,
-    "y": 125.095,
+    "x": -45.72000000000001,
+    "y": -34.92500000000001,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2484,8 +2484,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_149",
     "pcb_component_id": "pcb_component_21",
-    "x": 115.57000000000001,
-    "y": 125.095,
+    "x": -38.10000000000001,
+    "y": -34.92500000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2496,8 +2496,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_150",
     "pcb_component_id": "pcb_component_22",
-    "x": 64.56,
-    "y": 118.78,
+    "x": -89.11000000000001,
+    "y": -31.450000000000017,
     "hole_diameter": 3.2,
     "shape": "circle",
     "port_hints": [
@@ -2508,8 +2508,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_151",
     "pcb_component_id": "pcb_component_22",
-    "x": 89.55999999999999,
-    "y": 118.78,
+    "x": -64.11000000000003,
+    "y": -31.450000000000017,
     "hole_diameter": 3.2,
     "shape": "circle",
     "port_hints": [
@@ -2520,8 +2520,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_152",
     "pcb_component_id": "pcb_component_22",
-    "x": 82.6,
-    "y": 120.2,
+    "x": -71.07000000000002,
+    "y": -30.030000000000015,
     "hole_diameter": 1,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -2532,8 +2532,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_153",
     "pcb_component_id": "pcb_component_22",
-    "x": 79.83,
-    "y": 120.2,
+    "x": -73.84000000000002,
+    "y": -30.030000000000015,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2544,8 +2544,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_154",
     "pcb_component_id": "pcb_component_22",
-    "x": 77.05999999999999,
-    "y": 120.2,
+    "x": -76.61000000000003,
+    "y": -30.030000000000015,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2556,8 +2556,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_155",
     "pcb_component_id": "pcb_component_22",
-    "x": 74.28999999999999,
-    "y": 120.2,
+    "x": -79.38000000000002,
+    "y": -30.030000000000015,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2568,8 +2568,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_156",
     "pcb_component_id": "pcb_component_22",
-    "x": 71.52,
-    "y": 120.2,
+    "x": -82.15000000000002,
+    "y": -30.030000000000015,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2580,8 +2580,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_157",
     "pcb_component_id": "pcb_component_22",
-    "x": 81.21499999999999,
-    "y": 117.36,
+    "x": -72.45500000000003,
+    "y": -32.87000000000002,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2592,8 +2592,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_158",
     "pcb_component_id": "pcb_component_22",
-    "x": 78.445,
-    "y": 117.36,
+    "x": -75.22500000000002,
+    "y": -32.87000000000002,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2604,8 +2604,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_159",
     "pcb_component_id": "pcb_component_22",
-    "x": 75.675,
-    "y": 117.36,
+    "x": -77.99500000000002,
+    "y": -32.87000000000002,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2616,8 +2616,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_160",
     "pcb_component_id": "pcb_component_22",
-    "x": 72.905,
-    "y": 117.36,
+    "x": -80.76500000000001,
+    "y": -32.87000000000002,
     "hole_diameter": 1,
     "shape": "circle",
     "port_hints": [
@@ -2628,8 +2628,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_161",
     "pcb_component_id": "pcb_component_23",
-    "x": 142.24,
-    "y": 97.79,
+    "x": -11.430000000000007,
+    "y": -7.620000000000019,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2640,8 +2640,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_162",
     "pcb_component_id": "pcb_component_23",
-    "x": 143.51000000000002,
-    "y": 99.06,
+    "x": -10.159999999999997,
+    "y": -6.350000000000023,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2652,8 +2652,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_163",
     "pcb_component_id": "pcb_component_23",
-    "x": 144.78,
-    "y": 97.79,
+    "x": -8.890000000000015,
+    "y": -7.620000000000019,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2664,8 +2664,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_164",
     "pcb_component_id": "pcb_component_24",
-    "x": 148.082,
-    "y": 60.706,
+    "x": -5.588000000000022,
+    "y": 29.463999999999984,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2676,8 +2676,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_165",
     "pcb_component_id": "pcb_component_24",
-    "x": 149.352,
-    "y": 61.976000000000006,
+    "x": -4.318000000000012,
+    "y": 30.733999999999988,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2688,8 +2688,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_166",
     "pcb_component_id": "pcb_component_24",
-    "x": 150.62199999999999,
-    "y": 60.706,
+    "x": -3.0480000000000302,
+    "y": 29.463999999999984,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2700,8 +2700,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_167",
     "pcb_component_id": "pcb_component_25",
-    "x": 146.05,
-    "y": 69.85,
+    "x": -7.6200000000000045,
+    "y": 20.319999999999993,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2712,8 +2712,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_168",
     "pcb_component_id": "pcb_component_25",
-    "x": 147.32000000000002,
-    "y": 71.11999999999999,
+    "x": -6.349999999999994,
+    "y": 21.58999999999999,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2724,8 +2724,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_169",
     "pcb_component_id": "pcb_component_25",
-    "x": 148.59,
-    "y": 69.85,
+    "x": -5.0800000000000125,
+    "y": 20.319999999999993,
     "hole_diameter": 0.75,
     "shape": "circle",
     "port_hints": [
@@ -2736,8 +2736,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_170",
     "pcb_component_id": "pcb_component_26",
-    "x": 152.4,
-    "y": 68.58,
+    "x": -1.2700000000000102,
+    "y": 21.58999999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2748,8 +2748,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_171",
     "pcb_component_id": "pcb_component_26",
-    "x": 162.56,
-    "y": 68.58,
+    "x": 8.889999999999986,
+    "y": 21.58999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2760,8 +2760,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_172",
     "pcb_component_id": "pcb_component_27",
-    "x": 114.3,
-    "y": 48.26,
+    "x": -39.37000000000002,
+    "y": 41.90999999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2772,8 +2772,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_173",
     "pcb_component_id": "pcb_component_27",
-    "x": 124.46,
-    "y": 48.26,
+    "x": -29.210000000000022,
+    "y": 41.90999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2784,8 +2784,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_174",
     "pcb_component_id": "pcb_component_28",
-    "x": 139.065,
-    "y": 77.47,
+    "x": -14.605000000000018,
+    "y": 12.699999999999989,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2796,8 +2796,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_175",
     "pcb_component_id": "pcb_component_28",
-    "x": 149.225,
-    "y": 77.47,
+    "x": -4.445000000000022,
+    "y": 12.699999999999989,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2808,8 +2808,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_176",
     "pcb_component_id": "pcb_component_29",
-    "x": 87.63,
-    "y": 118.11,
+    "x": -66.04000000000002,
+    "y": -27.940000000000012,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2820,8 +2820,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_177",
     "pcb_component_id": "pcb_component_29",
-    "x": 97.78999999999999,
-    "y": 118.11,
+    "x": -55.880000000000024,
+    "y": -27.940000000000012,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2832,8 +2832,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_178",
     "pcb_component_id": "pcb_component_30",
-    "x": 87.63,
-    "y": 114.554,
+    "x": -66.04000000000002,
+    "y": -24.384000000000015,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2844,8 +2844,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_179",
     "pcb_component_id": "pcb_component_30",
-    "x": 97.78999999999999,
-    "y": 114.554,
+    "x": -55.880000000000024,
+    "y": -24.384000000000015,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2856,8 +2856,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_180",
     "pcb_component_id": "pcb_component_31",
-    "x": 87.63,
-    "y": 111.125,
+    "x": -66.04000000000002,
+    "y": -20.955000000000013,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2868,8 +2868,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_181",
     "pcb_component_id": "pcb_component_31",
-    "x": 97.78999999999999,
-    "y": 111.125,
+    "x": -55.880000000000024,
+    "y": -20.955000000000013,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2880,8 +2880,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_182",
     "pcb_component_id": "pcb_component_32",
-    "x": 87.63,
-    "y": 107.823,
+    "x": -66.04000000000002,
+    "y": -17.653000000000006,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2892,8 +2892,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_183",
     "pcb_component_id": "pcb_component_32",
-    "x": 97.78999999999999,
-    "y": 107.823,
+    "x": -55.880000000000024,
+    "y": -17.653000000000006,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2904,8 +2904,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_184",
     "pcb_component_id": "pcb_component_33",
-    "x": 87.757,
-    "y": 125.476,
+    "x": -65.91300000000001,
+    "y": -35.30600000000001,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2916,8 +2916,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_185",
     "pcb_component_id": "pcb_component_33",
-    "x": 97.917,
-    "y": 125.476,
+    "x": -55.753000000000014,
+    "y": -35.30600000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2928,8 +2928,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_186",
     "pcb_component_id": "pcb_component_34",
-    "x": 139.7,
-    "y": 54.61,
+    "x": -13.970000000000027,
+    "y": 35.55999999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2940,8 +2940,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_187",
     "pcb_component_id": "pcb_component_34",
-    "x": 149.85999999999999,
-    "y": 54.61,
+    "x": -3.8100000000000307,
+    "y": 35.55999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2952,8 +2952,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_188",
     "pcb_component_id": "pcb_component_35",
-    "x": 87.757,
-    "y": 121.92,
+    "x": -65.91300000000001,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2964,8 +2964,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_189",
     "pcb_component_id": "pcb_component_35",
-    "x": 97.917,
-    "y": 121.92,
+    "x": -55.753000000000014,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -2976,8 +2976,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_190",
     "pcb_component_id": "pcb_component_36",
-    "x": 158.115,
-    "y": 102.235,
+    "x": 4.444999999999993,
+    "y": -12.065000000000012,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -2988,8 +2988,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_191",
     "pcb_component_id": "pcb_component_36",
-    "x": 168.275,
-    "y": 102.235,
+    "x": 14.60499999999999,
+    "y": -12.065000000000012,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3000,8 +3000,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_192",
     "pcb_component_id": "pcb_component_37",
-    "x": 144.78,
-    "y": 102.235,
+    "x": -8.890000000000015,
+    "y": -12.065000000000012,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3012,8 +3012,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_193",
     "pcb_component_id": "pcb_component_37",
-    "x": 154.94,
-    "y": 102.235,
+    "x": 1.2699999999999818,
+    "y": -12.065000000000012,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3024,8 +3024,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_194",
     "pcb_component_id": "pcb_component_38",
-    "x": 149.225,
-    "y": 83.82,
+    "x": -4.445000000000022,
+    "y": 6.349999999999994,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3036,8 +3036,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_195",
     "pcb_component_id": "pcb_component_38",
-    "x": 159.385,
-    "y": 83.82,
+    "x": 5.714999999999975,
+    "y": 6.349999999999994,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3048,8 +3048,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_196",
     "pcb_component_id": "pcb_component_39",
-    "x": 156.21,
-    "y": 68.58,
+    "x": 2.539999999999992,
+    "y": 21.58999999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3060,8 +3060,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_197",
     "pcb_component_id": "pcb_component_39",
-    "x": 166.37,
-    "y": 68.58,
+    "x": 12.699999999999989,
+    "y": 21.58999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3072,8 +3072,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_198",
     "pcb_component_id": "pcb_component_40",
-    "x": 118.11,
-    "y": 75.184,
+    "x": -35.56000000000002,
+    "y": 14.98599999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3084,8 +3084,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_199",
     "pcb_component_id": "pcb_component_40",
-    "x": 128.27,
-    "y": 75.184,
+    "x": -25.400000000000006,
+    "y": 14.98599999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3096,8 +3096,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_200",
     "pcb_component_id": "pcb_component_41",
-    "x": 118.11,
-    "y": 78.74,
+    "x": -35.56000000000002,
+    "y": 11.429999999999993,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3108,8 +3108,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_201",
     "pcb_component_id": "pcb_component_41",
-    "x": 128.27,
-    "y": 78.74,
+    "x": -25.400000000000006,
+    "y": 11.429999999999993,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3120,8 +3120,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_202",
     "pcb_component_id": "pcb_component_42",
-    "x": 139.065,
-    "y": 87.63,
+    "x": -14.605000000000018,
+    "y": 2.539999999999992,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3132,8 +3132,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_203",
     "pcb_component_id": "pcb_component_42",
-    "x": 149.225,
-    "y": 87.63,
+    "x": -4.445000000000022,
+    "y": 2.539999999999992,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3144,8 +3144,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_204",
     "pcb_component_id": "pcb_component_43",
-    "x": 140.335,
-    "y": 111.76,
+    "x": -13.335000000000008,
+    "y": -21.590000000000018,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3156,8 +3156,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_205",
     "pcb_component_id": "pcb_component_43",
-    "x": 150.495,
-    "y": 111.76,
+    "x": -3.1750000000000114,
+    "y": -21.590000000000018,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3168,8 +3168,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_206",
     "pcb_component_id": "pcb_component_44",
-    "x": 139.065,
-    "y": 91.059,
+    "x": -14.605000000000018,
+    "y": -0.88900000000001,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3180,8 +3180,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_207",
     "pcb_component_id": "pcb_component_44",
-    "x": 149.225,
-    "y": 91.059,
+    "x": -4.445000000000022,
+    "y": -0.88900000000001,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3192,8 +3192,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_208",
     "pcb_component_id": "pcb_component_45",
-    "x": 135.255,
-    "y": 121.92,
+    "x": -18.41500000000002,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3204,8 +3204,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_209",
     "pcb_component_id": "pcb_component_45",
-    "x": 145.415,
-    "y": 121.92,
+    "x": -8.255000000000024,
+    "y": -31.750000000000014,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3216,8 +3216,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_210",
     "pcb_component_id": "pcb_component_46",
-    "x": 156.21,
-    "y": 77.47,
+    "x": 2.539999999999992,
+    "y": 12.699999999999989,
     "hole_diameter": 0.9,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -3228,8 +3228,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_211",
     "pcb_component_id": "pcb_component_46",
-    "x": 158.75,
-    "y": 77.47,
+    "x": 5.079999999999984,
+    "y": 12.699999999999989,
     "hole_diameter": 0.9,
     "shape": "circle",
     "port_hints": [
@@ -3240,8 +3240,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_212",
     "pcb_component_id": "pcb_component_47",
-    "x": 156.21,
-    "y": 87.63,
+    "x": 2.539999999999992,
+    "y": 2.539999999999992,
     "hole_diameter": 0.9,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -3252,8 +3252,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_213",
     "pcb_component_id": "pcb_component_47",
-    "x": 158.75,
-    "y": 87.63,
+    "x": 5.079999999999984,
+    "y": 2.539999999999992,
     "hole_diameter": 0.9,
     "shape": "circle",
     "port_hints": [
@@ -3264,8 +3264,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_214",
     "pcb_component_id": "pcb_component_48",
-    "x": 156.21,
-    "y": 97.155,
+    "x": 2.539999999999992,
+    "y": -6.985000000000014,
     "hole_diameter": 0.9,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -3276,8 +3276,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_215",
     "pcb_component_id": "pcb_component_48",
-    "x": 158.75,
-    "y": 97.155,
+    "x": 5.079999999999984,
+    "y": -6.985000000000014,
     "hole_diameter": 0.9,
     "shape": "circle",
     "port_hints": [
@@ -3288,8 +3288,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_216",
     "pcb_component_id": "pcb_component_49",
-    "x": 114.3,
-    "y": 52.07,
+    "x": -39.37000000000002,
+    "y": 38.09999999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3300,8 +3300,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_217",
     "pcb_component_id": "pcb_component_49",
-    "x": 119.3,
-    "y": 52.07,
+    "x": -34.37000000000002,
+    "y": 38.09999999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3312,8 +3312,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_218",
     "pcb_component_id": "pcb_component_50",
-    "x": 129.54,
-    "y": 49.53,
+    "x": -24.130000000000024,
+    "y": 40.639999999999986,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3324,8 +3324,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_219",
     "pcb_component_id": "pcb_component_50",
-    "x": 134.54,
-    "y": 49.53,
+    "x": -19.130000000000024,
+    "y": 40.639999999999986,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3336,8 +3336,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_220",
     "pcb_component_id": "pcb_component_51",
-    "x": 198.755,
-    "y": 71.12,
+    "x": 45.08499999999998,
+    "y": 19.049999999999983,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3348,8 +3348,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_221",
     "pcb_component_id": "pcb_component_51",
-    "x": 203.755,
-    "y": 71.12,
+    "x": 50.08499999999998,
+    "y": 19.049999999999983,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3360,8 +3360,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_222",
     "pcb_component_id": "pcb_component_52",
-    "x": 143.002,
-    "y": 49.784,
+    "x": -10.668000000000006,
+    "y": 40.38599999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3372,8 +3372,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_223",
     "pcb_component_id": "pcb_component_52",
-    "x": 148.002,
-    "y": 49.784,
+    "x": -5.668000000000006,
+    "y": 40.38599999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3384,8 +3384,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_224",
     "pcb_component_id": "pcb_component_53",
-    "x": 196.85,
-    "y": 112.395,
+    "x": 43.17999999999998,
+    "y": -22.22500000000001,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3396,8 +3396,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_225",
     "pcb_component_id": "pcb_component_53",
-    "x": 201.85,
-    "y": 112.395,
+    "x": 48.17999999999998,
+    "y": -22.22500000000001,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3408,8 +3408,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_226",
     "pcb_component_id": "pcb_component_54",
-    "x": 137.16,
-    "y": 57.15,
+    "x": -16.51000000000002,
+    "y": 33.01999999999999,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -3420,8 +3420,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_227",
     "pcb_component_id": "pcb_component_54",
-    "x": 149.85999999999999,
-    "y": 57.15,
+    "x": -3.8100000000000307,
+    "y": 33.01999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3432,8 +3432,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_228",
     "pcb_component_id": "pcb_component_55",
-    "x": 127.635,
-    "y": 90.805,
+    "x": -26.03500000000001,
+    "y": -0.6350000000000193,
     "hole_diameter": 1.27,
     "shape": "circle",
     "port_hints": [
@@ -3444,8 +3444,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_229",
     "pcb_component_id": "pcb_component_55",
-    "x": 137.79500000000002,
-    "y": 88.265,
+    "x": -15.875,
+    "y": -3.1750000000000256,
     "hole_diameter": 1.27,
     "shape": "circle",
     "port_hints": [
@@ -3456,8 +3456,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_230",
     "pcb_component_id": "pcb_component_55",
-    "x": 127.635,
-    "y": 85.72500000000001,
+    "x": -26.03500000000001,
+    "y": -5.715000000000018,
     "hole_diameter": 1.27,
     "shape": "circle",
     "port_hints": [
@@ -3468,8 +3468,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_231",
     "pcb_component_id": "pcb_component_56",
-    "x": 81.8,
-    "y": 60,
+    "x": -71.87000000000002,
+    "y": 30.169999999999987,
     "hole_diameter": 1.5,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -3480,8 +3480,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_232",
     "pcb_component_id": "pcb_component_56",
-    "x": 86.8,
-    "y": 60,
+    "x": -66.87000000000002,
+    "y": 30.169999999999987,
     "hole_diameter": 1.5,
     "shape": "circle",
     "port_hints": [
@@ -3492,8 +3492,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_233",
     "pcb_component_id": "pcb_component_57",
-    "x": 99.06,
-    "y": 87.78,
+    "x": -54.610000000000014,
+    "y": 35.70999999999998,
     "hole_diameter": 3.5,
     "shape": "circle",
     "port_hints": [
@@ -3504,8 +3504,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_234",
     "pcb_component_id": "pcb_component_57",
-    "x": 96.52,
-    "y": 71.12,
+    "x": -57.15000000000002,
+    "y": 19.049999999999983,
     "hole_diameter": 1.1,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -3516,8 +3516,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_235",
     "pcb_component_id": "pcb_component_57",
-    "x": 99.06,
-    "y": 71.12,
+    "x": -54.610000000000014,
+    "y": 19.049999999999983,
     "hole_diameter": 1.1,
     "shape": "pill",
     "port_hints": [
@@ -3528,8 +3528,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_236",
     "pcb_component_id": "pcb_component_57",
-    "x": 101.6,
-    "y": 71.12,
+    "x": -52.07000000000002,
+    "y": 19.049999999999983,
     "hole_diameter": 1.1,
     "shape": "pill",
     "port_hints": [
@@ -3540,8 +3540,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_237",
     "pcb_component_id": "pcb_component_58",
-    "x": 140.081,
-    "y": 70.993,
+    "x": -13.589000000000027,
+    "y": 19.176999999999992,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3552,8 +3552,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_238",
     "pcb_component_id": "pcb_component_58",
-    "x": 150.24099999999999,
-    "y": 70.993,
+    "x": -3.4290000000000305,
+    "y": 19.176999999999992,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3564,8 +3564,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_239",
     "pcb_component_id": "pcb_component_59",
-    "x": 134.112,
-    "y": 62.23,
+    "x": -19.55800000000002,
+    "y": 27.93999999999999,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3576,8 +3576,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_240",
     "pcb_component_id": "pcb_component_59",
-    "x": 154.112,
-    "y": 62.23,
+    "x": 0.44199999999997885,
+    "y": 27.93999999999999,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3588,8 +3588,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_241",
     "pcb_component_id": "pcb_component_60",
-    "x": 125.73,
-    "y": 62.23,
+    "x": -27.940000000000012,
+    "y": 27.93999999999999,
     "hole_diameter": 1.3,
     "shape": "circle",
     "port_hints": [
@@ -3600,8 +3600,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_242",
     "pcb_component_id": "pcb_component_60",
-    "x": 130.73000000000002,
-    "y": 62.23,
+    "x": -22.939999999999998,
+    "y": 27.93999999999999,
     "hole_diameter": 1.3,
     "shape": "circle",
     "port_hints": [
@@ -3612,8 +3612,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_243",
     "pcb_component_id": "pcb_component_61",
-    "x": 78.3,
-    "y": 89.7,
+    "x": -75.37000000000002,
+    "y": 0.46999999999998465,
     "hole_diameter": 0.8,
     "shape": "circular_hole_with_rect_pad",
     "port_hints": [
@@ -3624,8 +3624,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_244",
     "pcb_component_id": "pcb_component_61",
-    "x": 91,
-    "y": 89.7,
+    "x": -62.670000000000016,
+    "y": 0.46999999999998465,
     "hole_diameter": 0.8,
     "shape": "pill",
     "port_hints": [
@@ -3636,8 +3636,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_245",
     "pcb_component_id": "pcb_component_62",
-    "x": 147.357,
-    "y": 97.79,
+    "x": -6.313000000000017,
+    "y": -7.620000000000019,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3648,8 +3648,8 @@
     "type": "pcb_plated_hole",
     "pcb_plated_hole_id": "pcb_plated_hole_246",
     "pcb_component_id": "pcb_component_62",
-    "x": 148.807,
-    "y": 97.79,
+    "x": -4.863000000000028,
+    "y": -7.620000000000019,
     "hole_diameter": 0.8,
     "shape": "circle",
     "port_hints": [
@@ -3661,44 +3661,44 @@
     "pcb_trace_id": "pcb_trace_0",
     "route": [
       {
-        "x": 85.09,
-        "y": -123.19
+        "x": -68.58000000000001,
+        "y": -33.02000000000001
       },
       {
-        "x": 86.36,
-        "y": -124.46
+        "x": -67.31000000000002,
+        "y": -34.290000000000006
       },
       {
-        "x": 77.47,
-        "y": -120.65
+        "x": -76.20000000000002,
+        "y": -30.480000000000018
       },
       {
-        "x": 77.47,
-        "y": -117.20363
+        "x": -76.20000000000002,
+        "y": -27.033630000000016
       },
       {
-        "x": 87.757,
-        "y": -125.476
+        "x": -65.91300000000001,
+        "y": -35.30600000000001
       },
       {
-        "x": 85.09,
-        "y": -123.19
+        "x": -68.58000000000001,
+        "y": -33.02000000000001
       },
       {
-        "x": 87.63,
-        "y": -121.92
+        "x": -66.04000000000002,
+        "y": -31.750000000000014
       },
       {
-        "x": 78.62863,
-        "y": -116.045
+        "x": -75.04137000000001,
+        "y": -25.875000000000014
       },
       {
-        "x": 80.01,
-        "y": -123.19
+        "x": -73.66000000000001,
+        "y": -33.02000000000001
       },
       {
-        "x": 77.47,
-        "y": -117.475
+        "x": -76.20000000000002,
+        "y": -27.305000000000007
       }
     ]
   },
@@ -3707,36 +3707,36 @@
     "pcb_trace_id": "pcb_trace_1",
     "route": [
       {
-        "x": 82.55,
-        "y": -76.2
+        "x": -71.12000000000002,
+        "y": 13.969999999999985
       },
       {
-        "x": 87.63,
-        "y": -71.12
+        "x": -66.04000000000002,
+        "y": 19.049999999999983
       },
       {
-        "x": 84.582,
-        "y": -90.17
+        "x": -69.08800000000002,
+        "y": -1.4210854715202004e-14
       },
       {
-        "x": 82.55,
-        "y": -87.63
+        "x": -71.12000000000002,
+        "y": 2.539999999999992
       },
       {
-        "x": 84.112,
-        "y": -89.7
+        "x": -69.55800000000002,
+        "y": 0.46999999999998465
       },
       {
-        "x": 96.52,
-        "y": -71.12
+        "x": -57.15000000000002,
+        "y": 19.049999999999983
       },
       {
-        "x": 82.55,
-        "y": -76.2
+        "x": -71.12000000000002,
+        "y": 13.969999999999985
       },
       {
-        "x": 84.455,
-        "y": -89.535
+        "x": -69.21500000000002,
+        "y": 0.6349999999999909
       }
     ]
   },
@@ -3745,24 +3745,24 @@
     "pcb_trace_id": "pcb_trace_2",
     "route": [
       {
-        "x": 114.3,
-        "y": -48.26
+        "x": -39.37000000000002,
+        "y": 41.90999999999999
       },
       {
-        "x": 114.3,
-        "y": -52.07
+        "x": -39.37000000000002,
+        "y": 38.09999999999999
       },
       {
-        "x": 110.49,
-        "y": -53.34
+        "x": -43.18000000000002,
+        "y": 36.829999999999984
       },
       {
-        "x": 111.76,
-        "y": -52.07
+        "x": -41.91000000000001,
+        "y": 38.09999999999999
       },
       {
-        "x": 114.3,
-        "y": -52.07
+        "x": -39.37000000000002,
+        "y": 38.09999999999999
       }
     ]
   },
@@ -3771,16 +3771,16 @@
     "pcb_trace_id": "pcb_trace_3",
     "route": [
       {
-        "x": 124.46,
-        "y": -48.26
+        "x": -29.210000000000022,
+        "y": 41.90999999999999
       },
       {
-        "x": 128.27,
-        "y": -48.26
+        "x": -25.400000000000006,
+        "y": 41.90999999999999
       },
       {
-        "x": 129.54,
-        "y": -49.53
+        "x": -24.130000000000024,
+        "y": 40.639999999999986
       }
     ]
   },
@@ -3789,40 +3789,40 @@
     "pcb_trace_id": "pcb_trace_4",
     "route": [
       {
-        "x": 149.86,
-        "y": -51.642
+        "x": -3.8100000000000023,
+        "y": 38.527999999999984
       },
       {
-        "x": 149.86,
-        "y": -54.61
+        "x": -3.8100000000000023,
+        "y": 35.55999999999999
       },
       {
-        "x": 142.855369,
-        "y": -62.475999
+        "x": -10.81463100000002,
+        "y": 27.694000999999986
       },
       {
-        "x": 146.812,
-        "y": -61.976
+        "x": -6.858000000000004,
+        "y": 28.19399999999999
       },
       {
-        "x": 149.86,
-        "y": -54.61
+        "x": -3.8100000000000023,
+        "y": 35.55999999999999
       },
       {
-        "x": 149.86,
-        "y": -51.642
+        "x": -3.8100000000000023,
+        "y": 38.527999999999984
       },
       {
-        "x": 146.812,
-        "y": -57.658
+        "x": -6.858000000000004,
+        "y": 32.511999999999986
       },
       {
-        "x": 141.21237,
-        "y": -60.833
+        "x": -12.457630000000023,
+        "y": 29.33699999999999
       },
       {
-        "x": 146.312001,
-        "y": -62.475999
+        "x": -7.357999000000007,
+        "y": 27.694000999999986
       }
     ]
   },
@@ -3831,16 +3831,16 @@
     "pcb_trace_id": "pcb_trace_5",
     "route": [
       {
-        "x": 78.3,
-        "y": -68.5
+        "x": -75.37000000000002,
+        "y": 21.669999999999987
       },
       {
-        "x": 78.3,
-        "y": -77
+        "x": -75.37000000000002,
+        "y": 13.169999999999987
       },
       {
-        "x": 78.3,
-        "y": -68.5
+        "x": -75.37000000000002,
+        "y": 21.669999999999987
       }
     ]
   },
@@ -3849,52 +3849,52 @@
     "pcb_trace_id": "pcb_trace_6",
     "route": [
       {
-        "x": 106.045,
-        "y": -121.92
+        "x": -47.625000000000014,
+        "y": -31.750000000000014
       },
       {
-        "x": 107.95,
-        "y": -121.92
+        "x": -45.72000000000001,
+        "y": -31.750000000000014
       },
       {
-        "x": 94.615,
-        "y": -119.38
+        "x": -59.05500000000002,
+        "y": -29.210000000000008
       },
       {
-        "x": 95.885,
-        "y": -118.11
+        "x": -57.78500000000001,
+        "y": -27.940000000000012
       },
       {
-        "x": 116.205,
-        "y": -121.92
+        "x": -37.46500000000002,
+        "y": -31.750000000000014
       },
       {
-        "x": 100.965,
-        "y": -127.254
+        "x": -52.70500000000001,
+        "y": -37.08400000000002
       },
       {
-        "x": 118.11,
-        "y": -119.38
+        "x": -35.56000000000002,
+        "y": -29.210000000000008
       },
       {
-        "x": 97.155,
-        "y": -127.254
+        "x": -56.515000000000015,
+        "y": -37.08400000000002
       },
       {
-        "x": 94.615,
-        "y": -124.46
+        "x": -59.05500000000002,
+        "y": -34.290000000000006
       },
       {
-        "x": 118.11,
-        "y": -120.015
+        "x": -35.56000000000002,
+        "y": -29.845000000000013
       },
       {
-        "x": 97.79,
-        "y": -118.11
+        "x": -55.88000000000001,
+        "y": -27.940000000000012
       },
       {
-        "x": 106.045,
-        "y": -121.92
+        "x": -47.625000000000014,
+        "y": -31.750000000000014
       }
     ]
   },
@@ -3903,36 +3903,36 @@
     "pcb_trace_id": "pcb_trace_7",
     "route": [
       {
-        "x": 111.76,
-        "y": -119.38
+        "x": -41.91000000000001,
+        "y": -29.210000000000008
       },
       {
-        "x": 115.57,
-        "y": -123.19
+        "x": -38.10000000000002,
+        "y": -33.02000000000001
       },
       {
-        "x": 125.73,
-        "y": -119.38
+        "x": -27.940000000000012,
+        "y": -29.210000000000008
       },
       {
-        "x": 111.76,
-        "y": -119.38
+        "x": -41.91000000000001,
+        "y": -29.210000000000008
       },
       {
-        "x": 123.19,
-        "y": -123.19
+        "x": -30.480000000000018,
+        "y": -33.02000000000001
       },
       {
-        "x": 111.125,
-        "y": -109.22
+        "x": -42.545000000000016,
+        "y": -19.05000000000001
       },
       {
-        "x": 111.76,
-        "y": -109.855
+        "x": -41.91000000000001,
+        "y": -19.685000000000016
       },
       {
-        "x": 125.73,
-        "y": -120.65
+        "x": -27.940000000000012,
+        "y": -30.480000000000018
       }
     ]
   },
@@ -3941,20 +3941,20 @@
     "pcb_trace_id": "pcb_trace_8",
     "route": [
       {
-        "x": 107.95,
-        "y": -108.585
+        "x": -45.72000000000001,
+        "y": -18.415000000000006
       },
       {
-        "x": 103.632,
-        "y": -108.585
+        "x": -50.03800000000001,
+        "y": -18.415000000000006
       },
       {
-        "x": 97.79,
-        "y": -111.125
+        "x": -55.88000000000001,
+        "y": -20.955000000000013
       },
       {
-        "x": 100.33,
-        "y": -111.887
+        "x": -53.34000000000002,
+        "y": -21.717000000000013
       }
     ]
   },
@@ -3963,64 +3963,64 @@
     "pcb_trace_id": "pcb_trace_9",
     "route": [
       {
-        "x": 99.949,
-        "y": -125.476
+        "x": -53.72100000000002,
+        "y": -35.30600000000001
       },
       {
-        "x": 100.33,
-        "y": -125.095
+        "x": -53.34000000000002,
+        "y": -34.92500000000001
       },
       {
-        "x": 97.917,
-        "y": -125.476
+        "x": -55.753000000000014,
+        "y": -35.30600000000001
       },
       {
-        "x": 103.505,
-        "y": -119.126
+        "x": -50.16500000000002,
+        "y": -28.956000000000017
       },
       {
-        "x": 99.949,
-        "y": -125.476
+        "x": -53.72100000000002,
+        "y": -35.30600000000001
       },
       {
-        "x": 128.27,
-        "y": -113.03
+        "x": -25.400000000000006,
+        "y": -22.860000000000014
       },
       {
-        "x": 102.616,
-        "y": -120.015
+        "x": -51.054000000000016,
+        "y": -29.845000000000013
       },
       {
-        "x": 95.885,
-        "y": -123.444
+        "x": -57.78500000000001,
+        "y": -33.274000000000015
       },
       {
-        "x": 104.521,
-        "y": -115.316
+        "x": -49.149000000000015,
+        "y": -25.146000000000015
       },
       {
-        "x": 125.73,
-        "y": -115.57
+        "x": -27.940000000000012,
+        "y": -25.400000000000006
       },
       {
-        "x": 107.95,
-        "y": -115.316
+        "x": -45.72000000000001,
+        "y": -25.146000000000015
       },
       {
-        "x": 125.73,
-        "y": -115.57
+        "x": -27.940000000000012,
+        "y": -25.400000000000006
       },
       {
-        "x": 96.52,
-        "y": -120.015
+        "x": -57.15000000000002,
+        "y": -29.845000000000013
       },
       {
-        "x": 103.505,
-        "y": -116.332
+        "x": -50.16500000000002,
+        "y": -26.162000000000006
       },
       {
-        "x": 95.885,
-        "y": -120.65
+        "x": -57.78500000000001,
+        "y": -30.480000000000018
       }
     ]
   },
@@ -4029,20 +4029,20 @@
     "pcb_trace_id": "pcb_trace_10",
     "route": [
       {
-        "x": 128.27,
-        "y": -119.38
+        "x": -25.400000000000006,
+        "y": -29.210000000000008
       },
       {
-        "x": 128.27,
-        "y": -120.65
+        "x": -25.400000000000006,
+        "y": -30.480000000000018
       },
       {
-        "x": 129.54,
-        "y": -121.92
+        "x": -24.130000000000024,
+        "y": -31.750000000000014
       },
       {
-        "x": 135.255,
-        "y": -121.92
+        "x": -18.41500000000002,
+        "y": -31.750000000000014
       }
     ]
   },
@@ -4051,28 +4051,28 @@
     "pcb_trace_id": "pcb_trace_11",
     "route": [
       {
-        "x": 130.81,
-        "y": -109.6264
+        "x": -22.860000000000014,
+        "y": -19.456400000000016
       },
       {
-        "x": 132.6896,
-        "y": -107.7468
+        "x": -20.980400000000003,
+        "y": -17.576800000000006
       },
       {
-        "x": 138.4046,
-        "y": -107.7468
+        "x": -15.265400000000028,
+        "y": -17.576800000000006
       },
       {
-        "x": 140.335,
-        "y": -109.6772
+        "x": -13.335000000000008,
+        "y": -19.50720000000001
       },
       {
-        "x": 140.335,
-        "y": -111.76
+        "x": -13.335000000000008,
+        "y": -21.590000000000018
       },
       {
-        "x": 130.81,
-        "y": -109.6264
+        "x": -22.860000000000014,
+        "y": -19.456400000000016
       }
     ]
   },
@@ -4081,28 +4081,28 @@
     "pcb_trace_id": "pcb_trace_12",
     "route": [
       {
-        "x": 118.11,
-        "y": -80.01
+        "x": -35.56000000000002,
+        "y": 10.159999999999982
       },
       {
-        "x": 124.46,
-        "y": -86.36
+        "x": -29.210000000000022,
+        "y": 3.809999999999988
       },
       {
-        "x": 124.46,
-        "y": -89.535
+        "x": -29.210000000000022,
+        "y": 0.6349999999999909
       },
       {
-        "x": 127.635,
-        "y": -90.805
+        "x": -26.03500000000001,
+        "y": -0.6350000000000193
       },
       {
-        "x": 118.11,
-        "y": -80.01
+        "x": -35.56000000000002,
+        "y": 10.159999999999982
       },
       {
-        "x": 125.73,
-        "y": -90.805
+        "x": -27.940000000000012,
+        "y": -0.6350000000000193
       }
     ]
   },
@@ -4111,28 +4111,28 @@
     "pcb_trace_id": "pcb_trace_13",
     "route": [
       {
-        "x": 119.634,
-        "y": -75.184
+        "x": -34.036000000000016,
+        "y": 14.98599999999999
       },
       {
-        "x": 120.65,
-        "y": -76.2
+        "x": -33.02000000000001,
+        "y": 13.969999999999985
       },
       {
-        "x": 127,
-        "y": -85.725
+        "x": -26.670000000000016,
+        "y": 4.444999999999993
       },
       {
-        "x": 127.635,
-        "y": -85.725
+        "x": -26.03500000000001,
+        "y": 4.444999999999993
       },
       {
-        "x": 119.634,
-        "y": -75.184
+        "x": -34.036000000000016,
+        "y": 14.98599999999999
       },
       {
-        "x": 120.65,
-        "y": -79.375
+        "x": -33.02000000000001,
+        "y": 10.794999999999987
       }
     ]
   },
@@ -4141,52 +4141,52 @@
     "pcb_trace_id": "pcb_trace_14",
     "route": [
       {
-        "x": 135.001,
-        "y": -96.266
+        "x": -18.66900000000001,
+        "y": -6.096000000000018
       },
       {
-        "x": 135.001,
-        "y": -92.456
+        "x": -18.66900000000001,
+        "y": -2.2860000000000156
       },
       {
-        "x": 114.935,
-        "y": -116.205
+        "x": -38.735000000000014,
+        "y": -26.03500000000001
       },
       {
-        "x": 129.032,
-        "y": -102.235
+        "x": -24.638000000000005,
+        "y": -12.065000000000012
       },
       {
-        "x": 135.001,
-        "y": -96.266
+        "x": -18.66900000000001,
+        "y": -6.096000000000018
       },
       {
-        "x": 139.065,
-        "y": -91.059
+        "x": -14.605000000000018,
+        "y": -0.88900000000001
       },
       {
-        "x": 136.398,
-        "y": -91.059
+        "x": -17.27200000000002,
+        "y": -0.88900000000001
       },
       {
-        "x": 114.935,
-        "y": -102.235
+        "x": -38.735000000000014,
+        "y": -12.065000000000012
       },
       {
-        "x": 113.03,
-        "y": -104.14
+        "x": -40.640000000000015,
+        "y": -13.970000000000013
       },
       {
-        "x": 120.015,
-        "y": -116.205
+        "x": -33.655000000000015,
+        "y": -26.03500000000001
       },
       {
-        "x": 113.03,
-        "y": -114.3
+        "x": -40.640000000000015,
+        "y": -24.13000000000001
       },
       {
-        "x": 120.65,
-        "y": -116.84
+        "x": -33.02000000000001,
+        "y": -26.670000000000016
       }
     ]
   },
@@ -4195,12 +4195,12 @@
     "pcb_trace_id": "pcb_trace_15",
     "route": [
       {
-        "x": 153.67,
-        "y": -77.47
+        "x": -2.842170943040401e-14,
+        "y": 12.699999999999989
       },
       {
-        "x": 149.225,
-        "y": -77.47
+        "x": -4.445000000000022,
+        "y": 12.699999999999989
       }
     ]
   },
@@ -4209,60 +4209,60 @@
     "pcb_trace_id": "pcb_trace_16",
     "route": [
       {
-        "x": 110.49,
-        "y": -124.155
+        "x": -43.18000000000002,
+        "y": -33.985000000000014
       },
       {
-        "x": 110.49,
-        "y": -119.38
+        "x": -43.18000000000002,
+        "y": -29.210000000000008
       },
       {
-        "x": 144.78,
-        "y": -97.79
+        "x": -8.890000000000015,
+        "y": -7.620000000000019
       },
       {
-        "x": 145.1,
-        "y": -90.744
+        "x": -8.570000000000022,
+        "y": -0.5740000000000123
       },
       {
-        "x": 110.49,
-        "y": -124.155
+        "x": -43.18000000000002,
+        "y": -33.985000000000014
       },
       {
-        "x": 145.1,
-        "y": -97.47
+        "x": -8.570000000000022,
+        "y": -7.300000000000011
       },
       {
-        "x": 109.22,
-        "y": -118.11
+        "x": -44.45000000000002,
+        "y": -27.940000000000012
       },
       {
-        "x": 109.55,
-        "y": -125.095
+        "x": -44.12000000000002,
+        "y": -34.92500000000001
       },
       {
-        "x": 107.95,
-        "y": -118.11
+        "x": -45.72000000000001,
+        "y": -27.940000000000012
       },
       {
-        "x": 110.49,
-        "y": -112.395
+        "x": -43.18000000000002,
+        "y": -22.22500000000001
       },
       {
-        "x": 110.49,
-        "y": -116.84
+        "x": -43.18000000000002,
+        "y": -26.670000000000016
       },
       {
-        "x": 109.855,
-        "y": -111.76
+        "x": -43.81500000000001,
+        "y": -21.590000000000018
       },
       {
-        "x": 141.986,
-        "y": -87.63
+        "x": -11.684000000000026,
+        "y": 2.539999999999992
       },
       {
-        "x": 109.22,
-        "y": -118.11
+        "x": -44.45000000000002,
+        "y": -27.940000000000012
       }
     ]
   },
@@ -4271,116 +4271,116 @@
     "pcb_trace_id": "pcb_trace_17",
     "route": [
       {
-        "x": 144.78,
-        "y": -97.79
+        "x": -8.890000000000015,
+        "y": -7.620000000000019
       },
       {
-        "x": 144.78,
-        "y": -97.917
+        "x": -8.890000000000015,
+        "y": -7.747000000000014
       },
       {
-        "x": 123.825,
-        "y": -79.375
+        "x": -29.845000000000013,
+        "y": 10.794999999999987
       },
       {
-        "x": 133.985,
-        "y": -87.63
+        "x": -19.685000000000002,
+        "y": 2.539999999999992
       },
       {
-        "x": 115.57,
-        "y": -111.76
+        "x": -38.10000000000002,
+        "y": -21.590000000000018
       },
       {
-        "x": 114.3,
-        "y": -93.345
+        "x": -39.37000000000002,
+        "y": -3.1750000000000114
       },
       {
-        "x": 110.49,
-        "y": -73.66
+        "x": -43.18000000000002,
+        "y": 16.50999999999999
       },
       {
-        "x": 107.95,
-        "y": -71.12
+        "x": -45.72000000000001,
+        "y": 19.049999999999983
       },
       {
-        "x": 123.19,
-        "y": -67.31
+        "x": -30.480000000000018,
+        "y": 22.859999999999985
       },
       {
-        "x": 134.62,
-        "y": -89.535
+        "x": -19.05000000000001,
+        "y": 0.6349999999999909
       },
       {
-        "x": 144.78,
-        "y": -97.79
+        "x": -8.890000000000015,
+        "y": -7.620000000000019
       },
       {
-        "x": 114.3,
-        "y": -97.155
+        "x": -39.37000000000002,
+        "y": -6.985000000000014
       },
       {
-        "x": 115.57,
-        "y": -104.775
+        "x": -38.10000000000002,
+        "y": -14.605000000000018
       },
       {
-        "x": 123.825,
-        "y": -67.31
+        "x": -29.845000000000013,
+        "y": 22.859999999999985
       },
       {
-        "x": 114.3,
-        "y": -88.265
+        "x": -39.37000000000002,
+        "y": 1.904999999999987
       },
       {
-        "x": 123.825,
-        "y": -67.31
+        "x": -29.845000000000013,
+        "y": 22.859999999999985
       },
       {
-        "x": 126.365,
-        "y": -80.01
+        "x": -27.30500000000002,
+        "y": 10.159999999999982
       },
       {
-        "x": 120.65,
-        "y": -64.77
+        "x": -33.02000000000001,
+        "y": 25.39999999999999
       },
       {
-        "x": 115.57,
-        "y": -104.775
+        "x": -38.10000000000002,
+        "y": -14.605000000000018
       },
       {
-        "x": 124.46,
-        "y": -80.01
+        "x": -29.210000000000022,
+        "y": 10.159999999999982
       },
       {
-        "x": 115.57,
-        "y": -98.425
+        "x": -38.10000000000002,
+        "y": -8.25500000000001
       },
       {
-        "x": 130.81,
-        "y": -93.345
+        "x": -22.860000000000014,
+        "y": -3.1750000000000114
       },
       {
-        "x": 134.62,
-        "y": -87.63
+        "x": -19.05000000000001,
+        "y": 2.539999999999992
       },
       {
-        "x": 110.49,
-        "y": -84.455
+        "x": -43.18000000000002,
+        "y": 5.714999999999989
       },
       {
-        "x": 120.65,
-        "y": -64.77
+        "x": -33.02000000000001,
+        "y": 25.39999999999999
       },
       {
-        "x": 134.62,
-        "y": -87.63
+        "x": -19.05000000000001,
+        "y": 2.539999999999992
       },
       {
-        "x": 107.95,
-        "y": -71.12
+        "x": -45.72000000000001,
+        "y": 19.049999999999983
       },
       {
-        "x": 144.78,
-        "y": -97.917
+        "x": -8.890000000000015,
+        "y": -7.747000000000014
       }
     ]
   },
@@ -4389,60 +4389,60 @@
     "pcb_trace_id": "pcb_trace_18",
     "route": [
       {
-        "x": 139.7,
-        "y": -54.61
+        "x": -13.970000000000027,
+        "y": 35.55999999999999
       },
       {
-        "x": 139.7,
-        "y": -53.086
+        "x": -13.970000000000027,
+        "y": 37.08399999999999
       },
       {
-        "x": 142.986,
-        "y": -57.15
+        "x": -10.684000000000026,
+        "y": 33.01999999999999
       },
       {
-        "x": 142.748,
-        "y": -57.15
+        "x": -10.922000000000025,
+        "y": 33.01999999999999
       },
       {
-        "x": 137.16,
-        "y": -57.15
+        "x": -16.51000000000002,
+        "y": 33.01999999999999
       },
       {
-        "x": 128.27,
-        "y": -74.295
+        "x": -25.400000000000006,
+        "y": 15.874999999999986
       },
       {
-        "x": 142.748,
-        "y": -57.15
+        "x": -10.922000000000025,
+        "y": 33.01999999999999
       },
       {
-        "x": 143.002,
-        "y": -49.784
+        "x": -10.668000000000006,
+        "y": 40.38599999999999
       },
       {
-        "x": 133.985,
-        "y": -59.69
+        "x": -19.685000000000002,
+        "y": 30.47999999999999
       },
       {
-        "x": 133.985,
-        "y": -68.58
+        "x": -19.685000000000002,
+        "y": 21.58999999999999
       },
       {
-        "x": 139.7,
-        "y": -54.61
+        "x": -13.970000000000027,
+        "y": 35.55999999999999
       },
       {
-        "x": 145.542,
-        "y": -59.706
+        "x": -8.128000000000014,
+        "y": 30.463999999999984
       },
       {
-        "x": 133.985,
-        "y": -59.69
+        "x": -19.685000000000002,
+        "y": 30.47999999999999
       },
       {
-        "x": 128.27,
-        "y": -75.184
+        "x": -25.400000000000006,
+        "y": 14.98599999999999
       }
     ]
   },
@@ -4451,12 +4451,12 @@
     "pcb_trace_id": "pcb_trace_19",
     "route": [
       {
-        "x": 153.67,
-        "y": -87.63
+        "x": -2.842170943040401e-14,
+        "y": 2.539999999999992
       },
       {
-        "x": 149.225,
-        "y": -87.63
+        "x": -4.445000000000022,
+        "y": 2.539999999999992
       }
     ]
   },
@@ -4465,20 +4465,20 @@
     "pcb_trace_id": "pcb_trace_20",
     "route": [
       {
-        "x": 118.11,
-        "y": -57.15
+        "x": -35.56000000000002,
+        "y": 33.01999999999999
       },
       {
-        "x": 124.46,
-        "y": -57.15
+        "x": -29.210000000000022,
+        "y": 33.01999999999999
       },
       {
-        "x": 125.73,
-        "y": -62.23
+        "x": -27.940000000000012,
+        "y": 27.93999999999999
       },
       {
-        "x": 124.46,
-        "y": -60.96
+        "x": -29.210000000000022,
+        "y": 29.209999999999987
       }
     ]
   },
@@ -4487,20 +4487,20 @@
     "pcb_trace_id": "pcb_trace_21",
     "route": [
       {
-        "x": 146.685,
-        "y": -80.645
+        "x": -6.985000000000014,
+        "y": 9.524999999999991
       },
       {
-        "x": 148.59,
-        "y": -80.645
+        "x": -5.0800000000000125,
+        "y": 9.524999999999991
       },
       {
-        "x": 149.225,
-        "y": -81.28
+        "x": -4.445000000000022,
+        "y": 8.889999999999986
       },
       {
-        "x": 149.225,
-        "y": -83.82
+        "x": -4.445000000000022,
+        "y": 6.349999999999994
       }
     ]
   },
@@ -4509,28 +4509,28 @@
     "pcb_trace_id": "pcb_trace_22",
     "route": [
       {
-        "x": 141.605,
-        "y": -72.517
+        "x": -12.065000000000026,
+        "y": 17.65299999999999
       },
       {
-        "x": 140.081,
-        "y": -70.993
+        "x": -13.589000000000027,
+        "y": 19.176999999999992
       },
       {
-        "x": 141.605,
-        "y": -72.517
+        "x": -12.065000000000026,
+        "y": 17.65299999999999
       },
       {
-        "x": 146.05,
-        "y": -69.85
+        "x": -7.6200000000000045,
+        "y": 20.319999999999993
       },
       {
-        "x": 141.224,
-        "y": -69.85
+        "x": -12.446000000000026,
+        "y": 20.319999999999993
       },
       {
-        "x": 141.605,
-        "y": -78.105
+        "x": -12.065000000000026,
+        "y": 12.064999999999984
       }
     ]
   },
@@ -4539,16 +4539,16 @@
     "pcb_trace_id": "pcb_trace_23",
     "route": [
       {
-        "x": 153.67,
-        "y": -97.155
+        "x": -2.842170943040401e-14,
+        "y": -6.985000000000014
       },
       {
-        "x": 153.67,
-        "y": -97.79
+        "x": -2.842170943040401e-14,
+        "y": -7.620000000000019
       },
       {
-        "x": 158.115,
-        "y": -102.235
+        "x": 4.444999999999993,
+        "y": -12.065000000000012
       }
     ]
   },
@@ -4557,32 +4557,32 @@
     "pcb_trace_id": "pcb_trace_24",
     "route": [
       {
-        "x": 154.305,
-        "y": -104.775
+        "x": 0.6349999999999909,
+        "y": -14.605000000000018
       },
       {
-        "x": 151.765,
-        "y": -102.235
+        "x": -1.9050000000000296,
+        "y": -12.065000000000012
       },
       {
-        "x": 147.955,
-        "y": -102.235
+        "x": -5.715000000000003,
+        "y": -12.065000000000012
       },
       {
-        "x": 186.69,
-        "y": -106.045
+        "x": 33.01999999999998,
+        "y": -15.875000000000014
       },
       {
-        "x": 186.69,
-        "y": -106.045
+        "x": 33.01999999999998,
+        "y": -15.875000000000014
       },
       {
-        "x": 154.305,
-        "y": -104.775
+        "x": 0.6349999999999909,
+        "y": -14.605000000000018
       },
       {
-        "x": 185.42,
-        "y": -104.775
+        "x": 31.74999999999997,
+        "y": -14.605000000000018
       }
     ]
   },
@@ -4591,224 +4591,224 @@
     "pcb_trace_id": "pcb_trace_25",
     "route": [
       {
-        "x": 184.7,
-        "y": -121.92
+        "x": 31.029999999999973,
+        "y": -31.750000000000014
       },
       {
-        "x": 189.23,
-        "y": -121.92
+        "x": 35.559999999999974,
+        "y": -31.750000000000014
       },
       {
-        "x": 210.185,
-        "y": -116.84
+        "x": 56.514999999999986,
+        "y": -26.670000000000016
       },
       {
-        "x": 147.955,
-        "y": -102.235
+        "x": -5.715000000000003,
+        "y": -12.065000000000012
       },
       {
-        "x": 148.717,
-        "y": -101.473
+        "x": -4.953000000000003,
+        "y": -11.303000000000011
       },
       {
-        "x": 219.075,
-        "y": -102.235
+        "x": 65.40499999999997,
+        "y": -12.065000000000012
       },
       {
-        "x": 213.36,
-        "y": -71.12
+        "x": 59.69,
+        "y": 19.049999999999983
       },
       {
-        "x": 148.717,
-        "y": -99.314
+        "x": -4.953000000000003,
+        "y": -9.144000000000005
       },
       {
-        "x": 212.725,
-        "y": -70.485
+        "x": 59.05499999999998,
+        "y": 19.684999999999988
       },
       {
-        "x": 193.04,
-        "y": -119.38
+        "x": 39.369999999999976,
+        "y": -29.210000000000008
       },
       {
-        "x": 210.185,
-        "y": -116.84
+        "x": 56.514999999999986,
+        "y": -26.670000000000016
       },
       {
-        "x": 219.71,
-        "y": -71.12
+        "x": 66.03999999999999,
+        "y": 19.049999999999983
       },
       {
-        "x": 220.345,
-        "y": -71.755
+        "x": 66.67499999999998,
+        "y": 18.414999999999992
       },
       {
-        "x": 204.724,
-        "y": -119.38
+        "x": 51.053999999999974,
+        "y": -29.210000000000008
       },
       {
-        "x": 148.807,
-        "y": -99.224
+        "x": -4.863000000000028,
+        "y": -9.054000000000016
       },
       {
-        "x": 166.37,
-        "y": -120.65
+        "x": 12.699999999999989,
+        "y": -30.480000000000018
       },
       {
-        "x": 198.755,
-        "y": -71.12
+        "x": 45.08499999999998,
+        "y": 19.049999999999983
       },
       {
-        "x": 187.96,
-        "y": -104.775
+        "x": 34.28999999999999,
+        "y": -14.605000000000018
       },
       {
-        "x": 196.85,
-        "y": -106.68
+        "x": 43.17999999999998,
+        "y": -16.51000000000002
       },
       {
-        "x": 147.955,
-        "y": -102.235
+        "x": -5.715000000000003,
+        "y": -12.065000000000012
       },
       {
-        "x": 144.78,
-        "y": -105.41
+        "x": -8.890000000000015,
+        "y": -15.240000000000009
       },
       {
-        "x": 190.5,
-        "y": -121.92
+        "x": 36.829999999999984,
+        "y": -31.750000000000014
       },
       {
-        "x": 201.93,
-        "y": -64.77
+        "x": 48.25999999999999,
+        "y": 25.39999999999999
       },
       {
-        "x": 184.7,
-        "y": -121.92
+        "x": 31.029999999999973,
+        "y": -31.750000000000014
       },
       {
-        "x": 215.265,
-        "y": -71.12
+        "x": 61.59499999999997,
+        "y": 19.049999999999983
       },
       {
-        "x": 194.945,
-        "y": -104.775
+        "x": 41.27499999999998,
+        "y": -14.605000000000018
       },
       {
-        "x": 208.829197,
-        "y": -119.39001
+        "x": 55.15919699999998,
+        "y": -29.220010000000016
       },
       {
-        "x": 142.24,
-        "y": -97.79
+        "x": -11.430000000000007,
+        "y": -7.620000000000019
       },
       {
-        "x": 140.97,
-        "y": -104.14
+        "x": -12.700000000000017,
+        "y": -13.970000000000013
       },
       {
-        "x": 206.375,
-        "y": -102.235
+        "x": 52.704999999999984,
+        "y": -12.065000000000012
       },
       {
-        "x": 203.2,
-        "y": -112.395
+        "x": 49.52999999999997,
+        "y": -22.22500000000001
       },
       {
-        "x": 210.82,
-        "y": -64.77
+        "x": 57.14999999999998,
+        "y": 25.39999999999999
       },
       {
-        "x": 185.42,
-        "y": -71.12
+        "x": 31.74999999999997,
+        "y": 19.049999999999983
       },
       {
-        "x": 220.345,
-        "y": -100.965
+        "x": 66.67499999999998,
+        "y": -10.795000000000016
       },
       {
-        "x": 204.73401,
-        "y": -119.39001
+        "x": 51.064009999999996,
+        "y": -29.220010000000016
       },
       {
-        "x": 203.2,
-        "y": -115.57
+        "x": 49.52999999999997,
+        "y": -25.400000000000006
       },
       {
-        "x": 194.945,
-        "y": -104.775
+        "x": 41.27499999999998,
+        "y": -14.605000000000018
       },
       {
-        "x": 210.185,
-        "y": -118.11
+        "x": 56.514999999999986,
+        "y": -27.940000000000012
       },
       {
-        "x": 142.24,
-        "y": -105.41
+        "x": -11.430000000000007,
+        "y": -15.240000000000009
       },
       {
-        "x": 198.755,
-        "y": -67.945
+        "x": 45.08499999999998,
+        "y": 22.224999999999994
       },
       {
-        "x": 180.34,
-        "y": -76.2
+        "x": 26.669999999999987,
+        "y": 13.969999999999985
       },
       {
-        "x": 212.725,
-        "y": -66.675
+        "x": 59.05499999999998,
+        "y": 23.49499999999999
       },
       {
-        "x": 215.265,
-        "y": -118.11
+        "x": 61.59499999999997,
+        "y": -27.940000000000012
       },
       {
-        "x": 210.185,
-        "y": -64.77
+        "x": 56.514999999999986,
+        "y": 25.39999999999999
       },
       {
-        "x": 189.23,
-        "y": -121.92
+        "x": 35.559999999999974,
+        "y": -31.750000000000014
       },
       {
-        "x": 186.69,
-        "y": -106.045
+        "x": 33.01999999999998,
+        "y": -15.875000000000014
       },
       {
-        "x": 203.2,
-        "y": -112.395
+        "x": 49.52999999999997,
+        "y": -22.22500000000001
       },
       {
-        "x": 208.839207,
-        "y": -119.38
+        "x": 55.16920699999997,
+        "y": -29.210000000000008
       },
       {
-        "x": 205.74,
-        "y": -64.77
+        "x": 52.06999999999999,
+        "y": 25.39999999999999
       },
       {
-        "x": 147.955,
-        "y": -102.235
+        "x": -5.715000000000003,
+        "y": -12.065000000000012
       },
       {
-        "x": 204.47,
-        "y": -116.84
+        "x": 50.79999999999998,
+        "y": -26.670000000000016
       },
       {
-        "x": 190.5,
-        "y": -71.12
+        "x": 36.829999999999984,
+        "y": 19.049999999999983
       },
       {
-        "x": 180.975,
-        "y": -120.65
+        "x": 27.30499999999998,
+        "y": -30.480000000000018
       },
       {
-        "x": 182.245,
-        "y": -121.92
+        "x": 28.57499999999999,
+        "y": -31.750000000000014
       },
       {
-        "x": 215.265,
-        "y": -71.12
+        "x": 61.59499999999997,
+        "y": 19.049999999999983
       }
     ]
   },
@@ -4817,40 +4817,40 @@
     "pcb_trace_id": "pcb_trace_26",
     "route": [
       {
-        "x": 189.865,
-        "y": -123.19
+        "x": 36.19499999999999,
+        "y": -33.02000000000001
       },
       {
-        "x": 192.405,
-        "y": -125.73
+        "x": 38.734999999999985,
+        "y": -35.56000000000002
       },
       {
-        "x": 196.215,
-        "y": -72.39
+        "x": 42.54499999999999,
+        "y": 17.779999999999987
       },
       {
-        "x": 196.85,
-        "y": -54.61
+        "x": 43.17999999999998,
+        "y": 35.55999999999999
       },
       {
-        "x": 196.215,
-        "y": -67.945
+        "x": 42.54499999999999,
+        "y": 22.224999999999994
       },
       {
-        "x": 189.865,
-        "y": -110.49
+        "x": 36.19499999999999,
+        "y": -20.320000000000007
       },
       {
-        "x": 189.865,
-        "y": -123.19
+        "x": 36.19499999999999,
+        "y": -33.02000000000001
       },
       {
-        "x": 196.85,
-        "y": -67.31
+        "x": 43.17999999999998,
+        "y": 22.859999999999985
       },
       {
-        "x": 193.04,
-        "y": -75.565
+        "x": 39.369999999999976,
+        "y": 14.60499999999999
       }
     ]
   },
@@ -4859,100 +4859,100 @@
     "pcb_trace_id": "pcb_trace_27",
     "route": [
       {
-        "x": 182.245,
-        "y": -125.73
+        "x": 28.57499999999999,
+        "y": -35.56000000000002
       },
       {
-        "x": 186.69,
-        "y": -125.73
+        "x": 33.01999999999998,
+        "y": -35.56000000000002
       },
       {
-        "x": 196.85,
-        "y": -54.61
+        "x": 43.17999999999998,
+        "y": 35.55999999999999
       },
       {
-        "x": 195.58,
-        "y": -53.34
+        "x": 41.91,
+        "y": 36.829999999999984
       },
       {
-        "x": 217.805,
-        "y": -130.175
+        "x": 64.13499999999999,
+        "y": -40.005000000000024
       },
       {
-        "x": 215.265,
-        "y": -53.34
+        "x": 61.59499999999997,
+        "y": 36.829999999999984
       },
       {
-        "x": 186.69,
-        "y": -114.3
+        "x": 33.01999999999998,
+        "y": -24.13000000000001
       },
       {
-        "x": 180.975,
-        "y": -127
+        "x": 27.30499999999998,
+        "y": -36.83000000000001
       },
       {
-        "x": 208.915,
-        "y": -54.61
+        "x": 55.244999999999976,
+        "y": 35.55999999999999
       },
       {
-        "x": 210.185,
-        "y": -54.61
+        "x": 56.514999999999986,
+        "y": 35.55999999999999
       },
       {
-        "x": 144.78,
-        "y": -127
+        "x": -8.890000000000015,
+        "y": -36.83000000000001
       },
       {
-        "x": 208.915,
-        "y": -54.61
+        "x": 55.244999999999976,
+        "y": 35.55999999999999
       },
       {
-        "x": 217.17,
-        "y": -123.19
+        "x": 63.49999999999997,
+        "y": -33.02000000000001
       },
       {
-        "x": 205.74,
-        "y": -54.61
+        "x": 52.06999999999999,
+        "y": 35.55999999999999
       },
       {
-        "x": 140.335,
-        "y": -122.555
+        "x": -13.335000000000008,
+        "y": -32.38500000000002
       },
       {
-        "x": 215.265,
-        "y": -123.19
+        "x": 61.59499999999997,
+        "y": -33.02000000000001
       },
       {
-        "x": 177.165,
-        "y": -127
+        "x": 23.494999999999976,
+        "y": -36.83000000000001
       },
       {
-        "x": 189.865,
-        "y": -113.665
+        "x": 36.19499999999999,
+        "y": -23.49500000000002
       },
       {
-        "x": 217.805,
-        "y": -123.825
+        "x": 64.13499999999999,
+        "y": -33.655000000000015
       },
       {
-        "x": 198.12,
-        "y": -131.445
+        "x": 44.44999999999999,
+        "y": -41.275000000000006
       },
       {
-        "x": 216.535,
-        "y": -131.445
+        "x": 62.86499999999998,
+        "y": -41.275000000000006
       },
       {
-        "x": 192.405,
-        "y": -125.73
+        "x": 38.734999999999985,
+        "y": -35.56000000000002
       },
       {
-        "x": 189.23,
-        "y": -114.3
+        "x": 35.559999999999974,
+        "y": -24.13000000000001
       },
       {
-        "x": 180.975,
-        "y": -127
+        "x": 27.30499999999998,
+        "y": -36.83000000000001
       }
     ]
   },
@@ -4961,56 +4961,56 @@
     "pcb_trace_id": "pcb_trace_28",
     "route": [
       {
-        "x": 201.295,
-        "y": -85.09
+        "x": 47.62499999999997,
+        "y": 5.079999999999984
       },
       {
-        "x": 194.945,
-        "y": -91.44
+        "x": 41.27499999999998,
+        "y": -1.2700000000000102
       },
       {
-        "x": 194.945,
-        "y": -113.665
+        "x": 41.27499999999998,
+        "y": -23.49500000000002
       },
       {
-        "x": 200.025,
-        "y": -52.07
+        "x": 46.35499999999999,
+        "y": 38.09999999999999
       },
       {
-        "x": 201.295,
-        "y": -85.09
+        "x": 47.62499999999997,
+        "y": 5.079999999999984
       },
       {
-        "x": 121.285,
-        "y": -109.22
+        "x": -32.38500000000002,
+        "y": -19.05000000000001
       },
       {
-        "x": 192.405,
-        "y": -123.19
+        "x": 38.734999999999985,
+        "y": -33.02000000000001
       },
       {
-        "x": 120.65,
-        "y": -109.855
+        "x": -33.02000000000001,
+        "y": -19.685000000000016
       },
       {
-        "x": 194.31,
-        "y": -114.3
+        "x": 40.639999999999986,
+        "y": -24.13000000000001
       },
       {
-        "x": 135.255,
-        "y": -111.76
+        "x": -18.41500000000002,
+        "y": -21.590000000000018
       },
       {
-        "x": 192.405,
-        "y": -114.3
+        "x": 38.734999999999985,
+        "y": -24.13000000000001
       },
       {
-        "x": 201.295,
-        "y": -58.42
+        "x": 47.62499999999997,
+        "y": 31.749999999999986
       },
       {
-        "x": 132.715,
-        "y": -109.22
+        "x": -20.955000000000013,
+        "y": -19.05000000000001
       }
     ]
   },
@@ -5019,96 +5019,96 @@
     "pcb_trace_id": "pcb_trace_29",
     "route": [
       {
-        "x": 215.265,
-        "y": -50.8
+        "x": 61.59499999999997,
+        "y": 39.36999999999999
       },
       {
-        "x": 210.82,
-        "y": -50.8
+        "x": 57.14999999999998,
+        "y": 39.36999999999999
       },
       {
-        "x": 210.82,
-        "y": -50.8
+        "x": 57.14999999999998,
+        "y": 39.36999999999999
       },
       {
-        "x": 213.995,
-        "y": -121.92
+        "x": 60.32499999999999,
+        "y": -31.750000000000014
       },
       {
-        "x": 203.2,
-        "y": -121.92
+        "x": 49.52999999999997,
+        "y": -31.750000000000014
       },
       {
-        "x": 174.625,
-        "y": -124.46
+        "x": 20.954999999999984,
+        "y": -34.290000000000006
       },
       {
-        "x": 182.88,
-        "y": -123.19
+        "x": 29.20999999999998,
+        "y": -33.02000000000001
       },
       {
-        "x": 137.795,
-        "y": -114.3
+        "x": -15.875000000000028,
+        "y": -24.13000000000001
       },
       {
-        "x": 209.55,
-        "y": -52.07
+        "x": 55.879999999999995,
+        "y": 38.09999999999999
       },
       {
-        "x": 205.74,
-        "y": -52.07
+        "x": 52.06999999999999,
+        "y": 38.09999999999999
       },
       {
-        "x": 186.69,
-        "y": -116.84
+        "x": 33.01999999999998,
+        "y": -26.670000000000016
       },
       {
-        "x": 186.69,
-        "y": -123.19
+        "x": 33.01999999999998,
+        "y": -33.02000000000001
       },
       {
-        "x": 191.77,
-        "y": -114.3
+        "x": 38.099999999999994,
+        "y": -24.13000000000001
       },
       {
-        "x": 192.405,
-        "y": -123.19
+        "x": 38.734999999999985,
+        "y": -33.02000000000001
       },
       {
-        "x": 201.93,
-        "y": -123.19
+        "x": 48.25999999999999,
+        "y": -33.02000000000001
       },
       {
-        "x": 200.025,
-        "y": -52.07
+        "x": 46.35499999999999,
+        "y": 38.09999999999999
       },
       {
-        "x": 198.755,
-        "y": -50.8
+        "x": 45.08499999999998,
+        "y": 39.36999999999999
       },
       {
-        "x": 149.86,
-        "y": -125.095
+        "x": -3.8100000000000023,
+        "y": -34.92500000000001
       },
       {
-        "x": 173.99,
-        "y": -125.095
+        "x": 20.319999999999993,
+        "y": -34.92500000000001
       },
       {
-        "x": 181.61,
-        "y": -124.46
+        "x": 27.939999999999998,
+        "y": -34.290000000000006
       },
       {
-        "x": 215.265,
-        "y": -120.65
+        "x": 61.59499999999997,
+        "y": -30.480000000000018
       },
       {
-        "x": 189.23,
-        "y": -116.84
+        "x": 35.559999999999974,
+        "y": -26.670000000000016
       },
       {
-        "x": 139.065,
-        "y": -114.3
+        "x": -14.605000000000018,
+        "y": -24.13000000000001
       }
     ]
   },
@@ -5117,32 +5117,32 @@
     "pcb_trace_id": "pcb_trace_30",
     "route": [
       {
-        "x": 145.923,
-        "y": -91.059
+        "x": -7.747000000000014,
+        "y": -0.88900000000001
       },
       {
-        "x": 144.78,
-        "y": -89.916
+        "x": -8.890000000000015,
+        "y": 0.2539999999999907
       },
       {
-        "x": 147.32,
-        "y": -68.58
+        "x": -6.350000000000023,
+        "y": 21.58999999999999
       },
       {
-        "x": 147.32,
-        "y": -71.12
+        "x": -6.350000000000023,
+        "y": 19.049999999999983
       },
       {
-        "x": 144.78,
-        "y": -75.565
+        "x": -8.890000000000015,
+        "y": 14.60499999999999
       },
       {
-        "x": 147.32,
-        "y": -73.025
+        "x": -6.350000000000023,
+        "y": 17.144999999999982
       },
       {
-        "x": 145.923,
-        "y": -91.059
+        "x": -7.747000000000014,
+        "y": -0.88900000000001
       }
     ]
   },
@@ -5151,72 +5151,72 @@
     "pcb_trace_id": "pcb_trace_31",
     "route": [
       {
-        "x": 123.19,
-        "y": -113.03
+        "x": -30.480000000000018,
+        "y": -22.860000000000014
       },
       {
-        "x": 123.19,
-        "y": -111.76
+        "x": -30.480000000000018,
+        "y": -21.590000000000018
       },
       {
-        "x": 123.19,
-        "y": -113.03
+        "x": -30.480000000000018,
+        "y": -22.860000000000014
       },
       {
-        "x": 99.675998,
-        "y": -113.157
+        "x": -53.99400200000001,
+        "y": -22.98700000000001
       },
       {
-        "x": 106.725999,
-        "y": -113.217001
+        "x": -46.944001000000014,
+        "y": -23.04700100000001
       },
       {
-        "x": 109.174001,
-        "y": -113.217001
+        "x": -44.49599900000001,
+        "y": -23.04700100000001
       },
       {
-        "x": 121.92,
-        "y": -114.3
+        "x": -31.750000000000014,
+        "y": -24.13000000000001
       },
       {
-        "x": 106.665998,
-        "y": -113.157
+        "x": -47.004002000000014,
+        "y": -22.98700000000001
       },
       {
-        "x": 83.425,
-        "y": -113.275
+        "x": -70.24500000000002,
+        "y": -23.105000000000018
       },
       {
-        "x": 83.543,
-        "y": -113.157
+        "x": -70.12700000000001,
+        "y": -22.98700000000001
       },
       {
-        "x": 109.234002,
-        "y": -113.157
+        "x": -44.43599800000001,
+        "y": -22.98700000000001
       },
       {
-        "x": 111.887,
-        "y": -113.157
+        "x": -41.783000000000015,
+        "y": -22.98700000000001
       },
       {
-        "x": 100.984002,
-        "y": -113.157
+        "x": -52.68599800000001,
+        "y": -22.98700000000001
       },
       {
-        "x": 100.954001,
-        "y": -113.187001
+        "x": -52.71599900000001,
+        "y": -23.017001000000008
       },
       {
-        "x": 99.705999,
-        "y": -113.187001
+        "x": -53.96400100000001,
+        "y": -23.017001000000008
       },
       {
-        "x": 113.03,
-        "y": -114.3
+        "x": -40.640000000000015,
+        "y": -24.13000000000001
       },
       {
-        "x": 79.76,
-        "y": -113.275
+        "x": -73.91000000000001,
+        "y": -23.105000000000018
       }
     ]
   },
@@ -5225,24 +5225,24 @@
     "pcb_trace_id": "pcb_trace_32",
     "route": [
       {
-        "x": 84.51237,
-        "y": -111.89
+        "x": -69.15763000000001,
+        "y": -21.720000000000013
       },
       {
-        "x": 82.6,
-        "y": -111.89
+        "x": -71.07000000000002,
+        "y": -21.720000000000013
       },
       {
-        "x": 84.51237,
-        "y": -111.89
+        "x": -69.15763000000001,
+        "y": -21.720000000000013
       },
       {
-        "x": 85.27737,
-        "y": -111.125
+        "x": -68.39263000000001,
+        "y": -20.955000000000013
       },
       {
-        "x": 87.63,
-        "y": -107.823
+        "x": -66.04000000000002,
+        "y": -17.653000000000006
       }
     ]
   },
@@ -5251,20 +5251,20 @@
     "pcb_trace_id": "pcb_trace_33",
     "route": [
       {
-        "x": 82.6,
-        "y": -114.66
+        "x": -71.07000000000002,
+        "y": -24.49000000000001
       },
       {
-        "x": 87.524,
-        "y": -114.66
+        "x": -66.14600000000002,
+        "y": -24.49000000000001
       },
       {
-        "x": 87.63,
-        "y": -114.554
+        "x": -66.04000000000002,
+        "y": -24.384000000000015
       },
       {
-        "x": 87.503,
-        "y": -114.554
+        "x": -66.16700000000002,
+        "y": -24.384000000000015
       }
     ]
   },
@@ -5273,40 +5273,40 @@
     "pcb_trace_id": "pcb_trace_34",
     "route": [
       {
-        "x": 150.495,
-        "y": -71.755
+        "x": -3.1750000000000114,
+        "y": 18.414999999999992
       },
       {
-        "x": 152.4,
-        "y": -69.85
+        "x": -1.2700000000000102,
+        "y": 20.319999999999993
       },
       {
-        "x": 146.05,
-        "y": -73.66
+        "x": -7.6200000000000045,
+        "y": 16.50999999999999
       },
       {
-        "x": 137.795,
-        "y": -76.2
+        "x": -15.875000000000028,
+        "y": 13.969999999999985
       },
       {
-        "x": 147.955,
-        "y": -71.755
+        "x": -5.715000000000003,
+        "y": 18.414999999999992
       },
       {
-        "x": 150.495,
-        "y": -71.755
+        "x": -3.1750000000000114,
+        "y": 18.414999999999992
       },
       {
-        "x": 139.065,
-        "y": -73.66
+        "x": -14.605000000000018,
+        "y": 16.50999999999999
       },
       {
-        "x": 152.4,
-        "y": -69.85
+        "x": -1.2700000000000102,
+        "y": 20.319999999999993
       },
       {
-        "x": 139.065,
-        "y": -77.47
+        "x": -14.605000000000018,
+        "y": 12.699999999999989
       }
     ]
   },
@@ -5315,28 +5315,28 @@
     "pcb_trace_id": "pcb_trace_35",
     "route": [
       {
-        "x": 152.4,
-        "y": -68.58
+        "x": -1.2700000000000102,
+        "y": 21.58999999999999
       },
       {
-        "x": 156.21,
-        "y": -68.58
+        "x": 2.539999999999992,
+        "y": 21.58999999999999
       },
       {
-        "x": 149.225,
-        "y": -65.405
+        "x": -4.445000000000022,
+        "y": 24.764999999999986
       },
       {
-        "x": 149.225,
-        "y": -62.556106
+        "x": -4.445000000000022,
+        "y": 27.613893999999988
       },
       {
-        "x": 152.4,
-        "y": -68.58
+        "x": -1.2700000000000102,
+        "y": 21.58999999999999
       },
       {
-        "x": 148.082,
-        "y": -61.413106
+        "x": -5.588000000000022,
+        "y": 28.75689399999999
       }
     ]
   },
@@ -5345,48 +5345,48 @@
     "pcb_trace_id": "pcb_trace_36",
     "route": [
       {
-        "x": 135.255,
-        "y": -96.52
+        "x": -18.41500000000002,
+        "y": -6.3500000000000085
       },
       {
-        "x": 137.16,
-        "y": -96.52
+        "x": -16.51000000000002,
+        "y": -6.3500000000000085
       },
       {
-        "x": 134.62,
-        "y": -97.155
+        "x": -19.05000000000001,
+        "y": -6.985000000000014
       },
       {
-        "x": 143.51,
-        "y": -96.52
+        "x": -10.160000000000025,
+        "y": -6.3500000000000085
       },
       {
-        "x": 143.51,
-        "y": -93.345
+        "x": -10.160000000000025,
+        "y": -3.1750000000000114
       },
       {
-        "x": 134.62,
-        "y": -102.235
+        "x": -19.05000000000001,
+        "y": -12.065000000000012
       },
       {
-        "x": 139.7,
-        "y": -83.82
+        "x": -13.970000000000027,
+        "y": 6.349999999999994
       },
       {
-        "x": 140.97,
-        "y": -92.71
+        "x": -12.700000000000017,
+        "y": -2.5400000000000063
       },
       {
-        "x": 140.97,
-        "y": -92.71
+        "x": -12.700000000000017,
+        "y": -2.5400000000000063
       },
       {
-        "x": 139.065,
-        "y": -83.82
+        "x": -14.605000000000018,
+        "y": 6.349999999999994
       },
       {
-        "x": 142.875,
-        "y": -92.71
+        "x": -10.795000000000016,
+        "y": -2.5400000000000063
       }
     ]
   },
@@ -5395,28 +5395,28 @@
     "pcb_trace_id": "pcb_trace_37",
     "route": [
       {
-        "x": 112.395,
-        "y": -59.69
+        "x": -41.27500000000002,
+        "y": 30.47999999999999
       },
       {
-        "x": 113.665,
-        "y": -60.96
+        "x": -40.00500000000001,
+        "y": 29.209999999999987
       },
       {
-        "x": 112.395,
-        "y": -59.69
+        "x": -41.27500000000002,
+        "y": 30.47999999999999
       },
       {
-        "x": 113.665,
-        "y": -80.645
+        "x": -40.00500000000001,
+        "y": 9.524999999999991
       },
       {
-        "x": 117.475,
-        "y": -88.265
+        "x": -36.19500000000002,
+        "y": 1.904999999999987
       },
       {
-        "x": 117.475,
-        "y": -84.455
+        "x": -36.19500000000002,
+        "y": 5.714999999999989
       }
     ]
   },
@@ -5425,112 +5425,112 @@
     "pcb_trace_id": "pcb_trace_38",
     "route": [
       {
-        "x": 195.58,
-        "y": -132.715
+        "x": 41.91,
+        "y": -42.545000000000016
       },
       {
-        "x": 196.215,
-        "y": -133.35
+        "x": 42.54499999999999,
+        "y": -43.18000000000001
       },
       {
-        "x": 175.26,
-        "y": -47.625
+        "x": 21.589999999999975,
+        "y": 42.54499999999999
       },
       {
-        "x": 205.105,
-        "y": -115.57
+        "x": 51.434999999999974,
+        "y": -25.400000000000006
       },
       {
-        "x": 175.26,
-        "y": -50.8
+        "x": 21.589999999999975,
+        "y": 39.36999999999999
       },
       {
-        "x": 218.44,
-        "y": -133.35
+        "x": 64.76999999999998,
+        "y": -43.18000000000001
       },
       {
-        "x": 207.645,
-        "y": -46.355
+        "x": 53.974999999999994,
+        "y": 43.81499999999999
       },
       {
-        "x": 220.98,
-        "y": -104.14
+        "x": 67.30999999999997,
+        "y": -13.970000000000013
       },
       {
-        "x": 207.645,
-        "y": -46.355
+        "x": 53.974999999999994,
+        "y": 43.81499999999999
       },
       {
-        "x": 176.53,
-        "y": -46.355
+        "x": 22.859999999999985,
+        "y": 43.81499999999999
       },
       {
-        "x": 176.53,
-        "y": -46.355
+        "x": 22.859999999999985,
+        "y": 43.81499999999999
       },
       {
-        "x": 204.47,
-        "y": -114.935
+        "x": 50.79999999999998,
+        "y": -24.765000000000015
       },
       {
-        "x": 207.01,
-        "y": -104.14
+        "x": 53.339999999999975,
+        "y": -13.970000000000013
       },
       {
-        "x": 204.47,
-        "y": -106.68
+        "x": 50.79999999999998,
+        "y": -16.51000000000002
       },
       {
-        "x": 220.98,
-        "y": -104.14
+        "x": 67.30999999999997,
+        "y": -13.970000000000013
       },
       {
-        "x": 222.25,
-        "y": -103.505
+        "x": 68.57999999999998,
+        "y": -13.335000000000008
       },
       {
-        "x": 180.975,
-        "y": -132.715
+        "x": 27.30499999999998,
+        "y": -42.545000000000016
       },
       {
-        "x": 219.71,
-        "y": -46.355
+        "x": 66.03999999999999,
+        "y": 43.81499999999999
       },
       {
-        "x": 179.07,
-        "y": -128.27
+        "x": 25.399999999999977,
+        "y": -38.10000000000002
       },
       {
-        "x": 222.25,
-        "y": -103.505
+        "x": 68.57999999999998,
+        "y": -13.335000000000008
       },
       {
-        "x": 180.975,
-        "y": -132.715
+        "x": 27.30499999999998,
+        "y": -42.545000000000016
       },
       {
-        "x": 152.4,
-        "y": -55.245
+        "x": -1.2700000000000102,
+        "y": 34.92499999999999
       },
       {
-        "x": 220.98,
-        "y": -104.14
+        "x": 67.30999999999997,
+        "y": -13.970000000000013
       },
       {
-        "x": 152.4,
-        "y": -58.42
+        "x": -1.2700000000000102,
+        "y": 31.749999999999986
       },
       {
-        "x": 220.98,
-        "y": -130.81
+        "x": 67.30999999999997,
+        "y": -40.640000000000015
       }
     ]
   },
   {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_0",
-    "x": 189.865,
-    "y": -110.49,
+    "x": 36.19499999999999,
+    "y": -20.320000000000007,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
     "layers": [
@@ -5541,8 +5541,8 @@
   {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_1",
-    "x": 192.405,
-    "y": -125.73,
+    "x": 38.734999999999985,
+    "y": -35.56000000000002,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
     "layers": [
@@ -5553,8 +5553,8 @@
   {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_2",
-    "x": 196.85,
-    "y": -54.61,
+    "x": 43.17999999999998,
+    "y": 35.55999999999999,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
     "layers": [
@@ -5565,8 +5565,8 @@
   {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_3",
-    "x": 200.025,
-    "y": -52.07,
+    "x": 46.35499999999999,
+    "y": 38.09999999999999,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
     "layers": [
@@ -5577,8 +5577,8 @@
   {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_4",
-    "x": 192.405,
-    "y": -123.19,
+    "x": 38.734999999999985,
+    "y": -33.02000000000001,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
     "layers": [
@@ -5589,8 +5589,8 @@
   {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_5",
-    "x": 192.405,
-    "y": -114.3,
+    "x": 38.734999999999985,
+    "y": -24.13000000000001,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
     "layers": [
@@ -5603,44 +5603,44 @@
     "pcb_board_id": "pcb_board_0",
     "outline": [
       {
-        "x": 73.66,
-        "y": -139.7
+        "x": -80.01000000000002,
+        "y": -49.53
       },
       {
-        "x": 73.66,
-        "y": -40.64
+        "x": -80.01000000000002,
+        "y": 49.52999999999999
       },
       {
-        "x": 173.99,
-        "y": -40.64
+        "x": 20.319999999999993,
+        "y": 49.52999999999999
       },
       {
-        "x": 233.68,
-        "y": -40.64
+        "x": 80.00999999999999,
+        "y": 49.52999999999999
       },
       {
-        "x": 73.66,
-        "y": -40.64
+        "x": -80.01000000000002,
+        "y": 49.52999999999999
       },
       {
-        "x": 173.99,
-        "y": -40.64
+        "x": 20.319999999999993,
+        "y": 49.52999999999999
       },
       {
-        "x": 233.68,
-        "y": -139.7
+        "x": 80.00999999999999,
+        "y": -49.53
       },
       {
-        "x": 73.66,
-        "y": -139.7
+        "x": -80.01000000000002,
+        "y": -49.53
       },
       {
-        "x": 233.68,
-        "y": -40.64
+        "x": 80.00999999999999,
+        "y": 49.52999999999999
       },
       {
-        "x": 233.68,
-        "y": -139.7
+        "x": 80.00999999999999,
+        "y": -49.53
       }
     ],
     "width": 160.02,
@@ -5654,8 +5654,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -43.18000000000002,
+      "y": 11.302999999999983
     },
     "layer": "top"
   },
@@ -5667,8 +5667,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -69.08800000000002,
+      "y": -1.4210854715202004e-14
     },
     "layer": "top"
   },
@@ -5680,8 +5680,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -76.20000000000002,
+      "y": -45.72
     },
     "layer": "top"
   },
@@ -5693,8 +5693,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 5.079999999999984,
+      "y": -45.72
     },
     "layer": "top"
   },
@@ -5706,8 +5706,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 76.19999999999999,
+      "y": -45.72
     },
     "layer": "top"
   },
@@ -5719,8 +5719,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 76.19999999999999,
+      "y": 45.719999999999985
     },
     "layer": "top"
   },
@@ -5732,8 +5732,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 5.079999999999984,
+      "y": 45.719999999999985
     },
     "layer": "top"
   },
@@ -5745,8 +5745,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -76.20000000000002,
+      "y": 45.719999999999985
     },
     "layer": "top"
   },
@@ -5758,8 +5758,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 25.399999999999977,
+      "y": -30.480000000000018
     },
     "layer": "top"
   },
@@ -5771,8 +5771,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 25.399999999999977,
+      "y": -19.05000000000001
     },
     "layer": "top"
   },
@@ -5784,8 +5784,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -43.18000000000002,
+      "y": 33.01999999999999
     },
     "layer": "top"
   },
@@ -5797,8 +5797,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 53.974999999999994,
+      "y": 39.36999999999999
     },
     "layer": "top"
   },
@@ -5810,8 +5810,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 54.228999999999985,
+      "y": -17.780000000000015
     },
     "layer": "top"
   },
@@ -5823,8 +5823,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -38.10000000000002,
+      "y": -29.210000000000008
     },
     "layer": "top"
   },
@@ -5836,8 +5836,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -28.067000000000007
     },
     "layer": "top"
   },
@@ -5849,8 +5849,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -28.067000000000007
     },
     "layer": "top"
   },
@@ -5862,8 +5862,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -28.067000000000007
     },
     "layer": "top"
   },
@@ -5875,8 +5875,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -31.750000000000014
     },
     "layer": "top"
   },
@@ -5888,8 +5888,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -31.750000000000014
     },
     "layer": "top"
   },
@@ -5901,8 +5901,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -31.750000000000014
     },
     "layer": "top"
   },
@@ -5914,8 +5914,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -21.717000000000013
     },
     "layer": "top"
   },
@@ -5927,8 +5927,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -21.717000000000013
     },
     "layer": "top"
   },
@@ -5940,8 +5940,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -21.717000000000013
     },
     "layer": "top"
   },
@@ -5953,8 +5953,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -18.415000000000006
     },
     "layer": "top"
   },
@@ -5966,8 +5966,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -18.415000000000006
     },
     "layer": "top"
   },
@@ -5979,8 +5979,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -18.415000000000006
     },
     "layer": "top"
   },
@@ -5992,8 +5992,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -14.605000000000018,
+      "y": 9.524999999999991
     },
     "layer": "top"
   },
@@ -6005,8 +6005,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -14.605000000000018,
+      "y": 9.524999999999991
     },
     "layer": "top"
   },
@@ -6018,8 +6018,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -14.605000000000018,
+      "y": 9.524999999999991
     },
     "layer": "top"
   },
@@ -6031,8 +6031,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -25.146000000000015
     },
     "layer": "top"
   },
@@ -6044,8 +6044,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -25.146000000000015
     },
     "layer": "top"
   },
@@ -6057,8 +6057,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -25.146000000000015
     },
     "layer": "top"
   },
@@ -6070,8 +6070,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -34.92500000000001
     },
     "layer": "top"
   },
@@ -6083,8 +6083,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -34.92500000000001
     },
     "layer": "top"
   },
@@ -6096,8 +6096,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -45.72000000000001,
+      "y": -34.92500000000001
     },
     "layer": "top"
   },
@@ -6109,8 +6109,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -71.07000000000002,
+      "y": -30.030000000000015
     },
     "layer": "top"
   },
@@ -6122,8 +6122,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -11.430000000000007,
+      "y": -7.620000000000019
     },
     "layer": "top"
   },
@@ -6135,8 +6135,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -5.588000000000022,
+      "y": 29.463999999999984
     },
     "layer": "top"
   },
@@ -6148,8 +6148,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -7.6200000000000045,
+      "y": 20.319999999999993
     },
     "layer": "top"
   },
@@ -6161,8 +6161,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -1.2700000000000102,
+      "y": 21.58999999999999
     },
     "layer": "top"
   },
@@ -6174,8 +6174,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -39.37000000000002,
+      "y": 41.90999999999999
     },
     "layer": "top"
   },
@@ -6187,8 +6187,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -14.605000000000018,
+      "y": 12.699999999999989
     },
     "layer": "top"
   },
@@ -6200,8 +6200,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -66.04000000000002,
+      "y": -27.940000000000012
     },
     "layer": "top"
   },
@@ -6213,8 +6213,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -66.04000000000002,
+      "y": -24.384000000000015
     },
     "layer": "top"
   },
@@ -6226,8 +6226,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -66.04000000000002,
+      "y": -20.955000000000013
     },
     "layer": "top"
   },
@@ -6239,8 +6239,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -66.04000000000002,
+      "y": -17.653000000000006
     },
     "layer": "top"
   },
@@ -6252,8 +6252,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -65.91300000000001,
+      "y": -35.30600000000001
     },
     "layer": "top"
   },
@@ -6265,8 +6265,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -13.970000000000027,
+      "y": 35.55999999999999
     },
     "layer": "top"
   },
@@ -6278,8 +6278,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -65.91300000000001,
+      "y": -31.750000000000014
     },
     "layer": "top"
   },
@@ -6291,8 +6291,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 4.444999999999993,
+      "y": -12.065000000000012
     },
     "layer": "top"
   },
@@ -6304,8 +6304,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -8.890000000000015,
+      "y": -12.065000000000012
     },
     "layer": "top"
   },
@@ -6317,8 +6317,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -4.445000000000022,
+      "y": 6.349999999999994
     },
     "layer": "top"
   },
@@ -6330,8 +6330,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 2.539999999999992,
+      "y": 21.58999999999999
     },
     "layer": "top"
   },
@@ -6343,8 +6343,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -35.56000000000002,
+      "y": 14.98599999999999
     },
     "layer": "top"
   },
@@ -6356,8 +6356,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -35.56000000000002,
+      "y": 11.429999999999993
     },
     "layer": "top"
   },
@@ -6369,8 +6369,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -14.605000000000018,
+      "y": 2.539999999999992
     },
     "layer": "top"
   },
@@ -6382,8 +6382,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -13.335000000000008,
+      "y": -21.590000000000018
     },
     "layer": "top"
   },
@@ -6395,8 +6395,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -14.605000000000018,
+      "y": -0.88900000000001
     },
     "layer": "top"
   },
@@ -6408,8 +6408,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -18.41500000000002,
+      "y": -31.750000000000014
     },
     "layer": "top"
   },
@@ -6421,8 +6421,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 2.539999999999992,
+      "y": 12.699999999999989
     },
     "layer": "top"
   },
@@ -6434,8 +6434,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 2.539999999999992,
+      "y": 2.539999999999992
     },
     "layer": "top"
   },
@@ -6447,8 +6447,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 2.539999999999992,
+      "y": -6.985000000000014
     },
     "layer": "top"
   },
@@ -6460,8 +6460,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -39.37000000000002,
+      "y": 38.09999999999999
     },
     "layer": "top"
   },
@@ -6473,8 +6473,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -24.130000000000024,
+      "y": 40.639999999999986
     },
     "layer": "top"
   },
@@ -6486,8 +6486,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 45.08499999999998,
+      "y": 19.049999999999983
     },
     "layer": "top"
   },
@@ -6499,8 +6499,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -10.668000000000006,
+      "y": 40.38599999999999
     },
     "layer": "top"
   },
@@ -6512,8 +6512,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": 43.17999999999998,
+      "y": -22.22500000000001
     },
     "layer": "top"
   },
@@ -6525,8 +6525,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -16.51000000000002,
+      "y": 33.01999999999999
     },
     "layer": "top"
   },
@@ -6538,8 +6538,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -16.51000000000002,
+      "y": 33.01999999999999
     },
     "layer": "top"
   },
@@ -6551,8 +6551,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -16.51000000000002,
+      "y": 33.01999999999999
     },
     "layer": "top"
   },
@@ -6564,8 +6564,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -71.87000000000002,
+      "y": 30.169999999999987
     },
     "layer": "top"
   },
@@ -6577,8 +6577,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -57.15000000000002,
+      "y": 19.049999999999983
     },
     "layer": "top"
   },
@@ -6590,8 +6590,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -13.589000000000027,
+      "y": 19.176999999999992
     },
     "layer": "top"
   },
@@ -6603,8 +6603,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -19.55800000000002,
+      "y": 27.93999999999999
     },
     "layer": "top"
   },
@@ -6616,8 +6616,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -27.940000000000012,
+      "y": 27.93999999999999
     },
     "layer": "top"
   },
@@ -6629,8 +6629,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -75.37000000000002,
+      "y": 0.46999999999998465
     },
     "layer": "top"
   },
@@ -6642,8 +6642,8 @@
     "font_size": 1,
     "text": "${REFERENCE}",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -75.37000000000002,
+      "y": 0.46999999999998465
     },
     "layer": "top"
   },
@@ -6655,8 +6655,8 @@
     "font_size": 1,
     "text": "K",
     "anchor_position": {
-      "x": 0,
-      "y": 0
+      "x": -75.37000000000002,
+      "y": 0.46999999999998465
     },
     "layer": "top"
   }

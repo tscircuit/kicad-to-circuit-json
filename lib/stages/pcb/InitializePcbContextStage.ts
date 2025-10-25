@@ -16,10 +16,16 @@ export class InitializePcbContextStage extends ConverterStage {
       return false
     }
 
+    // Calculate board center from Edge.Cuts to center the output at (0, 0)
+    const center = this.calculateBoardCenter()
+
     // Build the transform for PCB
-    // For MVP, just flip Y axis. KiCad PCB coordinates are in mm, Circuit JSON also uses mm.
-    // KiCad has Y increasing downward, Circuit JSON has Y increasing upward
-    this.ctx.k2cMatPcb = scale(1, -1)
+    // 1. Translate to center at origin
+    // 2. Flip Y axis (KiCad Y down, Circuit JSON Y up)
+    this.ctx.k2cMatPcb = compose(
+      scale(1, -1),
+      translate(-center.x, -center.y)
+    )
 
     // Initialize net mapping
     this.ctx.netNumToName = new Map()
@@ -27,5 +33,57 @@ export class InitializePcbContextStage extends ConverterStage {
 
     this.finished = true
     return false
+  }
+
+  private calculateBoardCenter(): { x: number; y: number } {
+    if (!this.ctx.kicadPcb) {
+      return { x: 0, y: 0 }
+    }
+
+    // Find all Edge.Cuts lines to determine board bounds
+    const lines = this.ctx.kicadPcb.graphicLines || []
+    const lineArray = Array.isArray(lines) ? lines : [lines]
+
+    const edgeCutLines = lineArray.filter((line: any) => {
+      const layer = line.layer
+      const layerNames = typeof layer === "string" ? [layer] : (layer?.names || [])
+      const layerStr = layerNames.join(" ")
+      return layerStr.includes("Edge.Cuts")
+    })
+
+    if (edgeCutLines.length === 0) {
+      // No edge cuts found, use a default center
+      return { x: 0, y: 0 }
+    }
+
+    // Collect all points from edge cut lines
+    const xs: number[] = []
+    const ys: number[] = []
+
+    for (const line of edgeCutLines) {
+      if (line.start) {
+        xs.push(line.start.x)
+        ys.push(line.start.y)
+      }
+      if (line.end) {
+        xs.push(line.end.x)
+        ys.push(line.end.y)
+      }
+    }
+
+    if (xs.length === 0 || ys.length === 0) {
+      return { x: 0, y: 0 }
+    }
+
+    // Calculate center
+    const minX = Math.min(...xs)
+    const maxX = Math.max(...xs)
+    const minY = Math.min(...ys)
+    const maxY = Math.max(...ys)
+
+    return {
+      x: (minX + maxX) / 2,
+      y: (minY + maxY) / 2,
+    }
   }
 }
