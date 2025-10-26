@@ -196,24 +196,21 @@ export function createFootprintArc(
   const rotatedMid = rotatePoint(mid.x, mid.y, -componentRotation)
   const rotatedEnd = rotatePoint(end.x, end.y, -componentRotation)
 
-  // Apply component position
+  // Apply component position - these are now in KiCad global coordinates
   const startKicadPos = { x: kicadComponentPos.x + rotatedStart.x, y: kicadComponentPos.y + rotatedStart.y }
   const midKicadPos = { x: kicadComponentPos.x + rotatedMid.x, y: kicadComponentPos.y + rotatedMid.y }
   const endKicadPos = { x: kicadComponentPos.x + rotatedEnd.x, y: kicadComponentPos.y + rotatedEnd.y }
 
-  // Transform to Circuit JSON coordinates
-  const startPos = applyToPoint(ctx.k2cMatPcb, startKicadPos)
-  const midPos = applyToPoint(ctx.k2cMatPcb, midKicadPos)
-  const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
-
   const layer = mapTextLayer(arc.layer)
   const strokeWidth = arc.stroke?.width || arc.width || 0.12
 
-  // Calculate the arc center and radius
-  const arcInfo = calculateArcCenter(startPos, midPos, endPos)
+  // Calculate the arc center and radius IN KICAD SPACE (before coordinate transformation)
+  const arcInfo = calculateArcCenter(startKicadPos, midKicadPos, endKicadPos)
 
   if (!arcInfo) {
     // If points are collinear, fall back to straight line
+    const startPos = applyToPoint(ctx.k2cMatPcb, startKicadPos)
+    const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
     ctx.db.pcb_silkscreen_path.insert({
       pcb_component_id: componentId,
       layer: layer,
@@ -225,10 +222,10 @@ export function createFootprintArc(
 
   const { center, radius } = arcInfo
 
-  // Calculate angles for start, mid, and end points
-  const startAngle = Math.atan2(startPos.y - center.y, startPos.x - center.x)
-  const midAngle = Math.atan2(midPos.y - center.y, midPos.x - center.x)
-  const endAngle = Math.atan2(endPos.y - center.y, endPos.x - center.x)
+  // Calculate angles for start, mid, and end points IN KICAD SPACE
+  const startAngle = Math.atan2(startKicadPos.y - center.y, startKicadPos.x - center.x)
+  const midAngle = Math.atan2(midKicadPos.y - center.y, midKicadPos.x - center.x)
+  const endAngle = Math.atan2(endKicadPos.y - center.y, endKicadPos.x - center.x)
 
   // Determine arc direction (clockwise or counter-clockwise)
   // by checking if mid angle is between start and end angles
@@ -260,13 +257,17 @@ export function createFootprintArc(
 
   const arcRoute: Array<{ x: number; y: number }> = []
 
+  // Generate arc points in KiCad space, THEN transform to Circuit JSON space
   for (let i = 0; i <= numSegments; i++) {
     const t = i / numSegments
     const angle = startAngle + sweepAngle * t
-    arcRoute.push({
+    const kicadPoint = {
       x: center.x + radius * Math.cos(angle),
       y: center.y + radius * Math.sin(angle),
-    })
+    }
+    // Transform each point to Circuit JSON coordinates
+    const cjPoint = applyToPoint(ctx.k2cMatPcb, kicadPoint)
+    arcRoute.push(cjPoint)
   }
 
   ctx.db.pcb_silkscreen_path.insert({
