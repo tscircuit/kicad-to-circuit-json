@@ -20,7 +20,7 @@
     "bun-match-svg": "^0.0.14",
     "circuit-json-to-connectivity-map": "^0.0.22",
     "circuit-to-svg": "^0.0.254",
-    "kicadts": "^0.0.11",
+    "kicadts": "^0.0.14",
     "react": "^19.2.0",
     "tsup": "^8.5.0"
   },
