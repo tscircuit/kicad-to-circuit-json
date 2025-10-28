@@ -20,11 +20,8 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const cjPos = applyToPoint(ctx.k2cMatPcb, kicadPos)
   const rotation = (position as any)?.angle ?? 0
 
-  // Get reference (component name)
-  const reference = getTextValue(footprint, "reference") || footprint.libraryLink || "U?"
-
   // Create pcb_component
-  const uuid = footprint.uuid?.value
+  const uuid = footprint.uuid?.value || footprint.tstamp?.value
   if (!uuid) return
 
   const inserted = ctx.db.pcb_component.insert({
