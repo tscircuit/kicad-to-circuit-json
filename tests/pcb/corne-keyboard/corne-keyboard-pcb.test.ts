@@ -8,8 +8,7 @@ import "../../fixtures/png-matcher"
 
 test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
   // Load the KiCad PCB file
-  const kicadPcbPath =
-    "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb"
+  const kicadPcbPath = "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb"
   const kicadPcbContent = readFileSync(kicadPcbPath, "utf-8")
 
   // Convert to Circuit JSON

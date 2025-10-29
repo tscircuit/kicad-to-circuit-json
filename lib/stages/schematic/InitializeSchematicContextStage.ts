@@ -39,7 +39,7 @@ export class InitializeSchematicContextStage extends ConverterStage {
     this.ctx.k2cMatSch = compose(
       translate(cjCenterX, cjCenterY),
       scale(1 / 15, -1 / 15),
-      translate(-kicadCenterX, -kicadCenterY)
+      translate(-kicadCenterX, -kicadCenterY),
     )
 
     // Initialize tracking maps

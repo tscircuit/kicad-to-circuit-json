@@ -49,7 +49,9 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
 
     // Create source_component (if it doesn't exist)
     const sourceComponentId = `${libId}_source`
-    const existingSource = this.ctx.db.source_component.list().find((sc: any) => sc.source_component_id === sourceComponentId)
+    const existingSource = this.ctx.db.source_component
+      .list()
+      .find((sc: any) => sc.source_component_id === sourceComponentId)
 
     if (!existingSource) {
       this.ctx.db.source_component.insert({
@@ -83,7 +85,10 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     }
   }
 
-  private getProperty(symbol: SchematicSymbol, propName: string): string | undefined {
+  private getProperty(
+    symbol: SchematicSymbol,
+    propName: string,
+  ): string | undefined {
     const props = symbol.properties || []
     const prop = props.find((p: any) => p.key === propName)
     return prop?.value
@@ -109,7 +114,10 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     return symbol.at?.angle ?? 0
   }
 
-  private estimateSize(symbol: SchematicSymbol): { width: number; height: number } {
+  private estimateSize(symbol: SchematicSymbol): {
+    width: number
+    height: number
+  } {
     // For MVP, use a default size
     // In a more complete implementation, we would parse the symbol's graphical primitives
     // or derive from pin extents
@@ -119,11 +127,15 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
   private createPorts(symbol: SchematicSymbol, componentId: string) {
     // Get the library symbol definition to find pin information
     const libId = symbol.libraryId
-    const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find((ls: any) => ls.libraryId === libId)
+    const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
+      (ls: any) => ls.libraryId === libId,
+    )
 
     if (!libSymbol || !libSymbol.pins) return
 
-    const pins = Array.isArray(libSymbol.pins) ? libSymbol.pins : [libSymbol.pins]
+    const pins = Array.isArray(libSymbol.pins)
+      ? libSymbol.pins
+      : [libSymbol.pins]
 
     for (const pin of pins) {
       // For MVP, place ports at approximate positions
@@ -143,11 +155,16 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const orientation = pin.orientation || "R"
 
     switch (orientation) {
-      case "R": return "right"
-      case "L": return "left"
-      case "U": return "up"
-      case "D": return "down"
-      default: return "right"
+      case "R":
+        return "right"
+      case "L":
+        return "left"
+      case "U":
+        return "up"
+      case "D":
+        return "down"
+      default:
+        return "right"
     }
   }
 }

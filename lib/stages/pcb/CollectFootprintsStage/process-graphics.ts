@@ -6,7 +6,11 @@ import { mapTextLayer } from "./layer-utils"
 /**
  * Rotates a point by a given angle (in degrees)
  */
-export function rotatePoint(x: number, y: number, rotationDeg: number): { x: number; y: number } {
+export function rotatePoint(
+  x: number,
+  y: number,
+  rotationDeg: number,
+): { x: number; y: number } {
   const rotationRad = (rotationDeg * Math.PI) / 180
   return {
     x: x * Math.cos(rotationRad) - y * Math.sin(rotationRad),
@@ -22,29 +26,51 @@ export function processFootprintGraphics(
   footprint: Footprint,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
-  componentRotation: number
+  componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
 
   // Process fp_line elements
   const lines = (footprint as any).fpLines || []
-  const lineArray = Array.isArray(lines) ? lines : (lines ? [lines] : [])
+  const lineArray = Array.isArray(lines) ? lines : lines ? [lines] : []
   for (const line of lineArray) {
-    createFootprintLine(ctx, line, componentId, kicadComponentPos, componentRotation)
+    createFootprintLine(
+      ctx,
+      line,
+      componentId,
+      kicadComponentPos,
+      componentRotation,
+    )
   }
 
   // Process fp_circle elements
   const circles = (footprint as any).fpCircles || []
-  const circleArray = Array.isArray(circles) ? circles : (circles ? [circles] : [])
+  const circleArray = Array.isArray(circles)
+    ? circles
+    : circles
+      ? [circles]
+      : []
   for (const circle of circleArray) {
-    createFootprintCircle(ctx, circle, componentId, kicadComponentPos, componentRotation)
+    createFootprintCircle(
+      ctx,
+      circle,
+      componentId,
+      kicadComponentPos,
+      componentRotation,
+    )
   }
 
   // Process fp_arc elements
   const arcs = (footprint as any).fpArcs || []
-  const arcArray = Array.isArray(arcs) ? arcs : (arcs ? [arcs] : [])
+  const arcArray = Array.isArray(arcs) ? arcs : arcs ? [arcs] : []
   for (const arc of arcArray) {
-    createFootprintArc(ctx, arc, componentId, kicadComponentPos, componentRotation)
+    createFootprintArc(
+      ctx,
+      arc,
+      componentId,
+      kicadComponentPos,
+      componentRotation,
+    )
   }
 }
 
@@ -56,7 +82,7 @@ export function createFootprintLine(
   line: any,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
-  componentRotation: number
+  componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
 
@@ -100,7 +126,7 @@ export function createFootprintCircle(
   circle: any,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
-  componentRotation: number
+  componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
 
@@ -150,7 +176,7 @@ export function createFootprintCircle(
 function calculateArcCenter(
   p1: { x: number; y: number },
   p2: { x: number; y: number },
-  p3: { x: number; y: number }
+  p3: { x: number; y: number },
 ): { center: { x: number; y: number }; radius: number } | null {
   const ax = p1.x - p2.x
   const ay = p1.y - p2.y
@@ -183,7 +209,7 @@ export function createFootprintArc(
   arc: any,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
-  componentRotation: number
+  componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
 
@@ -197,9 +223,18 @@ export function createFootprintArc(
   const rotatedEnd = rotatePoint(end.x, end.y, -componentRotation)
 
   // Apply component position - these are now in KiCad global coordinates
-  const startKicadPos = { x: kicadComponentPos.x + rotatedStart.x, y: kicadComponentPos.y + rotatedStart.y }
-  const midKicadPos = { x: kicadComponentPos.x + rotatedMid.x, y: kicadComponentPos.y + rotatedMid.y }
-  const endKicadPos = { x: kicadComponentPos.x + rotatedEnd.x, y: kicadComponentPos.y + rotatedEnd.y }
+  const startKicadPos = {
+    x: kicadComponentPos.x + rotatedStart.x,
+    y: kicadComponentPos.y + rotatedStart.y,
+  }
+  const midKicadPos = {
+    x: kicadComponentPos.x + rotatedMid.x,
+    y: kicadComponentPos.y + rotatedMid.y,
+  }
+  const endKicadPos = {
+    x: kicadComponentPos.x + rotatedEnd.x,
+    y: kicadComponentPos.y + rotatedEnd.y,
+  }
 
   const layer = mapTextLayer(arc.layer)
   const strokeWidth = arc.stroke?.width || arc.width || 0.12
@@ -223,9 +258,18 @@ export function createFootprintArc(
   const { center, radius } = arcInfo
 
   // Calculate angles for start, mid, and end points IN KICAD SPACE
-  const startAngle = Math.atan2(startKicadPos.y - center.y, startKicadPos.x - center.x)
-  const midAngle = Math.atan2(midKicadPos.y - center.y, midKicadPos.x - center.x)
-  const endAngle = Math.atan2(endKicadPos.y - center.y, endKicadPos.x - center.x)
+  const startAngle = Math.atan2(
+    startKicadPos.y - center.y,
+    startKicadPos.x - center.x,
+  )
+  const midAngle = Math.atan2(
+    midKicadPos.y - center.y,
+    midKicadPos.x - center.x,
+  )
+  const endAngle = Math.atan2(
+    endKicadPos.y - center.y,
+    endKicadPos.x - center.x,
+  )
 
   // Determine arc direction (clockwise or counter-clockwise)
   // by checking if mid angle is between start and end angles
@@ -240,12 +284,14 @@ export function createFootprintArc(
 
   // Check if we need to go the long way around
   const isCCW = sweepAngle > 0
-  const midIsBetween = (isCCW && midSweep > 0 && midSweep < sweepAngle) ||
-                       (!isCCW && midSweep < 0 && midSweep > sweepAngle)
+  const midIsBetween =
+    (isCCW && midSweep > 0 && midSweep < sweepAngle) ||
+    (!isCCW && midSweep < 0 && midSweep > sweepAngle)
 
   if (!midIsBetween) {
     // Take the long way around
-    sweepAngle = sweepAngle > 0 ? sweepAngle - 2 * Math.PI : sweepAngle + 2 * Math.PI
+    sweepAngle =
+      sweepAngle > 0 ? sweepAngle - 2 * Math.PI : sweepAngle + 2 * Math.PI
   }
 
   // Calculate arc length

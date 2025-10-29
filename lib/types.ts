@@ -60,7 +60,7 @@ export abstract class ConverterStage {
     if (this.iterationCount >= this.MAX_ITERATIONS) {
       this.ctx.warnings = this.ctx.warnings || []
       this.ctx.warnings.push(
-        `Stage ${this.constructor.name} exceeded maximum iterations (${this.MAX_ITERATIONS})`
+        `Stage ${this.constructor.name} exceeded maximum iterations (${this.MAX_ITERATIONS})`,
       )
       this.finished = true
     }

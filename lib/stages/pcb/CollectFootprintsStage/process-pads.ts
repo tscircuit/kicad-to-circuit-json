@@ -11,7 +11,7 @@ export function processPads(
   footprint: Footprint,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
-  componentRotation: number
+  componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
 
@@ -31,7 +31,7 @@ export function processPad(
   pad: any,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
-  componentRotation: number
+  componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
 
@@ -47,8 +47,10 @@ export function processPad(
   // Pad position is relative to component and needs to be rotated
   // Negate rotation to account for Y-axis flip in coordinate transform
   const rotationRad = (-componentRotation * Math.PI) / 180
-  const rotatedPadX = padAt.x * Math.cos(rotationRad) - padAt.y * Math.sin(rotationRad)
-  const rotatedPadY = padAt.x * Math.sin(rotationRad) + padAt.y * Math.cos(rotationRad)
+  const rotatedPadX =
+    padAt.x * Math.cos(rotationRad) - padAt.y * Math.sin(rotationRad)
+  const rotatedPadY =
+    padAt.x * Math.sin(rotationRad) + padAt.y * Math.cos(rotationRad)
 
   const padKicadPos = {
     x: kicadComponentPos.x + rotatedPadX,
@@ -66,7 +68,7 @@ export function processPad(
       // Array format: [width, height]
       sizeX = pad.size[0] || 1
       sizeY = pad.size[1] || 1
-    } else if (typeof pad.size === 'object') {
+    } else if (typeof pad.size === "object") {
       // kicadts returns a Size object with _width and _height properties
       sizeX = (pad.size as any)._width || pad.size.x || 1
       sizeY = (pad.size as any)._height || pad.size.y || 1
@@ -87,7 +89,16 @@ export function processPad(
     createNpthHole(ctx, pad, componentId, globalPos, drill)
   } else {
     // thru_hole (plated)
-    createPlatedHole(ctx, pad, componentId, globalPos, size, drill, padShape, totalRotation)
+    createPlatedHole(
+      ctx,
+      pad,
+      componentId,
+      globalPos,
+      size,
+      drill,
+      padShape,
+      totalRotation,
+    )
   }
 }
 
@@ -100,7 +111,7 @@ export function createSmdPad(
   componentId: string,
   pos: { x: number; y: number },
   size: { x: number; y: number },
-  shape: string
+  shape: string,
 ) {
   const layers = pad.layers || []
   const layer = determinePadLayer(layers)
@@ -132,16 +143,29 @@ export function createPlatedHole(
   size: { x: number; y: number },
   drill: any,
   shape: string,
-  rotation = 0
+  rotation = 0,
 ) {
   // Extract drill diameter - can be a number or object with diameter property
-  const holeDiameter = typeof drill === 'object' ? (drill?.diameter || drill?.x || 0.8) : (drill || 0.8)
+  const holeDiameter =
+    typeof drill === "object"
+      ? drill?.diameter || drill?.x || 0.8
+      : drill || 0.8
 
   // Determine hole shape - map KiCad pad shapes to CJ plated hole shapes
-  let holeShape: "circle" | "pill" | "oval" | "circular_hole_with_rect_pad" | "pill_hole_with_rect_pad" | "rotated_pill_hole_with_rect_pad" = "circle"
+  let holeShape:
+    | "circle"
+    | "pill"
+    | "oval"
+    | "circular_hole_with_rect_pad"
+    | "pill_hole_with_rect_pad"
+    | "rotated_pill_hole_with_rect_pad" = "circle"
 
   // Determine drill shape (circular or oval)
-  const drillIsOval = typeof drill === 'object' && drill.x !== undefined && drill.y !== undefined && drill.x !== drill.y
+  const drillIsOval =
+    typeof drill === "object" &&
+    drill.x !== undefined &&
+    drill.y !== undefined &&
+    drill.x !== drill.y
 
   // Apply rotation to dimensions for oval/pill pads
   // Normalize rotation to 0-360 range
@@ -149,8 +173,9 @@ export function createPlatedHole(
   if (normalizedRotation < 0) normalizedRotation += 360
 
   // For 90 or 270 degree rotations, swap width and height
-  const shouldSwapDimensions = (normalizedRotation >= 45 && normalizedRotation < 135) ||
-                                (normalizedRotation >= 225 && normalizedRotation < 315)
+  const shouldSwapDimensions =
+    (normalizedRotation >= 45 && normalizedRotation < 135) ||
+    (normalizedRotation >= 225 && normalizedRotation < 315)
 
   let outerWidth = size.x
   let outerHeight = size.y
@@ -178,7 +203,7 @@ export function createPlatedHole(
   } else if (shape === "oval") {
     // Oval/pill-shaped pad with circular hole
     platedHole.shape = "pill"
-    platedHole.hole_width = holeDiameter   // Circular hole: width = height
+    platedHole.hole_width = holeDiameter // Circular hole: width = height
     platedHole.hole_height = holeDiameter
     platedHole.outer_width = outerWidth
     platedHole.outer_height = outerHeight
@@ -210,7 +235,7 @@ export function createNpthHole(
   pad: any,
   componentId: string,
   pos: { x: number; y: number },
-  drill: any
+  drill: any,
 ) {
   const holeDiameter = drill?.diameter || drill || 1.0
 

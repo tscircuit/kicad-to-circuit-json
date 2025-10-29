@@ -7,7 +7,9 @@ export function getComponentLayer(footprint: Footprint): "top" | "bottom" {
   // Check if footprint is on back layer
   const layer = footprint.layer
   const layerNames = layer?.names || []
-  if (layerNames.some((name) => name.includes("B.Cu") || name.includes("Back"))) {
+  if (
+    layerNames.some((name) => name.includes("B.Cu") || name.includes("Back"))
+  ) {
     return "bottom"
   }
   return "top"
@@ -18,7 +20,7 @@ export function getComponentLayer(footprint: Footprint): "top" | "bottom" {
  */
 export function determinePadLayer(layers: any): "top" | "bottom" {
   // Handle both raw arrays and kicadts layer objects
-  const layerArray = Array.isArray(layers) ? layers : (layers?._layers || [])
+  const layerArray = Array.isArray(layers) ? layers : layers?._layers || []
 
   if (layerArray.includes("B.Cu") || layerArray.includes("Back")) {
     return "bottom"
@@ -31,7 +33,10 @@ export function determinePadLayer(layers: any): "top" | "bottom" {
  */
 export function mapTextLayer(kicadLayer: any): "top" | "bottom" {
   // Handle both string and Layer object
-  const layerStr = typeof kicadLayer === "string" ? kicadLayer : (kicadLayer?.names?.join(" ") || "")
+  const layerStr =
+    typeof kicadLayer === "string"
+      ? kicadLayer
+      : kicadLayer?.names?.join(" ") || ""
   if (layerStr.includes("B.") || layerStr.includes("Back")) {
     return "bottom"
   }
