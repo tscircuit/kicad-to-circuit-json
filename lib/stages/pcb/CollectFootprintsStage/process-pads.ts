@@ -36,7 +36,7 @@ export function processPad(
   if (!ctx.k2cMatPcb) return
 
   const padAt = pad.at || { x: 0, y: 0, angle: 0 }
-  const padType = pad.type || "thru_hole"
+  const padType = pad.padType || pad.type || "thru_hole"
   const padShape = pad.shape || "circle"
 
   // Get pad's local rotation angle

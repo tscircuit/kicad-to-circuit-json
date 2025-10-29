@@ -18,7 +18,7 @@ export class CollectFootprintsStage extends ConverterStage {
     const footprintArray = Array.isArray(footprints) ? footprints : [footprints]
 
     for (const footprint of footprintArray) {
-      const uuid = footprint.uuid?.value
+      const uuid = footprint.uuid?.value || footprint.tstamp?.value
       if (!uuid) continue
       if (this.processedFootprints.has(uuid)) continue
 
