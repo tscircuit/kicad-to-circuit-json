@@ -24,9 +24,6 @@ export function processFootprintText(
   const textArray = Array.isArray(texts) ? texts : [texts]
 
   for (const text of textArray) {
-    // Skip reference and value text (they're handled by properties)
-    if (text.type === "reference" || text.type === "value") continue
-
     // Only process text on silkscreen layers (filter out F.Fab, etc.)
     const layerStr = typeof text.layer === "string" ? text.layer : (text.layer?.names?.join(" ") || "")
     const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")

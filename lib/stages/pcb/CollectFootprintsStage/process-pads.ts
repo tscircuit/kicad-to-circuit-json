@@ -132,7 +132,7 @@ export function createPlatedHole(
   size: { x: number; y: number },
   drill: any,
   shape: string,
-  rotation: number = 0
+  rotation = 0
 ) {
   // Extract drill diameter - can be a number or object with diameter property
   const holeDiameter = typeof drill === 'object' ? (drill?.diameter || drill?.x || 0.8) : (drill || 0.8)
