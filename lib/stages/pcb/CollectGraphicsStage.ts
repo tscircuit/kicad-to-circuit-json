@@ -23,7 +23,8 @@ export class CollectGraphicsStage extends ConverterStage {
 
     for (const line of lineArray) {
       const layer = line.layer
-      const layerNames = typeof layer === "string" ? [layer] : (layer?.names || [])
+      const layerNames =
+        typeof layer === "string" ? [layer] : layer?.names || []
       const layerStr = layerNames.join(" ")
       if (layerStr.includes("Edge.Cuts")) {
         edgeCutLines.push(line)
@@ -48,11 +49,17 @@ export class CollectGraphicsStage extends ConverterStage {
 
     for (const text of textArray) {
       const layer = text.layer
-      const layerNames = typeof layer === "string" ? [layer] : (layer?.names || [])
+      const layerNames =
+        typeof layer === "string" ? [layer] : layer?.names || []
       // Include text from silk, copper, and fab layers
-      if (layerNames.some((name: string) =>
-        name.includes("SilkS") || name.includes(".Cu") || name.includes("Fab")
-      )) {
+      if (
+        layerNames.some(
+          (name: string) =>
+            name.includes("SilkS") ||
+            name.includes(".Cu") ||
+            name.includes("Fab"),
+        )
+      ) {
         this.createSilkscreenText(text)
       }
     }
@@ -71,7 +78,10 @@ export class CollectGraphicsStage extends ConverterStage {
       const start = line.start ?? { x: 0, y: 0 }
       const end = line.end ?? { x: 0, y: 0 }
 
-      const startPos = applyToPoint(this.ctx.k2cMatPcb, { x: start.x, y: start.y })
+      const startPos = applyToPoint(this.ctx.k2cMatPcb, {
+        x: start.x,
+        y: start.y,
+      })
       const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
       // Add points if not duplicate
@@ -86,7 +96,10 @@ export class CollectGraphicsStage extends ConverterStage {
     }
 
     // Remove the last point if it's the same as the first (closed polygon)
-    if (points.length > 2 && this.pointsEqual(points[0], points[points.length - 1])) {
+    if (
+      points.length > 2 &&
+      this.pointsEqual(points[0], points[points.length - 1])
+    ) {
       points.pop()
     }
 
@@ -114,14 +127,17 @@ export class CollectGraphicsStage extends ConverterStage {
     const start = line.start || { x: 0, y: 0 }
     const end = line.end || { x: 0, y: 0 }
 
-    const startPos = applyToPoint(this.ctx.k2cMatPcb, { x: start.x, y: start.y })
+    const startPos = applyToPoint(this.ctx.k2cMatPcb, {
+      x: start.x,
+      y: start.y,
+    })
     const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
     const layer = this.mapLayer(line.layer)
     const strokeWidth = line.width || 0.15
 
     this.ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: "",  // Not attached to a specific component
+      pcb_component_id: "", // Not attached to a specific component
       layer: layer,
       route: [startPos, endPos],
       stroke_width: strokeWidth,
@@ -133,11 +149,17 @@ export class CollectGraphicsStage extends ConverterStage {
 
     // Get position from either at or _sxPosition (kicadts internal field)
     const at = text.at || text._sxPosition
-    const pos = applyToPoint(this.ctx.k2cMatPcb, { x: at?.x ?? 0, y: at?.y ?? 0 })
+    const pos = applyToPoint(this.ctx.k2cMatPcb, {
+      x: at?.x ?? 0,
+      y: at?.y ?? 0,
+    })
 
     const layer = this.mapLayer(text.layer)
     // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
-    const kicadFontSize = text._sxEffects?._sxFont?._sxSize?._height || text.effects?.font?.size?.y || 1
+    const kicadFontSize =
+      text._sxEffects?._sxFont?._sxSize?._height ||
+      text.effects?.font?.size?.y ||
+      1
     const fontSize = kicadFontSize * 1.5
 
     this.ctx.db.pcb_silkscreen_text.insert({
@@ -151,14 +173,20 @@ export class CollectGraphicsStage extends ConverterStage {
   }
 
   private mapLayer(kicadLayer: any): "top" | "bottom" {
-    const layerStr = typeof kicadLayer === "string" ? kicadLayer : (kicadLayer?.names?.join(" ") || "")
+    const layerStr =
+      typeof kicadLayer === "string"
+        ? kicadLayer
+        : kicadLayer?.names?.join(" ") || ""
     if (layerStr.includes("B.") || layerStr.includes("Back")) {
       return "bottom"
     }
     return "top"
   }
 
-  private pointsEqual(p1: { x: number; y: number }, p2: { x: number; y: number }): boolean {
+  private pointsEqual(
+    p1: { x: number; y: number },
+    p2: { x: number; y: number },
+  ): boolean {
     const epsilon = 0.001
     return Math.abs(p1.x - p2.x) < epsilon && Math.abs(p1.y - p2.y) < epsilon
   }

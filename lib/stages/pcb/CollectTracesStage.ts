@@ -42,7 +42,10 @@ export class CollectTracesStage extends ConverterStage {
     const netName = this.ctx.netNumToName.get(netNum) || ""
 
     // Transform coordinates
-    const startPos = applyToPoint(this.ctx.k2cMatPcb, { x: start.x, y: start.y })
+    const startPos = applyToPoint(this.ctx.k2cMatPcb, {
+      x: start.x,
+      y: start.y,
+    })
     const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
     // Create a simple 2-point route

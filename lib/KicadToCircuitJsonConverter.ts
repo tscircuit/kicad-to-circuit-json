@@ -119,26 +119,26 @@ export class KicadToCircuitJsonConverter {
 
     // Known table names in circuit-json-util
     const tableNames = [
-      'source_component',
-      'schematic_component',
-      'schematic_port',
-      'schematic_trace',
-      'schematic_net_label',
-      'pcb_component',
-      'pcb_smtpad',
-      'pcb_plated_hole',
-      'pcb_hole',
-      'pcb_trace',
-      'pcb_via',
-      'pcb_board',
-      'pcb_silkscreen_text',
-      'pcb_silkscreen_path',
+      "source_component",
+      "schematic_component",
+      "schematic_port",
+      "schematic_trace",
+      "schematic_net_label",
+      "pcb_component",
+      "pcb_smtpad",
+      "pcb_plated_hole",
+      "pcb_hole",
+      "pcb_trace",
+      "pcb_via",
+      "pcb_board",
+      "pcb_silkscreen_text",
+      "pcb_silkscreen_path",
     ]
 
     // Collect all elements from different tables
     for (const tableName of tableNames) {
       const table = (this.ctx!.db as any)[tableName]
-      if (table && typeof table.list === 'function') {
+      if (table && typeof table.list === "function") {
         const items = table.list()
         if (items && Array.isArray(items)) {
           elements.push(...items)

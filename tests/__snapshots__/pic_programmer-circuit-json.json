@@ -765,9 +765,7 @@
     "shape": "rect",
     "width": 0.3,
     "height": 0.3,
-    "port_hints": [
-      "1"
-    ]
+    "port_hints": ["1"]
   },
   {
     "type": "pcb_smtpad",
@@ -779,9 +777,7 @@
     "shape": "rect",
     "width": 0.3,
     "height": 0.3,
-    "port_hints": [
-      "2"
-    ]
+    "port_hints": ["2"]
   },
   {
     "type": "pcb_plated_hole",
@@ -789,9 +785,7 @@
     "pcb_component_id": "pcb_component_0",
     "x": -43.18000000000002,
     "y": 11.302999999999983,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -799,10 +793,7 @@
     "hole_height": 1.2,
     "rect_pad_width": 2.4,
     "rect_pad_height": 2.4,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -810,18 +801,13 @@
     "pcb_component_id": "pcb_component_0",
     "x": -68.18000000000002,
     "y": 11.302999999999983,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 1.2,
     "hole_height": 1.2,
     "outer_width": 2.4,
     "outer_height": 2.4,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -829,9 +815,7 @@
     "pcb_component_id": "pcb_component_1",
     "x": -69.08800000000002,
     "y": -1.4210854715202004e-14,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -839,10 +823,7 @@
     "hole_height": 1.2,
     "rect_pad_width": 2.4,
     "rect_pad_height": 2.4,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -850,18 +831,13 @@
     "pcb_component_id": "pcb_component_1",
     "x": -44.08800000000002,
     "y": -1.4210854715202004e-14,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 1.2,
     "hole_height": 1.2,
     "outer_width": 2.4,
     "outer_height": 2.4,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -869,16 +845,11 @@
     "pcb_component_id": "pcb_component_8",
     "x": 15.23999999999998,
     "y": -6.3500000000000085,
-    "port_hints": [
-      ""
-    ],
+    "port_hints": [""],
     "shape": "circle",
     "hole_diameter": 2,
     "outer_diameter": 2.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -886,16 +857,11 @@
     "pcb_component_id": "pcb_component_8",
     "x": 43.17999999999998,
     "y": 41.90999999999999,
-    "port_hints": [
-      ""
-    ],
+    "port_hints": [""],
     "shape": "circle",
     "hole_diameter": 2,
     "outer_diameter": 2.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -903,18 +869,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 39.36999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -922,18 +883,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 36.82999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -941,18 +897,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 34.28999999999999,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -960,18 +911,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 31.749999999999993,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -979,18 +925,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 29.209999999999994,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -998,18 +939,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 26.669999999999987,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1017,18 +953,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 24.129999999999995,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1036,18 +967,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 21.58999999999999,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1055,18 +981,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 19.049999999999983,
-    "port_hints": [
-      "9"
-    ],
+    "port_hints": ["9"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1074,18 +995,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 16.50999999999999,
-    "port_hints": [
-      "10"
-    ],
+    "port_hints": ["10"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1093,18 +1009,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 13.969999999999999,
-    "port_hints": [
-      "11"
-    ],
+    "port_hints": ["11"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1112,18 +1023,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 11.429999999999993,
-    "port_hints": [
-      "12"
-    ],
+    "port_hints": ["12"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1131,18 +1037,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 8.889999999999986,
-    "port_hints": [
-      "13"
-    ],
+    "port_hints": ["13"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1150,18 +1051,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 6.349999999999994,
-    "port_hints": [
-      "14"
-    ],
+    "port_hints": ["14"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1169,18 +1065,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 3.809999999999988,
-    "port_hints": [
-      "15"
-    ],
+    "port_hints": ["15"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1188,18 +1079,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": 1.2699999999999818,
-    "port_hints": [
-      "16"
-    ],
+    "port_hints": ["16"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1207,18 +1093,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": -1.2700000000000102,
-    "port_hints": [
-      "17"
-    ],
+    "port_hints": ["17"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1226,18 +1107,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": -3.8100000000000023,
-    "port_hints": [
-      "18"
-    ],
+    "port_hints": ["18"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1245,18 +1121,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": -6.3500000000000085,
-    "port_hints": [
-      "19"
-    ],
+    "port_hints": ["19"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1264,18 +1135,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 21.589999999999975,
     "y": -8.890000000000015,
-    "port_hints": [
-      "20"
-    ],
+    "port_hints": ["20"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1283,18 +1149,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": -8.890000000000015,
-    "port_hints": [
-      "21"
-    ],
+    "port_hints": ["21"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1302,18 +1163,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": -6.3500000000000085,
-    "port_hints": [
-      "22"
-    ],
+    "port_hints": ["22"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1321,18 +1177,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": -3.8100000000000023,
-    "port_hints": [
-      "23"
-    ],
+    "port_hints": ["23"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1340,18 +1191,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": -1.2700000000000102,
-    "port_hints": [
-      "24"
-    ],
+    "port_hints": ["24"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1359,18 +1205,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 1.2699999999999818,
-    "port_hints": [
-      "25"
-    ],
+    "port_hints": ["25"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1378,18 +1219,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 3.809999999999988,
-    "port_hints": [
-      "26"
-    ],
+    "port_hints": ["26"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1397,18 +1233,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 6.349999999999994,
-    "port_hints": [
-      "27"
-    ],
+    "port_hints": ["27"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1416,18 +1247,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 8.889999999999986,
-    "port_hints": [
-      "28"
-    ],
+    "port_hints": ["28"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1435,18 +1261,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 11.429999999999993,
-    "port_hints": [
-      "29"
-    ],
+    "port_hints": ["29"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1454,18 +1275,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 13.969999999999999,
-    "port_hints": [
-      "30"
-    ],
+    "port_hints": ["30"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1473,18 +1289,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 16.50999999999999,
-    "port_hints": [
-      "31"
-    ],
+    "port_hints": ["31"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1492,18 +1303,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 19.049999999999983,
-    "port_hints": [
-      "32"
-    ],
+    "port_hints": ["32"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1511,18 +1317,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 21.58999999999999,
-    "port_hints": [
-      "33"
-    ],
+    "port_hints": ["33"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1530,18 +1331,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 24.129999999999995,
-    "port_hints": [
-      "34"
-    ],
+    "port_hints": ["34"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1549,18 +1345,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 26.669999999999987,
-    "port_hints": [
-      "35"
-    ],
+    "port_hints": ["35"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1568,18 +1359,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 29.209999999999994,
-    "port_hints": [
-      "36"
-    ],
+    "port_hints": ["36"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1587,18 +1373,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 31.749999999999993,
-    "port_hints": [
-      "37"
-    ],
+    "port_hints": ["37"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1606,18 +1387,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 34.28999999999999,
-    "port_hints": [
-      "38"
-    ],
+    "port_hints": ["38"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1625,18 +1401,13 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 36.82999999999999,
-    "port_hints": [
-      "39"
-    ],
+    "port_hints": ["39"],
     "shape": "pill",
     "hole_width": 1,
     "hole_height": 1,
     "outer_width": 2.8,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1644,9 +1415,7 @@
     "pcb_component_id": "pcb_component_8",
     "x": 36.829999999999984,
     "y": 39.36999999999999,
-    "port_hints": [
-      "40"
-    ],
+    "port_hints": ["40"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -1654,10 +1423,7 @@
     "hole_height": 1,
     "rect_pad_width": 1.6,
     "rect_pad_height": 2.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1665,9 +1431,7 @@
     "pcb_component_id": "pcb_component_9",
     "x": 25.399999999999977,
     "y": -30.480000000000018,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -1675,10 +1439,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 2.4,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1686,18 +1447,13 @@
     "pcb_component_id": "pcb_component_9",
     "x": 25.399999999999977,
     "y": -33.020000000000024,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1705,18 +1461,13 @@
     "pcb_component_id": "pcb_component_9",
     "x": 25.399999999999977,
     "y": -35.56000000000002,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1724,18 +1475,13 @@
     "pcb_component_id": "pcb_component_9",
     "x": 25.399999999999977,
     "y": -38.10000000000002,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1743,18 +1489,13 @@
     "pcb_component_id": "pcb_component_9",
     "x": 33.01999999999998,
     "y": -38.10000000000002,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1762,18 +1503,13 @@
     "pcb_component_id": "pcb_component_9",
     "x": 33.01999999999998,
     "y": -35.56000000000002,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1781,18 +1517,13 @@
     "pcb_component_id": "pcb_component_9",
     "x": 33.01999999999998,
     "y": -33.020000000000024,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1800,18 +1531,13 @@
     "pcb_component_id": "pcb_component_9",
     "x": 33.01999999999998,
     "y": -30.480000000000018,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1819,9 +1545,7 @@
     "pcb_component_id": "pcb_component_10",
     "x": 25.399999999999977,
     "y": -19.05000000000001,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -1829,10 +1553,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 2.4,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1840,18 +1561,13 @@
     "pcb_component_id": "pcb_component_10",
     "x": 25.399999999999977,
     "y": -21.590000000000018,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1859,18 +1575,13 @@
     "pcb_component_id": "pcb_component_10",
     "x": 25.399999999999977,
     "y": -24.13000000000001,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1878,18 +1589,13 @@
     "pcb_component_id": "pcb_component_10",
     "x": 25.399999999999977,
     "y": -26.670000000000016,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1897,18 +1603,13 @@
     "pcb_component_id": "pcb_component_10",
     "x": 33.01999999999998,
     "y": -26.670000000000016,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1916,18 +1617,13 @@
     "pcb_component_id": "pcb_component_10",
     "x": 33.01999999999998,
     "y": -24.13000000000001,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1935,18 +1631,13 @@
     "pcb_component_id": "pcb_component_10",
     "x": 33.01999999999998,
     "y": -21.590000000000018,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1954,18 +1645,13 @@
     "pcb_component_id": "pcb_component_10",
     "x": 33.01999999999998,
     "y": -19.05000000000001,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1973,9 +1659,7 @@
     "pcb_component_id": "pcb_component_11",
     "x": -43.18000000000002,
     "y": 33.01999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -1983,10 +1667,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 2.4,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -1994,18 +1675,13 @@
     "pcb_component_id": "pcb_component_11",
     "x": -43.18000000000002,
     "y": 30.47999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2013,18 +1689,13 @@
     "pcb_component_id": "pcb_component_11",
     "x": -43.18000000000002,
     "y": 27.93999999999999,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2032,18 +1703,13 @@
     "pcb_component_id": "pcb_component_11",
     "x": -43.18000000000002,
     "y": 25.39999999999999,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2051,18 +1717,13 @@
     "pcb_component_id": "pcb_component_11",
     "x": -35.56000000000002,
     "y": 25.39999999999999,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2070,18 +1731,13 @@
     "pcb_component_id": "pcb_component_11",
     "x": -35.56000000000002,
     "y": 27.93999999999999,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2089,18 +1745,13 @@
     "pcb_component_id": "pcb_component_11",
     "x": -35.56000000000002,
     "y": 30.47999999999999,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2108,18 +1759,13 @@
     "pcb_component_id": "pcb_component_11",
     "x": -35.56000000000002,
     "y": 33.01999999999999,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2127,9 +1773,7 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 39.36999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -2137,10 +1781,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 2.4,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2148,18 +1789,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 36.82999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2167,18 +1803,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 34.28999999999999,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2186,18 +1817,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 31.749999999999993,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2205,18 +1831,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 29.209999999999994,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2224,18 +1845,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 26.669999999999987,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2243,18 +1859,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 24.129999999999995,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2262,18 +1873,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 21.58999999999999,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2281,18 +1887,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 19.049999999999983,
-    "port_hints": [
-      "9"
-    ],
+    "port_hints": ["9"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2300,18 +1901,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 16.50999999999999,
-    "port_hints": [
-      "10"
-    ],
+    "port_hints": ["10"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2319,18 +1915,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 13.969999999999999,
-    "port_hints": [
-      "11"
-    ],
+    "port_hints": ["11"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2338,18 +1929,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 11.429999999999993,
-    "port_hints": [
-      "12"
-    ],
+    "port_hints": ["12"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2357,18 +1943,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 8.889999999999986,
-    "port_hints": [
-      "13"
-    ],
+    "port_hints": ["13"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2376,18 +1957,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 53.974999999999994,
     "y": 6.349999999999994,
-    "port_hints": [
-      "14"
-    ],
+    "port_hints": ["14"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2395,18 +1971,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 6.349999999999994,
-    "port_hints": [
-      "15"
-    ],
+    "port_hints": ["15"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2414,18 +1985,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 8.889999999999986,
-    "port_hints": [
-      "16"
-    ],
+    "port_hints": ["16"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2433,18 +1999,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 11.429999999999993,
-    "port_hints": [
-      "17"
-    ],
+    "port_hints": ["17"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2452,18 +2013,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 13.969999999999999,
-    "port_hints": [
-      "18"
-    ],
+    "port_hints": ["18"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2471,18 +2027,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 16.50999999999999,
-    "port_hints": [
-      "19"
-    ],
+    "port_hints": ["19"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2490,18 +2041,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 19.049999999999983,
-    "port_hints": [
-      "20"
-    ],
+    "port_hints": ["20"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2509,18 +2055,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 21.58999999999999,
-    "port_hints": [
-      "21"
-    ],
+    "port_hints": ["21"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2528,18 +2069,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 24.129999999999995,
-    "port_hints": [
-      "22"
-    ],
+    "port_hints": ["22"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2547,18 +2083,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 26.669999999999987,
-    "port_hints": [
-      "23"
-    ],
+    "port_hints": ["23"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2566,18 +2097,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 29.209999999999994,
-    "port_hints": [
-      "24"
-    ],
+    "port_hints": ["24"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2585,18 +2111,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 31.749999999999993,
-    "port_hints": [
-      "25"
-    ],
+    "port_hints": ["25"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2604,18 +2125,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 34.28999999999999,
-    "port_hints": [
-      "26"
-    ],
+    "port_hints": ["26"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2623,18 +2139,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 36.82999999999999,
-    "port_hints": [
-      "27"
-    ],
+    "port_hints": ["27"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2642,18 +2153,13 @@
     "pcb_component_id": "pcb_component_12",
     "x": 61.595,
     "y": 39.36999999999999,
-    "port_hints": [
-      "28"
-    ],
+    "port_hints": ["28"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2661,9 +2167,7 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -17.780000000000015,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -2671,10 +2175,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 2.4,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2682,18 +2183,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -20.32000000000002,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2701,18 +2197,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -22.860000000000014,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2720,18 +2211,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -25.40000000000002,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2739,18 +2225,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -27.940000000000012,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2758,18 +2239,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -30.480000000000018,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2777,18 +2253,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -33.02000000000001,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2796,18 +2267,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -35.56000000000002,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2815,18 +2281,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 54.228999999999985,
     "y": -38.10000000000002,
-    "port_hints": [
-      "9"
-    ],
+    "port_hints": ["9"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2834,18 +2295,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -38.10000000000002,
-    "port_hints": [
-      "10"
-    ],
+    "port_hints": ["10"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2853,18 +2309,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -35.56000000000002,
-    "port_hints": [
-      "11"
-    ],
+    "port_hints": ["11"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2872,18 +2323,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -33.02000000000001,
-    "port_hints": [
-      "12"
-    ],
+    "port_hints": ["12"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2891,18 +2337,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -30.480000000000018,
-    "port_hints": [
-      "13"
-    ],
+    "port_hints": ["13"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2910,18 +2351,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -27.940000000000012,
-    "port_hints": [
-      "14"
-    ],
+    "port_hints": ["14"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2929,18 +2365,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -25.40000000000002,
-    "port_hints": [
-      "15"
-    ],
+    "port_hints": ["15"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2948,18 +2379,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -22.860000000000014,
-    "port_hints": [
-      "16"
-    ],
+    "port_hints": ["16"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2967,18 +2393,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -20.32000000000002,
-    "port_hints": [
-      "17"
-    ],
+    "port_hints": ["17"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -2986,18 +2407,13 @@
     "pcb_component_id": "pcb_component_13",
     "x": 61.84899999999999,
     "y": -17.780000000000015,
-    "port_hints": [
-      "18"
-    ],
+    "port_hints": ["18"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3005,9 +2421,7 @@
     "pcb_component_id": "pcb_component_14",
     "x": -38.10000000000002,
     "y": -29.210000000000008,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3015,10 +2429,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 2.4,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3026,18 +2437,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -35.56000000000002,
     "y": -29.210000000000008,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3045,18 +2451,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -33.020000000000024,
     "y": -29.210000000000008,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3064,18 +2465,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -30.480000000000018,
     "y": -29.210000000000008,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3083,18 +2479,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -27.940000000000026,
     "y": -29.210000000000008,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3102,18 +2493,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -25.400000000000034,
     "y": -29.210000000000008,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3121,18 +2507,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -22.860000000000014,
     "y": -29.210000000000008,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3140,18 +2521,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -22.860000000000014,
     "y": -21.590000000000003,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3159,18 +2535,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -25.400000000000034,
     "y": -21.590000000000003,
-    "port_hints": [
-      "9"
-    ],
+    "port_hints": ["9"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3178,18 +2549,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -27.940000000000026,
     "y": -21.590000000000003,
-    "port_hints": [
-      "10"
-    ],
+    "port_hints": ["10"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3197,18 +2563,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -30.480000000000018,
     "y": -21.590000000000003,
-    "port_hints": [
-      "11"
-    ],
+    "port_hints": ["11"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3216,18 +2577,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -33.020000000000024,
     "y": -21.590000000000003,
-    "port_hints": [
-      "12"
-    ],
+    "port_hints": ["12"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3235,18 +2591,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -35.56000000000002,
     "y": -21.590000000000003,
-    "port_hints": [
-      "13"
-    ],
+    "port_hints": ["13"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3254,18 +2605,13 @@
     "pcb_component_id": "pcb_component_14",
     "x": -38.10000000000002,
     "y": -21.590000000000003,
-    "port_hints": [
-      "14"
-    ],
+    "port_hints": ["14"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 2.4,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3273,9 +2619,7 @@
     "pcb_component_id": "pcb_component_15",
     "x": -45.72000000000001,
     "y": -28.067000000000007,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3283,10 +2627,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3294,18 +2635,13 @@
     "pcb_component_id": "pcb_component_15",
     "x": -53.34000000000002,
     "y": -28.067000000000007,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3313,9 +2649,7 @@
     "pcb_component_id": "pcb_component_16",
     "x": -45.72000000000001,
     "y": -31.750000000000014,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3323,10 +2657,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3334,18 +2665,13 @@
     "pcb_component_id": "pcb_component_16",
     "x": -53.34000000000002,
     "y": -31.750000000000014,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3353,9 +2679,7 @@
     "pcb_component_id": "pcb_component_17",
     "x": -45.72000000000001,
     "y": -21.717000000000013,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3363,10 +2687,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3374,18 +2695,13 @@
     "pcb_component_id": "pcb_component_17",
     "x": -53.34000000000002,
     "y": -21.717000000000013,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3393,9 +2709,7 @@
     "pcb_component_id": "pcb_component_18",
     "x": -45.72000000000001,
     "y": -18.415000000000006,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3403,10 +2717,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3414,18 +2725,13 @@
     "pcb_component_id": "pcb_component_18",
     "x": -53.34000000000002,
     "y": -18.415000000000006,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3433,9 +2739,7 @@
     "pcb_component_id": "pcb_component_19",
     "x": -14.605000000000018,
     "y": 9.524999999999991,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3443,10 +2747,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3454,18 +2755,13 @@
     "pcb_component_id": "pcb_component_19",
     "x": -6.985000000000014,
     "y": 9.524999999999991,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3473,9 +2769,7 @@
     "pcb_component_id": "pcb_component_20",
     "x": -45.72000000000001,
     "y": -25.146000000000015,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3483,10 +2777,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3494,18 +2785,13 @@
     "pcb_component_id": "pcb_component_20",
     "x": -53.34000000000002,
     "y": -25.146000000000015,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3513,9 +2799,7 @@
     "pcb_component_id": "pcb_component_21",
     "x": -45.72000000000001,
     "y": -34.92500000000001,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3523,10 +2807,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3534,18 +2815,13 @@
     "pcb_component_id": "pcb_component_21",
     "x": -53.34000000000002,
     "y": -34.92500000000001,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3553,16 +2829,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -72.49000000000002,
     "y": -11.990000000000009,
-    "port_hints": [
-      "0"
-    ],
+    "port_hints": ["0"],
     "shape": "circle",
     "hole_diameter": 3.2,
     "outer_diameter": 4,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3570,16 +2841,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -72.49000000000002,
     "y": -36.99000000000001,
-    "port_hints": [
-      "0"
-    ],
+    "port_hints": ["0"],
     "shape": "circle",
     "hole_diameter": 3.2,
     "outer_diameter": 4,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3587,9 +2853,7 @@
     "pcb_component_id": "pcb_component_22",
     "x": -71.07000000000002,
     "y": -30.030000000000015,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -3597,10 +2861,7 @@
     "hole_height": 1,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3608,16 +2869,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -71.07000000000002,
     "y": -27.26000000000002,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3625,16 +2881,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -71.07000000000002,
     "y": -24.49000000000001,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3642,16 +2893,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -71.07000000000002,
     "y": -21.720000000000013,
-    "port_hints": [
-      "4"
-    ],
+    "port_hints": ["4"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3659,16 +2905,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -71.07000000000002,
     "y": -18.950000000000017,
-    "port_hints": [
-      "5"
-    ],
+    "port_hints": ["5"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3676,16 +2917,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -73.91000000000003,
     "y": -28.64500000000001,
-    "port_hints": [
-      "6"
-    ],
+    "port_hints": ["6"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3693,16 +2929,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -73.91000000000003,
     "y": -25.875000000000014,
-    "port_hints": [
-      "7"
-    ],
+    "port_hints": ["7"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3710,16 +2941,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -73.91000000000003,
     "y": -23.105000000000018,
-    "port_hints": [
-      "8"
-    ],
+    "port_hints": ["8"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3727,16 +2953,11 @@
     "pcb_component_id": "pcb_component_22",
     "x": -73.91000000000003,
     "y": -20.335000000000008,
-    "port_hints": [
-      "9"
-    ],
+    "port_hints": ["9"],
     "shape": "circle",
     "hole_diameter": 1,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3744,9 +2965,7 @@
     "pcb_component_id": "pcb_component_23",
     "x": -11.430000000000007,
     "y": -7.620000000000019,
-    "port_hints": [
-      "1"
-    ]
+    "port_hints": ["1"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3754,16 +2973,11 @@
     "pcb_component_id": "pcb_component_23",
     "x": -10.159999999999997,
     "y": -6.350000000000023,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.75,
     "outer_diameter": 1.3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3771,16 +2985,11 @@
     "pcb_component_id": "pcb_component_23",
     "x": -8.890000000000015,
     "y": -7.620000000000019,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "circle",
     "hole_diameter": 0.75,
     "outer_diameter": 1.3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3788,9 +2997,7 @@
     "pcb_component_id": "pcb_component_24",
     "x": -5.588000000000022,
     "y": 29.463999999999984,
-    "port_hints": [
-      "1"
-    ]
+    "port_hints": ["1"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3798,16 +3005,11 @@
     "pcb_component_id": "pcb_component_24",
     "x": -6.8580000000000325,
     "y": 28.19399999999998,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.75,
     "outer_diameter": 1.3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3815,16 +3017,11 @@
     "pcb_component_id": "pcb_component_24",
     "x": -8.128000000000014,
     "y": 29.463999999999984,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "circle",
     "hole_diameter": 0.75,
     "outer_diameter": 1.3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3832,9 +3029,7 @@
     "pcb_component_id": "pcb_component_25",
     "x": -7.6200000000000045,
     "y": 20.319999999999993,
-    "port_hints": [
-      "1"
-    ]
+    "port_hints": ["1"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3842,16 +3037,11 @@
     "pcb_component_id": "pcb_component_25",
     "x": -6.349999999999994,
     "y": 21.58999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.75,
     "outer_diameter": 1.3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3859,16 +3049,11 @@
     "pcb_component_id": "pcb_component_25",
     "x": -5.0800000000000125,
     "y": 20.319999999999993,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "circle",
     "hole_diameter": 0.75,
     "outer_diameter": 1.3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3876,16 +3061,11 @@
     "pcb_component_id": "pcb_component_26",
     "x": -1.2700000000000102,
     "y": 21.58999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3893,18 +3073,13 @@
     "pcb_component_id": "pcb_component_26",
     "x": -1.2700000000000102,
     "y": 31.749999999999986,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3912,16 +3087,11 @@
     "pcb_component_id": "pcb_component_27",
     "x": -39.37000000000002,
     "y": 41.90999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3929,18 +3099,13 @@
     "pcb_component_id": "pcb_component_27",
     "x": -29.210000000000022,
     "y": 41.90999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3948,16 +3113,11 @@
     "pcb_component_id": "pcb_component_28",
     "x": -14.605000000000018,
     "y": 12.699999999999989,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3965,18 +3125,13 @@
     "pcb_component_id": "pcb_component_28",
     "x": -4.445000000000022,
     "y": 12.699999999999989,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -3984,16 +3139,11 @@
     "pcb_component_id": "pcb_component_29",
     "x": -66.04000000000002,
     "y": -27.940000000000012,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4001,18 +3151,13 @@
     "pcb_component_id": "pcb_component_29",
     "x": -55.880000000000024,
     "y": -27.940000000000012,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4020,16 +3165,11 @@
     "pcb_component_id": "pcb_component_30",
     "x": -66.04000000000002,
     "y": -24.384000000000015,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4037,18 +3177,13 @@
     "pcb_component_id": "pcb_component_30",
     "x": -55.880000000000024,
     "y": -24.384000000000015,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4056,16 +3191,11 @@
     "pcb_component_id": "pcb_component_31",
     "x": -66.04000000000002,
     "y": -20.955000000000013,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4073,18 +3203,13 @@
     "pcb_component_id": "pcb_component_31",
     "x": -55.880000000000024,
     "y": -20.955000000000013,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4092,16 +3217,11 @@
     "pcb_component_id": "pcb_component_32",
     "x": -66.04000000000002,
     "y": -17.653000000000006,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4109,18 +3229,13 @@
     "pcb_component_id": "pcb_component_32",
     "x": -55.880000000000024,
     "y": -17.653000000000006,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4128,16 +3243,11 @@
     "pcb_component_id": "pcb_component_33",
     "x": -65.91300000000001,
     "y": -35.30600000000001,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4145,18 +3255,13 @@
     "pcb_component_id": "pcb_component_33",
     "x": -55.753000000000014,
     "y": -35.30600000000001,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4164,16 +3269,11 @@
     "pcb_component_id": "pcb_component_34",
     "x": -13.970000000000027,
     "y": 35.55999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4181,18 +3281,13 @@
     "pcb_component_id": "pcb_component_34",
     "x": -3.8100000000000307,
     "y": 35.55999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4200,16 +3295,11 @@
     "pcb_component_id": "pcb_component_35",
     "x": -65.91300000000001,
     "y": -31.750000000000014,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4217,18 +3307,13 @@
     "pcb_component_id": "pcb_component_35",
     "x": -55.753000000000014,
     "y": -31.750000000000014,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4236,16 +3321,11 @@
     "pcb_component_id": "pcb_component_36",
     "x": 4.444999999999993,
     "y": -12.065000000000012,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4253,18 +3333,13 @@
     "pcb_component_id": "pcb_component_36",
     "x": -5.715000000000003,
     "y": -12.065000000000012,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4272,16 +3347,11 @@
     "pcb_component_id": "pcb_component_37",
     "x": -8.890000000000015,
     "y": -12.065000000000012,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4289,18 +3359,13 @@
     "pcb_component_id": "pcb_component_37",
     "x": -19.05000000000001,
     "y": -12.065000000000012,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4308,16 +3373,11 @@
     "pcb_component_id": "pcb_component_38",
     "x": -4.445000000000022,
     "y": 6.349999999999994,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4325,18 +3385,13 @@
     "pcb_component_id": "pcb_component_38",
     "x": -14.605000000000018,
     "y": 6.349999999999994,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4344,16 +3399,11 @@
     "pcb_component_id": "pcb_component_39",
     "x": 2.539999999999992,
     "y": 21.58999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4361,18 +3411,13 @@
     "pcb_component_id": "pcb_component_39",
     "x": 2.539999999999992,
     "y": 31.749999999999986,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4380,16 +3425,11 @@
     "pcb_component_id": "pcb_component_40",
     "x": -35.56000000000002,
     "y": 14.98599999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4397,18 +3437,13 @@
     "pcb_component_id": "pcb_component_40",
     "x": -25.400000000000006,
     "y": 14.98599999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4416,16 +3451,11 @@
     "pcb_component_id": "pcb_component_41",
     "x": -35.56000000000002,
     "y": 11.429999999999993,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4433,18 +3463,13 @@
     "pcb_component_id": "pcb_component_41",
     "x": -25.400000000000006,
     "y": 11.429999999999993,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4452,16 +3477,11 @@
     "pcb_component_id": "pcb_component_42",
     "x": -14.605000000000018,
     "y": 2.539999999999992,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4469,18 +3489,13 @@
     "pcb_component_id": "pcb_component_42",
     "x": -4.445000000000022,
     "y": 2.539999999999992,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4488,16 +3503,11 @@
     "pcb_component_id": "pcb_component_43",
     "x": -13.335000000000008,
     "y": -21.590000000000018,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4505,18 +3515,13 @@
     "pcb_component_id": "pcb_component_43",
     "x": -13.335000000000008,
     "y": -31.750000000000014,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4524,16 +3529,11 @@
     "pcb_component_id": "pcb_component_44",
     "x": -14.605000000000018,
     "y": -0.88900000000001,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4541,18 +3541,13 @@
     "pcb_component_id": "pcb_component_44",
     "x": -4.445000000000022,
     "y": -0.88900000000001,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4560,16 +3555,11 @@
     "pcb_component_id": "pcb_component_45",
     "x": -18.41500000000002,
     "y": -31.750000000000014,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4577,18 +3567,13 @@
     "pcb_component_id": "pcb_component_45",
     "x": -18.41500000000002,
     "y": -21.590000000000018,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4596,9 +3581,7 @@
     "pcb_component_id": "pcb_component_46",
     "x": 2.539999999999992,
     "y": 12.699999999999989,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -4606,10 +3589,7 @@
     "hole_height": 0.9,
     "rect_pad_width": 1.8,
     "rect_pad_height": 1.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4617,16 +3597,11 @@
     "pcb_component_id": "pcb_component_46",
     "x": 0,
     "y": 12.699999999999989,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.9,
     "outer_diameter": 1.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4634,9 +3609,7 @@
     "pcb_component_id": "pcb_component_47",
     "x": 2.539999999999992,
     "y": 2.539999999999992,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -4644,10 +3617,7 @@
     "hole_height": 0.9,
     "rect_pad_width": 1.8,
     "rect_pad_height": 1.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4655,16 +3625,11 @@
     "pcb_component_id": "pcb_component_47",
     "x": 0,
     "y": 2.539999999999992,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.9,
     "outer_diameter": 1.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4672,9 +3637,7 @@
     "pcb_component_id": "pcb_component_48",
     "x": 2.539999999999992,
     "y": -6.985000000000014,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -4682,10 +3645,7 @@
     "hole_height": 0.9,
     "rect_pad_width": 1.8,
     "rect_pad_height": 1.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4693,16 +3653,11 @@
     "pcb_component_id": "pcb_component_48",
     "x": 0,
     "y": -6.985000000000014,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.9,
     "outer_diameter": 1.8,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4710,16 +3665,11 @@
     "pcb_component_id": "pcb_component_49",
     "x": -39.37000000000002,
     "y": 38.09999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4727,16 +3677,11 @@
     "pcb_component_id": "pcb_component_49",
     "x": -34.37000000000002,
     "y": 38.09999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4744,16 +3689,11 @@
     "pcb_component_id": "pcb_component_50",
     "x": -24.130000000000024,
     "y": 40.639999999999986,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4761,16 +3701,11 @@
     "pcb_component_id": "pcb_component_50",
     "x": -19.130000000000024,
     "y": 40.639999999999986,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4778,16 +3713,11 @@
     "pcb_component_id": "pcb_component_51",
     "x": 45.08499999999998,
     "y": 19.049999999999983,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4795,16 +3725,11 @@
     "pcb_component_id": "pcb_component_51",
     "x": 45.08499999999998,
     "y": 14.049999999999983,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4812,16 +3737,11 @@
     "pcb_component_id": "pcb_component_52",
     "x": -10.668000000000006,
     "y": 40.38599999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4829,16 +3749,11 @@
     "pcb_component_id": "pcb_component_52",
     "x": -5.668000000000006,
     "y": 40.38599999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4846,16 +3761,11 @@
     "pcb_component_id": "pcb_component_53",
     "x": 43.17999999999998,
     "y": -22.22500000000001,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4863,16 +3773,11 @@
     "pcb_component_id": "pcb_component_53",
     "x": 43.17999999999998,
     "y": -27.22500000000001,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4880,9 +3785,7 @@
     "pcb_component_id": "pcb_component_54",
     "x": -16.51000000000002,
     "y": 33.01999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -4890,10 +3793,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4901,18 +3801,13 @@
     "pcb_component_id": "pcb_component_54",
     "x": -29.210000000000022,
     "y": 33.01999999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4920,16 +3815,11 @@
     "pcb_component_id": "pcb_component_55",
     "x": -26.03500000000001,
     "y": -0.6350000000000193,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 1.27,
     "outer_diameter": 2.032,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4937,16 +3827,11 @@
     "pcb_component_id": "pcb_component_55",
     "x": -36.19500000000001,
     "y": 1.904999999999987,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 1.27,
     "outer_diameter": 2.032,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4954,16 +3839,11 @@
     "pcb_component_id": "pcb_component_55",
     "x": -26.03500000000001,
     "y": 4.444999999999979,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "circle",
     "hole_diameter": 1.27,
     "outer_diameter": 2.032,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4971,9 +3851,7 @@
     "pcb_component_id": "pcb_component_56",
     "x": -71.87000000000002,
     "y": 30.169999999999987,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -4981,10 +3859,7 @@
     "hole_height": 1.5,
     "rect_pad_width": 3,
     "rect_pad_height": 3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -4992,16 +3867,11 @@
     "pcb_component_id": "pcb_component_56",
     "x": -71.87000000000002,
     "y": 25.169999999999987,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 1.5,
     "outer_diameter": 3,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5009,9 +3879,7 @@
     "pcb_component_id": "pcb_component_57",
     "x": -57.15000000000002,
     "y": 19.049999999999983,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -5019,10 +3887,7 @@
     "hole_height": 1.1,
     "rect_pad_width": 1.905,
     "rect_pad_height": 2,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5030,18 +3895,13 @@
     "pcb_component_id": "pcb_component_57",
     "x": -54.610000000000014,
     "y": 19.049999999999983,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 1.1,
     "hole_height": 1.1,
     "outer_width": 1.905,
     "outer_height": 2,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5049,18 +3909,13 @@
     "pcb_component_id": "pcb_component_57",
     "x": -52.07000000000002,
     "y": 19.049999999999983,
-    "port_hints": [
-      "3"
-    ],
+    "port_hints": ["3"],
     "shape": "pill",
     "hole_width": 1.1,
     "hole_height": 1.1,
     "outer_width": 1.905,
     "outer_height": 2,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5068,16 +3923,11 @@
     "pcb_component_id": "pcb_component_58",
     "x": -13.589000000000027,
     "y": 19.176999999999992,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5085,18 +3935,13 @@
     "pcb_component_id": "pcb_component_58",
     "x": -13.589000000000027,
     "y": 29.33699999999999,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5104,16 +3949,11 @@
     "pcb_component_id": "pcb_component_59",
     "x": -19.55800000000002,
     "y": 27.93999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 0.8,
     "outer_diameter": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5121,18 +3961,13 @@
     "pcb_component_id": "pcb_component_59",
     "x": -19.55800000000002,
     "y": 7.939999999999998,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5140,16 +3975,11 @@
     "pcb_component_id": "pcb_component_60",
     "x": -27.940000000000012,
     "y": 27.93999999999999,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "circle",
     "hole_diameter": 1.3,
     "outer_diameter": 2.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5157,16 +3987,11 @@
     "pcb_component_id": "pcb_component_60",
     "x": -27.940000000000012,
     "y": 22.939999999999998,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "circle",
     "hole_diameter": 1.3,
     "outer_diameter": 2.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5174,9 +3999,7 @@
     "pcb_component_id": "pcb_component_61",
     "x": -75.37000000000002,
     "y": 0.46999999999998465,
-    "port_hints": [
-      "1"
-    ],
+    "port_hints": ["1"],
     "shape": "pill_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
@@ -5184,10 +4007,7 @@
     "hole_height": 0.8,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_plated_hole",
@@ -5195,18 +4015,13 @@
     "pcb_component_id": "pcb_component_61",
     "x": -75.37000000000002,
     "y": 13.169999999999987,
-    "port_hints": [
-      "2"
-    ],
+    "port_hints": ["2"],
     "shape": "pill",
     "hole_width": 0.8,
     "hole_height": 0.8,
     "outer_width": 1.6,
     "outer_height": 1.6,
-    "layers": [
-      "top",
-      "bottom"
-    ]
+    "layers": ["top", "bottom"]
   },
   {
     "type": "pcb_hole",
@@ -12671,10 +11486,7 @@
     "y": -20.320000000000007,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
-    "layers": [
-      "top",
-      "top"
-    ]
+    "layers": ["top", "top"]
   },
   {
     "type": "pcb_via",
@@ -12683,10 +11495,7 @@
     "y": -35.56000000000002,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
-    "layers": [
-      "top",
-      "top"
-    ]
+    "layers": ["top", "top"]
   },
   {
     "type": "pcb_via",
@@ -12695,10 +11504,7 @@
     "y": 35.55999999999999,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
-    "layers": [
-      "top",
-      "top"
-    ]
+    "layers": ["top", "top"]
   },
   {
     "type": "pcb_via",
@@ -12707,10 +11513,7 @@
     "y": 38.09999999999999,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
-    "layers": [
-      "top",
-      "top"
-    ]
+    "layers": ["top", "top"]
   },
   {
     "type": "pcb_via",
@@ -12719,10 +11522,7 @@
     "y": -33.02000000000001,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
-    "layers": [
-      "top",
-      "top"
-    ]
+    "layers": ["top", "top"]
   },
   {
     "type": "pcb_via",
@@ -12731,10 +11531,7 @@
     "y": -24.13000000000001,
     "outer_diameter": 1.6,
     "hole_diameter": 0.6,
-    "layers": [
-      "top",
-      "top"
-    ]
+    "layers": ["top", "top"]
   },
   {
     "type": "pcb_board",

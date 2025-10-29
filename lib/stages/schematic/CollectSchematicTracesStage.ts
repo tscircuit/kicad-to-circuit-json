@@ -41,12 +41,21 @@ export class CollectSchematicTracesStage extends ConverterStage {
     const pts = Array.isArray(wire.pts.xy) ? wire.pts.xy : [wire.pts.xy]
     if (pts.length < 2) return
 
-    const edges: Array<{ from: { x: number; y: number }; to: { x: number; y: number } }> = []
+    const edges: Array<{
+      from: { x: number; y: number }
+      to: { x: number; y: number }
+    }> = []
 
     // Convert wire segments to edges
     for (let i = 0; i < pts.length - 1; i++) {
-      const from = applyToPoint(this.ctx.k2cMatSch, { x: pts[i].x, y: pts[i].y })
-      const to = applyToPoint(this.ctx.k2cMatSch, { x: pts[i + 1].x, y: pts[i + 1].y })
+      const from = applyToPoint(this.ctx.k2cMatSch, {
+        x: pts[i].x,
+        y: pts[i].y,
+      })
+      const to = applyToPoint(this.ctx.k2cMatSch, {
+        x: pts[i + 1].x,
+        y: pts[i + 1].y,
+      })
 
       edges.push({ from, to })
     }
@@ -66,7 +75,10 @@ export class CollectSchematicTracesStage extends ConverterStage {
     if (!this.ctx.k2cMatSch || !junction.at) return
 
     // Transform junction position
-    const pos = applyToPoint(this.ctx.k2cMatSch, { x: junction.at.x, y: junction.at.y })
+    const pos = applyToPoint(this.ctx.k2cMatSch, {
+      x: junction.at.x,
+      y: junction.at.y,
+    })
 
     // Junctions in Circuit JSON are typically part of schematic_trace
     // For now, create a minimal trace with just a junction point

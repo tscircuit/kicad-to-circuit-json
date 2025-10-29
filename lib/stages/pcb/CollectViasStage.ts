@@ -39,7 +39,8 @@ export class CollectViasStage extends ConverterStage {
     // Determine layers (for MVP, assume through-hole vias connecting top to bottom)
     const layers = via.layers || ["F.Cu", "B.Cu"]
     const fromLayer = this.mapLayer(layers[0])
-    const toLayer = layers.length > 1 ? this.mapLayer(layers[layers.length - 1]) : fromLayer
+    const toLayer =
+      layers.length > 1 ? this.mapLayer(layers[layers.length - 1]) : fromLayer
 
     // Create pcb_via
     this.ctx.db.pcb_via.insert({

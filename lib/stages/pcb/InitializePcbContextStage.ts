@@ -22,10 +22,7 @@ export class InitializePcbContextStage extends ConverterStage {
     // Build the transform for PCB
     // 1. Translate to center at origin
     // 2. Flip Y axis (KiCad Y down, Circuit JSON Y up)
-    this.ctx.k2cMatPcb = compose(
-      scale(1, -1),
-      translate(-center.x, -center.y)
-    )
+    this.ctx.k2cMatPcb = compose(scale(1, -1), translate(-center.x, -center.y))
 
     // Initialize net mapping
     this.ctx.netNumToName = new Map()
@@ -46,7 +43,8 @@ export class InitializePcbContextStage extends ConverterStage {
 
     const edgeCutLines = lineArray.filter((line: any) => {
       const layer = line.layer
-      const layerNames = typeof layer === "string" ? [layer] : (layer?.names || [])
+      const layerNames =
+        typeof layer === "string" ? [layer] : layer?.names || []
       const layerStr = layerNames.join(" ")
       return layerStr.includes("Edge.Cuts")
     })
