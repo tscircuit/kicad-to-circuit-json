@@ -23,12 +23,12 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
   expect(circuitJson).toBeDefined()
   expect(circuitJson.length).toBeGreaterThan(0)
 
-    // Write Circuit JSON to file for inspection
-    const fs = await import("node:fs/promises")
-    await fs.writeFile(
-      "tests/__snapshots__/pic_programmer-schematic-circuit-json.json",
-      JSON.stringify(circuitJson, null, 2),
-    )
+  // Write Circuit JSON to file for inspection
+  const fs = await import("node:fs/promises")
+  await fs.writeFile(
+    "tests/__snapshots__/pic_programmer-schematic-circuit-json.json",
+    JSON.stringify(circuitJson, null, 2),
+  )
 
   // Take snapshots
   const kicadSnapshot = await takeKicadSnapshot({

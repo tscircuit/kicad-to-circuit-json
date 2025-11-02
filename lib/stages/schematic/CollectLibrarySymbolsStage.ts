@@ -98,12 +98,18 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     // Infer component type from library id or reference prefix
     const lower = libId.toLowerCase()
 
-    if (lower.includes(":r_") || reference.startsWith("R")) return "simple_resistor"
-    if (lower.includes(":c_") || reference.startsWith("C")) return "simple_capacitor"
-    if (lower.includes(":l_") || reference.startsWith("L")) return "simple_inductor"
-    if (lower.includes(":d_") || reference.startsWith("D")) return "simple_diode"
-    if (lower.includes(":led") || reference.startsWith("LED")) return "simple_led"
-    if (lower.includes(":q_") || reference.startsWith("Q")) return "simple_transistor"
+    if (lower.includes(":r_") || reference.startsWith("R"))
+      return "simple_resistor"
+    if (lower.includes(":c_") || reference.startsWith("C"))
+      return "simple_capacitor"
+    if (lower.includes(":l_") || reference.startsWith("L"))
+      return "simple_inductor"
+    if (lower.includes(":d_") || reference.startsWith("D"))
+      return "simple_diode"
+    if (lower.includes(":led") || reference.startsWith("LED"))
+      return "simple_led"
+    if (lower.includes(":q_") || reference.startsWith("Q"))
+      return "simple_transistor"
 
     // Default to chip for ICs (U prefix) or anything else
     return "chip"
