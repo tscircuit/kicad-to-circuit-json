@@ -1,6 +1,8 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
 import type { SchematicSymbol } from "kicadts"
+import { inferSymbolName } from "./utils/inferSymbolName"
+import { rotationToDirection } from "./utils/rotationToDirection"
 
 /**
  * CollectLibrarySymbolsStage extracts KiCad schematic symbols and creates:
@@ -44,6 +46,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const kicadPos = { x: at?.x ?? 0, y: at?.y ?? 0 }
     const cjPos = applyToPoint(this.ctx.k2cMatSch, kicadPos)
 
+    const rotation = at?.angle ?? 0
     // Infer component type from library id
     const ftype = this.inferFtype(libId, reference)
 
@@ -65,10 +68,13 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const uuid = symbol.uuid
     if (!uuid) return
 
+    const symbolName = inferSymbolName({ libId, reference, rotation })
+
     const inserted = this.ctx.db.schematic_component.insert({
       source_component_id: sourceComponentId,
       center: { x: cjPos.x, y: cjPos.y },
       size: this.estimateSize(symbol),
+      ...(symbolName ? { symbol_name: symbolName } : {}),
     } as any)
 
     const componentId = inserted.schematic_component_id
@@ -110,14 +116,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       return "simple_led"
     if (lower.includes(":q_") || reference.startsWith("Q"))
       return "simple_transistor"
-
-    // Default to chip for ICs (U prefix) or anything else
-    return "chip"
-  }
-
-  private getRotation(symbol: SchematicSymbol): number {
-    // KiCad rotation is in degrees, CJ uses degrees CCW
-    return symbol.at?.angle ?? 0
+    return "simple_chip"
   }
 
   private estimateSize(symbol: SchematicSymbol): {
@@ -137,40 +136,82 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       (ls: any) => ls.libraryId === libId,
     )
 
-    if (!libSymbol || !libSymbol.pins) return
+    if (!libSymbol) return
 
-    const pins = Array.isArray(libSymbol.pins)
-      ? libSymbol.pins
-      : [libSymbol.pins]
+    // Pins might be in the main symbol or in subSymbols
+    // Collect pins from all possible locations
+    const allPins: any[] = []
 
-    for (const pin of pins) {
-      // For MVP, place ports at approximate positions
-      // A full implementation would transform pin positions relative to symbol
+    // Check main symbol pins
+    if (
+      libSymbol.pins &&
+      Array.isArray(libSymbol.pins) &&
+      libSymbol.pins.length > 0
+    ) {
+      allPins.push(...libSymbol.pins)
+    } else if (libSymbol.pins && !Array.isArray(libSymbol.pins)) {
+      allPins.push(libSymbol.pins)
+    }
+
+    // Check subSymbols for pins (KiCad often puts pins in subSymbols)
+    if (libSymbol.subSymbols && Array.isArray(libSymbol.subSymbols)) {
+      for (const subSymbol of libSymbol.subSymbols) {
+        if (
+          subSymbol.pins &&
+          Array.isArray(subSymbol.pins) &&
+          subSymbol.pins.length > 0
+        ) {
+          allPins.push(...subSymbol.pins)
+        } else if (subSymbol.pins && !Array.isArray(subSymbol.pins)) {
+          allPins.push(subSymbol.pins)
+        }
+      }
+    }
+
+    if (allPins.length === 0) return
+
+    // Get component rotation
+    const componentRotation = symbol.at?.angle ?? 0
+
+    for (const pin of allPins) {
+      // Transform pin position from KiCad to circuit-json coordinates
+      // Pin position in KiCad is relative to symbol origin
+      const pinAt = pin._sxAt
+      if (!pinAt) continue
+
+      // Apply component rotation to pin position (rotate around origin)
+      const rotRad = (componentRotation * Math.PI) / 180
+      const cosR = Math.cos(rotRad)
+      const sinR = Math.sin(rotRad)
+
+      const rotatedPinPos = {
+        x: pinAt.x * cosR - pinAt.y * sinR,
+        y: pinAt.x * sinR + pinAt.y * cosR,
+      }
+
+      // Transform to circuit-json space scale (k2cMatSch just scales, doesn't rotate)
+      const scaleFactor = Math.abs(this.ctx.k2cMatSch?.a || 1 / 15)
+      const relativePos = {
+        x: rotatedPinPos.x * scaleFactor,
+        y: -rotatedPinPos.y * scaleFactor, // Flip Y axis
+      }
+
       this.ctx.db.schematic_port.insert({
         schematic_component_id: componentId,
-        center: { x: 0, y: 0 }, // Relative to component
-        facing_direction: this.inferPinDirection(pin),
-        pin_number: (pin as any).pinNumber ?? undefined,
+        center: relativePos,
+        facing_direction: this.inferPinDirection(pin, componentRotation),
+        pin_number: pin._sxNumber?.value ?? (pin as any).pinNumber ?? undefined,
       } as any)
     }
   }
 
-  private inferPinDirection(pin: any): "up" | "down" | "left" | "right" {
-    // Map KiCad pin orientation to CJ facing direction
-    // KiCad uses: R (right), L (left), U (up), D (down)
-    const orientation = pin.orientation || "R"
+  private inferPinDirection(
+    pin: any,
+    componentRotation: number,
+  ): "up" | "down" | "left" | "right" {
+    const pinAngle = pin.at?.angle ?? 0
+    const totalAngle = pinAngle + componentRotation
 
-    switch (orientation) {
-      case "R":
-        return "right"
-      case "L":
-        return "left"
-      case "U":
-        return "up"
-      case "D":
-        return "down"
-      default:
-        return "right"
-    }
+    return rotationToDirection(totalAngle)
   }
 }

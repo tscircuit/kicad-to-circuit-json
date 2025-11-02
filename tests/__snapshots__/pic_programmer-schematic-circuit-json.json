@@ -3,14 +3,14 @@
     "type": "source_component",
     "source_component_id": "source_component_0",
     "name": "pic_programmer:DB9",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "DB9-FEMAL"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_1",
     "name": "pic_programmer:74LS125",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "74HC125"
   },
   {
@@ -45,28 +45,28 @@
     "type": "source_component",
     "source_component_id": "source_component_6",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_7",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_8",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_9",
     "name": "pic_programmer:74LS125",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "74HC125"
   },
   {
@@ -101,28 +101,28 @@
     "type": "source_component",
     "source_component_id": "source_component_14",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_15",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_16",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_17",
     "name": "pic_programmer:74LS125",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "74HC125"
   },
   {
@@ -157,35 +157,35 @@
     "type": "source_component",
     "source_component_id": "source_component_22",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_23",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_24",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_25",
     "name": "pic_programmer:74LS125",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "74HC125"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_26",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -213,28 +213,28 @@
     "type": "source_component",
     "source_component_id": "source_component_30",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_31",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_32",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_33",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -248,7 +248,7 @@
     "type": "source_component",
     "source_component_id": "source_component_35",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -276,14 +276,14 @@
     "type": "source_component",
     "source_component_id": "source_component_39",
     "name": "pic_programmer:VPP",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VPP"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_40",
     "name": "pic_programmer:VPP",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VPP"
   },
   {
@@ -304,7 +304,7 @@
     "type": "source_component",
     "source_component_id": "source_component_43",
     "name": "pic_programmer:CONN_2",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "CONN_2"
   },
   {
@@ -318,7 +318,7 @@
     "type": "source_component",
     "source_component_id": "source_component_45",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -332,14 +332,14 @@
     "type": "source_component",
     "source_component_id": "source_component_47",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_48",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -353,7 +353,7 @@
     "type": "source_component",
     "source_component_id": "source_component_50",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -374,14 +374,14 @@
     "type": "source_component",
     "source_component_id": "source_component_53",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_54",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
@@ -395,7 +395,7 @@
     "type": "source_component",
     "source_component_id": "source_component_56",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -409,21 +409,21 @@
     "type": "source_component",
     "source_component_id": "source_component_58",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_59",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_60",
     "name": "pic_programmer:VPP",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VPP"
   },
   {
@@ -437,21 +437,21 @@
     "type": "source_component",
     "source_component_id": "source_component_62",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_63",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_64",
     "name": "pic_programmer:PWR_FLAG",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "PWR_FLAG"
   },
   {
@@ -465,7 +465,7 @@
     "type": "source_component",
     "source_component_id": "source_component_66",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -486,14 +486,14 @@
     "type": "source_component",
     "source_component_id": "source_component_69",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_70",
     "name": "pic_programmer:LT1373",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "LT1373"
   },
   {
@@ -521,14 +521,14 @@
     "type": "source_component",
     "source_component_id": "source_component_74",
     "name": "pic_programmer:PWR_FLAG",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "PWR_FLAG"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_75",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
@@ -549,7 +549,7 @@
     "type": "source_component",
     "source_component_id": "source_component_78",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
@@ -591,14 +591,14 @@
     "type": "source_component",
     "source_component_id": "source_component_84",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_85",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
@@ -612,14 +612,14 @@
     "type": "source_component",
     "source_component_id": "source_component_87",
     "name": "pic_programmer:JUMPER",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "JUMPER"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_88",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
@@ -633,105 +633,105 @@
     "type": "source_component",
     "source_component_id": "source_component_90",
     "name": "pic_programmer:MOUNTING_HOLE",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "CONN_1"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_91",
     "name": "pic_programmer:MOUNTING_HOLE",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "CONN_1"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_92",
     "name": "pic_programmer:MOUNTING_HOLE",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "CONN_1"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_93",
     "name": "pic_programmer:MOUNTING_HOLE",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "CONN_1"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_94",
     "name": "pic_programmer:MOUNTING_HOLE",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "CONN_1"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_95",
     "name": "pic_programmer:MOUNTING_HOLE",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "CONN_1"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_96",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_97",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_98",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_99",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_100",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_101",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_102",
     "name": "pic_programmer:GND",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "GND"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_103",
     "name": "pic_programmer:VCC",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "VCC"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_104",
     "name": "pic_programmer:7805",
-    "ftype": "chip",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "7805"
   },
   {
@@ -771,7 +771,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -784,7 +785,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_up"
   },
   {
     "type": "schematic_component",
@@ -797,7 +799,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_left"
   },
   {
     "type": "schematic_component",
@@ -810,7 +813,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_left"
   },
   {
     "type": "schematic_component",
@@ -875,7 +879,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -888,7 +893,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_up"
   },
   {
     "type": "schematic_component",
@@ -901,7 +907,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_left"
   },
   {
     "type": "schematic_component",
@@ -914,7 +921,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_left"
   },
   {
     "type": "schematic_component",
@@ -979,7 +987,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -992,7 +1001,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_up"
   },
   {
     "type": "schematic_component",
@@ -1005,7 +1015,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_left"
   },
   {
     "type": "schematic_component",
@@ -1018,7 +1029,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_left"
   },
   {
     "type": "schematic_component",
@@ -1096,7 +1108,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1109,7 +1122,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1122,7 +1136,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1187,7 +1202,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "npn_bipolar_transistor_up"
   },
   {
     "type": "schematic_component",
@@ -1213,7 +1229,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1226,7 +1243,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_up"
   },
   {
     "type": "schematic_component",
@@ -1239,7 +1257,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "npn_bipolar_transistor_up"
   },
   {
     "type": "schematic_component",
@@ -1278,7 +1297,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_up"
   },
   {
     "type": "schematic_component",
@@ -1291,7 +1311,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "led_right"
   },
   {
     "type": "schematic_component",
@@ -1317,7 +1338,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "diode_down"
   },
   {
     "type": "schematic_component",
@@ -1343,7 +1365,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "capacitor_up"
   },
   {
     "type": "schematic_component",
@@ -1382,7 +1405,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "capacitor_up"
   },
   {
     "type": "schematic_component",
@@ -1408,7 +1432,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1421,7 +1446,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "led_right"
   },
   {
     "type": "schematic_component",
@@ -1460,7 +1486,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_up"
   },
   {
     "type": "schematic_component",
@@ -1538,7 +1565,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "capacitor_right"
   },
   {
     "type": "schematic_component",
@@ -1590,7 +1618,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "capacitor_right"
   },
   {
     "type": "schematic_component",
@@ -1616,7 +1645,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1629,7 +1659,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1668,7 +1699,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "capacitor_right"
   },
   {
     "type": "schematic_component",
@@ -1681,7 +1713,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1694,7 +1727,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_down"
   },
   {
     "type": "schematic_component",
@@ -1733,7 +1767,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1772,7 +1807,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "npn_bipolar_transistor_up"
   },
   {
     "type": "schematic_component",
@@ -1785,7 +1821,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1798,7 +1835,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1811,7 +1849,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "boxresistor_right"
   },
   {
     "type": "schematic_component",
@@ -1824,7 +1863,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "led_right"
   },
   {
     "type": "schematic_component",
@@ -1863,7 +1903,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "schottky_diode_up"
   },
   {
     "type": "schematic_component",
@@ -1902,7 +1943,8 @@
     "size": {
       "width": 1,
       "height": 1
-    }
+    },
+    "symbol_name": "capacitor_up"
   },
   {
     "type": "schematic_component",
@@ -2098,6 +2140,2404 @@
       "width": 1,
       "height": 1
     }
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_0",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.7619999999999999,
+      "y": 0.6773333333333335
+    },
+    "facing_direction": "left",
+    "pin_number": "5"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_1",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.7619999999999999,
+      "y": 0.5080000000000001
+    },
+    "facing_direction": "left",
+    "pin_number": "9"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_2",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": 0.3386666666666668
+    },
+    "facing_direction": "left",
+    "pin_number": "4"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_3",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": 0.16933333333333342
+    },
+    "facing_direction": "left",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_4",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": 9.331808609502832e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_5",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": -0.16933333333333325
+    },
+    "facing_direction": "left",
+    "pin_number": "7"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_6",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": -0.33866666666666656
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_7",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.7620000000000001,
+      "y": -0.5079999999999999
+    },
+    "facing_direction": "left",
+    "pin_number": "6"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_8",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.7620000000000001,
+      "y": -0.6773333333333332
+    },
+    "facing_direction": "left",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_9",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "14"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_10",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "7"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_11",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_12",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_13",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_14",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "5"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_15",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "4"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_16",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "6"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_17",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "9"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_18",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "10"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_19",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_20",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "12"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_21",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "13"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_22",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "11"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_23",
+    "schematic_component_id": "schematic_component_2",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_24",
+    "schematic_component_id": "schematic_component_2",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_25",
+    "schematic_component_id": "schematic_component_3",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_26",
+    "schematic_component_id": "schematic_component_3",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_27",
+    "schematic_component_id": "schematic_component_4",
+    "center": {
+      "x": 4.665904304751415e-17,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_28",
+    "schematic_component_id": "schematic_component_4",
+    "center": {
+      "x": -4.665904304751415e-17,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_29",
+    "schematic_component_id": "schematic_component_5",
+    "center": {
+      "x": 4.665904304751415e-17,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_30",
+    "schematic_component_id": "schematic_component_5",
+    "center": {
+      "x": -4.665904304751415e-17,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_31",
+    "schematic_component_id": "schematic_component_6",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_32",
+    "schematic_component_id": "schematic_component_7",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_33",
+    "schematic_component_id": "schematic_component_8",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_34",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "14"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_35",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "7"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_36",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_37",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_38",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_39",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "5"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_40",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "4"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_41",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "6"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_42",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "9"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_43",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "10"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_44",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_45",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "12"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_46",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "13"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_47",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "11"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_48",
+    "schematic_component_id": "schematic_component_10",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_49",
+    "schematic_component_id": "schematic_component_10",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_50",
+    "schematic_component_id": "schematic_component_11",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_51",
+    "schematic_component_id": "schematic_component_11",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_52",
+    "schematic_component_id": "schematic_component_12",
+    "center": {
+      "x": 4.665904304751415e-17,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_53",
+    "schematic_component_id": "schematic_component_12",
+    "center": {
+      "x": -4.665904304751415e-17,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_54",
+    "schematic_component_id": "schematic_component_13",
+    "center": {
+      "x": 4.665904304751415e-17,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_55",
+    "schematic_component_id": "schematic_component_13",
+    "center": {
+      "x": -4.665904304751415e-17,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_56",
+    "schematic_component_id": "schematic_component_14",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_57",
+    "schematic_component_id": "schematic_component_15",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_58",
+    "schematic_component_id": "schematic_component_16",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_59",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "14"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_60",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "7"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_61",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_62",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_63",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_64",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "5"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_65",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "4"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_66",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "6"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_67",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "9"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_68",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "10"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_69",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_70",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "12"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_71",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "13"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_72",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "11"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_73",
+    "schematic_component_id": "schematic_component_18",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_74",
+    "schematic_component_id": "schematic_component_18",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_75",
+    "schematic_component_id": "schematic_component_19",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_76",
+    "schematic_component_id": "schematic_component_19",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_77",
+    "schematic_component_id": "schematic_component_20",
+    "center": {
+      "x": 4.665904304751415e-17,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_78",
+    "schematic_component_id": "schematic_component_20",
+    "center": {
+      "x": -4.665904304751415e-17,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_79",
+    "schematic_component_id": "schematic_component_21",
+    "center": {
+      "x": 4.665904304751415e-17,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_80",
+    "schematic_component_id": "schematic_component_21",
+    "center": {
+      "x": -4.665904304751415e-17,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_81",
+    "schematic_component_id": "schematic_component_22",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_82",
+    "schematic_component_id": "schematic_component_23",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_83",
+    "schematic_component_id": "schematic_component_24",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_84",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "14"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_85",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": -0.08466666666666667,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "7"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_86",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_87",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_88",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_89",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "5"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_90",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "4"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_91",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "6"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_92",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "9"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_93",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "10"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_94",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_95",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "12"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_96",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "13"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_97",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "11"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_98",
+    "schematic_component_id": "schematic_component_26",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_99",
+    "schematic_component_id": "schematic_component_27",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_100",
+    "schematic_component_id": "schematic_component_27",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_101",
+    "schematic_component_id": "schematic_component_28",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_102",
+    "schematic_component_id": "schematic_component_28",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_103",
+    "schematic_component_id": "schematic_component_29",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_104",
+    "schematic_component_id": "schematic_component_29",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_105",
+    "schematic_component_id": "schematic_component_30",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_106",
+    "schematic_component_id": "schematic_component_31",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_107",
+    "schematic_component_id": "schematic_component_32",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_108",
+    "schematic_component_id": "schematic_component_33",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_109",
+    "schematic_component_id": "schematic_component_34",
+    "center": {
+      "x": -0.33866666666666667,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_110",
+    "schematic_component_id": "schematic_component_34",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_111",
+    "schematic_component_id": "schematic_component_34",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_112",
+    "schematic_component_id": "schematic_component_35",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_113",
+    "schematic_component_id": "schematic_component_36",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_114",
+    "schematic_component_id": "schematic_component_36",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_115",
+    "schematic_component_id": "schematic_component_37",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_116",
+    "schematic_component_id": "schematic_component_37",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_117",
+    "schematic_component_id": "schematic_component_38",
+    "center": {
+      "x": -0.33866666666666667,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_118",
+    "schematic_component_id": "schematic_component_38",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_119",
+    "schematic_component_id": "schematic_component_38",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_120",
+    "schematic_component_id": "schematic_component_39",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_121",
+    "schematic_component_id": "schematic_component_40",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_122",
+    "schematic_component_id": "schematic_component_41",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_123",
+    "schematic_component_id": "schematic_component_41",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_124",
+    "schematic_component_id": "schematic_component_42",
+    "center": {
+      "x": -2.0737352465561847e-17,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_125",
+    "schematic_component_id": "schematic_component_42",
+    "center": {
+      "x": 2.0737352465561847e-17,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_126",
+    "schematic_component_id": "schematic_component_43",
+    "center": {
+      "x": 0.5926666666666667,
+      "y": 0.1693333333333334
+    },
+    "facing_direction": "left",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_127",
+    "schematic_component_id": "schematic_component_43",
+    "center": {
+      "x": 0.5926666666666667,
+      "y": -0.16933333333333328
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_128",
+    "schematic_component_id": "schematic_component_44",
+    "center": {
+      "x": 0.254,
+      "y": 3.110602869834277e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_129",
+    "schematic_component_id": "schematic_component_44",
+    "center": {
+      "x": -0.254,
+      "y": -3.110602869834277e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_130",
+    "schematic_component_id": "schematic_component_45",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_131",
+    "schematic_component_id": "schematic_component_46",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_132",
+    "schematic_component_id": "schematic_component_46",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_133",
+    "schematic_component_id": "schematic_component_47",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_134",
+    "schematic_component_id": "schematic_component_48",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_135",
+    "schematic_component_id": "schematic_component_49",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_136",
+    "schematic_component_id": "schematic_component_49",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_137",
+    "schematic_component_id": "schematic_component_50",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_138",
+    "schematic_component_id": "schematic_component_51",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_139",
+    "schematic_component_id": "schematic_component_51",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_140",
+    "schematic_component_id": "schematic_component_52",
+    "center": {
+      "x": -2.0737352465561847e-17,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_141",
+    "schematic_component_id": "schematic_component_52",
+    "center": {
+      "x": 2.0737352465561847e-17,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_142",
+    "schematic_component_id": "schematic_component_53",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_143",
+    "schematic_component_id": "schematic_component_54",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_144",
+    "schematic_component_id": "schematic_component_55",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_145",
+    "schematic_component_id": "schematic_component_55",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_146",
+    "schematic_component_id": "schematic_component_56",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_147",
+    "schematic_component_id": "schematic_component_57",
+    "center": {
+      "x": -0.508,
+      "y": -3.110602869834277e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_148",
+    "schematic_component_id": "schematic_component_57",
+    "center": {
+      "x": 0.508,
+      "y": 3.110602869834277e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_149",
+    "schematic_component_id": "schematic_component_58",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_150",
+    "schematic_component_id": "schematic_component_59",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_151",
+    "schematic_component_id": "schematic_component_60",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_152",
+    "schematic_component_id": "schematic_component_61",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_153",
+    "schematic_component_id": "schematic_component_61",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_154",
+    "schematic_component_id": "schematic_component_62",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_155",
+    "schematic_component_id": "schematic_component_63",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_156",
+    "schematic_component_id": "schematic_component_64",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_157",
+    "schematic_component_id": "schematic_component_65",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_158",
+    "schematic_component_id": "schematic_component_65",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_159",
+    "schematic_component_id": "schematic_component_66",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_160",
+    "schematic_component_id": "schematic_component_67",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_161",
+    "schematic_component_id": "schematic_component_67",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_162",
+    "schematic_component_id": "schematic_component_68",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_163",
+    "schematic_component_id": "schematic_component_68",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_164",
+    "schematic_component_id": "schematic_component_69",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_165",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": -1.6933333333333331,
+      "y": -0.4233333333333333
+    },
+    "facing_direction": "right",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_166",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": -1.6933333333333331,
+      "y": 0.4233333333333333
+    },
+    "facing_direction": "right",
+    "pin_number": "4"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_167",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": -0.508,
+      "y": 1.1853333333333333
+    },
+    "facing_direction": "up",
+    "pin_number": "7"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_168",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": -0.254,
+      "y": 1.1853333333333333
+    },
+    "facing_direction": "up",
+    "pin_number": "6"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_169",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": 0,
+      "y": -1.1853333333333333
+    },
+    "facing_direction": "down",
+    "pin_number": "5"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_170",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": 0.4233333333333333,
+      "y": 1.1853333333333333
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_171",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": 1.6933333333333331,
+      "y": -0.4233333333333333
+    },
+    "facing_direction": "left",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_172",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": 1.6933333333333331,
+      "y": 0.4233333333333333
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_173",
+    "schematic_component_id": "schematic_component_71",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_174",
+    "schematic_component_id": "schematic_component_71",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_175",
+    "schematic_component_id": "schematic_component_72",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_176",
+    "schematic_component_id": "schematic_component_72",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_177",
+    "schematic_component_id": "schematic_component_73",
+    "center": {
+      "x": 0.254,
+      "y": 3.110602869834277e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_178",
+    "schematic_component_id": "schematic_component_73",
+    "center": {
+      "x": -0.254,
+      "y": -3.110602869834277e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_179",
+    "schematic_component_id": "schematic_component_74",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_180",
+    "schematic_component_id": "schematic_component_75",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_181",
+    "schematic_component_id": "schematic_component_76",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_182",
+    "schematic_component_id": "schematic_component_76",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_183",
+    "schematic_component_id": "schematic_component_77",
+    "center": {
+      "x": -2.5921690581952306e-17,
+      "y": 0.4233333333333333
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_184",
+    "schematic_component_id": "schematic_component_77",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_185",
+    "schematic_component_id": "schematic_component_77",
+    "center": {
+      "x": 2.5921690581952306e-17,
+      "y": -0.4233333333333333
+    },
+    "facing_direction": "down",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_186",
+    "schematic_component_id": "schematic_component_78",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_187",
+    "schematic_component_id": "schematic_component_79",
+    "center": {
+      "x": -0.33866666666666667,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_188",
+    "schematic_component_id": "schematic_component_79",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_189",
+    "schematic_component_id": "schematic_component_79",
+    "center": {
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_190",
+    "schematic_component_id": "schematic_component_80",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_191",
+    "schematic_component_id": "schematic_component_80",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_192",
+    "schematic_component_id": "schematic_component_81",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_193",
+    "schematic_component_id": "schematic_component_81",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_194",
+    "schematic_component_id": "schematic_component_82",
+    "center": {
+      "x": -0.254,
+      "y": -1.5553014349171385e-17
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_195",
+    "schematic_component_id": "schematic_component_82",
+    "center": {
+      "x": 0.254,
+      "y": 1.5553014349171385e-17
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_196",
+    "schematic_component_id": "schematic_component_83",
+    "center": {
+      "x": -2.0737352465561847e-17,
+      "y": 0.33866666666666667
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_197",
+    "schematic_component_id": "schematic_component_83",
+    "center": {
+      "x": 2.0737352465561847e-17,
+      "y": -0.33866666666666667
+    },
+    "facing_direction": "down",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_198",
+    "schematic_component_id": "schematic_component_84",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_199",
+    "schematic_component_id": "schematic_component_85",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_200",
+    "schematic_component_id": "schematic_component_86",
+    "center": {
+      "x": -0.254,
+      "y": 0
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_201",
+    "schematic_component_id": "schematic_component_86",
+    "center": {
+      "x": 0.254,
+      "y": 0
+    },
+    "facing_direction": "left",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_202",
+    "schematic_component_id": "schematic_component_87",
+    "center": {
+      "x": 9.33180860950283e-17,
+      "y": -0.508
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_203",
+    "schematic_component_id": "schematic_component_87",
+    "center": {
+      "x": -9.33180860950283e-17,
+      "y": 0.508
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_204",
+    "schematic_component_id": "schematic_component_88",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_205",
+    "schematic_component_id": "schematic_component_89",
+    "center": {
+      "x": 0,
+      "y": -0.254
+    },
+    "facing_direction": "down",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_206",
+    "schematic_component_id": "schematic_component_89",
+    "center": {
+      "x": 0,
+      "y": 0.254
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_207",
+    "schematic_component_id": "schematic_component_96",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_208",
+    "schematic_component_id": "schematic_component_97",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_209",
+    "schematic_component_id": "schematic_component_98",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_210",
+    "schematic_component_id": "schematic_component_99",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_211",
+    "schematic_component_id": "schematic_component_100",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_212",
+    "schematic_component_id": "schematic_component_101",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_213",
+    "schematic_component_id": "schematic_component_102",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_214",
+    "schematic_component_id": "schematic_component_103",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_215",
+    "schematic_component_id": "schematic_component_104",
+    "center": {
+      "x": -0.6773333333333333,
+      "y": -0.08466666666666667
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_216",
+    "schematic_component_id": "schematic_component_104",
+    "center": {
+      "x": 0,
+      "y": 0.4233333333333333
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_217",
+    "schematic_component_id": "schematic_component_104",
+    "center": {
+      "x": 0.6773333333333333,
+      "y": -0.08466666666666667
+    },
+    "facing_direction": "left",
+    "pin_number": "3"
   },
   {
     "type": "schematic_trace",
