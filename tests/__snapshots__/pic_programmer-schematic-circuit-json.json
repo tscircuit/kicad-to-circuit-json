@@ -1,0 +1,2388 @@
+[
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_0",
+    "name": "pic_programmer:DB9",
+    "ftype": "chip",
+    "manufacturer_part_number": "DB9-FEMAL"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_1",
+    "name": "pic_programmer:74LS125",
+    "ftype": "chip",
+    "manufacturer_part_number": "74HC125"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_2",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_3",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_4",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "BAT43"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_5",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "BAT43"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_6",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_7",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_8",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_9",
+    "name": "pic_programmer:74LS125",
+    "ftype": "chip",
+    "manufacturer_part_number": "74HC125"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_10",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_11",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_12",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "BAT43"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_13",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "BAT43"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_14",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_15",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_16",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_17",
+    "name": "pic_programmer:74LS125",
+    "ftype": "chip",
+    "manufacturer_part_number": "74HC125"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_18",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_19",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_20",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "BAT43"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_21",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "BAT43"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_22",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_23",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_24",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_25",
+    "name": "pic_programmer:74LS125",
+    "ftype": "chip",
+    "manufacturer_part_number": "74HC125"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_26",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_27",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "470"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_28",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "470"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_29",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "1K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_30",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_31",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_32",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_33",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_34",
+    "name": "pic_programmer:BC237",
+    "ftype": "simple_transistor",
+    "manufacturer_part_number": "BC237"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_35",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_36",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "22K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_37",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_38",
+    "name": "pic_programmer:BC307",
+    "ftype": "simple_transistor",
+    "manufacturer_part_number": "BC307"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_39",
+    "name": "pic_programmer:VPP",
+    "ftype": "chip",
+    "manufacturer_part_number": "VPP"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_40",
+    "name": "pic_programmer:VPP",
+    "ftype": "chip",
+    "manufacturer_part_number": "VPP"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_41",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "2.2K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_42",
+    "name": "pic_programmer:LED",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "RED-LED"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_43",
+    "name": "pic_programmer:CONN_2",
+    "ftype": "chip",
+    "manufacturer_part_number": "CONN_2"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_44",
+    "name": "pic_programmer:D",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "1N4004"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_45",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_46",
+    "name": "pic_programmer:CP",
+    "ftype": "simple_capacitor",
+    "manufacturer_part_number": "220uF"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_47",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_48",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_49",
+    "name": "pic_programmer:CP",
+    "ftype": "simple_capacitor",
+    "manufacturer_part_number": "100µF"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_50",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_51",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "470"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_52",
+    "name": "pic_programmer:LED",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "GREEN-LED"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_53",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_54",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_55",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "22K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_56",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_57",
+    "name": "pic_programmer:INDUCTOR",
+    "ftype": "simple_inductor",
+    "manufacturer_part_number": "22uH"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_58",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_59",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_60",
+    "name": "pic_programmer:VPP",
+    "ftype": "chip",
+    "manufacturer_part_number": "VPP"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_61",
+    "name": "pic_programmer:CP",
+    "ftype": "simple_capacitor",
+    "manufacturer_part_number": "22uF/25V"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_62",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_63",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_64",
+    "name": "pic_programmer:PWR_FLAG",
+    "ftype": "chip",
+    "manufacturer_part_number": "PWR_FLAG"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_65",
+    "name": "pic_programmer:C",
+    "ftype": "simple_capacitor",
+    "manufacturer_part_number": "10nF"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_66",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_67",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "6.2K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_68",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "62K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_69",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_70",
+    "name": "pic_programmer:LT1373",
+    "ftype": "chip",
+    "manufacturer_part_number": "LT1373"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_71",
+    "name": "pic_programmer:C",
+    "ftype": "simple_capacitor",
+    "manufacturer_part_number": "0"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_72",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "5,1K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_73",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "SCHOTTKY"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_74",
+    "name": "pic_programmer:PWR_FLAG",
+    "ftype": "chip",
+    "manufacturer_part_number": "PWR_FLAG"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_75",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_76",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "220"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_77",
+    "name": "pic_programmer:POT",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "1K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_78",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_79",
+    "name": "pic_programmer:BC307",
+    "ftype": "simple_transistor",
+    "manufacturer_part_number": "BC307"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_80",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "2.2K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_81",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "2.2K"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_82",
+    "name": "pic_programmer:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "470"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_83",
+    "name": "pic_programmer:LED",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "YELLOW-LED"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_84",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_85",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_86",
+    "name": "pic_programmer:D_Schottky",
+    "ftype": "simple_diode",
+    "manufacturer_part_number": "BAT43"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_87",
+    "name": "pic_programmer:JUMPER",
+    "ftype": "chip",
+    "manufacturer_part_number": "JUMPER"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_88",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_89",
+    "name": "pic_programmer:C",
+    "ftype": "simple_capacitor",
+    "manufacturer_part_number": "220nF"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_90",
+    "name": "pic_programmer:MOUNTING_HOLE",
+    "ftype": "chip",
+    "manufacturer_part_number": "CONN_1"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_91",
+    "name": "pic_programmer:MOUNTING_HOLE",
+    "ftype": "chip",
+    "manufacturer_part_number": "CONN_1"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_92",
+    "name": "pic_programmer:MOUNTING_HOLE",
+    "ftype": "chip",
+    "manufacturer_part_number": "CONN_1"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_93",
+    "name": "pic_programmer:MOUNTING_HOLE",
+    "ftype": "chip",
+    "manufacturer_part_number": "CONN_1"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_94",
+    "name": "pic_programmer:MOUNTING_HOLE",
+    "ftype": "chip",
+    "manufacturer_part_number": "CONN_1"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_95",
+    "name": "pic_programmer:MOUNTING_HOLE",
+    "ftype": "chip",
+    "manufacturer_part_number": "CONN_1"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_96",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_97",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_98",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_99",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_100",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_101",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_102",
+    "name": "pic_programmer:GND",
+    "ftype": "chip",
+    "manufacturer_part_number": "GND"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_103",
+    "name": "pic_programmer:VCC",
+    "ftype": "chip",
+    "manufacturer_part_number": "VCC"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_104",
+    "name": "pic_programmer:7805",
+    "ftype": "chip",
+    "manufacturer_part_number": "7805"
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_0",
+    "source_component_id": "pic_programmer:DB9_source",
+    "center": {
+      "x": -4.883333333333333,
+      "y": 3.8040000000000003
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_1",
+    "source_component_id": "pic_programmer:74LS125_source",
+    "center": {
+      "x": -0.3113333333333337,
+      "y": 7.021333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_2",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": -1.7506666666666675,
+      "y": 7.021333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_3",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": -2.2586666666666666,
+      "y": 6.513333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_4",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": -1.1580000000000004,
+      "y": 7.4446666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_5",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": -1.1580000000000004,
+      "y": 6.513333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_6",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -0.14199999999999946,
+      "y": 6.682666666666668
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_7",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -1.1580000000000004,
+      "y": 6.174666666666667
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_8",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": -1.1580000000000004,
+      "y": 7.783333333333333
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_9",
+    "source_component_id": "pic_programmer:74LS125_source",
+    "center": {
+      "x": 0.36599999999999966,
+      "y": 4.566
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_10",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": -1.0733333333333333,
+      "y": 4.566
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_11",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": -1.5813333333333333,
+      "y": 4.058000000000001
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_12",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 4.989333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_13",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 4.058000000000001
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_14",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 0.535333333333333,
+      "y": 4.227333333333333
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_15",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 3.8040000000000003
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_16",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 5.328
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_17",
+    "source_component_id": "pic_programmer:74LS125_source",
+    "center": {
+      "x": 0.36599999999999966,
+      "y": 1.2640000000000011
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_18",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": -1.0733333333333333,
+      "y": 1.2640000000000011
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_19",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": -1.5813333333333333,
+      "y": 0.7560000000000002
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_20",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 1.6873333333333331
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_21",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 0.7560000000000002
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_22",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 0.535333333333333,
+      "y": 0.9253333333333327
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_23",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 0.41733333333333356
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_24",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": 2.0260000000000007
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_25",
+    "source_component_id": "pic_programmer:74LS125_source",
+    "center": {
+      "x": 0.36599999999999966,
+      "y": 2.7880000000000003
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_26",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 0.19666666666666632,
+      "y": 2.4493333333333336
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_27",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 1.6359999999999992,
+      "y": 4.566
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_28",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 1.6359999999999992,
+      "y": 1.2640000000000011
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_29",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 0.9586666666666659,
+      "y": 7.021333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_30",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -1.5813333333333333,
+      "y": 3.8040000000000003
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_31",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -1.5813333333333333,
+      "y": 0.5020000000000007
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_32",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -2.2586666666666666,
+      "y": 6.259333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_33",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -4.121333333333333,
+      "y": 3.126666666666668
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_34",
+    "source_component_id": "pic_programmer:BC237_source",
+    "center": {
+      "x": 2.059333333333333,
+      "y": 7.021333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_35",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 2.2286666666666672,
+      "y": 6.682666666666668
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_36",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 2.736666666666668,
+      "y": 7.529333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_37",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 3.3293333333333326,
+      "y": 8.206666666666667
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_38",
+    "source_component_id": "pic_programmer:BC307_source",
+    "center": {
+      "x": 3.9220000000000006,
+      "y": 7.529333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_39",
+    "source_component_id": "pic_programmer:VPP_source",
+    "center": {
+      "x": 3.3293333333333326,
+      "y": 8.714666666666666
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_40",
+    "source_component_id": "pic_programmer:VPP_source",
+    "center": {
+      "x": 4.091333333333333,
+      "y": 8.037333333333333
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_41",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 4.091333333333333,
+      "y": 6.682666666666668
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_42",
+    "source_component_id": "pic_programmer:LED_source",
+    "center": {
+      "x": 4.091333333333333,
+      "y": 5.836
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_43",
+    "source_component_id": "pic_programmer:CONN_2_source",
+    "center": {
+      "x": -5.306666666666667,
+      "y": -1.5299999999999994
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_44",
+    "source_component_id": "pic_programmer:D_source",
+    "center": {
+      "x": -4.206,
+      "y": -1.3606666666666651
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_45",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -4.629333333333333,
+      "y": -1.783999999999999
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_46",
+    "source_component_id": "pic_programmer:CP_source",
+    "center": {
+      "x": -3.698,
+      "y": -1.783999999999999
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_47",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -3.698,
+      "y": -2.0379999999999985
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_48",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -2.428,
+      "y": -1.868666666666666
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_49",
+    "source_component_id": "pic_programmer:CP_source",
+    "center": {
+      "x": -1.5813333333333333,
+      "y": -1.783999999999999
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_50",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -1.5813333333333333,
+      "y": -2.0379999999999985
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_51",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": -0.48066666666666613,
+      "y": -1.3606666666666651
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_52",
+    "source_component_id": "pic_programmer:LED_source",
+    "center": {
+      "x": 0.027333333333332988,
+      "y": -1.868666666666666
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_53",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 0.027333333333332988,
+      "y": -2.2073333333333345
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_54",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": -1.2426666666666666,
+      "y": -1.275999999999998
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_55",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 4.937999999999999,
+      "y": 6.513333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_56",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 4.937999999999999,
+      "y": 6.259333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_57",
+    "source_component_id": "pic_programmer:INDUCTOR_source",
+    "center": {
+      "x": 8.409333333333333,
+      "y": 1.179333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_58",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 6.123333333333333,
+      "y": 2.0260000000000007
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_59",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 5.615333333333332,
+      "y": -0.5139999999999993
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_60",
+    "source_component_id": "pic_programmer:VPP_source",
+    "center": {
+      "x": 10.35666666666667,
+      "y": 0.8406666666666673
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_61",
+    "source_component_id": "pic_programmer:CP_source",
+    "center": {
+      "x": 10.864666666666668,
+      "y": 0.7560000000000002
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_62",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 11.288,
+      "y": 0.6713333333333331
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_63",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 8.917333333333332,
+      "y": 1.3486666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_64",
+    "source_component_id": "pic_programmer:PWR_FLAG_source",
+    "center": {
+      "x": 10.018,
+      "y": 0.8406666666666673
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_65",
+    "source_component_id": "pic_programmer:C_source",
+    "center": {
+      "x": 8.24,
+      "y": -0.2599999999999998
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_66",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 8.663333333333332,
+      "y": -0.2599999999999998
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_67",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 9.933333333333334,
+      "y": -0.5139999999999993
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_68",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 9.933333333333334,
+      "y": 0.3326666666666682
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_69",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 10.35666666666667,
+      "y": -0.5986666666666647
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_70",
+    "source_component_id": "pic_programmer:LT1373_source",
+    "center": {
+      "x": 6.123333333333333,
+      "y": 0.7560000000000002
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_71",
+    "source_component_id": "pic_programmer:C_source",
+    "center": {
+      "x": 7.985999999999999,
+      "y": -0.7680000000000007
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_72",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 7.139333333333333,
+      "y": -0.42933333333333223
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_73",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": 8.917333333333332,
+      "y": 0.7560000000000002
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_74",
+    "source_component_id": "pic_programmer:PWR_FLAG_source",
+    "center": {
+      "x": -4.290666666666667,
+      "y": -1.783999999999999
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_75",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 4.091333333333333,
+      "y": 5.4126666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_76",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 5.446,
+      "y": 7.190666666666667
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_77",
+    "source_component_id": "pic_programmer:POT_source",
+    "center": {
+      "x": 9.256,
+      "y": -0.09066666666666734
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_78",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 5.530666666666667,
+      "y": 5.4126666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_79",
+    "source_component_id": "pic_programmer:BC307_source",
+    "center": {
+      "x": 6.8853333333333335,
+      "y": 4.989333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_80",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 5.954000000000001,
+      "y": 4.989333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_81",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 5.954000000000001,
+      "y": 5.4126666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_82",
+    "source_component_id": "pic_programmer:R_source",
+    "center": {
+      "x": 6.377333333333333,
+      "y": 4.481333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_83",
+    "source_component_id": "pic_programmer:LED_source",
+    "center": {
+      "x": 5.954000000000001,
+      "y": 3.9733333333333336
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_84",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 5.954000000000001,
+      "y": 3.634666666666667
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_85",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 7.054666666666666,
+      "y": 5.328
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_86",
+    "source_component_id": "pic_programmer:D_Schottky_source",
+    "center": {
+      "x": 5.107333333333335,
+      "y": 4.989333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_87",
+    "source_component_id": "pic_programmer:JUMPER_source",
+    "center": {
+      "x": 7.647333333333334,
+      "y": 5.074000000000001
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_88",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 7.647333333333334,
+      "y": 5.582000000000001
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_89",
+    "source_component_id": "pic_programmer:C_source",
+    "center": {
+      "x": 2.6519999999999992,
+      "y": 8.206666666666667
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_90",
+    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "center": {
+      "x": 3.8373333333333335,
+      "y": -1.6146666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_91",
+    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "center": {
+      "x": 3.8373333333333335,
+      "y": -1.868666666666666
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_92",
+    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "center": {
+      "x": 3.8373333333333335,
+      "y": -2.1226666666666656
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_93",
+    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "center": {
+      "x": 3.8373333333333335,
+      "y": -2.376666666666667
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_94",
+    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "center": {
+      "x": 3.8373333333333335,
+      "y": -2.6306666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_95",
+    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "center": {
+      "x": 3.8373333333333335,
+      "y": -2.884666666666666
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_96",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 0.28133333333333344,
+      "y": 4.227333333333333
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_97",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 0.45066666666666677,
+      "y": 2.4493333333333336
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_98",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": 0.28133333333333344,
+      "y": 0.9253333333333327
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_99",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 0.28133333333333344,
+      "y": 1.6026666666666678
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_100",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 0.45066666666666677,
+      "y": 3.126666666666668
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_101",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": 0.28133333333333344,
+      "y": 4.9046666666666665
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_102",
+    "source_component_id": "pic_programmer:GND_source",
+    "center": {
+      "x": -0.3959999999999999,
+      "y": 6.682666666666668
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_103",
+    "source_component_id": "pic_programmer:VCC_source",
+    "center": {
+      "x": -0.3959999999999999,
+      "y": 7.36
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_104",
+    "source_component_id": "pic_programmer:7805_source",
+    "center": {
+      "x": -2.428,
+      "y": -1.445333333333334
+    },
+    "size": {
+      "width": 1,
+      "height": 1
+    }
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_0",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -1.5813333333333333,
+        "y": 4.566
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_1",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -0.48066666666666613,
+        "y": 1.2640000000000011
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_2",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 4.937999999999999,
+        "y": 7.190666666666667
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_3",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -4.629333333333333,
+        "y": -1.6993333333333336
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_4",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 10.018,
+        "y": 0.7560000000000002
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_5",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -2.2586666666666666,
+        "y": 7.021333333333334
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_6",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 10.35666666666667,
+        "y": 0.7560000000000002
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_7",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 3.3293333333333326,
+        "y": 7.783333333333333
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_8",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -1.1580000000000004,
+        "y": 7.021333333333334
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_9",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 4.091333333333333,
+        "y": 7.190666666666667
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_10",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 6.546666666666665,
+        "y": -0.42933333333333223
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_11",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -1.5813333333333333,
+        "y": -1.3606666666666651
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_12",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -1.2426666666666666,
+        "y": -1.3606666666666651
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_13",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 2.144,
+        "y": 4.566
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_14",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 7.9013333333333335,
+        "y": 1.179333333333334
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_15",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -3.698,
+        "y": -1.3606666666666651
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_16",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -0.48066666666666613,
+        "y": 4.566
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_17",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 2.2286666666666672,
+        "y": 7.36
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_18",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 3.3293333333333326,
+        "y": 7.529333333333334
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_19",
+    "edges": [],
+    "junctions": [
+      {
+        "x": -1.5813333333333333,
+        "y": 1.2640000000000011
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_20",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 7.647333333333334,
+        "y": 4.481333333333334
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_21",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 5.615333333333332,
+        "y": -0.42933333333333223
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_22",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 6.377333333333333,
+        "y": 4.989333333333334
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_23",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 7.054666666666666,
+        "y": 4.481333333333334
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_24",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 8.578666666666667,
+        "y": -0.2599999999999998
+      }
+    ]
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_25",
+    "edges": [],
+    "junctions": [
+      {
+        "x": 3.3293333333333326,
+        "y": 8.63
+      }
+    ]
+  }
+]
