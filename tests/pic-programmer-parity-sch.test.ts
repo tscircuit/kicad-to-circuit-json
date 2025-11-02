@@ -1,6 +1,5 @@
 import { test, expect } from "bun:test"
 import { readFileSync } from "node:fs"
-
 import { KicadToCircuitJsonConverter } from "../lib"
 import { takeKicadSnapshot } from "./fixtures/take-kicad-snapshot"
 import { takeCircuitJsonSnapshot } from "./fixtures/take-circuit-json-snapshot"
@@ -24,13 +23,20 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
   expect(circuitJson).toBeDefined()
   expect(circuitJson.length).toBeGreaterThan(0)
 
+    // Write Circuit JSON to file for inspection
+    const fs = await import("node:fs/promises")
+    await fs.writeFile(
+      "tests/__snapshots__/pic_programmer-schematic-circuit-json.json",
+      JSON.stringify(circuitJson, null, 2),
+    )
+
   // Take snapshots
   const kicadSnapshot = await takeKicadSnapshot({
     kicadFilePath: kicadSchPath,
     kicadFileType: "sch",
   })
 
-  const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!
+  const kicadPng = kicadSnapshot.generatedFileContent["pic_programmer.png"]!
 
   const circuitJsonPng = await takeCircuitJsonSnapshot({
     circuitJson: circuitJson as any,
@@ -41,7 +47,6 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
   const { convertCircuitJsonToSchematicSvg } = await import("circuit-to-svg")
   const circuitJsonSvg = convertCircuitJsonToSchematicSvg(circuitJson as any)
 
-  const fs = await import("node:fs/promises")
   await fs.writeFile(
     "tests/__snapshots__/pic_programmer-schematic-circuit-json.svg",
     circuitJsonSvg,
