@@ -96,11 +96,12 @@ export class CollectGraphicsStage extends ConverterStage {
     }
 
     // Remove the last point if it's the same as the first (closed polygon)
-    if (
-      points.length > 2 &&
-      this.pointsEqual(points[0], points[points.length - 1])
-    ) {
-      points.pop()
+    if (points.length > 2) {
+      const firstPoint = points[0]
+      const lastPoint = points[points.length - 1]
+      if (firstPoint && lastPoint && this.pointsEqual(firstPoint, lastPoint)) {
+        points.pop()
+      }
     }
 
     // Create pcb_board with outline
