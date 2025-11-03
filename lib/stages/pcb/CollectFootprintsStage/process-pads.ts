@@ -2,6 +2,7 @@ import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
 import { determinePadLayer } from "./layer-utils"
+import type { PcbSmtPad, PcbSmtPadCircle, PcbSmtPadRect } from "circuit-json"
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -116,16 +117,67 @@ export function createSmdPad(
   const layers = pad.layers || []
   const layer = determinePadLayer(layers)
 
-  ctx.db.pcb_smtpad.insert({
-    pcb_component_id: componentId,
-    x: pos.x,
-    y: pos.y,
-    layer: layer,
-    shape: shape === "circle" ? "circle" : "rect",
-    width: size.x,
-    height: size.y,
-    port_hints: [pad.number?.toString()],
-  } as any)
+  // Map KiCad shapes to circuit-json shapes and build the appropriate SMD pad object
+  // KiCad shapes: circle, rect, roundrect, oval, trapezoid, custom
+  // Circuit-json shapes: circle, rect, pill, rotated_rect, rotated_pill, polygon
+
+  let smtpad: any
+
+  if (shape === "circle") {
+    // Circular SMD pad
+    const radius = Math.max(size.x, size.y) / 2
+    smtpad = {
+      type: "pcb_smtpad",
+      shape: "circle",
+      pcb_component_id: componentId,
+      x: pos.x,
+      y: pos.y,
+      radius: radius,
+      layer: layer,
+      port_hints: [pad.number?.toString()],
+    }
+  } else if (shape === "oval") {
+    // Oval/pill-shaped SMD pad
+    // In KiCad, oval pads are elongated in one direction
+    smtpad = {
+      type: "pcb_smtpad",
+      shape: "pill",
+      pcb_component_id: componentId,
+      x: pos.x,
+      y: pos.y,
+      width: size.x,
+      height: size.y,
+      radius: Math.min(size.x, size.y) / 2,
+      layer: layer,
+      port_hints: [pad.number?.toString()],
+    }
+  } else {
+    // Rectangular or roundrect SMD pad (default to rect shape in circuit-json)
+    smtpad = {
+      type: "pcb_smtpad",
+      shape: "rect",
+      pcb_component_id: componentId,
+      x: pos.x,
+      y: pos.y,
+      width: size.x,
+      height: size.y,
+      layer: layer,
+      port_hints: [pad.number?.toString()],
+    }
+
+    // Handle roundrect shape - add corner_radius based on roundrect_rratio
+    // kicadts stores roundrect_rratio in _sxRoundrectRatio.value
+    const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+    if (shape === "roundrect" && roundrectRatio !== undefined) {
+      // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
+      // Formula: corner_radius = min(width, height) * roundrect_rratio / 2
+      const minDimension = Math.min(size.x, size.y)
+      const cornerRadius = (minDimension * roundrectRatio) / 2
+      smtpad.corner_radius = cornerRadius
+    }
+  }
+
+  ctx.db.pcb_smtpad.insert(smtpad)
 
   if (ctx.stats) {
     ctx.stats.pads = (ctx.stats.pads || 0) + 1
