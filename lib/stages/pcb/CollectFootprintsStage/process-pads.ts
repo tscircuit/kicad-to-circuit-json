@@ -2,7 +2,7 @@ import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
 import { determinePadLayer } from "./layer-utils"
-import type { PcbSmtPad, PcbSmtPadCircle, PcbSmtPadRect } from "circuit-json"
+import type { PcbSmtPad, PcbSmtPadRect } from "circuit-json"
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -85,7 +85,14 @@ export function processPad(
 
   // Determine pad type and create appropriate CJ element
   if (padType === "smd") {
-    createSmdPad(ctx, pad, componentId, globalPos, size, padShape)
+    createSmdPad({
+      ctx,
+      pad,
+      componentId,
+      pos: globalPos,
+      size,
+      shape: padShape,
+    })
   } else if (padType === "np_thru_hole") {
     createNpthHole(ctx, pad, componentId, globalPos, drill)
   } else {
@@ -106,75 +113,42 @@ export function processPad(
 /**
  * Creates an SMD pad in Circuit JSON
  */
-export function createSmdPad(
+export function createSmdPad({
+  ctx,
+  pad,
+  componentId,
+  pos,
+  size,
+  shape,
+}: {
   ctx: ConverterContext,
   pad: any,
   componentId: string,
   pos: { x: number; y: number },
   size: { x: number; y: number },
   shape: string,
-) {
+}) {
   const layers = pad.layers || []
   const layer = determinePadLayer(layers)
 
-  // Map KiCad shapes to circuit-json shapes and build the appropriate SMD pad object
-  // KiCad shapes: circle, rect, roundrect, oval, trapezoid, custom
-  // Circuit-json shapes: circle, rect, pill, rotated_rect, rotated_pill, polygon
-
-  let smtpad: any
-
-  if (shape === "circle") {
-    // Circular SMD pad
-    const radius = Math.max(size.x, size.y) / 2
-    smtpad = {
-      type: "pcb_smtpad",
-      shape: "circle",
+  let smtpad: PcbSmtPad = {
+    type: "pcb_smtpad",
+      pcb_smtpad_id: "",
       pcb_component_id: componentId,
       x: pos.x,
       y: pos.y,
-      radius: radius,
       layer: layer,
       port_hints: [pad.number?.toString()],
-    }
-  } else if (shape === "oval") {
-    // Oval/pill-shaped SMD pad
-    // In KiCad, oval pads are elongated in one direction
-    smtpad = {
-      type: "pcb_smtpad",
-      shape: "pill",
-      pcb_component_id: componentId,
-      x: pos.x,
-      y: pos.y,
-      width: size.x,
-      height: size.y,
-      radius: Math.min(size.x, size.y) / 2,
-      layer: layer,
-      port_hints: [pad.number?.toString()],
-    }
-  } else {
-    // Rectangular or roundrect SMD pad (default to rect shape in circuit-json)
-    smtpad = {
-      type: "pcb_smtpad",
-      shape: "rect",
-      pcb_component_id: componentId,
-      x: pos.x,
-      y: pos.y,
-      width: size.x,
-      height: size.y,
-      layer: layer,
-      port_hints: [pad.number?.toString()],
-    }
+    } as PcbSmtPad
+    
 
-    // Handle roundrect shape - add corner_radius based on roundrect_rratio
-    // kicadts stores roundrect_rratio in _sxRoundrectRatio.value
-    const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
-    if (shape === "roundrect" && roundrectRatio !== undefined) {
-      // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
-      // Formula: corner_radius = min(width, height) * roundrect_rratio / 2
-      const minDimension = Math.min(size.x, size.y)
-      const cornerRadius = (minDimension * roundrectRatio) / 2
-      smtpad.corner_radius = cornerRadius
-    }
+  const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+  if (shape === "roundrect" && roundrectRatio !== undefined) {
+    // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
+    // Formula: corner_radius = min(width, height) * roundrect_rratio / 2
+    const minDimension = Math.min(size.x, size.y)
+    const cornerRadius = (minDimension * roundrectRatio) / 2
+    ;(smtpad as PcbSmtPadRect).corner_radius = cornerRadius
   }
 
   ctx.db.pcb_smtpad.insert(smtpad)
