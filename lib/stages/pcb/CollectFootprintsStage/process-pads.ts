@@ -121,26 +121,25 @@ export function createSmdPad({
   size,
   shape,
 }: {
-  ctx: ConverterContext,
-  pad: any,
-  componentId: string,
-  pos: { x: number; y: number },
-  size: { x: number; y: number },
-  shape: string,
+  ctx: ConverterContext
+  pad: any
+  componentId: string
+  pos: { x: number; y: number }
+  size: { x: number; y: number }
+  shape: string
 }) {
   const layers = pad.layers || []
   const layer = determinePadLayer(layers)
 
   let smtpad: PcbSmtPad = {
     type: "pcb_smtpad",
-      pcb_smtpad_id: "",
-      pcb_component_id: componentId,
-      x: pos.x,
-      y: pos.y,
-      layer: layer,
-      port_hints: [pad.number?.toString()],
-    } as PcbSmtPad
-    
+    pcb_smtpad_id: "",
+    pcb_component_id: componentId,
+    x: pos.x,
+    y: pos.y,
+    layer: layer,
+    port_hints: [pad.number?.toString()],
+  } as PcbSmtPad
 
   const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
   if (shape === "roundrect" && roundrectRatio !== undefined) {
