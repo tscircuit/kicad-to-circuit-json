@@ -133,10 +133,11 @@ export function createSmdPad({
 
   let smtpad: PcbSmtPad = {
     type: "pcb_smtpad",
-    pcb_smtpad_id: "",
     pcb_component_id: componentId,
     x: pos.x,
     y: pos.y,
+    width: size.x,
+    height: size.y,
     layer: layer,
     port_hints: [pad.number?.toString()],
   } as PcbSmtPad
@@ -148,6 +149,7 @@ export function createSmdPad({
     const minDimension = Math.min(size.x, size.y)
     const cornerRadius = (minDimension * roundrectRatio) / 2
     ;(smtpad as PcbSmtPadRect).corner_radius = cornerRadius
+    smtpad.shape = "rect"
   }
 
   ctx.db.pcb_smtpad.insert(smtpad)
