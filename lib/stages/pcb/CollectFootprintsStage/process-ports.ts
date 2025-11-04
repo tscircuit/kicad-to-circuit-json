@@ -1,5 +1,5 @@
 import type { ConverterContext } from "../../../types"
-import { determineLayerFromLayers } from "./layer-utils"
+import type { LayerRef } from "circuit-json"
 
 export interface PadPortInfo {
   padNumber: string
@@ -17,9 +17,7 @@ export function createPcbPort({
   componentId: string
   padInfo: PadPortInfo
 }): boolean {
-  const portLayer = determineLayerFromLayers(padInfo.layers)
-
-  if (!portLayer) {
+  if (!padInfo.layers || padInfo.layers.length === 0) {
     return false
   }
 
@@ -31,7 +29,7 @@ export function createPcbPort({
     source_port_id: sourcePortId,
     x: padInfo.position.x,
     y: padInfo.position.y,
-    layers: [portLayer],
+    layers: padInfo.layers as LayerRef[],
   })
 
   return true
