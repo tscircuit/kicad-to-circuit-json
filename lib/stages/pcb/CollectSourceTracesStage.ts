@@ -32,9 +32,7 @@ export class CollectSourceTracesStage extends ConverterStage {
 
     // Extract all footprints from KiCad PCB
     const footprints = this.ctx.kicadPcb.footprints || []
-    const footprintArray = Array.isArray(footprints)
-      ? footprints
-      : [footprints]
+    const footprintArray = Array.isArray(footprints) ? footprints : [footprints]
 
     // Process each footprint and its pads
     for (const footprint of footprintArray) {
@@ -71,8 +69,7 @@ export class CollectSourceTracesStage extends ConverterStage {
     if (!footprintUuid) return
 
     // Get the component ID for this footprint
-    const componentId =
-      this.ctx.footprintUuidToComponentId?.get(footprintUuid)
+    const componentId = this.ctx.footprintUuidToComponentId?.get(footprintUuid)
     if (!componentId) return
 
     // Get all pads from the footprint
@@ -160,7 +157,10 @@ export class CollectSourceTracesStage extends ConverterStage {
     const propertyArray = Array.isArray(properties) ? properties : [properties]
 
     for (const property of propertyArray) {
-      if ((property as any).key === "Reference" || (property as any).name === "Reference") {
+      if (
+        (property as any).key === "Reference" ||
+        (property as any).name === "Reference"
+      ) {
         return (property as any).value
       }
     }
