@@ -70,7 +70,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "top",
-    "port_hints": ["1"],
+    "port_hints": [
+      "1"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -83,7 +85,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "top",
-    "port_hints": ["2"],
+    "port_hints": [
+      "2"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -96,7 +100,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "bottom",
-    "port_hints": ["1"],
+    "port_hints": [
+      "1"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -109,7 +115,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "bottom",
-    "port_hints": ["2"],
+    "port_hints": [
+      "2"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -120,7 +128,10 @@
     "y": 1.5,
     "outer_diameter": 0.6,
     "hole_diameter": 0.3,
-    "layers": ["top", "top"]
+    "layers": [
+      "top",
+      "top"
+    ]
   },
   {
     "type": "pcb_board",
@@ -133,18 +144,6 @@
       {
         "x": 5.25,
         "y": -4.5
-      },
-      {
-        "x": -5.25,
-        "y": -4.5
-      },
-      {
-        "x": -5.25,
-        "y": 4.5
-      },
-      {
-        "x": 5.25,
-        "y": 4.5
       },
       {
         "x": -5.25,

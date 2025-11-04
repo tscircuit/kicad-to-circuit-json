@@ -71,36 +71,84 @@ export class CollectGraphicsStage extends ConverterStage {
   private createBoardOutline(lines: any[]) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Convert edge cut lines to outline points
+    // Convert lines to a format we can work with (in KiCad coordinates)
+    const segments = lines.map((line) => ({
+      start: line.start ?? { x: 0, y: 0 },
+      end: line.end ?? { x: 0, y: 0 },
+    }))
+
+    // Chain the segments together to form a continuous outline
+    const orderedSegments: typeof segments = []
+    const remainingSegments = [...segments]
+
+    // Start with the first segment
+    if (remainingSegments.length > 0) {
+      orderedSegments.push(remainingSegments.shift()!)
+
+      // Keep finding connected segments until we can't find any more
+      while (remainingSegments.length > 0) {
+        const lastSegment = orderedSegments[orderedSegments.length - 1]
+        const lastEnd = lastSegment.end
+
+        // Find a segment that starts where the last one ended
+        let foundIndex = remainingSegments.findIndex((seg) =>
+          this.pointsEqualKicad(seg.start, lastEnd),
+        )
+
+        // If not found, try to find one that ends where the last one ended (reverse it)
+        if (foundIndex === -1) {
+          foundIndex = remainingSegments.findIndex((seg) =>
+            this.pointsEqualKicad(seg.end, lastEnd),
+          )
+          if (foundIndex !== -1) {
+            const seg = remainingSegments[foundIndex]
+            // Reverse the segment
+            orderedSegments.push({
+              start: seg.end,
+              end: seg.start,
+            })
+            remainingSegments.splice(foundIndex, 1)
+            continue
+          }
+        }
+
+        if (foundIndex !== -1) {
+          orderedSegments.push(remainingSegments.splice(foundIndex, 1)[0])
+        } else {
+          // Can't find a connected segment, just add the next one
+          orderedSegments.push(remainingSegments.shift()!)
+        }
+      }
+    }
+
+    // Now convert the ordered segments to points in Circuit JSON coordinates
     const points: Array<{ x: number; y: number }> = []
 
-    for (const line of lines) {
-      const start = line.start ?? { x: 0, y: 0 }
-      const end = line.end ?? { x: 0, y: 0 }
-
+    for (const segment of orderedSegments) {
       const startPos = applyToPoint(this.ctx.k2cMatPcb, {
-        x: start.x,
-        y: start.y,
+        x: segment.start.x,
+        y: segment.start.y,
       })
-      const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
-      // Add points if not duplicate
+      // Only add the start point if it's not a duplicate of the last point
       const lastPoint = points[points.length - 1]
       if (!lastPoint || !this.pointsEqual(lastPoint, startPos)) {
         points.push(startPos)
       }
-      const newLastPoint = points[points.length - 1]
-      if (newLastPoint && !this.pointsEqual(newLastPoint, endPos)) {
-        points.push(endPos)
-      }
     }
 
-    // Remove the last point if it's the same as the first (closed polygon)
-    if (points.length > 2) {
+    // Add the last endpoint if needed (for unclosed paths)
+    if (orderedSegments.length > 0) {
+      const lastSegment = orderedSegments[orderedSegments.length - 1]
+      const endPos = applyToPoint(this.ctx.k2cMatPcb, {
+        x: lastSegment.end.x,
+        y: lastSegment.end.y,
+      })
+
+      // Check if it closes the loop
       const firstPoint = points[0]
-      const lastPoint = points[points.length - 1]
-      if (firstPoint && lastPoint && this.pointsEqual(firstPoint, lastPoint)) {
-        points.pop()
+      if (firstPoint && !this.pointsEqual(firstPoint, endPos)) {
+        points.push(endPos)
       }
     }
 
@@ -185,6 +233,14 @@ export class CollectGraphicsStage extends ConverterStage {
   }
 
   private pointsEqual(
+    p1: { x: number; y: number },
+    p2: { x: number; y: number },
+  ): boolean {
+    const epsilon = 0.001
+    return Math.abs(p1.x - p2.x) < epsilon && Math.abs(p1.y - p2.y) < epsilon
+  }
+
+  private pointsEqualKicad(
     p1: { x: number; y: number },
     p2: { x: number; y: number },
   ): boolean {
