@@ -16,8 +16,10 @@ export class CollectNetsStage extends ConverterStage {
     const netArray = Array.isArray(nets) ? nets : [nets]
 
     for (const net of netArray) {
-      const netNum = (net as any).number ?? (net as any).ordinal ?? 0
-      const netName = net.name || `Net-${netNum}`
+      // kicadts stores net number in _id property
+      const netNum = (net as any)._id ?? (net as any).number ?? (net as any).ordinal ?? 0
+      // kicadts stores net name in _name property
+      const netName = (net as any)._name ?? net.name ?? `Net-${netNum}`
 
       // Store mapping
       this.ctx.netNumToName.set(netNum, netName)

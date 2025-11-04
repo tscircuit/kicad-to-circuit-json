@@ -1,5 +1,43 @@
 [
   {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_1",
+    "source_component_id": "pcb_component_0",
+    "name": "R1.1",
+    "pin_number": 1
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_2",
+    "source_component_id": "pcb_component_0",
+    "name": "R1.2",
+    "pin_number": 2
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_1_port_1",
+    "source_component_id": "pcb_component_1",
+    "name": "R2.1",
+    "pin_number": 1
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_1_port_2",
+    "source_component_id": "pcb_component_1",
+    "name": "R2.2",
+    "pin_number": 2
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_0",
+    "connected_source_port_ids": [
+      "pcb_component_0_port_1",
+      "pcb_component_1_port_1"
+    ],
+    "connected_source_net_ids": [],
+    "display_name": "Net-(R1-Pad1)"
+  },
+  {
     "type": "pcb_component",
     "pcb_component_id": "pcb_component_0",
     "center": {
@@ -32,7 +70,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "top",
-    "port_hints": ["1"],
+    "port_hints": [
+      "1"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -45,7 +85,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "top",
-    "port_hints": ["2"],
+    "port_hints": [
+      "2"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -58,7 +100,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "bottom",
-    "port_hints": ["1"],
+    "port_hints": [
+      "1"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -71,7 +115,9 @@
     "width": 0.54,
     "height": 0.64,
     "layer": "bottom",
-    "port_hints": ["2"],
+    "port_hints": [
+      "2"
+    ],
     "corner_radius": 0.0675,
     "shape": "rect"
   },
@@ -82,7 +128,10 @@
     "y": 1.5,
     "outer_diameter": 0.6,
     "hole_diameter": 0.3,
-    "layers": ["top", "top"]
+    "layers": [
+      "top",
+      "top"
+    ]
   },
   {
     "type": "pcb_board",

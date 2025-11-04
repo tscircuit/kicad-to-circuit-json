@@ -14,6 +14,7 @@ import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectTracesStage } from "./stages/pcb/CollectTracesStage"
 import { CollectViasStage } from "./stages/pcb/CollectViasStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
+import { CollectSourceTracesStage } from "./stages/pcb/CollectSourceTracesStage"
 
 export class KicadToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
@@ -76,6 +77,7 @@ export class KicadToCircuitJsonConverter {
         new CollectTracesStage(this.ctx),
         new CollectViasStage(this.ctx),
         new CollectGraphicsStage(this.ctx),
+        new CollectSourceTracesStage(this.ctx),
       )
     }
   }
@@ -120,6 +122,8 @@ export class KicadToCircuitJsonConverter {
     // Known table names in circuit-json-util
     const tableNames = [
       "source_component",
+      "source_port",
+      "source_trace",
       "schematic_component",
       "schematic_port",
       "schematic_trace",
