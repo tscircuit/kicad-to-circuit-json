@@ -13,6 +13,7 @@ import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectTracesStage } from "./stages/pcb/CollectTracesStage"
 import { CollectViasStage } from "./stages/pcb/CollectViasStage"
+import { CollectZonesStage } from "./stages/pcb/CollectZonesStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectSourceTracesStage } from "./stages/pcb/CollectSourceTracesStage"
 
@@ -76,6 +77,7 @@ export class KicadToCircuitJsonConverter {
         new CollectFootprintsStage(this.ctx),
         new CollectTracesStage(this.ctx),
         new CollectViasStage(this.ctx),
+        new CollectZonesStage(this.ctx),
         new CollectGraphicsStage(this.ctx),
         new CollectSourceTracesStage(this.ctx),
       )
@@ -135,6 +137,7 @@ export class KicadToCircuitJsonConverter {
       "pcb_hole",
       "pcb_trace",
       "pcb_via",
+      "pcb_copper_pour",
       "pcb_board",
       "pcb_silkscreen_text",
       "pcb_silkscreen_path",

@@ -24,6 +24,7 @@ export interface ConverterContext {
     vias?: number
     traces?: number
     labels?: number
+    copper_pours?: number
   }
 }
 
