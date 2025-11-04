@@ -42,7 +42,9 @@ export class CollectViasStage extends ConverterStage {
 
     if (via.layers) {
       // Extract layer array from kicadts layer object
-      const layersArray = Array.isArray(via.layers) ? via.layers : (via.layers._layers || [])
+      const layersArray = Array.isArray(via.layers)
+        ? via.layers
+        : via.layers._layers || []
 
       if (layersArray.length > 0) {
         fromLayer = this.mapLayer(layersArray[0])
@@ -70,7 +72,11 @@ export class CollectViasStage extends ConverterStage {
 
   private mapLayer(kicadLayer: string): "top" | "bottom" {
     // Map KiCad layer names to Circuit JSON layers
-    if (kicadLayer?.includes("B.Cu") || kicadLayer?.includes("Back") || kicadLayer?.includes("B_Cu")) {
+    if (
+      kicadLayer?.includes("B.Cu") ||
+      kicadLayer?.includes("Back") ||
+      kicadLayer?.includes("B_Cu")
+    ) {
       return "bottom"
     }
     return "top"
