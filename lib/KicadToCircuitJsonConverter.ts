@@ -129,6 +129,7 @@ export class KicadToCircuitJsonConverter {
       "schematic_trace",
       "schematic_net_label",
       "pcb_component",
+      "pcb_port",
       "pcb_smtpad",
       "pcb_plated_hole",
       "pcb_hole",

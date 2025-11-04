@@ -1,4 +1,5 @@
 import type { Footprint } from "kicadts"
+import type { LayerRef } from "circuit-json"
 
 /**
  * Determines the layer (top or bottom) of a component based on the footprint's layer information
@@ -18,7 +19,7 @@ export function getComponentLayer(footprint: Footprint): "top" | "bottom" {
 /**
  * Determines the layer (top or bottom) of a pad based on its layer information
  */
-export function determinePadLayer(layers: any): "top" | "bottom" {
+export function determineLayerFromLayers(layers: any): LayerRef {
   // Handle both raw arrays and kicadts layer objects
   const layerArray = Array.isArray(layers) ? layers : layers?._layers || []
 

@@ -1,8 +1,9 @@
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
-import { determinePadLayer } from "./layer-utils"
+import { determineLayerFromLayers } from "./layer-utils"
 import type { PcbSmtPad, PcbSmtPadRect } from "circuit-json"
+import { createPcbPort, type PadPortInfo } from "./process-ports"
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -20,20 +21,32 @@ export function processPads(
   const padArray = Array.isArray(pads) ? pads : [pads]
 
   for (const pad of padArray) {
-    processPad(ctx, pad, componentId, kicadComponentPos, componentRotation)
+    processPad({
+      ctx,
+      pad,
+      componentId,
+      kicadComponentPos: kicadComponentPos,
+      componentRotation: componentRotation,
+    })
   }
 }
 
 /**
  * Processes a single pad and creates the appropriate Circuit JSON element (SMD, plated hole, or NPTH)
  */
-export function processPad(
-  ctx: ConverterContext,
-  pad: any,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function processPad({
+  ctx,
+  pad,
+  componentId,
+  kicadComponentPos,
+  componentRotation,
+}: {
+  ctx: ConverterContext
+  pad: any
+  componentId: string
+  kicadComponentPos: { x: number; y: number }
+  componentRotation: number
+}): void {
   if (!ctx.k2cMatPcb) return
 
   const padAt = pad.at || { x: 0, y: 0, angle: 0 }
@@ -83,6 +96,24 @@ export function processPad(
   // In KiCad, rotation is CCW, and we need to account for Y-flip in CJ transform
   const totalRotation = -componentRotation - padRotation
 
+  // Create pcb_port for this pad (if it has a pad number)
+  const padNumber = pad.number?.toString()
+  if (padNumber) {
+    const padPortInfo: PadPortInfo = {
+      padNumber,
+      padType,
+      layers:
+        padType === "smd" ? [determineLayerFromLayers(pad.layers || [])] : [],
+      position: globalPos,
+    }
+
+    createPcbPort({
+      ctx,
+      componentId,
+      padInfo: padPortInfo,
+    })
+  }
+
   // Determine pad type and create appropriate CJ element
   if (padType === "smd") {
     createSmdPad({
@@ -129,7 +160,7 @@ export function createSmdPad({
   shape: string
 }) {
   const layers = pad.layers || []
-  const layer = determinePadLayer(layers)
+  const layer = determineLayerFromLayers(layers)
 
   let smtpad: PcbSmtPad = {
     type: "pcb_smtpad",
