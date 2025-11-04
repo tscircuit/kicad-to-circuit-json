@@ -1,13 +1,18 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.3/schema.json",
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "formatter": {
     "enabled": true,
     "indentStyle": "space"
   },
   "files": {
-    "includes": ["**", "!**/cosmos-export", "!**/dist", "!**/package.json"],
-    "excludes": ["**/*.json"]
+    "includes": [
+      "**",
+      "!**/cosmos-export",
+      "!**/dist",
+      "!**/package.json",
+      "!**/*.json"
+    ]
   },
   "javascript": {
     "formatter": {
