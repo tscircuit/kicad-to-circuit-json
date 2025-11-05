@@ -1833,7 +1833,6 @@
 		(uuid "0f333d01-69b4-4998-a090-fa42fa4cab6f")
 		(effects
 			(font
-				(face "Figtree")
 				(size 1.5 1.5)
 				(thickness 0.125)
 				(bold yes)
@@ -1987,7 +1986,6 @@
 		(uuid "6d7da327-8914-4499-ae4f-3f5428b35f83")
 		(effects
 			(font
-				(face "Figtree")
 				(size 0.75 0.75)
 				(thickness 0.1875)
 				(bold yes)
@@ -2152,7 +2150,6 @@
 		(uuid "ca8dead5-b569-4d0c-9ec0-50a77ac04be6")
 		(effects
 			(font
-				(face "Figtree")
 				(size 0.75 0.75)
 				(thickness 0.1875)
 				(bold yes)
@@ -2322,7 +2319,6 @@
 		(uuid "d6cbd4d9-e714-4e97-a8f1-23f50a764376")
 		(effects
 			(font
-				(face "Figtree")
 				(size 1.5 1.5)
 				(thickness 0.125)
 				(bold yes)
