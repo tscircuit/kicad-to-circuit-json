@@ -14776,7 +14776,7 @@
     "hole_diameter": 0.6,
     "layers": [
       "top",
-      "top"
+      "bottom"
     ]
   },
   {
@@ -14788,7 +14788,7 @@
     "hole_diameter": 0.6,
     "layers": [
       "top",
-      "top"
+      "bottom"
     ]
   },
   {
@@ -14800,7 +14800,7 @@
     "hole_diameter": 0.6,
     "layers": [
       "top",
-      "top"
+      "bottom"
     ]
   },
   {
@@ -14812,7 +14812,7 @@
     "hole_diameter": 0.6,
     "layers": [
       "top",
-      "top"
+      "bottom"
     ]
   },
   {
@@ -14824,7 +14824,7 @@
     "hole_diameter": 0.6,
     "layers": [
       "top",
-      "top"
+      "bottom"
     ]
   },
   {
@@ -14836,7 +14836,7 @@
     "hole_diameter": 0.6,
     "layers": [
       "top",
-      "top"
+      "bottom"
     ]
   },
   {
