@@ -6,6 +6,7 @@ import { applyToPoint } from "transformation-matrix"
  * - gr_line on Edge.Cuts → pcb_board.outline
  * - gr_text on silk layers → pcb_silkscreen_text
  * - gr_line on silk layers → pcb_silkscreen_path
+ * - gr_rect on copper layers (filled) → pcb_smtpad
  */
 export class CollectGraphicsStage extends ConverterStage {
   step(): boolean {
@@ -41,6 +42,14 @@ export class CollectGraphicsStage extends ConverterStage {
     // Create silkscreen paths
     for (const line of silkLines) {
       this.createSilkscreenPath(line)
+    }
+
+    // Process gr_rect elements from _otherChildren
+    const otherChildren = (this.ctx.kicadPcb as any)._otherChildren || []
+    const grRects = otherChildren.filter((c: any) => c.token === "gr_rect")
+
+    for (const rect of grRects) {
+      this.processRectangle(rect)
     }
 
     // Process gr_text elements
@@ -191,6 +200,66 @@ export class CollectGraphicsStage extends ConverterStage {
       route: [startPos, endPos],
       stroke_width: strokeWidth,
     })
+  }
+
+  private processRectangle(rect: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    // Extract rectangle properties from kicadts internal structure
+    const start = {
+      x: rect._sxStart?._x ?? 0,
+      y: rect._sxStart?._y ?? 0,
+    }
+    const end = {
+      x: rect._sxEnd?._x ?? 0,
+      y: rect._sxEnd?._y ?? 0,
+    }
+
+    const layerNames = rect._sxLayer?._names || []
+    const layerStr = layerNames.join(" ")
+
+    // Check if this is a filled rectangle on a copper layer
+    const isFilled =
+      rect._sxFill &&
+      (rect._sxFill.isFilled === true ||
+        String(rect._sxFill).includes("fill yes"))
+    const isCopperLayer = layerStr.includes(".Cu")
+
+    // Only create pcb_smtpad for filled rectangles on copper layers
+    if (!isFilled || !isCopperLayer) {
+      return
+    }
+
+    // Calculate center, width, and height in KiCad coordinates
+    const centerKicad = {
+      x: (start.x + end.x) / 2,
+      y: (start.y + end.y) / 2,
+    }
+    const widthKicad = Math.abs(end.x - start.x)
+    const heightKicad = Math.abs(end.y - start.y)
+
+    // Transform center to Circuit JSON coordinates
+    const centerCJ = applyToPoint(this.ctx.k2cMatPcb, centerKicad)
+
+    // Map layer to top/bottom
+    const layer = this.mapLayer(rect._sxLayer)
+
+    // Create pcb_smtpad
+    this.ctx.db.pcb_smtpad.insert({
+      pcb_component_id: "", // Not attached to a specific component
+      x: centerCJ.x,
+      y: centerCJ.y,
+      width: widthKicad,
+      height: heightKicad,
+      layer: layer,
+      shape: "rect",
+      port_hints: [],
+    } as any)
+
+    // Update stats
+    if (this.ctx.stats) {
+      this.ctx.stats.pads = (this.ctx.stats.pads || 0) + 1
+    }
   }
 
   private createSilkscreenText(text: any) {
