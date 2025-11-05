@@ -44,9 +44,8 @@ export class CollectGraphicsStage extends ConverterStage {
       this.createSilkscreenPath(line)
     }
 
-    // Process gr_rect elements from _otherChildren
-    const otherChildren = (this.ctx.kicadPcb as any)._otherChildren || []
-    const grRects = otherChildren.filter((c: any) => c.token === "gr_rect")
+    // Process gr_rect elements
+    const grRects = this.ctx.kicadPcb.graphicRects || []
 
     for (const rect of grRects) {
       this.processRectangle(rect)
