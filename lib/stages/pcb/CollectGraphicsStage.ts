@@ -7,6 +7,7 @@ import { applyToPoint } from "transformation-matrix"
  * - gr_text on silk layers → pcb_silkscreen_text
  * - gr_line on silk layers → pcb_silkscreen_path
  * - gr_rect on copper layers (filled) → pcb_smtpad
+ * - gr_poly on copper layers (filled) → pcb_smtpad (polygon)
  */
 export class CollectGraphicsStage extends ConverterStage {
   step(): boolean {
@@ -49,6 +50,14 @@ export class CollectGraphicsStage extends ConverterStage {
 
     for (const rect of grRects) {
       this.processRectangle(rect)
+    }
+
+    // Process gr_poly elements
+    const grPolys = this.ctx.kicadPcb.graphicPolys || []
+    const polyArray = Array.isArray(grPolys) ? grPolys : [grPolys]
+
+    for (const poly of polyArray) {
+      this.processPolygon(poly)
     }
 
     // Process gr_text elements
@@ -326,5 +335,166 @@ export class CollectGraphicsStage extends ConverterStage {
     if (points.length === 0) return 0
     const ys = points.map((p) => p.y)
     return Math.max(...ys) - Math.min(...ys)
+  }
+
+  private processPolygon(poly: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    // Extract layer information
+    const layerNames = poly._sxLayer?._names || []
+    const layerStr = layerNames.join(" ")
+
+    // Check if this is a filled polygon on a copper layer
+    const isFilled = poly._sxFill?.filled === true
+    const isCopperLayer = layerStr.includes(".Cu")
+
+    // Only create pcb_smtpad for filled polygons on copper layers
+    if (!isFilled || !isCopperLayer) {
+      return
+    }
+
+    // Extract points from the polygon
+    const ptsData = poly._sxPts?.points || []
+    const points: Array<{ x: number; y: number }> = []
+
+    for (const pt of ptsData) {
+      if (pt.token === "xy") {
+        // Simple XY point
+        points.push({ x: pt.x, y: pt.y })
+      } else if (pt.token === "arc") {
+        // Arc - convert to multiple points
+        // For simplicity, we'll approximate the arc with several line segments
+        const arcPoints = this.convertArcToPoints(
+          { x: pt._sxStart?._x, y: pt._sxStart?._y },
+          { x: pt._sxMid?._x, y: pt._sxMid?._y },
+          { x: pt._sxEnd?._x, y: pt._sxEnd?._y },
+        )
+        points.push(...arcPoints)
+      }
+    }
+
+    if (points.length < 3) {
+      // Need at least 3 points to form a polygon
+      return
+    }
+
+    // Transform all points to Circuit JSON coordinates
+    const transformedPoints = points.map((pt) =>
+      applyToPoint(this.ctx.k2cMatPcb!, pt),
+    )
+
+    // Map layer to top/bottom
+    const layer = this.mapLayer(poly._sxLayer)
+
+    // Create pcb_smtpad with polygon shape
+    this.ctx.db.pcb_smtpad.insert({
+      pcb_component_id: "", // Not attached to a specific component
+      shape: "polygon",
+      points: transformedPoints,
+      layer: layer,
+      port_hints: [],
+    } as any)
+
+    // Update stats
+    if (this.ctx.stats) {
+      this.ctx.stats.pads = (this.ctx.stats.pads || 0) + 1
+    }
+  }
+
+  /**
+   * Converts an arc defined by start, mid, and end points to multiple line segments
+   * Uses the three-point arc definition to approximate the curve
+   */
+  private convertArcToPoints(
+    start: { x: number; y: number },
+    mid: { x: number; y: number },
+    end: { x: number; y: number },
+    numSegments = 8,
+  ): Array<{ x: number; y: number }> {
+    const points: Array<{ x: number; y: number }> = []
+
+    // Calculate the center and radius of the arc using the three points
+    const { center, radius } = this.calculateArcCenter(start, mid, end)
+
+    if (!center || radius === 0) {
+      // If we can't calculate the arc, just return start and end
+      return [start, end]
+    }
+
+    // Calculate start and end angles
+    const startAngle = Math.atan2(start.y - center.y, start.x - center.x)
+    const endAngle = Math.atan2(end.y - center.y, end.x - center.x)
+    const midAngle = Math.atan2(mid.y - center.y, mid.x - center.x)
+
+    // Determine if we're going clockwise or counterclockwise
+    let angleRange = endAngle - startAngle
+
+    // Check if we need to go the long way around
+    const midFromStart = midAngle - startAngle
+    const endFromStart = endAngle - startAngle
+
+    // Normalize angles to -π to π range
+    const normalizeMid = ((midFromStart + Math.PI) % (2 * Math.PI)) - Math.PI
+    const normalizeEnd = ((endFromStart + Math.PI) % (2 * Math.PI)) - Math.PI
+
+    // If mid angle is not between start and end, we need to go the other way
+    if (
+      (normalizeEnd > 0 && (normalizeMid < 0 || normalizeMid > normalizeEnd)) ||
+      (normalizeEnd < 0 && (normalizeMid > 0 || normalizeMid < normalizeEnd))
+    ) {
+      angleRange = angleRange - Math.sign(angleRange) * 2 * Math.PI
+    }
+
+    // Generate points along the arc
+    for (let i = 1; i < numSegments; i++) {
+      const t = i / numSegments
+      const angle = startAngle + angleRange * t
+      points.push({
+        x: center.x + radius * Math.cos(angle),
+        y: center.y + radius * Math.sin(angle),
+      })
+    }
+
+    points.push(end)
+
+    return points
+  }
+
+  /**
+   * Calculate the center and radius of a circle passing through three points
+   */
+  private calculateArcCenter(
+    p1: { x: number; y: number },
+    p2: { x: number; y: number },
+    p3: { x: number; y: number },
+  ): { center: { x: number; y: number } | null; radius: number } {
+    const ax = p1.x
+    const ay = p1.y
+    const bx = p2.x
+    const by = p2.y
+    const cx = p3.x
+    const cy = p3.y
+
+    const d = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
+
+    if (Math.abs(d) < 1e-10) {
+      // Points are collinear
+      return { center: null, radius: 0 }
+    }
+
+    const ux =
+      ((ax * ax + ay * ay) * (by - cy) +
+        (bx * bx + by * by) * (cy - ay) +
+        (cx * cx + cy * cy) * (ay - by)) /
+      d
+    const uy =
+      ((ax * ax + ay * ay) * (cx - bx) +
+        (bx * bx + by * by) * (ax - cx) +
+        (cx * cx + cy * cy) * (bx - ax)) /
+      d
+
+    const radius = Math.sqrt((ax - ux) ** 2 + (ay - uy) ** 2)
+
+    return { center: { x: ux, y: uy }, radius }
   }
 }
