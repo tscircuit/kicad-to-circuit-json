@@ -2,7 +2,7 @@ import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
 import { determineLayerFromLayers } from "./layer-utils"
-import type { PcbSmtPad, PcbSmtPadRect } from "circuit-json"
+import type { PcbSmtPad, PcbSmtPadCircle, PcbSmtPadRect } from "circuit-json"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
 
 /**
@@ -173,14 +173,23 @@ export function createSmdPad({
     port_hints: [pad.number?.toString()],
   } as PcbSmtPad
 
-  const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
-  if (shape === "roundrect" && roundrectRatio !== undefined) {
-    // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
-    // Formula: corner_radius = min(width, height) * roundrect_rratio / 2
-    const minDimension = Math.min(size.x, size.y)
-    const cornerRadius = (minDimension * roundrectRatio) / 2
-    ;(smtpad as PcbSmtPadRect).corner_radius = cornerRadius
+  if (shape === "circle") {
+    smtpad.shape = "circle"
+    ;(smtpad as PcbSmtPadCircle).radius = Math.max(size.x, size.y) / 2
+  } else if (shape === "rect" || shape === "roundrect") {
     smtpad.shape = "rect"
+
+    const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+    if (shape === "roundrect" && roundrectRatio !== undefined) {
+      // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
+      // Formula: corner_radius = min(width, height) * roundrect_rratio / 2
+      const minDimension = Math.min(size.x, size.y)
+      const cornerRadius = (minDimension * roundrectRatio) / 2
+      ;(smtpad as PcbSmtPadRect).corner_radius = cornerRadius
+    }
+  } else {
+    // Default to rect for unknown shapes
+    ;(smtpad as PcbSmtPadRect).shape = "rect"
   }
 
   ctx.db.pcb_smtpad.insert(smtpad)

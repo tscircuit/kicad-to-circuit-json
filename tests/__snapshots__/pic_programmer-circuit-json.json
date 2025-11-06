@@ -2871,7 +2871,8 @@
     "layer": "bottom",
     "port_hints": [
       "1"
-    ]
+    ],
+    "shape": "rect"
   },
   {
     "type": "pcb_smtpad",
@@ -2884,7 +2885,8 @@
     "layer": "bottom",
     "port_hints": [
       "2"
-    ]
+    ],
+    "shape": "rect"
   },
   {
     "type": "pcb_plated_hole",

@@ -117,8 +117,8 @@
     "port_hints": [
       "1"
     ],
-    "corner_radius": 0.0675,
-    "shape": "rect"
+    "shape": "rect",
+    "corner_radius": 0.0675
   },
   {
     "type": "pcb_smtpad",
@@ -132,8 +132,8 @@
     "port_hints": [
       "2"
     ],
-    "corner_radius": 0.0675,
-    "shape": "rect"
+    "shape": "rect",
+    "corner_radius": 0.0675
   },
   {
     "type": "pcb_smtpad",
@@ -147,8 +147,8 @@
     "port_hints": [
       "1"
     ],
-    "corner_radius": 0.0675,
-    "shape": "rect"
+    "shape": "rect",
+    "corner_radius": 0.0675
   },
   {
     "type": "pcb_smtpad",
@@ -162,8 +162,8 @@
     "port_hints": [
       "2"
     ],
-    "corner_radius": 0.0675,
-    "shape": "rect"
+    "shape": "rect",
+    "corner_radius": 0.0675
   },
   {
     "type": "pcb_via",
