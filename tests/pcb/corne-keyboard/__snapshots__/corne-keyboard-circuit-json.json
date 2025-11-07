@@ -21620,30 +21620,58 @@
   {
     "type": "pcb_smtpad",
     "pcb_smtpad_id": "pcb_smtpad_467",
+    "shape": "polygon",
     "pcb_component_id": "pcb_component_148",
-    "x": 103.39749850000001,
-    "y": 34.0574255,
-    "width": 1,
-    "height": 0.5,
     "layer": "bottom",
     "port_hints": [
       "1"
     ],
-    "shape": "rect"
+    "points": [
+      {
+        "x": 103.89749850000001,
+        "y": 34.8074255
+      },
+      {
+        "x": 103.39749850000001,
+        "y": 34.8074255
+      },
+      {
+        "x": 103.39749850000001,
+        "y": 33.3074255
+      },
+      {
+        "x": 103.89749850000001,
+        "y": 33.3074255
+      }
+    ]
   },
   {
     "type": "pcb_smtpad",
     "pcb_smtpad_id": "pcb_smtpad_468",
+    "shape": "polygon",
     "pcb_component_id": "pcb_component_148",
-    "x": 102.0974985,
-    "y": 34.0574255,
-    "width": 1,
-    "height": 0.5,
     "layer": "bottom",
     "port_hints": [
       "2"
     ],
-    "shape": "rect"
+    "points": [
+      {
+        "x": 102.0974985,
+        "y": 34.8074255
+      },
+      {
+        "x": 101.5974985,
+        "y": 34.8074255
+      },
+      {
+        "x": 101.5974985,
+        "y": 33.3074255
+      },
+      {
+        "x": 102.0974985,
+        "y": 33.3074255
+      }
+    ]
   },
   {
     "type": "pcb_smtpad",
@@ -23076,30 +23104,58 @@
   {
     "type": "pcb_smtpad",
     "pcb_smtpad_id": "pcb_smtpad_566",
+    "shape": "polygon",
     "pcb_component_id": "pcb_component_165",
-    "x": -115.69250149999999,
-    "y": 34.0574255,
-    "width": 1,
-    "height": 0.5,
     "layer": "bottom",
     "port_hints": [
       "1"
     ],
-    "shape": "rect"
+    "points": [
+      {
+        "x": -115.19250149999999,
+        "y": 34.8074255
+      },
+      {
+        "x": -115.69250149999999,
+        "y": 34.8074255
+      },
+      {
+        "x": -115.69250149999999,
+        "y": 33.3074255
+      },
+      {
+        "x": -115.19250149999999,
+        "y": 33.3074255
+      }
+    ]
   },
   {
     "type": "pcb_smtpad",
     "pcb_smtpad_id": "pcb_smtpad_567",
+    "shape": "polygon",
     "pcb_component_id": "pcb_component_165",
-    "x": -116.9925015,
-    "y": 34.0574255,
-    "width": 1,
-    "height": 0.5,
     "layer": "bottom",
     "port_hints": [
       "2"
     ],
-    "shape": "rect"
+    "points": [
+      {
+        "x": -116.9925015,
+        "y": 34.8074255
+      },
+      {
+        "x": -117.4925015,
+        "y": 34.8074255
+      },
+      {
+        "x": -117.4925015,
+        "y": 33.3074255
+      },
+      {
+        "x": -116.9925015,
+        "y": 33.3074255
+      }
+    ]
   },
   {
     "type": "pcb_smtpad",

@@ -162,6 +162,66 @@ export function createSmdPad({
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
 
+  if (shape === "custom") {
+    // Access primitives from kicadts structure: _sxPrimitives._graphics
+    const primitives = pad._sxPrimitives?._graphics || pad.primitives || []
+    const primitivesArray = Array.isArray(primitives)
+      ? primitives
+      : [primitives]
+
+    // Look for gr_poly primitive
+    for (const primitive of primitivesArray) {
+      if (
+        primitive.token === "gr_poly" ||
+        primitive.gr_poly ||
+        (primitive as any).type === "gr_poly"
+      ) {
+        const grPoly = primitive.gr_poly || primitive
+
+        const contours = grPoly._contours || grPoly.contours || []
+        const contoursArray = Array.isArray(contours) ? contours : [contours]
+
+        // Extract points from the first contour (should be the main polygon)
+        const points: Array<{ x: number; y: number }> = []
+
+        for (const contour of contoursArray) {
+          const pts = contour.points || contour.pts || []
+          const ptsArray = Array.isArray(pts) ? pts : [pts]
+
+          for (const pt of ptsArray) {
+            if (pt.x !== undefined && pt.y !== undefined) {
+              points.push({ x: pt.x, y: -pt.y })
+            }
+          }
+        }
+
+        if (points.length > 0) {
+          // Create polygon SMT pad
+          const smtpad: any = {
+            type: "pcb_smtpad",
+            shape: "polygon",
+            pcb_component_id: componentId,
+            layer: layer,
+            port_hints: [pad.number?.toString()],
+            points: points.map((pt) => ({
+              x: pos.x + pt.x,
+              y: pos.y + pt.y,
+            })),
+          }
+
+          ctx.db.pcb_smtpad.insert(smtpad)
+
+          if (ctx.stats) {
+            ctx.stats.pads = (ctx.stats.pads || 0) + 1
+          }
+
+          return
+        }
+      }
+    }
+  }
+
+  // Handle standard shapes (circle, rect, roundrect)
   let smtpad: PcbSmtPad = {
     type: "pcb_smtpad",
     pcb_component_id: componentId,
