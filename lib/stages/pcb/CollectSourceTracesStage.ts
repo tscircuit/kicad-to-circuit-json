@@ -136,13 +136,20 @@ export class CollectSourceTracesStage extends ConverterStage {
       .find((sp: any) => sp.source_port_id === sourcePortId)
 
     if (!existingPort) {
+      // Get the source_component_id from the footprint UUID mapping
+      const footprintUuid = footprint.uuid?.value || footprint.tstamp?.value
+      const sourceComponentId =
+        footprintUuid && this.ctx.footprintUuidToSourceComponentId
+          ? this.ctx.footprintUuidToSourceComponentId.get(footprintUuid)
+          : undefined
+
       // Get the reference (component name) from footprint properties
       const reference = this.getFootprintReference(footprint)
 
       // Create the source_port
       this.ctx.db.source_port.insert({
         source_port_id: sourcePortId,
-        source_component_id: componentId,
+        source_component_id: sourceComponentId || componentId,
         name: `${reference || "U"}.${padNumber}`,
         pin_number: parseInt(padNumber, 10) || undefined,
       } as any)

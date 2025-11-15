@@ -24,9 +24,10 @@ export class InitializePcbContextStage extends ConverterStage {
     // 2. Flip Y axis (KiCad Y down, Circuit JSON Y up)
     this.ctx.k2cMatPcb = compose(scale(1, -1), translate(-center.x, -center.y))
 
-    // Initialize net mapping
+    // Initialize net mapping and component tracking
     this.ctx.netNumToName = new Map()
     this.ctx.footprintUuidToComponentId = new Map()
+    this.ctx.footprintUuidToSourceComponentId = new Map()
 
     this.finished = true
     return false
