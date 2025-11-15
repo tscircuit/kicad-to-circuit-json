@@ -25,18 +25,38 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   if (!uuid) return
 
   // Get the reference and value from footprint properties
-  const reference = getFootprintReference(footprint)
+  const refdes = getFootprintReference(footprint)
   const value = getFootprintValue(footprint)
 
   // Infer component type from reference prefix
-  const ftype = inferComponentType(reference)
+  const ftype = inferComponentType(refdes)
 
-  // Create source_component first
-  const sourceComponent = ctx.db.source_component.insert({
-    name: reference || "U",
+  // Create source_component with type-specific properties
+  const sourceComponentData: any = {
+    name: refdes || "U",
     ftype: ftype,
-    ...(value && { value }),
-  } as any)
+  }
+
+  // Add type-specific value properties based on ftype
+  if (value) {
+    // Sanitize value: replace comma with dot for numeric parsing (e.g., "5,1K" -> "5.1K")
+    const sanitizedValue = value.replace(/,/g, ".")
+
+    switch (ftype) {
+      case "simple_resistor":
+        sourceComponentData.resistance = sanitizedValue
+        break
+      case "simple_capacitor":
+        sourceComponentData.capacitance = sanitizedValue
+        break
+      case "simple_inductor":
+        sourceComponentData.inductance = sanitizedValue
+        break
+      // For other types (chips, diodes, transistors, etc.), don't add value properties
+    }
+  }
+
+  const sourceComponent = ctx.db.source_component.insert(sourceComponentData)
 
   const sourceComponentId = sourceComponent.source_component_id
 

@@ -3,1261 +3,1106 @@
     "type": "source_component",
     "source_component_id": "source_component_0",
     "name": "BT3",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_1",
     "name": "BT2",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_2",
     "name": "rBT2",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_3",
     "name": "rJ3",
-    "ftype": "simple_chip",
-    "value": "Conn_01x04"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_4",
     "name": "BT4",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_5",
     "name": "G***",
-    "ftype": "simple_chip",
-    "value": "LOGO"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_6",
     "name": "rBT1",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_7",
     "name": "rBT3",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_8",
     "name": "G***",
-    "ftype": "simple_chip",
-    "value": "LOGO"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_9",
     "name": "rBT4",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_10",
     "name": "BT1",
-    "ftype": "simple_chip",
-    "value": "Breakaway Tabs"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_11",
     "name": "J3",
-    "ftype": "simple_chip",
-    "value": "Conn_01x04"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_12",
     "name": "C1",
     "ftype": "simple_capacitor",
-    "value": "27p"
+    "capacitance": "27p"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_13",
     "name": "J4",
-    "ftype": "simple_chip",
-    "value": "Conn_01x03"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_14",
     "name": "rC1",
-    "ftype": "simple_chip",
-    "value": "27p"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_15",
     "name": "ZD1",
-    "ftype": "simple_chip",
-    "value": "RB521S30T1G"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_16",
     "name": "SW4",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_17",
     "name": "EXSW2",
-    "ftype": "simple_chip",
-    "value": "RotaryEncoder_Switch"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_18",
     "name": "rC7",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_19",
     "name": "LED16",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_20",
     "name": "rSW17",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_21",
     "name": "rLED16",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_22",
     "name": "LED3",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_23",
     "name": "rR3",
-    "ftype": "simple_chip",
-    "value": "1k"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_24",
     "name": "C16",
     "ftype": "simple_capacitor",
-    "value": "1u"
+    "capacitance": "1u"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_25",
     "name": "rC9",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_26",
     "name": "rC14",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_27",
     "name": "R8",
     "ftype": "simple_resistor",
-    "value": "5.6k"
+    "resistance": "5.6k"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_28",
     "name": "rSW15",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_29",
     "name": "rJ2",
-    "ftype": "simple_chip",
-    "value": "TRS"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_30",
     "name": "R7",
     "ftype": "simple_resistor",
-    "value": "10k"
+    "resistance": "10k"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_31",
     "name": "rC3",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_32",
     "name": "rSW9",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_33",
     "name": "rEXSW2",
-    "ftype": "simple_chip",
-    "value": "RotaryEncoder_Switch"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_34",
     "name": "rC8",
-    "ftype": "simple_chip",
-    "value": "1u"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_35",
     "name": "SW9",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_36",
     "name": "rU1",
-    "ftype": "simple_chip",
-    "value": "RP2040"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_37",
     "name": "SW5",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_38",
     "name": "rSW10",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_39",
     "name": "rLED4",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_40",
     "name": "C4",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_41",
     "name": "SMDSW2",
-    "ftype": "simple_chip",
-    "value": "TS-1088R-02026"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_42",
     "name": "LED17",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_43",
     "name": "C10",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_44",
     "name": "rJ1",
-    "ftype": "simple_chip",
-    "value": "TYPE-C-31-M-13C"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_45",
     "name": "rLED6",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_46",
     "name": "LED5",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_47",
     "name": "C5",
     "ftype": "simple_capacitor",
-    "value": "1u"
+    "capacitance": "1u"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_48",
     "name": "C15",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_49",
     "name": "rSW11",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_50",
     "name": "U3",
-    "ftype": "simple_chip",
-    "value": "TPD4E05U06DQAR"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_51",
     "name": "rLED2",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_52",
     "name": "LED8",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_53",
     "name": "U2",
-    "ftype": "simple_chip",
-    "value": "NCP1117LPST33T3G"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_54",
     "name": "rSW16",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_55",
     "name": "SW13",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_56",
     "name": "SW11",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_57",
     "name": "LED10",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_58",
     "name": "SW14",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_59",
     "name": "rSW18",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_60",
     "name": "C11",
     "ftype": "simple_capacitor",
-    "value": "10u"
+    "capacitance": "10u"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_61",
     "name": "rSW19",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_62",
     "name": "SW8",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_63",
     "name": "rLED20",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_64",
     "name": "LED12",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_65",
     "name": "rLED15",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_66",
     "name": "rR2",
-    "ftype": "simple_chip",
-    "value": "5.1k"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_67",
     "name": "rSW4",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_68",
     "name": "R1",
     "ftype": "simple_resistor",
-    "value": "5.1k"
+    "resistance": "5.1k"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_69",
     "name": "SW12",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_70",
     "name": "LED20",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_71",
     "name": "R3",
     "ftype": "simple_resistor",
-    "value": "1k"
+    "resistance": "1k"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_72",
     "name": "rEXLED1",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_73",
     "name": "rSW6",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_74",
     "name": "rSMDSW2",
-    "ftype": "simple_chip",
-    "value": "TS-1088R-02026"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_75",
     "name": "rD1",
-    "ftype": "simple_chip",
-    "value": "1N4148WT"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_76",
     "name": "rLED17",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_77",
     "name": "rU3",
-    "ftype": "simple_chip",
-    "value": "TPD4E05U06DQAR"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_78",
     "name": "R5",
     "ftype": "simple_resistor",
-    "value": "27"
+    "resistance": "27"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_79",
     "name": "rLED19",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_80",
     "name": "SW17",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_81",
     "name": "rC11",
-    "ftype": "simple_chip",
-    "value": "10u"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_82",
     "name": "LED15",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_83",
     "name": "LED1",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_84",
     "name": "C9",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_85",
     "name": "rY1",
-    "ftype": "simple_chip",
-    "value": "12MHz 18pF"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_86",
     "name": "rLED5",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_87",
     "name": "SW21",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_88",
     "name": "rC15",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_89",
     "name": "rSW3",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_90",
     "name": "rSW1",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_91",
     "name": "rLED8",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_92",
     "name": "rLED13",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_93",
     "name": "EXSW1",
-    "ftype": "simple_chip",
-    "value": "RotaryEncoder_Switch"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_94",
     "name": "SW7",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_95",
     "name": "rC5",
-    "ftype": "simple_chip",
-    "value": "1u"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_96",
     "name": "rC4",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_97",
     "name": "LED13",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_98",
     "name": "SMDSW1",
-    "ftype": "simple_chip",
-    "value": "TS-1088R-02026"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_99",
     "name": "LED21",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_100",
     "name": "U4",
-    "ftype": "simple_chip",
-    "value": "W25Q128JVSIQ"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_101",
     "name": "D1",
-    "ftype": "simple_diode",
-    "value": "1N4148WT"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_102",
     "name": "LED19",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_103",
     "name": "rSW13",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_104",
     "name": "LED7",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_105",
     "name": "rR7",
-    "ftype": "simple_chip",
-    "value": "10k"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_106",
     "name": "C8",
     "ftype": "simple_capacitor",
-    "value": "1u"
+    "capacitance": "1u"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_107",
     "name": "C13",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_108",
     "name": "C2",
     "ftype": "simple_capacitor",
-    "value": "27p"
+    "capacitance": "27p"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_109",
     "name": "rLED14",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_110",
     "name": "rLED9",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_111",
     "name": "EXLED2",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_112",
     "name": "rC10",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_113",
     "name": "Y1",
-    "ftype": "simple_chip",
-    "value": "12MHz 18pF"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_114",
     "name": "LED9",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_115",
     "name": "rJ4",
-    "ftype": "simple_chip",
-    "value": "Conn_01x03"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_116",
     "name": "rU4",
-    "ftype": "simple_chip",
-    "value": "W25Q128JVSIQ"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_117",
     "name": "rR6",
-    "ftype": "simple_chip",
-    "value": "1k"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_118",
     "name": "rSW2",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_119",
     "name": "rC16",
-    "ftype": "simple_chip",
-    "value": "1u"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_120",
     "name": "EXLED1",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_121",
     "name": "rZD1",
-    "ftype": "simple_chip",
-    "value": "RB521S30T1G"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_122",
     "name": "LED6",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_123",
     "name": "rSW8",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_124",
     "name": "rSMDSW1",
-    "ftype": "simple_chip",
-    "value": "TS-1088R-02026"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_125",
     "name": "SW10",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_126",
     "name": "rR5",
-    "ftype": "simple_chip",
-    "value": "27"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_127",
     "name": "rLED10",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_128",
     "name": "R4",
     "ftype": "simple_resistor",
-    "value": "27"
+    "resistance": "27"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_129",
     "name": "rLED12",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_130",
     "name": "C3",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_131",
     "name": "rSW21",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_132",
     "name": "rLED11",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_133",
     "name": "SW15",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_134",
     "name": "SW19",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_135",
     "name": "rSW12",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_136",
     "name": "rLED21",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_137",
     "name": "SW20",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_138",
     "name": "SW18",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_139",
     "name": "rC13",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_140",
     "name": "rLED3",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_141",
     "name": "LED11",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_142",
     "name": "rEXLED2",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_143",
     "name": "R9",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_144",
     "name": "C14",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_145",
     "name": "rSW20",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_146",
     "name": "J1",
-    "ftype": "simple_chip",
-    "value": "TYPE-C-31-M-13C"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_147",
     "name": "C6",
     "ftype": "simple_capacitor",
-    "value": "10u"
+    "capacitance": "10u"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_148",
     "name": "rJP1",
-    "ftype": "simple_chip",
-    "value": "SolderJumper_2_Bridged"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_149",
     "name": "rSW14",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_150",
     "name": "SW16",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_151",
     "name": "rR8",
-    "ftype": "simple_chip",
-    "value": "5.6k"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_152",
     "name": "C12",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_153",
     "name": "rU2",
-    "ftype": "simple_chip",
-    "value": "NCP1117LPST33T3G"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_154",
     "name": "SW1",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_155",
     "name": "rSW5",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_156",
     "name": "rR9",
-    "ftype": "simple_chip",
-    "value": "10K"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_157",
     "name": "SW2",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_158",
     "name": "rC6",
-    "ftype": "simple_chip",
-    "value": "10u"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_159",
     "name": "SW6",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_160",
     "name": "LED2",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_161",
     "name": "U1",
-    "ftype": "simple_chip",
-    "value": "RP2040"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_162",
     "name": "R2",
     "ftype": "simple_resistor",
-    "value": "5.1k"
+    "resistance": "5.1k"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_163",
     "name": "LED14",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_164",
     "name": "SW3",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_165",
     "name": "JP1",
-    "ftype": "simple_chip",
-    "value": "SolderJumper_2_Bridged"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_166",
     "name": "rR4",
-    "ftype": "simple_chip",
-    "value": "27"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_167",
     "name": "rC2",
-    "ftype": "simple_chip",
-    "value": "27p"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_168",
     "name": "rLED1",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_169",
     "name": "LED18",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_170",
     "name": "LED4",
-    "ftype": "simple_diode",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_171",
     "name": "C7",
     "ftype": "simple_capacitor",
-    "value": "100n"
+    "capacitance": "100n"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_172",
     "name": "rC12",
-    "ftype": "simple_chip",
-    "value": "100n"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_173",
     "name": "rLED7",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_174",
     "name": "rR1",
-    "ftype": "simple_chip",
-    "value": "5.1k"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_175",
     "name": "rEXSW1",
-    "ftype": "simple_chip",
-    "value": "RotaryEncoder_Switch"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_176",
     "name": "rLED18",
-    "ftype": "simple_chip",
-    "value": "YS-SK6812MINI-E"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_177",
     "name": "R6",
     "ftype": "simple_resistor",
-    "value": "1k"
+    "resistance": "1k"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_178",
     "name": "J2",
-    "ftype": "simple_chip",
-    "value": "TRS"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_179",
     "name": "rSW7",
-    "ftype": "simple_chip",
-    "value": "SW_Push"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_port",

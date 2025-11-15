@@ -4,441 +4,408 @@
     "source_component_id": "source_component_0",
     "name": "C1",
     "ftype": "simple_capacitor",
-    "value": "100µF"
+    "capacitance": "100µF"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_1",
     "name": "C2",
     "ftype": "simple_capacitor",
-    "value": "220uF"
+    "capacitance": "220uF"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_2",
     "name": "P101",
-    "ftype": "simple_chip",
-    "value": "CONN_1"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_3",
     "name": "P102",
-    "ftype": "simple_chip",
-    "value": "CONN_1"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_4",
     "name": "P103",
-    "ftype": "simple_chip",
-    "value": "CONN_1"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_5",
     "name": "P104",
-    "ftype": "simple_chip",
-    "value": "CONN_1"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_6",
     "name": "P105",
-    "ftype": "simple_chip",
-    "value": "CONN_1"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_7",
     "name": "P106",
-    "ftype": "simple_chip",
-    "value": "CONN_1"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_8",
     "name": "P3",
-    "ftype": "simple_chip",
-    "value": "SUPP40"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_9",
     "name": "U6",
-    "ftype": "simple_chip",
-    "value": "PIC_8_PINS"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_10",
     "name": "U1",
-    "ftype": "simple_chip",
-    "value": "24Cxx"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_11",
     "name": "U4",
-    "ftype": "simple_chip",
-    "value": "LT1373"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_12",
     "name": "P2",
-    "ftype": "simple_chip",
-    "value": "SUPP28"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_13",
     "name": "U5",
-    "ftype": "simple_chip",
-    "value": "PIC_18_PINS"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_14",
     "name": "U2",
-    "ftype": "simple_chip",
-    "value": "74HC125"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_15",
     "name": "D2",
-    "ftype": "simple_diode",
-    "value": "BAT43"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_16",
     "name": "D3",
-    "ftype": "simple_diode",
-    "value": "BAT43"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_17",
     "name": "D4",
-    "ftype": "simple_diode",
-    "value": "BAT43"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_18",
     "name": "D5",
-    "ftype": "simple_diode",
-    "value": "BAT43"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_19",
     "name": "D11",
-    "ftype": "simple_diode",
-    "value": "BAT43"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_20",
     "name": "D7",
-    "ftype": "simple_diode",
-    "value": "BAT43"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_21",
     "name": "D6",
-    "ftype": "simple_diode",
-    "value": "BAT43"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_22",
     "name": "J1",
-    "ftype": "simple_chip",
-    "value": "DB9-FEMAL"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_23",
     "name": "Q3",
-    "ftype": "simple_transistor",
-    "value": "BC307"
+    "ftype": "simple_transistor"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_24",
     "name": "Q2",
-    "ftype": "simple_transistor",
-    "value": "BC307"
+    "ftype": "simple_transistor"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_25",
     "name": "Q1",
-    "ftype": "simple_transistor",
-    "value": "BC237"
+    "ftype": "simple_transistor"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_26",
     "name": "R18",
     "ftype": "simple_resistor",
-    "value": "220"
+    "resistance": "220"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_27",
     "name": "R10",
     "ftype": "simple_resistor",
-    "value": "5,1K"
+    "resistance": "5.1K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_28",
     "name": "R9",
     "ftype": "simple_resistor",
-    "value": "2.2K"
+    "resistance": "2.2K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_29",
     "name": "R1",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_30",
     "name": "R2",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_31",
     "name": "R3",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_32",
     "name": "R4",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_33",
     "name": "R5",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_34",
     "name": "R7",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_35",
     "name": "R6",
     "ftype": "simple_resistor",
-    "value": "10K"
+    "resistance": "10K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_36",
     "name": "R21",
     "ftype": "simple_resistor",
-    "value": "470"
+    "resistance": "470"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_37",
     "name": "R20",
     "ftype": "simple_resistor",
-    "value": "2.2K"
+    "resistance": "2.2K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_38",
     "name": "R19",
     "ftype": "simple_resistor",
-    "value": "2.2K"
+    "resistance": "2.2K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_39",
     "name": "R17",
     "ftype": "simple_resistor",
-    "value": "22K"
+    "resistance": "22K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_40",
     "name": "R16",
     "ftype": "simple_resistor",
-    "value": "62K"
+    "resistance": "62K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_41",
     "name": "R15",
     "ftype": "simple_resistor",
-    "value": "6.2K"
+    "resistance": "6.2K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_42",
     "name": "R14",
     "ftype": "simple_resistor",
-    "value": "470"
+    "resistance": "470"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_43",
     "name": "R13",
     "ftype": "simple_resistor",
-    "value": "470"
+    "resistance": "470"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_44",
     "name": "R8",
     "ftype": "simple_resistor",
-    "value": "1K"
+    "resistance": "1K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_45",
     "name": "R12",
     "ftype": "simple_resistor",
-    "value": "470"
+    "resistance": "470"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_46",
     "name": "D8",
-    "ftype": "simple_diode",
-    "value": "RED-LED"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_47",
     "name": "D9",
-    "ftype": "simple_diode",
-    "value": "GREEN-LED"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_48",
     "name": "D12",
-    "ftype": "simple_diode",
-    "value": "YELLOW-LED"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_49",
     "name": "C4",
     "ftype": "simple_capacitor",
-    "value": "0"
+    "capacitance": "0"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_50",
     "name": "C5",
     "ftype": "simple_capacitor",
-    "value": "10nF"
+    "capacitance": "10nF"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_51",
     "name": "C7",
     "ftype": "simple_capacitor",
-    "value": "100nF"
+    "capacitance": "100nF"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_52",
     "name": "C9",
     "ftype": "simple_capacitor",
-    "value": "220nF"
+    "capacitance": "220nF"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_53",
     "name": "C6",
     "ftype": "simple_capacitor",
-    "value": "100nF"
+    "capacitance": "100nF"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_54",
     "name": "D10",
-    "ftype": "simple_diode",
-    "value": "SCHOTTKY"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_55",
     "name": "RV1",
-    "ftype": "simple_chip",
-    "value": "1K"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_56",
     "name": "P1",
-    "ftype": "simple_chip",
-    "value": "CONN_2"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_57",
     "name": "U3",
-    "ftype": "simple_chip",
-    "value": "7805"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_58",
     "name": "R11",
     "ftype": "simple_resistor",
-    "value": "22K"
+    "resistance": "22K"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_59",
     "name": "C3",
     "ftype": "simple_capacitor",
-    "value": "22uF/25V"
+    "capacitance": "22uF/25V"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_60",
     "name": "L1",
     "ftype": "simple_inductor",
-    "value": "22uH"
+    "inductance": "22uH"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_61",
     "name": "D1",
-    "ftype": "simple_diode",
-    "value": "1N4004"
+    "ftype": "simple_diode"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_62",
     "name": "JP1",
-    "ftype": "simple_chip",
-    "value": "JUMPER"
+    "ftype": "simple_chip"
   },
   {
     "type": "source_port",
