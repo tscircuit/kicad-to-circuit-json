@@ -6,6 +6,10 @@ import { getTextValue } from "./text-utils"
 import { processPads } from "./process-pads"
 import { processFootprintText } from "./process-text"
 import { processFootprintGraphics } from "./process-graphics"
+import {
+  inferComponentType,
+  inferTransistorTypeFromFootprint,
+} from "./infer-component-type"
 
 /**
  * Processes a complete footprint and creates all associated Circuit JSON elements
@@ -35,6 +39,14 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const sourceComponentData: any = {
     name: refdes || "U",
     ftype: ftype,
+  }
+
+  // For simple transistors, we must provide a transistor_type
+  if (ftype === "simple_transistor") {
+    sourceComponentData.transistor_type = inferTransistorTypeFromFootprint(
+      footprint,
+      value,
+    )
   }
 
   // Add type-specific value properties based on ftype
@@ -150,36 +162,4 @@ function getFootprintValue(footprint: Footprint): string | undefined {
   }
 
   return undefined
-}
-
-/**
- * Infers the component type (ftype) from the reference designator
- */
-function inferComponentType(reference: string | undefined): string {
-  if (!reference) return "simple_chip"
-
-  const prefix = reference.match(/^([A-Z]+)/)?.[1]
-
-  switch (prefix) {
-    case "R":
-      return "simple_resistor"
-    case "C":
-      return "simple_capacitor"
-    case "L":
-      return "simple_inductor"
-    case "D":
-      return "simple_diode"
-    case "LED":
-      return "simple_diode"
-    case "Q":
-      return "simple_transistor"
-    case "U":
-    case "IC":
-      return "simple_chip"
-    case "J":
-    case "P":
-      return "simple_chip" // Connectors treated as chips
-    default:
-      return "simple_chip"
-  }
 }

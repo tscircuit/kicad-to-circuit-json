@@ -143,19 +143,22 @@
     "type": "source_component",
     "source_component_id": "source_component_23",
     "name": "Q3",
-    "ftype": "simple_transistor"
+    "ftype": "simple_transistor",
+    "transistor_type": "npn"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_24",
     "name": "Q2",
-    "ftype": "simple_transistor"
+    "ftype": "simple_transistor",
+    "transistor_type": "npn"
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_25",
     "name": "Q1",
-    "ftype": "simple_transistor"
+    "ftype": "simple_transistor",
+    "transistor_type": "npn"
   },
   {
     "type": "source_component",
