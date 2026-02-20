@@ -366,8 +366,8 @@ export function createPlatedHole(
       platedHole.shape = "rotated_pill_hole_with_rect_pad"
       platedHole.hole_shape = "rotated_pill"
       platedHole.pad_shape = "rect"
-      platedHole.hole_width = drillY
-      platedHole.hole_height = drillX
+      platedHole.hole_width = drillX
+      platedHole.hole_height = drillY
       platedHole.hole_ccw_rotation = pad.at?.angle
       platedHole.rect_ccw_rotation = pad.at?.angle
       // For rotated pill holes, use swapped pad dimensions to match
