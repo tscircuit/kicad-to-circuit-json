@@ -26999,13 +26999,15 @@
     "port_hints": [
       "1"
     ],
-    "shape": "pill_hole_with_rect_pad",
+    "shape": "circular_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
-    "hole_width": 1,
-    "hole_height": 1,
+    "hole_diameter": 1,
+    "rect_ccw_rotation": 180,
     "rect_pad_width": 1.7,
     "rect_pad_height": 1.7,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27062,13 +27064,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27083,13 +27089,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27202,8 +27212,8 @@
       "R"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [
@@ -27223,8 +27233,8 @@
       "R"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [
@@ -27244,8 +27254,8 @@
       "S"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [
@@ -27265,8 +27275,8 @@
       "S"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [
@@ -27283,13 +27293,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27304,13 +27318,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27423,8 +27441,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.1,
     "outer_height": 2.1,
     "layers": [
@@ -27444,8 +27462,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.4,
+    "hole_height": 1.4,
     "outer_width": 1.1,
     "outer_height": 1.9,
     "layers": [
@@ -27465,8 +27483,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.1,
     "outer_height": 2.1,
     "layers": [
@@ -27486,8 +27504,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.4,
+    "hole_height": 1.4,
     "outer_width": 1.1,
     "outer_height": 1.9,
     "layers": [
@@ -27504,13 +27522,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27525,13 +27547,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27643,13 +27669,15 @@
     "port_hints": [
       "1"
     ],
-    "shape": "pill_hole_with_rect_pad",
+    "shape": "circular_hole_with_rect_pad",
     "hole_shape": "circle",
     "pad_shape": "rect",
-    "hole_width": 1,
-    "hole_height": 1,
+    "hole_diameter": 1,
+    "rect_ccw_rotation": 180,
     "rect_pad_width": 1.7,
     "rect_pad_height": 1.7,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27709,8 +27737,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.1,
     "outer_height": 2.1,
     "layers": [
@@ -27730,8 +27758,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.4,
+    "hole_height": 1.4,
     "outer_width": 1.1,
     "outer_height": 1.9,
     "layers": [
@@ -27751,8 +27779,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.1,
     "outer_height": 2.1,
     "layers": [
@@ -27772,8 +27800,8 @@
       "S1"
     ],
     "shape": "pill",
-    "hole_width": 0.6,
-    "hole_height": 0.6,
+    "hole_width": 1.4,
+    "hole_height": 1.4,
     "outer_width": 1.1,
     "outer_height": 1.9,
     "layers": [
@@ -27790,13 +27818,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27811,13 +27843,17 @@
     "port_hints": [
       ""
     ],
-    "shape": "pill_hole_with_rect_pad",
-    "hole_shape": "circle",
+    "shape": "rotated_pill_hole_with_rect_pad",
+    "hole_shape": "rotated_pill",
     "pad_shape": "rect",
-    "hole_width": 2.3,
+    "hole_width": 1.5,
     "hole_height": 2.3,
-    "rect_pad_width": 2.6,
-    "rect_pad_height": 2,
+    "hole_ccw_rotation": 90,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 2,
+    "rect_pad_height": 2.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -27930,8 +27966,8 @@
       "R"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [
@@ -27951,8 +27987,8 @@
       "R"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [
@@ -27972,8 +28008,8 @@
       "S"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [
@@ -27993,8 +28029,8 @@
       "S"
     ],
     "shape": "pill",
-    "hole_width": 0.8,
-    "hole_height": 0.8,
+    "hole_width": 1.6,
+    "hole_height": 1.6,
     "outer_width": 1.2,
     "outer_height": 2,
     "layers": [

@@ -6942,8 +6942,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 1.2,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 2.4,
     "rect_pad_height": 2.4,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -6985,8 +6988,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 1.2,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 2.4,
     "rect_pad_height": 2.4,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -7881,8 +7887,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 1,
-    "rect_pad_width": 2.8,
-    "rect_pad_height": 1.6,
+    "rect_ccw_rotation": 90,
+    "rect_pad_width": 1.6,
+    "rect_pad_height": 2.8,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -7903,8 +7912,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
-    "rect_pad_width": 1.6,
-    "rect_pad_height": 2.4,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 2.4,
+    "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -8072,8 +8084,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
-    "rect_pad_width": 1.6,
-    "rect_pad_height": 2.4,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 2.4,
+    "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -8241,8 +8256,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
-    "rect_pad_width": 1.6,
-    "rect_pad_height": 2.4,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 2.4,
+    "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -8410,8 +8428,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
-    "rect_pad_width": 1.6,
-    "rect_pad_height": 2.4,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 2.4,
+    "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -8999,8 +9020,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
-    "rect_pad_width": 1.6,
-    "rect_pad_height": 2.4,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 2.4,
+    "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9378,8 +9402,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
-    "rect_pad_width": 1.6,
-    "rect_pad_height": 2.4,
+    "rect_ccw_rotation": 180,
+    "rect_pad_width": 2.4,
+    "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9673,8 +9700,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9716,8 +9746,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9759,8 +9792,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9802,8 +9838,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9845,8 +9884,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9888,8 +9930,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -9931,8 +9976,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -10012,8 +10060,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 1,
+    "rect_ccw_rotation": 180,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -10181,6 +10232,20 @@
     "y": -7.620000000000019,
     "port_hints": [
       "1"
+    ],
+    "shape": "circular_hole_with_rect_pad",
+    "hole_shape": "circle",
+    "pad_shape": "rect",
+    "hole_diameter": 0.75,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 1.3,
+    "rect_pad_height": 1.3,
+    "rect_border_radius": 0.1625,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
+    "layers": [
+      "top",
+      "bottom"
     ]
   },
   {
@@ -10231,6 +10296,20 @@
     "y": 29.463999999999984,
     "port_hints": [
       "1"
+    ],
+    "shape": "circular_hole_with_rect_pad",
+    "hole_shape": "circle",
+    "pad_shape": "rect",
+    "hole_diameter": 0.75,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 1.3,
+    "rect_pad_height": 1.3,
+    "rect_border_radius": 0.1625,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
+    "layers": [
+      "top",
+      "bottom"
     ]
   },
   {
@@ -10281,6 +10360,20 @@
     "y": 20.319999999999993,
     "port_hints": [
       "1"
+    ],
+    "shape": "circular_hole_with_rect_pad",
+    "hole_shape": "circle",
+    "pad_shape": "rect",
+    "hole_diameter": 0.75,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 1.3,
+    "rect_pad_height": 1.3,
+    "rect_border_radius": 0.1625,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
+    "layers": [
+      "top",
+      "bottom"
     ]
   },
   {
@@ -11136,8 +11229,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.9,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.8,
     "rect_pad_height": 1.8,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -11177,8 +11273,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.9,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.8,
     "rect_pad_height": 1.8,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -11218,8 +11317,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.9,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.8,
     "rect_pad_height": 1.8,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -11449,8 +11551,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 0,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -11549,8 +11654,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 1.5,
+    "rect_ccw_rotation": 180,
     "rect_pad_width": 3,
     "rect_pad_height": 3,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -11590,8 +11698,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 1.1,
-    "rect_pad_width": 2,
-    "rect_pad_height": 1.905,
+    "rect_ccw_rotation": 0,
+    "rect_pad_width": 1.905,
+    "rect_pad_height": 2,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -11772,8 +11883,11 @@
     "hole_shape": "circle",
     "pad_shape": "rect",
     "hole_diameter": 0.8,
+    "rect_ccw_rotation": 180,
     "rect_pad_width": 1.6,
     "rect_pad_height": 1.6,
+    "hole_offset_x": 0,
+    "hole_offset_y": 0,
     "layers": [
       "top",
       "bottom"
@@ -82170,7 +82284,7 @@
       },
       {
         "x": 3.204451489794508,
-        "y": 10.539468110220653
+        "y": 10.539468110220668
       },
       {
         "x": 3.1291247714471524,
@@ -85268,7 +85382,7 @@
       },
       {
         "x": 2.271114972151281,
-        "y": -9.706721798265107
+        "y": -9.706721798265093
       },
       {
         "x": 2.177069097831236,
@@ -88205,7 +88319,7 @@
       },
       {
         "x": -29.900497215684567,
-        "y": -0.9965694929624505
+        "y": -0.9965694929624647
       },
       {
         "x": -29.97729763837694,
@@ -90241,7 +90355,7 @@
         "y": 26.94054261715352
       },
       {
-        "x": -31.631282225348315,
+        "x": -31.6312822253483,
         "y": 27.032116796511758
       },
       {
@@ -90510,7 +90624,7 @@
         "y": 26.940542617153618
       },
       {
-        "x": -24.174660350451347,
+        "x": -24.174660350451376,
         "y": 26.848054545511417
       },
       {
