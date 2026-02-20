@@ -299,6 +299,7 @@ export function createPlatedHole(
   sourcePortId?: string,
 ) {
   // Extract drill dimensions - drill can be scalar (circular) or x/y (oval)
+  console.log("ctx", pad.at?.angle)
   const drillX =
     typeof drill === "object"
       ? drill?.x || drill?._width || drill?.diameter || 0.8
@@ -358,6 +359,7 @@ export function createPlatedHole(
     platedHole.hole_height = holeDiameter
     platedHole.outer_width = outerWidth
     platedHole.outer_height = outerHeight
+    platedHole.hole_ccw_rotation = pad.at?.angle
     platedHole.layers = ["top", "bottom"]
   } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
     // Rectangular pad with circular hole
@@ -365,20 +367,20 @@ export function createPlatedHole(
       platedHole.shape = "rotated_pill_hole_with_rect_pad"
       platedHole.hole_shape = "rotated_pill"
       platedHole.pad_shape = "rect"
-      platedHole.hole_width = drillX
-      platedHole.hole_height = drillY
-      platedHole.hole_ccw_rotation = normalizedRotation
-      platedHole.rect_ccw_rotation = normalizedRotation
+      platedHole.hole_width = drillY
+      platedHole.hole_height = drillX
+      platedHole.hole_ccw_rotation = pad.at?.angle
+      platedHole.rect_ccw_rotation = pad.at?.angle
       // For rotated pill holes, use swapped pad dimensions to match
       // KiCad's rendered orientation in circuit-json.
-      platedHole.rect_pad_width = outerHeight
-      platedHole.rect_pad_height = outerWidth
+      platedHole.rect_pad_width = outerWidth
+      platedHole.rect_pad_height = outerHeight
     } else {
       platedHole.shape = "circular_hole_with_rect_pad"
       platedHole.hole_shape = "circle"
       platedHole.pad_shape = "rect"
       platedHole.hole_diameter = holeDiameter
-      platedHole.rect_ccw_rotation = normalizedRotation
+      platedHole.rect_ccw_rotation = pad.at?.angle
       platedHole.rect_pad_width = outerWidth
       platedHole.rect_pad_height = outerHeight
     }
