@@ -365,13 +365,12 @@ export function createPlatedHole(
     platedHole.layers = ["top", "bottom"]
   } else if (shape === "rect" || shape === "square") {
     // Rectangular pad with circular hole
-    platedHole.shape = "pill_hole_with_rect_pad"
+    platedHole.shape = "circular_hole_with_rect_pad"
     platedHole.hole_shape = "circle"
     platedHole.pad_shape = "rect"
-    platedHole.hole_width = holeDiameter
-    platedHole.hole_height = holeDiameter
-    platedHole.rect_pad_width = outerWidth
-    platedHole.rect_pad_height = outerHeight
+    platedHole.hole_diameter = holeDiameter
+    platedHole.rect_pad_width = outerHeight
+    platedHole.rect_pad_height = outerWidth
     platedHole.layers = ["top", "bottom"]
   }
 
