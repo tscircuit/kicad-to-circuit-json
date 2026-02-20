@@ -299,7 +299,6 @@ export function createPlatedHole(
   sourcePortId?: string,
 ) {
   // Extract drill dimensions - drill can be scalar (circular) or x/y (oval)
-  console.log("ctx", pad.at?.angle)
   const drillX =
     typeof drill === "object"
       ? drill?.x || drill?._width || drill?.diameter || 0.8
