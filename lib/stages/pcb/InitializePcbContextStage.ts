@@ -1,5 +1,5 @@
-import { ConverterStage } from "../../types"
 import { compose, scale, translate } from "transformation-matrix"
+import { ConverterStage } from "../../types"
 
 /**
  * InitializePcbContextStage sets up the coordinate transformation
@@ -26,6 +26,7 @@ export class InitializePcbContextStage extends ConverterStage {
 
     // Initialize net mapping and component tracking
     this.ctx.netNumToName = new Map()
+    this.ctx.netNumToSourceTraceId = new Map()
     this.ctx.footprintUuidToComponentId = new Map()
     this.ctx.footprintUuidToSourceComponentId = new Map()
 

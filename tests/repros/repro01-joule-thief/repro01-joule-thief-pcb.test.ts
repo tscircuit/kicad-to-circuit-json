@@ -18,6 +18,19 @@ test("kicad-to-circuit-json repro01: joule-thief PCB", async () => {
   expect(circuitJson).toBeDefined()
   expect(circuitJson.length).toBeGreaterThan(0)
 
+  const sourceTraces = (circuitJson as any[]).filter(
+    (el) => el.type === "source_trace",
+  )
+  expect(sourceTraces.length).toBeGreaterThan(0)
+
+  const sourceTraceIds = new Set(
+    sourceTraces.map((trace) => trace.source_trace_id).filter(Boolean),
+  )
+  const pcbTracesWithSourceTrace = (circuitJson as any[]).filter(
+    (el) => el.type === "pcb_trace" && sourceTraceIds.has(el.source_trace_id),
+  )
+  expect(pcbTracesWithSourceTrace.length).toBeGreaterThan(0)
+
   const fs = await import("node:fs/promises")
   await fs.mkdir("tests/repros/repro01-joule-thief/__snapshots__", {
     recursive: true,

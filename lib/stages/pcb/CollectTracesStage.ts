@@ -1,5 +1,5 @@
-import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import { ConverterStage } from "../../types"
 
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
@@ -7,7 +7,12 @@ import { applyToPoint } from "transformation-matrix"
  */
 export class CollectTracesStage extends ConverterStage {
   step(): boolean {
-    if (!this.ctx.kicadPcb || !this.ctx.k2cMatPcb || !this.ctx.netNumToName) {
+    if (
+      !this.ctx.kicadPcb ||
+      !this.ctx.k2cMatPcb ||
+      !this.ctx.netNumToName ||
+      !this.ctx.netNumToSourceTraceId
+    ) {
       this.finished = true
       return false
     }
@@ -25,7 +30,7 @@ export class CollectTracesStage extends ConverterStage {
   }
 
   private createTraceFromSegment(segment: any) {
-    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToName) return
+    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceTraceId) return
 
     const start = segment.start || { x: 0, y: 0 }
     const end = segment.end || { x: 0, y: 0 }
@@ -38,8 +43,11 @@ export class CollectTracesStage extends ConverterStage {
     const mappedLayer = this.mapLayer(layerStr)
 
     // Get net info
-    const netNum = segment.net || 0
-    const netName = this.ctx.netNumToName.get(netNum) || ""
+    const netNum = this.getSegmentNet(segment)
+    const sourceTraceId =
+      netNum !== null
+        ? (this.ctx.netNumToSourceTraceId.get(netNum) ?? undefined)
+        : undefined
 
     // Transform coordinates
     const startPos = applyToPoint(this.ctx.k2cMatPcb, {
@@ -69,6 +77,7 @@ export class CollectTracesStage extends ConverterStage {
     // Create pcb_trace for this segment
     this.ctx.db.pcb_trace.insert({
       route: route as any,
+      source_trace_id: sourceTraceId,
       pcb_port_id: undefined, // Not connected to a specific port yet
     } as any)
 
@@ -83,5 +92,17 @@ export class CollectTracesStage extends ConverterStage {
       return "bottom"
     }
     return "top"
+  }
+
+  private getSegmentNet(segment: any): number | null {
+    const net = segment?.net
+    if (!net) return null
+
+    if (typeof net === "number") return net
+    if (typeof net === "object") {
+      return net._id ?? net.number ?? net.ordinal ?? null
+    }
+
+    return null
   }
 }

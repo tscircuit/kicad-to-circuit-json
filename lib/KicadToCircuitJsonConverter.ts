@@ -1,21 +1,19 @@
 import { cju } from "@tscircuit/circuit-json-util"
-import type { ConverterContext, ConverterStage } from "./types"
 import { parseKicadPcb, parseKicadSch } from "kicadts"
-
-// Import schematic stages
-import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
-import { CollectLibrarySymbolsStage } from "./stages/schematic/CollectLibrarySymbolsStage"
-import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematicTracesStage"
-
-// Import PCB stages
-import { InitializePcbContextStage } from "./stages/pcb/InitializePcbContextStage"
-import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
+import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
+import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
+import { CollectSourceTracesStage } from "./stages/pcb/CollectSourceTracesStage"
 import { CollectTracesStage } from "./stages/pcb/CollectTracesStage"
 import { CollectViasStage } from "./stages/pcb/CollectViasStage"
 import { CollectZonesStage } from "./stages/pcb/CollectZonesStage"
-import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
-import { CollectSourceTracesStage } from "./stages/pcb/CollectSourceTracesStage"
+// Import PCB stages
+import { InitializePcbContextStage } from "./stages/pcb/InitializePcbContextStage"
+import { CollectLibrarySymbolsStage } from "./stages/schematic/CollectLibrarySymbolsStage"
+import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematicTracesStage"
+// Import schematic stages
+import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
+import type { ConverterContext, ConverterStage } from "./types"
 
 export class KicadToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
@@ -75,11 +73,11 @@ export class KicadToCircuitJsonConverter {
         new InitializePcbContextStage(this.ctx),
         new CollectNetsStage(this.ctx),
         new CollectFootprintsStage(this.ctx),
+        new CollectSourceTracesStage(this.ctx),
         new CollectTracesStage(this.ctx),
         new CollectViasStage(this.ctx),
         new CollectZonesStage(this.ctx),
         new CollectGraphicsStage(this.ctx),
-        new CollectSourceTracesStage(this.ctx),
       )
     }
   }
