@@ -298,27 +298,23 @@ export function createPlatedHole(
   pcbPortId?: string,
   sourcePortId?: string,
 ) {
-  // Extract drill diameter - can be a number or object with diameter property
-  const holeDiameter =
+  // Extract drill dimensions - drill can be scalar (circular) or x/y (oval)
+  const drillX =
     typeof drill === "object"
-      ? drill?.diameter || drill?.x || 0.8
+      ? drill?.x || drill?._width || drill?.diameter || 0.8
       : drill || 0.8
-
-  // Determine hole shape - map KiCad pad shapes to CJ plated hole shapes
-  const holeShape:
-    | "circle"
-    | "pill"
-    | "oval"
-    | "circular_hole_with_rect_pad"
-    | "pill_hole_with_rect_pad"
-    | "rotated_pill_hole_with_rect_pad" = "circle"
+  const drillY =
+    typeof drill === "object"
+      ? drill?.y || drill?._height || drill?.diameter || drillX
+      : drill || 0.8
+  const holeDiameter = Math.max(drillX, drillY)
 
   // Determine drill shape (circular or oval)
   const drillIsOval =
     typeof drill === "object" &&
-    drill.x !== undefined &&
-    drill.y !== undefined &&
-    drill.x !== drill.y
+    drillX !== undefined &&
+    drillY !== undefined &&
+    drillX !== drillY
 
   // Apply rotation to dimensions for oval/pill pads
   // Normalize rotation to 0-360 range
@@ -363,14 +359,34 @@ export function createPlatedHole(
     platedHole.outer_width = outerWidth
     platedHole.outer_height = outerHeight
     platedHole.layers = ["top", "bottom"]
-  } else if (shape === "rect" || shape === "square") {
+  } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
     // Rectangular pad with circular hole
-    platedHole.shape = "circular_hole_with_rect_pad"
-    platedHole.hole_shape = "circle"
-    platedHole.pad_shape = "rect"
-    platedHole.hole_diameter = holeDiameter
+    if (drillIsOval) {
+      platedHole.shape = "rotated_pill_hole_with_rect_pad"
+      platedHole.hole_shape = "rotated_pill"
+      platedHole.pad_shape = "rect"
+      platedHole.hole_width = drillX
+      platedHole.hole_height = drillY
+      platedHole.hole_ccw_rotation = normalizedRotation
+      platedHole.rect_ccw_rotation = normalizedRotation
+    } else {
+      platedHole.shape = "circular_hole_with_rect_pad"
+      platedHole.hole_shape = "circle"
+      platedHole.pad_shape = "rect"
+      platedHole.hole_diameter = holeDiameter
+    }
     platedHole.rect_pad_width = outerHeight
     platedHole.rect_pad_height = outerWidth
+    if (shape === "roundrect") {
+      const roundrectRatio =
+        pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+      if (roundrectRatio !== undefined) {
+        const minDimension = Math.min(outerWidth, outerHeight)
+        platedHole.rect_border_radius = (minDimension * roundrectRatio) / 2
+      }
+    }
+    platedHole.hole_offset_x = 0
+    platedHole.hole_offset_y = 0
     platedHole.layers = ["top", "bottom"]
   }
 
