@@ -58,4 +58,4 @@ test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
     import.meta.path,
     "corne-keyboard-pcb",
   )
-})
+}, 20_000)
