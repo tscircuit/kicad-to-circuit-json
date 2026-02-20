@@ -17,12 +17,16 @@
   "devDependencies": {
     "@biomejs/biome": "^2.2.7",
     "@tscircuit/circuit-json-util": "^0.0.72",
+    "@tscircuit/copper-pour-solver": "^0.0.20",
+    "@tscircuit/core": "^0.0.1051",
+    "@tscircuit/math-utils": "^0.0.33",
     "@types/bun": "latest",
     "bun-match-svg": "^0.0.14",
-    "circuit-json-to-connectivity-map": "^0.0.22",
+    "circuit-json-to-connectivity-map": "^0.0.23",
     "circuit-to-svg": "^0.0.262",
     "kicadts": "^0.0.24",
     "react": "^19.2.0",
+    "tscircuit": "^0.0.1350",
     "tsup": "^8.5.0"
   },
   "peerDependencies": {

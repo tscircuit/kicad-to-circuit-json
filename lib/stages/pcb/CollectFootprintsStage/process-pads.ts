@@ -1,8 +1,8 @@
+import type { PcbSmtPadCircle, PcbSmtPadRect } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
 import { determineLayerFromLayers } from "./layer-utils"
-import type { PcbSmtPad, PcbSmtPadCircle, PcbSmtPadRect } from "circuit-json"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
 
 /**
@@ -98,20 +98,32 @@ export function processPad({
 
   // Create pcb_port for this pad (if it has a pad number)
   const padNumber = pad.number?.toString()
+  let pcbPortId: string | undefined
+  let sourcePortId: string | undefined
   if (padNumber) {
+    const padLayers =
+      padType === "smd"
+        ? [determineLayerFromLayers(pad.layers || [])]
+        : padType === "thru_hole"
+          ? ["top", "bottom"]
+          : []
+
     const padPortInfo: PadPortInfo = {
       padNumber,
       padType,
-      layers:
-        padType === "smd" ? [determineLayerFromLayers(pad.layers || [])] : [],
+      layers: padLayers,
       position: globalPos,
     }
 
-    createPcbPort({
+    pcbPortId = createPcbPort({
       ctx,
       componentId,
       padInfo: padPortInfo,
     })
+
+    if (pcbPortId) {
+      sourcePortId = `${componentId}_port_${padNumber}`
+    }
   }
 
   // Determine pad type and create appropriate CJ element
@@ -123,6 +135,8 @@ export function processPad({
       pos: globalPos,
       size,
       shape: padShape,
+      pcbPortId,
+      sourcePortId,
     })
   } else if (padType === "np_thru_hole") {
     createNpthHole(ctx, pad, componentId, globalPos, drill)
@@ -137,6 +151,8 @@ export function processPad({
       drill,
       padShape,
       totalRotation,
+      pcbPortId,
+      sourcePortId,
     )
   }
 }
@@ -151,6 +167,8 @@ export function createSmdPad({
   pos,
   size,
   shape,
+  pcbPortId,
+  sourcePortId,
 }: {
   ctx: ConverterContext
   pad: any
@@ -158,6 +176,8 @@ export function createSmdPad({
   pos: { x: number; y: number }
   size: { x: number; y: number }
   shape: string
+  pcbPortId?: string
+  sourcePortId?: string
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
@@ -201,6 +221,8 @@ export function createSmdPad({
             type: "pcb_smtpad",
             shape: "polygon",
             pcb_component_id: componentId,
+            pcb_port_id: pcbPortId,
+            source_port_id: sourcePortId,
             layer: layer,
             port_hints: [pad.number?.toString()],
             points: points.map((pt) => ({
@@ -222,7 +244,7 @@ export function createSmdPad({
   }
 
   // Handle standard shapes (circle, rect, roundrect)
-  let smtpad: PcbSmtPad = {
+  const smtpad: any = {
     type: "pcb_smtpad",
     pcb_component_id: componentId,
     x: pos.x,
@@ -230,8 +252,10 @@ export function createSmdPad({
     width: size.x,
     height: size.y,
     layer: layer,
+    pcb_port_id: pcbPortId,
+    source_port_id: sourcePortId,
     port_hints: [pad.number?.toString()],
-  } as PcbSmtPad
+  }
 
   if (shape === "circle") {
     smtpad.shape = "circle"
@@ -271,6 +295,8 @@ export function createPlatedHole(
   drill: any,
   shape: string,
   rotation = 0,
+  pcbPortId?: string,
+  sourcePortId?: string,
 ) {
   // Extract drill diameter - can be a number or object with diameter property
   const holeDiameter =
@@ -279,7 +305,7 @@ export function createPlatedHole(
       : drill || 0.8
 
   // Determine hole shape - map KiCad pad shapes to CJ plated hole shapes
-  let holeShape:
+  const holeShape:
     | "circle"
     | "pill"
     | "oval"
@@ -316,6 +342,8 @@ export function createPlatedHole(
   // Build plated hole object based on shape
   const platedHole: any = {
     pcb_component_id: componentId,
+    pcb_port_id: pcbPortId,
+    source_port_id: sourcePortId,
     x: pos.x,
     y: pos.y,
     port_hints: [pad.number?.toString()],

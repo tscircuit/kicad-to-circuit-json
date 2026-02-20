@@ -1,5 +1,5 @@
-import type { ConverterContext } from "../../../types"
 import type { LayerRef } from "circuit-json"
+import type { ConverterContext } from "../../../types"
 
 export interface PadPortInfo {
   padNumber: string
@@ -16,15 +16,15 @@ export function createPcbPort({
   ctx: ConverterContext
   componentId: string
   padInfo: PadPortInfo
-}): boolean {
+}): string | undefined {
   if (!padInfo.layers || padInfo.layers.length === 0) {
-    return false
+    return undefined
   }
 
   // Generate the source_port_id that will be created by CollectSourceTracesStage
   const sourcePortId = `${componentId}_port_${padInfo.padNumber}`
 
-  ctx.db.pcb_port.insert({
+  const insertedPort = ctx.db.pcb_port.insert({
     pcb_component_id: componentId,
     source_port_id: sourcePortId,
     x: padInfo.position.x,
@@ -32,5 +32,5 @@ export function createPcbPort({
     layers: padInfo.layers as LayerRef[],
   })
 
-  return true
+  return insertedPort.pcb_port_id
 }

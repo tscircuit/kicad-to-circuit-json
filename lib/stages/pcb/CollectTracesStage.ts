@@ -6,6 +6,8 @@ import { ConverterStage } from "../../types"
  * Each segment becomes its own trace with a simple 2-point route.
  */
 export class CollectTracesStage extends ConverterStage {
+  private readonly PORT_MATCH_TOLERANCE = 1e-3
+
   step(): boolean {
     if (
       !this.ctx.kicadPcb ||
@@ -57,6 +59,9 @@ export class CollectTracesStage extends ConverterStage {
     const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
     // Create a simple 2-point route
+    const startPcbPortId = this.findPortAtPosition(startPos, mappedLayer)
+    const endPcbPortId = this.findPortAtPosition(endPos, mappedLayer)
+
     const route = [
       {
         route_type: "wire" as const,
@@ -64,6 +69,7 @@ export class CollectTracesStage extends ConverterStage {
         y: startPos.y,
         width: width,
         layer: mappedLayer,
+        start_pcb_port_id: startPcbPortId,
       },
       {
         route_type: "wire" as const,
@@ -71,6 +77,7 @@ export class CollectTracesStage extends ConverterStage {
         y: endPos.y,
         width: width,
         layer: mappedLayer,
+        end_pcb_port_id: endPcbPortId,
       },
     ]
 
@@ -104,5 +111,28 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     return null
+  }
+
+  private findPortAtPosition(
+    point: { x: number; y: number },
+    layer: "top" | "bottom",
+  ): string | undefined {
+    const ports = this.ctx.db.pcb_port.list() as any[]
+
+    for (const port of ports) {
+      const layers = port.layers as string[] | undefined
+      if (layers?.length && !layers.includes(layer)) {
+        continue
+      }
+
+      if (
+        Math.abs((port.x ?? 0) - point.x) <= this.PORT_MATCH_TOLERANCE &&
+        Math.abs((port.y ?? 0) - point.y) <= this.PORT_MATCH_TOLERANCE
+      ) {
+        return port.pcb_port_id
+      }
+    }
+
+    return undefined
   }
 }

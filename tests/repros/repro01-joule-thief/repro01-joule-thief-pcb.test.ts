@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
+import { getFullConnectivityMapFromCircuitJson } from "circuit-json-to-connectivity-map"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadPngs"
 import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
@@ -30,6 +31,46 @@ test("kicad-to-circuit-json repro01: joule-thief PCB", async () => {
     (el) => el.type === "pcb_trace" && sourceTraceIds.has(el.source_trace_id),
   )
   expect(pcbTracesWithSourceTrace.length).toBeGreaterThan(0)
+
+  const smtPads = (circuitJson as any[]).filter(
+    (el) => el.type === "pcb_smtpad",
+  )
+  const platedHoles = (circuitJson as any[]).filter(
+    (el) => el.type === "pcb_plated_hole",
+  )
+  expect(smtPads.some((pad) => pad.pcb_port_id)).toBe(true)
+  expect(platedHoles.some((hole) => hole.pcb_port_id)).toBe(true)
+
+  const connectivityMap = getFullConnectivityMapFromCircuitJson(
+    circuitJson as any,
+  )
+  const tracesWithTwoEndpoints = pcbTracesWithSourceTrace
+    .map((trace) => {
+      const startPortId = trace.route?.find(
+        (rp: any) => rp.start_pcb_port_id,
+      )?.start_pcb_port_id
+      const endPortId = trace.route?.find(
+        (rp: any) => rp.end_pcb_port_id,
+      )?.end_pcb_port_id
+
+      return {
+        traceId: trace.pcb_trace_id,
+        startPortId,
+        endPortId,
+      }
+    })
+    .filter((trace) => trace.traceId && trace.startPortId && trace.endPortId)
+
+  expect(tracesWithTwoEndpoints.length).toBeGreaterThan(0)
+
+  for (const trace of tracesWithTwoEndpoints.slice(0, 20)) {
+    expect(
+      connectivityMap.areIdsConnected(trace.traceId, trace.startPortId),
+    ).toBe(true)
+    expect(
+      connectivityMap.areIdsConnected(trace.traceId, trace.endPortId),
+    ).toBe(true)
+  }
 
   const fs = await import("node:fs/promises")
   await fs.mkdir("tests/repros/repro01-joule-thief/__snapshots__", {
