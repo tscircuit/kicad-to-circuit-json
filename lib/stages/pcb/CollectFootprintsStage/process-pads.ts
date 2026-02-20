@@ -259,7 +259,7 @@ export function createSmdPad({
 
   if (shape === "circle") {
     smtpad.shape = "circle"
-    ;(smtpad as PcbSmtPadCircle).radius = Math.max(size.x, size.y) / 2
+      ; (smtpad as PcbSmtPadCircle).radius = Math.max(size.x, size.y) / 2
   } else if (shape === "rect" || shape === "roundrect") {
     smtpad.shape = "rect"
 
@@ -269,11 +269,11 @@ export function createSmdPad({
       // Formula: corner_radius = min(width, height) * roundrect_rratio / 2
       const minDimension = Math.min(size.x, size.y)
       const cornerRadius = (minDimension * roundrectRatio) / 2
-      ;(smtpad as PcbSmtPadRect).corner_radius = cornerRadius
+        ; (smtpad as PcbSmtPadRect).corner_radius = cornerRadius
     }
   } else {
     // Default to rect for unknown shapes
-    ;(smtpad as PcbSmtPadRect).shape = "rect"
+    ; (smtpad as PcbSmtPadRect).shape = "rect"
   }
 
   ctx.db.pcb_smtpad.insert(smtpad)
@@ -366,8 +366,8 @@ export function createPlatedHole(
       platedHole.shape = "rotated_pill_hole_with_rect_pad"
       platedHole.hole_shape = "rotated_pill"
       platedHole.pad_shape = "rect"
-      platedHole.hole_width = drillX
-      platedHole.hole_height = drillY
+      platedHole.hole_width = drillY
+      platedHole.hole_height = drillX
       platedHole.hole_ccw_rotation = pad.at?.angle
       platedHole.rect_ccw_rotation = pad.at?.angle
       // For rotated pill holes, use swapped pad dimensions to match
