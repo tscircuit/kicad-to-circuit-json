@@ -7633,7 +7633,7 @@
     "hole_height": 0.75,
     "outer_width": 1.2,
     "outer_height": 1.75,
-    "hole_ccw_rotation": 90,
+    "ccw_rotation": 90,
     "layers": [
       "top",
       "bottom"
@@ -7655,7 +7655,7 @@
     "hole_height": 0.75,
     "outer_width": 1.2,
     "outer_height": 1.75,
-    "hole_ccw_rotation": 90,
+    "ccw_rotation": 90,
     "layers": [
       "top",
       "bottom"
@@ -7677,7 +7677,7 @@
     "hole_height": 0.75,
     "outer_width": 1.2,
     "outer_height": 1.75,
-    "hole_ccw_rotation": 90,
+    "ccw_rotation": 90,
     "layers": [
       "top",
       "bottom"
@@ -7699,7 +7699,7 @@
     "hole_height": 0.75,
     "outer_width": 1.2,
     "outer_height": 1.75,
-    "hole_ccw_rotation": 90,
+    "ccw_rotation": 90,
     "layers": [
       "top",
       "bottom"
@@ -7721,7 +7721,7 @@
     "hole_height": 0.75,
     "outer_width": 1.2,
     "outer_height": 1.75,
-    "hole_ccw_rotation": 90,
+    "ccw_rotation": 90,
     "layers": [
       "top",
       "bottom"

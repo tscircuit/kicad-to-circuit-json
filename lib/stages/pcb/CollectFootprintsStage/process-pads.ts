@@ -358,7 +358,7 @@ export function createPlatedHole(
     platedHole.hole_height = holeDiameter
     platedHole.outer_width = outerWidth
     platedHole.outer_height = outerHeight
-    platedHole.hole_ccw_rotation = pad.at?.angle
+    platedHole.ccw_rotation = pad.at?.angle
     platedHole.layers = ["top", "bottom"]
   } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
     // Rectangular pad with circular hole
