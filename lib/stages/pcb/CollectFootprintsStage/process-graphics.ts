@@ -72,6 +72,19 @@ export function processFootprintGraphics(
       componentRotation,
     )
   }
+
+  // Process fp_poly elements
+  const polys = (footprint as any).fpPolys || []
+  const polyArray = Array.isArray(polys) ? polys : polys ? [polys] : []
+  for (const poly of polyArray) {
+    createFootprintPoly(
+      ctx,
+      poly,
+      componentId,
+      kicadComponentPos,
+      componentRotation,
+    )
+  }
 }
 
 /**
@@ -320,6 +333,62 @@ export function createFootprintArc(
     pcb_component_id: componentId,
     layer: layer,
     route: arcRoute,
+    stroke_width: strokeWidth,
+  })
+}
+
+export function createFootprintPoly(
+  ctx: ConverterContext,
+  poly: any,
+  componentId: string,
+  kicadComponentPos: { x: number; y: number },
+  componentRotation: number,
+) {
+  if (!ctx.k2cMatPcb) return
+
+  // Extract points
+  let ptArray: any[] = []
+  const pts = poly.pts || poly._sxPts
+  if (pts) {
+    ptArray = Array.isArray(pts) ? pts : pts.points || pts.xy || []
+  }
+
+  if (ptArray.length === 0) return
+
+  // Extract layer
+  let kicadLayer = poly.layer
+  if (!kicadLayer && poly._sxLayer) {
+    kicadLayer = { names: poly._sxLayer._names }
+  }
+  const layer = mapTextLayer(kicadLayer)
+
+  // Extract stroke width
+  let strokeWidth = poly.stroke?.width || poly.width
+  if (
+    strokeWidth === undefined &&
+    poly._sxStroke?._sxWidth?.value !== undefined
+  ) {
+    strokeWidth = poly._sxStroke._sxWidth.value
+  }
+  strokeWidth = strokeWidth || 0.12
+
+  // Map and transform points
+  const transformedPts = ptArray.map((p: any) => {
+    // Handle both {x, y} and {xy: {x, y}} or {token: 'xy', x, y}
+    const x = p.x ?? p.xy?.x ?? 0
+    const y = p.y ?? p.xy?.y ?? 0
+    const rotated = rotatePoint(x, y, -componentRotation)
+    const kicadPos = {
+      x: kicadComponentPos.x + rotated.x,
+      y: kicadComponentPos.y + rotated.y,
+    }
+    return applyToPoint(ctx.k2cMatPcb!, kicadPos)
+  })
+
+  ctx.db.pcb_silkscreen_path.insert({
+    pcb_component_id: componentId,
+    layer: layer,
+    route: transformedPts,
     stroke_width: strokeWidth,
   })
 }
