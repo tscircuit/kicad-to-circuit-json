@@ -74,7 +74,7 @@ export function processFootprintGraphics(
   }
 
   // Process fp_poly elements
-  const polys = (footprint as any).fpPolys || []
+  const polys = footprint.fpPolys || []
   const polyArray = Array.isArray(polys) ? polys : polys ? [polys] : []
   for (const poly of polyArray) {
     createFootprintPoly(
