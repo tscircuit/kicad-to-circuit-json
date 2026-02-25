@@ -1,4 +1,4 @@
-import type { Footprint } from "kicadts"
+import type { Footprint, FpPoly } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
 import { mapTextLayer } from "./layer-utils"
@@ -339,45 +339,29 @@ export function createFootprintArc(
 
 export function createFootprintPoly(
   ctx: ConverterContext,
-  poly: any,
+  poly: FpPoly,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
+  componentCcwRotationDegrees: number,
 ) {
   if (!ctx.k2cMatPcb) return
 
   // Extract points
-  let ptArray: any[] = []
-  const pts = poly.pts || poly._sxPts
-  if (pts) {
-    ptArray = Array.isArray(pts) ? pts : pts.points || pts.xy || []
-  }
-
+  const ptArray: any[] = poly.points?.points || []
   if (ptArray.length === 0) return
 
   // Extract layer
-  let kicadLayer = poly.layer
-  if (!kicadLayer && poly._sxLayer) {
-    kicadLayer = { names: poly._sxLayer._names }
-  }
-  const layer = mapTextLayer(kicadLayer)
+  const layer = mapTextLayer(poly.layer)
 
   // Extract stroke width
-  let strokeWidth = poly.stroke?.width || poly.width
-  if (
-    strokeWidth === undefined &&
-    poly._sxStroke?._sxWidth?.value !== undefined
-  ) {
-    strokeWidth = poly._sxStroke._sxWidth.value
-  }
-  strokeWidth = strokeWidth || 0.12
+  const strokeWidth = poly.stroke?.width || poly.width || 0.12
 
   // Map and transform points
   const transformedPts = ptArray.map((p: any) => {
     // Handle both {x, y} and {xy: {x, y}} or {token: 'xy', x, y}
     const x = p.x ?? p.xy?.x ?? 0
     const y = p.y ?? p.xy?.y ?? 0
-    const rotated = rotatePoint(x, y, -componentRotation)
+    const rotated = rotatePoint(x, y, -componentCcwRotationDegrees)
     const kicadPos = {
       x: kicadComponentPos.x + rotated.x,
       y: kicadComponentPos.y + rotated.y,
