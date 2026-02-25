@@ -12,6 +12,7 @@ import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
 import { determineLayerFromLayers } from "./layer-utils"
+import { rotatePoint } from "./process-graphics"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
 
 /**
@@ -146,6 +147,8 @@ export function processPad({
       shape: padShape,
       pcbPortId,
       sourcePortId,
+      padKicadPos,
+      totalRotation,
     })
   } else if (padType === "np_thru_hole") {
     createNpthHole(ctx, pad, componentId, globalPos, drill)
@@ -178,6 +181,8 @@ export function createSmdPad({
   shape,
   pcbPortId,
   sourcePortId,
+  padKicadPos,
+  totalRotation = 0,
 }: {
   ctx: ConverterContext
   pad: any
@@ -187,6 +192,8 @@ export function createSmdPad({
   shape: string
   pcbPortId?: string
   sourcePortId?: string
+  padKicadPos: { x: number; y: number }
+  totalRotation?: number
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
@@ -198,7 +205,10 @@ export function createSmdPad({
       ? primitives
       : [primitives]
 
-    // Look for gr_poly primitive
+    // List of primitives already processed (to avoid duplicates if we add more types)
+    let primitivesProcessed = 0
+
+    // Look for graphics primitives (gr_poly, gr_circle, etc.)
     for (const primitive of primitivesArray) {
       if (
         primitive.token === "gr_poly" ||
@@ -206,21 +216,43 @@ export function createSmdPad({
         (primitive as any).type === "gr_poly"
       ) {
         const grPoly = primitive.gr_poly || primitive
+        // Extract points array as robustly as possible from various kicadts primitive types
+        let rawPts: any[] = []
+        const ptsContainer = grPoly._sxPts || grPoly.points || grPoly.pts
+        const contours = grPoly._contours || grPoly.contours
 
-        const contours = grPoly._contours || grPoly.contours || []
-        const contoursArray = Array.isArray(contours) ? contours : [contours]
+        if (ptsContainer) {
+          if (Array.isArray(ptsContainer)) {
+            rawPts = ptsContainer
+          } else if (Array.isArray(ptsContainer.points)) {
+            rawPts = ptsContainer.points
+          } else if (Array.isArray(ptsContainer.pts)) {
+            rawPts = ptsContainer.pts
+          }
+        } else if (Array.isArray(contours)) {
+          // Flatten points from all contours
+          for (const contour of contours) {
+            const contourPts = contour.points || contour.pts || []
+            rawPts.push(
+              ...(Array.isArray(contourPts) ? contourPts : [contourPts]),
+            )
+          }
+        }
 
-        // Extract points from the first contour (should be the main polygon)
+        // Extract points and transform them
         const points: Array<{ x: number; y: number }> = []
 
-        for (const contour of contoursArray) {
-          const pts = contour.points || contour.pts || []
-          const ptsArray = Array.isArray(pts) ? pts : [pts]
-
-          for (const pt of ptsArray) {
-            if (pt.x !== undefined && pt.y !== undefined) {
-              points.push({ x: pos.x + pt.x, y: pos.y + -pt.y })
+        for (const pt of rawPts) {
+          // Handle various point formats ({x,y}, {xy:{x,y}}, SxClass with x,y)
+          const x = pt.x ?? pt.xy?.x
+          const y = pt.y ?? pt.xy?.y
+          if (x !== undefined && y !== undefined) {
+            const rotated = rotatePoint(x, y, totalRotation)
+            const kicadPos = {
+              x: padKicadPos.x + rotated.x,
+              y: padKicadPos.y + rotated.y,
             }
+            points.push(applyToPoint(ctx.k2cMatPcb!, kicadPos))
           }
         }
 
@@ -231,20 +263,64 @@ export function createSmdPad({
             shape: "polygon",
             pcb_component_id: componentId,
             pcb_port_id: pcbPortId,
+            pcb_smtpad_id: "pcb_smtpad_id",
             layer: layer,
             port_hints: [pad.number?.toString()],
             points: points,
           } as PcbSmtPadPolygon
 
           ctx.db.pcb_smtpad.insert(smtpad)
-
-          if (ctx.stats) {
-            ctx.stats.pads = (ctx.stats.pads || 0) + 1
-          }
-
-          return
+          primitivesProcessed++
         }
       }
+
+      if (
+        primitive.token === "gr_circle" ||
+        primitive.gr_circle ||
+        primitive.type === "gr_circle"
+      ) {
+        const grCircle = primitive.gr_circle || primitive
+        const center = grCircle.center || { x: 0, y: 0 }
+        const end = grCircle.end || { x: 0, y: 0 }
+        const radius = Math.sqrt(
+          (end.x - center.x) ** 2 + (end.y - center.y) ** 2,
+        )
+
+        const rotatedCenter = rotatePoint(center.x, center.y, totalRotation)
+        const kicadCenterPos = {
+          x: padKicadPos.x + rotatedCenter.x,
+          y: padKicadPos.y + rotatedCenter.y,
+        }
+        const globalCenter = applyToPoint(ctx.k2cMatPcb!, kicadCenterPos)
+
+        const smtpad: PcbSmtPadCircle = {
+          type: "pcb_smtpad",
+          shape: "circle",
+          pcb_component_id: componentId,
+          pcb_port_id: pcbPortId,
+          pcb_smtpad_id: "pcb_smtpad_id",
+          layer: layer,
+          port_hints: [pad.number?.toString()],
+          x: globalCenter.x,
+          y: globalCenter.y,
+          width: radius * 2,
+          height: radius * 2,
+          radius: radius,
+        } as PcbSmtPadCircle
+
+        ctx.db.pcb_smtpad.insert(smtpad)
+        primitivesProcessed++
+      }
+    }
+
+    if (primitivesProcessed > 0) {
+      if (ctx.stats) {
+        ctx.stats.pads = (ctx.stats.pads || 0) + primitivesProcessed
+      }
+      // If there are primitives, we'll assume we've handled the pad entirely.
+      // In KiCad, custom pads also have an "anchor" shape, but often it's
+      // just a placeholder. For now, let's stop here if we found primitives.
+      return
     }
   }
 
