@@ -94,17 +94,16 @@ export function processPad({
       sizeY = pad.size[1] || 1
     } else if (typeof pad.size === "object") {
       // kicadts returns a Size object with _width and _height properties
-      sizeX = (pad.size as any)._width || pad.size.x || 1
-      sizeY = (pad.size as any)._height || pad.size.y || 1
+      sizeX = pad.size._width || pad.size.x || 1
+      sizeY = pad.size._height || pad.size.y || 1
     }
   }
 
   const size = { x: sizeX, y: sizeY }
   const drill = pad.drill
 
-  // Calculate total rotation (component + pad local rotation)
-  // In KiCad, rotation is CCW, and we need to account for Y-flip in CJ transform
-  const totalRotation = -componentRotation - padRotation
+  // Calculate total rotation
+  const totalCcwRotationDegrees = padAt.angle || 0
 
   // Create pcb_port for this pad (if it has a pad number)
   const padNumber = pad.number?.toString()
@@ -148,7 +147,7 @@ export function processPad({
       pcbPortId,
       sourcePortId,
       padKicadPos,
-      totalRotation,
+      totalCcwRotationDegrees,
     })
   } else if (padType === "np_thru_hole") {
     createNpthHole(ctx, pad, componentId, globalPos, drill)
@@ -162,7 +161,7 @@ export function processPad({
       size,
       drill,
       padShape,
-      totalRotation,
+      totalCcwRotationDegrees,
       pcbPortId,
       sourcePortId,
     )
@@ -182,7 +181,7 @@ export function createSmdPad({
   pcbPortId,
   sourcePortId,
   padKicadPos,
-  totalRotation = 0,
+  totalCcwRotationDegrees = 0,
 }: {
   ctx: ConverterContext
   pad: any
@@ -193,7 +192,7 @@ export function createSmdPad({
   pcbPortId?: string
   sourcePortId?: string
   padKicadPos: { x: number; y: number }
-  totalRotation?: number
+  totalCcwRotationDegrees?: number
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
@@ -210,13 +209,8 @@ export function createSmdPad({
 
     // Look for graphics primitives (gr_poly, gr_circle, etc.)
     for (const primitive of primitivesArray) {
-      if (
-        primitive.token === "gr_poly" ||
-        primitive.gr_poly ||
-        (primitive as any).type === "gr_poly"
-      ) {
+      if (primitive.token === "gr_poly") {
         const grPoly = primitive.gr_poly || primitive
-        // Extract points array as robustly as possible from various kicadts primitive types
         let rawPts: any[] = []
         const ptsContainer = grPoly._sxPts || grPoly.points || grPoly.pts
         const contours = grPoly._contours || grPoly.contours
@@ -247,7 +241,7 @@ export function createSmdPad({
           const x = pt.x ?? pt.xy?.x
           const y = pt.y ?? pt.xy?.y
           if (x !== undefined && y !== undefined) {
-            const rotated = rotatePoint(x, y, totalRotation)
+            const rotated = rotatePoint(x, y, totalCcwRotationDegrees)
             const kicadPos = {
               x: padKicadPos.x + rotated.x,
               y: padKicadPos.y + rotated.y,
@@ -265,7 +259,7 @@ export function createSmdPad({
             pcb_port_id: pcbPortId,
             pcb_smtpad_id: "pcb_smtpad_id",
             layer: layer,
-            port_hints: [pad.number?.toString()],
+            port_hints: [pad.number.toString()],
             points: points,
           } as PcbSmtPadPolygon
 
@@ -286,7 +280,11 @@ export function createSmdPad({
           (end.x - center.x) ** 2 + (end.y - center.y) ** 2,
         )
 
-        const rotatedCenter = rotatePoint(center.x, center.y, totalRotation)
+        const rotatedCenter = rotatePoint(
+          center.x,
+          center.y,
+          totalCcwRotationDegrees,
+        )
         const kicadCenterPos = {
           x: padKicadPos.x + rotatedCenter.x,
           y: padKicadPos.y + rotatedCenter.y,
@@ -300,7 +298,7 @@ export function createSmdPad({
           pcb_port_id: pcbPortId,
           pcb_smtpad_id: "pcb_smtpad_id",
           layer: layer,
-          port_hints: [pad.number?.toString()],
+          port_hints: [pad.number.toString()],
           x: globalCenter.x,
           y: globalCenter.y,
           width: radius * 2,
