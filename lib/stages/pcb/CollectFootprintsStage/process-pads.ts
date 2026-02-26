@@ -268,11 +268,7 @@ export function createSmdPad({
         }
       }
 
-      if (
-        primitive.token === "gr_circle" ||
-        primitive.gr_circle ||
-        primitive.type === "gr_circle"
-      ) {
+      if (primitive.token === "gr_circle") {
         const grCircle = primitive.gr_circle || primitive
         const center = grCircle.center || { x: 0, y: 0 }
         const end = grCircle.end || { x: 0, y: 0 }
