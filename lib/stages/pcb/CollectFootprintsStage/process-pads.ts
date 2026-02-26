@@ -424,24 +424,8 @@ export function createPlatedHole(
     drillY !== undefined &&
     drillX !== drillY
 
-  // Apply rotation to dimensions for oval/pill pads
-  // Normalize rotation to 0-360 range
-  let normalizedRotation = rotation % 360
-  if (normalizedRotation < 0) normalizedRotation += 360
-
-  // For 90 or 270 degree rotations, swap width and height
-  const shouldSwapDimensions =
-    (normalizedRotation >= 45 && normalizedRotation < 135) ||
-    (normalizedRotation >= 225 && normalizedRotation < 315)
-
   let outerWidth = size.x
   let outerHeight = size.y
-
-  if (shouldSwapDimensions && shape === "oval") {
-    // Swap dimensions for rotated oval pads
-    outerWidth = size.y
-    outerHeight = size.x
-  }
 
   // Build plated hole object based on shape
   if (shape === "circle") {
