@@ -360,7 +360,7 @@ export function createSmdPad({
         height: size.y,
         layer: layer,
         pcb_port_id: pcbPortId,
-        port_hints: [pad.number?.toString()],
+        port_hints: [pad.number.toString()],
         shape: "rotated_rect",
         ccw_rotation: ccwRotationDegrees,
       } as PcbSmtPadRotatedRect
