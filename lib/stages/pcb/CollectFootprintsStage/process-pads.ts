@@ -7,6 +7,7 @@ import type {
   PcbHoleCircularWithRectPad,
   PcbHoleRotatedPillWithRectPad,
   PcbHoleCircle,
+  PcbSmtPadRotatedRect,
 } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
@@ -330,6 +331,7 @@ export function createSmdPad({
     pcb_port_id: pcbPortId,
     port_hints: [pad.number?.toString()],
   }
+  const ccwRotationDegrees = pad.at?.angle
 
   if (shape === "circle") {
     const smtpad: PcbSmtPadCircle = {
@@ -348,6 +350,23 @@ export function createSmdPad({
     } as PcbSmtPadCircle
     ctx.db.pcb_smtpad.insert(smtpad)
   } else if (shape === "rect" || shape === "roundrect") {
+    if (ccwRotationDegrees) {
+      const rotatedsmtpad: PcbSmtPadRotatedRect = {
+        type: "pcb_smtpad",
+        pcb_component_id: componentId,
+        x: pos.x,
+        y: pos.y,
+        width: size.x,
+        height: size.y,
+        layer: layer,
+        pcb_port_id: pcbPortId,
+        port_hints: [pad.number?.toString()],
+        shape: "rotated_rect",
+        ccw_rotation: ccwRotationDegrees,
+      } as PcbSmtPadRotatedRect
+      ctx.db.pcb_smtpad.insert(rotatedsmtpad)
+      return
+    }
     const smtpad: PcbSmtPadRect = {
       type: "pcb_smtpad",
       pcb_component_id: componentId,

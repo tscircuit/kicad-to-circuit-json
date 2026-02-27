@@ -4460,8 +4460,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4476,8 +4476,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4492,8 +4492,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4508,8 +4508,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4524,8 +4524,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4540,8 +4540,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4556,8 +4556,8 @@
     "port_hints": [
       "5"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4572,8 +4572,8 @@
     "port_hints": [
       "6"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4588,8 +4588,8 @@
     "port_hints": [
       "7"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4604,8 +4604,8 @@
     "port_hints": [
       "8"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4620,8 +4620,8 @@
     "port_hints": [
       "9"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4636,8 +4636,8 @@
     "port_hints": [
       "10"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4652,8 +4652,8 @@
     "port_hints": [
       "11"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4668,8 +4668,8 @@
     "port_hints": [
       "12"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4684,8 +4684,8 @@
     "port_hints": [
       "13"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4700,8 +4700,8 @@
     "port_hints": [
       "14"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4716,8 +4716,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4732,8 +4732,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4748,8 +4748,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4764,8 +4764,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4780,8 +4780,8 @@
     "port_hints": [
       "5"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4796,8 +4796,8 @@
     "port_hints": [
       "6"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4812,8 +4812,8 @@
     "port_hints": [
       "7"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4828,8 +4828,8 @@
     "port_hints": [
       "8"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4844,8 +4844,8 @@
     "port_hints": [
       "9"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4860,8 +4860,8 @@
     "port_hints": [
       "10"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4876,8 +4876,8 @@
     "port_hints": [
       "11"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -4892,8 +4892,8 @@
     "port_hints": [
       "12"
     ],
-    "shape": "rect",
-    "corner_radius": 0.05
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5152,8 +5152,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5168,8 +5168,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5184,8 +5184,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -5200,8 +5200,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -5466,8 +5466,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5482,8 +5482,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5498,8 +5498,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5514,8 +5514,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5530,8 +5530,8 @@
     "port_hints": [
       "5"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5546,8 +5546,8 @@
     "port_hints": [
       "6"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5562,8 +5562,8 @@
     "port_hints": [
       "7"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5578,8 +5578,8 @@
     "port_hints": [
       "8"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -5748,8 +5748,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -5764,8 +5764,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -5780,8 +5780,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12179999999999998
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -5796,8 +5796,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.0456
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -5812,8 +5812,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect",
-    "corner_radius": 0.095
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -5828,8 +5828,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12179999999999998
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -6332,8 +6332,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -6348,8 +6348,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -6364,8 +6364,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -6380,8 +6380,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -6396,8 +6396,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -6412,8 +6412,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -6428,8 +6428,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.2625
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -6444,8 +6444,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.2625
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -6460,8 +6460,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12179999999999998
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -6476,8 +6476,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.0456
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -6492,8 +6492,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect",
-    "corner_radius": 0.095
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -6508,8 +6508,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12179999999999998
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -6646,8 +6646,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -6662,8 +6662,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -6832,8 +6832,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -6848,8 +6848,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7108,8 +7108,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7124,8 +7124,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7538,8 +7538,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -7554,8 +7554,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -7570,8 +7570,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7586,8 +7586,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7602,8 +7602,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7618,8 +7618,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7634,8 +7634,8 @@
     "port_hints": [
       "5"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7650,8 +7650,8 @@
     "port_hints": [
       "6"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7666,8 +7666,8 @@
     "port_hints": [
       "7"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7682,8 +7682,8 @@
     "port_hints": [
       "8"
     ],
-    "shape": "rect",
-    "corner_radius": 0.075
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7698,8 +7698,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.08125
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7714,8 +7714,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.08125
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7730,8 +7730,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect",
-    "corner_radius": 0.08125
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7746,8 +7746,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect",
-    "corner_radius": 0.08125
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7762,8 +7762,8 @@
     "port_hints": [
       "5"
     ],
-    "shape": "rect",
-    "corner_radius": 0.08125
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7778,8 +7778,8 @@
     "port_hints": [
       "6"
     ],
-    "shape": "rect",
-    "corner_radius": 0.08125
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7794,8 +7794,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7810,8 +7810,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_smtpad",
@@ -7826,8 +7826,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -7842,8 +7842,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.1249998
+    "shape": "rotated_rect",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_smtpad",
@@ -8346,8 +8346,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
@@ -8362,8 +8362,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect",
-    "corner_radius": 0.12500002500000001
+    "shape": "rotated_rect",
+    "ccw_rotation": 180
   },
   {
     "type": "pcb_smtpad",
