@@ -350,6 +350,14 @@ export function createSmdPad({
     } as PcbSmtPadCircle
     ctx.db.pcb_smtpad.insert(smtpad)
   } else if (shape === "rect" || shape === "roundrect") {
+    const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+    let cornerRadius: number | undefined
+    if (shape === "roundrect" && roundrectRatio !== undefined) {
+      // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
+      const minDimension = Math.min(size.x, size.y)
+      cornerRadius = (minDimension * roundrectRatio) / 2
+    }
+
     if (ccwRotationDegrees) {
       const rotatedsmtpad: PcbSmtPadRotatedRect = {
         type: "pcb_smtpad",
@@ -363,6 +371,7 @@ export function createSmdPad({
         port_hints: [pad.number.toString()],
         shape: "rotated_rect",
         ccw_rotation: ccwRotationDegrees,
+        corner_radius: cornerRadius,
       } as PcbSmtPadRotatedRect
       ctx.db.pcb_smtpad.insert(rotatedsmtpad)
       return
@@ -376,18 +385,11 @@ export function createSmdPad({
       height: size.y,
       layer: layer,
       pcb_port_id: pcbPortId,
-      port_hints: [pad.number?.toString()],
+      port_hints: [pad.number.toString()],
       shape: "rect",
+      corner_radius: cornerRadius,
     } as PcbSmtPadRect
 
-    const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
-    if (shape === "roundrect" && roundrectRatio !== undefined) {
-      // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
-      // Formula: corner_radius = min(width, height) * roundrect_rratio / 2
-      const minDimension = Math.min(size.x, size.y)
-      const cornerRadius = (minDimension * roundrectRatio) / 2
-      smtpad.corner_radius = cornerRadius
-    }
     ctx.db.pcb_smtpad.insert(smtpad)
   } else {
     // Default to rect for unknown shapes
