@@ -1,7 +1,7 @@
 import type { Footprint, FpPoly, FpLine, FpCircle, FpArc } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
-import { mapTextLayer } from "./layer-utils"
+import { getLayerMapping } from "./layer-utils"
 
 /**
  * Rotates a point by a given angle (in degrees)
@@ -120,15 +120,17 @@ export function createFootprintLine(
   const startPos = applyToPoint(ctx.k2cMatPcb, startKicadPos)
   const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
 
-  const layer = mapTextLayer(line.layer)
+  const mapping = getLayerMapping(line.layer)
   const strokeWidth = line.stroke?.width || line.width || 0.12
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
-    route: [startPos, endPos],
-    stroke_width: strokeWidth,
-  })
+  if (mapping.type.includes("silkscreen")) {
+    ctx.db.pcb_silkscreen_path.insert({
+      pcb_component_id: componentId,
+      layer: mapping.side,
+      route: [startPos, endPos],
+      stroke_width: strokeWidth,
+    })
+  }
 }
 
 /**
@@ -161,7 +163,7 @@ export function createFootprintCircle(
   // Transform to Circuit JSON coordinates
   const centerPos = applyToPoint(ctx.k2cMatPcb, centerKicadPos)
 
-  const layer = mapTextLayer(circle.layer)
+  const mapping = getLayerMapping(circle.layer)
   const strokeWidth = circle.stroke?.width || circle.width || 0.12
 
   // Create circle as a pcb_silkscreen_circle (if supported) or as a path with many points
@@ -175,12 +177,14 @@ export function createFootprintCircle(
     circleRoute.push({ x, y })
   }
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
-    route: circleRoute,
-    stroke_width: strokeWidth,
-  })
+  if (mapping.type.includes("silkscreen")) {
+    ctx.db.pcb_silkscreen_path.insert({
+      pcb_component_id: componentId,
+      layer: mapping.side,
+      route: circleRoute,
+      stroke_width: strokeWidth,
+    })
+  }
 }
 
 /**
@@ -249,7 +253,7 @@ export function createFootprintArc(
     y: kicadComponentPos.y + rotatedEnd.y,
   }
 
-  const layer = mapTextLayer(arc.layer)
+  const mapping = getLayerMapping(arc.layer)
   const strokeWidth = arc.stroke?.width || arc.width || 0.12
 
   // Calculate the arc center and radius IN KICAD SPACE (before coordinate transformation)
@@ -259,12 +263,15 @@ export function createFootprintArc(
     // If points are collinear, fall back to straight line
     const startPos = applyToPoint(ctx.k2cMatPcb, startKicadPos)
     const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
-    ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: componentId,
-      layer: layer,
-      route: [startPos, endPos],
-      stroke_width: strokeWidth,
-    })
+
+    if (mapping.type.includes("silkscreen")) {
+      ctx.db.pcb_silkscreen_path.insert({
+        pcb_component_id: componentId,
+        layer: mapping.side,
+        route: [startPos, endPos],
+        stroke_width: strokeWidth,
+      })
+    }
     return
   }
 
@@ -329,12 +336,14 @@ export function createFootprintArc(
     arcRoute.push(cjPoint)
   }
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
-    route: arcRoute,
-    stroke_width: strokeWidth,
-  })
+  if (mapping.type.includes("silkscreen")) {
+    ctx.db.pcb_silkscreen_path.insert({
+      pcb_component_id: componentId,
+      layer: mapping.side,
+      route: arcRoute,
+      stroke_width: strokeWidth,
+    })
+  }
 }
 
 export function createFootprintPoly(
@@ -351,7 +360,7 @@ export function createFootprintPoly(
   if (ptArray.length === 0) return
 
   // Extract layer
-  const layer = mapTextLayer(poly.layer)
+  const mapping = getLayerMapping(poly.layer)
 
   // Extract stroke width
   const strokeWidth = poly.stroke?.width || poly.width || 0.12
@@ -369,10 +378,12 @@ export function createFootprintPoly(
     return applyToPoint(ctx.k2cMatPcb!, kicadPos)
   })
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
-    route: transformedPts,
-    stroke_width: strokeWidth,
-  })
+  if (mapping.type.includes("silkscreen")) {
+    ctx.db.pcb_silkscreen_path.insert({
+      pcb_component_id: componentId,
+      layer: mapping.side,
+      route: transformedPts,
+      stroke_width: strokeWidth,
+    })
+  }
 }
