@@ -566,6 +566,7 @@ export function createNpthHole(
   const hole: PcbHoleCircle = {
     type: "pcb_hole",
     hole_shape: "circle",
+    pcb_component_id: componentId,
     x: pos.x,
     y: pos.y,
     hole_diameter: holeDiameter,
