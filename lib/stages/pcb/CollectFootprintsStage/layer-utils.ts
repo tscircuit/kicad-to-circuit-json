@@ -30,8 +30,8 @@ export function determineLayerFromLayers(layers: any): LayerRef {
 }
 
 export interface LayerMapping {
-  side: "top" | "bottom"
-  type: PcbRenderLayer | "unknown"
+  selectedLayer: "top" | "bottom"
+  layers: PcbRenderLayer[]
 }
 
 /**
@@ -43,15 +43,17 @@ export function getLayerMapping(kicadLayer: any): LayerMapping {
       ? kicadLayer
       : kicadLayer?.names?.join(" ") || ""
 
-  const side: "top" | "bottom" =
+  const selectedLayer: "top" | "bottom" =
     layerStr.includes("B.") || layerStr.includes("Back") ? "bottom" : "top"
 
-  let type: PcbRenderLayer | "unknown" = "unknown"
+  const layers: PcbRenderLayer[] = []
   if (layerStr.includes("Silk")) {
-    type = side === "top" ? "top_silkscreen" : "bottom_silkscreen"
+    layers.push(
+      selectedLayer === "top" ? "top_silkscreen" : "bottom_silkscreen",
+    )
   } else if (layerStr.includes("Edge.Cuts")) {
-    type = "edge_cuts"
+    layers.push("edge_cuts")
   }
 
-  return { side, type }
+  return { selectedLayer, layers }
 }

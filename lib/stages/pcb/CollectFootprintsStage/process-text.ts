@@ -31,8 +31,8 @@ export function processFootprintText(
 
   for (const text of textArray) {
     // Check if the layer is one we want to process
-    const mapping = getLayerMapping(text.layer)
-    if (!mapping.type.includes("silkscreen")) continue
+    const layerMapping = getLayerMapping(text.layer)
+    if (!layerMapping.layers[0]?.includes("silkscreen")) continue
 
     // Create a properly structured text element with _sxPosition mapped to at
     const textElement = {
@@ -74,8 +74,8 @@ export function processFootprintProperties(
     if (!property.layer) continue
 
     // Check if the property is on a supported layer
-    const mapping = getLayerMapping(property.layer)
-    if (!mapping.type.includes("silkscreen")) continue
+    const layerMapping = getLayerMapping(property.layer)
+    if (!layerMapping.layers[0]?.includes("silkscreen")) continue
 
     // Create footprint text for this property
     // Property structure uses _sxAt for position (kicadts internal field)
@@ -129,7 +129,7 @@ export function createFootprintText(
   }
   const pos = applyToPoint(ctx.k2cMatPcb, textKicadPos)
 
-  const mapping = getLayerMapping(text.layer)
+  const layerMapping = getLayerMapping(text.layer)
 
   // Substitute KiCad variables in text
   const processedText = substituteKicadVariables(text.text || "", footprint)
@@ -140,14 +140,14 @@ export function createFootprintText(
     text.effects?.font?.size?.y ||
     1
 
-  if (mapping.type.includes("silkscreen")) {
+  if (layerMapping.layers[0]?.includes("silkscreen")) {
     ctx.db.pcb_silkscreen_text.insert({
       pcb_component_id: componentId,
       font: "tscircuit2024",
       font_size: kicadFontSize * 1.5,
       text: processedText,
       anchor_position: pos,
-      layer: mapping.side,
+      layer: layerMapping.selectedLayer,
       anchor_alignment: "center",
     })
   }

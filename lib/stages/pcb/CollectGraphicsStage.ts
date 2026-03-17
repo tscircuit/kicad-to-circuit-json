@@ -25,10 +25,10 @@ export class CollectGraphicsStage extends ConverterStage {
     const otherLines: any[] = []
 
     for (const line of lineArray) {
-      const mapping = getLayerMapping(line.layer)
-      if (mapping.type === "edge_cuts") {
+      const layerMapping = getLayerMapping(line.layer)
+      if (layerMapping.layers[0] === "edge_cuts") {
         edgeCutLines.push(line)
-      } else if (mapping.type.includes("silkscreen")) {
+      } else if (layerMapping.layers[0]?.includes("silkscreen")) {
         otherLines.push(line)
       }
     }
@@ -63,9 +63,9 @@ export class CollectGraphicsStage extends ConverterStage {
     const textArray = Array.isArray(texts) ? texts : [texts]
 
     for (const text of textArray) {
-      const mapping = getLayerMapping(text.layer)
+      const layerMapping = getLayerMapping(text.layer)
       // Include text from silk, copper, and fab/courtyard layers
-      if (mapping.type.includes("silkscreen")) {
+      if (layerMapping.layers[0]?.includes("silkscreen")) {
         this.createGraphicText(text)
       }
     }
@@ -188,13 +188,13 @@ export class CollectGraphicsStage extends ConverterStage {
     })
     const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
-    const mapping = getLayerMapping(line.layer)
+    const layerMapping = getLayerMapping(line.layer)
     const strokeWidth = line.width || 0.15
 
-    if (mapping.type.includes("silkscreen")) {
+    if (layerMapping.layers[0]?.includes("silkscreen")) {
       this.ctx.db.pcb_silkscreen_path.insert({
         pcb_component_id: "", // Not attached to a specific component
-        layer: mapping.side,
+        layer: layerMapping.selectedLayer,
         route: [startPos, endPos],
         stroke_width: strokeWidth,
       })
@@ -241,7 +241,7 @@ export class CollectGraphicsStage extends ConverterStage {
     const centerCJ = applyToPoint(this.ctx.k2cMatPcb, centerKicad)
 
     // Map layer to top/bottom
-    const layer = getLayerMapping(rect._sxLayer).side
+    const layer = getLayerMapping(rect._sxLayer).selectedLayer
 
     // Create pcb_smtpad
     this.ctx.db.pcb_smtpad.insert({
@@ -271,7 +271,7 @@ export class CollectGraphicsStage extends ConverterStage {
       y: at?.y ?? 0,
     })
 
-    const mapping = getLayerMapping(text.layer)
+    const layerMapping = getLayerMapping(text.layer)
     // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
     const kicadFontSize =
       text._sxEffects?._sxFont?._sxSize?._height ||
@@ -279,12 +279,12 @@ export class CollectGraphicsStage extends ConverterStage {
       1
     const fontSize = kicadFontSize * 1.5
 
-    if (mapping.type.includes("silkscreen")) {
+    if (layerMapping.layers[0]?.includes("silkscreen")) {
       this.ctx.db.pcb_silkscreen_text.insert({
         pcb_component_id: "",
         text: text.text || text._text || "",
         anchor_position: pos,
-        layer: mapping.side,
+        layer: layerMapping.selectedLayer,
         font_size: fontSize,
         font: "tscircuit2024",
         anchor_alignment: "center",
@@ -367,7 +367,7 @@ export class CollectGraphicsStage extends ConverterStage {
     )
 
     // Map layer to top/bottom
-    const layer = getLayerMapping(poly._sxLayer).side
+    const layer = getLayerMapping(poly._sxLayer).selectedLayer
 
     // Create pcb_smtpad with polygon shape
     this.ctx.db.pcb_smtpad.insert({
