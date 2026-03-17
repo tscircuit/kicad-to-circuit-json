@@ -1,5 +1,6 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import { getLayerMapping } from "./CollectFootprintsStage/layer-utils"
 
 /**
  * CollectGraphicsStage processes KiCad graphics elements:
@@ -21,17 +22,14 @@ export class CollectGraphicsStage extends ConverterStage {
     const lineArray = Array.isArray(lines) ? lines : [lines]
 
     const edgeCutLines: any[] = []
-    const silkLines: any[] = []
+    const otherLines: any[] = []
 
     for (const line of lineArray) {
-      const layer = line.layer
-      const layerNames =
-        typeof layer === "string" ? [layer] : layer?.names || []
-      const layerStr = layerNames.join(" ")
-      if (layerStr.includes("Edge.Cuts")) {
+      const layerMapping = getLayerMapping(line.layer)
+      if (layerMapping.layers[0] === "edge_cuts") {
         edgeCutLines.push(line)
-      } else if (layerStr.includes("SilkS")) {
-        silkLines.push(line)
+      } else if (layerMapping.layers[0]?.includes("silkscreen")) {
+        otherLines.push(line)
       }
     }
 
@@ -40,9 +38,9 @@ export class CollectGraphicsStage extends ConverterStage {
       this.createBoardOutline(edgeCutLines)
     }
 
-    // Create silkscreen paths
-    for (const line of silkLines) {
-      this.createSilkscreenPath(line)
+    // Create graphic paths
+    for (const line of otherLines) {
+      this.createGraphicPath(line)
     }
 
     // Process gr_rect elements
@@ -65,19 +63,10 @@ export class CollectGraphicsStage extends ConverterStage {
     const textArray = Array.isArray(texts) ? texts : [texts]
 
     for (const text of textArray) {
-      const layer = text.layer
-      const layerNames =
-        typeof layer === "string" ? [layer] : layer?.names || []
-      // Include text from silk, copper, and fab layers
-      if (
-        layerNames.some(
-          (name: string) =>
-            name.includes("SilkS") ||
-            name.includes(".Cu") ||
-            name.includes("Fab"),
-        )
-      ) {
-        this.createSilkscreenText(text)
+      const layerMapping = getLayerMapping(text.layer)
+      // Include text from silk, copper, and fab/courtyard layers
+      if (layerMapping.layers[0]?.includes("silkscreen")) {
+        this.createGraphicText(text)
       }
     }
 
@@ -187,7 +176,7 @@ export class CollectGraphicsStage extends ConverterStage {
     }
   }
 
-  private createSilkscreenPath(line: any) {
+  private createGraphicPath(line: any) {
     if (!this.ctx.k2cMatPcb) return
 
     const start = line.start || { x: 0, y: 0 }
@@ -199,15 +188,17 @@ export class CollectGraphicsStage extends ConverterStage {
     })
     const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
-    const layer = this.mapLayer(line.layer)
+    const layerMapping = getLayerMapping(line.layer)
     const strokeWidth = line.width || 0.15
 
-    this.ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: "", // Not attached to a specific component
-      layer: layer,
-      route: [startPos, endPos],
-      stroke_width: strokeWidth,
-    })
+    if (layerMapping.layers[0]?.includes("silkscreen")) {
+      this.ctx.db.pcb_silkscreen_path.insert({
+        pcb_component_id: "", // Not attached to a specific component
+        layer: layerMapping.selectedLayer,
+        route: [startPos, endPos],
+        stroke_width: strokeWidth,
+      })
+    }
   }
 
   private processRectangle(rect: any) {
@@ -250,7 +241,7 @@ export class CollectGraphicsStage extends ConverterStage {
     const centerCJ = applyToPoint(this.ctx.k2cMatPcb, centerKicad)
 
     // Map layer to top/bottom
-    const layer = this.mapLayer(rect._sxLayer)
+    const layer = getLayerMapping(rect._sxLayer).selectedLayer
 
     // Create pcb_smtpad
     this.ctx.db.pcb_smtpad.insert({
@@ -270,7 +261,7 @@ export class CollectGraphicsStage extends ConverterStage {
     }
   }
 
-  private createSilkscreenText(text: any) {
+  private createGraphicText(text: any) {
     if (!this.ctx.k2cMatPcb) return
 
     // Get position from either at or _sxPosition (kicadts internal field)
@@ -280,7 +271,7 @@ export class CollectGraphicsStage extends ConverterStage {
       y: at?.y ?? 0,
     })
 
-    const layer = this.mapLayer(text.layer)
+    const layerMapping = getLayerMapping(text.layer)
     // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
     const kicadFontSize =
       text._sxEffects?._sxFont?._sxSize?._height ||
@@ -288,25 +279,17 @@ export class CollectGraphicsStage extends ConverterStage {
       1
     const fontSize = kicadFontSize * 1.5
 
-    this.ctx.db.pcb_silkscreen_text.insert({
-      pcb_component_id: "",
-      text: text.text || text._text || "",
-      anchor_position: pos,
-      layer: layer,
-      font_size: fontSize,
-      font: "tscircuit2024",
-    } as any)
-  }
-
-  private mapLayer(kicadLayer: any): "top" | "bottom" {
-    const layerStr =
-      typeof kicadLayer === "string"
-        ? kicadLayer
-        : kicadLayer?.names?.join(" ") || ""
-    if (layerStr.includes("B.") || layerStr.includes("Back")) {
-      return "bottom"
+    if (layerMapping.layers[0]?.includes("silkscreen")) {
+      this.ctx.db.pcb_silkscreen_text.insert({
+        pcb_component_id: "",
+        text: text.text || text._text || "",
+        anchor_position: pos,
+        layer: layerMapping.selectedLayer,
+        font_size: fontSize,
+        font: "tscircuit2024",
+        anchor_alignment: "center",
+      })
     }
-    return "top"
   }
 
   private pointsEqual(
@@ -384,7 +367,7 @@ export class CollectGraphicsStage extends ConverterStage {
     )
 
     // Map layer to top/bottom
-    const layer = this.mapLayer(poly._sxLayer)
+    const layer = getLayerMapping(poly._sxLayer).selectedLayer
 
     // Create pcb_smtpad with polygon shape
     this.ctx.db.pcb_smtpad.insert({

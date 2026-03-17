@@ -1,5 +1,5 @@
 import type { Footprint } from "kicadts"
-import type { LayerRef } from "circuit-json"
+import type { LayerRef, PcbRenderLayer } from "circuit-json"
 
 /**
  * Determines the layer (top or bottom) of a component based on the footprint's layer information
@@ -29,17 +29,31 @@ export function determineLayerFromLayers(layers: any): LayerRef {
   return "top"
 }
 
+export interface LayerMapping {
+  selectedLayer: "top" | "bottom"
+  layers: PcbRenderLayer[]
+}
+
 /**
- * Maps KiCad text layer to Circuit JSON layer (top or bottom)
+ * Gets a detailed mapping for a KiCad layer
  */
-export function mapTextLayer(kicadLayer: any): "top" | "bottom" {
-  // Handle both string and Layer object
+export function getLayerMapping(kicadLayer: any): LayerMapping {
   const layerStr =
     typeof kicadLayer === "string"
       ? kicadLayer
       : kicadLayer?.names?.join(" ") || ""
-  if (layerStr.includes("B.") || layerStr.includes("Back")) {
-    return "bottom"
+
+  const selectedLayer: "top" | "bottom" =
+    layerStr.includes("B.") || layerStr.includes("Back") ? "bottom" : "top"
+
+  const layers: PcbRenderLayer[] = []
+  if (layerStr.includes("Silk")) {
+    layers.push(
+      selectedLayer === "top" ? "top_silkscreen" : "bottom_silkscreen",
+    )
+  } else if (layerStr.includes("Edge.Cuts")) {
+    layers.push("edge_cuts")
   }
-  return "top"
+
+  return { selectedLayer, layers }
 }
