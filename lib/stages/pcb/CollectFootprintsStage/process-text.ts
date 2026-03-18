@@ -1,7 +1,7 @@
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
-import { mapTextLayer } from "./layer-utils"
+import { getLayerMapping } from "./layer-utils"
 import { substituteKicadVariables } from "./text-utils"
 
 /**
@@ -30,13 +30,9 @@ export function processFootprintText(
   const textArray = Array.isArray(texts) ? texts : [texts]
 
   for (const text of textArray) {
-    // Only process text on silkscreen layers (filter out F.Fab, etc.)
-    const layerStr =
-      typeof text.layer === "string"
-        ? text.layer
-        : text.layer?.names?.join(" ") || ""
-    const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")
-    if (!isSilkscreen) continue
+    // Check if the layer is one we want to process
+    const layerMapping = getLayerMapping(text.layer)
+    if (!layerMapping.layers[0]?.includes("silkscreen")) continue
 
     // Create a properly structured text element with _sxPosition mapped to at
     const textElement = {
@@ -47,7 +43,7 @@ export function processFootprintText(
       _sxEffects: (text as any)._sxEffects, // Pass _sxEffects for font size access
     }
 
-    createSilkscreenText(
+    createFootprintText(
       ctx,
       textElement,
       componentId,
@@ -77,16 +73,11 @@ export function processFootprintProperties(
     // Only process properties with a layer field
     if (!property.layer) continue
 
-    // Check if the property is on a silkscreen layer
-    const layerStr =
-      typeof property.layer === "string"
-        ? property.layer
-        : property.layer?.names?.join(" ") || ""
-    const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")
+    // Check if the property is on a supported layer
+    const layerMapping = getLayerMapping(property.layer)
+    if (!layerMapping.layers[0]?.includes("silkscreen")) continue
 
-    if (!isSilkscreen) continue
-
-    // Create silkscreen text for this property
+    // Create footprint text for this property
     // Property structure uses _sxAt for position (kicadts internal field)
     const textElement = {
       text: property.value,
@@ -96,7 +87,7 @@ export function processFootprintProperties(
       _sxEffects: (property as any)._sxEffects, // Pass _sxEffects for font size access
     }
 
-    createSilkscreenText(
+    createFootprintText(
       ctx,
       textElement,
       componentId,
@@ -108,9 +99,9 @@ export function processFootprintProperties(
 }
 
 /**
- * Creates a silkscreen text element in Circuit JSON
+ * Creates a text element in Circuit JSON (silkscreen or fabrication)
  */
-export function createSilkscreenText(
+export function createFootprintText(
   ctx: ConverterContext,
   text: any,
   componentId: string,
@@ -138,7 +129,7 @@ export function createSilkscreenText(
   }
   const pos = applyToPoint(ctx.k2cMatPcb, textKicadPos)
 
-  const layer = mapTextLayer(text.layer)
+  const layerMapping = getLayerMapping(text.layer)
 
   // Substitute KiCad variables in text
   const processedText = substituteKicadVariables(text.text || "", footprint)
@@ -149,12 +140,15 @@ export function createSilkscreenText(
     text.effects?.font?.size?.y ||
     1
 
-  ctx.db.pcb_silkscreen_text.insert({
-    pcb_component_id: componentId,
-    font: "tscircuit2024",
-    font_size: kicadFontSize * 1.5,
-    text: processedText,
-    anchor_position: pos,
-    layer: layer,
-  } as any)
+  if (layerMapping.layers[0]?.includes("silkscreen")) {
+    ctx.db.pcb_silkscreen_text.insert({
+      pcb_component_id: componentId,
+      font: "tscircuit2024",
+      font_size: kicadFontSize * 1.5,
+      text: processedText,
+      anchor_position: pos,
+      layer: layerMapping.selectedLayer,
+      anchor_alignment: "center",
+    })
+  }
 }
