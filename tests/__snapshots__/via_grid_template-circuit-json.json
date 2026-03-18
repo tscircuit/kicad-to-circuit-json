@@ -109,7 +109,7 @@
       },
       {
         "x": 6.998204807517174,
-        "y": 3.4843556665840825
+        "y": 3.484355666584083
       },
       {
         "x": 7.5,
@@ -325,7 +325,7 @@
       },
       {
         "x": 96.51564343415002,
-        "y": 6.998203761750931
+        "y": 6.998203761750932
       },
       {
         "x": 95.199998,
@@ -433,7 +433,7 @@
       },
       {
         "x": 6.998204807517174,
-        "y": 3.4843556665840825
+        "y": 3.484355666584083
       },
       {
         "x": 7.5,
@@ -1428,57 +1428,5 @@
       }
     ],
     "shape": "polygon"
-  },
-  {
-    "type": "pcb_silkscreen_text",
-    "pcb_silkscreen_text_id": "pcb_silkscreen_text_0",
-    "pcb_component_id": "",
-    "text": "VIAGRID TOP",
-    "anchor_position": {
-      "x": 43.6,
-      "y": 1.7
-    },
-    "layer": "top",
-    "font_size": 2.25,
-    "font": "tscircuit2024"
-  },
-  {
-    "type": "pcb_silkscreen_text",
-    "pcb_silkscreen_text_id": "pcb_silkscreen_text_1",
-    "pcb_component_id": "",
-    "text": "Opulo Inc.",
-    "anchor_position": {
-      "x": 0.5,
-      "y": 0.5
-    },
-    "layer": "top",
-    "font_size": 1.125,
-    "font": "tscircuit2024"
-  },
-  {
-    "type": "pcb_silkscreen_text",
-    "pcb_silkscreen_text_id": "pcb_silkscreen_text_2",
-    "pcb_component_id": "",
-    "text": "Opulo Inc.",
-    "anchor_position": {
-      "x": 99.5,
-      "y": 0.5
-    },
-    "layer": "bottom",
-    "font_size": 1.125,
-    "font": "tscircuit2024"
-  },
-  {
-    "type": "pcb_silkscreen_text",
-    "pcb_silkscreen_text_id": "pcb_silkscreen_text_3",
-    "pcb_component_id": "",
-    "text": "VIAGRID BOTTOM",
-    "anchor_position": {
-      "x": 58.6,
-      "y": 1.7
-    },
-    "layer": "bottom",
-    "font_size": 2.25,
-    "font": "tscircuit2024"
   }
 ]
