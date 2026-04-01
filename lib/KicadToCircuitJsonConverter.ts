@@ -1,5 +1,49 @@
 import { cju } from "@tscircuit/circuit-json-util"
-import { parseKicadPcb, parseKicadSch } from "kicadts"
+import { parseKicadPcb, parseKicadSch, parseKicadSexpr } from "kicadts"
+import * as kicadts from "kicadts"
+
+// Inject native KiCad V9 S-Expression Primitive Class Bindings into the upstream parser
+const SxClass = Object.getPrototypeOf((kicadts as any).Polyline);
+const missingTokens = [
+  "rectangle", "polyline", "circle", "arc", "text", "symbol",
+  "fill", "stroke", "beziers", "buses", "busEntries"
+];
+for (const token of missingTokens) {
+  if (SxClass.classes && !SxClass.classes[token]) {
+    class V9ExtensionPrimitive extends SxClass {
+      static get token() { return token; }
+      static fromSexprPrimitives(args: any[]) { 
+        const inst = new this() as any;
+        const { propertyMap, arrayPropertyMap } = SxClass.parsePrimitivesToClassProperties(args, token);
+        Object.assign(inst, propertyMap);
+        for (const [k, v] of Object.entries(arrayPropertyMap)) {
+           if (v && (v as any).length > 1) {
+             inst[k + "List"] = v;
+           }
+        }
+        inst._rawArgs = args;
+        return inst;
+      }
+      constructor(args: any = {}) { super(args); }
+    }
+    SxClass.classes[token] = V9ExtensionPrimitive;
+  }
+}
+
+const OriginalSchematicSymbol = (kicadts as any).SchematicSymbol;
+if (OriginalSchematicSymbol) {
+  const origFromSexpr = OriginalSchematicSymbol.fromSexprPrimitives;
+  OriginalSchematicSymbol.fromSexprPrimitives = function(args: any[]) {
+    const inst = origFromSexpr.call(this, args);
+    const { arrayPropertyMap } = (kicadts as any).SxClass.parsePrimitivesToClassProperties(args, "symbol");
+    if (arrayPropertyMap.rectangle) inst.rectangles = arrayPropertyMap.rectangle;
+    if (arrayPropertyMap.polyline) inst.polylines = arrayPropertyMap.polyline;
+    if (arrayPropertyMap.circle) inst.circles = arrayPropertyMap.circle;
+    if (arrayPropertyMap.arc) inst.arcs = arrayPropertyMap.arc;
+    if (arrayPropertyMap.text) inst.texts = arrayPropertyMap.text;
+    return inst;
+  };
+}
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
@@ -31,26 +75,56 @@ export class KicadToCircuitJsonConverter {
     this.fsMap[filePath] = content
   }
 
-  _findFileWithExtension(extension: string) {
-    const filesWithExtension = Object.keys(this.fsMap).filter((key) =>
-      key.endsWith(extension),
-    )
-    if (filesWithExtension.length > 1) {
-      throw new Error(
-        `Expected 0 or 1 file with extension ${extension}, got ${filesWithExtension.length}. Files: ${filesWithExtension.join(", ")}`,
-      )
-    }
-    return filesWithExtension[0] ?? null
+  _findFilesWithExtension(extension: string) {
+    return Object.keys(this.fsMap).filter((key) => key.endsWith(extension));
   }
 
   initializePipeline() {
-    const pcbFile = this._findFileWithExtension(".kicad_pcb")
-    const schFile = this._findFileWithExtension(".kicad_sch")
+    const pcbFiles = this._findFilesWithExtension(".kicad_pcb")
+    const schFiles = this._findFilesWithExtension(".kicad_sch")
+    const symFiles = this._findFilesWithExtension(".kicad_sym")
+
+    const pcbFile = pcbFiles[0] // still assume single pcb for now
+
+    const parsedSymLibs = symFiles.map(file => parseKicadSexpr(this.fsMap[file]!)[0] as any)
+
+    // Parse all sch files and merge symbols/traces into one giant logical kicadSch
+    const kicadSchs = schFiles.map(file => parseKicadSch(this.fsMap[file]!))
+    let mergedSch: any = undefined;
+    if (kicadSchs.length > 0) {
+      mergedSch = kicadSchs[0];
+      
+      // Inject external symbol libraries into the root schematic libSymbols
+      for (const symLib of parsedSymLibs) {
+        if (!mergedSch.libSymbols) {
+          mergedSch.libSymbols = symLib;
+        } else if (symLib.symbols) {
+          mergedSch.libSymbols.symbols = [...(mergedSch.libSymbols.symbols || []), ...symLib.symbols];
+        }
+      }
+      // Minimal merge of symbols and traces
+      // Minimal merge of symbols and traces
+      for (let i = 1; i < kicadSchs.length; i++) {
+        const mergeArrays = [
+          "symbols", "wires", "junctions", "buses", "busEntries", "beziers", 
+          "labels", "global_labels", "hierarchical_labels", "no_connects"
+        ];
+        
+        for (const arrName of mergeArrays) {
+           if ((kicadSchs[i] as any)[arrName]) {
+              (mergedSch as any)[arrName] = [
+                 ...((mergedSch as any)[arrName] || []), 
+                 ...(kicadSchs[i] as any)[arrName]
+              ];
+           }
+        }
+      }
+    }
 
     this.ctx = {
       db: cju([]),
       kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
-      kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
+      kicadSch: mergedSch,
       warnings: [],
       stats: {},
     }
@@ -128,6 +202,9 @@ export class KicadToCircuitJsonConverter {
       "schematic_port",
       "schematic_trace",
       "schematic_net_label",
+      "schematic_box",
+      "schematic_line",
+      "schematic_text",
       "pcb_component",
       "pcb_port",
       "pcb_smtpad",
