@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.7",
-    "@tscircuit/circuit-json-util": "^0.0.72",
+    "@tscircuit/circuit-json-util": "^0.0.90",
     "@tscircuit/copper-pour-solver": "^0.0.20",
     "@tscircuit/math-utils": "^0.0.33",
     "@types/bun": "latest",
@@ -24,7 +24,7 @@
     "circuit-json-to-connectivity-map": "^0.0.23",
     "kicadts": "^0.0.25",
     "react": "^19.2.0",
-    "tscircuit": "^0.0.1408",
+    "tscircuit": "^0.0.1592",
     "tsup": "^8.5.0"
   },
   "peerDependencies": {
