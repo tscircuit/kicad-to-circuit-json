@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.7",
-    "@tscircuit/circuit-json-util": "^0.0.72",
+    "@tscircuit/circuit-json-util": "^0.0.90",
     "@tscircuit/copper-pour-solver": "^0.0.20",
     "@tscircuit/math-utils": "^0.0.33",
     "@types/bun": "latest",
