@@ -1,5 +1,4 @@
 import { test, expect } from "bun:test"
-import { join } from "node:path"
 import { takeKicadSnapshot } from "./take-kicad-snapshot"
 import "./png-matcher"
 
@@ -7,10 +6,7 @@ test("takeKicadSnapshot - schematic export", async () => {
   console.log("Testing KiCad schematic snapshot...")
 
   const snapshot = await takeKicadSnapshot({
-    kicadFilePath: join(
-      import.meta.dir,
-      "../../kicad-demos/demos/flat_hierarchy/flat_hierarchy.kicad_sch",
-    ),
+    kicadFilePath: "kicad-demos/demos/pic_programmer/pic_programmer.kicad_sch",
     kicadFileType: "sch",
   })
 
