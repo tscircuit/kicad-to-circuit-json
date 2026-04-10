@@ -133,14 +133,6 @@ library source, and renders the resulting Circuit JSON inside an embedded
 runframe iframe preview. The site does not need the runframe package installed
 locally.
 
-## Vercel Deployment
-
-`vercel.json` is configured to deploy only the Vite app:
-
-- install command: `bun install`
-- build command: `bun run vercel-build`
-- output directory: `dist-site`
-
 ## Related Projects
 
 - [circuit-json-to-kicad](https://github.com/tscircuit/circuit-json-to-kicad) - Convert Circuit JSON to KiCad (reverse direction)
