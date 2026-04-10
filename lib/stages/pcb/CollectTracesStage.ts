@@ -1,5 +1,11 @@
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import {
+  approximateArcPoints,
+  getArcStartMidEnd,
+  getLayerNames,
+  getTopLevelCopperArcs,
+} from "./arc-utils"
 
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
@@ -21,10 +27,15 @@ export class CollectTracesStage extends ConverterStage {
 
     const segments = this.ctx.kicadPcb.segments || []
     const segmentArray = Array.isArray(segments) ? segments : [segments]
+    const arcArray = getTopLevelCopperArcs(this.ctx.kicadPcb)
 
     // Create a separate trace for each segment
     for (const segment of segmentArray) {
       this.createTraceFromSegment(segment)
+    }
+
+    for (const arc of arcArray) {
+      this.createTraceFromArc(arc)
     }
 
     this.finished = true
@@ -40,7 +51,7 @@ export class CollectTracesStage extends ConverterStage {
 
     // Get layer info
     const layer = segment.layer
-    const layerNames = layer?.names || []
+    const layerNames = getLayerNames(layer)
     const layerStr = layerNames.join(" ")
     const mappedLayer = this.mapLayer(layerStr)
 
@@ -89,6 +100,56 @@ export class CollectTracesStage extends ConverterStage {
     } as any)
 
     // Update stats
+    if (this.ctx.stats) {
+      this.ctx.stats.traces = (this.ctx.stats.traces || 0) + 1
+    }
+  }
+
+  private createTraceFromArc(arc: any) {
+    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceTraceId) return
+
+    const { start, mid, end } = getArcStartMidEnd(arc)
+    const width = arc.width ?? arc._sxWidth?.value ?? 0.2
+    const layerStr = getLayerNames(arc.layer).join(" ")
+    const mappedLayer = this.mapLayer(layerStr)
+
+    const netNum = this.getSegmentNet(arc)
+    const sourceTraceId =
+      netNum !== null
+        ? (this.ctx.netNumToSourceTraceId.get(netNum) ?? undefined)
+        : undefined
+
+    const transformedRoute = approximateArcPoints(start, mid, end, {
+      segmentLength: Math.max(width, 0.1),
+      minSegments: 8,
+    }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
+
+    const startPos = transformedRoute[0]
+    const endPos = transformedRoute[transformedRoute.length - 1]
+
+    if (!startPos || !endPos) return
+
+    const startPcbPortId = this.findPortAtPosition(startPos, mappedLayer)
+    const endPcbPortId = this.findPortAtPosition(endPos, mappedLayer)
+
+    const route = transformedRoute.map((point, index) => ({
+      route_type: "wire" as const,
+      x: point.x,
+      y: point.y,
+      width,
+      layer: mappedLayer,
+      ...(index === 0 ? { start_pcb_port_id: startPcbPortId } : {}),
+      ...(index === transformedRoute.length - 1
+        ? { end_pcb_port_id: endPcbPortId }
+        : {}),
+    }))
+
+    this.ctx.db.pcb_trace.insert({
+      route: route as any,
+      source_trace_id: sourceTraceId,
+      pcb_port_id: undefined,
+    } as any)
+
     if (this.ctx.stats) {
       this.ctx.stats.traces = (this.ctx.stats.traces || 0) + 1
     }

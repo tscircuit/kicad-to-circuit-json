@@ -1,5 +1,6 @@
 import type { Footprint } from "kicadts"
 import { ConverterStage } from "../../types"
+import { getTopLevelCopperArcs } from "./arc-utils"
 
 /**
  * CollectSourceTracesStage extracts logical connectivity (ratsnest) from KiCad PCB
@@ -41,7 +42,7 @@ export class CollectSourceTracesStage extends ConverterStage {
 
     // Include nets that have copper traces even if there are fewer than 2 pads.
     // This guarantees pcb_trace -> source_trace connectivity for routed nets.
-    this.collectNetsFromSegments(netToPads)
+    this.collectNetsFromCopper(netToPads)
 
     // Create source_trace elements for each net with multiple connections
     for (const [netNum, pads] of netToPads.entries()) {
@@ -57,7 +58,7 @@ export class CollectSourceTracesStage extends ConverterStage {
     return false
   }
 
-  private collectNetsFromSegments(
+  private collectNetsFromCopper(
     netToPads: Map<
       number,
       Array<{
@@ -74,6 +75,15 @@ export class CollectSourceTracesStage extends ConverterStage {
 
     for (const segment of segmentArray) {
       const netNum = this.getSegmentNet(segment)
+      if (!netNum) continue
+      if (!netToPads.has(netNum)) {
+        netToPads.set(netNum, [])
+      }
+    }
+
+    const arcArray = getTopLevelCopperArcs(this.ctx.kicadPcb)
+    for (const arc of arcArray) {
+      const netNum = this.getSegmentNet(arc)
       if (!netNum) continue
       if (!netToPads.has(netNum)) {
         netToPads.set(netNum, [])

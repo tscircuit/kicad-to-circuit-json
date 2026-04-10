@@ -1,5 +1,25 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import {
+  approximateArcPoints,
+  getArcStartMidEnd,
+  getGraphicArcs,
+  getLayerNames,
+  getLineStartEnd,
+} from "./arc-utils"
+
+type BoardPrimitive =
+  | {
+      type: "line"
+      start: { x: number; y: number }
+      end: { x: number; y: number }
+    }
+  | {
+      type: "arc"
+      start: { x: number; y: number }
+      mid: { x: number; y: number }
+      end: { x: number; y: number }
+    }
 
 /**
  * CollectGraphicsStage processes KiCad graphics elements:
@@ -19,30 +39,53 @@ export class CollectGraphicsStage extends ConverterStage {
     // Process gr_line elements
     const lines = this.ctx.kicadPcb.graphicLines || []
     const lineArray = Array.isArray(lines) ? lines : [lines]
+    const arcArray = getGraphicArcs(this.ctx.kicadPcb)
 
-    const edgeCutLines: any[] = []
+    const edgeCutPrimitives: BoardPrimitive[] = []
     const silkLines: any[] = []
+    const silkArcs: any[] = []
 
     for (const line of lineArray) {
-      const layer = line.layer
-      const layerNames =
-        typeof layer === "string" ? [layer] : layer?.names || []
-      const layerStr = layerNames.join(" ")
+      const layerStr = getLayerNames(line.layer).join(" ")
       if (layerStr.includes("Edge.Cuts")) {
-        edgeCutLines.push(line)
+        const { start, end } = getLineStartEnd(line)
+        edgeCutPrimitives.push({
+          type: "line",
+          start,
+          end,
+        })
       } else if (layerStr.includes("SilkS")) {
         silkLines.push(line)
       }
     }
 
+    for (const arc of arcArray) {
+      const layerStr = getLayerNames(arc.layer).join(" ")
+      if (layerStr.includes("Edge.Cuts")) {
+        const { start, mid, end } = getArcStartMidEnd(arc)
+        edgeCutPrimitives.push({
+          type: "arc",
+          start,
+          mid,
+          end,
+        })
+      } else if (layerStr.includes("SilkS")) {
+        silkArcs.push(arc)
+      }
+    }
+
     // Create board outline from edge cuts
-    if (edgeCutLines.length > 0) {
-      this.createBoardOutline(edgeCutLines)
+    if (edgeCutPrimitives.length > 0) {
+      this.createBoardOutline(edgeCutPrimitives)
     }
 
     // Create silkscreen paths
     for (const line of silkLines) {
       this.createSilkscreenPath(line)
+    }
+
+    for (const arc of silkArcs) {
+      this.createSilkscreenArc(arc)
     }
 
     // Process gr_rect elements
@@ -85,18 +128,12 @@ export class CollectGraphicsStage extends ConverterStage {
     return false
   }
 
-  private createBoardOutline(lines: any[]) {
+  private createBoardOutline(primitives: BoardPrimitive[]) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Convert lines to a format we can work with (in KiCad coordinates)
-    const segments = lines.map((line) => ({
-      start: line.start ?? { x: 0, y: 0 },
-      end: line.end ?? { x: 0, y: 0 },
-    }))
-
     // Chain the segments together to form a continuous outline
-    const orderedSegments: typeof segments = []
-    const remainingSegments = [...segments]
+    const orderedSegments: BoardPrimitive[] = []
+    const remainingSegments = [...primitives]
 
     // Start with the first segment
     if (remainingSegments.length > 0) {
@@ -119,11 +156,20 @@ export class CollectGraphicsStage extends ConverterStage {
           )
           if (foundIndex !== -1) {
             const seg = remainingSegments[foundIndex]!
-            // Reverse the segment
-            orderedSegments.push({
-              start: seg.end,
-              end: seg.start,
-            })
+            orderedSegments.push(
+              seg.type === "arc"
+                ? {
+                    type: "arc",
+                    start: seg.end,
+                    mid: seg.mid,
+                    end: seg.start,
+                  }
+                : {
+                    type: "line",
+                    start: seg.end,
+                    end: seg.start,
+                  },
+            )
             remainingSegments.splice(foundIndex, 1)
             continue
           }
@@ -142,30 +188,20 @@ export class CollectGraphicsStage extends ConverterStage {
     const points: Array<{ x: number; y: number }> = []
 
     for (const segment of orderedSegments) {
-      const startPos = applyToPoint(this.ctx.k2cMatPcb, {
-        x: segment.start.x,
-        y: segment.start.y,
-      })
+      const kicadPoints =
+        segment.type === "arc"
+          ? approximateArcPoints(segment.start, segment.mid, segment.end, {
+              segmentLength: 0.25,
+              minSegments: 16,
+            })
+          : [segment.start, segment.end]
 
-      // Only add the start point if it's not a duplicate of the last point
-      const lastPoint = points[points.length - 1]
-      if (!lastPoint || !this.pointsEqual(lastPoint, startPos)) {
-        points.push(startPos)
-      }
-    }
-
-    // Add the last endpoint if needed (for unclosed paths)
-    if (orderedSegments.length > 0) {
-      const lastSegment = orderedSegments[orderedSegments.length - 1]!
-      const endPos = applyToPoint(this.ctx.k2cMatPcb, {
-        x: lastSegment.end.x,
-        y: lastSegment.end.y,
-      })
-
-      // Check if it closes the loop
-      const firstPoint = points[0]
-      if (firstPoint && !this.pointsEqual(firstPoint, endPos)) {
-        points.push(endPos)
+      for (const kicadPoint of kicadPoints) {
+        const point = applyToPoint(this.ctx.k2cMatPcb, kicadPoint)
+        const lastPoint = points[points.length - 1]
+        if (!lastPoint || !this.pointsEqual(lastPoint, point)) {
+          points.push(point)
+        }
       }
     }
 
@@ -190,8 +226,7 @@ export class CollectGraphicsStage extends ConverterStage {
   private createSilkscreenPath(line: any) {
     if (!this.ctx.k2cMatPcb) return
 
-    const start = line.start || { x: 0, y: 0 }
-    const end = line.end || { x: 0, y: 0 }
+    const { start, end } = getLineStartEnd(line)
 
     const startPos = applyToPoint(this.ctx.k2cMatPcb, {
       x: start.x,
@@ -206,6 +241,27 @@ export class CollectGraphicsStage extends ConverterStage {
       pcb_component_id: "", // Not attached to a specific component
       layer: layer,
       route: [startPos, endPos],
+      stroke_width: strokeWidth,
+    })
+  }
+
+  private createSilkscreenArc(arc: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const { start, mid, end } = getArcStartMidEnd(arc)
+    const route = approximateArcPoints(start, mid, end, {
+      segmentLength: 0.1,
+      minSegments: 8,
+    }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
+
+    const layer = this.mapLayer(arc.layer)
+    const strokeWidth =
+      arc.stroke?.width ?? arc._sxStroke?._sxWidth?.value ?? arc.width ?? 0.15
+
+    this.ctx.db.pcb_silkscreen_path.insert({
+      pcb_component_id: "",
+      layer,
+      route,
       stroke_width: strokeWidth,
     })
   }
@@ -363,8 +419,7 @@ export class CollectGraphicsStage extends ConverterStage {
         points.push({ x: pt.x, y: pt.y })
       } else if (pt.token === "arc") {
         // Arc - convert to multiple points
-        // For simplicity, we'll approximate the arc with several line segments
-        const arcPoints = this.convertArcToPoints(
+        const arcPoints = approximateArcPoints(
           { x: pt._sxStart?._x, y: pt._sxStart?._y },
           { x: pt._sxMid?._x, y: pt._sxMid?._y },
           { x: pt._sxEnd?._x, y: pt._sxEnd?._y },
@@ -399,102 +454,5 @@ export class CollectGraphicsStage extends ConverterStage {
     if (this.ctx.stats) {
       this.ctx.stats.pads = (this.ctx.stats.pads || 0) + 1
     }
-  }
-
-  /**
-   * Converts an arc defined by start, mid, and end points to multiple line segments
-   * Uses the three-point arc definition to approximate the curve
-   */
-  private convertArcToPoints(
-    start: { x: number; y: number },
-    mid: { x: number; y: number },
-    end: { x: number; y: number },
-    numSegments = 8,
-  ): Array<{ x: number; y: number }> {
-    const points: Array<{ x: number; y: number }> = []
-
-    // Calculate the center and radius of the arc using the three points
-    const { center, radius } = this.calculateArcCenter(start, mid, end)
-
-    if (!center || radius === 0) {
-      // If we can't calculate the arc, just return start and end
-      return [start, end]
-    }
-
-    // Calculate start and end angles
-    const startAngle = Math.atan2(start.y - center.y, start.x - center.x)
-    const endAngle = Math.atan2(end.y - center.y, end.x - center.x)
-    const midAngle = Math.atan2(mid.y - center.y, mid.x - center.x)
-
-    // Determine if we're going clockwise or counterclockwise
-    let angleRange = endAngle - startAngle
-
-    // Check if we need to go the long way around
-    const midFromStart = midAngle - startAngle
-    const endFromStart = endAngle - startAngle
-
-    // Normalize angles to -π to π range
-    const normalizeMid = ((midFromStart + Math.PI) % (2 * Math.PI)) - Math.PI
-    const normalizeEnd = ((endFromStart + Math.PI) % (2 * Math.PI)) - Math.PI
-
-    // If mid angle is not between start and end, we need to go the other way
-    if (
-      (normalizeEnd > 0 && (normalizeMid < 0 || normalizeMid > normalizeEnd)) ||
-      (normalizeEnd < 0 && (normalizeMid > 0 || normalizeMid < normalizeEnd))
-    ) {
-      angleRange = angleRange - Math.sign(angleRange) * 2 * Math.PI
-    }
-
-    // Generate points along the arc
-    for (let i = 1; i < numSegments; i++) {
-      const t = i / numSegments
-      const angle = startAngle + angleRange * t
-      points.push({
-        x: center.x + radius * Math.cos(angle),
-        y: center.y + radius * Math.sin(angle),
-      })
-    }
-
-    points.push(end)
-
-    return points
-  }
-
-  /**
-   * Calculate the center and radius of a circle passing through three points
-   */
-  private calculateArcCenter(
-    p1: { x: number; y: number },
-    p2: { x: number; y: number },
-    p3: { x: number; y: number },
-  ): { center: { x: number; y: number } | null; radius: number } {
-    const ax = p1.x
-    const ay = p1.y
-    const bx = p2.x
-    const by = p2.y
-    const cx = p3.x
-    const cy = p3.y
-
-    const d = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
-
-    if (Math.abs(d) < 1e-10) {
-      // Points are collinear
-      return { center: null, radius: 0 }
-    }
-
-    const ux =
-      ((ax * ax + ay * ay) * (by - cy) +
-        (bx * bx + by * by) * (cy - ay) +
-        (cx * cx + cy * cy) * (ay - by)) /
-      d
-    const uy =
-      ((ax * ax + ay * ay) * (cx - bx) +
-        (bx * bx + by * by) * (ax - cx) +
-        (cx * cx + cy * cy) * (bx - ax)) /
-      d
-
-    const radius = Math.sqrt((ax - ux) ** 2 + (ay - uy) ** 2)
-
-    return { center: { x: ux, y: uy }, radius }
   }
 }

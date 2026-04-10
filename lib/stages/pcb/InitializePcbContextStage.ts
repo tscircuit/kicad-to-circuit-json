@@ -1,5 +1,12 @@
 import { compose, scale, translate } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import {
+  approximateArcPoints,
+  getArcStartMidEnd,
+  getGraphicArcs,
+  getLayerNames,
+  getLineStartEnd,
+} from "./arc-utils"
 
 /**
  * InitializePcbContextStage sets up the coordinate transformation
@@ -39,39 +46,39 @@ export class InitializePcbContextStage extends ConverterStage {
       return { x: 0, y: 0 }
     }
 
-    // Find all Edge.Cuts lines to determine board bounds
+    // Find all Edge.Cuts primitives to determine board bounds
     const lines = this.ctx.kicadPcb.graphicLines || []
     const lineArray = Array.isArray(lines) ? lines : [lines]
+    const arcArray = getGraphicArcs(this.ctx.kicadPcb)
 
-    const edgeCutLines = lineArray.filter((line: any) => {
-      const layer = line.layer
-      const layerNames =
-        typeof layer === "string" ? [layer] : layer?.names || []
-      const layerStr = layerNames.join(" ")
-      return layerStr.includes("Edge.Cuts")
-    })
-
-    if (edgeCutLines.length === 0) {
-      // No edge cuts found, use a default center
-      return { x: 0, y: 0 }
-    }
-
-    // Collect all points from edge cut lines
     const xs: number[] = []
     const ys: number[] = []
 
-    for (const line of edgeCutLines) {
-      if (line.start) {
-        xs.push(line.start.x)
-        ys.push(line.start.y)
-      }
-      if (line.end) {
-        xs.push(line.end.x)
-        ys.push(line.end.y)
+    for (const line of lineArray) {
+      const layerStr = getLayerNames(line.layer).join(" ")
+      if (!layerStr.includes("Edge.Cuts")) continue
+
+      const { start, end } = getLineStartEnd(line)
+      xs.push(start.x, end.x)
+      ys.push(start.y, end.y)
+    }
+
+    for (const arc of arcArray) {
+      const layerStr = getLayerNames(arc.layer).join(" ")
+      if (!layerStr.includes("Edge.Cuts")) continue
+
+      const { start, mid, end } = getArcStartMidEnd(arc)
+      for (const point of approximateArcPoints(start, mid, end, {
+        segmentLength: 0.25,
+        minSegments: 16,
+      })) {
+        xs.push(point.x)
+        ys.push(point.y)
       }
     }
 
     if (xs.length === 0 || ys.length === 0) {
+      // No edge cuts found, use a default center
       return { x: 0, y: 0 }
     }
 
