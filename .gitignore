@@ -39,3 +39,5 @@ kicad-demos
 debug*.ts
 *.diff.png
 .vercel
+
+DO_NOT_COMMIT

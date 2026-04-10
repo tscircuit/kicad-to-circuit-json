@@ -154,6 +154,10 @@ export function processPad({
 
   // Determine pad type and create appropriate CJ element
   if (padType === "smd") {
+    if (copperLayers.length === 0) {
+      return
+    }
+
     createSmdPad({
       ctx,
       pad,
@@ -288,11 +292,18 @@ export function createSmdPad({
 
       if (primitive.token === "gr_circle") {
         const grCircle = primitive.gr_circle || primitive
-        const center = grCircle.center || { x: 0, y: 0 }
-        const end = grCircle.end || { x: 0, y: 0 }
-        const radius = Math.sqrt(
+        const center = grCircle.center || grCircle._sxCenter || { x: 0, y: 0 }
+        const end = grCircle.end || grCircle._sxEnd || { x: 0, y: 0 }
+        const centerlineRadius = Math.sqrt(
           (end.x - center.x) ** 2 + (end.y - center.y) ** 2,
         )
+        const strokeWidth =
+          grCircle.stroke?.width || grCircle.width || grCircle._sxWidth?.value || 0
+        const fill = grCircle.fill?.value || grCircle.fill || grCircle._sxFill?.value
+        const radius =
+          fill === "no" && strokeWidth > 0
+            ? centerlineRadius + strokeWidth / 2
+            : centerlineRadius
 
         const rotatedCenter = rotatePoint(
           center.x,
