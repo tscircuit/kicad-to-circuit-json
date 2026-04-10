@@ -83,8 +83,9 @@ export function processFootprintProperties(
         ? property.layer
         : property.layer?.names?.join(" ") || ""
     const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")
+    const isHidden = property.hidden
 
-    if (!isSilkscreen) continue
+    if (!isSilkscreen || isHidden) continue
 
     // Create silkscreen text for this property
     // Property structure uses _sxAt for position (kicadts internal field)
