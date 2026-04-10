@@ -10,6 +10,7 @@
       "**",
       "!**/cosmos-export",
       "!**/dist",
+      "!**/dist-site",
       "!**/package.json",
       "!**/*.json"
     ]

@@ -103,8 +103,14 @@ This is an MVP implementation. Some limitations include:
 # Install dependencies
 bun install
 
-# Build
+# Build the library
 bun run build
+
+# Run the Vite viewer
+bun run dev
+
+# Build the Vite site
+bun run build:site
 
 # Type check
 bunx tsc --noEmit
@@ -112,6 +118,28 @@ bunx tsc --noEmit
 # Test
 bun test
 ```
+
+## Browser Viewer
+
+This repository now includes a small Vite app under `site/` for local inspection
+and demos.
+
+```bash
+bun run dev
+```
+
+The page accepts drag-and-drop `.kicad_pcb` files, converts them with the local
+library source, and renders the resulting Circuit JSON inside an embedded
+runframe iframe preview. The site does not need the runframe package installed
+locally.
+
+## Vercel Deployment
+
+`vercel.json` is configured to deploy only the Vite app:
+
+- install command: `bun install`
+- build command: `bun run vercel-build`
+- output directory: `dist-site`
 
 ## Related Projects
 

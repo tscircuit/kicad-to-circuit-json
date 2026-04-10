@@ -4,6 +4,7 @@ node_modules
 # output
 out
 dist
+dist-site
 *.tgz
 
 # code coverage
@@ -37,3 +38,4 @@ circuit-json-to-kicad
 kicad-demos
 debug*.ts
 *.diff.png
+.vercel
