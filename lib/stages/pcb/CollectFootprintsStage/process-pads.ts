@@ -492,8 +492,8 @@ export function createPlatedHole(
       x: pos.x,
       y: pos.y,
       port_hints: [pad.number?.toString()],
-      hole_width: holeDiameter, // Circular hole: width = height
-      hole_height: holeDiameter,
+      hole_width: drillY,
+      hole_height: drillX,
       outer_width: outerWidth,
       outer_height: outerHeight,
       ccw_rotation: pad.at?.angle || 0,
