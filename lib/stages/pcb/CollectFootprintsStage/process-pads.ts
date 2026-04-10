@@ -298,8 +298,12 @@ export function createSmdPad({
           (end.x - center.x) ** 2 + (end.y - center.y) ** 2,
         )
         const strokeWidth =
-          grCircle.stroke?.width || grCircle.width || grCircle._sxWidth?.value || 0
-        const fill = grCircle.fill?.value || grCircle.fill || grCircle._sxFill?.value
+          grCircle.stroke?.width ||
+          grCircle.width ||
+          grCircle._sxWidth?.value ||
+          0
+        const fill =
+          grCircle.fill?.value || grCircle.fill || grCircle._sxFill?.value
         const radius =
           fill === "no" && strokeWidth > 0
             ? centerlineRadius + strokeWidth / 2
