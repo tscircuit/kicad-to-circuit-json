@@ -1,3 +1,4 @@
+import type { LayerRef } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import {
@@ -6,6 +7,7 @@ import {
   getLayerNames,
   getTopLevelCopperArcs,
 } from "./arc-utils"
+import { mapKicadLayerToLayerRef } from "./layer-mapping"
 
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
@@ -53,7 +55,7 @@ export class CollectTracesStage extends ConverterStage {
     const layer = segment.layer
     const layerNames = getLayerNames(layer)
     const layerStr = layerNames.join(" ")
-    const mappedLayer = this.mapLayer(layerStr)
+    const mappedLayer = mapKicadLayerToLayerRef(layerStr)
 
     // Get net info
     const netNum = this.getSegmentNet(segment)
@@ -111,7 +113,7 @@ export class CollectTracesStage extends ConverterStage {
     const { start, mid, end } = getArcStartMidEnd(arc)
     const width = arc.width ?? arc._sxWidth?.value ?? 0.2
     const layerStr = getLayerNames(arc.layer).join(" ")
-    const mappedLayer = this.mapLayer(layerStr)
+    const mappedLayer = mapKicadLayerToLayerRef(layerStr)
 
     const netNum = this.getSegmentNet(arc)
     const sourceTraceId =
@@ -155,13 +157,6 @@ export class CollectTracesStage extends ConverterStage {
     }
   }
 
-  private mapLayer(kicadLayer: string): "top" | "bottom" {
-    if (kicadLayer?.includes("B.Cu") || kicadLayer?.includes("Back")) {
-      return "bottom"
-    }
-    return "top"
-  }
-
   private getSegmentNet(segment: any): number | null {
     const net = segment?.net
     if (!net) return null
@@ -176,7 +171,7 @@ export class CollectTracesStage extends ConverterStage {
 
   private findPortAtPosition(
     point: { x: number; y: number },
-    layer: "top" | "bottom",
+    layer: LayerRef,
   ): string | undefined {
     const ports = this.ctx.db.pcb_port.list() as any[]
 

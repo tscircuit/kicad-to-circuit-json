@@ -7,6 +7,10 @@ import {
   getLayerNames,
   getLineStartEnd,
 } from "./arc-utils"
+import {
+  mapKicadLayerToLayerRef,
+  mapKicadLayerToVisibleLayer,
+} from "./layer-mapping"
 
 type BoardPrimitive =
   | {
@@ -234,7 +238,7 @@ export class CollectGraphicsStage extends ConverterStage {
     })
     const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
 
-    const layer = this.mapLayer(line.layer)
+    const layer = mapKicadLayerToVisibleLayer(line.layer)
     const strokeWidth = line.width || 0.15
 
     this.ctx.db.pcb_silkscreen_path.insert({
@@ -254,7 +258,7 @@ export class CollectGraphicsStage extends ConverterStage {
       minSegments: 8,
     }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
 
-    const layer = this.mapLayer(arc.layer)
+    const layer = mapKicadLayerToVisibleLayer(arc.layer)
     const strokeWidth =
       arc.stroke?.width ?? arc._sxStroke?._sxWidth?.value ?? arc.width ?? 0.15
 
@@ -306,7 +310,7 @@ export class CollectGraphicsStage extends ConverterStage {
     const centerCJ = applyToPoint(this.ctx.k2cMatPcb, centerKicad)
 
     // Map layer to top/bottom
-    const layer = this.mapLayer(rect._sxLayer)
+    const layer = mapKicadLayerToLayerRef(rect._sxLayer)
 
     // Create pcb_smtpad
     this.ctx.db.pcb_smtpad.insert({
@@ -336,7 +340,7 @@ export class CollectGraphicsStage extends ConverterStage {
       y: at?.y ?? 0,
     })
 
-    const layer = this.mapLayer(text.layer)
+    const layer = mapKicadLayerToVisibleLayer(text.layer)
     // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
     const kicadFontSize =
       text._sxEffects?._sxFont?._sxSize?._height ||
@@ -352,17 +356,6 @@ export class CollectGraphicsStage extends ConverterStage {
       font_size: fontSize,
       font: "tscircuit2024",
     } as any)
-  }
-
-  private mapLayer(kicadLayer: any): "top" | "bottom" {
-    const layerStr =
-      typeof kicadLayer === "string"
-        ? kicadLayer
-        : kicadLayer?.names?.join(" ") || ""
-    if (layerStr.includes("B.") || layerStr.includes("Back")) {
-      return "bottom"
-    }
-    return "top"
   }
 
   private pointsEqual(
@@ -439,7 +432,7 @@ export class CollectGraphicsStage extends ConverterStage {
     )
 
     // Map layer to top/bottom
-    const layer = this.mapLayer(poly._sxLayer)
+    const layer = mapKicadLayerToLayerRef(poly._sxLayer)
 
     // Create pcb_smtpad with polygon shape
     this.ctx.db.pcb_smtpad.insert({

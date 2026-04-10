@@ -1,5 +1,6 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import { mapKicadLayerToLayerRef } from "./layer-mapping"
 
 /**
  * CollectZonesStage converts KiCad zones with filled copper into Circuit JSON pcb_copper_pour elements.
@@ -82,7 +83,7 @@ export class CollectZonesStage extends ConverterStage {
     }
 
     // Get layer info
-    const layer = this.mapLayer(zoneData.layer)
+    const layer = mapKicadLayerToLayerRef(zoneData.layer)
 
     // Get net info
     const netNum = zoneData.net || 0
@@ -192,21 +193,5 @@ export class CollectZonesStage extends ConverterStage {
     }
 
     return points
-  }
-
-  private mapLayer(kicadLayer: any): "top" | "bottom" {
-    const layerStr =
-      typeof kicadLayer === "string"
-        ? kicadLayer
-        : kicadLayer?.names?.join(" ") || kicadLayer?.name || ""
-
-    if (
-      layerStr.includes("B.Cu") ||
-      layerStr.includes("Back") ||
-      layerStr.includes("Bottom")
-    ) {
-      return "bottom"
-    }
-    return "top"
   }
 }

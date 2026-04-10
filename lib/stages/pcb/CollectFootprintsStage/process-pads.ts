@@ -8,6 +8,7 @@ import type {
   PcbHoleRotatedPillWithRectPad,
   PcbHoleCircle,
   PcbSmtPadRotatedRect,
+  LayerRef,
 } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
@@ -15,6 +16,11 @@ import type { ConverterContext } from "../../../types"
 import { determineLayerFromLayers } from "./layer-utils"
 import { rotatePoint } from "./process-graphics"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
+import {
+  getCopperSpanLayerRefsFromLayers,
+  getLayerRefsFromLayers,
+  getPcbCopperLayerRefs,
+} from "../layer-mapping"
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -102,6 +108,16 @@ export function processPad({
 
   const size = { x: sizeX, y: sizeY }
   const drill = pad.drill
+  const mappedCopperLayers =
+    padType === "thru_hole"
+      ? getCopperSpanLayerRefsFromLayers(pad.layers || [], ctx.kicadPcb)
+      : getLayerRefsFromLayers(pad.layers || [], ctx.kicadPcb)
+  const copperLayers =
+    mappedCopperLayers.length > 0
+      ? mappedCopperLayers
+      : padType === "thru_hole"
+        ? getPcbCopperLayerRefs(ctx.kicadPcb)
+        : []
 
   // Calculate total rotation
   const totalCcwRotationDegrees = padAt.angle || 0
@@ -113,9 +129,9 @@ export function processPad({
   if (padNumber) {
     const padLayers =
       padType === "smd"
-        ? [determineLayerFromLayers(pad.layers || [])]
+        ? copperLayers.slice(0, 1)
         : padType === "thru_hole"
-          ? ["top", "bottom"]
+          ? copperLayers
           : []
 
     const padPortInfo: PadPortInfo = {
@@ -162,6 +178,7 @@ export function processPad({
       size,
       drill,
       padShape,
+      copperLayers,
       totalCcwRotationDegrees,
       pcbPortId,
       sourcePortId,
@@ -423,6 +440,7 @@ export function createPlatedHole(
   size: { x: number; y: number },
   drill: any,
   shape: string,
+  layers: LayerRef[],
   rotation = 0,
   pcbPortId?: string,
   sourcePortId?: string,
@@ -461,7 +479,7 @@ export function createPlatedHole(
       port_hints: [pad.number?.toString()],
       hole_diameter: holeDiameter,
       outer_diameter: Math.max(outerWidth, outerHeight),
-      layers: ["top", "bottom"],
+      layers,
     } as PcbPlatedHoleCircle
     ctx.db.pcb_plated_hole.insert(platedHole)
   } else if (shape === "oval") {
@@ -479,7 +497,7 @@ export function createPlatedHole(
       outer_width: outerWidth,
       outer_height: outerHeight,
       ccw_rotation: pad.at?.angle || 0,
-      layers: ["top", "bottom"],
+      layers,
     } as PcbPlatedHoleOval
     ctx.db.pcb_plated_hole.insert(platedHole)
   } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
@@ -503,7 +521,7 @@ export function createPlatedHole(
         rect_pad_height: outerHeight,
         hole_offset_x: 0,
         hole_offset_y: 0,
-        layers: ["top", "bottom"],
+        layers,
       } as PcbHoleRotatedPillWithRectPad
       if (shape === "roundrect") {
         const roundrectRatio =
@@ -532,7 +550,7 @@ export function createPlatedHole(
         rect_pad_height: outerHeight,
         hole_offset_x: 0,
         hole_offset_y: 0,
-        layers: ["top", "bottom"],
+        layers,
       } as PcbHoleCircularWithRectPad
       if (shape === "roundrect") {
         const roundrectRatio =

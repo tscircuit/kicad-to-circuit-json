@@ -1,5 +1,9 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import {
+  getCopperSpanLayerRefsFromLayers,
+  getPcbCopperLayerRefs,
+} from "./layer-mapping"
 
 /**
  * CollectViasStage converts KiCad vias into Circuit JSON pcb_via elements.
@@ -36,24 +40,13 @@ export class CollectViasStage extends ConverterStage {
     const netNum = via.net || 0
     const netName = this.ctx.netNumToName.get(netNum) || ""
 
-    // Determine layers - vias connect top to bottom by default
-    let fromLayer: "top" | "bottom" = "top"
-    let toLayer: "top" | "bottom" = "bottom"
-
-    if (via.layers) {
-      // Extract layer array from kicadts layer object
-      const layersArray = Array.isArray(via.layers)
-        ? via.layers
-        : via.layers._layers || []
-
-      if (layersArray.length > 0) {
-        fromLayer = this.mapLayer(layersArray[0])
-        if (layersArray.length > 1) {
-          toLayer = this.mapLayer(layersArray[layersArray.length - 1])
-        }
-        // If only one layer specified, still assume through-hole via (top to bottom)
-      }
-    }
+    const mappedLayers = via.layers
+      ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
+      : []
+    const layers =
+      mappedLayers.length > 0
+        ? mappedLayers
+        : getPcbCopperLayerRefs(this.ctx.kicadPcb)
 
     // Create pcb_via
     this.ctx.db.pcb_via.insert({
@@ -61,24 +54,12 @@ export class CollectViasStage extends ConverterStage {
       y: pos.y,
       outer_diameter: size,
       hole_diameter: drill,
-      layers: [fromLayer, toLayer],
+      layers,
     })
 
     // Update stats
     if (this.ctx.stats) {
       this.ctx.stats.vias = (this.ctx.stats.vias || 0) + 1
     }
-  }
-
-  private mapLayer(kicadLayer: string): "top" | "bottom" {
-    // Map KiCad layer names to Circuit JSON layers
-    if (
-      kicadLayer?.includes("B.Cu") ||
-      kicadLayer?.includes("Back") ||
-      kicadLayer?.includes("B_Cu")
-    ) {
-      return "bottom"
-    }
-    return "top"
   }
 }

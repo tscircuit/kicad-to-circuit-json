@@ -1,0 +1,129 @@
+import type { LayerRef } from "circuit-json"
+import type { KicadPcb } from "kicadts"
+
+const INNER_COPPER_LAYER_REGEX = /^In([1-6])\.Cu$/
+
+function dedupeLayerRefs(layers: LayerRef[]): LayerRef[] {
+  return [...new Set(layers)]
+}
+
+export function extractKicadLayerNames(layer: any): string[] {
+  if (!layer) return []
+  if (typeof layer === "string") return [layer]
+  if (Array.isArray(layer))
+    return layer.filter((name) => typeof name === "string")
+
+  return [
+    ...(layer.names || []),
+    ...(layer._names || []),
+    ...(layer._layers || []),
+    ...(layer.name ? [layer.name] : []),
+    ...(layer._name ? [layer._name] : []),
+  ].filter((name): name is string => typeof name === "string")
+}
+
+export function mapKicadLayerNameToLayerRef(
+  layerName: string,
+): LayerRef | undefined {
+  if (layerName === "F.Cu") return "top"
+  if (layerName === "B.Cu") return "bottom"
+
+  const innerLayerMatch = layerName.match(INNER_COPPER_LAYER_REGEX)
+  if (!innerLayerMatch) return undefined
+
+  return `inner${innerLayerMatch[1]}` as LayerRef
+}
+
+export function mapKicadLayerToLayerRef(layer: any): LayerRef {
+  const layerNames = extractKicadLayerNames(layer)
+
+  for (const layerName of layerNames) {
+    const mappedLayer = mapKicadLayerNameToLayerRef(layerName)
+    if (mappedLayer) return mappedLayer
+  }
+
+  const layerLabel = layerNames.join(" ")
+  if (
+    layerLabel.includes("B.") ||
+    layerLabel.includes("Back") ||
+    layerLabel.includes("Bottom")
+  ) {
+    return "bottom"
+  }
+
+  return "top"
+}
+
+export function mapKicadLayerToVisibleLayer(layer: any): "top" | "bottom" {
+  return mapKicadLayerToLayerRef(layer) === "bottom" ? "bottom" : "top"
+}
+
+export function getPcbCopperLayerRefs(kicadPcb?: KicadPcb): LayerRef[] {
+  const definitions = Array.isArray(kicadPcb?.layers?._definitions)
+    ? kicadPcb.layers._definitions
+    : []
+
+  const copperLayers = definitions
+    .map((definition: any) => mapKicadLayerNameToLayerRef(definition?._name))
+    .filter((layer): layer is LayerRef => Boolean(layer))
+
+  if (copperLayers.length > 0) {
+    return dedupeLayerRefs(copperLayers)
+  }
+
+  return ["top", "bottom"]
+}
+
+export function getLayerRefsFromLayers(
+  layers: any,
+  kicadPcb?: KicadPcb,
+): LayerRef[] {
+  const layerNames = extractKicadLayerNames(layers)
+  const mappedLayers: LayerRef[] = []
+
+  for (const layerName of layerNames) {
+    if (layerName === "*.Cu") {
+      mappedLayers.push(...getPcbCopperLayerRefs(kicadPcb))
+      continue
+    }
+
+    const mappedLayer = mapKicadLayerNameToLayerRef(layerName)
+    if (mappedLayer) {
+      mappedLayers.push(mappedLayer)
+    }
+  }
+
+  return dedupeLayerRefs(mappedLayers)
+}
+
+export function expandCopperLayerSpan(
+  layers: LayerRef[],
+  kicadPcb?: KicadPcb,
+): LayerRef[] {
+  if (layers.length <= 1) {
+    return layers
+  }
+
+  const copperStack = getPcbCopperLayerRefs(kicadPcb)
+  const startIndex = copperStack.indexOf(layers[0]!)
+  const endIndex = copperStack.indexOf(layers[layers.length - 1]!)
+
+  if (startIndex === -1 || endIndex === -1) {
+    return dedupeLayerRefs(layers)
+  }
+
+  const [fromIndex, toIndex] =
+    startIndex <= endIndex ? [startIndex, endIndex] : [endIndex, startIndex]
+
+  return copperStack.slice(fromIndex, toIndex + 1)
+}
+
+export function getCopperSpanLayerRefsFromLayers(
+  layers: any,
+  kicadPcb?: KicadPcb,
+): LayerRef[] {
+  return expandCopperLayerSpan(
+    getLayerRefsFromLayers(layers, kicadPcb),
+    kicadPcb,
+  )
+}
