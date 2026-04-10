@@ -59,13 +59,13 @@ export function mapKicadLayerToVisibleLayer(layer: any): "top" | "bottom" {
 }
 
 export function getPcbCopperLayerRefs(kicadPcb?: KicadPcb): LayerRef[] {
-  const definitions = Array.isArray(kicadPcb?.layers?._definitions)
-    ? kicadPcb.layers._definitions
+  const definitions = Array.isArray((kicadPcb?.layers as any)?._definitions)
+    ? (kicadPcb?.layers as any)._definitions
     : []
 
   const copperLayers = definitions
     .map((definition: any) => mapKicadLayerNameToLayerRef(definition?._name))
-    .filter((layer): layer is LayerRef => Boolean(layer))
+    .filter((layer: LayerRef | undefined): layer is LayerRef => Boolean(layer))
 
   if (copperLayers.length > 0) {
     return dedupeLayerRefs(copperLayers)

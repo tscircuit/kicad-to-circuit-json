@@ -7,6 +7,7 @@ import {
   type ChangeEvent,
   type DragEvent,
 } from "react"
+import type { SimpleRouteJson } from "@tscircuit/core"
 import { KicadToCircuitJsonConverter } from "@project-lib"
 
 type CircuitJson = ReturnType<KicadToCircuitJsonConverter["getOutput"]>
@@ -28,6 +29,8 @@ const runframeStandalonePreviewUrl =
 export function App() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [circuitJson, setCircuitJson] = useState<CircuitJson | null>(null)
+  const [simpleRouteJson, setSimpleRouteJson] =
+    useState<SimpleRouteJson | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [fileName, setFileName] = useState<string | null>(null)
   const [frameUrl, setFrameUrl] = useState<string | null>(null)
@@ -101,6 +104,7 @@ export function App() {
     if (!nextFileName.endsWith(".kicad_pcb")) {
       startTransition(() => {
         setCircuitJson(null)
+        setSimpleRouteJson(null)
         setErrorMessage("Drop a .kicad_pcb file.")
         setFileName(nextFileName)
         setFrameUrl(null)
@@ -122,16 +126,37 @@ export function App() {
       converter.addFile(nextFileName, fileContents)
       converter.runUntilFinished()
 
+      const nextCircuitJson = converter.getOutput()
+      const nextWarnings = [...converter.getWarnings()]
+      let nextSimpleRouteJson: SimpleRouteJson | null = null
+
+      try {
+        const { getSimpleRouteJsonFromCircuitJson } = await import(
+          "@tscircuit/core"
+        )
+        nextSimpleRouteJson = getSimpleRouteJsonFromCircuitJson({
+          circuitJson: nextCircuitJson,
+        }).simpleRouteJson
+      } catch (error) {
+        nextWarnings.push(
+          `Simple Route JSON export unavailable: ${
+            error instanceof Error ? error.message : "Unknown error."
+          }`,
+        )
+      }
+
       startTransition(() => {
-        setCircuitJson(converter.getOutput())
+        setCircuitJson(nextCircuitJson)
+        setSimpleRouteJson(nextSimpleRouteJson)
         setErrorMessage(null)
         setFileName(nextFileName)
-        setWarnings(converter.getWarnings())
+        setWarnings(nextWarnings)
         setStats(converter.getStats())
       })
     } catch (error) {
       startTransition(() => {
         setCircuitJson(null)
+        setSimpleRouteJson(null)
         setErrorMessage(
           error instanceof Error ? error.message : "Conversion failed.",
         )
@@ -148,12 +173,13 @@ export function App() {
   const statsEntries = Object.entries(stats).filter(
     ([, value]) => typeof value === "number",
   )
+  const outputBaseName = getOutputBaseName(fileName)
 
   return (
     <main className="app-shell">
       <section className="hero-panel">
         <div className="eyebrow">KiCad to Circuit JSON</div>
-        <h1>Drop a board file and inspect the converted result in-browser.</h1>
+        <h1>Convert KiCad to Circuit JSON in browser</h1>
         <p className="lede">
           This viewer reads a <code>.kicad_pcb</code> file, converts it with the
           local library source, and opens the result in the tscircuit runframe
@@ -201,6 +227,42 @@ export function App() {
             <strong>{warnings.length}</strong>
           </article>
         </div>
+
+        {circuitJson ? (
+          <section className="panel">
+            <div className="panel-header">
+              <h2>Downloads</h2>
+            </div>
+            <div className="download-actions">
+              <button
+                className="secondary-button"
+                type="button"
+                onClick={() =>
+                  downloadJsonFile(
+                    circuitJson,
+                    `${outputBaseName}.circuit.json`,
+                  )
+                }
+              >
+                Download Circuit JSON
+              </button>
+              <button
+                className="secondary-button"
+                type="button"
+                disabled={!simpleRouteJson}
+                onClick={() => {
+                  if (!simpleRouteJson) return
+                  downloadJsonFile(
+                    simpleRouteJson,
+                    `${outputBaseName}.simple-route.json`,
+                  )
+                }}
+              >
+                Download Simple Route JSON
+              </button>
+            </div>
+          </section>
+        ) : null}
 
         {isConverting ? (
           <section className="notice-panel">
@@ -328,4 +390,23 @@ function serializeForInlineScript(value: unknown) {
     .replace(/</g, "\\u003c")
     .replace(/>/g, "\\u003e")
     .replace(/&/g, "\\u0026")
+}
+
+function getOutputBaseName(fileName: string | null) {
+  if (!fileName) return "board"
+  return fileName.replace(/\.kicad_pcb$/i, "")
+}
+
+function downloadJsonFile(data: unknown, fileName: string) {
+  const blob = new Blob([`${JSON.stringify(data, null, 2)}\n`], {
+    type: "application/json",
+  })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement("a")
+
+  link.href = url
+  link.download = fileName
+  link.click()
+
+  URL.revokeObjectURL(url)
 }

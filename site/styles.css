@@ -77,9 +77,9 @@ p {
 
 h1 {
   margin-top: 0.75rem;
-  max-width: 12ch;
-  font-size: clamp(2.1rem, 4.2vw, 3.8rem);
-  line-height: 1;
+  max-width: 15ch;
+  font-size: clamp(1.8rem, 3.1vw, 2.8rem);
+  line-height: 1.05;
   letter-spacing: -0.05em;
 }
 
@@ -149,14 +149,39 @@ h2 {
   background: #1f2937;
 }
 
+.secondary-button {
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  padding: 0.7rem 0.95rem;
+  background: #fff;
+  color: #111827;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.secondary-button:hover:not(:disabled) {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+.secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .file-input {
   display: none;
 }
 
 .meta-grid,
-.stats-list {
+.stats-list,
+.download-actions {
   display: grid;
   gap: 0.85rem;
+}
+
+.download-actions {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
 .meta-grid {
