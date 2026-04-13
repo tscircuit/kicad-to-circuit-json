@@ -47,8 +47,8 @@ test("repro: orthogonal smd roundrect pads stay axis-aligned rects", () => {
   const output = converter.getOutput()
   const smtPads = output
     .filter((element) => element.type === "pcb_smtpad")
-    .sort((a, b) =>
-      Number(a.port_hints?.[0] ?? 0) - Number(b.port_hints?.[0] ?? 0),
+    .sort(
+      (a, b) => Number(a.port_hints?.[0] ?? 0) - Number(b.port_hints?.[0] ?? 0),
     )
 
   expect(smtPads).toHaveLength(4)
