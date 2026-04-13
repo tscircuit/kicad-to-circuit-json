@@ -364,6 +364,11 @@ export function createSmdPad({
     port_hints: [pad.number?.toString()],
   }
   const ccwRotationDegrees = pad.at?.angle
+  const axisAlignedRectDimensions = getAxisAlignedRectDimensionsForRotation(
+    size.x,
+    size.y,
+    ccwRotationDegrees ?? 0,
+  )
 
   if (shape === "circle") {
     const smtpad: PcbSmtPadCircle = {
@@ -390,7 +395,7 @@ export function createSmdPad({
       cornerRadius = (minDimension * roundrectRatio) / 2
     }
 
-    if (ccwRotationDegrees) {
+    if (ccwRotationDegrees && !axisAlignedRectDimensions) {
       const rotatedsmtpad: PcbSmtPadRotatedRect = {
         type: "pcb_smtpad",
         pcb_component_id: componentId,
@@ -413,8 +418,8 @@ export function createSmdPad({
       pcb_component_id: componentId,
       x: pos.x,
       y: pos.y,
-      width: size.x,
-      height: size.y,
+      width: axisAlignedRectDimensions?.width ?? size.x,
+      height: axisAlignedRectDimensions?.height ?? size.y,
       layer: layer,
       pcb_port_id: pcbPortId,
       port_hints: [pad.number.toString()],
@@ -442,6 +447,34 @@ export function createSmdPad({
   if (ctx.stats) {
     ctx.stats.pads = (ctx.stats.pads || 0) + 1
   }
+}
+
+function getAxisAlignedRectDimensionsForRotation(
+  width: number,
+  height: number,
+  ccwRotationDegrees: number,
+): { width: number; height: number } | null {
+  const normalizedRotation = normalizeDegrees(ccwRotationDegrees)
+  const quarterTurns = normalizedRotation / 90
+  const roundedQuarterTurns = Math.round(quarterTurns)
+
+  if (Math.abs(quarterTurns - roundedQuarterTurns) > 1e-6) {
+    return null
+  }
+
+  if (roundedQuarterTurns % 2 === 0) {
+    return { width, height }
+  }
+
+  return {
+    width: height,
+    height: width,
+  }
+}
+
+function normalizeDegrees(degrees: number): number {
+  const normalized = degrees % 360
+  return normalized < 0 ? normalized + 360 : normalized
 }
 
 /**
