@@ -149,7 +149,6 @@
     "height": 0.64,
     "layer": "top",
     "pcb_port_id": "pcb_port_0",
-    "source_port_id": "pcb_component_0_port_1",
     "port_hints": [
       "1"
     ],
@@ -166,7 +165,6 @@
     "height": 0.64,
     "layer": "top",
     "pcb_port_id": "pcb_port_1",
-    "source_port_id": "pcb_component_0_port_2",
     "port_hints": [
       "2"
     ],
@@ -183,7 +181,6 @@
     "height": 0.64,
     "layer": "bottom",
     "pcb_port_id": "pcb_port_2",
-    "source_port_id": "pcb_component_1_port_1",
     "port_hints": [
       "1"
     ],
@@ -200,7 +197,6 @@
     "height": 0.64,
     "layer": "bottom",
     "pcb_port_id": "pcb_port_3",
-    "source_port_id": "pcb_component_1_port_2",
     "port_hints": [
       "2"
     ],
@@ -237,6 +233,10 @@
       },
       {
         "x": -5.25,
+        "y": 4.5
+      },
+      {
+        "x": 5.25,
         "y": 4.5
       }
     ],

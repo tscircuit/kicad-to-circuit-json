@@ -27,6 +27,7 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
   )
   (footprint "Test:RotatedPads" (layer "F.Cu")
     (at 100 100)
+    (tstamp "test-rotated-pads")
     (attr smd)
     (fp_text reference "REF**" (at 0 -3) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
