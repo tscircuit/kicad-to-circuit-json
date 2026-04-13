@@ -1,26 +1,26 @@
 import type {
-  PcbSmtPadCircle,
-  PcbSmtPadRect,
-  PcbSmtPadPolygon,
-  PcbPlatedHoleCircle,
-  PcbPlatedHoleOval,
+  LayerRef,
+  PcbHoleCircle,
   PcbHoleCircularWithRectPad,
   PcbHoleRotatedPillWithRectPad,
-  PcbHoleCircle,
+  PcbPlatedHoleCircle,
+  PcbPlatedHoleOval,
+  PcbSmtPadCircle,
+  PcbSmtPadPolygon,
+  PcbSmtPadRect,
   PcbSmtPadRotatedRect,
-  LayerRef,
 } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
-import { determineLayerFromLayers } from "./layer-utils"
-import { rotatePoint } from "./process-graphics"
-import { createPcbPort, type PadPortInfo } from "./process-ports"
 import {
   getCopperSpanLayerRefsFromLayers,
   getLayerRefsFromLayers,
   getPcbCopperLayerRefs,
 } from "../layer-mapping"
+import { determineLayerFromLayers } from "./layer-utils"
+import { rotatePoint } from "./process-graphics"
+import { createPcbPort, type PadPortInfo } from "./process-ports"
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -69,10 +69,6 @@ export function processPad({
   const padAt = pad.at || { x: 0, y: 0, angle: 0 }
   const padType = pad.padType || pad.type || "thru_hole"
   const padShape = pad.shape || "circle"
-
-  // Get pad's local rotation angle
-  // kicadts stores rotation in the 'angle' property
-  const padRotation = padAt.angle || 0
 
   // Get pad position in KiCad global coordinates
   // Pad position is relative to component and needs to be rotated
@@ -201,7 +197,7 @@ export function createSmdPad({
   size,
   shape,
   pcbPortId,
-  sourcePortId,
+  sourcePortId: _sourcePortId,
   padKicadPos,
   totalCcwRotationDegrees = 0,
 }: {
@@ -352,17 +348,6 @@ export function createSmdPad({
   }
 
   // Handle standard shapes (circle, rect, roundrect)
-  const baseSmtPad = {
-    type: "pcb_smtpad",
-    pcb_component_id: componentId,
-    x: pos.x,
-    y: pos.y,
-    width: size.x,
-    height: size.y,
-    layer: layer,
-    pcb_port_id: pcbPortId,
-    port_hints: [pad.number?.toString()],
-  }
   const ccwRotationDegrees = pad.at?.angle
 
   if (shape === "circle") {
@@ -390,7 +375,10 @@ export function createSmdPad({
       cornerRadius = (minDimension * roundrectRatio) / 2
     }
 
-    if (ccwRotationDegrees) {
+    const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
+    const rightAngleTurns = getRightAngleTurns(normalizedCcwRotation)
+
+    if (rightAngleTurns === null && normalizedCcwRotation !== 0) {
       const rotatedsmtpad: PcbSmtPadRotatedRect = {
         type: "pcb_smtpad",
         pcb_component_id: componentId,
@@ -402,19 +390,23 @@ export function createSmdPad({
         pcb_port_id: pcbPortId,
         port_hints: [pad.number.toString()],
         shape: "rotated_rect",
-        ccw_rotation: ccwRotationDegrees,
+        ccw_rotation: normalizedCcwRotation,
         corner_radius: cornerRadius,
       } as PcbSmtPadRotatedRect
       ctx.db.pcb_smtpad.insert(rotatedsmtpad)
       return
     }
+
+    const shouldSwapDimensions =
+      rightAngleTurns !== null && Math.abs(rightAngleTurns) % 2 === 1
+
     const smtpad: PcbSmtPadRect = {
       type: "pcb_smtpad",
       pcb_component_id: componentId,
       x: pos.x,
       y: pos.y,
-      width: size.x,
-      height: size.y,
+      width: shouldSwapDimensions ? size.y : size.x,
+      height: shouldSwapDimensions ? size.x : size.y,
       layer: layer,
       pcb_port_id: pcbPortId,
       port_hints: [pad.number.toString()],
@@ -444,6 +436,23 @@ export function createSmdPad({
   }
 }
 
+function normalizeRotationDegrees(rotationDegrees: number | undefined): number {
+  if (!rotationDegrees) return 0
+
+  const normalized = rotationDegrees % 360
+  return normalized < 0 ? normalized + 360 : normalized
+}
+
+function getRightAngleTurns(rotationDegrees: number): number | null {
+  const quarterTurns = rotationDegrees / 90
+
+  if (Math.abs(quarterTurns - Math.round(quarterTurns)) > 1e-9) {
+    return null
+  }
+
+  return Math.round(quarterTurns)
+}
+
 /**
  * Creates a plated hole (through-hole pad) in Circuit JSON
  */
@@ -456,9 +465,9 @@ export function createPlatedHole(
   drill: any,
   shape: string,
   layers: LayerRef[],
-  rotation = 0,
+  _rotation = 0,
   pcbPortId?: string,
-  sourcePortId?: string,
+  _sourcePortId: string | undefined = undefined,
 ) {
   // Extract drill dimensions - drill can be scalar (circular) or x/y (oval)
   const drillX =
@@ -478,8 +487,8 @@ export function createPlatedHole(
     drillY !== undefined &&
     drillX !== drillY
 
-  let outerWidth = size.x
-  let outerHeight = size.y
+  const outerWidth = size.x
+  const outerHeight = size.y
 
   // Build plated hole object based on shape
   if (shape === "circle") {
@@ -589,7 +598,7 @@ export function createPlatedHole(
  */
 export function createNpthHole(
   ctx: ConverterContext,
-  pad: any,
+  _pad: any,
   componentId: string,
   pos: { x: number; y: number },
   drill: any,
