@@ -2,6 +2,7 @@ import type {
   LayerRef,
   PcbHoleCircle,
   PcbHoleCircularWithRectPad,
+  PcbHolePillWithRectPad,
   PcbHoleRotatedPillWithRectPad,
   PcbPlatedHoleCircle,
   PcbPlatedHoleOval,
@@ -526,36 +527,67 @@ export function createPlatedHole(
     ctx.db.pcb_plated_hole.insert(platedHole)
   } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
     // Rectangular pad with circular hole
+    const ccwRotationDegrees = pad.at?.angle ?? 0
     if (drillIsOval) {
-      const platedHole: PcbHoleRotatedPillWithRectPad = {
-        type: "pcb_plated_hole",
-        shape: "rotated_pill_hole_with_rect_pad",
-        pcb_component_id: componentId,
-        pcb_port_id: pcbPortId,
-        x: pos.x,
-        y: pos.y,
-        port_hints: [pad.number?.toString()],
-        hole_shape: "rotated_pill",
-        pad_shape: "rect",
-        hole_width: drillY,
-        hole_height: drillX,
-        hole_ccw_rotation: pad.at?.angle || 0,
-        rect_ccw_rotation: pad.at?.angle || 0,
-        rect_pad_width: outerWidth,
-        rect_pad_height: outerHeight,
-        hole_offset_x: 0,
-        hole_offset_y: 0,
-        layers,
-      } as PcbHoleRotatedPillWithRectPad
-      if (shape === "roundrect") {
-        const roundrectRatio =
-          pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
-        if (roundrectRatio !== undefined) {
-          const minDimension = Math.min(outerWidth, outerHeight)
-          platedHole.rect_border_radius = (minDimension * roundrectRatio) / 2
+      if (ccwRotationDegrees === 0) {
+        const platedHole: PcbHolePillWithRectPad = {
+          type: "pcb_plated_hole",
+          shape: "pill_hole_with_rect_pad",
+          pcb_component_id: componentId,
+          pcb_port_id: pcbPortId,
+          x: pos.x,
+          y: pos.y,
+          port_hints: [pad.number?.toString()],
+          hole_shape: "pill",
+          pad_shape: "rect",
+          hole_width: drillY,
+          hole_height: drillX,
+          rect_pad_width: outerWidth,
+          rect_pad_height: outerHeight,
+          hole_offset_x: 0,
+          hole_offset_y: 0,
+          layers,
+        } as PcbHolePillWithRectPad
+        if (shape === "roundrect") {
+          const roundrectRatio =
+            pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+          if (roundrectRatio !== undefined) {
+            const minDimension = Math.min(outerWidth, outerHeight)
+            platedHole.rect_border_radius = (minDimension * roundrectRatio) / 2
+          }
         }
+        ctx.db.pcb_plated_hole.insert(platedHole)
+      } else {
+        const platedHole: PcbHoleRotatedPillWithRectPad = {
+          type: "pcb_plated_hole",
+          shape: "rotated_pill_hole_with_rect_pad",
+          pcb_component_id: componentId,
+          pcb_port_id: pcbPortId,
+          x: pos.x,
+          y: pos.y,
+          port_hints: [pad.number?.toString()],
+          hole_shape: "rotated_pill",
+          pad_shape: "rect",
+          hole_width: drillY,
+          hole_height: drillX,
+          hole_ccw_rotation: pad.at?.angle || 0,
+          rect_ccw_rotation: pad.at?.angle || 0,
+          rect_pad_width: outerWidth,
+          rect_pad_height: outerHeight,
+          hole_offset_x: 0,
+          hole_offset_y: 0,
+          layers,
+        } as PcbHoleRotatedPillWithRectPad
+        if (shape === "roundrect") {
+          const roundrectRatio =
+            pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+          if (roundrectRatio !== undefined) {
+            const minDimension = Math.min(outerWidth, outerHeight)
+            platedHole.rect_border_radius = (minDimension * roundrectRatio) / 2
+          }
+        }
+        ctx.db.pcb_plated_hole.insert(platedHole)
       }
-      ctx.db.pcb_plated_hole.insert(platedHole)
     } else {
       const platedHole: PcbHoleCircularWithRectPad = {
         type: "pcb_plated_hole",
