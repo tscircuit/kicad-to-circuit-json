@@ -508,7 +508,7 @@ export function createPlatedHole(
     } as PcbPlatedHoleCircle
     ctx.db.pcb_plated_hole.insert(platedHole)
   } else if (shape === "oval") {
-    // Oval/pill-shaped pad with circular hole
+    // Oval/pill-shaped pad with pill hole
     const platedHole: PcbPlatedHoleOval = {
       type: "pcb_plated_hole",
       shape: "pill",
@@ -526,7 +526,7 @@ export function createPlatedHole(
     } as PcbPlatedHoleOval
     ctx.db.pcb_plated_hole.insert(platedHole)
   } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
-    // Rectangular pad with circular hole
+    // Rectangular pad with pill hole
     const ccwRotationDegrees = pad.at?.angle ?? 0
     if (drillIsOval) {
       if (ccwRotationDegrees === 0) {
