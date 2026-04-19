@@ -52,6 +52,14 @@ code {
   padding: 1.25rem;
 }
 
+.hero-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
 .viewer-panel {
   min-height: 38rem;
 }
@@ -67,6 +75,42 @@ code {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.repo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #d7d9d4;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #f2f3ef 100%);
+  color: #111827;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.repo-badge:hover {
+  transform: translateY(-1px);
+  border-color: #111827;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+}
+
+.repo-badge:focus-visible {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+}
+
+.repo-badge-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
 }
 
 h1,
