@@ -18,14 +18,18 @@ test("kicad-to-circuit-json repro: Arduino Nano PCB", async () => {
   expect(circuitJson).toBeDefined()
   expect(circuitJson.length).toBeGreaterThan(0)
 
-  const pcbBoards = (circuitJson as any[]).filter((el) => el.type === "pcb_board")
+  const pcbBoards = (circuitJson as any[]).filter(
+    (el) => el.type === "pcb_board",
+  )
   const pcbComponents = (circuitJson as any[]).filter(
     (el) => el.type === "pcb_component",
   )
   const pcbSilkscreenText = (circuitJson as any[]).filter(
     (el) => el.type === "pcb_silkscreen_text",
   )
-  const pcbTraces = (circuitJson as any[]).filter((el) => el.type === "pcb_trace")
+  const pcbTraces = (circuitJson as any[]).filter(
+    (el) => el.type === "pcb_trace",
+  )
 
   expect(pcbBoards).toHaveLength(1)
   expect(pcbComponents.length).toBeGreaterThan(0)
