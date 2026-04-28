@@ -552,19 +552,6 @@
     "stroke_width": 0.12
   },
   {
-    "type": "pcb_fabrication_note_text",
-    "pcb_fabrication_note_text_id": "pcb_fabrication_note_text_0",
-    "pcb_component_id": "pcb_component_0",
-    "font": "tscircuit2024",
-    "font_size": 1.5,
-    "text": "JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical",
-    "anchor_position": {
-      "x": 102.5,
-      "y": -104.6
-    },
-    "layer": "top"
-  },
-  {
     "type": "pcb_fabrication_note_path",
     "pcb_fabrication_note_path_id": "pcb_fabrication_note_path_0",
     "pcb_component_id": "pcb_component_0",
