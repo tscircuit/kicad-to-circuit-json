@@ -44,7 +44,9 @@ test("kicad-to-circuit-json: kicad-laser-prefab PCB", async () => {
 
   // Also export the circuit JSON as SVG for inspection
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any)
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
+    showCourtyards: true,
+  })
   await fs.writeFile(
     "tests/pcb/__snapshots__/kicad_laser_prefab_example-circuit-json.svg",
     circuitJsonSvg,

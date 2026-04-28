@@ -57,7 +57,9 @@ test("kicad-to-circuit-json repro: Arduino Nano PCB", async () => {
   })
 
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any)
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
+    showCourtyards: true,
+  })
   await fs.writeFile(
     "tests/repros/arduino-nano/__snapshots__/arduino-nano-circuit-json.svg",
     circuitJsonSvg,

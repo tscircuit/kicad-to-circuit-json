@@ -108,7 +108,9 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
 
   // Also export the circuit JSON as SVG for inspection
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any)
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
+    showCourtyards: true,
+  })
   await fs.writeFile(
     "tests/__snapshots__/pic_programmer-circuit-json.svg",
     circuitJsonSvg,

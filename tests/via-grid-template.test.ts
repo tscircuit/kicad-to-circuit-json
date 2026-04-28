@@ -44,7 +44,9 @@ test("kicad-to-circuit-json: via-grid board PCB", async () => {
 
   // Also export the circuit JSON as SVG for inspection
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any)
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
+    showCourtyards: true,
+  })
   await fs.writeFile(
     "tests/__snapshots__/via_grid_template-circuit-json.svg",
     circuitJsonSvg,

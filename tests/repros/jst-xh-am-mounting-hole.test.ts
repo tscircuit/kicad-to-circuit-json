@@ -107,7 +107,9 @@ test("repro: JST-XH-AM mounting hole with npth alias", async () => {
 
   // Export SVG for inspection
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(output as any)
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(output as any, {
+    showCourtyards: true,
+  })
   await fs.writeFile(
     "tests/repros/__snapshots__/jst-xh-am-mounting-hole-circuit-json.svg",
     circuitJsonSvg,

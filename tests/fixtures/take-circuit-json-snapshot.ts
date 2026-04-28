@@ -16,7 +16,9 @@ export const takeCircuitJsonSnapshot = async (params: {
     return png
   }
   if (outputType === "pcb") {
-    const svg = await convertCircuitJsonToPcbSvg(circuitJson)
+    const svg = await convertCircuitJsonToPcbSvg(circuitJson, {
+      showCourtyards: true,
+    })
     // Ensure minimum height of 800px for the pcb image
     const png = await sharp(Buffer.from(svg))
       .resize({ height: 1280, withoutEnlargement: false })
