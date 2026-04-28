@@ -139,6 +139,12 @@ export class KicadToCircuitJsonConverter {
       "pcb_board",
       "pcb_silkscreen_text",
       "pcb_silkscreen_path",
+      "pcb_fabrication_note_text",
+      "pcb_fabrication_note_path",
+      "pcb_fabrication_note_rect",
+      "pcb_courtyard_rect",
+      "pcb_courtyard_outline",
+      "pcb_courtyard_circle",
     ]
 
     // Collect all elements from different tables

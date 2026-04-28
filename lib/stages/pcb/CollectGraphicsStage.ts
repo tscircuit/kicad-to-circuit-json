@@ -1,4 +1,5 @@
 import { ConverterStage } from "../../types"
+import type { PcbRenderLayer } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import {
   approximateArcPoints,
@@ -8,6 +9,7 @@ import {
   getLineStartEnd,
 } from "./arc-utils"
 import {
+  mapKicadLayerToPcbRenderLayer,
   mapKicadLayerToLayerRef,
   mapKicadLayerToVisibleLayer,
 } from "./layer-mapping"
@@ -28,8 +30,8 @@ type BoardPrimitive =
 /**
  * CollectGraphicsStage processes KiCad graphics elements:
  * - gr_line on Edge.Cuts → pcb_board.outline
- * - gr_text on silk layers → pcb_silkscreen_text
- * - gr_line on silk layers → pcb_silkscreen_path
+ * - gr_text on silk/fab layers → matching silkscreen/fabrication output
+ * - gr_line/gr_arc on silk/fab/courtyard layers → matching PCB output
  * - gr_rect on copper layers (filled) → pcb_smtpad
  * - gr_poly on copper layers (filled) → pcb_smtpad (polygon)
  */
@@ -46,8 +48,6 @@ export class CollectGraphicsStage extends ConverterStage {
     const arcArray = getGraphicArcs(this.ctx.kicadPcb)
 
     const edgeCutPrimitives: BoardPrimitive[] = []
-    const silkLines: any[] = []
-    const silkArcs: any[] = []
 
     for (const line of lineArray) {
       const layerStr = getLayerNames(line.layer).join(" ")
@@ -58,8 +58,13 @@ export class CollectGraphicsStage extends ConverterStage {
           start,
           end,
         })
-      } else if (layerStr.includes("SilkS")) {
-        silkLines.push(line)
+      } else if (
+        layerStr.includes("SilkS") ||
+        layerStr.includes("Fab") ||
+        layerStr.includes("CrtYd")
+      ) {
+        const renderLayer = mapKicadLayerToPcbRenderLayer(line.layer)
+        if (renderLayer) this.createGraphicPath(line, renderLayer)
       }
     }
 
@@ -73,8 +78,13 @@ export class CollectGraphicsStage extends ConverterStage {
           mid,
           end,
         })
-      } else if (layerStr.includes("SilkS")) {
-        silkArcs.push(arc)
+      } else if (
+        layerStr.includes("SilkS") ||
+        layerStr.includes("Fab") ||
+        layerStr.includes("CrtYd")
+      ) {
+        const renderLayer = mapKicadLayerToPcbRenderLayer(arc.layer)
+        if (renderLayer) this.createGraphicArc(arc, renderLayer)
       }
     }
 
@@ -83,18 +93,8 @@ export class CollectGraphicsStage extends ConverterStage {
       this.createBoardOutline(edgeCutPrimitives)
     }
 
-    // Create silkscreen paths
-    for (const line of silkLines) {
-      this.createSilkscreenPath(line)
-    }
-
-    for (const arc of silkArcs) {
-      this.createSilkscreenArc(arc)
-    }
-
     // Process gr_rect elements
     const grRects = this.ctx.kicadPcb.graphicRects || []
-
     for (const rect of grRects) {
       this.processRectangle(rect)
     }
@@ -102,7 +102,6 @@ export class CollectGraphicsStage extends ConverterStage {
     // Process gr_poly elements
     const grPolys = this.ctx.kicadPcb.graphicPolys || []
     const polyArray = Array.isArray(grPolys) ? grPolys : [grPolys]
-
     for (const poly of polyArray) {
       this.processPolygon(poly)
     }
@@ -110,21 +109,11 @@ export class CollectGraphicsStage extends ConverterStage {
     // Process gr_text elements
     const texts = this.ctx.kicadPcb.graphicTexts || []
     const textArray = Array.isArray(texts) ? texts : [texts]
-
     for (const text of textArray) {
-      const layer = text.layer
-      const layerNames =
-        typeof layer === "string" ? [layer] : layer?.names || []
-      // Include text from silk, copper, and fab layers
-      if (
-        layerNames.some(
-          (name: string) =>
-            name.includes("SilkS") ||
-            name.includes(".Cu") ||
-            name.includes("Fab"),
-        )
-      ) {
-        this.createSilkscreenText(text)
+      const layerStr = getLayerNames(text.layer).join(" ")
+      if (layerStr.includes("SilkS") || layerStr.includes("Fab")) {
+        const renderLayer = mapKicadLayerToPcbRenderLayer(text.layer)
+        if (renderLayer) this.createGraphicText(text, renderLayer)
       }
     }
 
@@ -227,29 +216,25 @@ export class CollectGraphicsStage extends ConverterStage {
     }
   }
 
-  private createSilkscreenPath(line: any) {
+  private createGraphicPath(line: any, renderLayer: PcbRenderLayer) {
     if (!this.ctx.k2cMatPcb) return
 
     const { start, end } = getLineStartEnd(line)
-
-    const startPos = applyToPoint(this.ctx.k2cMatPcb, {
-      x: start.x,
-      y: start.y,
-    })
-    const endPos = applyToPoint(this.ctx.k2cMatPcb, { x: end.x, y: end.y })
-
+    const startPos = applyToPoint(this.ctx.k2cMatPcb, start)
+    const endPos = applyToPoint(this.ctx.k2cMatPcb, end)
     const layer = mapKicadLayerToVisibleLayer(line.layer)
     const strokeWidth = line.width || 0.15
 
-    this.ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: "", // Not attached to a specific component
-      layer: layer,
+    this.insertRouteGraphic({
+      layer,
+      renderLayer,
+      pcbComponentId: "",
       route: [startPos, endPos],
-      stroke_width: strokeWidth,
+      strokeWidth,
     })
   }
 
-  private createSilkscreenArc(arc: any) {
+  private createGraphicArc(arc: any, renderLayer: PcbRenderLayer) {
     if (!this.ctx.k2cMatPcb) return
 
     const { start, mid, end } = getArcStartMidEnd(arc)
@@ -262,11 +247,48 @@ export class CollectGraphicsStage extends ConverterStage {
     const strokeWidth =
       arc.stroke?.width ?? arc._sxStroke?._sxWidth?.value ?? arc.width ?? 0.15
 
-    this.ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: "",
+    this.insertRouteGraphic({
       layer,
+      renderLayer,
+      pcbComponentId: "",
       route,
-      stroke_width: strokeWidth,
+      strokeWidth,
+    })
+  }
+
+  private insertRouteGraphic(options: {
+    layer: "top" | "bottom"
+    renderLayer: PcbRenderLayer
+    pcbComponentId: string
+    route: Array<{ x: number; y: number }>
+    strokeWidth: number
+  }) {
+    const { layer, renderLayer, pcbComponentId, route, strokeWidth } = options
+
+    if (renderLayer.endsWith("_silkscreen")) {
+      this.ctx.db.pcb_silkscreen_path.insert({
+        pcb_component_id: pcbComponentId,
+        layer,
+        route,
+        stroke_width: strokeWidth,
+      })
+      return
+    }
+
+    if (renderLayer.endsWith("_fabrication_note")) {
+      this.ctx.db.pcb_fabrication_note_path.insert({
+        pcb_component_id: pcbComponentId,
+        layer,
+        route,
+        stroke_width: strokeWidth,
+      })
+      return
+    }
+
+    this.ctx.db.pcb_courtyard_outline.insert({
+      pcb_component_id: pcbComponentId,
+      layer,
+      outline: route,
     })
   }
 
@@ -282,21 +304,14 @@ export class CollectGraphicsStage extends ConverterStage {
       x: rect._sxEnd?._x ?? 0,
       y: rect._sxEnd?._y ?? 0,
     }
-
-    const layerNames = rect._sxLayer?._names || []
-    const layerStr = layerNames.join(" ")
-
-    // Check if this is a filled rectangle on a copper layer
+    const renderLayer = mapKicadLayerToPcbRenderLayer(rect._sxLayer)
     const isFilled =
       rect._sxFill &&
       (rect._sxFill.isFilled === true ||
         String(rect._sxFill).includes("fill yes"))
-    const isCopperLayer = layerStr.includes(".Cu")
 
-    // Only create pcb_smtpad for filled rectangles on copper layers
-    if (!isFilled || !isCopperLayer) {
-      return
-    }
+    // Check if this is a filled rectangle on a copper layer
+    const isCopperLayer = renderLayer?.endsWith("_copper")
 
     // Calculate center, width, and height in KiCad coordinates
     const centerKicad = {
@@ -309,28 +324,63 @@ export class CollectGraphicsStage extends ConverterStage {
     // Transform center to Circuit JSON coordinates
     const centerCJ = applyToPoint(this.ctx.k2cMatPcb, centerKicad)
 
-    // Map layer to top/bottom
-    const layer = mapKicadLayerToLayerRef(rect._sxLayer)
+    // Only create pcb_smtpad for filled rectangles on copper layers
+    if (isFilled && isCopperLayer) {
+      // Map layer to top/bottom
+      const layer = mapKicadLayerToLayerRef(rect._sxLayer)
 
-    // Create pcb_smtpad
-    this.ctx.db.pcb_smtpad.insert({
-      pcb_component_id: "", // Not attached to a specific component
-      x: centerCJ.x,
-      y: centerCJ.y,
-      width: widthKicad,
-      height: heightKicad,
-      layer: layer,
-      shape: "rect",
-      port_hints: [],
-    } as any)
+      // Create pcb_smtpad
+      this.ctx.db.pcb_smtpad.insert({
+        pcb_component_id: "", // Not attached to a specific component
+        x: centerCJ.x,
+        y: centerCJ.y,
+        width: widthKicad,
+        height: heightKicad,
+        layer,
+        shape: "rect",
+        port_hints: [],
+      } as any)
 
-    // Update stats
-    if (this.ctx.stats) {
-      this.ctx.stats.pads = (this.ctx.stats.pads || 0) + 1
+      // Update stats
+      if (this.ctx.stats) {
+        this.ctx.stats.pads = (this.ctx.stats.pads || 0) + 1
+      }
+      return
+    }
+
+    const layer = mapKicadLayerToVisibleLayer(rect._sxLayer)
+    const strokeWidth =
+      rect.stroke?.width ??
+      rect._sxStroke?._sxWidth?.value ??
+      rect.width ??
+      0.15
+
+    if (renderLayer?.endsWith("_fabrication_note")) {
+      this.ctx.db.pcb_fabrication_note_rect.insert({
+        pcb_component_id: "",
+        center: centerCJ,
+        width: widthKicad,
+        height: heightKicad,
+        layer,
+        stroke_width: strokeWidth,
+        is_filled: isFilled,
+        has_stroke: true,
+      })
+      return
+    }
+
+    if (renderLayer?.endsWith("_courtyard")) {
+      this.ctx.db.pcb_courtyard_rect.insert({
+        pcb_component_id: "",
+        center: centerCJ,
+        width: widthKicad,
+        height: heightKicad,
+        layer,
+      })
     }
   }
 
-  private createSilkscreenText(text: any) {
+  private createGraphicText(text: any, renderLayer: PcbRenderLayer) {
     if (!this.ctx.k2cMatPcb) return
 
     // Get position from either at or _sxPosition (kicadts internal field)
@@ -341,18 +391,32 @@ export class CollectGraphicsStage extends ConverterStage {
     })
 
     const layer = mapKicadLayerToVisibleLayer(text.layer)
+
     // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
     const kicadFontSize =
       text._sxEffects?._sxFont?._sxSize?._height ||
       text.effects?.font?.size?.y ||
       1
     const fontSize = kicadFontSize * 1.5
+    const textValue = text.text || text._text || ""
 
-    this.ctx.db.pcb_silkscreen_text.insert({
+    if (renderLayer.endsWith("_silkscreen")) {
+      this.ctx.db.pcb_silkscreen_text.insert({
+        pcb_component_id: "",
+        text: textValue,
+        anchor_position: pos,
+        layer,
+        font_size: fontSize,
+        font: "tscircuit2024",
+      } as any)
+      return
+    }
+
+    this.ctx.db.pcb_fabrication_note_text.insert({
       pcb_component_id: "",
-      text: text.text || text._text || "",
+      text: textValue,
       anchor_position: pos,
-      layer: layer,
+      layer,
       font_size: fontSize,
       font: "tscircuit2024",
     } as any)
@@ -390,15 +454,14 @@ export class CollectGraphicsStage extends ConverterStage {
     if (!this.ctx.k2cMatPcb) return
 
     // Extract layer information
-    const layerNames = poly._sxLayer?._names || []
-    const layerStr = layerNames.join(" ")
+    const renderLayer = mapKicadLayerToPcbRenderLayer(poly._sxLayer)
 
     // Check if this is a filled polygon on a copper layer
     const isFilled = poly._sxFill?.filled === true
-    const isCopperLayer = layerStr.includes(".Cu")
+    const isCopperLayer = renderLayer?.endsWith("_copper")
 
     // Only create pcb_smtpad for filled polygons on copper layers
-    if (!isFilled || !isCopperLayer) {
+    if (!isFilled && !renderLayer?.endsWith("_courtyard")) {
       return
     }
 
@@ -431,21 +494,33 @@ export class CollectGraphicsStage extends ConverterStage {
       applyToPoint(this.ctx.k2cMatPcb!, pt),
     )
 
-    // Map layer to top/bottom
-    const layer = mapKicadLayerToLayerRef(poly._sxLayer)
+    if (isFilled && isCopperLayer) {
+      // Map layer to top/bottom
+      const layer = mapKicadLayerToLayerRef(poly._sxLayer)
 
-    // Create pcb_smtpad with polygon shape
-    this.ctx.db.pcb_smtpad.insert({
-      pcb_component_id: "", // Not attached to a specific component
-      shape: "polygon",
-      points: transformedPoints,
-      layer: layer,
-      port_hints: [],
-    } as any)
+      // Create pcb_smtpad with polygon shape
+      this.ctx.db.pcb_smtpad.insert({
+        pcb_component_id: "", // Not attached to a specific component
+        shape: "polygon",
+        points: transformedPoints,
+        layer: layer,
+        port_hints: [],
+      } as any)
 
-    // Update stats
-    if (this.ctx.stats) {
-      this.ctx.stats.pads = (this.ctx.stats.pads || 0) + 1
+      // Update stats
+      if (this.ctx.stats) {
+        this.ctx.stats.pads = (this.ctx.stats.pads || 0) + 1
+      }
+      return
+    }
+
+    if (renderLayer?.endsWith("_courtyard")) {
+      const layer = mapKicadLayerToVisibleLayer(poly._sxLayer)
+      this.ctx.db.pcb_courtyard_outline.insert({
+        pcb_component_id: "",
+        layer,
+        outline: transformedPoints,
+      })
     }
   }
 }

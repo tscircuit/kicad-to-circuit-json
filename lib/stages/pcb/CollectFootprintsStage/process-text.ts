@@ -1,6 +1,11 @@
 import type { Footprint } from "kicadts"
+import type { PcbRenderLayer, PcbSilkscreenText } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
+import {
+  isPcbTextRenderLayer,
+  mapKicadLayerToPcbRenderLayer,
+} from "../layer-mapping"
 import { mapTextLayer } from "./layer-utils"
 import { substituteKicadVariables } from "./text-utils"
 
@@ -16,7 +21,7 @@ export function processFootprintText(
 ) {
   if (!ctx.k2cMatPcb) return
 
-  // Process properties (Reference, Value, etc.) that are on silkscreen layers
+  // Process properties (Reference, Value, etc.) that are on silkscreen/fabrication layers
   processFootprintProperties(
     ctx,
     footprint,
@@ -30,13 +35,9 @@ export function processFootprintText(
   const textArray = Array.isArray(texts) ? texts : [texts]
 
   for (const text of textArray) {
-    // Only process text on silkscreen layers (filter out F.Fab, etc.)
-    const layerStr =
-      typeof text.layer === "string"
-        ? text.layer
-        : text.layer?.names?.join(" ") || ""
-    const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")
-    if (!isSilkscreen) continue
+    // Only process text on silkscreen/fabrication layers
+    const renderLayer = mapKicadLayerToPcbRenderLayer(text.layer)
+    if (!isPcbTextRenderLayer(renderLayer)) continue
 
     // Create a properly structured text element with _sxPosition mapped to at
     const textElement = {
@@ -47,9 +48,10 @@ export function processFootprintText(
       _sxEffects: (text as any)._sxEffects, // Pass _sxEffects for font size access
     }
 
-    createSilkscreenText(
+    createGraphicText(
       ctx,
       textElement,
+      renderLayer,
       componentId,
       kicadComponentPos,
       componentRotation,
@@ -59,7 +61,7 @@ export function processFootprintText(
 }
 
 /**
- * Processes footprint properties that should be shown on silkscreen
+ * Processes footprint properties that should be shown on silkscreen/fabrication
  */
 export function processFootprintProperties(
   ctx: ConverterContext,
@@ -77,17 +79,12 @@ export function processFootprintProperties(
     // Only process properties with a layer field
     if (!property.layer) continue
 
-    // Check if the property is on a silkscreen layer
-    const layerStr =
-      typeof property.layer === "string"
-        ? property.layer
-        : property.layer?.names?.join(" ") || ""
-    const isSilkscreen = layerStr.includes("SilkS") || layerStr.includes("Silk")
+    // Check if the property is on a silkscreen/fabrication layer
+    const renderLayer = mapKicadLayerToPcbRenderLayer(property.layer)
     const isPropertyHidden = property.hidden
+    if (!isPcbTextRenderLayer(renderLayer) || isPropertyHidden) continue
 
-    if (!isSilkscreen || isPropertyHidden) continue
-
-    // Create silkscreen text for this property
+    // Create text for this property
     // Property structure uses _sxAt for position (kicadts internal field)
     const textElement = {
       text: property.value,
@@ -97,9 +94,10 @@ export function processFootprintProperties(
       _sxEffects: (property as any)._sxEffects, // Pass _sxEffects for font size access
     }
 
-    createSilkscreenText(
+    createGraphicText(
       ctx,
       textElement,
+      renderLayer,
       componentId,
       kicadComponentPos,
       componentRotation,
@@ -109,11 +107,12 @@ export function processFootprintProperties(
 }
 
 /**
- * Creates a silkscreen text element in Circuit JSON
+ * Creates a footprint text element in the matching Circuit JSON output type
  */
-export function createSilkscreenText(
+export function createGraphicText(
   ctx: ConverterContext,
   text: any,
+  renderLayer: PcbRenderLayer,
   componentId: string,
   kicadComponentPos: { x: number; y: number },
   componentRotation: number,
@@ -150,7 +149,19 @@ export function createSilkscreenText(
     text.effects?.font?.size?.y ||
     1
 
-  ctx.db.pcb_silkscreen_text.insert({
+  if (renderLayer.endsWith("_silkscreen")) {
+    ctx.db.pcb_silkscreen_text.insert({
+      pcb_component_id: componentId,
+      font: "tscircuit2024",
+      font_size: kicadFontSize * 1.5,
+      text: processedText,
+      anchor_position: pos,
+      layer,
+    } as PcbSilkscreenText)
+    return
+  }
+
+  ctx.db.pcb_fabrication_note_text.insert({
     pcb_component_id: componentId,
     font: "tscircuit2024",
     font_size: kicadFontSize * 1.5,

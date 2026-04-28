@@ -1,7 +1,49 @@
 import type { Footprint, FpPoly, FpLine, FpCircle, FpArc } from "kicadts"
+import type { PcbRenderLayer } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
+import {
+  isPcbAnnotationRenderLayer,
+  mapKicadLayerToPcbRenderLayer,
+} from "../layer-mapping"
 import { mapTextLayer } from "./layer-utils"
+
+function insertFootprintRoute(options: {
+  ctx: ConverterContext
+  componentId: string
+  layer: "top" | "bottom"
+  renderLayer: PcbRenderLayer
+  route: Array<{ x: number; y: number }>
+  strokeWidth: number
+}) {
+  const { ctx, componentId, layer, renderLayer, route, strokeWidth } = options
+
+  if (renderLayer.endsWith("_silkscreen")) {
+    ctx.db.pcb_silkscreen_path.insert({
+      pcb_component_id: componentId,
+      layer,
+      route,
+      stroke_width: strokeWidth,
+    })
+    return
+  }
+
+  if (renderLayer.endsWith("_fabrication_note")) {
+    ctx.db.pcb_fabrication_note_path.insert({
+      pcb_component_id: componentId,
+      layer,
+      route,
+      stroke_width: strokeWidth,
+    })
+    return
+  }
+
+  ctx.db.pcb_courtyard_outline.insert({
+    pcb_component_id: componentId,
+    layer,
+    outline: route,
+  })
+}
 
 /**
  * Rotates a point by a given angle (in degrees)
@@ -37,6 +79,19 @@ export function processFootprintGraphics(
     createFootprintLine(
       ctx,
       line,
+      componentId,
+      kicadComponentPos,
+      componentRotation,
+    )
+  }
+
+  // Process fp_rect elements
+  const rects = footprint.fpRects || []
+  const rectArray = Array.isArray(rects) ? rects : rects ? [rects] : []
+  for (const rect of rectArray) {
+    createFootprintRect(
+      ctx,
+      rect,
       componentId,
       kicadComponentPos,
       componentRotation,
@@ -88,7 +143,7 @@ export function processFootprintGraphics(
 }
 
 /**
- * Creates a silkscreen line from a footprint line element
+ * Creates a footprint line graphic on the matching output layer type
  */
 export function createFootprintLine(
   ctx: ConverterContext,
@@ -98,6 +153,9 @@ export function createFootprintLine(
   componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
+
+  const renderLayer = mapKicadLayerToPcbRenderLayer(line.layer)
+  if (!isPcbAnnotationRenderLayer(renderLayer)) return
 
   const start = line.start || { x: 0, y: 0 }
   const end = line.end || { x: 0, y: 0 }
@@ -123,16 +181,109 @@ export function createFootprintLine(
   const layer = mapTextLayer(line.layer)
   const strokeWidth = line.stroke?.width || line.width || 0.12
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
+  insertFootprintRoute({
+    ctx,
+    componentId,
+    layer,
+    renderLayer,
     route: [startPos, endPos],
-    stroke_width: strokeWidth,
+    strokeWidth,
   })
 }
 
 /**
- * Creates a silkscreen circle from a footprint circle element (approximated as a path)
+ * Creates a footprint rectangle graphic on the matching output layer type
+ */
+export function createFootprintRect(
+  ctx: ConverterContext,
+  rect: any,
+  componentId: string,
+  kicadComponentPos: { x: number; y: number },
+  componentRotation: number,
+) {
+  if (!ctx.k2cMatPcb) return
+
+  const renderLayer = mapKicadLayerToPcbRenderLayer(rect.layer)
+  if (!isPcbAnnotationRenderLayer(renderLayer)) return
+
+  const start = rect.start || { x: 0, y: 0 }
+  const end = rect.end || { x: 0, y: 0 }
+  const center = {
+    x: (start.x + end.x) / 2,
+    y: (start.y + end.y) / 2,
+  }
+
+  // Rotate rectangle center by component rotation (negated for Y-axis flip)
+  const rotatedCenter = rotatePoint(center.x, center.y, -componentRotation)
+
+  // Apply component position
+  const centerKicadPos = {
+    x: kicadComponentPos.x + rotatedCenter.x,
+    y: kicadComponentPos.y + rotatedCenter.y,
+  }
+
+  // Transform to Circuit JSON coordinates
+  const centerPos = applyToPoint(ctx.k2cMatPcb, centerKicadPos)
+
+  const layer = mapTextLayer(rect.layer)
+  const width = Math.abs(end.x - start.x)
+  const height = Math.abs(end.y - start.y)
+  const strokeWidth = rect.stroke?.width || rect.width || 0.12
+
+  if (renderLayer.endsWith("_courtyard")) {
+    ctx.db.pcb_courtyard_rect.insert({
+      pcb_component_id: componentId,
+      center: centerPos,
+      width,
+      height,
+      layer,
+      ccw_rotation: -componentRotation,
+    })
+    return
+  }
+
+  if (renderLayer.endsWith("_fabrication_note")) {
+    ctx.db.pcb_fabrication_note_rect.insert({
+      pcb_component_id: componentId,
+      center: centerPos,
+      width,
+      height,
+      layer,
+      stroke_width: strokeWidth,
+      is_filled: rect.fill?.filled === true,
+      has_stroke: true,
+    })
+    return
+  }
+
+  const corners = [
+    { x: start.x, y: start.y },
+    { x: end.x, y: start.y },
+    { x: end.x, y: end.y },
+    { x: start.x, y: end.y },
+    { x: start.x, y: start.y },
+  ]
+  const route = corners.map((point) => {
+    const rotated = rotatePoint(point.x, point.y, -componentRotation)
+    const kicadPos = {
+      x: kicadComponentPos.x + rotated.x,
+      y: kicadComponentPos.y + rotated.y,
+    }
+    return applyToPoint(ctx.k2cMatPcb!, kicadPos)
+  })
+
+  insertFootprintRoute({
+    ctx,
+    componentId,
+    layer,
+    renderLayer,
+    route,
+    strokeWidth,
+  })
+}
+
+/**
+ * Creates a footprint circle graphic on the matching output layer type
  */
 export function createFootprintCircle(
   ctx: ConverterContext,
@@ -142,6 +293,9 @@ export function createFootprintCircle(
   componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
+
+  const renderLayer = mapKicadLayerToPcbRenderLayer(circle.layer)
+  if (!isPcbAnnotationRenderLayer(renderLayer)) return
 
   const center = circle.center || { x: 0, y: 0 }
   const end = circle.end || { x: 0, y: 0 }
@@ -164,7 +318,17 @@ export function createFootprintCircle(
   const layer = mapTextLayer(circle.layer)
   const strokeWidth = circle.stroke?.width || circle.width || 0.12
 
-  // Create circle as a pcb_silkscreen_circle (if supported) or as a path with many points
+  if (renderLayer.endsWith("_courtyard")) {
+    ctx.db.pcb_courtyard_circle.insert({
+      pcb_component_id: componentId,
+      center: centerPos,
+      radius,
+      layer,
+    })
+    return
+  }
+
+  // Create circle as a path with many points
   // For now, approximate with an octagon
   const numPoints = 16
   const circleRoute: Array<{ x: number; y: number }> = []
@@ -175,11 +339,13 @@ export function createFootprintCircle(
     circleRoute.push({ x, y })
   }
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
+  insertFootprintRoute({
+    ctx,
+    componentId,
+    layer,
+    renderLayer,
     route: circleRoute,
-    stroke_width: strokeWidth,
+    strokeWidth,
   })
 }
 
@@ -215,7 +381,7 @@ function calculateArcCenter(
 }
 
 /**
- * Creates a silkscreen arc from a footprint arc element with 0.1mm resolution
+ * Creates a footprint arc graphic on the matching output layer type
  */
 export function createFootprintArc(
   ctx: ConverterContext,
@@ -225,6 +391,9 @@ export function createFootprintArc(
   componentRotation: number,
 ) {
   if (!ctx.k2cMatPcb) return
+
+  const renderLayer = mapKicadLayerToPcbRenderLayer(arc.layer)
+  if (!isPcbAnnotationRenderLayer(renderLayer)) return
 
   const start = arc.start || { x: 0, y: 0 }
   const mid = arc.mid || { x: 0, y: 0 }
@@ -259,11 +428,13 @@ export function createFootprintArc(
     // If points are collinear, fall back to straight line
     const startPos = applyToPoint(ctx.k2cMatPcb, startKicadPos)
     const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
-    ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: componentId,
-      layer: layer,
+    insertFootprintRoute({
+      ctx,
+      componentId,
+      layer,
+      renderLayer,
       route: [startPos, endPos],
-      stroke_width: strokeWidth,
+      strokeWidth,
     })
     return
   }
@@ -329,11 +500,13 @@ export function createFootprintArc(
     arcRoute.push(cjPoint)
   }
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
+  insertFootprintRoute({
+    ctx,
+    componentId,
+    layer,
+    renderLayer,
     route: arcRoute,
-    stroke_width: strokeWidth,
+    strokeWidth,
   })
 }
 
@@ -345,6 +518,9 @@ export function createFootprintPoly(
   componentCcwRotationDegrees: number,
 ) {
   if (!ctx.k2cMatPcb) return
+
+  const renderLayer = mapKicadLayerToPcbRenderLayer(poly.layer)
+  if (!isPcbAnnotationRenderLayer(renderLayer)) return
 
   // Extract points
   const ptArray: any[] = poly.points?.points || []
@@ -369,10 +545,21 @@ export function createFootprintPoly(
     return applyToPoint(ctx.k2cMatPcb!, kicadPos)
   })
 
-  ctx.db.pcb_silkscreen_path.insert({
-    pcb_component_id: componentId,
-    layer: layer,
+  if (renderLayer.endsWith("_courtyard")) {
+    ctx.db.pcb_courtyard_outline.insert({
+      pcb_component_id: componentId,
+      layer,
+      outline: transformedPts,
+    })
+    return
+  }
+
+  insertFootprintRoute({
+    ctx,
+    componentId,
+    layer,
+    renderLayer,
     route: transformedPts,
-    stroke_width: strokeWidth,
+    strokeWidth,
   })
 }

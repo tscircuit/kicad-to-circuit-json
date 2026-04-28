@@ -1,4 +1,4 @@
-import type { LayerRef } from "circuit-json"
+import type { LayerRef, PcbRenderLayer } from "circuit-json"
 import type { KicadPcb } from "kicadts"
 
 const INNER_COPPER_LAYER_REGEX = /^In([1-6])\.Cu$/
@@ -20,6 +20,60 @@ export function extractKicadLayerNames(layer: any): string[] {
     ...(layer.name ? [layer.name] : []),
     ...(layer._name ? [layer._name] : []),
   ].filter((name): name is string => typeof name === "string")
+}
+
+export function mapKicadLayerToPcbRenderLayer(
+  layer: any,
+): PcbRenderLayer | undefined {
+  const layerNames = extractKicadLayerNames(layer)
+
+  for (const layerName of layerNames) {
+    const copperLayer = mapKicadLayerNameToLayerRef(layerName)
+    if (copperLayer) {
+      return `${copperLayer}_copper` as PcbRenderLayer
+    }
+
+    if (layerName.includes("Edge.Cuts")) {
+      return "edge_cuts"
+    }
+
+    const side = mapKicadLayerToVisibleLayer(layerName)
+
+    if (layerName.includes("CrtYd")) {
+      return `${side}_courtyard`
+    }
+
+    if (layerName.includes("Fab")) {
+      return `${side}_fabrication_note`
+    }
+
+    if (layerName.includes("SilkS")) {
+      return `${side}_silkscreen`
+    }
+  }
+
+  return undefined
+}
+
+export function isPcbAnnotationRenderLayer(
+  renderLayer: PcbRenderLayer | undefined,
+): renderLayer is PcbRenderLayer {
+  return (
+    renderLayer?.endsWith("_silkscreen") ||
+    renderLayer?.endsWith("_fabrication_note") ||
+    renderLayer?.endsWith("_courtyard") ||
+    false
+  )
+}
+
+export function isPcbTextRenderLayer(
+  renderLayer: PcbRenderLayer | undefined,
+): renderLayer is PcbRenderLayer {
+  return (
+    renderLayer?.endsWith("_silkscreen") ||
+    renderLayer?.endsWith("_fabrication_note") ||
+    false
+  )
 }
 
 export function mapKicadLayerNameToLayerRef(
