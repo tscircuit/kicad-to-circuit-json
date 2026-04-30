@@ -2676,5 +2676,61 @@
       }
     ],
     "shape": "polygon"
+  },
+  {
+    "type": "pcb_copper_text",
+    "pcb_copper_text_id": "pcb_copper_text_0",
+    "pcb_component_id": "",
+    "text": "VIAGRID TOP",
+    "anchor_position": {
+      "x": 43.6,
+      "y": 1.7
+    },
+    "layer": "top",
+    "font_size": 2.25,
+    "font": "tscircuit2024",
+    "ccw_rotation": 0
+  },
+  {
+    "type": "pcb_copper_text",
+    "pcb_copper_text_id": "pcb_copper_text_1",
+    "pcb_component_id": "",
+    "text": "Opulo Inc.",
+    "anchor_position": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "layer": "top",
+    "font_size": 1.125,
+    "font": "tscircuit2024",
+    "ccw_rotation": 0
+  },
+  {
+    "type": "pcb_copper_text",
+    "pcb_copper_text_id": "pcb_copper_text_2",
+    "pcb_component_id": "",
+    "text": "Opulo Inc.",
+    "anchor_position": {
+      "x": 99.5,
+      "y": 0.5
+    },
+    "layer": "bottom",
+    "font_size": 1.125,
+    "font": "tscircuit2024",
+    "ccw_rotation": 0
+  },
+  {
+    "type": "pcb_copper_text",
+    "pcb_copper_text_id": "pcb_copper_text_3",
+    "pcb_component_id": "",
+    "text": "VIAGRID BOTTOM",
+    "anchor_position": {
+      "x": 58.6,
+      "y": 1.7
+    },
+    "layer": "bottom",
+    "font_size": 2.25,
+    "font": "tscircuit2024",
+    "ccw_rotation": 0
   }
 ]

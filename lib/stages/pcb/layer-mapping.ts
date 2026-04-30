@@ -72,6 +72,7 @@ export function isPcbTextRenderLayer(
   return (
     renderLayer?.endsWith("_silkscreen") ||
     renderLayer?.endsWith("_fabrication_note") ||
+    renderLayer?.endsWith("_copper") ||
     false
   )
 }

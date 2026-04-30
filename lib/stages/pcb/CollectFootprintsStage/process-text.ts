@@ -1,5 +1,10 @@
 import type { Footprint } from "kicadts"
-import type { PcbRenderLayer, PcbSilkscreenText } from "circuit-json"
+import type {
+  PcbCopperText,
+  PcbFabricationNoteText,
+  PcbRenderLayer,
+  PcbSilkscreenText,
+} from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
 import {
@@ -161,12 +166,26 @@ export function createGraphicText(
     return
   }
 
-  ctx.db.pcb_fabrication_note_text.insert({
-    pcb_component_id: componentId,
-    font: "tscircuit2024",
-    font_size: kicadFontSize * 1.5,
-    text: processedText,
-    anchor_position: pos,
-    layer: layer,
-  } as any)
+  if (renderLayer.endsWith("_fabrication_note")) {
+    ctx.db.pcb_fabrication_note_text.insert({
+      pcb_component_id: componentId,
+      font: "tscircuit2024",
+      font_size: kicadFontSize * 1.5,
+      text: processedText,
+      anchor_position: pos,
+      layer: layer,
+    } as PcbFabricationNoteText)
+    return
+  }
+
+  if (renderLayer.endsWith("_copper")) {
+    ctx.db.pcb_copper_text.insert({
+      pcb_component_id: componentId,
+      font: "tscircuit2024",
+      font_size: kicadFontSize * 1.5,
+      text: processedText,
+      anchor_position: pos,
+      layer: layer,
+    } as PcbCopperText)
+  }
 }

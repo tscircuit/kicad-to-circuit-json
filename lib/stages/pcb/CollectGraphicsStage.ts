@@ -1,5 +1,10 @@
 import { ConverterStage } from "../../types"
-import type { PcbRenderLayer } from "circuit-json"
+import type {
+  PcbCopperText,
+  PcbFabricationNoteText,
+  PcbRenderLayer,
+  PcbSilkscreenText,
+} from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import {
   approximateArcPoints,
@@ -111,7 +116,11 @@ export class CollectGraphicsStage extends ConverterStage {
     const textArray = Array.isArray(texts) ? texts : [texts]
     for (const text of textArray) {
       const layerStr = getLayerNames(text.layer).join(" ")
-      if (layerStr.includes("SilkS") || layerStr.includes("Fab")) {
+      if (
+        layerStr.includes("SilkS") ||
+        layerStr.includes("Fab") ||
+        layerStr.includes(".Cu")
+      ) {
         const renderLayer = mapKicadLayerToPcbRenderLayer(text.layer)
         if (renderLayer) this.createGraphicText(text, renderLayer)
       }
@@ -408,18 +417,32 @@ export class CollectGraphicsStage extends ConverterStage {
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
-      } as any)
+      } as PcbSilkscreenText)
       return
     }
 
-    this.ctx.db.pcb_fabrication_note_text.insert({
-      pcb_component_id: "",
-      text: textValue,
-      anchor_position: pos,
-      layer,
-      font_size: fontSize,
-      font: "tscircuit2024",
-    } as any)
+    if (renderLayer.endsWith("_fabrication_note")) {
+      this.ctx.db.pcb_fabrication_note_text.insert({
+        pcb_component_id: "",
+        text: textValue,
+        anchor_position: pos,
+        layer,
+        font_size: fontSize,
+        font: "tscircuit2024",
+      } as PcbFabricationNoteText)
+      return
+    }
+
+    if (renderLayer.endsWith("_copper")) {
+      this.ctx.db.pcb_copper_text.insert({
+        pcb_component_id: "",
+        text: textValue,
+        anchor_position: pos,
+        layer,
+        font_size: fontSize,
+        font: "tscircuit2024",
+      } as PcbCopperText)
+    }
   }
 
   private pointsEqual(
