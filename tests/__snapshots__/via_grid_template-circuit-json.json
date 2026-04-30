@@ -2688,8 +2688,7 @@
     },
     "layer": "top",
     "font_size": 2.25,
-    "font": "tscircuit2024",
-    "ccw_rotation": 0
+    "font": "tscircuit2024"
   },
   {
     "type": "pcb_copper_text",
@@ -2702,8 +2701,7 @@
     },
     "layer": "top",
     "font_size": 1.125,
-    "font": "tscircuit2024",
-    "ccw_rotation": 0
+    "font": "tscircuit2024"
   },
   {
     "type": "pcb_copper_text",
@@ -2716,8 +2714,7 @@
     },
     "layer": "bottom",
     "font_size": 1.125,
-    "font": "tscircuit2024",
-    "ccw_rotation": 0
+    "font": "tscircuit2024"
   },
   {
     "type": "pcb_copper_text",
@@ -2730,7 +2727,6 @@
     },
     "layer": "bottom",
     "font_size": 2.25,
-    "font": "tscircuit2024",
-    "ccw_rotation": 0
+    "font": "tscircuit2024"
   }
 ]
