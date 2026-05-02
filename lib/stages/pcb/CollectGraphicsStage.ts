@@ -8,9 +8,12 @@ import type {
 import { applyToPoint } from "transformation-matrix"
 import {
   approximateArcPoints,
+  approximateCubicBezierPoints,
   getArcStartMidEnd,
   getGraphicArcs,
-  getLayerNames,
+  getGraphicCurves,
+  getCurvePoints,
+  getGraphicLayerNames,
   getLineStartEnd,
 } from "./arc-utils"
 import {
@@ -30,6 +33,13 @@ type BoardPrimitive =
       type: "arc"
       start: { x: number; y: number }
       mid: { x: number; y: number }
+      end: { x: number; y: number }
+    }
+  | {
+      type: "curve"
+      start: { x: number; y: number }
+      control1: { x: number; y: number }
+      control2: { x: number; y: number }
       end: { x: number; y: number }
     }
 
@@ -52,11 +62,12 @@ export class CollectGraphicsStage extends ConverterStage {
     const lines = this.ctx.kicadPcb.graphicLines || []
     const lineArray = Array.isArray(lines) ? lines : [lines]
     const arcArray = getGraphicArcs(this.ctx.kicadPcb)
+    const curveArray = getGraphicCurves(this.ctx.kicadPcb)
 
     const edgeCutPrimitives: BoardPrimitive[] = []
 
     for (const line of lineArray) {
-      const layerStr = getLayerNames(line.layer).join(" ")
+      const layerStr = getGraphicLayerNames(line).join(" ")
       if (layerStr.includes("Edge.Cuts")) {
         const { start, end } = getLineStartEnd(line)
         edgeCutPrimitives.push({
@@ -73,9 +84,9 @@ export class CollectGraphicsStage extends ConverterStage {
         if (renderLayer) this.createGraphicPath(line, renderLayer)
       }
     }
-
+    // Process gr_arc elements
     for (const arc of arcArray) {
-      const layerStr = getLayerNames(arc.layer).join(" ")
+      const layerStr = getGraphicLayerNames(arc).join(" ")
       if (layerStr.includes("Edge.Cuts")) {
         const { start, mid, end } = getArcStartMidEnd(arc)
         edgeCutPrimitives.push({
@@ -92,6 +103,23 @@ export class CollectGraphicsStage extends ConverterStage {
         const renderLayer = mapKicadLayerToPcbRenderLayer(arc.layer)
         if (renderLayer) this.createGraphicArc(arc, renderLayer)
       }
+    }
+
+    // Process gr_curve elements
+    for (const curve of curveArray) {
+      const layerStr = getGraphicLayerNames(curve).join(" ")
+      if (!layerStr.includes("Edge.Cuts")) continue
+
+      const points = getCurvePoints(curve)
+      if (!points) continue
+
+      edgeCutPrimitives.push({
+        type: "curve",
+        start: points.start,
+        control1: points.control1,
+        control2: points.control2,
+        end: points.end,
+      })
     }
 
     // Create board outline from edge cuts
@@ -160,11 +188,19 @@ export class CollectGraphicsStage extends ConverterStage {
                     mid: seg.mid,
                     end: seg.start,
                   }
-                : {
-                    type: "line",
-                    start: seg.end,
-                    end: seg.start,
-                  },
+                : seg.type === "curve"
+                  ? {
+                      type: "curve",
+                      start: seg.end,
+                      control1: seg.control2,
+                      control2: seg.control1,
+                      end: seg.start,
+                    }
+                  : {
+                      type: "line",
+                      start: seg.end,
+                      end: seg.start,
+                    },
             )
             remainingSegments.splice(foundIndex, 1)
             continue
@@ -184,13 +220,32 @@ export class CollectGraphicsStage extends ConverterStage {
     const points: Array<{ x: number; y: number }> = []
 
     for (const segment of orderedSegments) {
-      const kicadPoints =
-        segment.type === "arc"
-          ? approximateArcPoints(segment.start, segment.mid, segment.end, {
-              segmentLength: 0.25,
-              minSegments: 16,
-            })
-          : [segment.start, segment.end]
+      let kicadPoints: Array<{ x: number; y: number }>
+
+      if (segment.type === "arc") {
+        kicadPoints = approximateArcPoints(
+          segment.start,
+          segment.mid,
+          segment.end,
+          {
+            segmentLength: 0.25,
+            minSegments: 16,
+          },
+        )
+      } else if (segment.type === "curve") {
+        kicadPoints = approximateCubicBezierPoints(
+          segment.start,
+          segment.control1,
+          segment.control2,
+          segment.end,
+          {
+            segmentLength: 0.25,
+            minSegments: 16,
+          },
+        )
+      } else {
+        kicadPoints = [segment.start, segment.end]
+      }
 
       for (const kicadPoint of kicadPoints) {
         const point = applyToPoint(this.ctx.k2cMatPcb, kicadPoint)

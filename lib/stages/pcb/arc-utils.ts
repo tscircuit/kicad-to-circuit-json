@@ -16,6 +16,10 @@ export function getLayerNames(layer: any): string[] {
   return layer.names || layer._names || []
 }
 
+export function getGraphicLayerNames(graphic: any): string[] {
+  return getLayerNames(graphic?.layer ?? graphic?._sxLayer)
+}
+
 export function getPcbPoint(point: any): PcbPoint {
   return {
     x: point?.x ?? point?._x ?? 0,
@@ -53,6 +57,17 @@ export function getGraphicArcs(kicadPcb: any): any[] {
 
   return normalizeToArray(kicadPcb?._otherChildren).filter(
     (child) => child?.token === "gr_arc",
+  )
+}
+
+export function getGraphicCurves(kicadPcb: any): any[] {
+  const explicitGraphicCurves = normalizeToArray(kicadPcb?.graphicCurves)
+  if (explicitGraphicCurves.length > 0) {
+    return explicitGraphicCurves
+  }
+
+  return normalizeToArray(kicadPcb?._otherChildren).filter(
+    (child) => child?.token === "gr_curve",
   )
 }
 
@@ -99,6 +114,74 @@ export function approximateArcPoints(
     points.push({
       x: geometry.center.x + geometry.radius * Math.cos(angle),
       y: geometry.center.y + geometry.radius * Math.sin(angle),
+    })
+  }
+
+  return points
+}
+
+export function getCurvePoints(curve: any): {
+  start: PcbPoint
+  control1: PcbPoint
+  control2: PcbPoint
+  end: PcbPoint
+} | null {
+  const ptsData =
+    curve?._sxPts?.points ?? curve?.pts?.points ?? curve?.points ?? []
+  const xyPoints = ptsData
+    .filter((point: any) => point?.token === "xy")
+    .map((point: any) => getPcbPoint(point))
+
+  if (xyPoints.length < 4) {
+    return null
+  }
+
+  return {
+    start: xyPoints[0]!,
+    control1: xyPoints[1]!,
+    control2: xyPoints[2]!,
+    end: xyPoints[3]!,
+  }
+}
+
+export function approximateCubicBezierPoints(
+  start: PcbPoint,
+  control1: PcbPoint,
+  control2: PcbPoint,
+  end: PcbPoint,
+  options?: {
+    segmentLength?: number
+    minSegments?: number
+  },
+): PcbPoint[] {
+  const segmentLength = options?.segmentLength ?? 0.25
+  const minSegments = options?.minSegments ?? 8
+  const controlPolygonLength =
+    getDistance(start, control1) +
+    getDistance(control1, control2) +
+    getDistance(control2, end)
+  const numSegments = Math.max(
+    2,
+    minSegments,
+    Math.ceil(controlPolygonLength / segmentLength),
+  )
+
+  const points: PcbPoint[] = []
+
+  for (let i = 0; i <= numSegments; i++) {
+    const t = i / numSegments
+    const omt = 1 - t
+    points.push({
+      x:
+        omt ** 3 * start.x +
+        3 * omt ** 2 * t * control1.x +
+        3 * omt * t ** 2 * control2.x +
+        t ** 3 * end.x,
+      y:
+        omt ** 3 * start.y +
+        3 * omt ** 2 * t * control1.y +
+        3 * omt * t ** 2 * control2.y +
+        t ** 3 * end.y,
     })
   }
 
@@ -187,4 +270,8 @@ function calculateArcCenter(
     center: { x: ux, y: uy },
     radius: Math.sqrt((ax - ux) ** 2 + (ay - uy) ** 2),
   }
+}
+
+function getDistance(a: PcbPoint, b: PcbPoint): number {
+  return Math.hypot(b.x - a.x, b.y - a.y)
 }

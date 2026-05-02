@@ -2,9 +2,12 @@ import { compose, scale, translate } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import {
   approximateArcPoints,
+  approximateCubicBezierPoints,
   getArcStartMidEnd,
   getGraphicArcs,
-  getLayerNames,
+  getGraphicCurves,
+  getCurvePoints,
+  getGraphicLayerNames,
   getLineStartEnd,
 } from "./arc-utils"
 
@@ -50,12 +53,13 @@ export class InitializePcbContextStage extends ConverterStage {
     const lines = this.ctx.kicadPcb.graphicLines || []
     const lineArray = Array.isArray(lines) ? lines : [lines]
     const arcArray = getGraphicArcs(this.ctx.kicadPcb)
+    const curveArray = getGraphicCurves(this.ctx.kicadPcb)
 
     const xs: number[] = []
     const ys: number[] = []
 
     for (const line of lineArray) {
-      const layerStr = getLayerNames(line.layer).join(" ")
+      const layerStr = getGraphicLayerNames(line).join(" ")
       if (!layerStr.includes("Edge.Cuts")) continue
 
       const { start, end } = getLineStartEnd(line)
@@ -64,7 +68,7 @@ export class InitializePcbContextStage extends ConverterStage {
     }
 
     for (const arc of arcArray) {
-      const layerStr = getLayerNames(arc.layer).join(" ")
+      const layerStr = getGraphicLayerNames(arc).join(" ")
       if (!layerStr.includes("Edge.Cuts")) continue
 
       const { start, mid, end } = getArcStartMidEnd(arc)
@@ -72,6 +76,28 @@ export class InitializePcbContextStage extends ConverterStage {
         segmentLength: 0.25,
         minSegments: 16,
       })) {
+        xs.push(point.x)
+        ys.push(point.y)
+      }
+    }
+
+    for (const curve of curveArray) {
+      const layerStr = getGraphicLayerNames(curve).join(" ")
+      if (!layerStr.includes("Edge.Cuts")) continue
+
+      const points = getCurvePoints(curve)
+      if (!points) continue
+
+      for (const point of approximateCubicBezierPoints(
+        points.start,
+        points.control1,
+        points.control2,
+        points.end,
+        {
+          segmentLength: 0.25,
+          minSegments: 16,
+        },
+      )) {
         xs.push(point.x)
         ys.push(point.y)
       }
