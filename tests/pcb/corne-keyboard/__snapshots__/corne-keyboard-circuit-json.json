@@ -414092,6 +414092,7 @@
       "x": 14.287498499999947,
       "y": -8.662574500000002
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414105,6 +414106,7 @@
       "x": 8.232498499999947,
       "y": -6.422574500000003
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414118,6 +414120,7 @@
       "x": 90.48749849999994,
       "y": -16.547574500000003
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414131,6 +414134,7 @@
       "x": 91.23749849999994,
       "y": -16.547574500000003
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414144,6 +414148,7 @@
       "x": -90.48750150000005,
       "y": -16.547574500000003
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414157,6 +414162,7 @@
       "x": -89.73750150000005,
       "y": -16.547574500000003
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414170,6 +414176,7 @@
       "x": -14.287501500000053,
       "y": -8.662574500000002
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414183,6 +414190,7 @@
       "x": -8.307501500000052,
       "y": -6.352574500000003
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -414196,6 +414204,7 @@
       "x": -72.58750150000006,
       "y": -27.741274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414209,6 +414218,7 @@
       "x": -105.07875150000007,
       "y": 0.06742550000000236
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414222,6 +414232,7 @@
       "x": 74.64250249999995,
       "y": -27.8113745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414235,6 +414246,7 @@
       "x": -22.012501500000052,
       "y": 36.962425499999995
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414248,6 +414260,7 @@
       "x": -33.33750150000005,
       "y": 23.1586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414261,6 +414274,7 @@
       "x": -14.287501500000054,
       "y": -5.416324500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414274,6 +414288,7 @@
       "x": 71.10250249999994,
       "y": -23.191374500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414287,6 +414302,7 @@
       "x": -109.53750150000005,
       "y": -1.835074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414300,6 +414316,7 @@
       "x": 104.81249849999995,
       "y": 3.8124255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414313,6 +414330,7 @@
       "x": 109.53750049999995,
       "y": -1.835074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414326,6 +414344,7 @@
       "x": -33.33750150000005,
       "y": 19.5961755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414339,6 +414358,7 @@
       "x": 74.20749849999996,
       "y": -21.7525245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414352,6 +414372,7 @@
       "x": -57.42120150000005,
       "y": -15.481324500000007
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414365,6 +414386,7 @@
       "x": 85.67250649999994,
       "y": -14.845074500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414378,6 +414400,7 @@
       "x": 79.71749849999995,
       "y": -8.502574499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414391,6 +414414,7 @@
       "x": -24.282501500000052,
       "y": 36.1624255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414404,6 +414428,7 @@
       "x": 85.64249849999995,
       "y": -10.657574500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414417,6 +414442,7 @@
       "x": 18.917498499999947,
       "y": -12.212574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414430,6 +414456,7 @@
       "x": -85.69749950000006,
       "y": -13.521324499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414443,6 +414470,7 @@
       "x": 70.05250249999995,
       "y": -23.131374500000007
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414456,6 +414484,7 @@
       "x": 61.91249849999995,
       "y": -33.9913245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414469,6 +414498,7 @@
       "x": 14.287498499999945,
       "y": -5.416324500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414482,6 +414512,7 @@
       "x": 62.07749849999995,
       "y": -9.502574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414495,6 +414526,7 @@
       "x": -61.912501500000054,
       "y": -33.9913245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414508,6 +414540,7 @@
       "x": 74.61250049999995,
       "y": -10.641324500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414521,6 +414554,7 @@
       "x": -52.387501500000056,
       "y": 25.5399255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414534,6 +414568,7 @@
       "x": 71.43749849999995,
       "y": -10.178824499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414547,6 +414582,7 @@
       "x": 33.337498499999946,
       "y": 38.6461755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414560,6 +414596,7 @@
       "x": -74.65249750000005,
       "y": -7.862624499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414573,6 +414610,7 @@
       "x": -93.02250150000006,
       "y": -15.642574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414586,6 +414624,7 @@
       "x": -109.53750150000005,
       "y": 17.2149255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414599,6 +414638,7 @@
       "x": -84.60749950000006,
       "y": -13.311274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414612,6 +414652,7 @@
       "x": 12.287498499999947,
       "y": 31.5974255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414625,6 +414666,7 @@
       "x": 52.387500499999945,
       "y": 21.9774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414638,6 +414680,7 @@
       "x": -52.387501500000056,
       "y": 41.0274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414651,6 +414694,7 @@
       "x": -78.87749950000006,
       "y": -7.8926245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414664,6 +414708,7 @@
       "x": -75.66749750000005,
       "y": -7.862674500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414677,6 +414722,7 @@
       "x": 71.43749849999995,
       "y": 8.8711755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414690,6 +414736,7 @@
       "x": -22.687501500000053,
       "y": 31.9037255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414703,6 +414750,7 @@
       "x": 33.337498499999946,
       "y": 0.5461755000000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414716,6 +414764,7 @@
       "x": -39.71407133669678,
       "y": -20.814763161492678
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414729,6 +414778,7 @@
       "x": -49.83250150000005,
       "y": -12.142574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414742,6 +414792,7 @@
       "x": 109.53749849999994,
       "y": -17.3225745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414755,6 +414806,7 @@
       "x": -90.48750150000005,
       "y": 25.5399255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414768,6 +414820,7 @@
       "x": -71.43750150000005,
       "y": 8.8711755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414781,6 +414834,7 @@
       "x": -71.43750150000005,
       "y": 5.3086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414794,6 +414848,7 @@
       "x": -90.48750150000005,
       "y": 6.489925499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414807,6 +414862,7 @@
       "x": 109.53749849999994,
       "y": 20.7774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414820,6 +414876,7 @@
       "x": -54.86750150000005,
       "y": -13.8612745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414833,6 +414890,7 @@
       "x": 128.58749849999995,
       "y": 20.7774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414846,6 +414904,7 @@
       "x": -42.91843315012398,
       "y": -35.97764341729861
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414859,6 +414918,7 @@
       "x": 128.58750049999995,
       "y": 17.2149255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414872,6 +414932,7 @@
       "x": -71.43750150000005,
       "y": 43.4086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414885,6 +414946,7 @@
       "x": 90.48750049999995,
       "y": 2.9274254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414898,6 +414960,7 @@
       "x": 19.44750249999995,
       "y": 36.0899255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414911,6 +414974,7 @@
       "x": 33.337498499999946,
       "y": 23.1586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414924,6 +414988,7 @@
       "x": -19.417501500000053,
       "y": 36.2774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414937,6 +415002,7 @@
       "x": -71.43750150000005,
       "y": 27.921175499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414950,6 +415016,7 @@
       "x": -128.58750150000006,
       "y": 17.2149255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414963,6 +415030,7 @@
       "x": -75.17750150000006,
       "y": -20.481274500000005
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414976,6 +415044,7 @@
       "x": 14.287498499999947,
       "y": 29.1211755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -414989,6 +415058,7 @@
       "x": 52.38749849999995,
       "y": 6.489925499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415002,6 +415072,7 @@
       "x": 93.07749849999995,
       "y": -15.9575745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415015,6 +415086,7 @@
       "x": 27.147498499999948,
       "y": 20.8674255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415028,6 +415100,7 @@
       "x": 109.53750049999995,
       "y": 17.2149255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415041,6 +415114,7 @@
       "x": 22.802500499999947,
       "y": 31.6886755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415054,6 +415128,7 @@
       "x": -77.83749950000005,
       "y": -7.8926245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415067,6 +415142,7 @@
       "x": 128.58750049999995,
       "y": 36.2649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415080,6 +415156,7 @@
       "x": -114.04750150000005,
       "y": 3.6324255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415093,6 +415170,7 @@
       "x": 56.71250049999995,
       "y": -16.9713245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415106,6 +415184,7 @@
       "x": -90.48750150000005,
       "y": 2.9274254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415119,6 +415198,7 @@
       "x": -25.38057237521759,
       "y": -26.733170766824777
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415132,6 +415212,7 @@
       "x": -65.43250150000006,
       "y": -18.202574500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415145,6 +415226,7 @@
       "x": 71.52750049999995,
       "y": -24.162574499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415158,6 +415240,7 @@
       "x": 52.387500499999945,
       "y": 41.0274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415171,6 +415254,7 @@
       "x": -128.58750150000006,
       "y": -17.3225745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415184,6 +415268,7 @@
       "x": 68.26749849999995,
       "y": -9.852574500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415197,6 +415282,7 @@
       "x": 33.337498499999946,
       "y": 4.108675499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415210,6 +415296,7 @@
       "x": 11.209454678505423,
       "y": -33.011474859970214
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415223,6 +415310,7 @@
       "x": 39.714826336696675,
       "y": -20.81919216149268
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415236,6 +415324,7 @@
       "x": 90.48750049999995,
       "y": 41.0274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415249,6 +415338,7 @@
       "x": -14.287501500000054,
       "y": 13.633675499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415262,6 +415352,7 @@
       "x": -56.52750150000006,
       "y": -10.587574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415275,6 +415366,7 @@
       "x": 64.94749849999995,
       "y": -9.862574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415288,6 +415380,7 @@
       "x": 75.73249849999995,
       "y": -9.682574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415301,6 +415394,7 @@
       "x": -90.48750150000005,
       "y": 41.0274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415314,6 +415408,7 @@
       "x": -96.90750350000006,
       "y": -15.7525245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415327,6 +415422,7 @@
       "x": -128.58750150000006,
       "y": -1.835074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415340,6 +415436,7 @@
       "x": -62.46250150000005,
       "y": -8.8513245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415353,6 +415450,7 @@
       "x": -25.762501500000052,
       "y": 26.868675500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415366,6 +415464,7 @@
       "x": -128.58750150000006,
       "y": 36.2649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415379,6 +415478,7 @@
       "x": 90.48749849999994,
       "y": 25.5399255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415392,6 +415492,7 @@
       "x": -52.387501500000056,
       "y": 2.9274254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415405,6 +415506,7 @@
       "x": 85.61250649999995,
       "y": -13.125074500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415418,6 +415520,7 @@
       "x": -79.88749950000005,
       "y": -7.862624500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415431,6 +415534,7 @@
       "x": -82.08749950000006,
       "y": -10.711324499999996
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415444,6 +415548,7 @@
       "x": -74.73750150000005,
       "y": -27.7512745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415457,6 +415562,7 @@
       "x": 90.48750049999995,
       "y": 21.9774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415470,6 +415576,7 @@
       "x": 61.91250049999995,
       "y": -18.5038245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415483,6 +415590,7 @@
       "x": -14.287501500000053,
       "y": 10.071175499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415496,6 +415604,7 @@
       "x": 65.53749849999994,
       "y": -15.767574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415509,6 +415618,7 @@
       "x": -76.60750150000005,
       "y": -23.951274500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415522,6 +415632,7 @@
       "x": -61.912501500000054,
       "y": -18.492574499999996
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415535,6 +415646,7 @@
       "x": 113.62624849999995,
       "y": 0.0024255000000010796
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415548,6 +415660,7 @@
       "x": 62.92249849999995,
       "y": 12.1586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415561,6 +415674,7 @@
       "x": 86.83250649999995,
       "y": -13.165074500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415574,6 +415688,7 @@
       "x": 33.337498499999946,
       "y": -14.9413245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415587,6 +415702,7 @@
       "x": 57.55749849999995,
       "y": 12.237425499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415600,6 +415716,7 @@
       "x": -14.287501500000053,
       "y": 29.1211755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415613,6 +415730,7 @@
       "x": 22.057498499999948,
       "y": 37.2036755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415626,6 +415744,7 @@
       "x": -52.387501500000056,
       "y": 21.9774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415639,6 +415758,7 @@
       "x": 42.91858041644547,
       "y": -35.9776116430074
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415652,6 +415772,7 @@
       "x": 89.03249849999995,
       "y": -15.977574500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415665,6 +415786,7 @@
       "x": -71.43750150000005,
       "y": -10.178824499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415678,6 +415800,7 @@
       "x": 66.01749849999995,
       "y": -9.872574499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415691,6 +415814,7 @@
       "x": 71.43750049999994,
       "y": 5.3086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415704,6 +415828,7 @@
       "x": -76.73249750000006,
       "y": -7.886324500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415717,6 +415842,7 @@
       "x": 71.43750049999994,
       "y": 43.4086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415730,6 +415856,7 @@
       "x": -78.12249950000006,
       "y": -22.592574499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415743,6 +415870,7 @@
       "x": 128.58749849999995,
       "y": -17.3225745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415756,6 +415884,7 @@
       "x": 71.43750049999994,
       "y": 24.3586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415769,6 +415898,7 @@
       "x": -90.48750150000005,
       "y": -12.560074500000006
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415782,6 +415912,7 @@
       "x": -128.58750150000006,
       "y": 20.7774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415795,6 +415926,7 @@
       "x": 71.43749849999995,
       "y": 27.921175499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415808,6 +415940,7 @@
       "x": 128.58750049999995,
       "y": -1.835074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415821,6 +415954,7 @@
       "x": -128.58750150000006,
       "y": 1.727425499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415834,6 +415968,7 @@
       "x": -109.53750150000005,
       "y": 20.7774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415847,6 +415982,7 @@
       "x": 62.10749849999994,
       "y": -10.482574500000005
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415860,6 +415996,7 @@
       "x": 33.337498499999946,
       "y": 19.5961755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415873,6 +416010,7 @@
       "x": -71.43750150000005,
       "y": 24.3586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415886,6 +416024,7 @@
       "x": 14.287498499999947,
       "y": 10.071175499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415899,6 +416038,7 @@
       "x": -24.342501500000054,
       "y": 37.8224255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415912,6 +416052,7 @@
       "x": -69.32750150000005,
       "y": -11.076274500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415925,6 +416066,7 @@
       "x": 128.58749849999995,
       "y": 1.727425499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415938,6 +416080,7 @@
       "x": -12.802499500000053,
       "y": 31.5674255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415951,6 +416094,7 @@
       "x": -38.75750150000005,
       "y": -18.3212745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415964,6 +416108,7 @@
       "x": 103.11749849999995,
       "y": 32.337425499999995
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415977,6 +416122,7 @@
       "x": 90.48749849999994,
       "y": 6.489925499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -415990,6 +416136,7 @@
       "x": -109.53750150000005,
       "y": -17.3225745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416003,6 +416150,7 @@
       "x": 24.507498499999947,
       "y": 36.2836755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416016,6 +416164,7 @@
       "x": -82.09749950000005,
       "y": -11.741324499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416029,6 +416178,7 @@
       "x": 51.38249849999995,
       "y": -20.212574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416042,6 +416192,7 @@
       "x": -11.20945767850553,
       "y": -33.011474859970214
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416055,6 +416206,7 @@
       "x": 52.38749849999995,
       "y": 25.5399255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416068,6 +416220,7 @@
       "x": 24.527498499999947,
       "y": 37.8736755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416081,6 +416234,7 @@
       "x": -33.33750150000005,
       "y": -14.9413245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416094,6 +416248,7 @@
       "x": 45.05249849999995,
       "y": -13.202574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416107,6 +416262,7 @@
       "x": -52.387501500000056,
       "y": 6.489925499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416120,6 +416276,7 @@
       "x": -33.33750150000005,
       "y": 0.5461755000000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416133,6 +416290,7 @@
       "x": -70.67750150000006,
       "y": -19.3937745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416146,6 +416304,7 @@
       "x": -5.1275015000000534,
       "y": 36.2574255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416159,6 +416318,7 @@
       "x": -90.48750150000005,
       "y": 21.9774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416172,6 +416332,7 @@
       "x": -33.33750150000005,
       "y": 4.108675499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416185,6 +416346,7 @@
       "x": -116.94250150000005,
       "y": 32.3974255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416198,6 +416360,7 @@
       "x": 67.09749849999994,
       "y": -9.872574499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416211,6 +416374,7 @@
       "x": 72.51249849999995,
       "y": -25.961274500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416224,6 +416388,7 @@
       "x": 25.427499050431997,
       "y": -26.52257475128488
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416237,6 +416402,7 @@
       "x": -109.53750150000005,
       "y": 36.2649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416250,6 +416416,7 @@
       "x": -33.33750150000005,
       "y": 38.6461755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416263,6 +416430,7 @@
       "x": -76.97249950000005,
       "y": -22.5825745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416276,6 +416444,7 @@
       "x": 62.087498499999946,
       "y": -11.622574499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416289,6 +416458,7 @@
       "x": 52.387500499999945,
       "y": 2.9274254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416302,6 +416472,7 @@
       "x": 5.1075024999999465,
       "y": 35.9999255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416315,6 +416486,7 @@
       "x": 14.287498499999945,
       "y": 13.633675499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416328,6 +416500,7 @@
       "x": 109.53750049999995,
       "y": 36.2649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416341,6 +416514,7 @@
       "x": -86.79749950000006,
       "y": -13.561324500000005
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416354,6 +416528,7 @@
       "x": -18.917501500000053,
       "y": -12.212574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416367,6 +416542,7 @@
       "x": 47.71249849999995,
       "y": -10.6675745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -416378,6 +416554,7 @@
       "x": 89.30249849999994,
       "y": -11.967574499999998
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416391,6 +416568,7 @@
       "x": -110.40875150000005,
       "y": 2.1774254999999982
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416404,6 +416582,7 @@
       "x": 106.00749849999994,
       "y": 2.1324255
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416417,6 +416596,7 @@
       "x": 93.35249849999995,
       "y": -11.657574500000003
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416430,6 +416610,7 @@
       "x": -108.26875150000005,
       "y": 2.1474255000000007
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416443,6 +416624,7 @@
       "x": 108.41749849999995,
       "y": 2.1224254999999985
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416456,6 +416638,7 @@
       "x": 110.55749849999995,
       "y": 2.092425500000001
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416469,6 +416652,7 @@
       "x": -96.61250150000005,
       "y": -11.872574499999999
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416482,6 +416666,7 @@
       "x": -112.81875150000005,
       "y": 2.1874255
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416495,6 +416680,7 @@
       "x": -111.76250150000006,
       "y": 31.3774255
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416508,6 +416694,7 @@
       "x": -92.73250150000005,
       "y": -11.572574500000002
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416521,6 +416708,7 @@
       "x": 104.11749849999995,
       "y": 31.2474255
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416534,6 +416722,7 @@
       "x": -84.77749350000005,
       "y": -17.6450745
     },
+    "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -416547,6 +416736,7 @@
       "x": 96.07749049999995,
       "y": -17.6450745
     },
+    "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 0.75,
     "font": "tscircuit2024"
@@ -431180,6 +431370,7 @@
       "x": -128.63750150000007,
       "y": -16.3475745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431193,6 +431384,7 @@
       "x": -128.63750150000007,
       "y": -19.4975745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431206,6 +431398,7 @@
       "x": -52.43750150000005,
       "y": 46.9649255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431219,6 +431412,7 @@
       "x": -52.43750150000005,
       "y": 43.8149255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431232,6 +431426,7 @@
       "x": 52.33750049999995,
       "y": 46.9649255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431245,6 +431440,7 @@
       "x": 52.33750049999995,
       "y": 43.8149255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431258,6 +431454,7 @@
       "x": 16.737498499999948,
       "y": -8.662574500000002
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431271,6 +431468,7 @@
       "x": -109.58750150000004,
       "y": -16.3475745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431284,6 +431482,7 @@
       "x": -109.58750150000004,
       "y": -19.4975745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431297,6 +431496,7 @@
       "x": 90.43749849999995,
       "y": 46.9649255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431310,6 +431510,7 @@
       "x": 90.43749849999995,
       "y": 43.8149255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431323,6 +431524,7 @@
       "x": 128.53749849999994,
       "y": -16.3475745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431336,6 +431538,7 @@
       "x": 128.53749849999994,
       "y": -19.4975745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431349,6 +431552,7 @@
       "x": 109.48749849999994,
       "y": -16.3475745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431362,6 +431566,7 @@
       "x": 109.48749849999994,
       "y": -19.4975745
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431375,6 +431580,7 @@
       "x": -90.53750150000005,
       "y": 46.9649255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431388,6 +431594,7 @@
       "x": -90.53750150000005,
       "y": 43.8149255
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431401,6 +431608,7 @@
       "x": -11.837501500000052,
       "y": -8.662574500000002
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -431414,6 +431622,7 @@
       "x": -72.57750150000005,
       "y": -27.9712745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431427,6 +431636,7 @@
       "x": -72.57750150000005,
       "y": -26.811274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431440,6 +431650,7 @@
       "x": -114.27750150000006,
       "y": 0.057425500000000795
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431453,6 +431664,7 @@
       "x": -109.40750150000007,
       "y": 0.057425500000000795
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431466,6 +431678,7 @@
       "x": 74.66250049999995,
       "y": -28.011324499999994
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431479,6 +431692,7 @@
       "x": 74.66250049999995,
       "y": -26.851324499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431492,6 +431706,7 @@
       "x": -19.567493500000054,
       "y": 36.9849255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431505,6 +431720,7 @@
       "x": -22.267493500000054,
       "y": 36.9849255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431518,6 +431734,7 @@
       "x": -33.33750150000005,
       "y": 39.758675499999995
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431531,6 +431748,7 @@
       "x": -14.307501500000052,
       "y": 13.5236755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431544,6 +431762,7 @@
       "x": 72.29250049999995,
       "y": -21.531324500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431557,6 +431776,7 @@
       "x": 71.13250049999995,
       "y": -21.531324500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431570,6 +431790,7 @@
       "x": -109.53750150000005,
       "y": -1.585074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431583,6 +431804,7 @@
       "x": 109.53749849999994,
       "y": 18.3274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431596,6 +431818,7 @@
       "x": 109.53750049999995,
       "y": -1.585074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431609,6 +431832,7 @@
       "x": -33.33750150000005,
       "y": 19.8461755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431622,6 +431846,7 @@
       "x": 74.20750049999995,
       "y": -19.702574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431635,6 +431860,7 @@
       "x": 74.20750049999995,
       "y": -20.8725745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431648,6 +431874,7 @@
       "x": -59.36250150000005,
       "y": -16.6913245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431661,6 +431888,7 @@
       "x": -59.36250150000005,
       "y": -15.531324500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431674,6 +431902,7 @@
       "x": 83.35250649999995,
       "y": -14.845074500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431687,6 +431916,7 @@
       "x": 84.51250649999994,
       "y": -14.845074500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431700,6 +431930,7 @@
       "x": 77.52749849999995,
       "y": -8.532574499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431713,6 +431944,7 @@
       "x": 78.68749849999995,
       "y": -8.532574499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431726,6 +431958,7 @@
       "x": -22.782501500000052,
       "y": 35.0424255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431739,6 +431972,7 @@
       "x": -22.782501500000052,
       "y": 36.2124255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431752,6 +431986,7 @@
       "x": 90.48749849999994,
       "y": 4.039925499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431765,6 +432000,7 @@
       "x": 20.467498499999948,
       "y": -12.212574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431778,6 +432014,7 @@
       "x": -84.54749950000006,
       "y": -15.111324500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431791,6 +432028,7 @@
       "x": -85.71749950000006,
       "y": -15.111324500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431804,6 +432042,7 @@
       "x": 71.21250049999995,
       "y": -21.531324500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431817,6 +432056,7 @@
       "x": 70.05250049999995,
       "y": -21.531324500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431830,6 +432070,7 @@
       "x": 61.91249849999995,
       "y": -17.391324500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431843,6 +432084,7 @@
       "x": 14.267498499999947,
       "y": 13.5236755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431856,6 +432098,7 @@
       "x": 63.337498499999946,
       "y": -10.632574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431869,6 +432112,7 @@
       "x": 63.337498499999946,
       "y": -9.4725745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431882,6 +432126,7 @@
       "x": -61.912501500000054,
       "y": -17.391324500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431895,6 +432140,7 @@
       "x": 74.60749849999995,
       "y": -20.0262745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431908,6 +432154,7 @@
       "x": 74.60749849999995,
       "y": -15.2062745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431921,6 +432168,7 @@
       "x": -52.387501500000056,
       "y": 42.139925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431934,6 +432182,7 @@
       "x": 71.43749849999995,
       "y": 6.4211755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431947,6 +432196,7 @@
       "x": 33.337498499999946,
       "y": 38.8961755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431960,6 +432210,7 @@
       "x": -47.74999950000006,
       "y": 23.0674255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431973,6 +432224,7 @@
       "x": -74.64249950000006,
       "y": -9.0825745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431986,6 +432238,7 @@
       "x": -87.51750150000007,
       "y": -5.407574500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -431999,6 +432252,7 @@
       "x": -109.53750150000005,
       "y": 17.4649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432012,6 +432266,7 @@
       "x": -85.76749950000006,
       "y": -15.101274500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432025,6 +432280,7 @@
       "x": -84.60749950000006,
       "y": -15.101274500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432038,6 +432294,7 @@
       "x": 12.287498499999947,
       "y": 43.0474255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432051,6 +432308,7 @@
       "x": 52.387500499999945,
       "y": 22.2274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432064,6 +432322,7 @@
       "x": -52.387501500000056,
       "y": 41.2774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432077,6 +432336,7 @@
       "x": -80.01750150000005,
       "y": -9.072574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432090,6 +432350,7 @@
       "x": -78.85750150000005,
       "y": -9.072574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432103,6 +432364,7 @@
       "x": -48.77500150000006,
       "y": 23.0674255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432116,6 +432378,7 @@
       "x": -75.66750150000006,
       "y": -9.0825745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432129,6 +432392,7 @@
       "x": 71.43749849999995,
       "y": 25.4711755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432142,6 +432406,7 @@
       "x": -22.634211500000053,
       "y": 36.4437255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432155,6 +432420,7 @@
       "x": -22.652501500000053,
       "y": 33.9437255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432168,6 +432434,7 @@
       "x": 33.337498499999946,
       "y": 0.7961755000000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432181,6 +432448,7 @@
       "x": -39.66234952088867,
       "y": -20.570171964248154
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432194,6 +432462,7 @@
       "x": -49.84750150000005,
       "y": -20.546274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432207,6 +432476,7 @@
       "x": -49.84750150000005,
       "y": -16.046274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432220,6 +432490,7 @@
       "x": 109.53749849999994,
       "y": -0.7225745000000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432233,6 +432504,7 @@
       "x": -90.48750150000005,
       "y": 42.139925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432246,6 +432518,7 @@
       "x": -71.43750150000005,
       "y": 25.4711755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432259,6 +432532,7 @@
       "x": -71.43750150000005,
       "y": 5.5586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432272,6 +432546,7 @@
       "x": -90.48750150000005,
       "y": 23.0899255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432285,6 +432560,7 @@
       "x": 109.53749849999994,
       "y": 37.3774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432298,6 +432574,7 @@
       "x": -56.01750150000005,
       "y": -15.561274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432311,6 +432588,7 @@
       "x": -54.857501500000055,
       "y": -15.561274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432324,6 +432602,7 @@
       "x": 128.58749849999995,
       "y": 37.3774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432337,6 +432616,7 @@
       "x": -39.484388037390204,
       "y": -19.736727982394413
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432350,6 +432630,7 @@
       "x": 128.58750049999995,
       "y": 17.4649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432363,6 +432644,7 @@
       "x": -71.43750150000005,
       "y": 43.6586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432376,6 +432658,7 @@
       "x": 90.48750049999995,
       "y": 3.1774254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432389,6 +432672,7 @@
       "x": 20.59250049999995,
       "y": 37.7286755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432402,6 +432686,7 @@
       "x": 19.42250049999995,
       "y": 37.7286755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432415,6 +432700,7 @@
       "x": 33.337498499999946,
       "y": 39.758675499999995
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432428,6 +432714,7 @@
       "x": -18.247501500000055,
       "y": 37.7474255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432441,6 +432728,7 @@
       "x": -19.417501500000053,
       "y": 37.7474255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432454,6 +432742,7 @@
       "x": -71.43750150000005,
       "y": 44.5211755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432467,6 +432756,7 @@
       "x": -128.58750150000006,
       "y": 17.4649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432480,6 +432770,7 @@
       "x": -75.13750150000006,
       "y": -20.1412745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432493,6 +432784,7 @@
       "x": -75.13750150000006,
       "y": -21.311274500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432506,6 +432798,7 @@
       "x": 14.287498499999947,
       "y": 29.3711755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432519,6 +432812,7 @@
       "x": 52.38749849999995,
       "y": 23.0899255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432532,6 +432826,7 @@
       "x": 98.60249849999994,
       "y": -14.947574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432545,6 +432840,7 @@
       "x": 27.147498499999948,
       "y": 18.1674255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432558,6 +432854,7 @@
       "x": 27.147498499999948,
       "y": 20.8674255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432571,6 +432868,7 @@
       "x": 109.53750049999995,
       "y": 17.4649255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432584,6 +432882,7 @@
       "x": 22.634208499999946,
       "y": 31.4437255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432597,6 +432896,7 @@
       "x": 22.652498499999947,
       "y": 33.9437255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432610,6 +432910,7 @@
       "x": -78.96750150000005,
       "y": -9.092574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432623,6 +432924,7 @@
       "x": -77.79750150000005,
       "y": -9.092574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432636,6 +432938,7 @@
       "x": 128.58750049999995,
       "y": 36.514925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432649,6 +432952,7 @@
       "x": -109.53750150000005,
       "y": 18.3274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432662,6 +432966,7 @@
       "x": 57.862500499999946,
       "y": -15.021324499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432675,6 +432980,7 @@
       "x": 56.70250049999995,
       "y": -15.021324499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432688,6 +432994,7 @@
       "x": -90.48750150000005,
       "y": 3.1774254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432701,6 +433008,7 @@
       "x": -25.609171205373684,
       "y": -26.631965160007447
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432714,6 +433022,7 @@
       "x": -67.01250150000006,
       "y": -17.022574500000005
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432727,6 +433036,7 @@
       "x": -67.01250150000006,
       "y": -18.1825745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432740,6 +433050,7 @@
       "x": 74.30250049999995,
       "y": -26.281324500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432753,6 +433064,7 @@
       "x": 74.30250049999995,
       "y": -23.8313245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432766,6 +433078,7 @@
       "x": 52.387500499999945,
       "y": 41.2774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432779,6 +433092,7 @@
       "x": -128.58750150000006,
       "y": -0.7225745000000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432792,6 +433106,7 @@
       "x": 67.04249849999995,
       "y": -8.7025745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432805,6 +433120,7 @@
       "x": 68.20249849999995,
       "y": -8.7025745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432818,6 +433134,7 @@
       "x": 33.337498499999946,
       "y": 20.7086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432831,6 +433148,7 @@
       "x": 26.388417000870092,
       "y": -26.291422567299136
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432844,6 +433162,7 @@
       "x": 39.66310452088856,
       "y": -20.574600964248155
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432857,6 +433176,7 @@
       "x": 90.48750049999995,
       "y": 41.2774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432870,6 +433190,7 @@
       "x": -14.307501500000052,
       "y": 32.5736755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432883,6 +433204,7 @@
       "x": -52.387501500000056,
       "y": 4.039925499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432896,6 +433218,7 @@
       "x": 63.772498499999955,
       "y": -8.7025745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432909,6 +433232,7 @@
       "x": 64.93249849999995,
       "y": -8.7025745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432922,6 +433246,7 @@
       "x": 74.59249849999995,
       "y": -8.592574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432935,6 +433260,7 @@
       "x": 74.59249849999995,
       "y": -9.752574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432948,6 +433274,7 @@
       "x": -90.48750150000005,
       "y": 41.2774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432961,6 +433288,7 @@
       "x": -91.36750150000006,
       "y": -5.407574500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432974,6 +433302,7 @@
       "x": -128.58750150000006,
       "y": -1.585074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -432987,6 +433316,7 @@
       "x": -62.49250150000005,
       "y": -8.646324500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433000,6 +433330,7 @@
       "x": -62.49250150000005,
       "y": -12.206324500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433013,6 +433344,7 @@
       "x": -25.762501500000052,
       "y": 39.0686755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433026,6 +433358,7 @@
       "x": -25.762501500000052,
       "y": 26.868675500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433039,6 +433372,7 @@
       "x": -128.58750150000006,
       "y": 36.514925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433052,6 +433386,7 @@
       "x": 90.48749849999994,
       "y": 42.139925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433065,6 +433400,7 @@
       "x": -52.387501500000056,
       "y": 3.1774254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433078,6 +433414,7 @@
       "x": 86.80250649999995,
       "y": -14.8550745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433091,6 +433428,7 @@
       "x": 85.63250649999995,
       "y": -14.8550745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433104,6 +433442,7 @@
       "x": -81.05750150000004,
       "y": -9.072574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433117,6 +433456,7 @@
       "x": -79.89750150000005,
       "y": -9.072574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433130,6 +433470,7 @@
       "x": -80.35749950000006,
       "y": -11.831324499999994
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433143,6 +433484,7 @@
       "x": -80.35749950000006,
       "y": -10.671324499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433156,6 +433498,7 @@
       "x": -74.73750150000005,
       "y": -25.691274500000006
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433169,6 +433512,7 @@
       "x": -74.73750150000005,
       "y": -26.851274500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433182,6 +433526,7 @@
       "x": 90.48750049999995,
       "y": 22.2274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433195,6 +433540,7 @@
       "x": 61.91250049999995,
       "y": -18.2538245
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433208,6 +433554,7 @@
       "x": -14.287501500000053,
       "y": 10.321175499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433221,6 +433568,7 @@
       "x": 67.51749849999995,
       "y": -16.9275745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433234,6 +433582,7 @@
       "x": 67.51749849999995,
       "y": -15.767574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433247,6 +433596,7 @@
       "x": -74.07750150000005,
       "y": -25.9312745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433260,6 +433610,7 @@
       "x": -73.93750150000005,
       "y": -23.8212745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433273,6 +433624,7 @@
       "x": -61.912501500000054,
       "y": -18.242574499999996
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433286,6 +433638,7 @@
       "x": 113.93749849999995,
       "y": 0.0024255000000010796
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433299,6 +433652,7 @@
       "x": 109.30749849999994,
       "y": 0.0024255000000010796
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433312,6 +433666,7 @@
       "x": 63.13749849999995,
       "y": 5.087425499999998
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433325,6 +433680,7 @@
       "x": 63.13749849999995,
       "y": 8.647425499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433338,6 +433694,7 @@
       "x": 87.96250649999995,
       "y": -14.885074500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433351,6 +433708,7 @@
       "x": 86.79250649999994,
       "y": -14.885074500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433364,6 +433722,7 @@
       "x": 33.337498499999946,
       "y": 1.658675500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433377,6 +433736,7 @@
       "x": 59.38749849999995,
       "y": 13.3774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433390,6 +433750,7 @@
       "x": 59.38749849999995,
       "y": 12.2174255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433403,6 +433764,7 @@
       "x": -14.287501500000053,
       "y": 29.3711755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433416,6 +433778,7 @@
       "x": 22.342506499999946,
       "y": 37.1349255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433429,6 +433792,7 @@
       "x": 19.642506499999946,
       "y": 37.1349255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433442,6 +433806,7 @@
       "x": -52.387501500000056,
       "y": 22.2274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433455,6 +433820,7 @@
       "x": 39.48425184678687,
       "y": -19.73675614597071
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433468,6 +433834,7 @@
       "x": 94.63749849999994,
       "y": -5.450324500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433481,6 +433848,7 @@
       "x": -71.43750150000005,
       "y": 6.4211755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433494,6 +433862,7 @@
       "x": 64.85249849999994,
       "y": -8.6925745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433507,6 +433876,7 @@
       "x": 66.02249849999994,
       "y": -8.6925745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433520,6 +433890,7 @@
       "x": 71.43750049999994,
       "y": 5.5586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433533,6 +433904,7 @@
       "x": -75.56249950000006,
       "y": -9.092574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433546,6 +433918,7 @@
       "x": -76.73249950000006,
       "y": -9.092574500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433559,6 +433932,7 @@
       "x": 71.43750049999994,
       "y": 43.6586755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433572,6 +433946,7 @@
       "x": -76.95249950000006,
       "y": -21.022574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433585,6 +433960,7 @@
       "x": -78.11249950000006,
       "y": -21.022574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433598,6 +433974,7 @@
       "x": 128.58749849999995,
       "y": -0.7225745000000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433611,6 +433988,7 @@
       "x": 71.43750049999994,
       "y": 24.6086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433624,6 +434002,7 @@
       "x": -90.48750150000005,
       "y": 4.039925499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433637,6 +434016,7 @@
       "x": -128.58750150000006,
       "y": 37.3774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433650,6 +434030,7 @@
       "x": 71.43749849999995,
       "y": 44.5211755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433663,6 +434044,7 @@
       "x": 128.58750049999995,
       "y": -1.585074500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433676,6 +434058,7 @@
       "x": -128.58750150000006,
       "y": 18.3274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433689,6 +434072,7 @@
       "x": -109.53750150000005,
       "y": 37.3774255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433702,6 +434086,7 @@
       "x": 63.34749849999994,
       "y": -11.6925745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433715,6 +434100,7 @@
       "x": 63.34749849999994,
       "y": -10.532574500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433728,6 +434114,7 @@
       "x": 33.337498499999946,
       "y": 19.8461755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433741,6 +434128,7 @@
       "x": -71.43750150000005,
       "y": 24.6086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433754,6 +434142,7 @@
       "x": 14.287498499999947,
       "y": 10.321175499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433767,6 +434156,7 @@
       "x": -22.822501500000055,
       "y": 39.0224255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433780,6 +434170,7 @@
       "x": -22.822501500000055,
       "y": 37.852425499999995
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433793,6 +434184,7 @@
       "x": -69.28750150000005,
       "y": -10.786274500000005
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433806,6 +434198,7 @@
       "x": -69.28750150000005,
       "y": -11.946274500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433819,6 +434212,7 @@
       "x": 128.58749849999995,
       "y": 18.3274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433832,6 +434226,7 @@
       "x": -12.287501500000053,
       "y": 43.0474255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433845,6 +434240,7 @@
       "x": -41.07750150000005,
       "y": -18.3212745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433858,6 +434254,7 @@
       "x": -39.91750150000005,
       "y": -18.3212745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433871,6 +434268,7 @@
       "x": 102.74749849999995,
       "y": 32.1574255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433884,6 +434282,7 @@
       "x": 90.48749849999994,
       "y": 23.0899255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433897,6 +434296,7 @@
       "x": -109.53750150000005,
       "y": -0.7225745000000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433910,6 +434310,7 @@
       "x": 22.847498499999947,
       "y": 37.523675499999996
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433923,6 +434324,7 @@
       "x": 22.847498499999947,
       "y": 36.3536755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433936,6 +434338,7 @@
       "x": -80.35749950000006,
       "y": -12.901324499999994
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433949,6 +434352,7 @@
       "x": -80.35749950000006,
       "y": -11.741324499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433962,6 +434366,7 @@
       "x": 51.38249849999995,
       "y": -11.212574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433975,6 +434380,7 @@
       "x": 51.38249849999995,
       "y": -15.712574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -433988,6 +434394,7 @@
       "x": -26.388420000870198,
       "y": -26.291422567299136
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434001,6 +434408,7 @@
       "x": 52.38749849999995,
       "y": 42.139925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434014,6 +434422,7 @@
       "x": 22.837498499999946,
       "y": 36.7636755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434027,6 +434436,7 @@
       "x": 22.837498499999946,
       "y": 37.9336755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434040,6 +434450,7 @@
       "x": -33.33750150000005,
       "y": 1.658675500000001
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434053,6 +434464,7 @@
       "x": 47.37249849999994,
       "y": -13.202574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434066,6 +434478,7 @@
       "x": 46.212498499999946,
       "y": -13.202574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434079,6 +434492,7 @@
       "x": -52.387501500000056,
       "y": 23.0899255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434092,6 +434506,7 @@
       "x": -33.33750150000005,
       "y": 0.7961755000000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434105,6 +434520,7 @@
       "x": -74.60750150000005,
       "y": -20.0262745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434118,6 +434534,7 @@
       "x": -74.60750150000005,
       "y": -15.2062745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434131,6 +434548,7 @@
       "x": -3.9575015000000535,
       "y": 37.7074255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434144,6 +434562,7 @@
       "x": -5.1275015000000534,
       "y": 37.7074255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434157,6 +434576,7 @@
       "x": -90.48750150000005,
       "y": 22.2274255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434170,6 +434590,7 @@
       "x": -33.33750150000005,
       "y": 20.7086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434183,6 +434604,7 @@
       "x": -116.34250150000005,
       "y": 32.1574255
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434196,6 +434618,7 @@
       "x": 68.29249849999995,
       "y": -8.6925745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434209,6 +434632,7 @@
       "x": 67.12249849999995,
       "y": -8.6925745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434222,6 +434646,7 @@
       "x": 72.50250049999995,
       "y": -25.731324500000007
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434235,6 +434660,7 @@
       "x": 72.50250049999995,
       "y": -26.891324500000003
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434248,6 +434674,7 @@
       "x": 25.610588205373578,
       "y": -26.625034160007452
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434261,6 +434688,7 @@
       "x": -109.53750150000005,
       "y": 36.514925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434274,6 +434702,7 @@
       "x": -33.33750150000005,
       "y": 38.8961755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434287,6 +434716,7 @@
       "x": -75.80249950000005,
       "y": -21.022574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434300,6 +434730,7 @@
       "x": -76.96249950000005,
       "y": -21.022574499999997
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434313,6 +434744,7 @@
       "x": 63.34749849999994,
       "y": -12.742574499999996
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434326,6 +434758,7 @@
       "x": 63.34749849999994,
       "y": -11.5825745
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434339,6 +434772,7 @@
       "x": 52.387500499999945,
       "y": 3.1774254999999982
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434352,6 +434786,7 @@
       "x": 6.292500499999947,
       "y": 37.7086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434365,6 +434800,7 @@
       "x": 5.122500499999947,
       "y": 37.7086755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434378,6 +434814,7 @@
       "x": 14.267498499999947,
       "y": 32.5736755
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434391,6 +434828,7 @@
       "x": 109.53750049999995,
       "y": 36.514925500000004
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434404,6 +434842,7 @@
       "x": -85.64749950000005,
       "y": -15.111324500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434417,6 +434856,7 @@
       "x": -86.81749950000005,
       "y": -15.111324500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434430,6 +434870,7 @@
       "x": -20.467501500000054,
       "y": -12.212574500000002
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434443,6 +434884,7 @@
       "x": 52.38749849999995,
       "y": 4.039925499999999
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -434454,6 +434896,7 @@
       "x": -1.752499500000053,
       "y": -7.2388245
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 1.5,
     "font": "tscircuit2024"

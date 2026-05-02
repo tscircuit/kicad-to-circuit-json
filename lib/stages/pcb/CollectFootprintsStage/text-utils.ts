@@ -1,4 +1,5 @@
 import type { Footprint } from "kicadts"
+import type { NinePointAnchor } from "circuit-json"
 
 /**
  * Gets a text value from a footprint by type (e.g., "reference", "value")
@@ -50,4 +51,34 @@ export function substituteKicadVariables(
   result = result.replace(/\$\{VALUE\}/g, value)
 
   return result
+}
+
+/**
+ * Maps KiCad text justification to Circuit JSON anchor alignment
+ */
+export function mapKicadJustifyToAnchorAlignment(
+  justify: any,
+): NinePointAnchor {
+  if (!justify) return "center"
+
+  const horizontal = justify.horizontal || "center"
+  const vertical = justify.vertical || "center"
+
+  if (vertical === "top") {
+    if (horizontal === "left") return "top_left"
+    if (horizontal === "center") return "top_center"
+    if (horizontal === "right") return "top_right"
+  }
+  if (vertical === "center") {
+    if (horizontal === "left") return "center_left"
+    if (horizontal === "center") return "center"
+    if (horizontal === "right") return "center_right"
+  }
+  if (vertical === "bottom") {
+    if (horizontal === "left") return "bottom_left"
+    if (horizontal === "center") return "bottom_center"
+    if (horizontal === "right") return "bottom_right"
+  }
+
+  return "center"
 }

@@ -12,7 +12,10 @@ import {
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
 import { mapTextLayer } from "./layer-utils"
-import { substituteKicadVariables } from "./text-utils"
+import {
+  substituteKicadVariables,
+  mapKicadJustifyToAnchorAlignment,
+} from "./text-utils"
 
 /**
  * Processes all text elements in a footprint (properties and fp_text)
@@ -153,6 +156,8 @@ export function createGraphicText(
     text._sxEffects?._sxFont?._sxSize?._height ||
     text.effects?.font?.size?.y ||
     1
+  const justify = text._sxEffects?._sxJustify || text.effects?.justify
+  const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
 
   if (renderLayer.endsWith("_silkscreen")) {
     ctx.db.pcb_silkscreen_text.insert({
@@ -161,6 +166,7 @@ export function createGraphicText(
       font_size: kicadFontSize * 1.5,
       text: processedText,
       anchor_position: pos,
+      anchor_alignment: anchorAlignment,
       layer,
     } as PcbSilkscreenText)
     return
@@ -173,6 +179,7 @@ export function createGraphicText(
       font_size: kicadFontSize * 1.5,
       text: processedText,
       anchor_position: pos,
+      anchor_alignment: anchorAlignment,
       layer: layer,
     } as PcbFabricationNoteText)
     return
@@ -185,6 +192,7 @@ export function createGraphicText(
       font_size: kicadFontSize * 1.5,
       text: processedText,
       anchor_position: pos,
+      anchor_alignment: anchorAlignment,
       layer: layer,
     } as PcbCopperText)
   }

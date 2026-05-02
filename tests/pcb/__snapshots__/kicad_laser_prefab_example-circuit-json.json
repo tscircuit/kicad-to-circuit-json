@@ -254,6 +254,7 @@
       "x": -2.260000000000005,
       "y": -0.8299999999999983
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -267,6 +268,7 @@
       "x": 2.75,
       "y": 2.6700000000000017
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -348,6 +350,7 @@
       "x": -2.260000000000005,
       "y": -3.1700000000000017
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -361,6 +364,7 @@
       "x": -2.260000000000005,
       "y": -2
     },
+    "anchor_alignment": "center",
     "layer": "top"
   },
   {
@@ -374,6 +378,7 @@
       "x": 2.75,
       "y": 0.3299999999999983
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {
@@ -387,6 +392,7 @@
       "x": 2.75,
       "y": 1.5
     },
+    "anchor_alignment": "center",
     "layer": "bottom"
   },
   {

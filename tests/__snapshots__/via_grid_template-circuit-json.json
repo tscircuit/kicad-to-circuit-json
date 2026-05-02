@@ -2686,6 +2686,7 @@
       "x": 43.6,
       "y": 1.7
     },
+    "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 2.25,
     "font": "tscircuit2024"
@@ -2699,6 +2700,7 @@
       "x": 0.5,
       "y": 0.5
     },
+    "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.125,
     "font": "tscircuit2024"
@@ -2712,6 +2714,7 @@
       "x": 99.5,
       "y": 0.5
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 1.125,
     "font": "tscircuit2024"
@@ -2725,6 +2728,7 @@
       "x": 58.6,
       "y": 1.7
     },
+    "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 2.25,
     "font": "tscircuit2024"

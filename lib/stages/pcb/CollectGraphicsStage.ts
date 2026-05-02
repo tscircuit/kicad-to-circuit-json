@@ -18,6 +18,7 @@ import {
   mapKicadLayerToLayerRef,
   mapKicadLayerToVisibleLayer,
 } from "./layer-mapping"
+import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
 
 type BoardPrimitive =
   | {
@@ -115,15 +116,8 @@ export class CollectGraphicsStage extends ConverterStage {
     const texts = this.ctx.kicadPcb.graphicTexts || []
     const textArray = Array.isArray(texts) ? texts : [texts]
     for (const text of textArray) {
-      const layerStr = getLayerNames(text.layer).join(" ")
-      if (
-        layerStr.includes("SilkS") ||
-        layerStr.includes("Fab") ||
-        layerStr.includes(".Cu")
-      ) {
-        const renderLayer = mapKicadLayerToPcbRenderLayer(text.layer)
-        if (renderLayer) this.createGraphicText(text, renderLayer)
-      }
+      const renderLayer = mapKicadLayerToPcbRenderLayer(text.layer)
+      if (renderLayer) this.createGraphicText(text, renderLayer)
     }
 
     this.finished = true
@@ -408,12 +402,15 @@ export class CollectGraphicsStage extends ConverterStage {
       1
     const fontSize = kicadFontSize * 1.5
     const textValue = text.text || text._text || ""
+    const justify = text._sxEffects?._sxJustify || text.effects?.justify
+    const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
 
     if (renderLayer.endsWith("_silkscreen")) {
       this.ctx.db.pcb_silkscreen_text.insert({
         pcb_component_id: "",
         text: textValue,
         anchor_position: pos,
+        anchor_alignment: anchorAlignment,
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
@@ -426,6 +423,7 @@ export class CollectGraphicsStage extends ConverterStage {
         pcb_component_id: "",
         text: textValue,
         anchor_position: pos,
+        anchor_alignment: anchorAlignment,
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
@@ -438,6 +436,7 @@ export class CollectGraphicsStage extends ConverterStage {
         pcb_component_id: "",
         text: textValue,
         anchor_position: pos,
+        anchor_alignment: anchorAlignment,
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
