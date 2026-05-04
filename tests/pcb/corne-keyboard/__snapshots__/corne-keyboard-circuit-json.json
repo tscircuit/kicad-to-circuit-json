@@ -7459,26 +7459,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_0",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "BT3"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_0"
   },
   {
     "type": "pcb_component",
@@ -7491,26 +7472,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_1",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "BT2"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_1"
   },
   {
     "type": "pcb_component",
@@ -7523,26 +7485,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_2",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rBT2"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_2"
   },
   {
     "type": "pcb_component",
@@ -7555,26 +7498,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_3",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:OLED",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rJ3"
-          },
-          "Value": {
-            "value": "Conn_01x04"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_3"
   },
   {
     "type": "pcb_component",
@@ -7587,26 +7511,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_4",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "BT4"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_4"
   },
   {
     "type": "pcb_component",
@@ -7619,24 +7524,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_5",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:corne-logo-horizontal",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "G***"
-          },
-          "Value": {
-            "value": "LOGO"
-          }
-        },
-        "attributes": {
-          "through_hole": true
-        }
-      }
-    }
+    "source_component_id": "source_component_5"
   },
   {
     "type": "pcb_component",
@@ -7649,26 +7537,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_6",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rBT1"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_6"
   },
   {
     "type": "pcb_component",
@@ -7681,26 +7550,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_7",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rBT3"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_7"
   },
   {
     "type": "pcb_component",
@@ -7713,24 +7563,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_8",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:corne-logo-horizontal",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "G***"
-          },
-          "Value": {
-            "value": "LOGO"
-          }
-        },
-        "attributes": {
-          "through_hole": true
-        }
-      }
-    }
+    "source_component_id": "source_component_8"
   },
   {
     "type": "pcb_component",
@@ -7743,26 +7576,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_9",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rBT4"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_9"
   },
   {
     "type": "pcb_component",
@@ -7775,26 +7589,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_10",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:Breakaway_Tabs",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "BT1"
-          },
-          "Value": {
-            "value": "Breakaway Tabs"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_10"
   },
   {
     "type": "pcb_component",
@@ -7807,26 +7602,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_11",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:OLED",
-        "layer": "F.Cu",
-        "properties": {
-          "Reference": {
-            "value": "J3"
-          },
-          "Value": {
-            "value": "Conn_01x04"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_11"
   },
   {
     "type": "pcb_component",
@@ -7839,24 +7615,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_12",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C1"
-          },
-          "Value": {
-            "value": "27p"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_12"
   },
   {
     "type": "pcb_component",
@@ -7869,26 +7628,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_13",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "J4"
-          },
-          "Value": {
-            "value": "Conn_01x03"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_13"
   },
   {
     "type": "pcb_component",
@@ -7901,24 +7641,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_14",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC1"
-          },
-          "Value": {
-            "value": "27p"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_14"
   },
   {
     "type": "pcb_component",
@@ -7931,27 +7654,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_15",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Diode_SMD:D_SOD-523",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "ZD1"
-          },
-          "Value": {
-            "value": "RB521S30T1G"
-          },
-          "JLCPCB Part #": {
-            "value": "C145179"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_15"
   },
   {
     "type": "pcb_component",
@@ -7964,24 +7667,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_16",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW4"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_16"
   },
   {
     "type": "pcb_component",
@@ -7994,24 +7680,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_17",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:keyswitch_choc12_hotswap_1u_rotary_encoder_ec12",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "EXSW2"
-          },
-          "Value": {
-            "value": "RotaryEncoder_Switch"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_17"
   },
   {
     "type": "pcb_component",
@@ -8024,24 +7693,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_18",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC7"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_18"
   },
   {
     "type": "pcb_component",
@@ -8054,24 +7706,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_19",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED16"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_19"
   },
   {
     "type": "pcb_component",
@@ -8084,24 +7719,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_20",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW17"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_20"
   },
   {
     "type": "pcb_component",
@@ -8114,24 +7732,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_21",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED16"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_21"
   },
   {
     "type": "pcb_component",
@@ -8144,24 +7745,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_22",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED3"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_22"
   },
   {
     "type": "pcb_component",
@@ -8174,24 +7758,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_23",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR3"
-          },
-          "Value": {
-            "value": "1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_23"
   },
   {
     "type": "pcb_component",
@@ -8204,24 +7771,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_24",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C16"
-          },
-          "Value": {
-            "value": "1u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_24"
   },
   {
     "type": "pcb_component",
@@ -8234,24 +7784,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_25",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC9"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_25"
   },
   {
     "type": "pcb_component",
@@ -8264,24 +7797,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_26",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC14"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_26"
   },
   {
     "type": "pcb_component",
@@ -8294,24 +7810,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_27",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R8"
-          },
-          "Value": {
-            "value": "5.6k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_27"
   },
   {
     "type": "pcb_component",
@@ -8324,24 +7823,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_28",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW15"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_28"
   },
   {
     "type": "pcb_component",
@@ -8354,27 +7836,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_29",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:PJ-398A-5A_PJ-399B-6A",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rJ2"
-          },
-          "Value": {
-            "value": "TRS"
-          },
-          "JLCPCB Part #": {
-            "value": "C128994"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_29"
   },
   {
     "type": "pcb_component",
@@ -8387,24 +7849,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_30",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R7"
-          },
-          "Value": {
-            "value": "10k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_30"
   },
   {
     "type": "pcb_component",
@@ -8417,24 +7862,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_31",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC3"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_31"
   },
   {
     "type": "pcb_component",
@@ -8447,24 +7875,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_32",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW9"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_32"
   },
   {
     "type": "pcb_component",
@@ -8477,24 +7888,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_33",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:keyswitch_choc12_hotswap_1u_rotary_encoder_ec12",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rEXSW2"
-          },
-          "Value": {
-            "value": "RotaryEncoder_Switch"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_33"
   },
   {
     "type": "pcb_component",
@@ -8507,24 +7901,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_34",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC8"
-          },
-          "Value": {
-            "value": "1u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_34"
   },
   {
     "type": "pcb_component",
@@ -8537,24 +7914,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_35",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW9"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_35"
   },
   {
     "type": "pcb_component",
@@ -8567,27 +7927,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_36",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rU1"
-          },
-          "Value": {
-            "value": "RP2040"
-          },
-          "JLCPCB Part #": {
-            "value": "C2040"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_36"
   },
   {
     "type": "pcb_component",
@@ -8600,24 +7940,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_37",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW5"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_37"
   },
   {
     "type": "pcb_component",
@@ -8630,24 +7953,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_38",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW10"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_38"
   },
   {
     "type": "pcb_component",
@@ -8660,24 +7966,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_39",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED4"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_39"
   },
   {
     "type": "pcb_component",
@@ -8690,24 +7979,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_40",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C4"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_40"
   },
   {
     "type": "pcb_component",
@@ -8720,27 +7992,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_41",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:TS-1088R-02026",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SMDSW2"
-          },
-          "Value": {
-            "value": "TS-1088R-02026"
-          },
-          "JLCPCB Part #": {
-            "value": "C455280"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_41"
   },
   {
     "type": "pcb_component",
@@ -8753,24 +8005,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_42",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED17"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_42"
   },
   {
     "type": "pcb_component",
@@ -8783,24 +8018,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_43",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C10"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_43"
   },
   {
     "type": "pcb_component",
@@ -8813,27 +8031,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_44",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:TYPE-C-31-M-13C",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rJ1"
-          },
-          "Value": {
-            "value": "TYPE-C-31-M-13C"
-          },
-          "JLCPCB Part #": {
-            "value": "C2848620"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_44"
   },
   {
     "type": "pcb_component",
@@ -8846,24 +8044,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_45",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED6"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_45"
   },
   {
     "type": "pcb_component",
@@ -8876,24 +8057,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_46",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED5"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_46"
   },
   {
     "type": "pcb_component",
@@ -8906,24 +8070,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_47",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C5"
-          },
-          "Value": {
-            "value": "1u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_47"
   },
   {
     "type": "pcb_component",
@@ -8936,24 +8083,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_48",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C15"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_48"
   },
   {
     "type": "pcb_component",
@@ -8966,24 +8096,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_49",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW11"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_49"
   },
   {
     "type": "pcb_component",
@@ -8996,27 +8109,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_50",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "U3"
-          },
-          "Value": {
-            "value": "TPD4E05U06DQAR"
-          },
-          "JLCPCB Part #": {
-            "value": "C138714"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_50"
   },
   {
     "type": "pcb_component",
@@ -9029,24 +8122,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_51",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED2"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_51"
   },
   {
     "type": "pcb_component",
@@ -9059,24 +8135,7 @@
     "rotation": -168.06,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_52",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED8"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_52"
   },
   {
     "type": "pcb_component",
@@ -9089,27 +8148,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_53",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_TO_SOT_SMD:SOT-223-3_TabPin2",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "U2"
-          },
-          "Value": {
-            "value": "NCP1117LPST33T3G"
-          },
-          "JLCPCB Part #": {
-            "value": "C146799"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_53"
   },
   {
     "type": "pcb_component",
@@ -9122,24 +8161,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_54",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW16"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_54"
   },
   {
     "type": "pcb_component",
@@ -9152,24 +8174,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_55",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW13"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_55"
   },
   {
     "type": "pcb_component",
@@ -9182,24 +8187,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_56",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW11"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_56"
   },
   {
     "type": "pcb_component",
@@ -9212,24 +8200,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_57",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED10"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_57"
   },
   {
     "type": "pcb_component",
@@ -9242,24 +8213,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_58",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW14"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_58"
   },
   {
     "type": "pcb_component",
@@ -9272,24 +8226,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_59",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW18"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_59"
   },
   {
     "type": "pcb_component",
@@ -9302,24 +8239,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_60",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C11"
-          },
-          "Value": {
-            "value": "10u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_60"
   },
   {
     "type": "pcb_component",
@@ -9332,24 +8252,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_61",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW19"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_61"
   },
   {
     "type": "pcb_component",
@@ -9362,24 +8265,7 @@
     "rotation": -168.061,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_62",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW8"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_62"
   },
   {
     "type": "pcb_component",
@@ -9392,24 +8278,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_63",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED20"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_63"
   },
   {
     "type": "pcb_component",
@@ -9422,24 +8291,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_64",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED12"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_64"
   },
   {
     "type": "pcb_component",
@@ -9452,24 +8304,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_65",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED15"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_65"
   },
   {
     "type": "pcb_component",
@@ -9482,24 +8317,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_66",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR2"
-          },
-          "Value": {
-            "value": "5.1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_66"
   },
   {
     "type": "pcb_component",
@@ -9512,24 +8330,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_67",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW4"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_67"
   },
   {
     "type": "pcb_component",
@@ -9542,24 +8343,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_68",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R1"
-          },
-          "Value": {
-            "value": "5.1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_68"
   },
   {
     "type": "pcb_component",
@@ -9572,24 +8356,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_69",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW12"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_69"
   },
   {
     "type": "pcb_component",
@@ -9602,24 +8369,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_70",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED20"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_70"
   },
   {
     "type": "pcb_component",
@@ -9632,24 +8382,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_71",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R3"
-          },
-          "Value": {
-            "value": "1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_71"
   },
   {
     "type": "pcb_component",
@@ -9662,24 +8395,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_72",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rEXLED1"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_72"
   },
   {
     "type": "pcb_component",
@@ -9692,24 +8408,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_73",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW6"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_73"
   },
   {
     "type": "pcb_component",
@@ -9722,27 +8421,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_74",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:TS-1088R-02026",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSMDSW2"
-          },
-          "Value": {
-            "value": "TS-1088R-02026"
-          },
-          "JLCPCB Part #": {
-            "value": "C455280"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_74"
   },
   {
     "type": "pcb_component",
@@ -9755,27 +8434,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_75",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Diode_SMD:D_SOD-523",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rD1"
-          },
-          "Value": {
-            "value": "1N4148WT"
-          },
-          "JLCPCB Part #": {
-            "value": "C232841"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_75"
   },
   {
     "type": "pcb_component",
@@ -9788,24 +8447,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_76",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED17"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_76"
   },
   {
     "type": "pcb_component",
@@ -9818,27 +8460,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_77",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rU3"
-          },
-          "Value": {
-            "value": "TPD4E05U06DQAR"
-          },
-          "JLCPCB Part #": {
-            "value": "C138714"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_77"
   },
   {
     "type": "pcb_component",
@@ -9851,24 +8473,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_78",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R5"
-          },
-          "Value": {
-            "value": "27"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_78"
   },
   {
     "type": "pcb_component",
@@ -9881,24 +8486,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_79",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED19"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_79"
   },
   {
     "type": "pcb_component",
@@ -9911,24 +8499,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_80",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW17"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_80"
   },
   {
     "type": "pcb_component",
@@ -9941,24 +8512,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_81",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC11"
-          },
-          "Value": {
-            "value": "10u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_81"
   },
   {
     "type": "pcb_component",
@@ -9971,24 +8525,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_82",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED15"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_82"
   },
   {
     "type": "pcb_component",
@@ -10001,24 +8538,7 @@
     "rotation": 113.88,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_83",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED1"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_83"
   },
   {
     "type": "pcb_component",
@@ -10031,24 +8551,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_84",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C9"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_84"
   },
   {
     "type": "pcb_component",
@@ -10061,27 +8564,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_85",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rY1"
-          },
-          "Value": {
-            "value": "12MHz 18pF"
-          },
-          "JLCPCB Part #": {
-            "value": "C91749"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_85"
   },
   {
     "type": "pcb_component",
@@ -10094,24 +8577,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_86",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED5"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_86"
   },
   {
     "type": "pcb_component",
@@ -10124,24 +8590,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_87",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW21"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_87"
   },
   {
     "type": "pcb_component",
@@ -10154,24 +8603,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_88",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC15"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_88"
   },
   {
     "type": "pcb_component",
@@ -10184,24 +8616,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_89",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW3"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_89"
   },
   {
     "type": "pcb_component",
@@ -10214,24 +8629,7 @@
     "rotation": -113.88,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_90",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1.5u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW1"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_90"
   },
   {
     "type": "pcb_component",
@@ -10244,24 +8642,7 @@
     "rotation": 168.06,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_91",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED8"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_91"
   },
   {
     "type": "pcb_component",
@@ -10274,24 +8655,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_92",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED13"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_92"
   },
   {
     "type": "pcb_component",
@@ -10304,24 +8668,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_93",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:keyswitch_choc12_hotswap_1u_rotary_encoder_ec12",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "EXSW1"
-          },
-          "Value": {
-            "value": "RotaryEncoder_Switch"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_93"
   },
   {
     "type": "pcb_component",
@@ -10334,24 +8681,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_94",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW7"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_94"
   },
   {
     "type": "pcb_component",
@@ -10364,24 +8694,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_95",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC5"
-          },
-          "Value": {
-            "value": "1u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_95"
   },
   {
     "type": "pcb_component",
@@ -10394,24 +8707,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_96",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC4"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_96"
   },
   {
     "type": "pcb_component",
@@ -10424,24 +8720,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_97",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED13"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_97"
   },
   {
     "type": "pcb_component",
@@ -10454,27 +8733,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_98",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:TS-1088R-02026",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SMDSW1"
-          },
-          "Value": {
-            "value": "TS-1088R-02026"
-          },
-          "JLCPCB Part #": {
-            "value": "C455280"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_98"
   },
   {
     "type": "pcb_component",
@@ -10487,24 +8746,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_99",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED21"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_99"
   },
   {
     "type": "pcb_component",
@@ -10517,27 +8759,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_100",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "U4"
-          },
-          "Value": {
-            "value": "W25Q128JVSIQ"
-          },
-          "JLCPCB Part #": {
-            "value": "C113767"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_100"
   },
   {
     "type": "pcb_component",
@@ -10550,27 +8772,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_101",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Diode_SMD:D_SOD-523",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "D1"
-          },
-          "Value": {
-            "value": "1N4148WT"
-          },
-          "JLCPCB Part #": {
-            "value": "C232841"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_101"
   },
   {
     "type": "pcb_component",
@@ -10583,24 +8785,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_102",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED19"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_102"
   },
   {
     "type": "pcb_component",
@@ -10613,24 +8798,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_103",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW13"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_103"
   },
   {
     "type": "pcb_component",
@@ -10643,24 +8811,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_104",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED7"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_104"
   },
   {
     "type": "pcb_component",
@@ -10673,24 +8824,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_105",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR7"
-          },
-          "Value": {
-            "value": "10k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_105"
   },
   {
     "type": "pcb_component",
@@ -10703,24 +8837,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_106",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C8"
-          },
-          "Value": {
-            "value": "1u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_106"
   },
   {
     "type": "pcb_component",
@@ -10733,24 +8850,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_107",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C13"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_107"
   },
   {
     "type": "pcb_component",
@@ -10763,24 +8863,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_108",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C2"
-          },
-          "Value": {
-            "value": "27p"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_108"
   },
   {
     "type": "pcb_component",
@@ -10793,24 +8876,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_109",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED14"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_109"
   },
   {
     "type": "pcb_component",
@@ -10823,24 +8889,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_110",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED9"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_110"
   },
   {
     "type": "pcb_component",
@@ -10853,24 +8902,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_111",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "EXLED2"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_111"
   },
   {
     "type": "pcb_component",
@@ -10883,24 +8915,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_112",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC10"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_112"
   },
   {
     "type": "pcb_component",
@@ -10913,27 +8928,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_113",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "Y1"
-          },
-          "Value": {
-            "value": "12MHz 18pF"
-          },
-          "JLCPCB Part #": {
-            "value": "C91749"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_113"
   },
   {
     "type": "pcb_component",
@@ -10946,24 +8941,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_114",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED9"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_114"
   },
   {
     "type": "pcb_component",
@@ -10976,26 +8954,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_115",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rJ4"
-          },
-          "Value": {
-            "value": "Conn_01x03"
-          }
-        },
-        "attributes": {
-          "through_hole": true,
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_115"
   },
   {
     "type": "pcb_component",
@@ -11008,27 +8967,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_116",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rU4"
-          },
-          "Value": {
-            "value": "W25Q128JVSIQ"
-          },
-          "JLCPCB Part #": {
-            "value": "C113767"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_116"
   },
   {
     "type": "pcb_component",
@@ -11041,24 +8980,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_117",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR6"
-          },
-          "Value": {
-            "value": "1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_117"
   },
   {
     "type": "pcb_component",
@@ -11071,24 +8993,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_118",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW2"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_118"
   },
   {
     "type": "pcb_component",
@@ -11101,24 +9006,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_119",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC16"
-          },
-          "Value": {
-            "value": "1u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_119"
   },
   {
     "type": "pcb_component",
@@ -11131,24 +9019,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_120",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "EXLED1"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_120"
   },
   {
     "type": "pcb_component",
@@ -11161,27 +9032,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_121",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Diode_SMD:D_SOD-523",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rZD1"
-          },
-          "Value": {
-            "value": "RB521S30T1G"
-          },
-          "JLCPCB Part #": {
-            "value": "C145179"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_121"
   },
   {
     "type": "pcb_component",
@@ -11194,24 +9045,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_122",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED6"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_122"
   },
   {
     "type": "pcb_component",
@@ -11224,24 +9058,7 @@
     "rotation": 168.06,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_123",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW8"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_123"
   },
   {
     "type": "pcb_component",
@@ -11254,27 +9071,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_124",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:TS-1088R-02026",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSMDSW1"
-          },
-          "Value": {
-            "value": "TS-1088R-02026"
-          },
-          "JLCPCB Part #": {
-            "value": "C455280"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_124"
   },
   {
     "type": "pcb_component",
@@ -11287,24 +9084,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_125",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW10"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_125"
   },
   {
     "type": "pcb_component",
@@ -11317,24 +9097,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_126",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR5"
-          },
-          "Value": {
-            "value": "27"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_126"
   },
   {
     "type": "pcb_component",
@@ -11347,24 +9110,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_127",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED10"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_127"
   },
   {
     "type": "pcb_component",
@@ -11377,24 +9123,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_128",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R4"
-          },
-          "Value": {
-            "value": "27"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_128"
   },
   {
     "type": "pcb_component",
@@ -11407,24 +9136,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_129",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED12"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_129"
   },
   {
     "type": "pcb_component",
@@ -11437,24 +9149,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_130",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C3"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_130"
   },
   {
     "type": "pcb_component",
@@ -11467,24 +9162,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_131",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW21"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_131"
   },
   {
     "type": "pcb_component",
@@ -11497,24 +9175,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_132",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED11"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_132"
   },
   {
     "type": "pcb_component",
@@ -11527,24 +9188,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_133",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW15"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_133"
   },
   {
     "type": "pcb_component",
@@ -11557,24 +9201,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_134",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW19"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_134"
   },
   {
     "type": "pcb_component",
@@ -11587,24 +9214,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_135",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW12"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_135"
   },
   {
     "type": "pcb_component",
@@ -11617,24 +9227,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_136",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED21"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_136"
   },
   {
     "type": "pcb_component",
@@ -11647,24 +9240,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_137",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW20"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_137"
   },
   {
     "type": "pcb_component",
@@ -11677,24 +9253,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_138",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW18"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_138"
   },
   {
     "type": "pcb_component",
@@ -11707,24 +9266,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_139",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC13"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_139"
   },
   {
     "type": "pcb_component",
@@ -11737,24 +9279,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_140",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED3"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_140"
   },
   {
     "type": "pcb_component",
@@ -11767,24 +9292,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_141",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED11"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_141"
   },
   {
     "type": "pcb_component",
@@ -11797,24 +9305,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_142",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rEXLED2"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_142"
   },
   {
     "type": "pcb_component",
@@ -11827,24 +9318,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_143",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R9"
-          },
-          "Value": {
-            "value": "10K"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_143"
   },
   {
     "type": "pcb_component",
@@ -11857,24 +9331,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_144",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C14"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_144"
   },
   {
     "type": "pcb_component",
@@ -11887,24 +9344,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_145",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW20"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_145"
   },
   {
     "type": "pcb_component",
@@ -11917,27 +9357,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_146",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:TYPE-C-31-M-13C",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "J1"
-          },
-          "Value": {
-            "value": "TYPE-C-31-M-13C"
-          },
-          "JLCPCB Part #": {
-            "value": "C2848620"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_146"
   },
   {
     "type": "pcb_component",
@@ -11950,24 +9370,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_147",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C6"
-          },
-          "Value": {
-            "value": "10u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_147"
   },
   {
     "type": "pcb_component",
@@ -11980,25 +9383,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_148",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rJP1"
-          },
-          "Value": {
-            "value": "SolderJumper_2_Bridged"
-          }
-        },
-        "attributes": {
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_148"
   },
   {
     "type": "pcb_component",
@@ -12011,24 +9396,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_149",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW14"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_149"
   },
   {
     "type": "pcb_component",
@@ -12041,24 +9409,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_150",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW16"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_150"
   },
   {
     "type": "pcb_component",
@@ -12071,24 +9422,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_151",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR8"
-          },
-          "Value": {
-            "value": "5.6k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_151"
   },
   {
     "type": "pcb_component",
@@ -12101,24 +9435,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_152",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C12"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_152"
   },
   {
     "type": "pcb_component",
@@ -12131,27 +9448,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_153",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_TO_SOT_SMD:SOT-223-3_TabPin2",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rU2"
-          },
-          "Value": {
-            "value": "NCP1117LPST33T3G"
-          },
-          "JLCPCB Part #": {
-            "value": "C146799"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_153"
   },
   {
     "type": "pcb_component",
@@ -12164,24 +9461,7 @@
     "rotation": 113.88,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_154",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1.5u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW1"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_154"
   },
   {
     "type": "pcb_component",
@@ -12194,24 +9474,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_155",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW5"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_155"
   },
   {
     "type": "pcb_component",
@@ -12224,24 +9487,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_156",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR9"
-          },
-          "Value": {
-            "value": "10K"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_156"
   },
   {
     "type": "pcb_component",
@@ -12254,24 +9500,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_157",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW2"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_157"
   },
   {
     "type": "pcb_component",
@@ -12284,24 +9513,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_158",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC6"
-          },
-          "Value": {
-            "value": "10u"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_158"
   },
   {
     "type": "pcb_component",
@@ -12314,24 +9526,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_159",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW6"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_159"
   },
   {
     "type": "pcb_component",
@@ -12344,24 +9539,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_160",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED2"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_160"
   },
   {
     "type": "pcb_component",
@@ -12374,27 +9552,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_161",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "U1"
-          },
-          "Value": {
-            "value": "RP2040"
-          },
-          "JLCPCB Part #": {
-            "value": "C2040"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_161"
   },
   {
     "type": "pcb_component",
@@ -12407,24 +9565,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_162",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R2"
-          },
-          "Value": {
-            "value": "5.1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_162"
   },
   {
     "type": "pcb_component",
@@ -12437,24 +9578,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_163",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED14"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_163"
   },
   {
     "type": "pcb_component",
@@ -12467,24 +9591,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_164",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "SW3"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_164"
   },
   {
     "type": "pcb_component",
@@ -12497,25 +9604,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_165",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "JP1"
-          },
-          "Value": {
-            "value": "SolderJumper_2_Bridged"
-          }
-        },
-        "attributes": {
-          "exclude_from_pos_files": true,
-          "exclude_from_bom": true
-        }
-      }
-    }
+    "source_component_id": "source_component_165"
   },
   {
     "type": "pcb_component",
@@ -12528,24 +9617,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_166",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR4"
-          },
-          "Value": {
-            "value": "27"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_166"
   },
   {
     "type": "pcb_component",
@@ -12558,24 +9630,7 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_167",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC2"
-          },
-          "Value": {
-            "value": "27p"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_167"
   },
   {
     "type": "pcb_component",
@@ -12588,24 +9643,7 @@
     "rotation": -113.88,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_168",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED1"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_168"
   },
   {
     "type": "pcb_component",
@@ -12618,24 +9656,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_169",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED18"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_169"
   },
   {
     "type": "pcb_component",
@@ -12648,24 +9669,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_170",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "LED4"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_170"
   },
   {
     "type": "pcb_component",
@@ -12678,24 +9682,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_171",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "C7"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_171"
   },
   {
     "type": "pcb_component",
@@ -12708,24 +9695,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_172",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Capacitor_SMD:C_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rC12"
-          },
-          "Value": {
-            "value": "100n"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_172"
   },
   {
     "type": "pcb_component",
@@ -12738,24 +9708,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_173",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED7"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_173"
   },
   {
     "type": "pcb_component",
@@ -12768,24 +9721,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_174",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rR1"
-          },
-          "Value": {
-            "value": "5.1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_174"
   },
   {
     "type": "pcb_component",
@@ -12798,24 +9734,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_175",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:keyswitch_choc12_hotswap_1u_rotary_encoder_ec12",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rEXSW1"
-          },
-          "Value": {
-            "value": "RotaryEncoder_Switch"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_175"
   },
   {
     "type": "pcb_component",
@@ -12828,24 +9747,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_176",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:YS-SK6812MINI-E",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rLED18"
-          },
-          "Value": {
-            "value": "YS-SK6812MINI-E"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_176"
   },
   {
     "type": "pcb_component",
@@ -12858,24 +9760,7 @@
     "rotation": 90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_177",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "Resistor_SMD:R_0402_1005Metric",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "R6"
-          },
-          "Value": {
-            "value": "1k"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_177"
   },
   {
     "type": "pcb_component",
@@ -12888,27 +9773,7 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_178",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd_local:PJ-398A-5A_PJ-399B-6A",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "J2"
-          },
-          "Value": {
-            "value": "TRS"
-          },
-          "JLCPCB Part #": {
-            "value": "C128994"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_178"
   },
   {
     "type": "pcb_component",
@@ -12921,24 +9786,7 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_179",
-    "metadata": {
-      "kicad_footprint": {
-        "footprintName": "kbd:keyswitch_choc12_hotswap_1u",
-        "layer": "B.Cu",
-        "properties": {
-          "Reference": {
-            "value": "rSW7"
-          },
-          "Value": {
-            "value": "SW_Push"
-          }
-        },
-        "attributes": {
-          "smd": true
-        }
-      }
-    }
+    "source_component_id": "source_component_179"
   },
   {
     "type": "pcb_port",

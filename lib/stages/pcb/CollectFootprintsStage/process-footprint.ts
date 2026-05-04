@@ -1,7 +1,6 @@
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
-import { extractKicadLayerNames } from "../layer-mapping"
 import { getComponentLayer } from "./layer-utils"
 import { processPads } from "./process-pads"
 import { processFootprintText } from "./process-text"
@@ -11,10 +10,7 @@ import {
   inferTransistorTypeFromFootprint,
 } from "./infer-component-type"
 import {
-  findFootprintProperty,
   findFootprintPropertyValue,
-  getFootprintPropertyName,
-  getFootprintPropertyValue,
   parseSupplierPartNumbers,
 } from "./footprint-properties"
 
@@ -94,10 +90,6 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
     width: 0, // Will be computed from pads if needed
     height: 0,
     source_component_id: sourceComponentId,
-    metadata: getKicadFootprintMetadata(footprint, {
-      reference: refdes,
-      value,
-    }),
   } as any)
 
   const componentId = inserted.pcb_component_id
@@ -169,119 +161,4 @@ function getJlcpcbPartNumbers(footprint: Footprint): string[] | undefined {
       "Supplier Part Number",
     ]),
   )
-}
-
-function getKicadFootprintMetadata(
-  footprint: Footprint,
-  {
-    reference,
-    value,
-  }: {
-    reference?: string
-    value?: string
-  },
-): { kicad_footprint: Record<string, any> } | undefined {
-  const properties = getKicadFootprintPropertyMetadata({
-    footprint,
-    reference,
-    value,
-  })
-  const attributes = getKicadFootprintAttributes(footprint)
-  const layer = extractKicadLayerNames(footprint.layer)[0]
-  const footprintName = footprint.libraryLink
-
-  const kicadFootprint: Record<string, any> = {}
-
-  if (footprintName) {
-    kicadFootprint.footprintName = footprintName
-  }
-
-  if (layer) {
-    kicadFootprint.layer = layer
-  }
-
-  if (properties) {
-    kicadFootprint.properties = properties
-  }
-
-  if (attributes) {
-    kicadFootprint.attributes = attributes
-  }
-
-  return Object.keys(kicadFootprint).length > 0
-    ? { kicad_footprint: kicadFootprint }
-    : undefined
-}
-
-function getKicadFootprintPropertyMetadata({
-  footprint,
-  reference,
-  value,
-}: {
-  footprint: Footprint
-  reference?: string
-  value?: string
-}): Record<string, { value: string }> | undefined {
-  const propertyMetadata: Record<string, { value: string }> = {}
-  const datasheet = findFootprintPropertyValue(footprint, "Datasheet")
-
-  if (reference) {
-    propertyMetadata.Reference = { value: reference }
-  }
-
-  if (value) {
-    propertyMetadata.Value = { value: value }
-  }
-
-  if (datasheet) {
-    propertyMetadata.Datasheet = { value: datasheet }
-  }
-
-  addRawFootprintPropertyMetadata(propertyMetadata, footprint, [
-    "JLCPCB Part #",
-    "Supplier Part Number",
-  ])
-
-  return Object.keys(propertyMetadata).length > 0 ? propertyMetadata : undefined
-}
-
-function getKicadFootprintAttributes(
-  footprint: Footprint,
-): Record<string, boolean> | undefined {
-  const attr = footprint.attr as any
-  if (!attr) return undefined
-
-  const attributes: Record<string, boolean> = {}
-
-  if (attr._type === "through_hole") {
-    attributes.through_hole = true
-  }
-
-  if (attr._type === "smd") {
-    attributes.smd = true
-  }
-
-  if (attr._excludeFromPosFiles) {
-    attributes.exclude_from_pos_files = true
-  }
-
-  if (attr._excludeFromBom) {
-    attributes.exclude_from_bom = true
-  }
-
-  return Object.keys(attributes).length > 0 ? attributes : undefined
-}
-
-function addRawFootprintPropertyMetadata(
-  propertyMetadata: Record<string, { value: string }>,
-  footprint: Footprint,
-  propertyNames: string | string[],
-) {
-  const property = findFootprintProperty(footprint, propertyNames)
-  const propertyName = getFootprintPropertyName(property)
-  const propertyValue = getFootprintPropertyValue(property)
-
-  if (!propertyName || !propertyValue) return
-
-  propertyMetadata[propertyName] = { value: propertyValue }
 }

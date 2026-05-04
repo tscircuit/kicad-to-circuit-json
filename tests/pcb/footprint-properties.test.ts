@@ -31,11 +31,5 @@ test("kicad-to-circuit-json preserves JLCPCB footprint properties", () => {
   const u1PcbComponent = pcbComponents.find(
     (component) => component.source_component_id === u1.source_component_id,
   )
-  expect(u1PcbComponent?.metadata?.kicad_footprint?.footprintName).toBe(
-    "Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm",
-  )
-  expect(
-    u1PcbComponent?.metadata?.kicad_footprint?.properties?.["JLCPCB Part #"]
-      ?.value,
-  ).toBe("C2040")
+  expect(u1PcbComponent?.metadata?.kicad_footprint).toBeUndefined()
 })
