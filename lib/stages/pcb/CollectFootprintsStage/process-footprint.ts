@@ -1,8 +1,8 @@
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext } from "../../../types"
+import { extractKicadLayerNames } from "../layer-mapping"
 import { getComponentLayer } from "./layer-utils"
-import { getTextValue } from "./text-utils"
 import { processPads } from "./process-pads"
 import { processFootprintText } from "./process-text"
 import { processFootprintGraphics } from "./process-graphics"
@@ -10,6 +10,13 @@ import {
   inferComponentType,
   inferTransistorTypeFromFootprint,
 } from "./infer-component-type"
+import {
+  findFootprintProperty,
+  findFootprintPropertyValue,
+  getFootprintPropertyName,
+  getFootprintPropertyValue,
+  parseSupplierPartNumbers,
+} from "./footprint-properties"
 
 /**
  * Processes a complete footprint and creates all associated Circuit JSON elements
@@ -31,6 +38,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   // Get the reference and value from footprint properties
   const refdes = getFootprintReference(footprint)
   const value = getFootprintValue(footprint)
+  const jlcpcbPartNumbers = getJlcpcbPartNumbers(footprint)
 
   // Infer component type from reference prefix
   const ftype = inferComponentType(refdes)
@@ -47,6 +55,12 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
       footprint,
       value,
     )
+  }
+
+  if (jlcpcbPartNumbers) {
+    sourceComponentData.supplier_part_numbers = {
+      jlcpcb: jlcpcbPartNumbers,
+    }
   }
 
   // Add type-specific value properties based on ftype
@@ -80,6 +94,10 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
     width: 0, // Will be computed from pads if needed
     height: 0,
     source_component_id: sourceComponentId,
+    metadata: getKicadFootprintMetadata(footprint, {
+      reference: refdes,
+      value,
+    }),
   } as any)
 
   const componentId = inserted.pcb_component_id
@@ -107,18 +125,8 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
  * Extracts the reference designator from a footprint (e.g., "R1", "C2", "U3")
  */
 function getFootprintReference(footprint: Footprint): string | undefined {
-  // Try to get reference from properties first
-  const properties = footprint.properties || []
-  const propertyArray = Array.isArray(properties) ? properties : [properties]
-
-  for (const property of propertyArray) {
-    if (
-      (property as any).key === "Reference" ||
-      (property as any).name === "Reference"
-    ) {
-      return (property as any).value
-    }
-  }
+  const propertyValue = findFootprintPropertyValue(footprint, "Reference")
+  if (propertyValue) return propertyValue
 
   // Fallback: try fpTexts
   const textItems = footprint.fpTexts || []
@@ -138,18 +146,8 @@ function getFootprintReference(footprint: Footprint): string | undefined {
  * Extracts the value from a footprint (e.g., "10k", "100nF", "STM32")
  */
 function getFootprintValue(footprint: Footprint): string | undefined {
-  // Try to get value from properties first
-  const properties = footprint.properties || []
-  const propertyArray = Array.isArray(properties) ? properties : [properties]
-
-  for (const property of propertyArray) {
-    if (
-      (property as any).key === "Value" ||
-      (property as any).name === "Value"
-    ) {
-      return (property as any).value
-    }
-  }
+  const propertyValue = findFootprintPropertyValue(footprint, "Value")
+  if (propertyValue) return propertyValue
 
   // Fallback: try fpTexts
   const textItems = footprint.fpTexts || []
@@ -162,4 +160,128 @@ function getFootprintValue(footprint: Footprint): string | undefined {
   }
 
   return undefined
+}
+
+function getJlcpcbPartNumbers(footprint: Footprint): string[] | undefined {
+  return parseSupplierPartNumbers(
+    findFootprintPropertyValue(footprint, [
+      "JLCPCB Part #",
+      "Supplier Part Number",
+    ]),
+  )
+}
+
+function getKicadFootprintMetadata(
+  footprint: Footprint,
+  {
+    reference,
+    value,
+  }: {
+    reference?: string
+    value?: string
+  },
+): { kicad_footprint: Record<string, any> } | undefined {
+  const properties = getKicadFootprintPropertyMetadata({
+    footprint,
+    reference,
+    value,
+  })
+  const attributes = getKicadFootprintAttributes(footprint)
+  const layer = extractKicadLayerNames(footprint.layer)[0]
+  const footprintName = footprint.libraryLink
+
+  const kicadFootprint: Record<string, any> = {}
+
+  if (footprintName) {
+    kicadFootprint.footprintName = footprintName
+  }
+
+  if (layer) {
+    kicadFootprint.layer = layer
+  }
+
+  if (properties) {
+    kicadFootprint.properties = properties
+  }
+
+  if (attributes) {
+    kicadFootprint.attributes = attributes
+  }
+
+  return Object.keys(kicadFootprint).length > 0
+    ? { kicad_footprint: kicadFootprint }
+    : undefined
+}
+
+function getKicadFootprintPropertyMetadata({
+  footprint,
+  reference,
+  value,
+}: {
+  footprint: Footprint
+  reference?: string
+  value?: string
+}): Record<string, { value: string }> | undefined {
+  const propertyMetadata: Record<string, { value: string }> = {}
+  const datasheet = findFootprintPropertyValue(footprint, "Datasheet")
+
+  if (reference) {
+    propertyMetadata.Reference = { value: reference }
+  }
+
+  if (value) {
+    propertyMetadata.Value = { value: value }
+  }
+
+  if (datasheet) {
+    propertyMetadata.Datasheet = { value: datasheet }
+  }
+
+  addRawFootprintPropertyMetadata(propertyMetadata, footprint, [
+    "JLCPCB Part #",
+    "Supplier Part Number",
+  ])
+
+  return Object.keys(propertyMetadata).length > 0 ? propertyMetadata : undefined
+}
+
+function getKicadFootprintAttributes(
+  footprint: Footprint,
+): Record<string, boolean> | undefined {
+  const attr = footprint.attr as any
+  if (!attr) return undefined
+
+  const attributes: Record<string, boolean> = {}
+
+  if (attr._type === "through_hole") {
+    attributes.through_hole = true
+  }
+
+  if (attr._type === "smd") {
+    attributes.smd = true
+  }
+
+  if (attr._excludeFromPosFiles) {
+    attributes.exclude_from_pos_files = true
+  }
+
+  if (attr._excludeFromBom) {
+    attributes.exclude_from_bom = true
+  }
+
+  return Object.keys(attributes).length > 0 ? attributes : undefined
+}
+
+function addRawFootprintPropertyMetadata(
+  propertyMetadata: Record<string, { value: string }>,
+  footprint: Footprint,
+  propertyNames: string | string[],
+) {
+  const property = findFootprintProperty(footprint, propertyNames)
+  const propertyName = getFootprintPropertyName(property)
+  const propertyValue = getFootprintPropertyValue(property)
+
+  if (!propertyName || !propertyValue) return
+
+  propertyMetadata[propertyName] = { value: propertyValue }
 }

@@ -1,6 +1,7 @@
 import type { Footprint } from "kicadts"
 import { ConverterStage } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
+import { findFootprintPropertyValue } from "./CollectFootprintsStage/footprint-properties"
 
 /**
  * CollectSourceTracesStage extracts logical connectivity (ratsnest) from KiCad PCB
@@ -209,18 +210,8 @@ export class CollectSourceTracesStage extends ConverterStage {
   }
 
   private getFootprintReference(footprint: Footprint): string | undefined {
-    // Try to get reference from properties first
-    const properties = footprint.properties || []
-    const propertyArray = Array.isArray(properties) ? properties : [properties]
-
-    for (const property of propertyArray) {
-      if (
-        (property as any).key === "Reference" ||
-        (property as any).name === "Reference"
-      ) {
-        return (property as any).value
-      }
-    }
+    const propertyValue = findFootprintPropertyValue(footprint, "Reference")
+    if (propertyValue) return propertyValue
 
     // Fallback: try fpTexts
     const textItems = footprint.fpTexts || []
