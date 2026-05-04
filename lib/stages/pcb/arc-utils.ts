@@ -49,6 +49,16 @@ export function getArcStartMidEnd(arc: any): {
   }
 }
 
+export function getCircleCenterEnd(circle: any): {
+  center: PcbPoint
+  end: PcbPoint
+} {
+  return {
+    center: getPcbPoint(circle.center ?? circle._center ?? circle._sxCenter),
+    end: getPcbPoint(circle.end ?? circle._end ?? circle._sxEnd),
+  }
+}
+
 export function getGraphicArcs(kicadPcb: any): any[] {
   const explicitGraphicArcs = normalizeToArray(kicadPcb?.graphicArcs)
   if (explicitGraphicArcs.length > 0) {
@@ -57,6 +67,17 @@ export function getGraphicArcs(kicadPcb: any): any[] {
 
   return normalizeToArray(kicadPcb?._otherChildren).filter(
     (child) => child?.token === "gr_arc",
+  )
+}
+
+export function getGraphicCircles(kicadPcb: any): any[] {
+  const explicitGraphicCircles = normalizeToArray(kicadPcb?.graphicCircles)
+  if (explicitGraphicCircles.length > 0) {
+    return explicitGraphicCircles
+  }
+
+  return normalizeToArray(kicadPcb?._otherChildren).filter(
+    (child) => child?.token === "gr_circle",
   )
 }
 
@@ -182,6 +203,42 @@ export function approximateCubicBezierPoints(
         3 * omt ** 2 * t * control1.y +
         3 * omt * t ** 2 * control2.y +
         t ** 3 * end.y,
+    })
+  }
+
+  return points
+}
+
+export function approximateCirclePoints(
+  center: PcbPoint,
+  end: PcbPoint,
+  options?: {
+    segmentLength?: number
+    minSegments?: number
+  },
+): PcbPoint[] {
+  const radius = getDistance(center, end)
+  if (radius <= 0) {
+    return [center]
+  }
+
+  const segmentLength = options?.segmentLength ?? 0.25
+  const minSegments = options?.minSegments ?? 16
+  const circumference = FULL_TURN * radius
+  const numSegments = Math.max(
+    8,
+    minSegments,
+    Math.ceil(circumference / segmentLength),
+  )
+  const startAngle = Math.atan2(end.y - center.y, end.x - center.x)
+  const points: PcbPoint[] = []
+
+  for (let i = 0; i <= numSegments; i++) {
+    const t = i / numSegments
+    const angle = startAngle + FULL_TURN * t
+    points.push({
+      x: center.x + radius * Math.cos(angle),
+      y: center.y + radius * Math.sin(angle),
     })
   }
 
