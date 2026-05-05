@@ -1,22 +1,26 @@
-import type { Footprint } from "kicadts"
+import type { Footprint, Property } from "kicadts"
 
-export function getFootprintProperties(footprint: Footprint): any[] {
+export function getFootprintProperties(footprint: Footprint): Property[] {
   const properties = footprint.properties || []
   return Array.isArray(properties) ? properties : [properties]
 }
 
-export function getFootprintPropertyName(property: any): string | undefined {
-  return property?.key ?? property?.name ?? property?._key
+export function getFootprintPropertyName(
+  property: Property | undefined,
+): string | undefined {
+  return property?.key
 }
 
-export function getFootprintPropertyValue(property: any): string | undefined {
-  return property?.value ?? property?._value
+export function getFootprintPropertyValue(
+  property: Property | undefined,
+): string | undefined {
+  return property?.value
 }
 
 export function findFootprintProperty(
   footprint: Footprint,
   propertyNames: string | string[],
-): any | undefined {
+): Property | undefined {
   const names = Array.isArray(propertyNames) ? propertyNames : [propertyNames]
 
   return getFootprintProperties(footprint).find((property) =>
