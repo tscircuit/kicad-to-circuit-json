@@ -8,9 +8,12 @@ import type {
 import { applyToPoint } from "transformation-matrix"
 import {
   approximateArcPoints,
+  approximateCirclePoints,
   approximateCubicBezierPoints,
   getArcStartMidEnd,
+  getCircleCenterEnd,
   getGraphicArcs,
+  getGraphicCircles,
   getGraphicCurves,
   getCurvePoints,
   getGraphicLayerNames,
@@ -33,6 +36,12 @@ type BoardPrimitive =
       type: "arc"
       start: { x: number; y: number }
       mid: { x: number; y: number }
+      end: { x: number; y: number }
+    }
+  | {
+      type: "circle"
+      center: { x: number; y: number }
+      start: { x: number; y: number }
       end: { x: number; y: number }
     }
   | {
@@ -62,6 +71,7 @@ export class CollectGraphicsStage extends ConverterStage {
     const lines = this.ctx.kicadPcb.graphicLines || []
     const lineArray = Array.isArray(lines) ? lines : [lines]
     const arcArray = getGraphicArcs(this.ctx.kicadPcb)
+    const circleArray = getGraphicCircles(this.ctx.kicadPcb)
     const curveArray = getGraphicCurves(this.ctx.kicadPcb)
 
     const edgeCutPrimitives: BoardPrimitive[] = []
@@ -103,6 +113,20 @@ export class CollectGraphicsStage extends ConverterStage {
         const renderLayer = mapKicadLayerToPcbRenderLayer(arc.layer)
         if (renderLayer) this.createGraphicArc(arc, renderLayer)
       }
+    }
+
+    // Process gr_circle elements
+    for (const circle of circleArray) {
+      const layerStr = getGraphicLayerNames(circle).join(" ")
+      if (!layerStr.includes("Edge.Cuts")) continue
+
+      const { center, end } = getCircleCenterEnd(circle)
+      edgeCutPrimitives.push({
+        type: "circle",
+        center,
+        start: end,
+        end,
+      })
     }
 
     // Process gr_curve elements
@@ -188,19 +212,26 @@ export class CollectGraphicsStage extends ConverterStage {
                     mid: seg.mid,
                     end: seg.start,
                   }
-                : seg.type === "curve"
+                : seg.type === "circle"
                   ? {
-                      type: "curve",
+                      type: "circle",
+                      center: seg.center,
                       start: seg.end,
-                      control1: seg.control2,
-                      control2: seg.control1,
                       end: seg.start,
                     }
-                  : {
-                      type: "line",
-                      start: seg.end,
-                      end: seg.start,
-                    },
+                  : seg.type === "curve"
+                    ? {
+                        type: "curve",
+                        start: seg.end,
+                        control1: seg.control2,
+                        control2: seg.control1,
+                        end: seg.start,
+                      }
+                    : {
+                        type: "line",
+                        start: seg.end,
+                        end: seg.start,
+                      },
             )
             remainingSegments.splice(foundIndex, 1)
             continue
@@ -232,6 +263,11 @@ export class CollectGraphicsStage extends ConverterStage {
             minSegments: 16,
           },
         )
+      } else if (segment.type === "circle") {
+        kicadPoints = approximateCirclePoints(segment.center, segment.end, {
+          segmentLength: 0.25,
+          minSegments: 16,
+        })
       } else if (segment.type === "curve") {
         kicadPoints = approximateCubicBezierPoints(
           segment.start,

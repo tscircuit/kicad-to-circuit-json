@@ -2,10 +2,13 @@ import { compose, scale, translate } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import {
   approximateArcPoints,
+  approximateCirclePoints,
   approximateCubicBezierPoints,
   getArcStartMidEnd,
   getGraphicArcs,
+  getGraphicCircles,
   getGraphicCurves,
+  getCircleCenterEnd,
   getCurvePoints,
   getGraphicLayerNames,
   getLineStartEnd,
@@ -53,6 +56,7 @@ export class InitializePcbContextStage extends ConverterStage {
     const lines = this.ctx.kicadPcb.graphicLines || []
     const lineArray = Array.isArray(lines) ? lines : [lines]
     const arcArray = getGraphicArcs(this.ctx.kicadPcb)
+    const circleArray = getGraphicCircles(this.ctx.kicadPcb)
     const curveArray = getGraphicCurves(this.ctx.kicadPcb)
 
     const xs: number[] = []
@@ -73,6 +77,20 @@ export class InitializePcbContextStage extends ConverterStage {
 
       const { start, mid, end } = getArcStartMidEnd(arc)
       for (const point of approximateArcPoints(start, mid, end, {
+        segmentLength: 0.25,
+        minSegments: 16,
+      })) {
+        xs.push(point.x)
+        ys.push(point.y)
+      }
+    }
+
+    for (const circle of circleArray) {
+      const layerStr = getGraphicLayerNames(circle).join(" ")
+      if (!layerStr.includes("Edge.Cuts")) continue
+
+      const { center, end } = getCircleCenterEnd(circle)
+      for (const point of approximateCirclePoints(center, end, {
         segmentLength: 0.25,
         minSegments: 16,
       })) {
