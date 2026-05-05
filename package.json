@@ -32,7 +32,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "bun-match-svg": "^0.0.14",
     "circuit-json-to-connectivity-map": "^0.0.23",
-    "kicadts": "^0.0.28",
+    "kicadts": "^0.0.30",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
     "tscircuit": "^0.0.1640",

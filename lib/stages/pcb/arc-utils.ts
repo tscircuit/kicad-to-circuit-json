@@ -5,6 +5,7 @@ import type {
   GrLine,
   KicadPcb,
   Layer,
+  PcbArc,
   Xy,
 } from "kicadts"
 
@@ -15,31 +16,28 @@ export interface PcbPoint {
 
 const FULL_TURN = Math.PI * 2
 
-type LayerLike = Layer | string | { names?: string[] } | null | undefined
-type PointLike = { x?: number; y?: number } | null | undefined
-type GraphicWithLayer = { layer?: LayerLike } | null | undefined
-type KicadPcbWithGraphicPrimitives = KicadPcb & {
-  graphicArcs?: GrArc[]
-  graphicCircles?: GrCircle[]
-  graphicCurves?: GrCurve[]
-}
-
 export function normalizeToArray<T>(value: T | T[] | null | undefined): T[] {
   if (!value) return []
   return Array.isArray(value) ? value : [value]
 }
 
-export function getLayerNames(layer: LayerLike): string[] {
+export function getLayerNames(
+  layer: Layer | string | null | undefined,
+): string[] {
   if (!layer) return []
   if (typeof layer === "string") return [layer]
   return layer.names || []
 }
 
-export function getGraphicLayerNames(graphic: GraphicWithLayer): string[] {
+export function getGraphicLayerNames(
+  graphic: { layer?: Layer | string | undefined } | null | undefined,
+): string[] {
   return getLayerNames(graphic?.layer)
 }
 
-export function getPcbPoint(point: PointLike): PcbPoint {
+export function getPcbPoint(
+  point: { x: number; y: number } | null | undefined,
+): PcbPoint {
   return {
     x: point?.x ?? 0,
     y: point?.y ?? 0,
@@ -78,54 +76,20 @@ export function getCircleCenterEnd(circle: GrCircle): {
   }
 }
 
-export function getGraphicArcs(
-  kicadPcb: KicadPcbWithGraphicPrimitives,
-): GrArc[] {
-  const explicitGraphicArcs = normalizeToArray(kicadPcb?.graphicArcs)
-  if (explicitGraphicArcs.length > 0) {
-    return explicitGraphicArcs
-  }
-
-  return normalizeToArray(kicadPcb?.otherChildren).filter(
-    (child): child is GrArc => child.token === "gr_arc",
-  )
+export function getGraphicArcs(kicadPcb: KicadPcb): GrArc[] {
+  return normalizeToArray(kicadPcb.graphicArcs)
 }
 
-export function getGraphicCircles(
-  kicadPcb: KicadPcbWithGraphicPrimitives,
-): GrCircle[] {
-  const explicitGraphicCircles = normalizeToArray(kicadPcb?.graphicCircles)
-  if (explicitGraphicCircles.length > 0) {
-    return explicitGraphicCircles
-  }
-
-  return normalizeToArray(kicadPcb?.otherChildren).filter(
-    (child): child is GrCircle => child.token === "gr_circle",
-  )
+export function getGraphicCircles(kicadPcb: KicadPcb): GrCircle[] {
+  return normalizeToArray(kicadPcb.graphicCircles)
 }
 
-export function getGraphicCurves(
-  kicadPcb: KicadPcbWithGraphicPrimitives,
-): GrCurve[] {
-  const explicitGraphicCurves = normalizeToArray(kicadPcb?.graphicCurves)
-  if (explicitGraphicCurves.length > 0) {
-    return explicitGraphicCurves
-  }
-
-  return normalizeToArray(kicadPcb?.otherChildren).filter(
-    (child): child is GrCurve => child.token === "gr_curve",
-  )
+export function getGraphicCurves(kicadPcb: KicadPcb): GrCurve[] {
+  return normalizeToArray(kicadPcb.graphicCurves)
 }
 
-export function getTopLevelCopperArcs(kicadPcb: any): any[] {
-  const explicitArcs = normalizeToArray(kicadPcb?.arcs)
-  if (explicitArcs.length > 0) {
-    return explicitArcs
-  }
-
-  return normalizeToArray(kicadPcb?._otherChildren).filter(
-    (child) => child?.token === "arc",
-  )
+export function getTopLevelCopperArcs(kicadPcb: KicadPcb): PcbArc[] {
+  return normalizeToArray(kicadPcb.arcs)
 }
 
 export function approximateArcPoints(
