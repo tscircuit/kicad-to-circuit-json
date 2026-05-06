@@ -22,8 +22,14 @@ export const takeKicadSnapshot = async (params: {
   kicadFilePath?: string
   kicadFileContent?: string
   kicadFileType: "sch" | "pcb"
+  pcbSnapshotBounds?: "board" | "circuit-json"
 }): Promise<KicadOutput> => {
-  const { kicadFilePath, kicadFileContent, kicadFileType } = params
+  const {
+    kicadFilePath,
+    kicadFileContent,
+    kicadFileType,
+    pcbSnapshotBounds = "board",
+  } = params
 
   // Check to make sure kicad-cli is installed
   const kicadCliVersion = await $`kicad-cli --version`
@@ -55,12 +61,13 @@ export const takeKicadSnapshot = async (params: {
 
     // Create output directory
     const outputDir = join(tempDir, "output")
+    const pcbPageSizeMode = pcbSnapshotBounds === "circuit-json" ? 1 : 2
 
     // Export to SVG
     const exportCmd =
       kicadFileType === "sch"
         ? $`kicad-cli sch export svg ${inputFilePath} -o ${outputDir} --theme Modern`
-        : $`kicad-cli pcb export svg ${inputFilePath} -o ${join(outputDir, "temp_file.svg")} --layers B.Cu,F.Cu,F.SilkS,B.SilkS,Edge.Cuts --mode-single --page-size-mode 2 --exclude-drawing-sheet`
+        : $`kicad-cli pcb export svg ${inputFilePath} -o ${join(outputDir, "temp_file.svg")} --layers B.Cu,F.Cu,F.SilkS,B.SilkS,Edge.Cuts --mode-single --page-size-mode ${pcbPageSizeMode} --exclude-drawing-sheet`
 
     const exportResult = await exportCmd
 
@@ -90,28 +97,50 @@ export const takeKicadSnapshot = async (params: {
 
       // For PCB files, scale 3x and add black background
       if (kicadFileType === "pcb") {
-        const metadata = await pngProcessor.metadata()
-        const width = (metadata.width || 0) * 3
-        const height = (metadata.height || 0) * 3
+        if (pcbSnapshotBounds === "circuit-json") {
+          // Match the Circuit JSON PCB snapshot framing more closely by
+          // using a page-sized KiCad export and a fixed image height.
+          const resizedPng = await pngProcessor
+            .resize({ height: 1280, withoutEnlargement: false })
+            .png()
+            .toBuffer()
+          const metadata = await sharp(resizedPng).metadata()
+          const blackBg = await sharp({
+            create: {
+              width: metadata.width || 1,
+              height: metadata.height || 1,
+              channels: 4,
+              background: { r: 0, g: 0, b: 0, alpha: 1 },
+            },
+          })
+            .png()
+            .toBuffer()
 
-        // Create black background
-        const blackBg = await sharp({
-          create: {
-            width,
-            height,
-            channels: 4,
-            background: { r: 0, g: 0, b: 0, alpha: 1 },
-          },
-        })
-          .png()
-          .toBuffer()
+          pngProcessor = sharp(blackBg).composite([{ input: resizedPng }])
+        } else {
+          const metadata = await pngProcessor.metadata()
+          const width = (metadata.width || 0) * 3
+          const height = (metadata.height || 0) * 3
 
-        // Resize the PCB and composite on black background
-        const resizedPng = await pngProcessor
-          .resize(width, height, { fit: "fill" })
-          .toBuffer()
+          // Create black background
+          const blackBg = await sharp({
+            create: {
+              width,
+              height,
+              channels: 4,
+              background: { r: 0, g: 0, b: 0, alpha: 1 },
+            },
+          })
+            .png()
+            .toBuffer()
 
-        pngProcessor = sharp(blackBg).composite([{ input: resizedPng }])
+          // Resize the PCB and composite on black background
+          const resizedPng = await pngProcessor
+            .resize(width, height, { fit: "fill" })
+            .toBuffer()
+
+          pngProcessor = sharp(blackBg).composite([{ input: resizedPng }])
+        }
       }
 
       const pngBuffer = await pngProcessor.png().toBuffer()
