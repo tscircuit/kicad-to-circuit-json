@@ -19,7 +19,6 @@ test("ESP32-C3 low-power IoT battery monitor PCB", async () => {
 
   const circuitJson = converter.getOutput()
 
-
   const sourceTraces = (circuitJson as any[]).filter(
     (el) => el.type === "source_trace",
   )
@@ -37,7 +36,6 @@ test("ESP32-C3 low-power IoT battery monitor PCB", async () => {
   const platedHoles = (circuitJson as any[]).filter(
     (el) => el.type === "pcb_plated_hole",
   )
-
 
   const connectivityMap = getFullConnectivityMapFromCircuitJson(
     circuitJson as any,
@@ -58,8 +56,6 @@ test("ESP32-C3 low-power IoT battery monitor PCB", async () => {
       }
     })
     .filter((trace) => trace.traceId && trace.startPortId && trace.endPortId)
-
-
 
   const fs = await import("node:fs/promises")
   await fs.mkdir(`${reproDir}/__snapshots__`, {
