@@ -15,6 +15,73 @@ import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematic
 import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
 import type { ConverterContext, ConverterStage } from "./types"
 
+function removeUnsupportedPcbChildFormsForKicadts(pcbContent: string) {
+  const rangesToRemove: Array<{ start: number; end: number }> = []
+  const stack: Array<{ token: string; start: number }> = []
+  let inString = false
+  let escaped = false
+
+  for (let i = 0; i < pcbContent.length; i++) {
+    const char = pcbContent[i]
+
+    if (inString) {
+      if (escaped) {
+        escaped = false
+      } else if (char === "\\") {
+        escaped = true
+      } else if (char === '"') {
+        inString = false
+      }
+      continue
+    }
+
+    if (char === '"') {
+      inString = true
+      continue
+    }
+
+    if (char === "(") {
+      let tokenStart = i + 1
+      while (/\s/.test(pcbContent[tokenStart] ?? "")) tokenStart++
+
+      let tokenEnd = tokenStart
+      while (
+        tokenEnd < pcbContent.length &&
+        !/\s|\(|\)/.test(pcbContent[tokenEnd]!)
+      ) {
+        tokenEnd++
+      }
+
+      stack.push({
+        token: pcbContent.slice(tokenStart, tokenEnd),
+        start: i,
+      })
+      continue
+    }
+
+    if (char === ")") {
+      const node = stack.pop()
+      const parent = stack.at(-1)
+      if (!node || !parent) continue
+
+      if (
+        (node.token === "zone" && parent.token === "footprint") ||
+        (node.token === "net" && parent.token === "gr_poly")
+      ) {
+        rangesToRemove.push({ start: node.start, end: i + 1 })
+      }
+    }
+  }
+
+  let sanitizedContent = pcbContent
+  for (const range of rangesToRemove.toReversed()) {
+    sanitizedContent =
+      sanitizedContent.slice(0, range.start) + sanitizedContent.slice(range.end)
+  }
+
+  return sanitizedContent
+}
+
 export class KicadToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
   ctx?: ConverterContext
@@ -49,7 +116,11 @@ export class KicadToCircuitJsonConverter {
 
     this.ctx = {
       db: cju([]),
-      kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
+      kicadPcb: pcbFile
+        ? parseKicadPcb(
+            removeUnsupportedPcbChildFormsForKicadts(this.fsMap[pcbFile]!),
+          )
+        : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
       warnings: [],
       stats: {},
