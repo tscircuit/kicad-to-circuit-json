@@ -8,7 +8,8 @@ import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 import "../../fixtures/png-matcher"
 
 test("kicad-to-circuit-json repro02: Arduino Uno PCB", async () => {
-  const kicadPcbPath = "tests/repros/repro02-arduino-uno/arduino-uno.source.kicad_pcb"
+  const kicadPcbPath =
+    "tests/repros/repro02-arduino-uno/arduino-uno.source.kicad_pcb"
   const kicadPcbContent = readFileSync(kicadPcbPath, "utf-8")
 
   const converter = new KicadToCircuitJsonConverter()
