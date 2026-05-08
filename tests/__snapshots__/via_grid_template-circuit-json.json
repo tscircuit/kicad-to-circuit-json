@@ -1,5 +1,641 @@
 [
   {
+    "type": "source_net",
+    "source_net_id": "source_net_0",
+    "name": "GND",
+    "member_source_group_ids": []
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_0",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_1",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_2",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_3",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_4",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_5",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_6",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_7",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_8",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_9",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_10",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_11",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_12",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_13",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_14",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_15",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_16",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_17",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_18",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_19",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_20",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_21",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_22",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_23",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_24",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_25",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_26",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_27",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_28",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_29",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_30",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_31",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_32",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_33",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_34",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_35",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_36",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_37",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_38",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_39",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_40",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_41",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_42",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_43",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_44",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_45",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_46",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_47",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_48",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_49",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_50",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_51",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_52",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_53",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_54",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_55",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_56",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_57",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_58",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_59",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_60",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_61",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_62",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_63",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_64",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_65",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_66",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_67",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_68",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
+    "type": "source_trace",
+    "source_trace_id": "source_trace_69",
+    "connected_source_port_ids": [],
+    "connected_source_net_ids": [
+      "source_net_0"
+    ],
+    "display_name": "GND"
+  },
+  {
     "type": "pcb_smtpad",
     "pcb_smtpad_id": "pcb_smtpad_0",
     "pcb_component_id": "",
@@ -1690,6 +2326,1126 @@
     ],
     "layer": "bottom",
     "port_hints": []
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_0",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 32.5,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_0"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_1",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 40,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_1"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_2",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 80,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_2"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_3",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_3"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_4",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 50,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_4"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_5",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 30,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_5"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_6",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 25,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_6"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_7",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 35,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_7"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_8",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 32.5,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_8"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_9",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_9"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_10",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_10"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_11",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 50,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_11"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_12",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 55,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_12"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_13",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 20,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_13"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_14",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 65,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_14"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_15",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 25,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_15"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_16",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_16"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_17",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 72.5,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_17"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_18",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 67.5,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_18"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_19",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_19"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_20",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 15,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_20"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_21",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 55,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_21"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_22",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_22"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_23",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 42.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_23"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_24",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 75,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_24"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_25",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 60,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_25"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_26",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 15,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_26"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_27",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 27.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_27"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_28",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 22.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_28"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_29",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 45,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_29"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_30",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 67.5,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_30"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_31",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 40,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_31"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_32",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 72.5,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_32"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_33",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 65,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_33"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_34",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 45,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_34"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_35",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 45,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_35"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_36",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 50,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_36"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_37",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_37"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_38",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_38"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_39",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 85,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_39"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_40",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 35,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_40"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_41",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 42.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_41"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_42",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 35,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_42"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_43",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 80,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_43"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_44",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 20,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_44"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_45",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 60,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_45"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_46",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 30,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_46"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_47",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 75,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_47"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_48",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 37.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_48"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_49",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_49"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_50",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 15,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_50"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_51",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 45,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_51"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_52",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_52"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_53",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 20,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_53"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_54",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 85,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_54"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_55",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 22.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_55"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_56",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 37.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_56"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_57",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_57"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_58",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 15,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_58"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_59",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 90,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_59"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_60",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 50,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_60"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_61",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_61"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_62",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 20,
+        "y": 55,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_62"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_63",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 10,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_63"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_64",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 35,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_64"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_65",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 30,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_65"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_66",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 10,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_66"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_67",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 70,
+        "y": 27.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_67"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_68",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 27.5,
+        "y": 25,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_68"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_69",
+    "route": [
+      {
+        "route_type": "via",
+        "x": 27.5,
+        "y": 40,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 1.5
+      }
+    ],
+    "source_trace_id": "source_trace_69"
   },
   {
     "type": "pcb_via",

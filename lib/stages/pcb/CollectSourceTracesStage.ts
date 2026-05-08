@@ -94,6 +94,16 @@ export class CollectSourceTracesStage extends ConverterStage {
         netToPads.set(netNum, [])
       }
     }
+
+    const vias = this.ctx.kicadPcb.vias || []
+    const viaArray = Array.isArray(vias) ? vias : [vias]
+    for (const via of viaArray) {
+      const netNum = this.getSegmentNet(via)
+      if (!netNum) continue
+      if (!netToPads.has(netNum)) {
+        netToPads.set(netNum, [])
+      }
+    }
   }
 
   private getSegmentNet(segment: any): number | null {

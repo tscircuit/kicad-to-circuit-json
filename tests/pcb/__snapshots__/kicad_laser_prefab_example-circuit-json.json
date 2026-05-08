@@ -194,6 +194,21 @@
     "corner_radius": 0.0675
   },
   {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_0",
+    "route": [
+      {
+        "route_type": "via",
+        "x": -1.75,
+        "y": 1.5,
+        "from_layer": "top",
+        "to_layer": "bottom",
+        "hole_diameter": 0.3,
+        "outer_diameter": 0.6
+      }
+    ]
+  },
+  {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_0",
     "x": -1.75,

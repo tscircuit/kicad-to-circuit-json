@@ -27,25 +27,9 @@ interface TracePrimitive {
   netNum: number | null
 }
 
-interface TraceEdge extends TracePrimitive {
-  id: number
-  startKey: string
-  endKey: string
-}
-
-interface OrientedTraceEdge {
-  edge: TraceEdge
-  reversed: boolean
-}
-
-interface TraceGraph {
-  edges: TraceEdge[]
-  adjacency: Map<string, number[]>
-}
-
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
- * Connected copper primitives are stitched into contiguous pcb_trace routes.
+ * Each KiCad copper primitive is emitted as its own pcb_trace/source_trace pair.
  */
 export class CollectTracesStage extends ConverterStage {
   private readonly PORT_MATCH_TOLERANCE = 1e-3
@@ -77,7 +61,15 @@ export class CollectTracesStage extends ConverterStage {
       if (primitive) primitives.push(primitive)
     }
 
-    this.createTracesFromPrimitives(primitives)
+    for (const primitive of primitives) {
+      this.insertTracePrimitive(primitive)
+    }
+
+    const vias = this.ctx.kicadPcb.vias || []
+    const viaArray = Array.isArray(vias) ? vias : [vias]
+    for (const via of viaArray) {
+      this.insertViaTrace(via)
+    }
 
     this.finished = true
     return false
@@ -146,143 +138,37 @@ export class CollectTracesStage extends ConverterStage {
     }
   }
 
-  private createTracesFromPrimitives(primitives: TracePrimitive[]) {
-    const groupedPrimitives = new Map<string, TracePrimitive[]>()
-
-    for (const primitive of primitives) {
-      const key = this.getPrimitiveGroupKey(primitive)
-      const group = groupedPrimitives.get(key) ?? []
-      group.push(primitive)
-      groupedPrimitives.set(key, group)
-    }
-
-    for (const group of groupedPrimitives.values()) {
-      this.createTracesFromPrimitiveGroup(group)
-    }
-  }
-
-  private createTracesFromPrimitiveGroup(primitives: TracePrimitive[]) {
-    const graph = this.createTraceGraph(primitives)
-    const visitedEdgeIds = new Set<number>()
-    const isTerminal = (nodeKey: string): boolean =>
-      this.isTerminalNode(nodeKey, graph, primitives[0]!)
-
-    for (const nodeKey of graph.adjacency.keys()) {
-      if (!isTerminal(nodeKey)) continue
-
-      for (const edgeId of graph.adjacency.get(nodeKey) ?? []) {
-        if (visitedEdgeIds.has(edgeId)) continue
-        const path = this.walkTracePath(nodeKey, edgeId, graph, visitedEdgeIds)
-        this.insertTracePath(path)
-      }
-    }
-
-    for (const edge of graph.edges) {
-      if (visitedEdgeIds.has(edge.id)) continue
-      const path = this.walkTracePath(
-        edge.startKey,
-        edge.id,
-        graph,
-        visitedEdgeIds,
-      )
-      this.insertTracePath(path)
-    }
-  }
-
-  private createTraceGraph(primitives: TracePrimitive[]): TraceGraph {
-    const edges: TraceEdge[] = []
-    const adjacency = new Map<string, number[]>()
-
-    for (const primitive of primitives) {
-      const id = edges.length
-      const startKey = this.getPointKey(primitive.start)
-      const endKey = this.getPointKey(primitive.end)
-      const edge = { ...primitive, id, startKey, endKey }
-      edges.push(edge)
-
-      for (const nodeKey of [startKey, endKey]) {
-        const edgeIds = adjacency.get(nodeKey) ?? []
-        edgeIds.push(id)
-        adjacency.set(nodeKey, edgeIds)
-      }
-    }
-
-    return { edges, adjacency }
-  }
-
-  private walkTracePath(
-    startNodeKey: string,
-    firstEdgeId: number,
-    graph: TraceGraph,
-    visitedEdgeIds: Set<number>,
-  ): OrientedTraceEdge[] {
-    const path: OrientedTraceEdge[] = []
-    let currentNodeKey = startNodeKey
-    let edgeId = firstEdgeId
-
-    while (!visitedEdgeIds.has(edgeId)) {
-      const edge = graph.edges[edgeId]
-      if (!edge) break
-
-      const reversed = edge.endKey === currentNodeKey
-      path.push({ edge, reversed })
-      visitedEdgeIds.add(edgeId)
-
-      currentNodeKey = reversed ? edge.startKey : edge.endKey
-      if (this.isTerminalNode(currentNodeKey, graph, edge)) break
-
-      const nextEdgeId = (graph.adjacency.get(currentNodeKey) ?? []).find(
-        (candidateEdgeId) =>
-          candidateEdgeId !== edgeId && !visitedEdgeIds.has(candidateEdgeId),
-      )
-      if (nextEdgeId === undefined) break
-
-      edgeId = nextEdgeId
-    }
-
-    return path
-  }
-
-  private insertTracePath(path: OrientedTraceEdge[]) {
+  private insertTracePrimitive(primitive: TracePrimitive) {
     if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceNetId) return
-    if (path.length === 0) return
 
-    const routePoints = this.getPathRoutePoints(path)
+    const routePoints = primitive.points.map((point) => {
+      const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
+      return {
+        x: transformedPoint.x,
+        y: transformedPoint.y,
+        width: primitive.width,
+      }
+    })
     if (routePoints.length < 2) return
 
     const firstPoint = routePoints[0]!
     const lastPoint = routePoints[routePoints.length - 1]!
-    const layer = path[0]!.edge.layer
-    const netNum = path[0]!.edge.netNum
-    const sourceNetId =
-      netNum !== null
-        ? (this.ctx.netNumToSourceNetId.get(netNum) ?? undefined)
-        : undefined
-
-    const startPcbPortId = this.findPortAtPosition(firstPoint, layer)
-    const endPcbPortId = this.findPortAtPosition(lastPoint, layer)
-    const connectedSourcePortIds = this.getConnectedSourcePortIds([
-      startPcbPortId,
-      endPcbPortId,
-    ])
-    const inferredSourcePortIds = this.getSourcePortIdsForTrace({
-      netNum,
-      connectedSourcePortIds,
+    const sourceTraceId = this.createSourceTraceForEndpoints({
+      netNum: primitive.netNum,
+      endpoints: [
+        { point: firstPoint, layer: primitive.layer },
+        { point: lastPoint, layer: primitive.layer },
+      ],
     })
-    const sourceTraceId = sourceNetId
-      ? this.createSourceTraceForPath({
-          sourceNetId,
-          connectedSourcePortIds: inferredSourcePortIds,
-          netNum,
-        })
-      : undefined
 
+    const startPcbPortId = this.findPortAtPosition(firstPoint, primitive.layer)
+    const endPcbPortId = this.findPortAtPosition(lastPoint, primitive.layer)
     const route = routePoints.map((point, index) => ({
       route_type: "wire" as const,
       x: point.x,
       y: point.y,
       width: point.width,
-      layer,
+      layer: primitive.layer,
       ...(index === 0 && startPcbPortId
         ? { start_pcb_port_id: startPcbPortId }
         : {}),
@@ -291,6 +177,81 @@ export class CollectTracesStage extends ConverterStage {
         : {}),
     }))
 
+    this.insertPcbTrace(route, sourceTraceId)
+  }
+
+  private insertViaTrace(via: any) {
+    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceNetId) return
+
+    const at = via.at || { x: 0, y: 0 }
+    const point = applyToPoint(this.ctx.k2cMatPcb, { x: at.x, y: at.y })
+    const netNum = this.getSegmentNet(via)
+    const mappedLayers = via.layers
+      ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
+      : []
+    const layers =
+      mappedLayers.length > 0
+        ? mappedLayers
+        : getPcbCopperLayerRefs(this.ctx.kicadPcb)
+    const fromLayer = layers[0]
+    const toLayer = layers[layers.length - 1]
+    if (!fromLayer || !toLayer || fromLayer === toLayer) return
+
+    const sourceTraceId = this.createSourceTraceForEndpoints({
+      netNum,
+      endpoints: [
+        { point, layer: fromLayer },
+        { point, layer: toLayer },
+      ],
+    })
+
+    this.insertPcbTrace(
+      [
+        {
+          route_type: "via" as const,
+          x: point.x,
+          y: point.y,
+          from_layer: fromLayer,
+          to_layer: toLayer,
+          hole_diameter: via.drill || 0.4,
+          outer_diameter: via.size || 0.8,
+        },
+      ],
+      sourceTraceId,
+    )
+  }
+
+  private createSourceTraceForEndpoints({
+    netNum,
+    endpoints,
+  }: {
+    netNum: number | null
+    endpoints: Array<{ point: { x: number; y: number }; layer: LayerRef }>
+  }) {
+    const sourceNetId =
+      netNum !== null
+        ? (this.ctx.netNumToSourceNetId?.get(netNum) ?? undefined)
+        : undefined
+    if (!sourceNetId) return undefined
+
+    const connectedSourcePortIds = this.getConnectedSourcePortIds(
+      endpoints.map(({ point, layer }) =>
+        this.findPortAtPosition(point, layer),
+      ),
+    )
+    const inferredSourcePortIds = this.getSourcePortIdsForTrace({
+      netNum,
+      connectedSourcePortIds,
+    })
+
+    return this.createSourceTraceForPath({
+      sourceNetId,
+      connectedSourcePortIds: inferredSourcePortIds,
+      netNum,
+    })
+  }
+
+  private insertPcbTrace(route: any[], sourceTraceId?: string) {
     this.ctx.db.pcb_trace.insert({
       route: route as any,
       source_trace_id: sourceTraceId,
@@ -302,95 +263,10 @@ export class CollectTracesStage extends ConverterStage {
     }
   }
 
-  private getPathRoutePoints(path: OrientedTraceEdge[]) {
-    const routePoints: Array<TracePoint & { width: number }> = []
-    let lastRawPoint: TracePoint | undefined
-
-    for (const { edge, reversed } of path) {
-      const edgePoints = reversed ? [...edge.points].reverse() : edge.points
-
-      for (const point of edgePoints) {
-        if (lastRawPoint && this.pointsMatch(lastRawPoint, point)) {
-          continue
-        }
-
-        const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
-        routePoints.push({
-          x: transformedPoint.x,
-          y: transformedPoint.y,
-          width: edge.width,
-        })
-        lastRawPoint = point
-      }
-    }
-
-    return routePoints
-  }
-
-  private isTerminalNode(
-    nodeKey: string,
-    graph: TraceGraph,
-    primitive: Pick<TracePrimitive, "layer" | "netNum">,
-  ): boolean {
-    const edgeIds = graph.adjacency.get(nodeKey) ?? []
-    if (edgeIds.length !== 2) return true
-
-    const point = this.getPointFromKey(nodeKey)
-    const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
-    if (this.findPortAtPosition(transformedPoint, primitive.layer)) return true
-
-    return this.hasViaAtPosition(point, primitive.layer, primitive.netNum)
-  }
-
-  private hasViaAtPosition(
-    point: TracePoint,
-    layer: LayerRef,
-    netNum: number | null,
-  ): boolean {
-    const vias = this.ctx.kicadPcb?.vias || []
-    const viaArray = Array.isArray(vias) ? vias : [vias]
-
-    for (const via of viaArray) {
-      const viaNetNum = this.getSegmentNet(via)
-      if (viaNetNum !== netNum) continue
-
-      const at = via.at || { x: 0, y: 0 }
-      if (!this.pointsMatch(point, { x: at.x, y: at.y })) continue
-
-      const viaLayers = via.layers
-        ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
-        : []
-      const layers =
-        viaLayers.length > 0
-          ? viaLayers
-          : getPcbCopperLayerRefs(this.ctx.kicadPcb)
-
-      if (layers.includes(layer)) return true
-    }
-
-    return false
-  }
-
-  private getPrimitiveGroupKey(primitive: TracePrimitive): string {
-    return [
-      primitive.netNum ?? "no-net",
-      primitive.layer,
-      primitive.width.toFixed(6),
-    ].join(":")
-  }
-
   private getPointKey(point: TracePoint): string {
     const x = Math.round(point.x * this.POINT_KEY_PRECISION)
     const y = Math.round(point.y * this.POINT_KEY_PRECISION)
     return `${x},${y}`
-  }
-
-  private getPointFromKey(pointKey: string): TracePoint {
-    const [x, y] = pointKey.split(",").map(Number)
-    return {
-      x: (x ?? 0) / this.POINT_KEY_PRECISION,
-      y: (y ?? 0) / this.POINT_KEY_PRECISION,
-    }
   }
 
   private pointsMatch(a: TracePoint, b: TracePoint): boolean {
