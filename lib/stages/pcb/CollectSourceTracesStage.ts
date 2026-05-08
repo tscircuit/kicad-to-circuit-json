@@ -1,7 +1,6 @@
 import type { Footprint } from "kicadts"
 import { ConverterStage } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
-import { findFootprintPropertyValue } from "./CollectFootprintsStage/footprint-properties"
 
 /**
  * CollectSourceTracesStage extracts logical connectivity (ratsnest) from KiCad PCB
@@ -194,37 +193,32 @@ export class CollectSourceTracesStage extends ConverterStage {
           ? this.ctx.footprintUuidToSourceComponentId.get(footprintUuid)
           : undefined
 
-      // Get the reference (component name) from footprint properties
-      const reference = this.getFootprintReference(footprint)
-
       // Create the source_port
       this.ctx.db.source_port.insert({
         source_port_id: sourcePortId,
         source_component_id: sourceComponentId || componentId,
-        name: `${reference || "U"}.${padNumber}`,
-        pin_number: parseInt(padNumber, 10) || undefined,
+        name: this.getSourcePortName(padNumber),
+        pin_number: this.getSourcePortPinNumber(padNumber),
       } as any)
     }
 
     return sourcePortId
   }
 
-  private getFootprintReference(footprint: Footprint): string | undefined {
-    const propertyValue = findFootprintPropertyValue(footprint, "Reference")
-    if (propertyValue) return propertyValue
-
-    // Fallback: try fpTexts
-    const textItems = footprint.fpTexts || []
-    const textArray = Array.isArray(textItems) ? textItems : [textItems]
-
-    for (const text of textArray) {
-      // FpText objects have a type field that indicates reference/value
-      if ((text as any).type === "reference") {
-        return text.text
-      }
+  private getSourcePortName(padNumber: string): string {
+    if (/^\d+$/.test(padNumber)) {
+      return `pin${Number(padNumber)}`
     }
 
-    return undefined
+    return padNumber
+  }
+
+  private getSourcePortPinNumber(padNumber: string): number | string {
+    if (/^\d+$/.test(padNumber)) {
+      return Number(padNumber)
+    }
+
+    return padNumber
   }
 
   private createSourceTrace(
