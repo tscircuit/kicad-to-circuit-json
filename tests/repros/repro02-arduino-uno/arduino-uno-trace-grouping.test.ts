@@ -18,9 +18,19 @@ test("stitches Arduino Uno PCB segments into contiguous pcb_trace routes", () =>
   converter.addFile("arduino-uno.kicad_pcb", kicadPcbContent)
   converter.runUntilFinished()
 
-  const pcbTraces = converter
-    .getOutput()
-    .filter((element: any) => element.type === "pcb_trace") as any[]
+  const circuitJson = converter.getOutput()
+  const pcbTraces = circuitJson.filter(
+    (element: any) => element.type === "pcb_trace",
+  ) as any[]
+  const sourceTraces = circuitJson.filter(
+    (element: any) => element.type === "source_trace",
+  ) as any[]
+  const sourceTracesById = new Map(
+    sourceTraces.map((sourceTrace) => [
+      sourceTrace.source_trace_id,
+      sourceTrace,
+    ]),
+  )
 
   expect(pcbTraces).toHaveLength(232)
   expect(pcbTraces.some((trace) => trace.route.length > 2)).toBe(true)
@@ -31,4 +41,25 @@ test("stitches Arduino Uno PCB segments into contiguous pcb_trace routes", () =>
       0,
     ),
   ).toBe(rawSegments.length)
+  expect(
+    sourceTraces.every(
+      (sourceTrace) => sourceTrace.connected_source_port_ids.length > 0,
+    ),
+  ).toBe(true)
+  expect(
+    sourceTraces.every(
+      (sourceTrace) => sourceTrace.connected_source_port_ids.length <= 2,
+    ),
+  ).toBe(true)
+  expect(
+    pcbTraces.every((pcbTrace) => {
+      const sourceTrace = sourceTracesById.get(pcbTrace.source_trace_id)
+      return (
+        sourceTrace &&
+        sourceTrace.connected_source_port_ids.length +
+          sourceTrace.connected_source_net_ids.length >=
+          2
+      )
+    }),
+  ).toBe(true)
 })
