@@ -1,6 +1,7 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../lib"
+import { sanitizeCircuitJsonNetName } from "../../lib/stages/pcb/CollectNetsStage"
 
 function convertPcb(path: string) {
   const converter = new KicadToCircuitJsonConverter()
@@ -8,6 +9,13 @@ function convertPcb(path: string) {
   converter.runUntilFinished()
   return converter.getOutput() as any[]
 }
+
+test("pcb net names are sanitized for circuit-json source nets", () => {
+  expect(sanitizeCircuitJsonNetName("Net-(D5-A)", "Net_1")).toBe("Net_D5_A")
+  expect(sanitizeCircuitJsonNetName("VCC+", "Net_2")).toBe("VCC_P")
+  expect(sanitizeCircuitJsonNetName("+5V", "Net_3")).toBe("P5V")
+  expect(sanitizeCircuitJsonNetName("1V8", "Net_4")).toBe("net_1V8")
+})
 
 test("pcb source ports use local numeric pad aliases", () => {
   const circuitJson = convertPcb(
@@ -18,6 +26,9 @@ test("pcb source ports use local numeric pad aliases", () => {
   )
   const sourcePorts = circuitJson.filter(
     (element) => element.type === "source_port",
+  )
+  const sourceNets = circuitJson.filter(
+    (element) => element.type === "source_net",
   )
   const sourceTraces = circuitJson.filter(
     (element) => element.type === "source_trace",
@@ -49,7 +60,15 @@ test("pcb source ports use local numeric pad aliases", () => {
   const sourcePortIds = new Set(
     sourcePorts.map((port) => port.source_port_id).filter(Boolean),
   )
+  const sourceNetIds = new Set(
+    sourceNets.map((net) => net.source_net_id).filter(Boolean),
+  )
+  expect(sourceNets.length).toBeGreaterThan(0)
   for (const sourceTrace of sourceTraces) {
+    expect(sourceTrace.connected_source_port_ids.length).toBeLessThanOrEqual(2)
+    expect(sourceTrace.connected_source_net_ids.length).toBe(1)
+    expect(sourceNetIds.has(sourceTrace.connected_source_net_ids[0])).toBe(true)
+
     for (const sourcePortId of sourceTrace.connected_source_port_ids ?? []) {
       expect(sourcePortIds.has(sourcePortId)).toBe(true)
     }

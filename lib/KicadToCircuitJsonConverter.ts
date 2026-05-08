@@ -123,6 +123,7 @@ export class KicadToCircuitJsonConverter {
     const tableNames = [
       "source_component",
       "source_port",
+      "source_net",
       "source_trace",
       "schematic_component",
       "schematic_port",

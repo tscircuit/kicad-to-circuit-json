@@ -56,7 +56,7 @@ export class CollectTracesStage extends ConverterStage {
       !this.ctx.kicadPcb ||
       !this.ctx.k2cMatPcb ||
       !this.ctx.netNumToName ||
-      !this.ctx.netNumToSourceTraceId
+      !this.ctx.netNumToSourceNetId
     ) {
       this.finished = true
       return false
@@ -244,7 +244,7 @@ export class CollectTracesStage extends ConverterStage {
   }
 
   private insertTracePath(path: OrientedTraceEdge[]) {
-    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceTraceId) return
+    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceNetId) return
     if (path.length === 0) return
 
     const routePoints = this.getPathRoutePoints(path)
@@ -254,13 +254,24 @@ export class CollectTracesStage extends ConverterStage {
     const lastPoint = routePoints[routePoints.length - 1]!
     const layer = path[0]!.edge.layer
     const netNum = path[0]!.edge.netNum
-    const sourceTraceId =
+    const sourceNetId =
       netNum !== null
-        ? (this.ctx.netNumToSourceTraceId.get(netNum) ?? undefined)
+        ? (this.ctx.netNumToSourceNetId.get(netNum) ?? undefined)
         : undefined
 
     const startPcbPortId = this.findPortAtPosition(firstPoint, layer)
     const endPcbPortId = this.findPortAtPosition(lastPoint, layer)
+    const connectedSourcePortIds = this.getConnectedSourcePortIds([
+      startPcbPortId,
+      endPcbPortId,
+    ])
+    const sourceTraceId = sourceNetId
+      ? this.createSourceTraceForPath({
+          sourceNetId,
+          connectedSourcePortIds,
+          netNum,
+        })
+      : undefined
 
     const route = routePoints.map((point, index) => ({
       route_type: "wire" as const,
@@ -415,5 +426,45 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     return undefined
+  }
+
+  private getConnectedSourcePortIds(pcbPortIds: Array<string | undefined>) {
+    const connectedSourcePortIds: string[] = []
+
+    for (const pcbPortId of pcbPortIds) {
+      if (!pcbPortId) continue
+
+      const pcbPort = this.ctx.db.pcb_port.get(pcbPortId)
+      const sourcePortId = pcbPort?.source_port_id
+      if (!sourcePortId || connectedSourcePortIds.includes(sourcePortId)) {
+        continue
+      }
+
+      connectedSourcePortIds.push(sourcePortId)
+    }
+
+    return connectedSourcePortIds
+  }
+
+  private createSourceTraceForPath({
+    sourceNetId,
+    connectedSourcePortIds,
+    netNum,
+  }: {
+    sourceNetId: string
+    connectedSourcePortIds: string[]
+    netNum: number | null
+  }) {
+    const netName =
+      netNum !== null
+        ? (this.ctx.netNumToName?.get(netNum) ?? `Net-${netNum}`)
+        : undefined
+    const sourceTrace = this.ctx.db.source_trace.insert({
+      connected_source_port_ids: connectedSourcePortIds,
+      connected_source_net_ids: [sourceNetId],
+      display_name: netName,
+    })
+
+    return sourceTrace.source_trace_id
   }
 }

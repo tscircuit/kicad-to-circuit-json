@@ -42,32 +42,22 @@
     "pin_number": 2
   },
   {
-    "type": "source_trace",
-    "source_trace_id": "source_trace_0",
-    "connected_source_port_ids": [
-      "pcb_component_0_port_1",
-      "pcb_component_1_port_1"
-    ],
-    "connected_source_net_ids": [],
-    "display_name": "Net-(R1-Pad1)"
+    "type": "source_net",
+    "source_net_id": "source_net_0",
+    "name": "Net_R1_Pad1",
+    "member_source_group_ids": []
   },
   {
-    "type": "source_trace",
-    "source_trace_id": "source_trace_1",
-    "connected_source_port_ids": [
-      "pcb_component_0_port_2"
-    ],
-    "connected_source_net_ids": [],
-    "display_name": "unconnected-(R1-Pad2)"
+    "type": "source_net",
+    "source_net_id": "source_net_1",
+    "name": "unconnected_R1_Pad2",
+    "member_source_group_ids": []
   },
   {
-    "type": "source_trace",
-    "source_trace_id": "source_trace_2",
-    "connected_source_port_ids": [
-      "pcb_component_1_port_2"
-    ],
-    "connected_source_net_ids": [],
-    "display_name": "unconnected-(R2-Pad2)"
+    "type": "source_net",
+    "source_net_id": "source_net_2",
+    "name": "unconnected_R2_Pad2",
+    "member_source_group_ids": []
   },
   {
     "type": "pcb_component",

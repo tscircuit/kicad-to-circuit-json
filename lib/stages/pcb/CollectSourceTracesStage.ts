@@ -3,14 +3,15 @@ import { ConverterStage } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
 
 /**
- * CollectSourceTracesStage extracts logical connectivity (ratsnest) from KiCad PCB
- * by analyzing net assignments on pads and creating source_trace elements.
+ * CollectSourceTracesStage extracts logical nets from KiCad PCB by analyzing net
+ * assignments on pads and copper.
  *
  * This stage:
  * 1. Iterates through all footprints and their pads
  * 2. Builds a mapping of nets to connected pads
  * 3. Creates source_port elements for each pad
- * 4. Creates source_trace elements for each net that connects multiple pads
+ * 4. Creates source_net elements for each net. Physical trace collection creates
+ *    smaller source_trace elements that point at these source nets.
  */
 export class CollectSourceTracesStage extends ConverterStage {
   private processedNets = new Set<number>()
@@ -41,16 +42,16 @@ export class CollectSourceTracesStage extends ConverterStage {
     }
 
     // Include nets that have copper traces even if there are fewer than 2 pads.
-    // This guarantees pcb_trace -> source_trace connectivity for routed nets.
+    // This guarantees routed copper can reference a source_net.
     this.collectNetsFromCopper(netToPads)
 
-    // Create source_trace elements for each net with multiple connections
+    // Create source_net elements for each discovered net.
     for (const [netNum, pads] of netToPads.entries()) {
       if (this.processedNets.has(netNum)) {
         continue
       }
 
-      this.createSourceTrace(netNum, pads)
+      this.createSourceNet(netNum)
       this.processedNets.add(netNum)
     }
 
@@ -221,24 +222,15 @@ export class CollectSourceTracesStage extends ConverterStage {
     return padNumber
   }
 
-  private createSourceTrace(
-    netNum: number,
-    pads: Array<{
-      componentId: string
-      padNumber: string
-      sourcePortId: string
-    }>,
-  ) {
+  private createSourceNet(netNum: number) {
     const netName = this.ctx.netNumToName?.get(netNum) || `Net-${netNum}`
 
-    // Create the source_trace
-    const sourceTrace = this.ctx.db.source_trace.insert({
-      connected_source_port_ids: pads.map((p) => p.sourcePortId),
-      connected_source_net_ids: [], // Can be populated if we track source_net elements
-      display_name: netName,
+    const sourceNet = this.ctx.db.source_net.insert({
+      name: netName,
+      member_source_group_ids: [],
     } as any)
 
-    this.ctx.netNumToSourceTraceId?.set(netNum, sourceTrace.source_trace_id)
+    this.ctx.netNumToSourceNetId?.set(netNum, sourceNet.source_net_id)
 
     // Update stats
     if (this.ctx.stats) {

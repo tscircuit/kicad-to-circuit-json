@@ -39,7 +39,7 @@ export class InitializePcbContextStage extends ConverterStage {
 
     // Initialize net mapping and component tracking
     this.ctx.netNumToName = new Map()
-    this.ctx.netNumToSourceTraceId = new Map()
+    this.ctx.netNumToSourceNetId = new Map()
     this.ctx.footprintUuidToComponentId = new Map()
     this.ctx.footprintUuidToSourceComponentId = new Map()
 
