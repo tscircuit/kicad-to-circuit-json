@@ -1,5 +1,5 @@
-import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import { ConverterStage } from "../../types"
 import {
   getCopperSpanLayerRefsFromLayers,
   getPcbCopperLayerRefs,
@@ -9,6 +9,8 @@ import {
  * CollectViasStage converts KiCad vias into Circuit JSON pcb_via elements.
  */
 export class CollectViasStage extends ConverterStage {
+  private readonly POINT_KEY_PRECISION = 1e6
+
   step(): boolean {
     if (!this.ctx.kicadPcb || !this.ctx.k2cMatPcb || !this.ctx.netNumToName) {
       this.finished = true
@@ -36,10 +38,6 @@ export class CollectViasStage extends ConverterStage {
     const size = via.size || 0.8
     const drill = via.drill || 0.4
 
-    // Get net name
-    const netNum = via.net || 0
-    const netName = this.ctx.netNumToName.get(netNum) || ""
-
     const mappedLayers = via.layers
       ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
       : []
@@ -47,6 +45,13 @@ export class CollectViasStage extends ConverterStage {
       mappedLayers.length > 0
         ? mappedLayers
         : getPcbCopperLayerRefs(this.ctx.kicadPcb)
+
+    if (this.hasMatchingTraceRouteVia(pos, layers)) {
+      if (this.ctx.stats) {
+        this.ctx.stats.vias = (this.ctx.stats.vias || 0) + 1
+      }
+      return
+    }
 
     // Create pcb_via
     this.ctx.db.pcb_via.insert({
@@ -61,5 +66,30 @@ export class CollectViasStage extends ConverterStage {
     if (this.ctx.stats) {
       this.ctx.stats.vias = (this.ctx.stats.vias || 0) + 1
     }
+  }
+
+  private hasMatchingTraceRouteVia(
+    point: { x: number; y: number },
+    layers: string[],
+  ) {
+    const pointKey = this.getPointKey(point)
+    const layerSet = new Set(layers)
+    const pcbTraces = this.ctx.db.pcb_trace.list() as any[]
+
+    return pcbTraces.some((trace) =>
+      (trace.route ?? []).some(
+        (routePoint: any) =>
+          routePoint.route_type === "via" &&
+          this.getPointKey(routePoint) === pointKey &&
+          layerSet.has(routePoint.from_layer) &&
+          layerSet.has(routePoint.to_layer),
+      ),
+    )
+  }
+
+  private getPointKey(point: { x: number; y: number }): string {
+    const x = Math.round(point.x * this.POINT_KEY_PRECISION)
+    const y = Math.round(point.y * this.POINT_KEY_PRECISION)
+    return `${x},${y}`
   }
 }

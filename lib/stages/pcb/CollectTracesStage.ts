@@ -19,11 +19,16 @@ interface TracePoint {
 }
 
 interface TracePrimitive {
+  primitiveType: "wire" | "via"
   start: TracePoint
   end: TracePoint
   points: TracePoint[]
-  width: number
-  layer: LayerRef
+  width?: number
+  layer?: LayerRef
+  fromLayer?: LayerRef
+  toLayer?: LayerRef
+  outerDiameter?: number
+  holeDiameter?: number
   netNum: number | null
   connectedSourcePortIds?: string[]
 }
@@ -43,6 +48,26 @@ interface TraceGraph {
   edges: TraceEdge[]
   adjacency: Map<string, number[]>
 }
+
+interface TraceRoutePointWire {
+  routeType: "wire"
+  x: number
+  y: number
+  width: number
+  layer: LayerRef
+}
+
+interface TraceRoutePointVia {
+  routeType: "via"
+  x: number
+  y: number
+  fromLayer: LayerRef
+  toLayer: LayerRef
+  outerDiameter?: number
+  holeDiameter?: number
+}
+
+type TraceRoutePoint = TraceRoutePointWire | TraceRoutePointVia
 
 interface PcbTraceConnectivityNode {
   key: string
@@ -85,6 +110,13 @@ export class CollectTracesStage extends ConverterStage {
       if (primitive) primitives.push(primitive)
     }
 
+    const vias = this.ctx.kicadPcb.vias || []
+    const viaArray = Array.isArray(vias) ? vias : [vias]
+    for (const via of viaArray) {
+      const primitive = this.getTracePrimitiveFromVia(via)
+      if (primitive) primitives.push(primitive)
+    }
+
     this.annotatePrimitivesWithConnectedSourcePorts(primitives)
     this.createTracesFromPrimitives(primitives)
 
@@ -114,6 +146,7 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     return {
+      primitiveType: "wire",
       start: startPoint,
       end: endPoint,
       points: [startPoint, endPoint],
@@ -146,11 +179,43 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     return {
+      primitiveType: "wire",
       start: startPoint,
       end: endPoint,
       points,
       width,
       layer: mappedLayer,
+      netNum,
+    }
+  }
+
+  private getTracePrimitiveFromVia(via: any): TracePrimitive | undefined {
+    const netNum = this.getSegmentNet(via)
+    if (netNum === null) return undefined
+
+    const at = via.at || { x: 0, y: 0 }
+    const point = { x: at.x, y: at.y }
+    const viaLayers = via.layers
+      ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
+      : []
+    const layers =
+      viaLayers.length > 0
+        ? viaLayers
+        : getPcbCopperLayerRefs(this.ctx.kicadPcb)
+
+    const fromLayer = layers[0]
+    const toLayer = layers[layers.length - 1]
+    if (!fromLayer || !toLayer || fromLayer === toLayer) return undefined
+
+    return {
+      primitiveType: "via",
+      start: point,
+      end: point,
+      points: [point],
+      fromLayer,
+      toLayer,
+      outerDiameter: via.size || 0.8,
+      holeDiameter: via.drill || 0.4,
       netNum,
     }
   }
@@ -174,7 +239,7 @@ export class CollectTracesStage extends ConverterStage {
     const graph = this.createTraceGraph(primitives)
     const visitedEdgeIds = new Set<number>()
     const isTerminal = (nodeKey: string): boolean =>
-      this.isTerminalNode(nodeKey, graph, primitives[0]!)
+      this.isTerminalNode(nodeKey, graph)
 
     for (const nodeKey of graph.adjacency.keys()) {
       if (!isTerminal(nodeKey)) continue
@@ -204,8 +269,16 @@ export class CollectTracesStage extends ConverterStage {
 
     for (const primitive of primitives) {
       const id = edges.length
-      const startKey = this.getPointKey(primitive.start)
-      const endKey = this.getPointKey(primitive.end)
+      const startLayer =
+        primitive.primitiveType === "via"
+          ? primitive.fromLayer!
+          : primitive.layer!
+      const endLayer =
+        primitive.primitiveType === "via"
+          ? primitive.toLayer!
+          : primitive.layer!
+      const startKey = this.getTraceGraphNodeKey(primitive.start, startLayer)
+      const endKey = this.getTraceGraphNodeKey(primitive.end, endLayer)
       const edge = { ...primitive, id, startKey, endKey }
       edges.push(edge)
 
@@ -238,7 +311,7 @@ export class CollectTracesStage extends ConverterStage {
       visitedEdgeIds.add(edgeId)
 
       currentNodeKey = reversed ? edge.startKey : edge.endKey
-      if (this.isTerminalNode(currentNodeKey, graph, edge)) break
+      if (this.isTerminalNode(currentNodeKey, graph)) break
 
       const nextEdgeId = (graph.adjacency.get(currentNodeKey) ?? []).find(
         (candidateEdgeId) =>
@@ -259,17 +332,22 @@ export class CollectTracesStage extends ConverterStage {
     const routePoints = this.getPathRoutePoints(path)
     if (routePoints.length < 2) return
 
-    const firstPoint = routePoints[0]!
-    const lastPoint = routePoints[routePoints.length - 1]!
-    const layer = path[0]!.edge.layer
+    const firstNode = this.getTraceGraphNodeFromKey(
+      this.getOrientedTraceEdgeStartKey(path[0]!),
+    )
+    const lastNode = this.getTraceGraphNodeFromKey(
+      this.getOrientedTraceEdgeEndKey(path[path.length - 1]!),
+    )
     const netNum = path[0]!.edge.netNum
     const sourceNetId =
       netNum !== null
         ? (this.ctx.netNumToSourceNetId.get(netNum) ?? undefined)
         : undefined
 
-    const startPcbPortId = this.findPortAtPosition(firstPoint, layer)
-    const endPcbPortId = this.findPortAtPosition(lastPoint, layer)
+    const startPoint = applyToPoint(this.ctx.k2cMatPcb, firstNode.point)
+    const lastPoint = applyToPoint(this.ctx.k2cMatPcb, lastNode.point)
+    const startPcbPortId = this.findPortAtPosition(startPoint, firstNode.layer)
+    const endPcbPortId = this.findPortAtPosition(lastPoint, lastNode.layer)
     const connectedSourcePortIds = this.getConnectedSourcePortIds([
       startPcbPortId,
       endPcbPortId,
@@ -289,19 +367,43 @@ export class CollectTracesStage extends ConverterStage {
         })
       : undefined
 
-    const route = routePoints.map((point, index) => ({
-      route_type: "wire" as const,
-      x: point.x,
-      y: point.y,
-      width: point.width,
-      layer,
-      ...(index === 0 && startPcbPortId
-        ? { start_pcb_port_id: startPcbPortId }
-        : {}),
-      ...(index === routePoints.length - 1 && endPcbPortId
-        ? { end_pcb_port_id: endPcbPortId }
-        : {}),
-    }))
+    const firstWireIndex = routePoints.findIndex(
+      (point) => point.routeType === "wire",
+    )
+    const lastWireIndex = routePoints.findLastIndex(
+      (point) => point.routeType === "wire",
+    )
+    if (firstWireIndex === -1) return
+
+    const route = routePoints.map((point, index) => {
+      if (point.routeType === "via") {
+        return {
+          route_type: "via" as const,
+          x: point.x,
+          y: point.y,
+          from_layer: point.fromLayer,
+          to_layer: point.toLayer,
+          ...(point.outerDiameter
+            ? { outer_diameter: point.outerDiameter }
+            : {}),
+          ...(point.holeDiameter ? { hole_diameter: point.holeDiameter } : {}),
+        }
+      }
+
+      return {
+        route_type: "wire" as const,
+        x: point.x,
+        y: point.y,
+        width: point.width,
+        layer: point.layer,
+        ...(index === firstWireIndex && startPcbPortId
+          ? { start_pcb_port_id: startPcbPortId }
+          : {}),
+        ...(index === lastWireIndex && endPcbPortId
+          ? { end_pcb_port_id: endPcbPortId }
+          : {}),
+      }
+    })
 
     this.ctx.db.pcb_trace.insert({
       route: route as any,
@@ -315,80 +417,68 @@ export class CollectTracesStage extends ConverterStage {
   }
 
   private getPathRoutePoints(path: OrientedTraceEdge[]) {
-    const routePoints: Array<TracePoint & { width: number }> = []
+    const routePoints: TraceRoutePoint[] = []
     let lastRawPoint: TracePoint | undefined
+    let lastWireLayer: LayerRef | undefined
 
     for (const { edge, reversed } of path) {
+      if (edge.primitiveType === "via") {
+        const point = edge.start
+        const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
+        routePoints.push({
+          routeType: "via",
+          x: transformedPoint.x,
+          y: transformedPoint.y,
+          fromLayer: reversed ? edge.toLayer! : edge.fromLayer!,
+          toLayer: reversed ? edge.fromLayer! : edge.toLayer!,
+          outerDiameter: edge.outerDiameter,
+          holeDiameter: edge.holeDiameter,
+        })
+        continue
+      }
+
       const edgePoints = reversed ? [...edge.points].reverse() : edge.points
+      const layer = edge.layer!
+      const width = edge.width!
 
       for (const point of edgePoints) {
-        if (lastRawPoint && this.pointsMatch(lastRawPoint, point)) {
+        if (
+          lastRawPoint &&
+          lastWireLayer === layer &&
+          this.pointsMatch(lastRawPoint, point)
+        ) {
           continue
         }
 
         const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
         routePoints.push({
+          routeType: "wire",
           x: transformedPoint.x,
           y: transformedPoint.y,
-          width: edge.width,
+          width,
+          layer,
         })
         lastRawPoint = point
+        lastWireLayer = layer
       }
     }
 
     return routePoints
   }
 
-  private isTerminalNode(
-    nodeKey: string,
-    graph: TraceGraph,
-    primitive: Pick<TracePrimitive, "layer" | "netNum">,
-  ): boolean {
+  private isTerminalNode(nodeKey: string, graph: TraceGraph): boolean {
     const edgeIds = graph.adjacency.get(nodeKey) ?? []
     if (edgeIds.length !== 2) return true
 
-    const point = this.getPointFromKey(nodeKey)
+    const { point, layer } = this.getTraceGraphNodeFromKey(nodeKey)
     const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
-    if (this.findPortAtPosition(transformedPoint, primitive.layer)) return true
-
-    return this.hasViaAtPosition(point, primitive.layer, primitive.netNum)
-  }
-
-  private hasViaAtPosition(
-    point: TracePoint,
-    layer: LayerRef,
-    netNum: number | null,
-  ): boolean {
-    const vias = this.ctx.kicadPcb?.vias || []
-    const viaArray = Array.isArray(vias) ? vias : [vias]
-
-    for (const via of viaArray) {
-      const viaNetNum = this.getSegmentNet(via)
-      if (viaNetNum !== netNum) continue
-
-      const at = via.at || { x: 0, y: 0 }
-      if (!this.pointsMatch(point, { x: at.x, y: at.y })) continue
-
-      const viaLayers = via.layers
-        ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
-        : []
-      const layers =
-        viaLayers.length > 0
-          ? viaLayers
-          : getPcbCopperLayerRefs(this.ctx.kicadPcb)
-
-      if (layers.includes(layer)) return true
-    }
+    if (this.findPortAtPosition(transformedPoint, layer)) return true
 
     return false
   }
 
   private getPrimitiveGroupKey(primitive: TracePrimitive): string {
-    return [
-      primitive.netNum ?? "no-net",
-      primitive.layer,
-      primitive.width.toFixed(6),
-    ].join(":")
+    return `${primitive.netNum ?? "no-net"}`
   }
 
   private getPointKey(point: TracePoint): string {
@@ -403,6 +493,29 @@ export class CollectTracesStage extends ConverterStage {
       x: (x ?? 0) / this.POINT_KEY_PRECISION,
       y: (y ?? 0) / this.POINT_KEY_PRECISION,
     }
+  }
+
+  private getTraceGraphNodeKey(point: TracePoint, layer: LayerRef): string {
+    return `${layer}:${this.getPointKey(point)}`
+  }
+
+  private getTraceGraphNodeFromKey(nodeKey: string): {
+    point: TracePoint
+    layer: LayerRef
+  } {
+    const [layer, ...pointKeyParts] = nodeKey.split(":")
+    return {
+      layer: layer as LayerRef,
+      point: this.getPointFromKey(pointKeyParts.join(":")),
+    }
+  }
+
+  private getOrientedTraceEdgeStartKey({ edge, reversed }: OrientedTraceEdge) {
+    return reversed ? edge.endKey : edge.startKey
+  }
+
+  private getOrientedTraceEdgeEndKey({ edge, reversed }: OrientedTraceEdge) {
+    return reversed ? edge.startKey : edge.endKey
   }
 
   private pointsMatch(a: TracePoint, b: TracePoint): boolean {
@@ -450,14 +563,16 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     for (const primitive of primitives) {
+      if (primitive.primitiveType !== "wire") continue
+
       const startKey = ensureNode(
         primitive.netNum,
-        primitive.layer,
+        primitive.layer!,
         primitive.start,
       )
       const endKey = ensureNode(
         primitive.netNum,
-        primitive.layer,
+        primitive.layer!,
         primitive.end,
       )
       connectNodes(startKey, endKey)
@@ -527,9 +642,11 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     for (const primitive of primitives) {
+      if (primitive.primitiveType !== "wire") continue
+
       const nodeKey = this.getPcbTraceNodeKey({
         netNum: primitive.netNum,
-        layer: primitive.layer,
+        layer: primitive.layer!,
         point: primitive.start,
       })
       primitive.connectedSourcePortIds =
