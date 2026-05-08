@@ -265,10 +265,14 @@ export class CollectTracesStage extends ConverterStage {
       startPcbPortId,
       endPcbPortId,
     ])
+    const inferredSourcePortIds = this.getSourcePortIdsForTrace({
+      netNum,
+      connectedSourcePortIds,
+    })
     const sourceTraceId = sourceNetId
       ? this.createSourceTraceForPath({
           sourceNetId,
-          connectedSourcePortIds,
+          connectedSourcePortIds: inferredSourcePortIds,
           netNum,
         })
       : undefined
@@ -444,6 +448,32 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     return connectedSourcePortIds
+  }
+
+  private getSourcePortIdsForTrace({
+    netNum,
+    connectedSourcePortIds,
+  }: {
+    netNum: number | null
+    connectedSourcePortIds: string[]
+  }) {
+    if (netNum === null || connectedSourcePortIds.length >= 2) {
+      return connectedSourcePortIds
+    }
+
+    const netSourcePortIds = this.ctx.netNumToSourcePortIds?.get(netNum) ?? []
+    if (netSourcePortIds.length > 2) {
+      return connectedSourcePortIds
+    }
+
+    const inferredSourcePortIds = [...connectedSourcePortIds]
+    for (const sourcePortId of netSourcePortIds) {
+      if (!inferredSourcePortIds.includes(sourcePortId)) {
+        inferredSourcePortIds.push(sourcePortId)
+      }
+    }
+
+    return inferredSourcePortIds
   }
 
   private createSourceTraceForPath({

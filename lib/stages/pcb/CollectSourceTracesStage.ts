@@ -51,6 +51,10 @@ export class CollectSourceTracesStage extends ConverterStage {
         continue
       }
 
+      this.ctx.netNumToSourcePortIds?.set(
+        netNum,
+        pads.map((p) => p.sourcePortId),
+      )
       this.createSourceNet(netNum)
       this.processedNets.add(netNum)
     }
