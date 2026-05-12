@@ -53,8 +53,8 @@ The converter uses a staged pipeline architecture that mirrors the circuit-json-
 1. **InitializePcbContextStage** - Sets up PCB coordinate transformations
 2. **CollectNetsStage** - Builds net number to name mappings
 3. **CollectFootprintsStage** - Converts footprints to `pcb_component` with pads/holes
-4. **CollectTracesStage** - Converts segments to `pcb_trace` elements
-5. **CollectViasStage** - Converts vias to `pcb_via` elements
+4. **CollectTracesStage** - Converts segments and connected vias to `pcb_trace.route` elements
+5. **CollectViasStage** - Emits fallback `pcb_via` elements for vias not represented in trace routes
 6. **CollectGraphicsStage** - Extracts board outline and silkscreen graphics
 
 ## Coordinate Transformations

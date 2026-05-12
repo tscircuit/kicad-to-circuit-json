@@ -17,6 +17,11 @@ test("stitches Arduino Uno PCB segments into contiguous pcb_trace routes", () =>
     : kicadPcb.segments
       ? [kicadPcb.segments]
       : []
+  const rawVias = Array.isArray(kicadPcb.vias)
+    ? kicadPcb.vias
+    : kicadPcb.vias
+      ? [kicadPcb.vias]
+      : []
   const circuitJson = converter.getOutput()
   const pcbTraces = circuitJson.filter(
     (element: any) => element.type === "pcb_trace",
@@ -60,6 +65,8 @@ test("stitches Arduino Uno PCB segments into contiguous pcb_trace routes", () =>
   expect(routeWireSegmentCount).toBe(rawSegments.length)
   expect(pcbVias.length).toBeGreaterThan(0)
   expect(routeVias.length).toBeGreaterThan(0)
+  expect(routeVias.length).toBeGreaterThan(pcbVias.length)
+  expect(routeVias.length + pcbVias.length).toBe(rawVias.length)
   expect(
     pcbVias.every(
       (via) =>
@@ -70,6 +77,9 @@ test("stitches Arduino Uno PCB segments into contiguous pcb_trace routes", () =>
   expect(
     routeVias.every(
       (via) =>
+        via.from_layer &&
+        via.to_layer &&
+        via.from_layer !== via.to_layer &&
         typeof via.hole_diameter === "number" &&
         typeof via.outer_diameter === "number",
     ),
