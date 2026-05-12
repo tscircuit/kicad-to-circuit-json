@@ -15,6 +15,10 @@ import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematic
 import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
 import type { ConverterContext, ConverterStage } from "./types"
 
+function normalizeKicadPcbForParser(content: string) {
+  return content.replace(/^\s*\(plotfptext\s+(?:yes|no)\)\s*$/gim, "")
+}
+
 export class KicadToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
   ctx?: ConverterContext
@@ -49,7 +53,9 @@ export class KicadToCircuitJsonConverter {
 
     this.ctx = {
       db: cju([]),
-      kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
+      kicadPcb: pcbFile
+        ? parseKicadPcb(normalizeKicadPcbForParser(this.fsMap[pcbFile]!))
+        : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
       warnings: [],
       stats: {},

@@ -77,19 +77,19 @@ export function getCircleCenterEnd(circle: GrCircle): {
 }
 
 export function getGraphicArcs(kicadPcb: KicadPcb): GrArc[] {
-  return normalizeToArray(kicadPcb.graphicArcs)
+  return normalizeToArray((kicadPcb as any).graphicArcs)
 }
 
 export function getGraphicCircles(kicadPcb: KicadPcb): GrCircle[] {
-  return normalizeToArray(kicadPcb.graphicCircles)
+  return normalizeToArray((kicadPcb as any).graphicCircles)
 }
 
 export function getGraphicCurves(kicadPcb: KicadPcb): GrCurve[] {
-  return normalizeToArray(kicadPcb.graphicCurves)
+  return normalizeToArray((kicadPcb as any).graphicCurves)
 }
 
 export function getTopLevelCopperArcs(kicadPcb: KicadPcb): PcbArc[] {
-  return normalizeToArray(kicadPcb.arcs)
+  return normalizeToArray((kicadPcb as any).arcs)
 }
 
 export function approximateArcPoints(
