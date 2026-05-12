@@ -32,6 +32,7 @@ test("kicad-to-circuit-json repro02: Arduino Uno PCB", async () => {
   const kicadSnapshot = await takeKicadSnapshot({
     kicadFilePath: kicadPcbPath,
     kicadFileType: "pcb",
+    pcbSnapshotBounds: "circuit-json",
   })
 
   const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!

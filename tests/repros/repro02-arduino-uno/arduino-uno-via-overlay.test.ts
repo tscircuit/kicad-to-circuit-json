@@ -78,6 +78,7 @@ function expectSvgSnapshot(
   testPath: string,
   snapshotName: string,
 ) {
+  const normalizedSvg = normalizeTransientSvgIds(svg)
   const snapshotDir = path.join(path.dirname(testPath), "__snapshots__")
   const snapshotPath = path.join(snapshotDir, `${snapshotName}.snap.svg`)
   const shouldUpdateSnapshot =
@@ -90,10 +91,21 @@ function expectSvgSnapshot(
   }
 
   if (!existsSync(snapshotPath) || shouldUpdateSnapshot) {
-    writeFileSync(snapshotPath, svg)
+    writeFileSync(snapshotPath, normalizedSvg)
   }
 
-  expect(svg).toBe(readFileSync(snapshotPath, "utf-8"))
+  expect(normalizedSvg).toBe(
+    normalizeTransientSvgIds(readFileSync(snapshotPath, "utf-8")),
+  )
+}
+
+function normalizeTransientSvgIds(svg: string) {
+  return svg
+    .replaceAll(
+      /silkscreen-knockout-mask-(pcb_silkscreen_text_\d+)-\d+/g,
+      "silkscreen-knockout-mask-$1",
+    )
+    .replaceAll(/knockout-mask-(pcb_copper_text_\d+)-\d+/g, "knockout-mask-$1")
 }
 
 async function writePngArtifact({
