@@ -36,6 +36,21 @@ test("kicad-to-circuit-json repro: Arduino Nano PCB", async () => {
   expect(pcbSilkscreenText.length).toBeGreaterThan(0)
   expect(pcbTraces.length).toBeGreaterThan(0)
 
+  const boardSilkscreenText = pcbSilkscreenText.filter(
+    (el) => el.pcb_component_id === "",
+  )
+  const nanoText = boardSilkscreenText.find((el) => el.text === "NANO")
+  const gndTexts = boardSilkscreenText.filter((el) => el.text === "GND")
+  const attributionText = boardSilkscreenText.find(
+    (el) => el.text === "GITHUB.COM/SABOGALC",
+  )
+
+  expect(nanoText).toBeDefined()
+  expect(nanoText?.is_knockout).toBe(true)
+  expect(gndTexts).toHaveLength(2)
+  expect(gndTexts.every((el) => el.is_knockout === true)).toBe(true)
+  expect(attributionText?.is_knockout).toBeUndefined()
+
   const fs = await import("node:fs/promises")
   await fs.mkdir("tests/repros/arduino-nano/__snapshots__", {
     recursive: true,

@@ -20,6 +20,7 @@ import {
   getLineStartEnd,
 } from "./arc-utils"
 import {
+  extractKicadLayerNames,
   mapKicadLayerToPcbRenderLayer,
   mapKicadLayerToLayerRef,
   mapKicadLayerToVisibleLayer,
@@ -495,9 +496,10 @@ export class CollectGraphicsStage extends ConverterStage {
     const textValue = text.text || text._text || ""
     const justify = text._sxEffects?._sxJustify || text.effects?.justify
     const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
+    const isKnockout = extractKicadLayerNames(text.layer).includes("knockout")
 
     if (renderLayer.endsWith("_silkscreen")) {
-      this.ctx.db.pcb_silkscreen_text.insert({
+      const silkscreenText = {
         pcb_component_id: "",
         text: textValue,
         anchor_position: pos,
@@ -505,7 +507,11 @@ export class CollectGraphicsStage extends ConverterStage {
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
-      } as PcbSilkscreenText)
+      } as PcbSilkscreenText
+      if (isKnockout) {
+        silkscreenText.is_knockout = true
+      }
+      this.ctx.db.pcb_silkscreen_text.insert(silkscreenText)
       return
     }
 
