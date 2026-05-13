@@ -83796,7 +83796,8 @@
     "anchor_alignment": "top_left",
     "layer": "bottom",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84077,7 +84078,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84091,7 +84093,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84106,6 +84109,7 @@
     "layer": "top",
     "font_size": 1.5,
     "font": "tscircuit2024",
+    "ccw_rotation": 90,
     "is_knockout": true
   },
   {
@@ -84120,7 +84124,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84148,7 +84153,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84162,7 +84168,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84176,7 +84183,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84190,7 +84198,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84232,7 +84241,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84246,7 +84256,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84260,7 +84271,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84274,7 +84286,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.5,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84288,7 +84301,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84316,7 +84330,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.6500000000000001,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84330,7 +84345,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84344,7 +84360,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84358,7 +84375,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.5,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84372,7 +84390,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.5,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84401,7 +84420,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84430,7 +84450,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84473,7 +84494,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.5,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84487,7 +84509,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.5,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84501,7 +84524,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.5,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84515,7 +84539,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84529,7 +84554,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84543,7 +84569,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84557,7 +84584,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84571,7 +84599,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.5,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84585,7 +84614,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.35,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84614,7 +84644,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.875,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -84643,7 +84674,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.2000000000000002,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",

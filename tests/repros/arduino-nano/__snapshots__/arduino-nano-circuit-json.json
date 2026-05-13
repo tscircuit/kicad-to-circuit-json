@@ -39848,7 +39848,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "bottom",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_silkscreen_text",
@@ -39904,7 +39905,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 50
   },
   {
     "type": "pcb_silkscreen_text",
@@ -39947,7 +39949,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_silkscreen_text",
@@ -40003,7 +40006,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_silkscreen_text",
@@ -40087,7 +40091,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -40116,7 +40121,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_silkscreen_text",
@@ -40130,7 +40136,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 130
   },
   {
     "type": "pcb_silkscreen_text",
@@ -40172,7 +40179,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 90
   },
   {
     "type": "pcb_silkscreen_text",
@@ -40242,7 +40250,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_silkscreen_text",
@@ -40284,7 +40293,8 @@
     "anchor_alignment": "bottom_left",
     "layer": "top",
     "font_size": 1.0499999999999998,
-    "font": "tscircuit2024"
+    "font": "tscircuit2024",
+    "ccw_rotation": 270
   },
   {
     "type": "pcb_silkscreen_text",

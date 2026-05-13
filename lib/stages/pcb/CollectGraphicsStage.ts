@@ -484,6 +484,7 @@ export class CollectGraphicsStage extends ConverterStage {
       x: at?.x ?? 0,
       y: at?.y ?? 0,
     })
+    const rotation = at?.angle ?? 0
 
     const layer = mapKicadLayerToVisibleLayer(text.layer)
 
@@ -507,6 +508,7 @@ export class CollectGraphicsStage extends ConverterStage {
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
+        ccw_rotation: rotation || undefined,
       } as PcbSilkscreenText
       if (isKnockout) {
         silkscreenText.is_knockout = true
@@ -516,7 +518,7 @@ export class CollectGraphicsStage extends ConverterStage {
     }
 
     if (renderLayer.endsWith("_fabrication_note")) {
-      this.ctx.db.pcb_fabrication_note_text.insert({
+      const fabricationNoteText = {
         pcb_component_id: "",
         text: textValue,
         anchor_position: pos,
@@ -524,12 +526,14 @@ export class CollectGraphicsStage extends ConverterStage {
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
-      } as PcbFabricationNoteText)
+        ccw_rotation: rotation || undefined,
+      } as PcbFabricationNoteText
+      this.ctx.db.pcb_fabrication_note_text.insert(fabricationNoteText)
       return
     }
 
     if (renderLayer.endsWith("_copper")) {
-      this.ctx.db.pcb_copper_text.insert({
+      const copperText = {
         pcb_component_id: "",
         text: textValue,
         anchor_position: pos,
@@ -537,7 +541,9 @@ export class CollectGraphicsStage extends ConverterStage {
         layer,
         font_size: fontSize,
         font: "tscircuit2024",
-      } as PcbCopperText)
+        ccw_rotation: rotation || undefined,
+      } as PcbCopperText
+      this.ctx.db.pcb_copper_text.insert(copperText)
     }
   }
 
