@@ -10,7 +10,7 @@ import {
 import { applyToPoint } from "transformation-matrix"
 import { approximateArcPoints } from "./arc-utils"
 import {
-  getCopperSpanLayerRefsFromLayers,
+  getLayerRefsFromLayers,
   mapKicadLayerToLayerRef,
 } from "./layer-mapping"
 
@@ -135,10 +135,7 @@ export class CollectZonesStage extends ConverterStage {
     }
 
     if (zone.layers) {
-      const layers = getCopperSpanLayerRefsFromLayers(
-        zone.layers,
-        this.ctx.kicadPcb,
-      )
+      const layers = getLayerRefsFromLayers(zone.layers, this.ctx.kicadPcb)
       if (layers.length > 0) {
         return layers
       }
