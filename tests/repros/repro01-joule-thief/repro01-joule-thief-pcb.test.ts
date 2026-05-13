@@ -89,6 +89,7 @@ test("kicad-to-circuit-json repro01: joule-thief PCB", async () => {
   const kicadSnapshot = await takeKicadSnapshot({
     kicadFilePath: kicadPcbPath,
     kicadFileType: "pcb",
+    pcbSnapshotBounds:"circuit-json"
   })
 
   const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!
