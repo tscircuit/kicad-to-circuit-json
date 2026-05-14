@@ -520,8 +520,8 @@ export class CollectGraphicsStage extends ConverterStage {
     if (renderLayer.endsWith("_fabrication_note")) {
       const fabricationNoteText = {
         pcb_component_id: "",
-        type:"pcb_fabrication_note_text",
-        pcb_fabrication_note_text_id:"",
+        type: "pcb_fabrication_note_text",
+        pcb_fabrication_note_text_id: "",
         text: textValue,
         anchor_position: pos,
         anchor_alignment: anchorAlignment,
