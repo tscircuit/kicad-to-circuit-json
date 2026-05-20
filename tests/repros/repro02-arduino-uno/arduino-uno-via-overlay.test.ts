@@ -13,7 +13,7 @@ const getPointKey = (point: { x: number; y: number }) => {
   return `${x},${y}`
 }
 
-test("highlights Arduino Uno standalone pcb_vias not represented in trace routes", async () => {
+test("highlights Arduino Uno physical pcb_vias and trace-route overlaps", async () => {
   const kicadPcbContent = readFileSync(
     "tests/repros/repro02-arduino-uno/arduino-uno.source.kicad_pcb",
     "utf-8",
@@ -41,14 +41,14 @@ test("highlights Arduino Uno standalone pcb_vias not represented in trace routes
   const unconnectedPcbVias = pcbVias.filter(
     (via) => !traceRoutePointKeys.has(getPointKey(via)),
   )
-  const standalonePcbViasOnTraceRoute = pcbVias.filter((via) =>
+  const pcbViasOnTraceRoutePoints = pcbVias.filter((via) =>
     traceRoutePointKeys.has(getPointKey(via)),
   )
 
   expect(routeVias).toHaveLength(39)
-  expect(pcbVias).toHaveLength(36)
+  expect(pcbVias).toHaveLength(75)
   expect(unconnectedPcbVias).toHaveLength(33)
-  expect(standalonePcbViasOnTraceRoute).toHaveLength(3)
+  expect(pcbViasOnTraceRoutePoints).toHaveLength(42)
 
   const baseSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
     showCourtyards: true,
@@ -62,7 +62,7 @@ test("highlights Arduino Uno standalone pcb_vias not represented in trace routes
     transform,
     routeVias,
     unconnectedPcbVias,
-    standalonePcbViasOnTraceRoute,
+    pcbViasOnTraceRoutePoints,
   })
 
   expectSvgSnapshot(overlaySvg, import.meta.path, "arduino-uno-via-overlay")
@@ -208,7 +208,7 @@ function addViaOverlayToSvg({
   transform,
   routeVias,
   unconnectedPcbVias,
-  standalonePcbViasOnTraceRoute,
+  pcbViasOnTraceRoutePoints,
 }: {
   svg: string
   transform: {
@@ -218,7 +218,7 @@ function addViaOverlayToSvg({
   }
   routeVias: Array<{ x: number; y: number }>
   unconnectedPcbVias: Array<{ x: number; y: number }>
-  standalonePcbViasOnTraceRoute: Array<{ x: number; y: number }>
+  pcbViasOnTraceRoutePoints: Array<{ x: number; y: number }>
 }) {
   const toScreen = (point: { x: number; y: number }) => ({
     x: transform.translateX + point.x * transform.scale,
@@ -243,24 +243,24 @@ function addViaOverlayToSvg({
       ].join("")
     })
     .join("")
-  const standaloneOnTraceMarkers = standalonePcbViasOnTraceRoute
+  const pcbViasOnTraceRouteMarkers = pcbViasOnTraceRoutePoints
     .map((via) => {
       const point = toScreen(via)
       return [
-        `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius}" fill="rgba(255,176,0,0.16)" stroke="#ffb000" stroke-width="${strokeWidth}" opacity="0.98" data-overlay-type="standalone-pcb-via-on-trace-route"/>`,
-        `<path d="M ${point.x - crosshair} ${point.y - crosshair} L ${point.x + crosshair} ${point.y + crosshair} M ${point.x + crosshair} ${point.y - crosshair} L ${point.x - crosshair} ${point.y + crosshair}" stroke="#ffb000" stroke-width="${strokeWidth * 0.8}" stroke-linecap="round" data-overlay-type="standalone-pcb-via-on-trace-route-x"/>`,
+        `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius}" fill="rgba(255,176,0,0.16)" stroke="#ffb000" stroke-width="${strokeWidth}" opacity="0.98" data-overlay-type="pcb-via-on-trace-route-point"/>`,
+        `<path d="M ${point.x - crosshair} ${point.y - crosshair} L ${point.x + crosshair} ${point.y + crosshair} M ${point.x + crosshair} ${point.y - crosshair} L ${point.x - crosshair} ${point.y + crosshair}" stroke="#ffb000" stroke-width="${strokeWidth * 0.8}" stroke-linecap="round" data-overlay-type="pcb-via-on-trace-route-point-x"/>`,
       ].join("")
     })
     .join("")
 
-  const overlay = `<g id="via-route-overlay" data-route-via-count="${routeVias.length}" data-unconnected-standalone-pcb-via-count="${unconnectedPcbVias.length}" data-standalone-pcb-via-on-trace-route-count="${standalonePcbViasOnTraceRoute.length}">
+  const overlay = `<g id="via-route-overlay" data-route-via-count="${routeVias.length}" data-pcb-via-off-trace-route-point-count="${unconnectedPcbVias.length}" data-pcb-via-on-trace-route-point-count="${pcbViasOnTraceRoutePoints.length}">
     <rect x="12" y="12" width="390" height="80" rx="4" fill="rgba(0,0,0,0.72)" stroke="#ffffff" stroke-width="1"/>
     <text x="24" y="34" fill="#00ff66" font-family="Arial, sans-serif" font-size="14">green rings: vias embedded in pcb_trace.route (${routeVias.length})</text>
-    <text x="24" y="56" fill="#ff5a76" font-family="Arial, sans-serif" font-size="14">red targets: standalone pcb_via not on any trace route point (${unconnectedPcbVias.length})</text>
-    <text x="24" y="78" fill="#ffcf57" font-family="Arial, sans-serif" font-size="14">orange x: standalone pcb_via touching a trace point (${standalonePcbViasOnTraceRoute.length})</text>
+    <text x="24" y="56" fill="#ff5a76" font-family="Arial, sans-serif" font-size="14">red targets: pcb_via not on any trace route point (${unconnectedPcbVias.length})</text>
+    <text x="24" y="78" fill="#ffcf57" font-family="Arial, sans-serif" font-size="14">orange x: pcb_via coincident with a trace route point (${pcbViasOnTraceRoutePoints.length})</text>
     ${routeViaMarkers}
     ${unconnectedViaMarkers}
-    ${standaloneOnTraceMarkers}
+    ${pcbViasOnTraceRouteMarkers}
   </g>`
 
   return svg.replace("</svg>", `${overlay}</svg>`)
