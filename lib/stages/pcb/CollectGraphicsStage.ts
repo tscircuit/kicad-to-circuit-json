@@ -1,4 +1,3 @@
-import { ConverterStage } from "../../types"
 import type {
   PcbCopperText,
   PcbFabricationNoteText,
@@ -6,26 +5,27 @@ import type {
   PcbSilkscreenText,
 } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
+import { ConverterStage } from "../../types"
 import {
   approximateArcPoints,
   approximateCirclePoints,
   approximateCubicBezierPoints,
   getArcStartMidEnd,
   getCircleCenterEnd,
+  getCurvePoints,
   getGraphicArcs,
   getGraphicCircles,
   getGraphicCurves,
-  getCurvePoints,
   getGraphicLayerNames,
   getLineStartEnd,
 } from "./arc-utils"
+import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
 import {
   extractKicadLayerNames,
-  mapKicadLayerToPcbRenderLayer,
   mapKicadLayerToLayerRef,
+  mapKicadLayerToPcbRenderLayer,
   mapKicadLayerToVisibleLayer,
 } from "./layer-mapping"
-import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
 
 type BoardPrimitive =
   | {
@@ -180,18 +180,53 @@ export class CollectGraphicsStage extends ConverterStage {
   private createBoardOutline(primitives: BoardPrimitive[]) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Chain the segments together to form a continuous outline
-    const orderedSegments: BoardPrimitive[] = []
+    const outlineCandidates = this.createBoardOutlineCandidates(primitives)
+    const points = this.selectOuterBoardOutline(outlineCandidates)
+
+    if (points.length === 0) return
+
+    // Create pcb_board with outline
+    // Check if board already exists
+    const existingBoard = this.ctx.db.pcb_board.list()[0]
+    if (existingBoard) {
+      // Update outline
+      existingBoard.outline = points
+      existingBoard.width = this.calculateWidth(points)
+      existingBoard.height = this.calculateHeight(points)
+    } else {
+      // Create new board
+      this.ctx.db.pcb_board.insert({
+        outline: points,
+        width: this.calculateWidth(points),
+        height: this.calculateHeight(points),
+      } as any)
+    }
+  }
+
+  private createBoardOutlineCandidates(
+    primitives: BoardPrimitive[],
+  ): Array<Array<{ x: number; y: number }>> {
+    const orderedPrimitiveLoops: BoardPrimitive[][] = []
     const remainingSegments = [...primitives]
 
-    // Start with the first segment
-    if (remainingSegments.length > 0) {
-      orderedSegments.push(remainingSegments.shift()!)
+    while (remainingSegments.length > 0) {
+      const firstSegment = remainingSegments.shift()!
+      const orderedSegments: BoardPrimitive[] = [firstSegment]
+
+      if (firstSegment.type === "circle") {
+        orderedPrimitiveLoops.push(orderedSegments)
+        continue
+      }
 
       // Keep finding connected segments until we can't find any more
       while (remainingSegments.length > 0) {
         const lastSegment = orderedSegments[orderedSegments.length - 1]!
         const lastEnd = lastSegment.end
+        const firstStart = orderedSegments[0]!.start
+
+        if (this.pointsEqualKicad(lastEnd, firstStart)) {
+          break
+        }
 
         // Find a segment that starts where the last one ended
         let foundIndex = remainingSegments.findIndex((seg) =>
@@ -242,13 +277,19 @@ export class CollectGraphicsStage extends ConverterStage {
         if (foundIndex !== -1) {
           orderedSegments.push(remainingSegments.splice(foundIndex, 1)[0]!)
         } else {
-          // Can't find a connected segment, just add the next one
-          orderedSegments.push(remainingSegments.shift()!)
+          break
         }
       }
+
+      orderedPrimitiveLoops.push(orderedSegments)
     }
 
-    // Now convert the ordered segments to points in Circuit JSON coordinates
+    return orderedPrimitiveLoops.map((segments) =>
+      this.convertBoardSegmentsToPoints(segments),
+    )
+  }
+
+  private convertBoardSegmentsToPoints(orderedSegments: BoardPrimitive[]) {
     const points: Array<{ x: number; y: number }> = []
 
     for (const segment of orderedSegments) {
@@ -285,7 +326,7 @@ export class CollectGraphicsStage extends ConverterStage {
       }
 
       for (const kicadPoint of kicadPoints) {
-        const point = applyToPoint(this.ctx.k2cMatPcb, kicadPoint)
+        const point = applyToPoint(this.ctx.k2cMatPcb!, kicadPoint)
         const lastPoint = points[points.length - 1]
         if (!lastPoint || !this.pointsEqual(lastPoint, point)) {
           points.push(point)
@@ -293,22 +334,38 @@ export class CollectGraphicsStage extends ConverterStage {
       }
     }
 
-    // Create pcb_board with outline
-    // Check if board already exists
-    const existingBoard = this.ctx.db.pcb_board.list()[0]
-    if (existingBoard) {
-      // Update outline
-      existingBoard.outline = points
-      existingBoard.width = this.calculateWidth(points)
-      existingBoard.height = this.calculateHeight(points)
-    } else {
-      // Create new board
-      this.ctx.db.pcb_board.insert({
-        outline: points,
-        width: this.calculateWidth(points),
-        height: this.calculateHeight(points),
-      } as any)
+    return points
+  }
+
+  private selectOuterBoardOutline(
+    outlineCandidates: Array<Array<{ x: number; y: number }>>,
+  ) {
+    let outerOutline: Array<{ x: number; y: number }> = []
+    let largestArea = -Infinity
+
+    for (const candidate of outlineCandidates) {
+      const area = Math.abs(this.calculatePolygonArea(candidate))
+
+      if (candidate.length >= 3 && area > largestArea) {
+        outerOutline = candidate
+        largestArea = area
+      }
     }
+
+    return outerOutline
+  }
+
+  private calculatePolygonArea(points: Array<{ x: number; y: number }>) {
+    if (points.length < 3) return 0
+
+    let sum = 0
+    for (let i = 0; i < points.length; i++) {
+      const current = points[i]!
+      const next = points[(i + 1) % points.length]!
+      sum += current.x * next.y - next.x * current.y
+    }
+
+    return sum / 2
   }
 
   private createGraphicPath(line: any, renderLayer: PcbRenderLayer) {
