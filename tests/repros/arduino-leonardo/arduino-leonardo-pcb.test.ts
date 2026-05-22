@@ -1,7 +1,9 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../../lib"
+import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadPngs"
 import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
+import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 import "../../fixtures/png-matcher"
 
 test("kicad-to-circuit-json repro: Arduino Leonardo PCB outline excludes Edge.Cuts holes", async () => {
@@ -55,6 +57,12 @@ test("kicad-to-circuit-json repro: Arduino Leonardo PCB outline excludes Edge.Cu
     circuitJson: circuitJson as any,
     outputType: "pcb",
   })
+  const kicadSnapshot = await takeKicadSnapshot({
+    kicadFilePath: kicadPcbPath,
+    kicadFileType: "pcb",
+    pcbSnapshotBounds: "circuit-json",
+  })
+  const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!
 
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
   const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
@@ -65,7 +73,8 @@ test("kicad-to-circuit-json repro: Arduino Leonardo PCB outline excludes Edge.Cu
     circuitJsonSvg,
   )
 
-  await expect(circuitJsonPng).toMatchPngSnapshot(
+  const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
+  await expect(stackedPng).toMatchPngSnapshot(
     import.meta.path,
     "arduino-leonardo-pcb",
   )
