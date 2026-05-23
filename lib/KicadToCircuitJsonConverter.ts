@@ -138,6 +138,7 @@ export class KicadToCircuitJsonConverter {
       "pcb_via",
       "pcb_copper_pour",
       "pcb_board",
+      "pcb_cutout",
       "pcb_copper_text",
       "pcb_silkscreen_text",
       "pcb_silkscreen_path",

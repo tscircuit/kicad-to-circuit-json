@@ -1,4 +1,3 @@
-import { ConverterStage } from "../../types"
 import type {
   PcbCopperText,
   PcbFabricationNoteText,
@@ -6,26 +5,27 @@ import type {
   PcbSilkscreenText,
 } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
+import { ConverterStage } from "../../types"
 import {
   approximateArcPoints,
   approximateCirclePoints,
   approximateCubicBezierPoints,
   getArcStartMidEnd,
   getCircleCenterEnd,
+  getCurvePoints,
   getGraphicArcs,
   getGraphicCircles,
   getGraphicCurves,
-  getCurvePoints,
   getGraphicLayerNames,
   getLineStartEnd,
 } from "./arc-utils"
+import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
 import {
   extractKicadLayerNames,
-  mapKicadLayerToPcbRenderLayer,
   mapKicadLayerToLayerRef,
+  mapKicadLayerToPcbRenderLayer,
   mapKicadLayerToVisibleLayer,
 } from "./layer-mapping"
-import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
 
 type BoardPrimitive =
   | {
@@ -52,6 +52,12 @@ type BoardPrimitive =
       control2: { x: number; y: number }
       end: { x: number; y: number }
     }
+
+interface BoardContour {
+  primitives: BoardPrimitive[]
+  points: Array<{ x: number; y: number }>
+  area: number
+}
 
 /**
  * CollectGraphicsStage processes KiCad graphics elements:
@@ -180,117 +186,17 @@ export class CollectGraphicsStage extends ConverterStage {
   private createBoardOutline(primitives: BoardPrimitive[]) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Chain the segments together to form a continuous outline
-    const orderedSegments: BoardPrimitive[] = []
-    const remainingSegments = [...primitives]
+    const contours = this.createBoardContours(primitives)
+    if (contours.length === 0) return
 
-    // Start with the first segment
-    if (remainingSegments.length > 0) {
-      orderedSegments.push(remainingSegments.shift()!)
+    const boardContour = contours.reduce((largestContour, contour) =>
+      contour.area > largestContour.area ? contour : largestContour,
+    )
+    const points = boardContour.points
 
-      // Keep finding connected segments until we can't find any more
-      while (remainingSegments.length > 0) {
-        const lastSegment = orderedSegments[orderedSegments.length - 1]!
-        const lastEnd = lastSegment.end
-
-        // Find a segment that starts where the last one ended
-        let foundIndex = remainingSegments.findIndex((seg) =>
-          this.pointsEqualKicad(seg.start, lastEnd),
-        )
-
-        // If not found, try to find one that ends where the last one ended (reverse it)
-        if (foundIndex === -1) {
-          foundIndex = remainingSegments.findIndex((seg) =>
-            this.pointsEqualKicad(seg.end, lastEnd),
-          )
-          if (foundIndex !== -1) {
-            const seg = remainingSegments[foundIndex]!
-            orderedSegments.push(
-              seg.type === "arc"
-                ? {
-                    type: "arc",
-                    start: seg.end,
-                    mid: seg.mid,
-                    end: seg.start,
-                  }
-                : seg.type === "circle"
-                  ? {
-                      type: "circle",
-                      center: seg.center,
-                      start: seg.end,
-                      end: seg.start,
-                    }
-                  : seg.type === "curve"
-                    ? {
-                        type: "curve",
-                        start: seg.end,
-                        control1: seg.control2,
-                        control2: seg.control1,
-                        end: seg.start,
-                      }
-                    : {
-                        type: "line",
-                        start: seg.end,
-                        end: seg.start,
-                      },
-            )
-            remainingSegments.splice(foundIndex, 1)
-            continue
-          }
-        }
-
-        if (foundIndex !== -1) {
-          orderedSegments.push(remainingSegments.splice(foundIndex, 1)[0]!)
-        } else {
-          // Can't find a connected segment, just add the next one
-          orderedSegments.push(remainingSegments.shift()!)
-        }
-      }
-    }
-
-    // Now convert the ordered segments to points in Circuit JSON coordinates
-    const points: Array<{ x: number; y: number }> = []
-
-    for (const segment of orderedSegments) {
-      let kicadPoints: Array<{ x: number; y: number }>
-
-      if (segment.type === "arc") {
-        kicadPoints = approximateArcPoints(
-          segment.start,
-          segment.mid,
-          segment.end,
-          {
-            segmentLength: 0.25,
-            minSegments: 16,
-          },
-        )
-      } else if (segment.type === "circle") {
-        kicadPoints = approximateCirclePoints(segment.center, segment.end, {
-          segmentLength: 0.25,
-          minSegments: 16,
-        })
-      } else if (segment.type === "curve") {
-        kicadPoints = approximateCubicBezierPoints(
-          segment.start,
-          segment.control1,
-          segment.control2,
-          segment.end,
-          {
-            segmentLength: 0.25,
-            minSegments: 16,
-          },
-        )
-      } else {
-        kicadPoints = [segment.start, segment.end]
-      }
-
-      for (const kicadPoint of kicadPoints) {
-        const point = applyToPoint(this.ctx.k2cMatPcb, kicadPoint)
-        const lastPoint = points[points.length - 1]
-        if (!lastPoint || !this.pointsEqual(lastPoint, point)) {
-          points.push(point)
-        }
-      }
+    for (const contour of contours) {
+      if (contour === boardContour) continue
+      this.createEdgeCutCutout(contour)
     }
 
     // Create pcb_board with outline
@@ -309,6 +215,185 @@ export class CollectGraphicsStage extends ConverterStage {
         height: this.calculateHeight(points),
       } as any)
     }
+  }
+
+  private createBoardContours(primitives: BoardPrimitive[]): BoardContour[] {
+    const orderedContours = this.orderConnectedContours(primitives)
+    return orderedContours
+      .map((contourPrimitives) => {
+        const points = this.getBoardContourPoints(contourPrimitives)
+        return {
+          primitives: contourPrimitives,
+          points,
+          area: Math.abs(this.calculatePolygonArea(points)),
+        }
+      })
+      .filter((contour) => contour.points.length > 0)
+  }
+
+  private orderConnectedContours(primitives: BoardPrimitive[]) {
+    const remainingSegments = [...primitives]
+    const contours: BoardPrimitive[][] = []
+
+    while (remainingSegments.length > 0) {
+      const orderedSegments = [remainingSegments.shift()!]
+
+      while (remainingSegments.length > 0) {
+        const lastSegment = orderedSegments[orderedSegments.length - 1]!
+        const lastEnd = lastSegment.end
+
+        let foundIndex = remainingSegments.findIndex((seg) =>
+          this.pointsEqualKicad(seg.start, lastEnd),
+        )
+        if (foundIndex !== -1) {
+          orderedSegments.push(remainingSegments.splice(foundIndex, 1)[0]!)
+          continue
+        }
+
+        foundIndex = remainingSegments.findIndex((seg) =>
+          this.pointsEqualKicad(seg.end, lastEnd),
+        )
+        if (foundIndex !== -1) {
+          const segment = remainingSegments.splice(foundIndex, 1)[0]!
+          orderedSegments.push(this.reverseBoardPrimitive(segment))
+          continue
+        }
+
+        break
+      }
+
+      contours.push(orderedSegments)
+    }
+
+    return contours
+  }
+
+  private reverseBoardPrimitive(segment: BoardPrimitive): BoardPrimitive {
+    if (segment.type === "arc") {
+      return {
+        type: "arc",
+        start: segment.end,
+        mid: segment.mid,
+        end: segment.start,
+      }
+    }
+
+    if (segment.type === "circle") {
+      return {
+        type: "circle",
+        center: segment.center,
+        start: segment.end,
+        end: segment.start,
+      }
+    }
+
+    if (segment.type === "curve") {
+      return {
+        type: "curve",
+        start: segment.end,
+        control1: segment.control2,
+        control2: segment.control1,
+        end: segment.start,
+      }
+    }
+
+    return {
+      type: "line",
+      start: segment.end,
+      end: segment.start,
+    }
+  }
+
+  private getBoardContourPoints(primitives: BoardPrimitive[]) {
+    if (!this.ctx.k2cMatPcb) return []
+
+    const points: Array<{ x: number; y: number }> = []
+
+    for (const segment of primitives) {
+      const kicadPoints = this.getPrimitivePoints(segment)
+      for (const kicadPoint of kicadPoints) {
+        const point = applyToPoint(this.ctx.k2cMatPcb, kicadPoint)
+        const lastPoint = points[points.length - 1]
+        if (!lastPoint || !this.pointsEqual(lastPoint, point)) {
+          points.push(point)
+        }
+      }
+    }
+
+    return points
+  }
+
+  private getPrimitivePoints(segment: BoardPrimitive) {
+    if (segment.type === "arc") {
+      return approximateArcPoints(segment.start, segment.mid, segment.end, {
+        segmentLength: 0.25,
+        minSegments: 16,
+      })
+    }
+
+    if (segment.type === "circle") {
+      return approximateCirclePoints(segment.center, segment.end, {
+        segmentLength: 0.25,
+        minSegments: 16,
+      })
+    }
+
+    if (segment.type === "curve") {
+      return approximateCubicBezierPoints(
+        segment.start,
+        segment.control1,
+        segment.control2,
+        segment.end,
+        {
+          segmentLength: 0.25,
+          minSegments: 16,
+        },
+      )
+    }
+
+    return [segment.start, segment.end]
+  }
+
+  private createEdgeCutCutout(contour: BoardContour) {
+    const [circle] = contour.primitives
+    if (circle?.type === "circle" && contour.primitives.length === 1) {
+      this.createEdgeCutCircleHole(circle)
+      return
+    }
+
+    this.ctx.db.pcb_cutout.insert({
+      shape: "polygon",
+      points: contour.points,
+    } as any)
+  }
+
+  private createEdgeCutCircleHole(
+    circle: Extract<BoardPrimitive, { type: "circle" }>,
+  ) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const center = applyToPoint(this.ctx.k2cMatPcb, circle.center)
+    const radius = Math.hypot(
+      circle.end.x - circle.center.x,
+      circle.end.y - circle.center.y,
+    )
+
+    this.ctx.db.pcb_hole.insert({
+      hole_shape: "circle",
+      hole_diameter: radius * 2,
+      x: center.x,
+      y: center.y,
+    } as any)
+  }
+
+  private calculatePolygonArea(points: Array<{ x: number; y: number }>) {
+    let area = 0
+    for (let i = 0; i < points.length; i++) {
+      const current = points[i]!
+      const next = points[(i + 1) % points.length]!
+      area += current.x * next.y - next.x * current.y
+    }
+    return area / 2
   }
 
   private createGraphicPath(line: any, renderLayer: PcbRenderLayer) {
