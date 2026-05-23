@@ -1,10 +1,6 @@
 import { test, expect } from "bun:test"
-import { readFileSync } from "node:fs"
+import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../lib"
-import { takeKicadSnapshot } from "../fixtures/take-kicad-snapshot"
-import { takeCircuitJsonSnapshot } from "../fixtures/take-circuit-json-snapshot"
-import { stackCircuitJsonKicadPngs } from "../fixtures/stackCircuitJsonKicadPngs"
-import "../fixtures/png-matcher"
 
 test("kicad-to-circuit-json: kicad-laser-prefab PCB", async () => {
   // Load the KiCad PCB file
@@ -23,41 +19,25 @@ test("kicad-to-circuit-json: kicad-laser-prefab PCB", async () => {
   expect(circuitJson.length).toBeGreaterThan(0)
 
   // Write Circuit JSON to file for inspection
-  const fs = await import("node:fs/promises")
-  await fs.writeFile(
+  writeFileSync(
     "tests/pcb/__snapshots__/kicad_laser_prefab_example-circuit-json.json",
     JSON.stringify(circuitJson, null, 2),
   )
 
-  // Take snapshots
-  const kicadSnapshot = await takeKicadSnapshot({
-    kicadFilePath: kicadPcbPath,
-    kicadFileType: "pcb",
-  })
-
-  const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!
-
-  const circuitJsonPng = await takeCircuitJsonSnapshot({
-    circuitJson: circuitJson as any,
-    outputType: "pcb",
-  })
-
-  // Also export the circuit JSON as SVG for inspection
+  // Compare the generated Circuit JSON SVG against the tracked SVG snapshot.
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
   const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
     showCourtyards: true,
   })
-  await fs.writeFile(
-    "tests/pcb/__snapshots__/kicad_laser_prefab_example-circuit-json.svg",
-    circuitJsonSvg,
-  )
+  const svgSnapshotPath =
+    "tests/pcb/__snapshots__/kicad_laser_prefab_example-circuit-json.svg"
+  const shouldUpdateSnapshot =
+    process.argv.includes("--update-snapshots") ||
+    process.argv.includes("-u") ||
+    Boolean(process.env["BUN_UPDATE_SNAPSHOTS"])
 
-  // Stack them vertically with labels (Circuit JSON on top, KiCad on bottom)
-  const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
-
-  // Save as snapshot for visual comparison
-  await expect(stackedPng).toMatchPngSnapshot(
-    import.meta.path,
-    "kicad_laser_prefab_example-pcb",
-  )
+  if (!existsSync(svgSnapshotPath) || shouldUpdateSnapshot) {
+    writeFileSync(svgSnapshotPath, circuitJsonSvg)
+  }
+  expect(circuitJsonSvg).toBe(readFileSync(svgSnapshotPath, "utf-8"))
 })
