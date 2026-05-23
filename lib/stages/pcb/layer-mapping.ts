@@ -1,7 +1,7 @@
 import type { LayerRef, PcbRenderLayer } from "circuit-json"
 import type { KicadPcb } from "kicadts"
 
-const INNER_COPPER_LAYER_REGEX = /^In([1-6])\.Cu$/
+const INNER_COPPER_LAYER_REGEX = /^In([1-9]\d*)\.Cu$/
 
 function dedupeLayerRefs(layers: LayerRef[]): LayerRef[] {
   return [...new Set(layers)]
@@ -114,12 +114,10 @@ export function mapKicadLayerToVisibleLayer(layer: any): "top" | "bottom" {
 }
 
 export function getPcbCopperLayerRefs(kicadPcb?: KicadPcb): LayerRef[] {
-  const definitions = Array.isArray((kicadPcb?.layers as any)?._definitions)
-    ? (kicadPcb?.layers as any)._definitions
-    : []
+  const definitions = kicadPcb?.layers?.definitions ?? []
 
   const copperLayers = definitions
-    .map((definition: any) => mapKicadLayerNameToLayerRef(definition?._name))
+    .map((definition) => mapKicadLayerNameToLayerRef(definition.name ?? ""))
     .filter((layer: LayerRef | undefined): layer is LayerRef => Boolean(layer))
 
   if (copperLayers.length > 0) {
@@ -127,6 +125,16 @@ export function getPcbCopperLayerRefs(kicadPcb?: KicadPcb): LayerRef[] {
   }
 
   return ["top", "bottom"]
+}
+
+export function getPcbCopperLayerCount(kicadPcb?: KicadPcb): number {
+  const definitions = kicadPcb?.layers?.definitions ?? []
+
+  const copperLayerCount = definitions.filter(
+    (definition) => definition.name?.endsWith(".Cu") ?? false,
+  ).length
+
+  return copperLayerCount > 0 ? copperLayerCount : 2
 }
 
 export function getLayerRefsFromLayers(

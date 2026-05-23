@@ -24,6 +24,7 @@ import { rotatePoint } from "./CollectFootprintsStage/process-graphics"
 import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
 import {
   extractKicadLayerNames,
+  getPcbCopperLayerCount,
   mapKicadLayerToLayerRef,
   mapKicadLayerToPcbRenderLayer,
   mapKicadLayerToVisibleLayer,
@@ -219,6 +220,7 @@ export class CollectGraphicsStage extends ConverterStage {
       contour.area > largestContour.area ? contour : largestContour,
     )
     const points = boardContour.points
+    const numLayers = getPcbCopperLayerCount(this.ctx.kicadPcb)
 
     for (const contour of contours) {
       if (contour === boardContour) continue
@@ -233,13 +235,17 @@ export class CollectGraphicsStage extends ConverterStage {
       existingBoard.outline = points
       existingBoard.width = this.calculateWidth(points)
       existingBoard.height = this.calculateHeight(points)
+      existingBoard.num_layers = numLayers
     } else {
       // Create new board
-      this.ctx.db.pcb_board.insert({
+      this.ctx.db.insert({
+        type: "pcb_board",
+        center: { x: 0, y: 0 },
         outline: points,
         width: this.calculateWidth(points),
         height: this.calculateHeight(points),
-      } as any)
+        num_layers: numLayers,
+      })
     }
   }
 
