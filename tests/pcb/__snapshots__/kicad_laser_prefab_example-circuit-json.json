@@ -238,7 +238,7 @@
     "pcb_silkscreen_text_id": "pcb_silkscreen_text_0",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
-    "font_size": 1.5,
+    "font_size": 0.6666666666666666,
     "text": "R1",
     "anchor_position": {
       "x": -2.260000000000005,
@@ -252,7 +252,7 @@
     "pcb_silkscreen_text_id": "pcb_silkscreen_text_1",
     "pcb_component_id": "pcb_component_1",
     "font": "tscircuit2024",
-    "font_size": 1.5,
+    "font_size": 0.6666666666666666,
     "text": "R2",
     "anchor_position": {
       "x": 2.75,
@@ -331,10 +331,10 @@
   },
   {
     "type": "pcb_fabrication_note_text",
-    "pcb_fabrication_note_text_id": "pcb_fabrication_note_text_0",
+    "pcb_fabrication_note_text_id": "",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
-    "font_size": 1.5,
+    "font_size": 0.6666666666666666,
     "text": "R",
     "anchor_position": {
       "x": -2.260000000000005,
@@ -345,10 +345,10 @@
   },
   {
     "type": "pcb_fabrication_note_text",
-    "pcb_fabrication_note_text_id": "pcb_fabrication_note_text_1",
+    "pcb_fabrication_note_text_id": "",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
-    "font_size": 0.39,
+    "font_size": 0.17333333333333334,
     "text": "R1",
     "anchor_position": {
       "x": -2.260000000000005,
@@ -359,10 +359,10 @@
   },
   {
     "type": "pcb_fabrication_note_text",
-    "pcb_fabrication_note_text_id": "pcb_fabrication_note_text_2",
+    "pcb_fabrication_note_text_id": "",
     "pcb_component_id": "pcb_component_1",
     "font": "tscircuit2024",
-    "font_size": 1.5,
+    "font_size": 0.6666666666666666,
     "text": "R",
     "anchor_position": {
       "x": 2.75,
@@ -373,10 +373,10 @@
   },
   {
     "type": "pcb_fabrication_note_text",
-    "pcb_fabrication_note_text_id": "pcb_fabrication_note_text_3",
+    "pcb_fabrication_note_text_id": "",
     "pcb_component_id": "pcb_component_1",
     "font": "tscircuit2024",
-    "font_size": 0.39,
+    "font_size": 0.17333333333333334,
     "text": "R2",
     "anchor_position": {
       "x": 2.75,
