@@ -16,9 +16,12 @@ export const takeCircuitJsonSnapshot = async (params: {
     return png
   }
   if (outputType === "pcb") {
-    const svg = await convertCircuitJsonToPcbSvg(circuitJson, {
-      showCourtyards: true,
-    })
+    const svg = await convertCircuitJsonToPcbSvg(
+      removeFabricationNoteElementsFromPcbPreview(circuitJson as any) as any,
+      {
+        showCourtyards: true,
+      },
+    )
     // Ensure minimum height of 800px for the pcb image
     const png = await sharp(Buffer.from(svg))
       .resize({ height: 1280, withoutEnlargement: false })
@@ -27,4 +30,14 @@ export const takeCircuitJsonSnapshot = async (params: {
     return png
   }
   throw new Error(`Unknown output type: ${outputType}`)
+}
+
+function removeFabricationNoteElementsFromPcbPreview(circuitJson: any[]) {
+  return circuitJson.filter(
+    (el) =>
+      el.type !== "pcb_fabrication_note_text" &&
+      el.type !== "pcb_fabrication_note_path" &&
+      el.type !== "pcb_fabrication_note_rect" &&
+      el.type !== "pcb_fabrication_note_dimension",
+  )
 }

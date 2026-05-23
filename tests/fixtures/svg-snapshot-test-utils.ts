@@ -20,9 +20,12 @@ export function convertKicadPcbToSvgSnapshot(params: {
   expect(circuitJson.length).toBeGreaterThan(0)
   expect(circuitJson.some((el: any) => el.type === "pcb_board")).toBe(true)
 
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
-    showCourtyards: true,
-  })
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(
+    removeFabricationNoteElementsFromPcbPreview(circuitJson) as any,
+    {
+      showCourtyards: true,
+    },
+  )
 
   expectSvgSnapshot(circuitJsonSvg, params.testPath, params.snapshotName)
 }
@@ -58,4 +61,14 @@ function normalizeTransientSvgIds(svg: string) {
       "silkscreen-knockout-mask-$1",
     )
     .replaceAll(/knockout-mask-(pcb_copper_text_\d+)-\d+/g, "knockout-mask-$1")
+}
+
+function removeFabricationNoteElementsFromPcbPreview(circuitJson: any[]) {
+  return circuitJson.filter(
+    (el) =>
+      el.type !== "pcb_fabrication_note_text" &&
+      el.type !== "pcb_fabrication_note_path" &&
+      el.type !== "pcb_fabrication_note_rect" &&
+      el.type !== "pcb_fabrication_note_dimension",
+  )
 }

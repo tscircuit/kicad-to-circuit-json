@@ -60,6 +60,18 @@ interface BoardContour {
 }
 
 const EDGE_CUT_POINT_EPSILON = 0.01
+const KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE = 2 / 3
+
+function convertKiCadAngleToCircuitJsonCcwRotation(
+  rotationDegrees: number | undefined,
+): number {
+  if (!rotationDegrees) return 0
+
+  const circuitJsonRotation = rotationDegrees % 360
+  return circuitJsonRotation < 0
+    ? circuitJsonRotation + 360
+    : circuitJsonRotation
+}
 
 /**
  * CollectGraphicsStage processes KiCad graphics elements:
@@ -607,7 +619,7 @@ export class CollectGraphicsStage extends ConverterStage {
       x: at?.x ?? 0,
       y: at?.y ?? 0,
     })
-    const rotation = at?.angle ?? 0
+    const rotation = convertKiCadAngleToCircuitJsonCcwRotation(at?.angle)
 
     const layer = mapKicadLayerToVisibleLayer(text.layer)
 
@@ -616,7 +628,7 @@ export class CollectGraphicsStage extends ConverterStage {
       text._sxEffects?._sxFont?._sxSize?._height ||
       text.effects?.font?.size?.y ||
       1
-    const fontSize = kicadFontSize * 1.5
+    const fontSize = kicadFontSize * KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE
     const textValue = text.text || text._text || ""
     const justify = text._sxEffects?._sxJustify || text.effects?.justify
     const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
