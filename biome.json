@@ -8,6 +8,8 @@
   "files": {
     "includes": [
       "**",
+      "!**/scratch",
+      "!**/scratch/**",
       "!**/cosmos-export",
       "!**/dist",
       "!**/dist-site",

@@ -1,12 +1,16 @@
 import type { Footprint } from "kicadts"
+import { findFootprintPropertyValue } from "./footprint-properties"
 
 /**
  * Infers the component type (ftype) from the reference designator
  */
-export function inferComponentType(reference: string | undefined): string {
-  if (!reference) return "simple_chip"
+export function inferComponentType(
+  reference: string | undefined,
+  footprint?: Footprint,
+): string {
+  if (!reference && !footprint) return "simple_chip"
 
-  const prefix = reference.match(/^([A-Z]+)/)?.[1]
+  const prefix = reference?.trim().match(/^([A-Z]+)/)?.[1]
 
   switch (prefix) {
     case "R":
@@ -16,9 +20,10 @@ export function inferComponentType(reference: string | undefined): string {
     case "L":
       return "simple_inductor"
     case "D":
+      if (isLedFootprint(footprint)) return "simple_led"
       return "simple_diode"
     case "LED":
-      return "simple_diode"
+      return "simple_led"
     case "Q":
       // Q* is a generic transistor designator; actual transistor
       // polarity (npn/pnp) is determined later from the footprint
@@ -33,6 +38,24 @@ export function inferComponentType(reference: string | undefined): string {
     default:
       return "simple_chip"
   }
+}
+
+function isLedFootprint(footprint: Footprint | undefined): boolean {
+  if (!footprint) return false
+
+  const metadata = [
+    footprint.libraryLink,
+    footprint.descr?.value,
+    footprint.tags?.value,
+    findFootprintPropertyValue(footprint, "Footprint"),
+    findFootprintPropertyValue(footprint, "Description"),
+    findFootprintPropertyValue(footprint, "Value"),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase()
+
+  return metadata.includes("led") || metadata.includes("light emitting diode")
 }
 
 /**
