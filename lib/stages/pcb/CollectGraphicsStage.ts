@@ -63,7 +63,7 @@ interface BoardContour {
 }
 
 const EDGE_CUT_POINT_EPSILON = 0.01
-const KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE = 2 / 3
+const KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE = 1.5
 
 function convertKiCadAngleToCircuitJsonCcwRotation(
   rotationDegrees: number | undefined,
