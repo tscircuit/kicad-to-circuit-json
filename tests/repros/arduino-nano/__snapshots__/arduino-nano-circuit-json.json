@@ -40,7 +40,7 @@
     "type": "source_component",
     "source_component_id": "source_component_6",
     "name": "SW1",
-    "ftype": "simple_chip"
+    "ftype": "simple_switch"
   },
   {
     "type": "source_component",
