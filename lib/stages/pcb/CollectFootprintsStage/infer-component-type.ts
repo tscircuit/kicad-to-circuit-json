@@ -28,9 +28,10 @@ export function inferComponentType(
     case "L":
       return "simple_inductor"
     case "D":
+      if (isLedFootprint(footprint)) return "simple_led"
       return "simple_diode"
     case "LED":
-      return "simple_diode"
+      return "simple_led"
     case "Q":
       // Q* is a generic transistor designator; actual transistor
       // polarity (npn/pnp) is determined later from the footprint
@@ -52,9 +53,18 @@ function isFiducialReference(reference: string | undefined): boolean {
 }
 
 function isFiducialFootprint(footprint: Footprint | undefined): boolean {
-  if (!footprint) return false
+  return getFootprintMetadata(footprint).includes("fiducial")
+}
 
-  const metadata = [
+function isLedFootprint(footprint: Footprint | undefined): boolean {
+  const metadata = getFootprintMetadata(footprint)
+  return metadata.includes("led") || metadata.includes("light emitting diode")
+}
+
+function getFootprintMetadata(footprint: Footprint | undefined): string {
+  if (!footprint) return ""
+
+  return [
     footprint.libraryLink,
     footprint.descr?.value,
     footprint.tags?.value,
@@ -65,8 +75,6 @@ function isFiducialFootprint(footprint: Footprint | undefined): boolean {
     .filter(Boolean)
     .join(" ")
     .toLowerCase()
-
-  return metadata.includes("fiducial")
 }
 
 /**
