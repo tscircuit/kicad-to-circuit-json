@@ -35,7 +35,6 @@
     "dist",
     "dist-site",
     "kicad-demos",
-    "node_modules",
-    "scratch"
+    "node_modules"
   ]
 }
