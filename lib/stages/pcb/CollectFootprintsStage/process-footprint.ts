@@ -37,7 +37,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const jlcpcbPartNumbers = getJlcpcbPartNumbers(footprint)
 
   // Infer component type from reference prefix
-  const ftype = inferComponentType(refdes)
+  const ftype = inferComponentType(refdes, footprint)
 
   // Create source_component with type-specific properties
   const sourceComponentData: any = {

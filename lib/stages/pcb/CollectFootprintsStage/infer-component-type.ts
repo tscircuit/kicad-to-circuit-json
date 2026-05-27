@@ -1,12 +1,26 @@
 import type { Footprint } from "kicadts"
+import { findFootprintPropertyValue } from "./footprint-properties"
+
+type StringValued = { value: string }
 
 /**
- * Infers the component type (ftype) from the reference designator
+ * Infers the component type (ftype) from the reference designator.
  */
-export function inferComponentType(reference: string | undefined): string {
-  if (!reference) return "simple_chip"
+export function inferComponentType(
+  reference: string | undefined,
+  footprint?: Footprint,
+): string {
+  if (!reference && !footprint) return "simple_chip"
 
-  const prefix = reference.match(/^([A-Z]+)/)?.[1]
+  const normalizedReference = reference?.trim()
+  const prefix = normalizedReference?.match(/^([A-Z]+)/)?.[1]
+
+  if (
+    isFiducialReference(normalizedReference) ||
+    isFiducialFootprint(footprint)
+  ) {
+    return "simple_fiducial"
+  }
 
   switch (prefix) {
     case "R":
@@ -33,6 +47,36 @@ export function inferComponentType(reference: string | undefined): string {
     default:
       return "simple_chip"
   }
+}
+
+function isFiducialReference(reference: string | undefined): boolean {
+  return /^FID\d+/i.test(reference || "")
+}
+
+function isFiducialFootprint(footprint: Footprint | undefined): boolean {
+  if (!footprint) return false
+
+  const metadata = [
+    footprint.libraryLink,
+    getSxStringValue(footprint.descr),
+    getSxStringValue(footprint.tags),
+    findFootprintPropertyValue(footprint, "Footprint"),
+    findFootprintPropertyValue(footprint, "Description"),
+    findFootprintPropertyValue(footprint, "Value"),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase()
+
+  return metadata.includes("fiducial")
+}
+
+function getSxStringValue(
+  value: StringValued | string | undefined,
+): string | undefined {
+  if (!value) return undefined
+  if (typeof value === "string") return value
+  return value.value
 }
 
 /**
