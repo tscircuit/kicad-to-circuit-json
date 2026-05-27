@@ -32,7 +32,7 @@ function isKicadTextHidden(text: any): boolean {
   return text.hidden === true || text._sxHide?.value === true
 }
 
-const KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE = 2 / 3
+const KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE = 1.5
 const TEXT_POSITION_EPSILON = 1e-6
 
 function getPropertyKey(property: any): string {

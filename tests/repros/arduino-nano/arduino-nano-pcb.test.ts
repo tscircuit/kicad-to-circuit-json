@@ -49,11 +49,18 @@ test("kicad-to-circuit-json repro: Arduino Nano PCB", async () => {
 
   expect(nanoText).toBeDefined()
   expect(nanoText?.is_knockout).toBe(true)
+  expect(nanoText?.font_size).toBeCloseTo(1.25 * 1.5)
   expect(gndTexts).toHaveLength(2)
   expect(gndTexts.every((el) => el.is_knockout === true)).toBe(true)
+  expect(gndTexts.every((el) => Math.abs(el.font_size - 0.7 * 1.5) < 1e-9)).toBe(
+    true,
+  )
   expect(attributionText?.is_knockout).toBeUndefined()
+  expect(attributionText?.font_size).toBeCloseTo(0.7 * 1.5)
   expect(attributionText?.ccw_rotation).toBe(270)
+  expect(threeVoltText?.font_size).toBeCloseTo(0.7 * 1.5)
   expect(threeVoltText?.ccw_rotation).toBe(50)
+  expect(d13Text?.font_size).toBeCloseTo(0.7 * 1.5)
   expect(d13Text?.ccw_rotation).toBe(90)
 
   const fs = await import("node:fs/promises")
