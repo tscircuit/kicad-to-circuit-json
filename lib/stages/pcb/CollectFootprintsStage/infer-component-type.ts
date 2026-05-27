@@ -1,8 +1,6 @@
 import type { Footprint } from "kicadts"
 import { findFootprintPropertyValue } from "./footprint-properties"
 
-type StringValued = { value: string }
-
 /**
  * Infers the component type (ftype) from the reference designator.
  */
@@ -58,8 +56,8 @@ function isFiducialFootprint(footprint: Footprint | undefined): boolean {
 
   const metadata = [
     footprint.libraryLink,
-    getSxStringValue(footprint.descr),
-    getSxStringValue(footprint.tags),
+    footprint.descr?.value,
+    footprint.tags?.value,
     findFootprintPropertyValue(footprint, "Footprint"),
     findFootprintPropertyValue(footprint, "Description"),
     findFootprintPropertyValue(footprint, "Value"),
@@ -69,14 +67,6 @@ function isFiducialFootprint(footprint: Footprint | undefined): boolean {
     .toLowerCase()
 
   return metadata.includes("fiducial")
-}
-
-function getSxStringValue(
-  value: StringValued | string | undefined,
-): string | undefined {
-  if (!value) return undefined
-  if (typeof value === "string") return value
-  return value.value
 }
 
 /**
