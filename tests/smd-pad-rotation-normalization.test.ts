@@ -109,7 +109,7 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
   expect(padsByHint["7"].ccw_rotation).toBeUndefined()
 })
 
-test("kicad-to-circuit-json: combines footprint and SMD pad rotation", () => {
+test("kicad-to-circuit-json: uses KiCad board-space SMD pad rotation", () => {
   const kicadPcb = `(kicad_pcb (version 20211014) (generator pcbnew)
   (layers
     (0 "F.Cu" signal)
@@ -135,7 +135,7 @@ test("kicad-to-circuit-json: combines footprint and SMD pad rotation", () => {
     shape: "rotated_rect",
     width: 1,
     height: 2,
-    ccw_rotation: 315,
+    ccw_rotation: 45,
   })
 })
 

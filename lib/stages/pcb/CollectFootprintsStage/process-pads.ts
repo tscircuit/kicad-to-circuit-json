@@ -116,10 +116,9 @@ export function processPad({
         ? getPcbCopperLayerRefs(ctx.kicadPcb)
         : []
 
-  // Pad shape orientation is global in Circuit JSON. The pad's local KiCad
-  // angle must be combined with the footprint rotation, with the footprint
-  // rotation negated to match the KiCad Y-down -> Circuit JSON Y-up transform.
-  const totalCcwRotationDegrees = (padAt.angle || 0) - componentRotation
+  // KiCad stores pad positions relative to the footprint, but pad angles in
+  // the board file are already in board coordinates.
+  const totalCcwRotationDegrees = padAt.angle || 0
 
   // Create pcb_port for this pad (if it has a pad number)
   const padNumber = pad.number?.toString()
@@ -471,7 +470,7 @@ export function createPlatedHole(
   drill: any,
   shape: string,
   layers: LayerRef[],
-  rotationDegrees = 0,
+  _rotation = 0,
   pcbPortId?: string,
   _sourcePortId: string | undefined = undefined,
 ) {
@@ -526,14 +525,13 @@ export function createPlatedHole(
       hole_height: drillX,
       outer_width: outerWidth,
       outer_height: outerHeight,
-      ccw_rotation: normalizeRotationDegrees(rotationDegrees),
+      ccw_rotation: normalizeRotationDegrees(_rotation),
       layers,
     } as PcbPlatedHoleOval
     ctx.db.pcb_plated_hole.insert(platedHole)
   } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
     // Rectangular pad with pill hole
-    const normalizedCcwRotationDegrees =
-      normalizeRotationDegrees(rotationDegrees)
+    const normalizedCcwRotationDegrees = normalizeRotationDegrees(_rotation)
     if (drillIsOval) {
       if (normalizedCcwRotationDegrees === 0) {
         const platedHole: PcbHolePillWithRectPad = {
@@ -607,7 +605,7 @@ export function createPlatedHole(
         hole_shape: "circle",
         pad_shape: "rect",
         hole_diameter: holeDiameter,
-        rect_ccw_rotation: normalizeRotationDegrees(rotationDegrees),
+        rect_ccw_rotation: normalizeRotationDegrees(_rotation),
         rect_pad_width: outerWidth,
         rect_pad_height: outerHeight,
         hole_offset_x: 0,
