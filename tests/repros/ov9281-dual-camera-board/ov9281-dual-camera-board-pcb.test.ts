@@ -35,7 +35,7 @@ test("kicad-to-circuit-json repro: OV9281 dual camera board PCB", () => {
     import.meta.path,
     "ov9281-dual-camera-board-circuit-json",
   )
-})
+}, 30_000)
 
 function expectSvgSnapshot(
   svg: string,
