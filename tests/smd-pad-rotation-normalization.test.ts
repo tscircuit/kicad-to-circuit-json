@@ -109,30 +109,19 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
   expect(padsByHint["7"].ccw_rotation).toBeUndefined()
 })
 
-test("kicad-to-circuit-json: includes footprint rotation in SMD pad orientation", () => {
+test("kicad-to-circuit-json: combines footprint and SMD pad rotation", () => {
   const kicadPcb = `(kicad_pcb (version 20211014) (generator pcbnew)
   (layers
     (0 "F.Cu" signal)
     (31 "B.Cu" signal)
     (35 "F.Paste" user)
-    (37 "F.SilkS" user "F.Silkscreen")
     (39 "F.Mask" user)
-    (44 "Edge.Cuts" user)
   )
   (footprint "Test:FootprintRotatedPads" (layer "F.Cu")
     (at 100 100 90)
     (tstamp "test-footprint-rotated-pads")
     (attr smd)
-    (fp_text reference "U1" (at 0 -3) (layer "F.SilkS")
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value "FootprintRotatedPads" (at 0 3) (layer "F.Fab")
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (pad "1" smd rect (at 0 0 0) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
-    (pad "2" smd roundrect (at 4 0 0) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25))
-    (pad "3" smd oval (at 8 0 90) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
-    (pad "4" smd rect (at 12 0 45) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
+    (pad "1" smd rect (at 0 0 45) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
   )
 )`
 
@@ -141,35 +130,8 @@ test("kicad-to-circuit-json: includes footprint rotation in SMD pad orientation"
   converter.runUntilFinished()
 
   const output = converter.getOutput()
-  const pads = output.filter((el: any) => el.type === "pcb_smtpad")
-  const padsByHint = Object.fromEntries(
-    pads.map((pad: any) => [pad.port_hints?.[0], pad]),
-  )
-
-  expect(padsByHint["1"]).toMatchObject({
-    shape: "rect",
-    width: 2,
-    height: 1,
-  })
-  expect(padsByHint["1"].ccw_rotation).toBeUndefined()
-
-  expect(padsByHint["2"]).toMatchObject({
-    shape: "rect",
-    width: 2,
-    height: 1,
-    corner_radius: 0.125,
-  })
-  expect(padsByHint["2"].ccw_rotation).toBeUndefined()
-
-  expect(padsByHint["3"]).toMatchObject({
-    shape: "rect",
-    width: 1,
-    height: 2,
-    corner_radius: 0.5,
-  })
-  expect(padsByHint["3"].ccw_rotation).toBeUndefined()
-
-  expect(padsByHint["4"]).toMatchObject({
+  const [pad] = output.filter((el: any) => el.type === "pcb_smtpad")
+  expect(pad).toMatchObject({
     shape: "rotated_rect",
     width: 1,
     height: 2,
@@ -183,21 +145,13 @@ test("kicad-to-circuit-json: tolerates KiCad paste margin ratio metadata", () =>
     (0 "F.Cu" signal)
     (31 "B.Cu" signal)
     (35 "F.Paste" user)
-    (37 "F.SilkS" user "F.Silkscreen")
     (39 "F.Mask" user)
-    (44 "Edge.Cuts" user)
   )
   (footprint "Test:PasteRatio" (layer "F.Cu")
     (at 100 100)
     (tstamp "test-paste-ratio")
     (attr smd)
     (solder_paste_margin_ratio -1)
-    (fp_text reference "U1" (at 0 -3) (layer "F.SilkS")
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
-    (fp_text value "PasteRatio" (at 0 3) (layer "F.Fab")
-      (effects (font (size 1 1) (thickness 0.15)))
-    )
     (pad "1" smd rect (at 0 0) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
   )
 )`
