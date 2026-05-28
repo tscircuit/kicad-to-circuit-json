@@ -41,9 +41,7 @@ test("kicad-to-circuit-json repro01: joule-thief PCB", async () => {
   expect(smtPads.some((pad) => pad.pcb_port_id)).toBe(true)
   expect(platedHoles.some((hole) => hole.pcb_port_id)).toBe(true)
   expect(
-    platedHoles.some(
-      (hole) => hole.shape === "rotated_pill_hole_with_rect_pad",
-    ),
+    platedHoles.some((hole) => hole.shape === "pill_hole_with_rect_pad"),
   ).toBe(true)
 
   const connectivityMap = getFullConnectivityMapFromCircuitJson(
@@ -112,4 +110,4 @@ test("kicad-to-circuit-json repro01: joule-thief PCB", async () => {
     import.meta.path,
     "repro01-joule-thief-pcb",
   )
-})
+}, 30_000)

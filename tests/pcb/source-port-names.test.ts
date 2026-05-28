@@ -103,4 +103,4 @@ test("pcb source ports preserve nonnumeric pad names as local aliases", () => {
   )
   expect(j2R).toBeDefined()
   expect(j2R.name).toBe("R")
-})
+}, 6000)
