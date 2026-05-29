@@ -41,6 +41,8 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
     (pad "4" smd rect (at 12 0 270) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
     (pad "5" smd rect (at 16 0 45) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
     (pad "6" smd roundrect (at 20 0 90) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25))
+    (pad "7" smd oval (at 24 0 90) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
+    (pad "8" smd oval (at 28 0 45) (size 1 2) (layers "F.Cu" "F.Paste" "F.Mask"))
   )
 )`
 
@@ -54,7 +56,7 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
     pads.map((pad: any) => [pad.port_hints?.[0], pad]),
   )
 
-  expect(pads).toHaveLength(6)
+  expect(pads).toHaveLength(8)
 
   expect(padsByHint["1"]).toMatchObject({
     shape: "rect",
@@ -98,4 +100,20 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
     corner_radius: 0.125,
   })
   expect(padsByHint["6"].ccw_rotation).toBeUndefined()
+
+  expect(padsByHint["7"]).toMatchObject({
+    shape: "pill",
+    width: 2,
+    height: 1,
+    radius: 0.5,
+  })
+  expect(padsByHint["7"].ccw_rotation).toBeUndefined()
+
+  expect(padsByHint["8"]).toMatchObject({
+    shape: "rotated_pill",
+    width: 1,
+    height: 2,
+    radius: 0.5,
+    ccw_rotation: 45,
+  })
 })
