@@ -50,7 +50,6 @@ function expectSvgSnapshot(
   if (!existsSync(snapshotPath) || shouldUpdateSnapshot) {
     writeFileSync(snapshotPath, normalizedSvg)
   }
-
 }
 
 function normalizeTransientSvgIds(svg: string) {
