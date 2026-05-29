@@ -131,65 +131,65 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_0",
+    "pcb_smtpad_id": "pcb_smtpad_id",
     "pcb_component_id": "pcb_component_0",
     "x": -2.7700000000000102,
     "y": -2,
-    "width": 0.54,
-    "height": 0.64,
     "layer": "top",
     "pcb_port_id": "pcb_port_0",
     "port_hints": [
       "1"
     ],
+    "width": 0.54,
+    "height": 0.64,
     "shape": "rect",
     "corner_radius": 0.0675
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_1",
+    "pcb_smtpad_id": "pcb_smtpad_id",
     "pcb_component_id": "pcb_component_0",
     "x": -1.75,
     "y": -2,
-    "width": 0.54,
-    "height": 0.64,
     "layer": "top",
     "pcb_port_id": "pcb_port_1",
     "port_hints": [
       "2"
     ],
+    "width": 0.54,
+    "height": 0.64,
     "shape": "rect",
     "corner_radius": 0.0675
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_2",
+    "pcb_smtpad_id": "pcb_smtpad_id",
     "pcb_component_id": "pcb_component_1",
     "x": 3.260000000000005,
     "y": 1.5,
-    "width": 0.54,
-    "height": 0.64,
     "layer": "bottom",
     "pcb_port_id": "pcb_port_2",
     "port_hints": [
       "1"
     ],
+    "width": 0.54,
+    "height": 0.64,
     "shape": "rect",
     "corner_radius": 0.0675
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_3",
+    "pcb_smtpad_id": "pcb_smtpad_id",
     "pcb_component_id": "pcb_component_1",
     "x": 2.239999999999995,
     "y": 1.5,
-    "width": 0.54,
-    "height": 0.64,
     "layer": "bottom",
     "pcb_port_id": "pcb_port_3",
     "port_hints": [
       "2"
     ],
+    "width": 0.54,
+    "height": 0.64,
     "shape": "rect",
     "corner_radius": 0.0675
   },
@@ -207,7 +207,10 @@
   },
   {
     "type": "pcb_board",
-    "pcb_board_id": "pcb_board_0",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
     "outline": [
       {
         "x": 5.25,
@@ -231,7 +234,9 @@
       }
     ],
     "width": 10.5,
-    "height": 9
+    "height": 9,
+    "num_layers": 2,
+    "pcb_board_id": "pcb_board_0"
   },
   {
     "type": "pcb_silkscreen_text",
