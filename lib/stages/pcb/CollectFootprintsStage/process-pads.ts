@@ -7,9 +7,11 @@ import type {
   PcbPlatedHoleCircle,
   PcbPlatedHoleOval,
   PcbSmtPadCircle,
+  PcbSmtPadPill,
   PcbSmtPadPolygon,
   PcbSmtPadRect,
   PcbSmtPadRotatedRect,
+  PcbSmtPadRotatedPill,
 } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
@@ -349,7 +351,7 @@ export function createSmdPad({
     }
   }
 
-  // Handle standard shapes (circle, rect, roundrect)
+  // Handle standard shapes (circle, oval/pill, rect, roundrect)
   const ccwRotationDegrees = totalCcwRotationDegrees
 
   if (shape === "circle") {
@@ -368,16 +370,55 @@ export function createSmdPad({
       radius: Math.max(size.x, size.y) / 2,
     } as PcbSmtPadCircle
     ctx.db.pcb_smtpad.insert(smtpad)
-  } else if (shape === "rect" || shape === "roundrect" || shape === "oval") {
+  } else if (shape === "oval") {
+    const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
+    const rightAngleTurns = getRightAngleTurns(normalizedCcwRotation)
+    const radius = Math.min(size.x, size.y) / 2
+
+    if (rightAngleTurns === null && normalizedCcwRotation !== 0) {
+      const rotatedPillSmtPad: PcbSmtPadRotatedPill = {
+        type: "pcb_smtpad",
+        pcb_component_id: componentId,
+        x: pos.x,
+        y: pos.y,
+        width: size.x,
+        height: size.y,
+        radius,
+        layer,
+        pcb_port_id: pcbPortId,
+        port_hints: [pad.number.toString()],
+        shape: "rotated_pill",
+        ccw_rotation: normalizedCcwRotation,
+      } as PcbSmtPadRotatedPill
+      ctx.db.pcb_smtpad.insert(rotatedPillSmtPad)
+      return
+    }
+
+    const shouldSwapDimensions =
+      rightAngleTurns !== null && Math.abs(rightAngleTurns) % 2 === 1
+
+    const smtpad: PcbSmtPadPill = {
+      type: "pcb_smtpad",
+      pcb_component_id: componentId,
+      x: pos.x,
+      y: pos.y,
+      width: shouldSwapDimensions ? size.y : size.x,
+      height: shouldSwapDimensions ? size.x : size.y,
+      radius,
+      layer,
+      pcb_port_id: pcbPortId,
+      port_hints: [pad.number.toString()],
+      shape: "pill",
+    } as PcbSmtPadPill
+
+    ctx.db.pcb_smtpad.insert(smtpad)
+  } else if (shape === "rect" || shape === "roundrect") {
     const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
     let cornerRadius: number | undefined
     if (shape === "roundrect" && roundrectRatio !== undefined) {
       // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
       const minDimension = Math.min(size.x, size.y)
       cornerRadius = (minDimension * roundrectRatio) / 2
-    }
-    if (shape === "oval") {
-      cornerRadius = Math.min(size.x, size.y) / 2
     }
 
     const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
