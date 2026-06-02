@@ -157,49 +157,116 @@ function inferPcbSvgTransform({
     throw new Error("Expected at least two rendered pcb_via centers")
   }
 
-  const firstPair = findViaPairForScale(pcbVias, renderedViaCenters)
-  if (!firstPair) {
+  const renderedViaCenterKeys = new Set(
+    renderedViaCenters.map((point) => getPointKey(point)),
+  )
+  const bestTransform = findMatchingViaSvgTransform({
+    pcbVias,
+    renderedViaCenters,
+    renderedViaCenterKeys,
+  })
+
+  if (!bestTransform) {
     throw new Error("Unable to infer PCB SVG transform from rendered vias")
   }
 
-  const { circuitA, circuitB, screenA, screenB } = firstPair
-  const scale =
-    Math.abs(circuitB.x - circuitA.x) > 1e-9
-      ? (screenB.x - screenA.x) / (circuitB.x - circuitA.x)
-      : (screenA.y - screenB.y) / (circuitB.y - circuitA.y)
+  return bestTransform
+}
+
+function findMatchingViaSvgTransform({
+  pcbVias,
+  renderedViaCenters,
+  renderedViaCenterKeys,
+}: {
+  pcbVias: Array<{ x: number; y: number }>
+  renderedViaCenters: Array<{ x: number; y: number }>
+  renderedViaCenterKeys: Set<string>
+}) {
+  for (let i = 0; i < pcbVias.length; i++) {
+    for (let j = i + 1; j < pcbVias.length; j++) {
+      const circuitA = pcbVias[i]!
+      const circuitB = pcbVias[j]!
+
+      if (
+        Math.abs(circuitA.x - circuitB.x) <= 1e-9 &&
+        Math.abs(circuitA.y - circuitB.y) <= 1e-9
+      ) {
+        continue
+      }
+
+      for (let a = 0; a < renderedViaCenters.length; a++) {
+        for (let b = a + 1; b < renderedViaCenters.length; b++) {
+          const screenA = renderedViaCenters[a]!
+          const screenB = renderedViaCenters[b]!
+
+          for (const [mappedScreenA, mappedScreenB] of [
+            [screenA, screenB],
+            [screenB, screenA],
+          ] as const) {
+            const transform = inferTransformFromPair({
+              circuitA,
+              circuitB,
+              screenA: mappedScreenA,
+              screenB: mappedScreenB,
+            })
+
+            if (
+              transform &&
+              pcbVias.every((via) =>
+                renderedViaCenterKeys.has(
+                  getPointKey(toScreen(via, transform)),
+                ),
+              )
+            ) {
+              return transform
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return undefined
+}
+
+function inferTransformFromPair({
+  circuitA,
+  circuitB,
+  screenA,
+  screenB,
+}: {
+  circuitA: { x: number; y: number }
+  circuitB: { x: number; y: number }
+  screenA: { x: number; y: number }
+  screenB: { x: number; y: number }
+}) {
+  const circuitDX = circuitB.x - circuitA.x
+  const circuitDY = circuitB.y - circuitA.y
+  const screenDX = screenB.x - screenA.x
+  const screenDY = screenA.y - screenB.y
+
+  let scale: number | undefined
+
+  if (Math.abs(circuitDX) > 1e-9) {
+    scale = screenDX / circuitDX
+    if (Math.abs(circuitDY) > 1e-9) {
+      const scaleFromY = screenDY / circuitDY
+      if (Math.abs(scaleFromY - scale) > 1e-6) {
+        return undefined
+      }
+    }
+  } else if (Math.abs(circuitDY) > 1e-9) {
+    scale = screenDY / circuitDY
+  }
+
+  if (!scale || !Number.isFinite(scale) || scale <= 0) {
+    return undefined
+  }
 
   return {
     scale,
     translateX: screenA.x - scale * circuitA.x,
     translateY: screenA.y + scale * circuitA.y,
-  }
-}
-
-function findViaPairForScale(
-  pcbVias: Array<{ x: number; y: number }>,
-  renderedViaCenters: Array<{ x: number; y: number }>,
-) {
-  for (
-    let i = 0;
-    i < Math.min(pcbVias.length, renderedViaCenters.length);
-    i++
-  ) {
-    for (
-      let j = i + 1;
-      j < Math.min(pcbVias.length, renderedViaCenters.length);
-      j++
-    ) {
-      const circuitA = pcbVias[i]!
-      const circuitB = pcbVias[j]!
-      const screenA = renderedViaCenters[i]!
-      const screenB = renderedViaCenters[j]!
-      if (
-        Math.abs(circuitA.x - circuitB.x) > 1e-9 ||
-        Math.abs(circuitA.y - circuitB.y) > 1e-9
-      ) {
-        return { circuitA, circuitB, screenA, screenB }
-      }
-    }
   }
 }
 
@@ -264,4 +331,14 @@ function addViaOverlayToSvg({
   </g>`
 
   return svg.replace("</svg>", `${overlay}</svg>`)
+}
+
+function toScreen(
+  point: { x: number; y: number },
+  transform: { scale: number; translateX: number; translateY: number },
+) {
+  return {
+    x: transform.translateX + point.x * transform.scale,
+    y: transform.translateY - point.y * transform.scale,
+  }
 }

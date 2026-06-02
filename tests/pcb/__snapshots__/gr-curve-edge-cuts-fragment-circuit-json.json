@@ -1,7 +1,10 @@
 [
   {
     "type": "pcb_board",
-    "pcb_board_id": "pcb_board_0",
+    "center": {
+      "x": 0,
+      "y": 0
+    },
     "outline": [
       {
         "x": -10.024999999999991,
@@ -665,6 +668,8 @@
       }
     ],
     "width": 20.049999999999997,
-    "height": 2.3812500000000014
+    "height": 2.3812500000000014,
+    "num_layers": 2,
+    "pcb_board_id": "pcb_board_0"
   }
 ]

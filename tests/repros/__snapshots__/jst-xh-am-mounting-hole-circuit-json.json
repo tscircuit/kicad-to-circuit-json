@@ -135,7 +135,7 @@
     "pcb_silkscreen_text_id": "pcb_silkscreen_text_0",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
-    "font_size": 1.5,
+    "font_size": 0.6666666666666666,
     "text": "REF**",
     "anchor_position": {
       "x": 102.5,
