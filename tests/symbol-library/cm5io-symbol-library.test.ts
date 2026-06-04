@@ -21,12 +21,16 @@ function convertCm5IoSymbolLibrary() {
   const sourcePorts = circuitJson.filter(
     (element) => element.type === "source_port",
   )
+  const schematicComponents = circuitJson.filter(
+    (element) => element.type === "schematic_component",
+  )
 
   return {
     converter,
     circuitJson,
     sourceComponents,
     sourcePorts,
+    schematicComponents,
   }
 }
 
@@ -45,12 +49,23 @@ test("kicad-to-circuit-json: CM5IO symbol library uses symbol-library stages", (
 })
 
 test("kicad-to-circuit-json: CM5IO symbol library emits source components and ports", () => {
-  const { converter, circuitJson, sourceComponents, sourcePorts } =
-    convertCm5IoSymbolLibrary()
+  const {
+    converter,
+    circuitJson,
+    sourceComponents,
+    sourcePorts,
+    schematicComponents,
+  } = convertCm5IoSymbolLibrary()
 
   expect(circuitJson.length).toBeGreaterThan(0)
   expect(sourceComponents.length).toBe(36)
   expect(sourcePorts.length).toBe(487)
+  expect(schematicComponents.length).toBe(36)
+  expect(
+    schematicComponents.every(
+      (schematicComponent) => schematicComponent.is_box_with_pins === false,
+    ),
+  ).toBe(true)
   expect(converter.getStats()).toEqual({
     components: 36,
     pads: 487,
@@ -103,6 +118,16 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
   expect(
     typeCPorts.find((port) => port.pin_number === 1 && port.name === "EP"),
   ).toBeDefined()
+
+  const getElementCount = (type: string) =>
+    circuitJson.filter((element) => element.type === type).length
+
+  expect(getElementCount("schematic_line")).toBeGreaterThan(0)
+  expect(getElementCount("schematic_rect")).toBeGreaterThan(0)
+  expect(getElementCount("schematic_circle")).toBeGreaterThan(0)
+  expect(getElementCount("schematic_arc")).toBeGreaterThan(0)
+  expect(getElementCount("schematic_path")).toBeGreaterThan(0)
+  expect(getElementCount("schematic_text")).toBeGreaterThan(0)
 })
 
 test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () => {

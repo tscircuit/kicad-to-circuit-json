@@ -23,10 +23,66 @@ export interface KicadSymbolLibPin {
   alternates?: KicadSymbolLibPinAlternate[]
 }
 
+export interface KicadSymbolLibPoint {
+  x: number
+  y: number
+}
+
+export interface KicadSymbolLibStroke {
+  width?: number
+  type?: string
+}
+
+export interface KicadSymbolLibFill {
+  type?: string
+}
+
+export interface KicadSymbolLibPolyline {
+  points: KicadSymbolLibPoint[]
+  stroke?: KicadSymbolLibStroke
+  fill?: KicadSymbolLibFill
+}
+
+export interface KicadSymbolLibRectangle {
+  start: KicadSymbolLibPoint
+  end: KicadSymbolLibPoint
+  stroke?: KicadSymbolLibStroke
+  fill?: KicadSymbolLibFill
+}
+
+export interface KicadSymbolLibCircle {
+  center: KicadSymbolLibPoint
+  radius: number
+  stroke?: KicadSymbolLibStroke
+  fill?: KicadSymbolLibFill
+}
+
+export interface KicadSymbolLibArc {
+  start: KicadSymbolLibPoint
+  mid: KicadSymbolLibPoint
+  end: KicadSymbolLibPoint
+  stroke?: KicadSymbolLibStroke
+}
+
+export interface KicadSymbolLibText {
+  text: string
+  at: {
+    x: number
+    y: number
+    angle: number
+  }
+  fontSize?: number
+}
+
 export interface KicadSymbolLibSymbol {
   name: string
   properties: Record<string, string>
   pins: KicadSymbolLibPin[]
+  polylines: KicadSymbolLibPolyline[]
+  rectangles: KicadSymbolLibRectangle[]
+  circles: KicadSymbolLibCircle[]
+  arcs: KicadSymbolLibArc[]
+  texts: KicadSymbolLibText[]
   subSymbols: KicadSymbolLibSymbol[]
 }
 
