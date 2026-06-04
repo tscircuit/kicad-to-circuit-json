@@ -8,10 +8,15 @@ import sharp from "sharp"
 export const takeCircuitJsonSnapshot = async (params: {
   circuitJson: CircuitJson
   outputType: "pcb" | "schematic"
+  width?: number
+  height?: number
 }): Promise<Buffer> => {
-  const { circuitJson, outputType } = params
+  const { circuitJson, outputType, width, height } = params
   if (outputType === "schematic") {
-    const svg = await convertCircuitJsonToSchematicSvg(circuitJson)
+    const svg = await convertCircuitJsonToSchematicSvg(circuitJson, {
+      width,
+      height,
+    })
     const png = await sharp(Buffer.from(svg)).png().toBuffer()
     return png
   }

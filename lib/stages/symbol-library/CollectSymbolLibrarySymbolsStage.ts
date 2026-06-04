@@ -32,8 +32,8 @@ import { rotationToDirection } from "../schematic/utils/rotationToDirection"
 
 const MAX_KICAD_SYMBOL_UNIT_TO_CJ = 1
 const PREVIEW_COLUMNS = 6
-const PREVIEW_CELL_WIDTH = 7
-const PREVIEW_CELL_HEIGHT = 10
+const PREVIEW_CELL_WIDTH = 10
+const PREVIEW_CELL_HEIGHT = 9.5
 const PREVIEW_CELL_FILL_RATIO = 0.95
 const DEFAULT_STROKE_COLOR = "rgb(132, 0, 0)"
 const DEFAULT_FILL_COLOR = "rgb(255, 255, 194)"
@@ -77,7 +77,13 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       return false
     }
 
-    for (const symbol of this.ctx.kicadSymbolLib.symbols) {
+    const symbols = [...this.ctx.kicadSymbolLib.symbols].sort((a, b) => {
+      const aFileName = this.getKicadSymbolExportFileName(a)
+      const bFileName = this.getKicadSymbolExportFileName(b)
+      return aFileName < bFileName ? -1 : aFileName > bFileName ? 1 : 0
+    })
+
+    for (const symbol of symbols) {
       if (!symbol.name || this.processedSymbols.has(symbol.name)) continue
       this.processSymbol(symbol)
       this.processedSymbols.add(symbol.name)
@@ -122,6 +128,10 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       this.ctx.stats.components = (this.ctx.stats.components || 0) + 1
       this.ctx.stats.pads = (this.ctx.stats.pads || 0) + seenPinNumbers.size
     }
+  }
+
+  private getKicadSymbolExportFileName(symbol: KicadSymbolLibSymbol): string {
+    return `${symbol.name}_unit1.svg`
   }
 
   private collectPins(symbol: KicadSymbolLibSymbol): KicadSymbolLibPin[] {
@@ -411,7 +421,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   ): Point {
     return {
       x: origin.x + point.x * scale,
-      y: origin.y - point.y * scale,
+      y: origin.y + point.y * scale,
     }
   }
 
