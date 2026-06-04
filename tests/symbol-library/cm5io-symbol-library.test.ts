@@ -136,12 +136,23 @@ test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () 
   const circuitJsonPng = await takeCircuitJsonSnapshot({
     circuitJson,
     outputType: "schematic",
+    width: 1200,
+    height: 1140,
   })
 
   const kicadSymbolLibrarySnapshot = await takeKicadSymbolLibrarySnapshot({
     kicadFilePath: "tests/assets/CM5IO.kicad_sym",
   })
   expect(kicadSymbolLibrarySnapshot.symbolCount).toBe(36)
+  expect(
+    circuitJson
+      .filter((element) => element.type === "source_component")
+      .map((element) => element.name),
+  ).toEqual(
+    kicadSymbolLibrarySnapshot.svgFileNames.map((fileName) =>
+      fileName.replace(/_unit\d+\.svg$/, ""),
+    ),
+  )
 
   const stackedPng = await stackCircuitJsonKicadPngs(
     circuitJsonPng,
