@@ -227,6 +227,13 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       this.ctx.db.schematic_port.insert(schematicPortData)
     }
 
+    this.createPinLinePrimitives({
+      pins,
+      schematicComponentId: schematicComponent.schematic_component_id,
+      origin: center,
+      scale,
+    })
+
     this.createSchematicPrimitives({
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
@@ -306,9 +313,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         stroke_width: this.toStrokeWidth(rectangle.stroke?.width, scale),
         color: DEFAULT_STROKE_COLOR,
         is_filled: this.isFilled(rectangle.fill?.type),
-        fill_color: this.isFilled(rectangle.fill?.type)
-          ? DEFAULT_FILL_COLOR
-          : undefined,
+        fill_color: this.getFillColor(rectangle.fill?.type),
         is_dashed: rectangle.stroke?.type === "dash",
       }
       this.ctx.db.schematic_rect.insert(rectData)
@@ -322,9 +327,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         stroke_width: this.toStrokeWidth(circle.stroke?.width, scale),
         color: DEFAULT_STROKE_COLOR,
         is_filled: this.isFilled(circle.fill?.type),
-        fill_color: this.isFilled(circle.fill?.type)
-          ? DEFAULT_FILL_COLOR
-          : undefined,
+        fill_color: this.getFillColor(circle.fill?.type),
         is_dashed: circle.stroke?.type === "dash",
       }
       this.ctx.db.schematic_circle.insert(circleData)
@@ -371,6 +374,50 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
   }
 
+  private createPinLinePrimitives(params: {
+    pins: KicadSymbolLibPin[]
+    schematicComponentId: string
+    origin: Point
+    scale: number
+  }) {
+    const { pins, schematicComponentId, origin, scale } = params
+
+    for (const pin of pins) {
+      if (!pin.at || pin.hidden || !pin.length) continue
+      if (pin.graphicStyle && pin.graphicStyle !== "line") continue
+
+      const start = this.toSchematicPoint(pin.at, origin, scale)
+      const end = this.toSchematicPoint(
+        this.getPinLineEndPoint(pin),
+        origin,
+        scale,
+      )
+      if (start.x === end.x && start.y === end.y) continue
+
+      const lineData: SchematicLineData = {
+        schematic_component_id: schematicComponentId,
+        x1: start.x,
+        y1: start.y,
+        x2: end.x,
+        y2: end.y,
+        stroke_width: this.toStrokeWidth(undefined, scale),
+        color: DEFAULT_STROKE_COLOR,
+        is_dashed: false,
+      }
+      this.ctx.db.schematic_line.insert(lineData)
+    }
+  }
+
+  private getPinLineEndPoint(pin: KicadSymbolLibPin): KicadSymbolLibPoint {
+    const angleRadians = ((pin.at?.angle ?? 0) * Math.PI) / 180
+    const length = pin.length ?? 0
+
+    return {
+      x: (pin.at?.x ?? 0) + Math.cos(angleRadians) * length,
+      y: (pin.at?.y ?? 0) + Math.sin(angleRadians) * length,
+    }
+  }
+
   private createPolylinePrimitives(
     polyline: KicadSymbolLibPolyline,
     schematicComponentId: string,
@@ -388,7 +435,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         stroke_width: this.toStrokeWidth(polyline.stroke?.width, scale),
         stroke_color: DEFAULT_STROKE_COLOR,
         is_filled: true,
-        fill_color: DEFAULT_FILL_COLOR,
+        fill_color: this.getFillColor(polyline.fill?.type),
       }
       this.ctx.db.schematic_path.insert(pathData)
     }
@@ -435,6 +482,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
   private isFilled(fillType: string | undefined): boolean {
     return fillType !== undefined && fillType !== "none"
+  }
+
+  private getFillColor(fillType: string | undefined): string | undefined {
+    if (!this.isFilled(fillType)) return undefined
+    return fillType === "background" ? DEFAULT_FILL_COLOR : DEFAULT_STROKE_COLOR
   }
 
   private getArcGeometry(

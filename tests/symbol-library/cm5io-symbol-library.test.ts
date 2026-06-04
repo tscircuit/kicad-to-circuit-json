@@ -84,8 +84,51 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
 
   expect(getComponent("R")?.ftype).toBe("simple_resistor")
   expect(getPorts("R").map((port) => port.pin_number)).toEqual([1, 2])
+  const resistorComponent = getComponent("R")
+  const resistorSchematicComponent = schematicComponents.find(
+    (component) =>
+      component.source_component_id === resistorComponent?.source_component_id,
+  )
+  expect(
+    circuitJson.filter(
+      (element) =>
+        element.type === "schematic_line" &&
+        element.schematic_component_id ===
+          resistorSchematicComponent?.schematic_component_id &&
+        Math.hypot(element.x2 - element.x1, element.y2 - element.y1) > 0,
+    ).length,
+  ).toBe(2)
   expect(getComponent("C")?.ftype).toBe("simple_capacitor")
   expect(getPorts("C").map((port) => port.pin_number)).toEqual([1, 2])
+
+  const usbCComponent = getComponent("USB_C_Receptacle_USB2.0_16P")
+  const usbCSchematicComponent = schematicComponents.find(
+    (component) =>
+      component.source_component_id === usbCComponent?.source_component_id,
+  )
+  const usbCElements = circuitJson.filter(
+    (element) =>
+      element.schematic_component_id ===
+      usbCSchematicComponent?.schematic_component_id,
+  )
+  expect(
+    usbCElements.some(
+      (element) =>
+        element.type === "schematic_rect" &&
+        element.is_filled &&
+        element.fill_color === "rgb(255, 255, 194)",
+    ),
+  ).toBe(true)
+  expect(
+    usbCElements.some(
+      (element) =>
+        (element.type === "schematic_path" ||
+          element.type === "schematic_circle" ||
+          element.type === "schematic_rect") &&
+        element.is_filled &&
+        element.fill_color === "rgb(132, 0, 0)",
+    ),
+  ).toBe(true)
 
   const gpioPorts = getPorts("ComputeModule5-CM5_GPIO")
   expect(gpioPorts.length).toBe(100)
