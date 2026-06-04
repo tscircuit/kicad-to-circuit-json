@@ -1,14 +1,14 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
-import { KicadToCircuitJsonConverter } from "../../lib"
-import { stackCircuitJsonKicadPngs } from "../fixtures/stackCircuitJsonKicadPngs"
-import { takeCircuitJsonSnapshot } from "../fixtures/take-circuit-json-snapshot"
-import { takeKicadSnapshot } from "../fixtures/take-kicad-snapshot"
-import "../fixtures/png-matcher"
+import { KicadToCircuitJsonConverter } from "../../../lib"
+import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadPngs"
+import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
+import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
+import "../../fixtures/png-matcher"
 
 test("repro: SMD roundrect pill pad radius stacked snapshot", async () => {
   const kicadPcbContent = readFileSync(
-    "tests/repros/smt-pill-pad-roundrect.kicad_pcb",
+    "tests/repros/smt-pill-pad-roundrect/smt-pill-pad-roundrect.kicad_pcb",
     "utf-8",
   )
 
