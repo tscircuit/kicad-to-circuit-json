@@ -313,9 +313,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         stroke_width: this.toStrokeWidth(rectangle.stroke?.width, scale),
         color: DEFAULT_STROKE_COLOR,
         is_filled: this.isFilled(rectangle.fill?.type),
-        fill_color: this.isFilled(rectangle.fill?.type)
-          ? DEFAULT_FILL_COLOR
-          : undefined,
+        fill_color: this.getFillColor(rectangle.fill?.type),
         is_dashed: rectangle.stroke?.type === "dash",
       }
       this.ctx.db.schematic_rect.insert(rectData)
@@ -329,9 +327,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         stroke_width: this.toStrokeWidth(circle.stroke?.width, scale),
         color: DEFAULT_STROKE_COLOR,
         is_filled: this.isFilled(circle.fill?.type),
-        fill_color: this.isFilled(circle.fill?.type)
-          ? DEFAULT_FILL_COLOR
-          : undefined,
+        fill_color: this.getFillColor(circle.fill?.type),
         is_dashed: circle.stroke?.type === "dash",
       }
       this.ctx.db.schematic_circle.insert(circleData)
@@ -439,7 +435,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         stroke_width: this.toStrokeWidth(polyline.stroke?.width, scale),
         stroke_color: DEFAULT_STROKE_COLOR,
         is_filled: true,
-        fill_color: DEFAULT_FILL_COLOR,
+        fill_color: this.getFillColor(polyline.fill?.type),
       }
       this.ctx.db.schematic_path.insert(pathData)
     }
@@ -486,6 +482,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
   private isFilled(fillType: string | undefined): boolean {
     return fillType !== undefined && fillType !== "none"
+  }
+
+  private getFillColor(fillType: string | undefined): string | undefined {
+    if (!this.isFilled(fillType)) return undefined
+    return fillType === "background" ? DEFAULT_FILL_COLOR : DEFAULT_STROKE_COLOR
   }
 
   private getArcGeometry(

@@ -101,6 +101,35 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
   expect(getComponent("C")?.ftype).toBe("simple_capacitor")
   expect(getPorts("C").map((port) => port.pin_number)).toEqual([1, 2])
 
+  const usbCComponent = getComponent("USB_C_Receptacle_USB2.0_16P")
+  const usbCSchematicComponent = schematicComponents.find(
+    (component) =>
+      component.source_component_id === usbCComponent?.source_component_id,
+  )
+  const usbCElements = circuitJson.filter(
+    (element) =>
+      element.schematic_component_id ===
+      usbCSchematicComponent?.schematic_component_id,
+  )
+  expect(
+    usbCElements.some(
+      (element) =>
+        element.type === "schematic_rect" &&
+        element.is_filled &&
+        element.fill_color === "rgb(255, 255, 194)",
+    ),
+  ).toBe(true)
+  expect(
+    usbCElements.some(
+      (element) =>
+        (element.type === "schematic_path" ||
+          element.type === "schematic_circle" ||
+          element.type === "schematic_rect") &&
+        element.is_filled &&
+        element.fill_color === "rgb(132, 0, 0)",
+    ),
+  ).toBe(true)
+
   const gpioPorts = getPorts("ComputeModule5-CM5_GPIO")
   expect(gpioPorts.length).toBe(100)
   expect(
