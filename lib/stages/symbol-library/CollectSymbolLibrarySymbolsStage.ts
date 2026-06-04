@@ -227,6 +227,13 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       this.ctx.db.schematic_port.insert(schematicPortData)
     }
 
+    this.createPinLinePrimitives({
+      pins,
+      schematicComponentId: schematicComponent.schematic_component_id,
+      origin: center,
+      scale,
+    })
+
     this.createSchematicPrimitives({
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
@@ -368,6 +375,50 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         color: DEFAULT_STROKE_COLOR,
       }
       this.ctx.db.schematic_text.insert(textData)
+    }
+  }
+
+  private createPinLinePrimitives(params: {
+    pins: KicadSymbolLibPin[]
+    schematicComponentId: string
+    origin: Point
+    scale: number
+  }) {
+    const { pins, schematicComponentId, origin, scale } = params
+
+    for (const pin of pins) {
+      if (!pin.at || pin.hidden || !pin.length) continue
+      if (pin.graphicStyle && pin.graphicStyle !== "line") continue
+
+      const start = this.toSchematicPoint(pin.at, origin, scale)
+      const end = this.toSchematicPoint(
+        this.getPinLineEndPoint(pin),
+        origin,
+        scale,
+      )
+      if (start.x === end.x && start.y === end.y) continue
+
+      const lineData: SchematicLineData = {
+        schematic_component_id: schematicComponentId,
+        x1: start.x,
+        y1: start.y,
+        x2: end.x,
+        y2: end.y,
+        stroke_width: this.toStrokeWidth(undefined, scale),
+        color: DEFAULT_STROKE_COLOR,
+        is_dashed: false,
+      }
+      this.ctx.db.schematic_line.insert(lineData)
+    }
+  }
+
+  private getPinLineEndPoint(pin: KicadSymbolLibPin): KicadSymbolLibPoint {
+    const angleRadians = ((pin.at?.angle ?? 0) * Math.PI) / 180
+    const length = pin.length ?? 0
+
+    return {
+      x: (pin.at?.x ?? 0) + Math.cos(angleRadians) * length,
+      y: (pin.at?.y ?? 0) + Math.sin(angleRadians) * length,
     }
   }
 

@@ -84,6 +84,20 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
 
   expect(getComponent("R")?.ftype).toBe("simple_resistor")
   expect(getPorts("R").map((port) => port.pin_number)).toEqual([1, 2])
+  const resistorComponent = getComponent("R")
+  const resistorSchematicComponent = schematicComponents.find(
+    (component) =>
+      component.source_component_id === resistorComponent?.source_component_id,
+  )
+  expect(
+    circuitJson.filter(
+      (element) =>
+        element.type === "schematic_line" &&
+        element.schematic_component_id ===
+          resistorSchematicComponent?.schematic_component_id &&
+        Math.hypot(element.x2 - element.x1, element.y2 - element.y1) > 0,
+    ).length,
+  ).toBe(2)
   expect(getComponent("C")?.ftype).toBe("simple_capacitor")
   expect(getPorts("C").map((port) => port.pin_number)).toEqual([1, 2])
 
