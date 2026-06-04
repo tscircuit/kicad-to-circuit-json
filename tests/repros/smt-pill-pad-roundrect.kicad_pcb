@@ -721,4 +721,44 @@
     (net 0)
     (uuid 4fb51800-0684-7561-5cbe-02c24d086fdd)
   )
+  (gr_line
+    (start 96 96)
+    (end 104 96)
+    (stroke
+      (width 0.1)
+      (type default)
+    )
+    (layer Edge.Cuts)
+    (uuid 8ed67870-300d-4a19-afb7-7824f2ff56d1)
+  )
+  (gr_line
+    (start 104 96)
+    (end 104 104)
+    (stroke
+      (width 0.1)
+      (type default)
+    )
+    (layer Edge.Cuts)
+    (uuid 635b922c-3403-41e4-868a-477ee3686d4f)
+  )
+  (gr_line
+    (start 104 104)
+    (end 96 104)
+    (stroke
+      (width 0.1)
+      (type default)
+    )
+    (layer Edge.Cuts)
+    (uuid 087de566-4bb7-4ff7-ba7d-3bfbc71ca3b0)
+  )
+  (gr_line
+    (start 96 104)
+    (end 96 96)
+    (stroke
+      (width 0.1)
+      (type default)
+    )
+    (layer Edge.Cuts)
+    (uuid 240b36d9-0873-4e52-a89c-7c6de0ffb298)
+  )
 )
