@@ -20,7 +20,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_0",
     "pcb_component_id": "pcb_component_0",
     "x": 15.925799999999981,
     "y": -4.775199999999998,
@@ -170,7 +170,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_1",
     "pcb_component_id": "pcb_component_1",
     "x": 20.294600000000003,
     "y": 5.715000000000003,
@@ -1612,7 +1612,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_0",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_3",
     "pcb_port_id": "pcb_port_33",
@@ -6438,7 +6438,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_6",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_15",
     "pcb_port_id": "pcb_port_86",
@@ -7490,7 +7490,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_84",
     "pcb_component_id": "pcb_component_17",
     "x": 19.989800000000002,
     "y": -5.029199999999989,
@@ -9867,7 +9867,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_107",
     "pcb_component_id": "pcb_component_25",
     "x": 20.294600000000003,
     "y": 5.715000000000003,
@@ -10296,7 +10296,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_110",
     "pcb_component_id": "pcb_component_27",
     "x": -19.812000000000012,
     "y": 2.9210000000000065,
@@ -10459,7 +10459,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_21",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_28",
     "pcb_port_id": "pcb_port_128",
@@ -11555,7 +11555,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_113",
     "pcb_component_id": "pcb_component_30",
     "x": -19.812000000000012,
     "y": 5.461000000000013,

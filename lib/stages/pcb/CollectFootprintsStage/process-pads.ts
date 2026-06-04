@@ -25,6 +25,32 @@ import { determineLayerFromLayers } from "./layer-utils"
 import { rotatePoint } from "./process-graphics"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
 
+const getNextPcbSmtPadId = (ctx: ConverterContext) => {
+  const usedIds = new Set(
+    ctx.db.pcb_smtpad.list().map((pad) => pad.pcb_smtpad_id),
+  )
+  let index = usedIds.size
+  let candidate = `pcb_smtpad_${index}`
+  while (usedIds.has(candidate)) {
+    index++
+    candidate = `pcb_smtpad_${index}`
+  }
+  return candidate
+}
+
+const getNextPcbPlatedHoleId = (ctx: ConverterContext) => {
+  const usedIds = new Set(
+    ctx.db.pcb_plated_hole.list().map((hole) => hole.pcb_plated_hole_id),
+  )
+  let index = usedIds.size
+  let candidate = `pcb_plated_hole_${index}`
+  while (usedIds.has(candidate)) {
+    index++
+    candidate = `pcb_plated_hole_${index}`
+  }
+  return candidate
+}
+
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
  */
@@ -278,7 +304,7 @@ export function createSmdPad({
             shape: "polygon",
             pcb_component_id: componentId,
             pcb_port_id: pcbPortId,
-            pcb_smtpad_id: "pcb_smtpad_id",
+            pcb_smtpad_id: getNextPcbSmtPadId(ctx),
             layer: layer,
             port_hints: [pad.number.toString()],
             points: points,
@@ -324,7 +350,7 @@ export function createSmdPad({
           shape: "circle",
           pcb_component_id: componentId,
           pcb_port_id: pcbPortId,
-          pcb_smtpad_id: "pcb_smtpad_id",
+          pcb_smtpad_id: getNextPcbSmtPadId(ctx),
           layer: layer,
           port_hints: [pad.number.toString()],
           x: globalCenter.x,
@@ -357,7 +383,7 @@ export function createSmdPad({
     const smtpad: PcbSmtPadCircle = {
       type: "pcb_smtpad",
       pcb_component_id: componentId,
-      pcb_smtpad_id: "pcb_smtpad_id",
+      pcb_smtpad_id: getNextPcbSmtPadId(ctx),
       x: pos.x,
       y: pos.y,
       width: size.x,
@@ -638,7 +664,7 @@ export function createPlatedHole(
         shape: "circular_hole_with_rect_pad",
         pcb_component_id: componentId,
         pcb_port_id: pcbPortId,
-        pcb_plated_hole_id: "pcb_plated_hole_id",
+        pcb_plated_hole_id: getNextPcbPlatedHoleId(ctx),
         x: pos.x,
         y: pos.y,
         port_hints: [pad.number?.toString()],
