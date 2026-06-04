@@ -421,7 +421,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   ): Point {
     return {
       x: origin.x + point.x * scale,
-      y: origin.y - point.y * scale,
+      y: origin.y + point.y * scale,
     }
   }
 
