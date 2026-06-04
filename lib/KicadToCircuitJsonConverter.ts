@@ -1,4 +1,5 @@
 import { cju } from "@tscircuit/circuit-json-util"
+import type { AnyCircuitElement } from "circuit-json"
 import { parseKicadPcb, parseKicadSch } from "kicadts"
 import { parseKicadSymbolLib } from "./parseKicadSymbolLib"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
@@ -125,58 +126,13 @@ export class KicadToCircuitJsonConverter {
     }
   }
 
-  getOutput() {
+  getOutput(): AnyCircuitElement[] {
     if (!this.ctx) {
       this.initializePipeline()
       this.runUntilFinished()
     }
 
-    // Convert the database to a plain array of Circuit JSON elements
-    const elements: any[] = []
-
-    // Known table names in circuit-json-util
-    const tableNames = [
-      "source_component",
-      "source_port",
-      "source_net",
-      "source_trace",
-      "schematic_component",
-      "schematic_port",
-      "schematic_trace",
-      "schematic_net_label",
-      "pcb_component",
-      "pcb_port",
-      "pcb_smtpad",
-      "pcb_plated_hole",
-      "pcb_hole",
-      "pcb_trace",
-      "pcb_via",
-      "pcb_copper_pour",
-      "pcb_board",
-      "pcb_cutout",
-      "pcb_copper_text",
-      "pcb_silkscreen_text",
-      "pcb_silkscreen_path",
-      "pcb_fabrication_note_text",
-      "pcb_fabrication_note_path",
-      "pcb_fabrication_note_rect",
-      "pcb_courtyard_rect",
-      "pcb_courtyard_outline",
-      "pcb_courtyard_circle",
-    ]
-
-    // Collect all elements from different tables
-    for (const tableName of tableNames) {
-      const table = (this.ctx!.db as any)[tableName]
-      if (table && typeof table.list === "function") {
-        const items = table.list()
-        if (items && Array.isArray(items)) {
-          elements.push(...items)
-        }
-      }
-    }
-
-    return elements
+    return this.ctx!.db.toArray()
   }
 
   getOutputString() {

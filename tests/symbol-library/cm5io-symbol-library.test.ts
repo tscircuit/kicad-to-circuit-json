@@ -14,7 +14,7 @@ function convertCm5IoSymbolLibrary() {
   )
   converter.runUntilFinished()
 
-  const circuitJson = converter.getOutput() as any[]
+  const circuitJson = converter.getOutput()
   const sourceComponents = circuitJson.filter(
     (element) => element.type === "source_component",
   )
@@ -96,7 +96,9 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
   const typeCPorts = getPorts("TYPEC-305-ACP16H458")
   expect(typeCPorts.length).toBe(17)
   expect(
-    typeCPorts.find((port) => port.pin_number === "A5" && port.name === "CC1"),
+    typeCPorts.find(
+      (port) => port.port_hints?.includes("A5") && port.name === "CC1",
+    ),
   ).toBeDefined()
   expect(
     typeCPorts.find((port) => port.pin_number === 1 && port.name === "EP"),
@@ -107,7 +109,7 @@ test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () 
   const { circuitJson } = convertCm5IoSymbolLibrary()
 
   const circuitJsonPng = await takeCircuitJsonSnapshot({
-    circuitJson: circuitJson as any,
+    circuitJson,
     outputType: "schematic",
   })
 
