@@ -16592,7 +16592,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_215",
     "pcb_component_id": "pcb_component_71",
     "x": 47,
     "y": 3.5,
@@ -16770,7 +16770,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_216",
     "pcb_component_id": "pcb_component_72",
     "x": -41,
     "y": 8.5,
@@ -17852,7 +17852,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_227",
     "pcb_component_id": "pcb_component_75",
     "x": 21,
     "y": -10.5,
@@ -18493,7 +18493,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_233",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": -1.7860000000000014,
@@ -18520,7 +18520,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_234",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": -1.7860000000000014,
@@ -18547,7 +18547,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_235",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": -1.7860000000000014,
@@ -18574,7 +18574,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_236",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": -1.7860000000000014,
@@ -18601,7 +18601,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_237",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": -1.7860000000000014,
@@ -18628,7 +18628,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_238",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": -1.7860000000000014,
@@ -18655,7 +18655,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_239",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": -1.7860000000000014,
@@ -18682,7 +18682,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_240",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": -1.7860000000000014,
@@ -18709,7 +18709,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_241",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": -1.2860000000000014,
@@ -18736,7 +18736,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_242",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": -1.2860000000000014,
@@ -18763,7 +18763,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_243",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": -1.2860000000000014,
@@ -18790,7 +18790,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_244",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": -1.2860000000000014,
@@ -18817,7 +18817,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_245",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": -1.2860000000000014,
@@ -18844,7 +18844,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_246",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": -1.2860000000000014,
@@ -18871,7 +18871,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_247",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": -1.2860000000000014,
@@ -18898,7 +18898,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_248",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": -1.2860000000000014,
@@ -18925,7 +18925,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_249",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": -0.7860000000000014,
@@ -18952,7 +18952,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_250",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": -0.7860000000000014,
@@ -18979,7 +18979,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_251",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": -0.7860000000000014,
@@ -19006,7 +19006,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_252",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": -0.7860000000000014,
@@ -19033,7 +19033,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_253",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": -0.7860000000000014,
@@ -19060,7 +19060,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_254",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": -0.7860000000000014,
@@ -19087,7 +19087,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_255",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": -0.7860000000000014,
@@ -19114,7 +19114,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_256",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": -0.7860000000000014,
@@ -19141,7 +19141,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_257",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": -0.28600000000000136,
@@ -19168,7 +19168,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_258",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": -0.28600000000000136,
@@ -19195,7 +19195,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_259",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": -0.28600000000000136,
@@ -19222,7 +19222,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_260",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": -0.28600000000000136,
@@ -19249,7 +19249,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_261",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": -0.28600000000000136,
@@ -19276,7 +19276,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_262",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": -0.28600000000000136,
@@ -19303,7 +19303,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_263",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": -0.28600000000000136,
@@ -19330,7 +19330,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_264",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": -0.28600000000000136,
@@ -19357,7 +19357,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_265",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": 0.21399999999999864,
@@ -19384,7 +19384,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_266",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": 0.21399999999999864,
@@ -19411,7 +19411,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_267",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": 0.21399999999999864,
@@ -19438,7 +19438,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_268",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": 0.21399999999999864,
@@ -19465,7 +19465,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_269",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": 0.21399999999999864,
@@ -19492,7 +19492,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_270",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": 0.21399999999999864,
@@ -19519,7 +19519,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_271",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": 0.21399999999999864,
@@ -19546,7 +19546,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_272",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": 0.21399999999999864,
@@ -19573,7 +19573,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_273",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": 0.7139999999999986,
@@ -19600,7 +19600,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_274",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": 0.7139999999999986,
@@ -19627,7 +19627,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_275",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": 0.7139999999999986,
@@ -19654,7 +19654,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_276",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": 0.7139999999999986,
@@ -19681,7 +19681,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_277",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": 0.7139999999999986,
@@ -19708,7 +19708,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_278",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": 0.7139999999999986,
@@ -19735,7 +19735,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_279",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": 0.7139999999999986,
@@ -19762,7 +19762,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_280",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": 0.7139999999999986,
@@ -19789,7 +19789,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_281",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": 1.2139999999999986,
@@ -19816,7 +19816,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_282",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": 1.2139999999999986,
@@ -19843,7 +19843,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_283",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": 1.2139999999999986,
@@ -19870,7 +19870,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_284",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": 1.2139999999999986,
@@ -19897,7 +19897,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_285",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": 1.2139999999999986,
@@ -19924,7 +19924,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_286",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": 1.2139999999999986,
@@ -19951,7 +19951,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_287",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": 1.2139999999999986,
@@ -19978,7 +19978,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_288",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": 1.2139999999999986,
@@ -20005,7 +20005,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_289",
     "pcb_component_id": "pcb_component_77",
     "x": 32.51249999999999,
     "y": 1.7139999999999986,
@@ -20032,7 +20032,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_290",
     "pcb_component_id": "pcb_component_77",
     "x": 33.1525,
     "y": 1.7139999999999986,
@@ -20059,7 +20059,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_291",
     "pcb_component_id": "pcb_component_77",
     "x": 33.79249999999999,
     "y": 1.7139999999999986,
@@ -20086,7 +20086,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_292",
     "pcb_component_id": "pcb_component_77",
     "x": 34.432500000000005,
     "y": 1.7139999999999986,
@@ -20113,7 +20113,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_293",
     "pcb_component_id": "pcb_component_77",
     "x": 35.07249999999999,
     "y": 1.7139999999999986,
@@ -20140,7 +20140,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_294",
     "pcb_component_id": "pcb_component_77",
     "x": 35.712500000000006,
     "y": 1.7139999999999986,
@@ -20167,7 +20167,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_295",
     "pcb_component_id": "pcb_component_77",
     "x": 36.35249999999999,
     "y": 1.7139999999999986,
@@ -20194,7 +20194,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_296",
     "pcb_component_id": "pcb_component_77",
     "x": 36.99250000000001,
     "y": 1.7139999999999986,
@@ -20472,7 +20472,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_297",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": -1.7860000000000014,
@@ -20499,7 +20499,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_298",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": -1.7860000000000014,
@@ -20526,7 +20526,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_299",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": -1.7860000000000014,
@@ -20553,7 +20553,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_300",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": -1.7860000000000014,
@@ -20580,7 +20580,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_301",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": -1.7860000000000014,
@@ -20607,7 +20607,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_302",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": -1.7860000000000014,
@@ -20634,7 +20634,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_303",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": -1.7860000000000014,
@@ -20661,7 +20661,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_304",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": -1.7860000000000014,
@@ -20688,7 +20688,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_305",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": -1.2860000000000014,
@@ -20715,7 +20715,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_306",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": -1.2860000000000014,
@@ -20742,7 +20742,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_307",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": -1.2860000000000014,
@@ -20769,7 +20769,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_308",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": -1.2860000000000014,
@@ -20796,7 +20796,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_309",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": -1.2860000000000014,
@@ -20823,7 +20823,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_310",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": -1.2860000000000014,
@@ -20850,7 +20850,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_311",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": -1.2860000000000014,
@@ -20877,7 +20877,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_312",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": -1.2860000000000014,
@@ -20904,7 +20904,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_313",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": -0.7860000000000014,
@@ -20931,7 +20931,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_314",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": -0.7860000000000014,
@@ -20958,7 +20958,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_315",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": -0.7860000000000014,
@@ -20985,7 +20985,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_316",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": -0.7860000000000014,
@@ -21012,7 +21012,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_317",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": -0.7860000000000014,
@@ -21039,7 +21039,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_318",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": -0.7860000000000014,
@@ -21066,7 +21066,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_319",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": -0.7860000000000014,
@@ -21093,7 +21093,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_320",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": -0.7860000000000014,
@@ -21120,7 +21120,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_321",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": -0.28600000000000136,
@@ -21147,7 +21147,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_322",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": -0.28600000000000136,
@@ -21174,7 +21174,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_323",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": -0.28600000000000136,
@@ -21201,7 +21201,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_324",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": -0.28600000000000136,
@@ -21228,7 +21228,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_325",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": -0.28600000000000136,
@@ -21255,7 +21255,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_326",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": -0.28600000000000136,
@@ -21282,7 +21282,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_327",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": -0.28600000000000136,
@@ -21309,7 +21309,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_328",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": -0.28600000000000136,
@@ -21336,7 +21336,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_329",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": 0.21399999999999864,
@@ -21363,7 +21363,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_330",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": 0.21399999999999864,
@@ -21390,7 +21390,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_331",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": 0.21399999999999864,
@@ -21417,7 +21417,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_332",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": 0.21399999999999864,
@@ -21444,7 +21444,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_333",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": 0.21399999999999864,
@@ -21471,7 +21471,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_334",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": 0.21399999999999864,
@@ -21498,7 +21498,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_335",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": 0.21399999999999864,
@@ -21525,7 +21525,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_336",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": 0.21399999999999864,
@@ -21552,7 +21552,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_337",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": 0.7139999999999986,
@@ -21579,7 +21579,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_338",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": 0.7139999999999986,
@@ -21606,7 +21606,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_339",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": 0.7139999999999986,
@@ -21633,7 +21633,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_340",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": 0.7139999999999986,
@@ -21660,7 +21660,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_341",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": 0.7139999999999986,
@@ -21687,7 +21687,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_342",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": 0.7139999999999986,
@@ -21714,7 +21714,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_343",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": 0.7139999999999986,
@@ -21741,7 +21741,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_344",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": 0.7139999999999986,
@@ -21768,7 +21768,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_345",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": 1.2139999999999986,
@@ -21795,7 +21795,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_346",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": 1.2139999999999986,
@@ -21822,7 +21822,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_347",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": 1.2139999999999986,
@@ -21849,7 +21849,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_348",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": 1.2139999999999986,
@@ -21876,7 +21876,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_349",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": 1.2139999999999986,
@@ -21903,7 +21903,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_350",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": 1.2139999999999986,
@@ -21930,7 +21930,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_351",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": 1.2139999999999986,
@@ -21957,7 +21957,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_352",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": 1.2139999999999986,
@@ -21984,7 +21984,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_353",
     "pcb_component_id": "pcb_component_78",
     "x": -37.4875,
     "y": 1.7139999999999986,
@@ -22011,7 +22011,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_354",
     "pcb_component_id": "pcb_component_78",
     "x": -36.8475,
     "y": 1.7139999999999986,
@@ -22038,7 +22038,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_355",
     "pcb_component_id": "pcb_component_78",
     "x": -36.207499999999996,
     "y": 1.7139999999999986,
@@ -22065,7 +22065,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_356",
     "pcb_component_id": "pcb_component_78",
     "x": -35.567499999999995,
     "y": 1.7139999999999986,
@@ -22092,7 +22092,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_357",
     "pcb_component_id": "pcb_component_78",
     "x": -34.927499999999995,
     "y": 1.7139999999999986,
@@ -22119,7 +22119,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_358",
     "pcb_component_id": "pcb_component_78",
     "x": -34.287499999999994,
     "y": 1.7139999999999986,
@@ -22146,7 +22146,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_359",
     "pcb_component_id": "pcb_component_78",
     "x": -33.647499999999994,
     "y": 1.7139999999999986,
@@ -22173,7 +22173,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_360",
     "pcb_component_id": "pcb_component_78",
     "x": -33.00749999999999,
     "y": 1.7139999999999986,
