@@ -2,10 +2,46 @@ import type { CircuitJsonUtilObjects } from "@tscircuit/circuit-json-util"
 import type { KicadPcb, KicadSch } from "kicadts"
 import type { Matrix } from "transformation-matrix"
 
+export interface KicadSymbolLibPinAlternate {
+  name: string
+  electricalType?: string
+  graphicStyle?: string
+}
+
+export interface KicadSymbolLibPin {
+  name: string
+  number: string
+  electricalType?: string
+  graphicStyle?: string
+  at?: {
+    x: number
+    y: number
+    angle: number
+  }
+  length?: number
+  hidden?: boolean
+  alternates?: KicadSymbolLibPinAlternate[]
+}
+
+export interface KicadSymbolLibSymbol {
+  name: string
+  properties: Record<string, string>
+  pins: KicadSymbolLibPin[]
+  subSymbols: KicadSymbolLibSymbol[]
+}
+
+export interface KicadSymbolLib {
+  version?: string
+  generator?: string
+  generatorVersion?: string
+  symbols: KicadSymbolLibSymbol[]
+}
+
 export interface ConverterContext {
   db: CircuitJsonUtilObjects
   kicadPcb?: KicadPcb
   kicadSch?: KicadSch
+  kicadSymbolLib?: KicadSymbolLib
 
   // Transformation matrices (KiCad → Circuit JSON)
   k2cMatSch?: Matrix

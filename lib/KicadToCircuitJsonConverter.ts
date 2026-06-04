@@ -1,5 +1,6 @@
 import { cju } from "@tscircuit/circuit-json-util"
 import { parseKicadPcb, parseKicadSch } from "kicadts"
+import { parseKicadSymbolLib } from "./parseKicadSymbolLib"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
@@ -13,6 +14,8 @@ import { CollectLibrarySymbolsStage } from "./stages/schematic/CollectLibrarySym
 import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematicTracesStage"
 // Import schematic stages
 import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
+import { CollectSymbolLibrarySymbolsStage } from "./stages/symbol-library/CollectSymbolLibrarySymbolsStage"
+import { InitializeSymbolLibraryContextStage } from "./stages/symbol-library/InitializeSymbolLibraryContextStage"
 import type { ConverterContext, ConverterStage } from "./types"
 
 export class KicadToCircuitJsonConverter {
@@ -46,17 +49,29 @@ export class KicadToCircuitJsonConverter {
   initializePipeline() {
     const pcbFile = this._findFileWithExtension(".kicad_pcb")
     const schFile = this._findFileWithExtension(".kicad_sch")
+    const symbolLibFile = this._findFileWithExtension(".kicad_sym")
 
     this.ctx = {
       db: cju([]),
       kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
+      kicadSymbolLib: symbolLibFile
+        ? parseKicadSymbolLib(this.fsMap[symbolLibFile]!)
+        : undefined,
       warnings: [],
       stats: {},
     }
 
     // Build the pipeline based on what files are present
     this.pipeline = []
+
+    // Symbol library stages (if symbol library file exists)
+    if (this.ctx.kicadSymbolLib) {
+      this.pipeline.push(
+        new InitializeSymbolLibraryContextStage(this.ctx),
+        new CollectSymbolLibrarySymbolsStage(this.ctx),
+      )
+    }
 
     // Schematic stages (if schematic file exists)
     if (this.ctx.kicadSch) {
