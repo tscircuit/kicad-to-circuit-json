@@ -14,7 +14,11 @@ type CircuitJson = ReturnType<KicadToCircuitJsonConverter["getOutput"]>
 type ConversionStats = NonNullable<
   ReturnType<KicadToCircuitJsonConverter["getStats"]>
 >
-type SupportedKiCadInputKind = "pcb" | "schematic" | "symbol-library"
+type SupportedKiCadInputKind =
+  | "pcb"
+  | "footprint"
+  | "schematic"
+  | "symbol-library"
 
 const statLabels: Record<string, string> = {
   components: "Components",
@@ -52,7 +56,10 @@ export function App() {
     const inputKind = inferInputKind(fileName)
     const html = createRunframeHtml({
       circuitJson: deferredCircuitJson,
-      defaultActiveTab: inputKind === "pcb" ? "pcb" : "schematic",
+      defaultActiveTab:
+        inputKind === "pcb" || inputKind === "footprint"
+          ? "pcb"
+          : "schematic",
       projectName: getOutputBaseName(fileName),
     })
     const nextFrameUrl = URL.createObjectURL(
@@ -109,7 +116,9 @@ export function App() {
       startTransition(() => {
         setCircuitJson(null)
         setSimpleRouteJson(null)
-        setErrorMessage("Drop a .kicad_pcb, .kicad_sch, or .kicad_sym file.")
+        setErrorMessage(
+          "Drop a .kicad_pcb, .kicad_mod, .kicad_sch, or .kicad_sym file.",
+        )
         setFileName(nextFileName)
         setFrameUrl(null)
         setWarnings([])
@@ -185,10 +194,10 @@ export function App() {
         <div className="eyebrow">KiCad to Circuit JSON</div>
         <h1>Convert KiCad to Circuit JSON in browser</h1>
         <p className="lede">
-          This viewer reads <code>.kicad_pcb</code>, <code>.kicad_sch</code>,
-          and <code>.kicad_sym</code> files, converts them with the local
-          library source, and opens the result in the tscircuit runframe
-          preview.
+          This viewer reads <code>.kicad_pcb</code>, <code>.kicad_mod</code>,
+          <code>.kicad_sch</code>, and <code>.kicad_sym</code> files, converts
+          them with the local library source, and opens the result in the
+          tscircuit runframe preview.
         </p>
 
         <div
@@ -201,13 +210,15 @@ export function App() {
             ref={fileInputRef}
             className="file-input"
             type="file"
-            accept=".kicad_pcb,.kicad_sch,.kicad_sym"
+            accept=".kicad_pcb,.kicad_mod,.kicad_sch,.kicad_sym"
             onChange={handleFileSelection}
           />
           <div className="dropzone-copy">
             <span className="dropzone-badge">Drag and drop</span>
-            <strong>KiCad PCB, schematic, or symbol library files</strong>
-            <p>or browse for a local board, schematic, or library file</p>
+            <strong>
+              KiCad PCB, footprint, schematic, or symbol library files
+            </strong>
+            <p>or browse for a local board, footprint, schematic, or library file</p>
           </div>
           <button
             className="primary-button"
@@ -332,9 +343,9 @@ export function App() {
             <span className="empty-state-badge">Preview idle</span>
             <h2>The converted Circuit JSON will appear here.</h2>
             <p>
-              Load a KiCad PCB, schematic, or symbol library file to open the
-              schematic, PCB, CAD, and raw Circuit JSON tabs in the embedded
-              viewer.
+              Load a KiCad PCB, footprint, schematic, or symbol library file to
+              open the schematic, PCB, CAD, and raw Circuit JSON tabs in the
+              embedded viewer.
             </p>
           </div>
         )}
@@ -413,7 +424,7 @@ function serializeForInlineScript(value: unknown) {
 
 function getOutputBaseName(fileName: string | null) {
   if (!fileName) return "board"
-  return fileName.replace(/\.(kicad_pcb|kicad_sch|kicad_sym)$/i, "")
+  return fileName.replace(/\.(kicad_pcb|kicad_mod|kicad_sch|kicad_sym)$/i, "")
 }
 
 function inferInputKind(
@@ -422,6 +433,7 @@ function inferInputKind(
   if (!fileName) return null
   const normalizedFileName = fileName.toLowerCase()
   if (normalizedFileName.endsWith(".kicad_pcb")) return "pcb"
+  if (normalizedFileName.endsWith(".kicad_mod")) return "footprint"
   if (normalizedFileName.endsWith(".kicad_sch")) return "schematic"
   if (normalizedFileName.endsWith(".kicad_sym")) return "symbol-library"
   return null

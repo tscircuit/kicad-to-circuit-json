@@ -1,6 +1,13 @@
 import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
-import { parseKicadPcb, parseKicadSch, parseKicadSym } from "kicadts"
+import {
+  KicadPcb,
+  parseKicadMod,
+  parseKicadPcb,
+  parseKicadSch,
+  parseKicadSym,
+} from "kicadts"
+import type { Footprint } from "kicadts"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
@@ -46,15 +53,35 @@ export class KicadToCircuitJsonConverter {
     return filesWithExtension[0] ?? null
   }
 
+  private prepareKicadModFootprint(footprint: Footprint, filePath: string) {
+    if (!footprint.uuid?.value && !footprint.tstamp?.value) {
+      footprint.uuid = `kicad_mod:${filePath}`
+    }
+
+    return footprint
+  }
+
   initializePipeline() {
     const pcbFile = this._findFileWithExtension(".kicad_pcb")
     const schFile = this._findFileWithExtension(".kicad_sch")
     const symbolLibFile = this._findFileWithExtension(".kicad_sym")
+    const kicadModFile = this._findFileWithExtension(".kicad_mod")
+    const kicadMod = kicadModFile
+      ? this.prepareKicadModFootprint(
+          parseKicadMod(this.fsMap[kicadModFile]!),
+          kicadModFile,
+        )
+      : undefined
 
     this.ctx = {
       db: cju([]),
-      kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
+      kicadPcb: pcbFile
+        ? parseKicadPcb(this.fsMap[pcbFile]!)
+        : kicadMod
+          ? new KicadPcb({ footprints: [kicadMod] })
+          : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
+      kicadMod,
       kicadSymbolLib: symbolLibFile
         ? parseKicadSym(this.fsMap[symbolLibFile]!)
         : undefined,

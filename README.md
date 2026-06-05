@@ -1,6 +1,6 @@
 # kicad-to-circuit-json
 
-Convert KiCad schematic, symbol library, and PCB files to Circuit JSON format.
+Convert KiCad schematic, symbol library, PCB, and footprint (`.kicad_mod`) files to Circuit JSON format.
 
 ## Installation
 
@@ -22,9 +22,12 @@ const converter = new KicadToCircuitJsonConverter()
 // Add KiCad files
 const pcbContent = fs.readFileSync("path/to/file.kicad_pcb", "utf-8")
 const schContent = fs.readFileSync("path/to/file.kicad_sch", "utf-8")
+// You can also add a standalone footprint file:
+// const footprintContent = fs.readFileSync("path/to/file.kicad_mod", "utf-8")
 
 converter.addFile("example.kicad_pcb", pcbContent)
 converter.addFile("example.kicad_sch", schContent)
+// converter.addFile("example.kicad_mod", footprintContent)
 
 // Run the conversion
 converter.runUntilFinished()
@@ -75,7 +78,8 @@ The converter handles coordinate system differences between KiCad and Circuit JS
 - ⚠️ Net labels (partial)
 - ⚠️ Power symbols (partial)
 
-### PCB
+### PCB / Footprints
+- ✅ Standalone footprint files (`.kicad_mod`)
 - ✅ Footprints/Components
 - ✅ SMD pads
 - ✅ Through-hole pads (plated holes)
