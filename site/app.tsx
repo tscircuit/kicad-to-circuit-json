@@ -57,9 +57,7 @@ export function App() {
     const html = createRunframeHtml({
       circuitJson: deferredCircuitJson,
       defaultActiveTab:
-        inputKind === "pcb" || inputKind === "footprint"
-          ? "pcb"
-          : "schematic",
+        inputKind === "pcb" || inputKind === "footprint" ? "pcb" : "schematic",
       projectName: getOutputBaseName(fileName),
     })
     const nextFrameUrl = URL.createObjectURL(
@@ -218,7 +216,9 @@ export function App() {
             <strong>
               KiCad PCB, footprint, schematic, or symbol library files
             </strong>
-            <p>or browse for a local board, footprint, schematic, or library file</p>
+            <p>
+              or browse for a local board, footprint, schematic, or library file
+            </p>
           </div>
           <button
             className="primary-button"
