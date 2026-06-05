@@ -1,6 +1,6 @@
 # kicad-to-circuit-json
 
-Convert KiCad schematic and PCB files to Circuit JSON format.
+Convert KiCad schematic, symbol library, and PCB files to Circuit JSON format.
 
 ## Installation
 
@@ -128,10 +128,11 @@ and demos.
 bun run dev
 ```
 
-The page accepts drag-and-drop `.kicad_pcb` files, converts them with the local
-library source, and renders the resulting Circuit JSON inside an embedded
-runframe iframe preview. The site does not need the runframe package installed
-locally.
+The page accepts drag-and-drop `.kicad_pcb`, `.kicad_sch`, and `.kicad_sym`
+files, converts them with the local library source, and renders the resulting
+Circuit JSON inside an embedded runframe iframe preview. PCB files open in the
+PCB preview, while schematic and symbol library files open in the schematic
+preview. The site does not need the runframe package installed locally.
 
 ## Related Projects
 

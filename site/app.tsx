@@ -1,19 +1,20 @@
+import { KicadToCircuitJsonConverter } from "@project-lib"
+import type { SimpleRouteJson } from "@tscircuit/core"
 import {
-  startTransition,
-  useEffect,
-  useDeferredValue,
-  useRef,
-  useState,
   type ChangeEvent,
   type DragEvent,
+  startTransition,
+  useDeferredValue,
+  useEffect,
+  useRef,
+  useState,
 } from "react"
-import type { SimpleRouteJson } from "@tscircuit/core"
-import { KicadToCircuitJsonConverter } from "@project-lib"
 
 type CircuitJson = ReturnType<KicadToCircuitJsonConverter["getOutput"]>
 type ConversionStats = NonNullable<
   ReturnType<KicadToCircuitJsonConverter["getStats"]>
 >
+type SupportedKiCadInputKind = "pcb" | "schematic" | "symbol-library"
 
 const statLabels: Record<string, string> = {
   components: "Components",
@@ -48,9 +49,11 @@ export function App() {
       return
     }
 
+    const inputKind = inferInputKind(fileName)
     const html = createRunframeHtml({
       circuitJson: deferredCircuitJson,
-      projectName: fileName?.replace(/\.kicad_pcb$/, "") ?? "board",
+      defaultActiveTab: inputKind === "pcb" ? "pcb" : "schematic",
+      projectName: getOutputBaseName(fileName),
     })
     const nextFrameUrl = URL.createObjectURL(
       new Blob([html], { type: "text/html" }),
@@ -96,16 +99,17 @@ export function App() {
 
   const convertFile = async (file: File) => {
     const nextFileName = file.name
+    const inputKind = inferInputKind(nextFileName)
 
     setIsConverting(true)
     setErrorMessage(null)
     setIsDragging(false)
 
-    if (!nextFileName.endsWith(".kicad_pcb")) {
+    if (!inputKind) {
       startTransition(() => {
         setCircuitJson(null)
         setSimpleRouteJson(null)
-        setErrorMessage("Drop a .kicad_pcb file.")
+        setErrorMessage("Drop a .kicad_pcb, .kicad_sch, or .kicad_sym file.")
         setFileName(nextFileName)
         setFrameUrl(null)
         setWarnings([])
@@ -181,8 +185,9 @@ export function App() {
         <div className="eyebrow">KiCad to Circuit JSON</div>
         <h1>Convert KiCad to Circuit JSON in browser</h1>
         <p className="lede">
-          This viewer reads a <code>.kicad_pcb</code> file, converts it with the
-          local library source, and opens the result in the tscircuit runframe
+          This viewer reads <code>.kicad_pcb</code>, <code>.kicad_sch</code>,
+          and <code>.kicad_sym</code> files, converts them with the local
+          library source, and opens the result in the tscircuit runframe
           preview.
         </p>
 
@@ -196,13 +201,13 @@ export function App() {
             ref={fileInputRef}
             className="file-input"
             type="file"
-            accept=".kicad_pcb"
+            accept=".kicad_pcb,.kicad_sch,.kicad_sym"
             onChange={handleFileSelection}
           />
           <div className="dropzone-copy">
             <span className="dropzone-badge">Drag and drop</span>
-            <strong>KiCad PCB files</strong>
-            <p>or browse for a local board file</p>
+            <strong>KiCad PCB, schematic, or symbol library files</strong>
+            <p>or browse for a local board, schematic, or library file</p>
           </div>
           <button
             className="primary-button"
@@ -266,7 +271,7 @@ export function App() {
 
         {isConverting ? (
           <section className="notice-panel">
-            <strong>Converting board…</strong>
+            <strong>Converting KiCad file…</strong>
             <p>Large KiCad files can take a moment in the main thread.</p>
           </section>
         ) : null}
@@ -327,8 +332,9 @@ export function App() {
             <span className="empty-state-badge">Preview idle</span>
             <h2>The converted Circuit JSON will appear here.</h2>
             <p>
-              Load a KiCad PCB file to open the PCB, CAD, and raw Circuit JSON
-              tabs in the embedded viewer.
+              Load a KiCad PCB, schematic, or symbol library file to open the
+              schematic, PCB, CAD, and raw Circuit JSON tabs in the embedded
+              viewer.
             </p>
           </div>
         )}
@@ -350,16 +356,18 @@ function stripRoutesForSimpleRouteExport(
 
 function createRunframeHtml({
   circuitJson,
+  defaultActiveTab,
   projectName,
 }: {
   circuitJson: CircuitJson
+  defaultActiveTab: "pcb" | "schematic"
   projectName: string
 }) {
   const serializedCircuitJson = serializeForInlineScript(circuitJson)
   const serializedPreviewProps = serializeForInlineScript({
-    availableTabs: ["pcb", "cad", "circuit_json"],
+    availableTabs: ["schematic", "pcb", "cad", "circuit_json"],
     autoRotate3dViewerDisabled: true,
-    defaultActiveTab: "pcb",
+    defaultActiveTab,
     isWebEmbedded: true,
     projectName,
     showCodeTab: false,
@@ -405,7 +413,18 @@ function serializeForInlineScript(value: unknown) {
 
 function getOutputBaseName(fileName: string | null) {
   if (!fileName) return "board"
-  return fileName.replace(/\.kicad_pcb$/i, "")
+  return fileName.replace(/\.(kicad_pcb|kicad_sch|kicad_sym)$/i, "")
+}
+
+function inferInputKind(
+  fileName: string | null,
+): SupportedKiCadInputKind | null {
+  if (!fileName) return null
+  const normalizedFileName = fileName.toLowerCase()
+  if (normalizedFileName.endsWith(".kicad_pcb")) return "pcb"
+  if (normalizedFileName.endsWith(".kicad_sch")) return "schematic"
+  if (normalizedFileName.endsWith(".kicad_sym")) return "symbol-library"
+  return null
 }
 
 function downloadJsonFile(data: unknown, fileName: string) {
