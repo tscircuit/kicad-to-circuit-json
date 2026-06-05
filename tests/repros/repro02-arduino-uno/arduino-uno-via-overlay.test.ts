@@ -1,11 +1,9 @@
 import { expect, test } from "bun:test"
-import { readFileSync } from "node:fs"
-import { mkdir, writeFile } from "node:fs/promises"
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import path from "node:path"
 import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import sharp from "sharp"
 import { KicadToCircuitJsonConverter } from "../../../lib"
-import "../../fixtures/png-matcher"
 
 const POINT_KEY_PRECISION = 1e6
 
@@ -67,16 +65,39 @@ test("highlights Arduino Uno standalone pcb_vias not represented in trace routes
     standalonePcbViasOnTraceRoute,
   })
 
-  await writeSvgArtifact({
+  expectSvgSnapshot(overlaySvg, import.meta.path, "arduino-uno-via-overlay")
+  await writePngArtifact({
     svg: overlaySvg,
     testPath: import.meta.path,
     artifactName: "arduino-uno-via-overlay",
   })
-  await expect(renderSvgToPng(overlaySvg)).toMatchPngSnapshot(
-    import.meta.path,
-    "arduino-uno-via-overlay",
-  )
 })
+
+function expectSvgSnapshot(
+  svg: string,
+  testPath: string,
+  snapshotName: string,
+) {
+  const normalizedSvg = normalizeTransientSvgIds(svg)
+  const snapshotDir = path.join(path.dirname(testPath), "__snapshots__")
+  const snapshotPath = path.join(snapshotDir, `${snapshotName}.snap.svg`)
+  const shouldUpdateSnapshot =
+    process.argv.includes("--update-snapshots") ||
+    process.argv.includes("-u") ||
+    Boolean(process.env["BUN_UPDATE_SNAPSHOTS"])
+
+  if (!existsSync(snapshotDir)) {
+    mkdirSync(snapshotDir, { recursive: true })
+  }
+
+  if (!existsSync(snapshotPath) || shouldUpdateSnapshot) {
+    writeFileSync(snapshotPath, normalizedSvg)
+  }
+
+  expect(normalizedSvg).toBe(
+    normalizeTransientSvgIds(readFileSync(snapshotPath, "utf-8")),
+  )
+}
 
 function normalizeTransientSvgIds(svg: string) {
   return svg
@@ -87,7 +108,7 @@ function normalizeTransientSvgIds(svg: string) {
     .replaceAll(/knockout-mask-(pcb_copper_text_\d+)-\d+/g, "knockout-mask-$1")
 }
 
-async function writeSvgArtifact({
+async function writePngArtifact({
   svg,
   testPath,
   artifactName,
@@ -97,16 +118,23 @@ async function writeSvgArtifact({
   artifactName: string
 }) {
   const snapshotDir = path.join(path.dirname(testPath), "__snapshots__")
-  const artifactPath = path.join(snapshotDir, `${artifactName}.svg`)
-  await mkdir(snapshotDir, { recursive: true })
-  await writeFile(artifactPath, normalizeTransientSvgIds(svg))
-}
+  const artifactPath = path.join(snapshotDir, `${artifactName}.snap.png`)
+  const shouldUpdateSnapshot =
+    process.argv.includes("--update-snapshots") ||
+    process.argv.includes("-u") ||
+    Boolean(process.env["BUN_UPDATE_SNAPSHOTS"])
 
-async function renderSvgToPng(svg: string) {
-  return sharp(Buffer.from(svg))
-    .resize({ height: 1280, withoutEnlargement: false })
-    .png()
-    .toBuffer()
+  if (!existsSync(snapshotDir)) {
+    mkdirSync(snapshotDir, { recursive: true })
+  }
+
+  if (!existsSync(artifactPath) || shouldUpdateSnapshot) {
+    const png = await sharp(Buffer.from(svg))
+      .resize({ height: 1280, withoutEnlargement: false })
+      .png()
+      .toBuffer()
+    writeFileSync(artifactPath, png)
+  }
 }
 
 function inferPcbSvgTransform({
