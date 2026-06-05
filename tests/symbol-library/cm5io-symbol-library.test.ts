@@ -171,6 +171,18 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
   expect(getElementCount("schematic_arc")).toBeGreaterThan(0)
   expect(getElementCount("schematic_path")).toBeGreaterThan(0)
   expect(getElementCount("schematic_text")).toBeGreaterThan(0)
+  expect(
+    schematicComponents.every(
+      (component) => typeof component.symbol_display_value === "string",
+    ),
+  ).toBe(true)
+  expect(
+    circuitJson.some(
+      (element) =>
+        element.type === "schematic_text" &&
+        element.text === "TYPEC-305-ACP16H458",
+    ),
+  ).toBe(true)
 })
 
 test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () => {

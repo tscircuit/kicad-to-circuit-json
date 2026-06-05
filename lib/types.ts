@@ -1,103 +1,12 @@
 import type { CircuitJsonUtilObjects } from "@tscircuit/circuit-json-util"
-import type { KicadPcb, KicadSch } from "kicadts"
+import type { KicadPcb, KicadSch, KicadSym } from "kicadts"
 import type { Matrix } from "transformation-matrix"
-
-export interface KicadSymbolLibPinAlternate {
-  name: string
-  electricalType?: string
-  graphicStyle?: string
-}
-
-export interface KicadSymbolLibPin {
-  name: string
-  number: string
-  electricalType?: string
-  graphicStyle?: string
-  at?: {
-    x: number
-    y: number
-    angle: number
-  }
-  length?: number
-  hidden?: boolean
-  alternates?: KicadSymbolLibPinAlternate[]
-}
-
-export interface KicadSymbolLibPoint {
-  x: number
-  y: number
-}
-
-export interface KicadSymbolLibStroke {
-  width?: number
-  type?: string
-}
-
-export interface KicadSymbolLibFill {
-  type?: string
-}
-
-export interface KicadSymbolLibPolyline {
-  points: KicadSymbolLibPoint[]
-  stroke?: KicadSymbolLibStroke
-  fill?: KicadSymbolLibFill
-}
-
-export interface KicadSymbolLibRectangle {
-  start: KicadSymbolLibPoint
-  end: KicadSymbolLibPoint
-  stroke?: KicadSymbolLibStroke
-  fill?: KicadSymbolLibFill
-}
-
-export interface KicadSymbolLibCircle {
-  center: KicadSymbolLibPoint
-  radius: number
-  stroke?: KicadSymbolLibStroke
-  fill?: KicadSymbolLibFill
-}
-
-export interface KicadSymbolLibArc {
-  start: KicadSymbolLibPoint
-  mid: KicadSymbolLibPoint
-  end: KicadSymbolLibPoint
-  stroke?: KicadSymbolLibStroke
-}
-
-export interface KicadSymbolLibText {
-  text: string
-  at: {
-    x: number
-    y: number
-    angle: number
-  }
-  fontSize?: number
-}
-
-export interface KicadSymbolLibSymbol {
-  name: string
-  properties: Record<string, string>
-  pins: KicadSymbolLibPin[]
-  polylines: KicadSymbolLibPolyline[]
-  rectangles: KicadSymbolLibRectangle[]
-  circles: KicadSymbolLibCircle[]
-  arcs: KicadSymbolLibArc[]
-  texts: KicadSymbolLibText[]
-  subSymbols: KicadSymbolLibSymbol[]
-}
-
-export interface KicadSymbolLib {
-  version?: string
-  generator?: string
-  generatorVersion?: string
-  symbols: KicadSymbolLibSymbol[]
-}
 
 export interface ConverterContext {
   db: CircuitJsonUtilObjects
   kicadPcb?: KicadPcb
   kicadSch?: KicadSch
-  kicadSymbolLib?: KicadSymbolLib
+  kicadSymbolLib?: KicadSym
 
   // Transformation matrices (KiCad → Circuit JSON)
   k2cMatSch?: Matrix
