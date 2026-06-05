@@ -211,17 +211,15 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     const { symbol, pins, sourceComponentId, sourcePortIdByPinNumber } = params
     const bounds = this.getPinBounds(pins)
     const scale = this.getPreviewScale(bounds)
-    const size = {
-      width: Math.max(1, bounds.width * scale),
-      height: Math.max(1, bounds.height * scale),
-    }
     const center = this.getPreviewCenter()
 
     const schematicComponentData: SchematicComponentData = {
       source_component_id: sourceComponentId,
       center,
-      size,
-      is_box_with_pins: false,
+      // Let circuit-to-svg render schematic_port pin lines without drawing
+      // a generic box over the imported KiCad symbol primitives.
+      size: { width: 0, height: 0 },
+      is_box_with_pins: true,
       symbol_display_value:
         this.getSymbolProperties(symbol).Value || this.getSymbolName(symbol),
     }
@@ -240,17 +238,10 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         source_port_id: sourcePortId,
         center: this.toSchematicPoint(pin.at, center, scale),
         facing_direction: rotationToDirection(pin.at.angle ?? 0),
-        ...this.getSchematicPortPinMetadata(pinNumber),
+        ...this.getSchematicPortPinMetadata(pin, pinNumber, scale),
       }
       this.ctx.db.schematic_port.insert(schematicPortData)
     }
-
-    this.createPinLinePrimitives({
-      pins,
-      schematicComponentId: schematicComponent.schematic_component_id,
-      origin: center,
-      scale,
-    })
 
     this.createSchematicPrimitives({
       symbol,
@@ -426,40 +417,6 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
   }
 
-  private createPinLinePrimitives(params: {
-    pins: SymbolPin[]
-    schematicComponentId: string
-    origin: Point
-    scale: number
-  }) {
-    const { pins, schematicComponentId, origin, scale } = params
-
-    for (const pin of pins) {
-      if (!pin.at || pin.hidden || !pin.length) continue
-      if (pin.pinGraphicStyle && pin.pinGraphicStyle !== "line") continue
-
-      const start = this.toSchematicPoint(pin.at, origin, scale)
-      const end = this.toSchematicPoint(
-        this.getPinLineEndPoint(pin),
-        origin,
-        scale,
-      )
-      if (start.x === end.x && start.y === end.y) continue
-
-      const lineData: SchematicLineData = {
-        schematic_component_id: schematicComponentId,
-        x1: start.x,
-        y1: start.y,
-        x2: end.x,
-        y2: end.y,
-        stroke_width: this.toStrokeWidth(undefined, scale),
-        color: DEFAULT_STROKE_COLOR,
-        is_dashed: false,
-      }
-      this.ctx.db.schematic_line.insert(lineData)
-    }
-  }
-
   private createPropertyTextPrimitives(params: {
     symbol: SchematicSymbol
     schematicComponentId: string
@@ -499,16 +456,6 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     if (justify === "left") return "left"
     if (justify === "right") return "right"
     return "center"
-  }
-
-  private getPinLineEndPoint(pin: SymbolPin): KicadSymbolPoint {
-    const angleRadians = ((pin.at?.angle ?? 0) * Math.PI) / 180
-    const length = pin.length ?? 0
-
-    return {
-      x: (pin.at?.x ?? 0) + Math.cos(angleRadians) * length,
-      y: (pin.at?.y ?? 0) + Math.sin(angleRadians) * length,
-    }
   }
 
   private createPolylinePrimitives(
@@ -788,12 +735,56 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private getSchematicPortPinMetadata(
+    pin: SymbolPin,
     pinNumber: string,
-  ): Partial<Pick<SchematicPortData, "pin_number" | "display_pin_label">> {
+    scale: number,
+  ): Partial<
+    Pick<
+      SchematicPortData,
+      | "pin_number"
+      | "display_pin_label"
+      | "side_of_component"
+      | "distance_from_component_edge"
+    >
+  > {
+    const metadata: Partial<
+      Pick<
+        SchematicPortData,
+        | "pin_number"
+        | "display_pin_label"
+        | "side_of_component"
+        | "distance_from_component_edge"
+      >
+    > = {}
+
     if (/^\d+$/.test(pinNumber)) {
-      return { pin_number: Number(pinNumber) }
+      metadata.pin_number = Number(pinNumber)
+    } else {
+      metadata.display_pin_label = pinNumber
     }
 
-    return { display_pin_label: pinNumber }
+    if (pin.name) {
+      metadata.display_pin_label = pin.name
+    }
+
+    if (!pin.hidden && pin.length && pin.length > 0) {
+      metadata.side_of_component = this.pinAngleToSideOfComponent(
+        pin.at?.angle ?? 0,
+      )
+      metadata.distance_from_component_edge = pin.length * scale
+    }
+
+    return metadata
+  }
+
+  private pinAngleToSideOfComponent(
+    angle: number,
+  ): NonNullable<SchematicPortData["side_of_component"]> {
+    const normalized = ((angle % 360) + 360) % 360
+
+    if (normalized >= 315 || normalized < 45) return "left"
+    if (normalized >= 45 && normalized < 135) return "bottom"
+    if (normalized >= 135 && normalized < 225) return "right"
+    return "top"
   }
 }

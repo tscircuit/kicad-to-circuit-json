@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
+import { convertCircuitJsonToSchematicSvg } from "circuit-to-svg"
 import { KicadToCircuitJsonConverter } from "../../lib"
 import { takeCircuitJsonSnapshot } from "../fixtures/take-circuit-json-snapshot"
 import { takeKicadSymbolLibrarySnapshot } from "../fixtures/take-kicad-symbol-library-snapshot"
@@ -21,6 +22,9 @@ function convertCm5IoSymbolLibrary() {
   const sourcePorts = circuitJson.filter(
     (element) => element.type === "source_port",
   )
+  const schematicPorts = circuitJson.filter(
+    (element) => element.type === "schematic_port",
+  )
   const schematicComponents = circuitJson.filter(
     (element) => element.type === "schematic_component",
   )
@@ -30,6 +34,7 @@ function convertCm5IoSymbolLibrary() {
     circuitJson,
     sourceComponents,
     sourcePorts,
+    schematicPorts,
     schematicComponents,
   }
 }
@@ -48,22 +53,27 @@ test("kicad-to-circuit-json: CM5IO symbol library uses symbol-library stages", (
   ])
 })
 
-test("kicad-to-circuit-json: CM5IO symbol library emits source components and ports", () => {
+test("kicad-to-circuit-json: CM5IO symbol library emits source components and ports", async () => {
   const {
     converter,
     circuitJson,
     sourceComponents,
     sourcePorts,
+    schematicPorts,
     schematicComponents,
   } = convertCm5IoSymbolLibrary()
 
   expect(circuitJson.length).toBeGreaterThan(0)
   expect(sourceComponents.length).toBe(36)
   expect(sourcePorts.length).toBe(487)
+  expect(schematicPorts.length).toBe(487)
   expect(schematicComponents.length).toBe(36)
   expect(
     schematicComponents.every(
-      (schematicComponent) => schematicComponent.is_box_with_pins === false,
+      (schematicComponent) =>
+        schematicComponent.is_box_with_pins === true &&
+        schematicComponent.size.width === 0 &&
+        schematicComponent.size.height === 0,
     ),
   ).toBe(true)
   expect(converter.getStats()).toEqual({
@@ -89,6 +99,28 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
     (component) =>
       component.source_component_id === resistorComponent?.source_component_id,
   )
+  const resistorPorts = getPorts("R")
+  const resistorSchematicPorts = schematicPorts.filter(
+    (port) =>
+      port.schematic_component_id ===
+      resistorSchematicComponent?.schematic_component_id,
+  )
+  expect(resistorSchematicPorts).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        source_port_id: resistorPorts[0]?.source_port_id,
+        pin_number: 1,
+        side_of_component: "top",
+        distance_from_component_edge: expect.any(Number),
+      }),
+      expect.objectContaining({
+        source_port_id: resistorPorts[1]?.source_port_id,
+        pin_number: 2,
+        side_of_component: "bottom",
+        distance_from_component_edge: expect.any(Number),
+      }),
+    ]),
+  )
   expect(
     circuitJson.filter(
       (element) =>
@@ -97,7 +129,7 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
           resistorSchematicComponent?.schematic_component_id &&
         Math.hypot(element.x2 - element.x1, element.y2 - element.y1) > 0,
     ).length,
-  ).toBe(2)
+  ).toBe(0)
   expect(getComponent("C")?.ftype).toBe("simple_capacitor")
   expect(getPorts("C").map((port) => port.pin_number)).toEqual([1, 2])
 
@@ -183,6 +215,16 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
         element.text === "TYPEC-305-ACP16H458",
     ),
   ).toBe(true)
+
+  const schematicSvg = await convertCircuitJsonToSchematicSvg(circuitJson, {
+    width: 1200,
+    height: 1140,
+  })
+  expect(schematicSvg.match(/class="component-pin"/g)?.length).toBe(
+    sourcePorts.length * 2,
+  )
+  expect(schematicSvg).toContain("Ethernet_Pair1_P")
+  expect(schematicSvg).toContain("CC1")
 })
 
 test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () => {
