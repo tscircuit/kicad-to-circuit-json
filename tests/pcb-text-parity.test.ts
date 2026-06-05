@@ -65,11 +65,11 @@ test("kicad-to-circuit-json: maps silkscreen text size and rotation", () => {
   )
   const boardText = silkscreenTexts.find((text) => text.text === "BOARD")
 
-  expect(referenceText.font_size).toBeCloseTo(0.8 * (2 / 3))
+  expect(referenceText.font_size).toBeCloseTo(0.8 * 1.5)
   expect(referenceText.ccw_rotation).toBe(270)
-  expect(userText.font_size).toBeCloseTo(0.6 * (2 / 3))
+  expect(userText.font_size).toBeCloseTo(0.6 * 1.5)
   expect(userText.ccw_rotation).toBe(180)
-  expect(boardText.font_size).toBeCloseTo(0.7 * (2 / 3))
+  expect(boardText.font_size).toBeCloseTo(0.7 * 1.5)
   expect(boardText.ccw_rotation).toBe(270)
   expect(silkscreenTexts.find((text) => text.text === "HIDDEN")).toBeUndefined()
 

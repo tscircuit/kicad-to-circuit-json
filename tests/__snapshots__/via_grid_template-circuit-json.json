@@ -2721,7 +2721,7 @@
     },
     "anchor_alignment": "bottom_left",
     "layer": "top",
-    "font_size": 1,
+    "font_size": 2.25,
     "font": "tscircuit2024"
   },
   {
@@ -2735,7 +2735,7 @@
     },
     "anchor_alignment": "bottom_left",
     "layer": "top",
-    "font_size": 0.5,
+    "font_size": 1.125,
     "font": "tscircuit2024"
   },
   {
@@ -2749,7 +2749,7 @@
     },
     "anchor_alignment": "bottom_left",
     "layer": "bottom",
-    "font_size": 0.5,
+    "font_size": 1.125,
     "font": "tscircuit2024"
   },
   {
@@ -2763,7 +2763,7 @@
     },
     "anchor_alignment": "bottom_left",
     "layer": "bottom",
-    "font_size": 1,
+    "font_size": 2.25,
     "font": "tscircuit2024"
   }
 ]
