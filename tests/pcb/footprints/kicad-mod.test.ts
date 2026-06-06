@@ -1,15 +1,16 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../../lib"
+import { snapshotCircuitJsonPcbSvg } from "../../fixtures/svg-snapshot-test-utils"
 
 test("kicad-to-circuit-json converts standalone kicad_mod footprints", () => {
   const kicadModContent = readFileSync(
-    "tests/assets/footprints/two-pad.kicad_mod",
+    "tests/assets/footprints/SOT-343_SC-70-4.kicad_mod.kicad_mod",
     "utf-8",
   )
 
   const converter = new KicadToCircuitJsonConverter()
-  converter.addFile("two-pad.kicad_mod", kicadModContent)
+  converter.addFile("SOT-343_SC-70-4.kicad_mod.kicad_mod", kicadModContent)
   converter.runUntilFinished()
 
   const circuitJson = converter.getOutput() as any[]
@@ -31,8 +32,19 @@ test("kicad-to-circuit-json converts standalone kicad_mod footprints", () => {
   expect(pcbComponents).toHaveLength(1)
   expect(pcbComponents[0].center).toEqual({ x: 0, y: 0 })
   expect(pcbComponents[0].layer).toBe("top")
-  expect(smtPads).toHaveLength(2)
-  expect(pcbPorts).toHaveLength(2)
-  expect(smtPads.map((pad) => pad.port_hints[0]).sort()).toEqual(["1", "2"])
-  expect(smtPads.map((pad) => pad.layer)).toEqual(["top", "top"])
+  expect(smtPads).toHaveLength(4)
+  expect(pcbPorts).toHaveLength(4)
+  expect(smtPads.map((pad) => pad.port_hints[0]).sort()).toEqual([
+    "1",
+    "2",
+    "3",
+    "4",
+  ])
+  expect(smtPads.map((pad) => pad.layer)).toEqual(["top", "top", "top", "top"])
+
+  snapshotCircuitJsonPcbSvg({
+    circuitJson: circuitJson as any,
+    testPath: import.meta.path,
+    snapshotName: "SOT-343_SC-70-4-circuit-json",
+  })
 })
