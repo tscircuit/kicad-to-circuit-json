@@ -444,10 +444,11 @@ export function createSmdPad({
       const minDimension = Math.min(size.x, size.y)
       const pillCornerRadius = minDimension / 2
       const pillRoundrectRatio = pillCornerRadius / minDimension
-      cornerRadius =
-        roundrectRatio >= pillRoundrectRatio
-          ? pillCornerRadius
-          : (minDimension * roundrectRatio) / 2
+      if (roundrectRatio >= pillRoundrectRatio) {
+        cornerRadius = pillCornerRadius
+      } else {
+        cornerRadius = (minDimension * roundrectRatio) / 2
+      }
     }
 
     const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
