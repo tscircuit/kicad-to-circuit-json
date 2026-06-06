@@ -442,10 +442,11 @@ export function createSmdPad({
     let cornerRadius: number | undefined
     if (shape === "roundrect" && roundrectRatio !== undefined) {
       const minDimension = Math.min(size.x, size.y)
-      const maxRoundrectRatio = 0.5
+      const pillCornerRadius = minDimension / 2
+      const pillRoundrectRatio = pillCornerRadius / minDimension
       cornerRadius =
-        roundrectRatio >= maxRoundrectRatio
-          ? minDimension / 2
+        roundrectRatio >= pillRoundrectRatio
+          ? pillCornerRadius
           : (minDimension * roundrectRatio) / 2
     }
 
