@@ -444,6 +444,8 @@ export function createSmdPad({
       const minDimension = Math.min(size.x, size.y)
       const maxCornerRadius = minDimension / 2
       const maxRoundrectRatio = maxCornerRadius / minDimension
+      // Preserve normal roundrect radii, but clamp the max ratio to the largest
+      // valid corner radius so fully rounded pads render correctly.
       if (roundrectRatio >= maxRoundrectRatio) {
         cornerRadius = maxCornerRadius
       } else {
