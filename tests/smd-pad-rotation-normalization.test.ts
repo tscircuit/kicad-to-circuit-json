@@ -99,7 +99,7 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
     shape: "rect",
     width: 2,
     height: 1,
-    corner_radius: 0.25,
+    corner_radius: 0.125,
   })
   expect(padsByHint["6"].ccw_rotation).toBeUndefined()
 
@@ -120,18 +120,18 @@ test("kicad-to-circuit-json: normalizes right-angle SMD pad rotations", () => {
   })
 
   expect(padsByHint["9"]).toMatchObject({
-    shape: "rect",
+    shape: "pill",
     width: 1,
     height: 2,
-    corner_radius: 0.5,
+    radius: 0.5,
   })
   expect(padsByHint["9"].ccw_rotation).toBeUndefined()
 
   expect(padsByHint["10"]).toMatchObject({
-    shape: "rotated_rect",
+    shape: "rotated_pill",
     width: 1,
     height: 2,
-    corner_radius: 0.5,
+    radius: 0.5,
     ccw_rotation: 45,
   })
 })
