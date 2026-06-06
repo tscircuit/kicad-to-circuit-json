@@ -118,13 +118,13 @@
     "y": -2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_0",
     "port_hints": [
       "1"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
@@ -145,13 +145,13 @@
     "y": -2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_1",
     "port_hints": [
       "2"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
@@ -172,13 +172,13 @@
     "y": -2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_2",
     "port_hints": [
       "3"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
@@ -199,13 +199,13 @@
     "y": -2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_3",
     "port_hints": [
       "4"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
@@ -226,13 +226,13 @@
     "y": 2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_4",
     "port_hints": [
       "8"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
@@ -253,13 +253,13 @@
     "y": 2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_5",
     "port_hints": [
       "7"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
@@ -280,13 +280,13 @@
     "y": 2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_6",
     "port_hints": [
       "6"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
@@ -307,13 +307,13 @@
     "y": 2.769108000000003,
     "width": 0.5739892,
     "height": 2.0379944,
-    "radius": 0.2869946,
     "layer": "top",
     "pcb_port_id": "pcb_port_7",
     "port_hints": [
       "5"
     ],
-    "shape": "pill"
+    "shape": "rect",
+    "corner_radius": 0.2869946
   },
   {
     "type": "pcb_port",
