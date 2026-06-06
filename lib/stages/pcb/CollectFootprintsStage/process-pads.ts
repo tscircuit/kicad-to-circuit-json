@@ -440,64 +440,17 @@ export function createSmdPad({
   } else if (shape === "rect" || shape === "roundrect") {
     const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
     let cornerRadius: number | undefined
-    let roundrectRadius: number | undefined
-    let pillRadius: number | undefined
     if (shape === "roundrect" && roundrectRatio !== undefined) {
-      // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
       const minDimension = Math.min(size.x, size.y)
-      cornerRadius = (minDimension * roundrectRatio) / 2
-      roundrectRadius = minDimension * roundrectRatio
-      pillRadius = minDimension / 2
+      const maxRoundrectRatio = 0.5
+      cornerRadius =
+        roundrectRatio >= maxRoundrectRatio
+          ? minDimension / 2
+          : (minDimension * roundrectRatio) / 2
     }
 
     const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
     const rightAngleTurns = getRightAngleTurns(normalizedCcwRotation)
-
-    if (
-      shape === "roundrect" &&
-      roundrectRadius !== undefined &&
-      pillRadius !== undefined &&
-      roundrectRadius >= pillRadius
-    ) {
-      if (rightAngleTurns === null && normalizedCcwRotation !== 0) {
-        const rotatedSmtPad: PcbSmtPadRotatedPill = {
-          type: "pcb_smtpad",
-          pcb_component_id: componentId,
-          x: pos.x,
-          y: pos.y,
-          width: size.x,
-          height: size.y,
-          radius: pillRadius,
-          layer: layer,
-          pcb_port_id: pcbPortId,
-          port_hints: [pad.number.toString()],
-          shape: "rotated_pill",
-          ccw_rotation: normalizedCcwRotation,
-        } as PcbSmtPadRotatedPill
-        ctx.db.pcb_smtpad.insert(rotatedSmtPad)
-        return
-      }
-
-      const shouldSwapDimensions =
-        rightAngleTurns !== null && Math.abs(rightAngleTurns) % 2 === 1
-
-      const smtpad: PcbSmtPadPill = {
-        type: "pcb_smtpad",
-        pcb_component_id: componentId,
-        x: pos.x,
-        y: pos.y,
-        width: shouldSwapDimensions ? size.y : size.x,
-        height: shouldSwapDimensions ? size.x : size.y,
-        radius: pillRadius,
-        layer: layer,
-        pcb_port_id: pcbPortId,
-        port_hints: [pad.number.toString()],
-        shape: "pill",
-      } as PcbSmtPadPill
-
-      ctx.db.pcb_smtpad.insert(smtpad)
-      return
-    }
 
     if (rightAngleTurns === null && normalizedCcwRotation !== 0) {
       const rotatedsmtpad: PcbSmtPadRotatedRect = {
