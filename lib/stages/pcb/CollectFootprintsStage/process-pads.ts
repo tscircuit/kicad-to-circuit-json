@@ -440,18 +440,25 @@ export function createSmdPad({
   } else if (shape === "rect" || shape === "roundrect") {
     const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
     let cornerRadius: number | undefined
+    let roundrectRadius: number | undefined
+    let pillRadius: number | undefined
     if (shape === "roundrect" && roundrectRatio !== undefined) {
       // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
       const minDimension = Math.min(size.x, size.y)
       cornerRadius = (minDimension * roundrectRatio) / 2
+      roundrectRadius = minDimension * roundrectRatio
+      pillRadius = minDimension / 2
     }
 
     const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
     const rightAngleTurns = getRightAngleTurns(normalizedCcwRotation)
 
-    if (shape === "roundrect" && roundrectRatio >= 0.5) {
-      const radius = Math.min(size.x, size.y) / 2
-
+    if (
+      shape === "roundrect" &&
+      roundrectRadius !== undefined &&
+      pillRadius !== undefined &&
+      roundrectRadius >= pillRadius
+    ) {
       if (rightAngleTurns === null && normalizedCcwRotation !== 0) {
         const rotatedSmtPad: PcbSmtPadRotatedPill = {
           type: "pcb_smtpad",
@@ -460,7 +467,7 @@ export function createSmdPad({
           y: pos.y,
           width: size.x,
           height: size.y,
-          radius,
+          radius: pillRadius,
           layer: layer,
           pcb_port_id: pcbPortId,
           port_hints: [pad.number.toString()],
@@ -481,7 +488,7 @@ export function createSmdPad({
         y: pos.y,
         width: shouldSwapDimensions ? size.y : size.x,
         height: shouldSwapDimensions ? size.x : size.y,
-        radius,
+        radius: pillRadius,
         layer: layer,
         pcb_port_id: pcbPortId,
         port_hints: [pad.number.toString()],
