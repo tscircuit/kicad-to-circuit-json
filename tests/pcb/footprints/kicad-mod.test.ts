@@ -1,22 +1,22 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
-import { KicadToCircuitJsonConverter } from "../../../lib"
+import { KicadFootprintToCircuitJsonConverter } from "../../../lib"
 import { snapshotCircuitJsonPcbSvg } from "../../fixtures/svg-snapshot-test-utils"
 
-test("kicad-to-circuit-json converts standalone kicad_mod footprints", () => {
+test("KicadFootprintToCircuitJsonConverter converts standalone kicad_mod footprints", () => {
   const kicadModContent = readFileSync(
     "tests/assets/footprints/SOT-343_SC-70-4.kicad_mod.kicad_mod",
     "utf-8",
   )
 
-  const converter = new KicadToCircuitJsonConverter()
+  const converter = new KicadFootprintToCircuitJsonConverter()
   converter.addFile("SOT-343_SC-70-4.kicad_mod.kicad_mod", kicadModContent)
   converter.runUntilFinished()
 
   const circuitJson = converter.getOutput() as any[]
 
   expect(converter.ctx?.kicadMod).toBeDefined()
-  expect(converter.ctx?.kicadPcb?.footprints).toHaveLength(1)
+  expect(converter.ctx?.kicadPcb).toBeUndefined()
 
   const sourceComponents = circuitJson.filter(
     (element) => element.type === "source_component",

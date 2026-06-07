@@ -1,4 +1,7 @@
-import { KicadToCircuitJsonConverter } from "@project-lib"
+import {
+  KicadFootprintToCircuitJsonConverter,
+  KicadToCircuitJsonConverter,
+} from "@project-lib"
 import type { SimpleRouteJson } from "@tscircuit/core"
 import {
   type ChangeEvent,
@@ -133,7 +136,10 @@ export function App() {
         window.requestAnimationFrame(() => resolve())
       })
 
-      const converter = new KicadToCircuitJsonConverter()
+      const converter =
+        inputKind === "footprint"
+          ? new KicadFootprintToCircuitJsonConverter()
+          : new KicadToCircuitJsonConverter()
       converter.addFile(nextFileName, fileContents)
       converter.runUntilFinished()
 

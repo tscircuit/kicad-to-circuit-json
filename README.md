@@ -1,6 +1,6 @@
 # kicad-to-circuit-json
 
-Convert KiCad schematic, symbol library, PCB, and footprint (`.kicad_mod`) files to Circuit JSON format.
+Convert KiCad schematic, symbol library, PCB, and standalone footprint (`.kicad_mod`) files to Circuit JSON format.
 
 ## Installation
 
@@ -22,12 +22,8 @@ const converter = new KicadToCircuitJsonConverter()
 // Add KiCad files
 const pcbContent = fs.readFileSync("path/to/file.kicad_pcb", "utf-8")
 const schContent = fs.readFileSync("path/to/file.kicad_sch", "utf-8")
-// You can also add a standalone footprint file:
-// const footprintContent = fs.readFileSync("path/to/file.kicad_mod", "utf-8")
-
 converter.addFile("example.kicad_pcb", pcbContent)
 converter.addFile("example.kicad_sch", schContent)
-// converter.addFile("example.kicad_mod", footprintContent)
 
 // Run the conversion
 converter.runUntilFinished()
@@ -39,6 +35,21 @@ console.log(JSON.stringify(circuitJson, null, 2))
 // Get diagnostics
 console.log("Warnings:", converter.getWarnings())
 console.log("Stats:", converter.getStats())
+```
+
+For a standalone footprint file, use the dedicated footprint converter:
+
+```typescript
+import { KicadFootprintToCircuitJsonConverter } from "kicad-to-circuit-json"
+import fs from "fs"
+
+const footprintContent = fs.readFileSync("path/to/file.kicad_mod", "utf-8")
+const converter = new KicadFootprintToCircuitJsonConverter()
+
+converter.addFile("example.kicad_mod", footprintContent)
+converter.runUntilFinished()
+
+const circuitJson = converter.getOutput()
 ```
 
 ## Architecture
@@ -79,7 +90,7 @@ The converter handles coordinate system differences between KiCad and Circuit JS
 - ⚠️ Power symbols (partial)
 
 ### PCB / Footprints
-- ✅ Standalone footprint files (`.kicad_mod`)
+- ✅ Standalone footprint files (`.kicad_mod`) via `KicadFootprintToCircuitJsonConverter`
 - ✅ Footprints/Components
 - ✅ SMD pads
 - ✅ Through-hole pads (plated holes)
@@ -132,11 +143,12 @@ and demos.
 bun run dev
 ```
 
-The page accepts drag-and-drop `.kicad_pcb`, `.kicad_sch`, and `.kicad_sym`
-files, converts them with the local library source, and renders the resulting
-Circuit JSON inside an embedded runframe iframe preview. PCB files open in the
-PCB preview, while schematic and symbol library files open in the schematic
-preview. The site does not need the runframe package installed locally.
+The page accepts drag-and-drop `.kicad_pcb`, `.kicad_mod`, `.kicad_sch`, and
+`.kicad_sym` files, converts them with the local library source, and renders
+the resulting Circuit JSON inside an embedded runframe iframe preview. PCB and
+footprint files open in the PCB preview, while schematic and symbol library
+files open in the schematic preview. The site does not need the runframe
+package installed locally.
 
 ## Related Projects
 
