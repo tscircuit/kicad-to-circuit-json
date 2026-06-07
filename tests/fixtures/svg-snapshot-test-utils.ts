@@ -30,21 +30,6 @@ export function convertKicadPcbToSvgSnapshot(params: {
   expectSvgSnapshot(circuitJsonSvg, params.testPath, params.snapshotName)
 }
 
-export function snapshotCircuitJsonPcbSvg(params: {
-  circuitJson: any[]
-  testPath: string
-  snapshotName: string
-}) {
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(
-    removeFabricationNoteElementsFromPcbPreview(params.circuitJson) as any,
-    {
-      showCourtyards: true,
-    },
-  )
-
-  expectSvgSnapshot(circuitJsonSvg, params.testPath, params.snapshotName)
-}
-
 function expectSvgSnapshot(
   svg: string,
   testPath: string,
