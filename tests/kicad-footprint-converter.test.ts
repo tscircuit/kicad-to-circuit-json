@@ -12,7 +12,9 @@ test("kicad footprint converter: converts a standalone .kicad_mod footprint", ()
   converter.runUntilFinished()
 
   const output = converter.getOutput()
-  const sourceComponent = output.find((el: any) => el.type === "source_component")
+  const sourceComponent = output.find(
+    (el: any) => el.type === "source_component",
+  )
   const pcbComponent = output.find((el: any) => el.type === "pcb_component")
   const platedHoles = output.filter((el: any) => el.type === "pcb_plated_hole")
   const holesByHint = Object.fromEntries(
@@ -74,10 +76,7 @@ test("kicad footprint converter: DIP-10 SVG snapshot", async () => {
   })
 
   await mkdir("tests/__snapshots__", { recursive: true })
-  await writeFile(
-    "tests/__snapshots__/DIP-10_W10.16mm-circuit-json.svg",
-    svg,
-  )
+  await writeFile("tests/__snapshots__/DIP-10_W10.16mm-circuit-json.svg", svg)
 
   expect(svg.length).toBeGreaterThan(0)
 })
