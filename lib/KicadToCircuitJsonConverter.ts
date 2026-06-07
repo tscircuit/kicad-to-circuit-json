@@ -50,6 +50,13 @@ export class KicadToCircuitJsonConverter {
     const pcbFile = this._findFileWithExtension(".kicad_pcb")
     const schFile = this._findFileWithExtension(".kicad_sch")
     const symbolLibFile = this._findFileWithExtension(".kicad_sym")
+    const kicadModFile = this._findFileWithExtension(".kicad_mod")
+
+    if (kicadModFile) {
+      throw new Error(
+        "Standalone .kicad_mod conversion is handled by KicadFootprintToCircuitJsonConverter, not KicadToCircuitJsonConverter.",
+      )
+    }
 
     this.ctx = {
       db: cju([]),

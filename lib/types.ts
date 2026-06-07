@@ -1,11 +1,12 @@
 import type { CircuitJsonUtilObjects } from "@tscircuit/circuit-json-util"
-import type { KicadPcb, KicadSch, KicadSym } from "kicadts"
+import type { Footprint, KicadPcb, KicadSch, KicadSym } from "kicadts"
 import type { Matrix } from "transformation-matrix"
 
 export interface ConverterContext {
   db: CircuitJsonUtilObjects
   kicadPcb?: KicadPcb
   kicadSch?: KicadSch
+  kicadMod?: Footprint
   kicadSymbolLib?: KicadSym
 
   // Transformation matrices (KiCad → Circuit JSON)
