@@ -1,10 +1,6 @@
 import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
-import {
-  parseKicadPcb,
-  parseKicadSch,
-  parseKicadSym,
-} from "kicadts"
+import { parseKicadPcb, parseKicadSch, parseKicadSym } from "kicadts"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
