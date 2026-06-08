@@ -1,4 +1,5 @@
 export { KicadFootprintToCircuitJsonConverter } from "./KicadFootprintToCircuitJsonConverter"
+export { KicadSymbolToCircuitJsonConverter } from "./KicadSymbolToCircuitJsonConverter"
 export { KicadToCircuitJsonConverter } from "./KicadToCircuitJsonConverter"
 export { ConverterStage } from "./types"
 export type { ConverterContext } from "./types"
