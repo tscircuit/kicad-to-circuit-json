@@ -53,6 +53,21 @@ converter.runUntilFinished()
 const circuitJson = converter.getOutput()
 ```
 
+For a single `.kicad_sym` symbol library, use the dedicated symbol converter:
+
+```typescript
+import { KicadSymbolToCircuitJsonConverter } from "kicad-to-circuit-json"
+import fs from "fs"
+
+const converter = new KicadSymbolToCircuitJsonConverter()
+const symbolContent = fs.readFileSync("path/to/library.kicad_sym", "utf-8")
+
+converter.addFile("library.kicad_sym", symbolContent)
+converter.runUntilFinished()
+
+const circuitJson = converter.getOutput()
+```
+
 ## Architecture
 
 The converter uses a staged pipeline architecture that mirrors the circuit-json-to-kicad converter:
