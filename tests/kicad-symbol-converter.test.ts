@@ -18,14 +18,33 @@ test("kicad symbol converter: converts a standalone .kicad_sym symbol library", 
   const schematicComponents = output.filter(
     (element) => element.type === "schematic_component",
   )
+  const schematicSymbols = output.filter(
+    (element) => element.type === "schematic_symbol",
+  )
   const schematicPorts = output.filter(
     (element) => element.type === "schematic_port",
+  )
+  const schematicPrimitives = output.filter(
+    (element) =>
+      element.type === "schematic_line" ||
+      element.type === "schematic_rect" ||
+      element.type === "schematic_circle" ||
+      element.type === "schematic_arc" ||
+      element.type === "schematic_path" ||
+      element.type === "schematic_text",
   )
 
   expect(sourceComponents.length).toBe(36)
   expect(sourcePorts.length).toBe(487)
   expect(schematicComponents.length).toBe(36)
+  expect(schematicSymbols.length).toBe(36)
   expect(schematicPorts.length).toBe(487)
+  expect(
+    schematicComponents.every((component) => component.schematic_symbol_id),
+  ).toBe(true)
+  expect(
+    schematicPrimitives.every((primitive) => primitive.schematic_symbol_id),
+  ).toBe(true)
   expect(converter.pipeline?.map((stage) => stage.constructor.name)).toEqual([
     "InitializeSymbolLibraryContextStage",
     "CollectSymbolLibrarySymbolsStage",

@@ -8,6 +8,7 @@ import type {
   SchematicPath,
   SchematicPort,
   SchematicRect,
+  SchematicSymbol as CircuitJsonSchematicSymbol,
   SchematicText,
   SourcePort,
   SourceSimpleCapacitor,
@@ -19,7 +20,7 @@ import type {
   SourceSimpleTransistor,
 } from "circuit-json"
 import type {
-  SchematicSymbol,
+  SchematicSymbol as KicadSchematicSymbol,
   SymbolArc,
   SymbolCircle,
   SymbolPin,
@@ -58,6 +59,10 @@ type SchematicRectData = Omit<SchematicRect, "type" | "schematic_rect_id">
 type SchematicCircleData = Omit<SchematicCircle, "type" | "schematic_circle_id">
 type SchematicArcData = Omit<SchematicArc, "type" | "schematic_arc_id">
 type SchematicPathData = Omit<SchematicPath, "type" | "schematic_path_id">
+type SchematicSymbolData = Omit<
+  CircuitJsonSchematicSymbol,
+  "type" | "schematic_symbol_id"
+>
 type SchematicTextData = Omit<SchematicText, "type" | "schematic_text_id">
 type KicadSymbolPoint = { x: number; y: number }
 type KicadSymbolShapeChild = {
@@ -103,7 +108,13 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     return false
   }
 
-  private processSymbol(symbol: SchematicSymbol) {
+  private processSymbol(symbol: KicadSchematicSymbol) {
+    const schematicSymbolData: SchematicSymbolData = {
+      name: this.getSymbolName(symbol),
+    }
+    const schematicSymbol =
+      this.ctx.db.schematic_symbol.insert(schematicSymbolData)
+
     const sourceComponentData = this.createSourceComponentData(symbol)
     const sourceComponent =
       this.ctx.db.source_component.insert(sourceComponentData)
@@ -130,6 +141,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     this.createSchematicPreview({
       symbol,
       pins,
+      schematicSymbolId: schematicSymbol.schematic_symbol_id,
       sourceComponentId: sourceComponent.source_component_id,
       sourcePortIdByPinNumber,
     })
@@ -140,28 +152,30 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
   }
 
-  private getKicadSymbolExportFileName(symbol: SchematicSymbol): string {
+  private getKicadSymbolExportFileName(symbol: KicadSchematicSymbol): string {
     return `${this.getSymbolName(symbol)}_unit1.svg`
   }
 
-  private getSymbolName(symbol: SchematicSymbol): string {
+  private getSymbolName(symbol: KicadSchematicSymbol): string {
     return symbol.libraryId ?? symbol.libraryName ?? ""
   }
 
-  private getSymbolProperties(symbol: SchematicSymbol): Record<string, string> {
+  private getSymbolProperties(
+    symbol: KicadSchematicSymbol,
+  ): Record<string, string> {
     return Object.fromEntries(
       symbol.properties.map((property) => [property.key, property.value]),
     )
   }
 
-  private collectPins(symbol: SchematicSymbol): SymbolPin[] {
+  private collectPins(symbol: KicadSchematicSymbol): SymbolPin[] {
     return [
       ...symbol.pins,
       ...symbol.subSymbols.flatMap((subSymbol) => this.collectPins(subSymbol)),
     ]
   }
 
-  private collectPolylines(symbol: SchematicSymbol): SymbolPolyline[] {
+  private collectPolylines(symbol: KicadSchematicSymbol): SymbolPolyline[] {
     return [
       ...symbol.polylines,
       ...symbol.subSymbols.flatMap((subSymbol) =>
@@ -170,7 +184,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     ]
   }
 
-  private collectRectangles(symbol: SchematicSymbol): SymbolRectangle[] {
+  private collectRectangles(symbol: KicadSchematicSymbol): SymbolRectangle[] {
     return [
       ...symbol.rectangles,
       ...symbol.subSymbols.flatMap((subSymbol) =>
@@ -179,7 +193,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     ]
   }
 
-  private collectCircles(symbol: SchematicSymbol): SymbolCircle[] {
+  private collectCircles(symbol: KicadSchematicSymbol): SymbolCircle[] {
     return [
       ...symbol.circles,
       ...symbol.subSymbols.flatMap((subSymbol) =>
@@ -188,14 +202,14 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     ]
   }
 
-  private collectArcs(symbol: SchematicSymbol): SymbolArc[] {
+  private collectArcs(symbol: KicadSchematicSymbol): SymbolArc[] {
     return [
       ...symbol.arcs,
       ...symbol.subSymbols.flatMap((subSymbol) => this.collectArcs(subSymbol)),
     ]
   }
 
-  private collectTexts(symbol: SchematicSymbol): SymbolText[] {
+  private collectTexts(symbol: KicadSchematicSymbol): SymbolText[] {
     return [
       ...symbol.texts,
       ...symbol.subSymbols.flatMap((subSymbol) => this.collectTexts(subSymbol)),
@@ -203,18 +217,26 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private createSchematicPreview(params: {
-    symbol: SchematicSymbol
+    symbol: KicadSchematicSymbol
     pins: SymbolPin[]
+    schematicSymbolId: string
     sourceComponentId: string
     sourcePortIdByPinNumber: Map<string, string>
   }) {
-    const { symbol, pins, sourceComponentId, sourcePortIdByPinNumber } = params
+    const {
+      symbol,
+      pins,
+      schematicSymbolId,
+      sourceComponentId,
+      sourcePortIdByPinNumber,
+    } = params
     const bounds = this.getPinBounds(pins)
     const scale = this.getPreviewScale(bounds)
     const center = this.getPreviewCenter()
 
     const schematicComponentData: SchematicComponentData = {
       source_component_id: sourceComponentId,
+      schematic_symbol_id: schematicSymbolId,
       center,
       // Let circuit-to-svg render schematic_port pin lines without drawing
       // a generic box over the imported KiCad symbol primitives.
@@ -246,6 +268,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     this.createSchematicPrimitives({
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
+      schematicSymbolId,
       origin: center,
       scale,
     })
@@ -253,6 +276,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     this.createPropertyTextPrimitives({
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
+      schematicSymbolId,
       origin: center,
       scale,
     })
@@ -298,17 +322,20 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private createSchematicPrimitives(params: {
-    symbol: SchematicSymbol
+    symbol: KicadSchematicSymbol
     schematicComponentId: string
+    schematicSymbolId: string
     origin: Point
     scale: number
   }) {
-    const { symbol, schematicComponentId, origin, scale } = params
+    const { symbol, schematicComponentId, schematicSymbolId, origin, scale } =
+      params
 
     for (const polyline of this.collectPolylines(symbol)) {
       this.createPolylinePrimitives(
         polyline,
         schematicComponentId,
+        schematicSymbolId,
         origin,
         scale,
       )
@@ -323,6 +350,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const end = this.toSchematicPoint(endPoint, origin, scale)
       const rectData: SchematicRectData = {
         schematic_component_id: schematicComponentId,
+        schematic_symbol_id: schematicSymbolId,
         center: {
           x: (start.x + end.x) / 2,
           y: (start.y + end.y) / 2,
@@ -349,6 +377,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
       const circleData: SchematicCircleData = {
         schematic_component_id: schematicComponentId,
+        schematic_symbol_id: schematicSymbolId,
         center: this.toSchematicPoint(center, origin, scale),
         radius: radius * scale,
         stroke_width: this.toStrokeWidth(
@@ -371,6 +400,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       if (!arcGeometry) {
         const pathData: SchematicPathData = {
           schematic_component_id: schematicComponentId,
+          schematic_symbol_id: schematicSymbolId,
           points: [arcPoints.start, arcPoints.mid, arcPoints.end].map((point) =>
             this.toSchematicPoint(point, origin, scale),
           ),
@@ -386,6 +416,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
       const arcData: SchematicArcData = {
         schematic_component_id: schematicComponentId,
+        schematic_symbol_id: schematicSymbolId,
         ...arcGeometry,
         stroke_width: this.toStrokeWidth(
           this.getShapeStroke(arc)?.width,
@@ -402,6 +433,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
       const textData: SchematicTextData = {
         schematic_component_id: schematicComponentId,
+        schematic_symbol_id: schematicSymbolId,
         text: text.value,
         font_size: Math.max(0.1, this.getFontSize(text.effects) * scale),
         position: this.toSchematicPoint(
@@ -418,12 +450,14 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private createPropertyTextPrimitives(params: {
-    symbol: SchematicSymbol
+    symbol: KicadSchematicSymbol
     schematicComponentId: string
+    schematicSymbolId: string
     origin: Point
     scale: number
   }) {
-    const { symbol, schematicComponentId, origin, scale } = params
+    const { symbol, schematicComponentId, schematicSymbolId, origin, scale } =
+      params
 
     for (const property of symbol.properties) {
       if (property.hidden || !property.value) continue
@@ -431,6 +465,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
       const textData: SchematicTextData = {
         schematic_component_id: schematicComponentId,
+        schematic_symbol_id: schematicSymbolId,
         text: property.value,
         font_size: Math.max(0.1, this.getFontSize(property.effects) * scale),
         position: this.toSchematicPoint(
@@ -461,6 +496,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   private createPolylinePrimitives(
     polyline: SymbolPolyline,
     schematicComponentId: string,
+    schematicSymbolId: string,
     origin: Point,
     scale: number,
   ) {
@@ -470,6 +506,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     if (this.isFilled(polyline.fill?.type) && points.length >= 3) {
       const pathData: SchematicPathData = {
         schematic_component_id: schematicComponentId,
+        schematic_symbol_id: schematicSymbolId,
         points: points.map((point) =>
           this.toSchematicPoint(point, origin, scale),
         ),
@@ -486,6 +523,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const end = this.toSchematicPoint(points[index]!, origin, scale)
       const lineData: SchematicLineData = {
         schematic_component_id: schematicComponentId,
+        schematic_symbol_id: schematicSymbolId,
         x1: start.x,
         y1: start.y,
         x2: end.x,
@@ -655,7 +693,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private getManufacturerPartNumber(
-    symbol: SchematicSymbol,
+    symbol: KicadSchematicSymbol,
   ): string | undefined {
     const properties = this.getSymbolProperties(symbol)
     return (
@@ -668,7 +706,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private createSourceComponentData(
-    symbol: SchematicSymbol,
+    symbol: KicadSchematicSymbol,
   ): SymbolLibrarySourceComponentData {
     const base = {
       name: this.getSymbolName(symbol),
@@ -692,7 +730,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
   }
 
-  private inferFtype(symbol: SchematicSymbol): SymbolLibrarySourceFtype {
+  private inferFtype(symbol: KicadSchematicSymbol): SymbolLibrarySourceFtype {
     const name = this.getSymbolName(symbol).toLowerCase()
     const reference = this.getSymbolProperties(symbol).Reference ?? ""
 
