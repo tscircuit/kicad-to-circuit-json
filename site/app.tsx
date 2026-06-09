@@ -61,9 +61,7 @@ export function App() {
     const html = createRunframeHtml({
       circuitJson: deferredCircuitJson,
       defaultActiveTab:
-        inputKind === "pcb" || inputKind === "footprint"
-          ? "pcb"
-          : "schematic",
+        inputKind === "pcb" || inputKind === "footprint" ? "pcb" : "schematic",
       projectName: getOutputBaseName(fileName),
     })
     const nextFrameUrl = URL.createObjectURL(
@@ -144,7 +142,7 @@ export function App() {
           ? new KicadFootprintToCircuitJsonConverter()
           : inputKind === "symbol-library"
             ? new KicadSymbolToCircuitJsonConverter()
-          : new KicadToCircuitJsonConverter()
+            : new KicadToCircuitJsonConverter()
       converter.addFile(nextFileName, fileContents)
       converter.runUntilFinished()
 
@@ -228,8 +226,7 @@ export function App() {
               KiCad footprint, PCB, schematic, or symbol library files
             </strong>
             <p>
-              or browse for a local footprint, board, schematic, or library
-              file
+              or browse for a local footprint, board, schematic, or library file
             </p>
           </div>
           <button
