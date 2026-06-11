@@ -277,4 +277,4 @@ test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () 
     import.meta.path,
     "cm5io-symbol-library-schematic",
   )
-},100000)
+})
