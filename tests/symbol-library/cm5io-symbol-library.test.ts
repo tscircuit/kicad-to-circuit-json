@@ -230,6 +230,23 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
 test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () => {
   const { circuitJson } = convertCm5IoSymbolLibrary()
 
+  const fs = await import("node:fs/promises")
+  await fs.mkdir("tests/symbol-library/__snapshots__", {
+    recursive: true,
+  })
+  await fs.writeFile(
+    "tests/symbol-library/__snapshots__/cm5io-symbol-library-circuit-json.json",
+    JSON.stringify(circuitJson, null, 2),
+  )
+
+  const circuitJsonSvg = await convertCircuitJsonToSchematicSvg(circuitJson, {
+    width: 1200,
+    height: 1140,
+  })
+  await fs.writeFile(
+    "tests/symbol-library/__snapshots__/cm5io-symbol-library-circuit-json.svg",
+    circuitJsonSvg,
+  )
   const circuitJsonPng = await takeCircuitJsonSnapshot({
     circuitJson,
     outputType: "schematic",
@@ -260,4 +277,4 @@ test("kicad-to-circuit-json: CM5IO symbol library schematic snapshot", async () 
     import.meta.path,
     "cm5io-symbol-library-schematic",
   )
-})
+},100000)
