@@ -729,20 +729,12 @@ export class CollectGraphicsStage extends ConverterStage {
   private processRectangle(rect: any) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Extract rectangle properties from kicadts internal structure
-    const start = {
-      x: rect._sxStart?._x ?? 0,
-      y: rect._sxStart?._y ?? 0,
-    }
-    const end = {
-      x: rect._sxEnd?._x ?? 0,
-      y: rect._sxEnd?._y ?? 0,
-    }
+    const { start, end } = this.getRectStartEnd(rect)
     const renderLayer = mapKicadLayerToPcbRenderLayer(rect._sxLayer)
     const isFilled =
-      rect._sxFill &&
-      (rect._sxFill.isFilled === true ||
-        String(rect._sxFill).includes("fill yes"))
+      rect._sxFill?.filled === true ||
+      rect._sxFill?.isFilled === true ||
+      rect._sxFill?.value === "yes"
 
     // Check if this is a filled rectangle on a copper layer
     const isCopperLayer = renderLayer?.endsWith("_copper")
@@ -791,6 +783,20 @@ export class CollectGraphicsStage extends ConverterStage {
 
     if (renderLayer?.endsWith("_fabrication_note")) {
       this.ctx.db.pcb_fabrication_note_rect.insert({
+        pcb_component_id: "",
+        center: centerCJ,
+        width: widthKicad,
+        height: heightKicad,
+        layer,
+        stroke_width: strokeWidth,
+        is_filled: isFilled,
+        has_stroke: true,
+      })
+      return
+    }
+
+    if (renderLayer?.endsWith("_silkscreen")) {
+      this.ctx.db.pcb_silkscreen_rect.insert({
         pcb_component_id: "",
         center: centerCJ,
         width: widthKicad,

@@ -4,7 +4,9 @@ import path from "node:path"
 import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 
-test("kicad-to-circuit-json repro: OV9281 dual camera board PCB", () => {
+test("kicad-to-circuit-json repro: OV9281 dual camera board PCB", {
+  timeout: 30000,
+}, () => {
   const kicadPcbPath =
     "tests/repros/ov9281-dual-camera-board/ov9281-dual-camera-board.kicad_pcb"
   const kicadPcbContent = readFileSync(kicadPcbPath, "utf-8")

@@ -1,10 +1,13 @@
 import { expect, test } from "bun:test"
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
-import path from "node:path"
-import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
+import { readFileSync } from "node:fs"
+import { mkdir, writeFile } from "node:fs/promises"
 import { KicadToCircuitJsonConverter } from "../../../lib"
+import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadPngs"
+import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
+import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
+import "../../fixtures/png-matcher"
 
-test("kicad-to-circuit-json repro: Arduino Leonardo SVG snapshot", () => {
+test("kicad-to-circuit-json repro: Arduino Leonardo PCB", async () => {
   const kicadPcbPath = "tests/assets/Arduino Leonardo.kicad_pcb"
   const kicadPcbContent = readFileSync(kicadPcbPath, "utf-8")
 
@@ -16,47 +19,40 @@ test("kicad-to-circuit-json repro: Arduino Leonardo SVG snapshot", () => {
   expect(circuitJson.length).toBeGreaterThan(0)
   expect(circuitJson.some((el: any) => el.type === "pcb_board")).toBe(true)
   expect(circuitJson.some((el: any) => el.type === "pcb_component")).toBe(true)
+  expect(circuitJson.some((el: any) => el.type === "pcb_trace")).toBe(true)
 
+  await mkdir("tests/repros/arduino-leonardo/__snapshots__", {
+    recursive: true,
+  })
+  await writeFile(
+    "tests/repros/arduino-leonardo/__snapshots__/arduino-leonardo-circuit-json.json",
+    JSON.stringify(circuitJson, null, 2),
+  )
+
+  const kicadSnapshot = await takeKicadSnapshot({
+    kicadFilePath: kicadPcbPath,
+    kicadFileType: "pcb",
+    pcbSnapshotBounds: "circuit-json",
+  })
+
+  const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!
+  const circuitJsonPng = await takeCircuitJsonSnapshot({
+    circuitJson: circuitJson as any,
+    outputType: "pcb",
+  })
+
+  const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
   const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
     showCourtyards: true,
   })
-
-  expectSvgSnapshot(
+  await writeFile(
+    "tests/repros/arduino-leonardo/__snapshots__/arduino-leonardo-circuit-json.svg",
     circuitJsonSvg,
+  )
+
+  const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
+  await expect(stackedPng).toMatchPngSnapshot(
     import.meta.path,
-    "arduino-leonardo-circuit-json",
+    "arduino-leonardo-pcb",
   )
 })
-
-function expectSvgSnapshot(
-  svg: string,
-  testPath: string,
-  snapshotName: string,
-) {
-  const normalizedSvg = normalizeTransientSvgIds(svg)
-  const snapshotDir = path.join(path.dirname(testPath), "__snapshots__")
-  const snapshotPath = path.join(snapshotDir, `${snapshotName}.snap.svg`)
-  const shouldUpdateSnapshot =
-    process.argv.includes("--update-snapshots") ||
-    process.argv.includes("-u") ||
-    Boolean(process.env["BUN_UPDATE_SNAPSHOTS"])
-
-  if (!existsSync(snapshotDir)) {
-    mkdirSync(snapshotDir, { recursive: true })
-  }
-
-  if (!existsSync(snapshotPath) || shouldUpdateSnapshot) {
-    writeFileSync(snapshotPath, normalizedSvg)
-  }
-
-  expect(normalizedSvg).toBe(readFileSync(snapshotPath, "utf-8"))
-}
-
-function normalizeTransientSvgIds(svg: string) {
-  return svg
-    .replaceAll(
-      /silkscreen-knockout-mask-(pcb_silkscreen_text_\d+)-\d+/g,
-      "silkscreen-knockout-mask-$1",
-    )
-    .replaceAll(/knockout-mask-(pcb_copper_text_\d+)-\d+/g, "knockout-mask-$1")
-}
