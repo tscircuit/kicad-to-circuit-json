@@ -21,8 +21,9 @@ test("kicad-to-circuit-json: via-grid board PCB", async () => {
   // Verify we got some output
   expect(circuitJson).toBeDefined()
   expect(circuitJson.length).toBeGreaterThan(0)
-  expect(circuitJson.filter((element) => element.type === "pcb_via"))
-    .toHaveLength(70)
+  expect(
+    circuitJson.filter((element) => element.type === "pcb_via"),
+  ).toHaveLength(70)
 
   // Write Circuit JSON to file for inspection
   const fs = await import("node:fs/promises")
