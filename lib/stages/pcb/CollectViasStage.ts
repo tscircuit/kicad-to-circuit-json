@@ -1,19 +1,10 @@
+import type { PcbVia } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import {
   getCopperSpanLayerRefsFromLayers,
   getPcbCopperLayerRefs,
 } from "./layer-mapping"
-
-type PcbViaInsert = {
-  x: number
-  y: number
-  outer_diameter: number
-  hole_diameter: number
-  layers: string[]
-  from_layer?: string
-  to_layer?: string
-}
 
 /**
  * CollectViasStage converts KiCad vias into Circuit JSON pcb_via elements.
@@ -57,7 +48,7 @@ export class CollectViasStage extends ConverterStage {
     const fromLayer = layers[0]
     const toLayer = layers[layers.length - 1]
 
-    const pcbVia: PcbViaInsert = {
+    const pcbVia: Omit<PcbVia, "type" | "pcb_via_id"> = {
       x: pos.x,
       y: pos.y,
       outer_diameter: size,
