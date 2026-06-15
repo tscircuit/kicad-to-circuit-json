@@ -5,6 +5,16 @@ import {
   getPcbCopperLayerRefs,
 } from "./layer-mapping"
 
+type PcbViaInsert = {
+  x: number
+  y: number
+  outer_diameter: number
+  hole_diameter: number
+  layers: string[]
+  from_layer?: string
+  to_layer?: string
+}
+
 /**
  * CollectViasStage converts KiCad vias into Circuit JSON pcb_via elements.
  */
@@ -47,17 +57,25 @@ export class CollectViasStage extends ConverterStage {
     const fromLayer = layers[0]
     const toLayer = layers[layers.length - 1]
 
-    // Route vias inside pcb_trace describe layer transitions, but renderers such
-    // as pcb-viewer draw visible via drills from standalone pcb_via elements.
-    this.ctx.db.pcb_via.insert({
+    const pcbVia: PcbViaInsert = {
       x: pos.x,
       y: pos.y,
       outer_diameter: size,
       hole_diameter: drill,
       layers,
-      ...(fromLayer ? { from_layer: fromLayer } : {}),
-      ...(toLayer ? { to_layer: toLayer } : {}),
-    })
+    }
+
+    if (fromLayer) {
+      pcbVia.from_layer = fromLayer
+    }
+
+    if (toLayer) {
+      pcbVia.to_layer = toLayer
+    }
+
+    // Route vias inside pcb_trace describe layer transitions, but renderers such
+    // as pcb-viewer draw visible via drills from standalone pcb_via elements.
+    this.ctx.db.pcb_via.insert(pcbVia)
 
     // Update stats
     if (this.ctx.stats) {
