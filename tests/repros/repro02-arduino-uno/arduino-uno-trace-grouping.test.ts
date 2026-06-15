@@ -61,8 +61,8 @@ test("stitches Arduino Uno PCB segments into contiguous pcb_trace routes", () =>
 
   expect(pcbTraces).toHaveLength(188)
   expect(routeVias.length).toBeGreaterThan(0)
-  expect(routeVias.length).toBeGreaterThan(pcbVias.length)
-  expect(routeVias.length + pcbVias.length).toBe(rawVias.length)
+  expect(routeVias).toHaveLength(39)
+  expect(pcbVias).toHaveLength(rawVias.length)
   expect(
     routeVias.every(
       (via: any) =>
