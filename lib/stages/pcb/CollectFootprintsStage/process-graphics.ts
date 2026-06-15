@@ -45,6 +45,17 @@ function insertFootprintRoute(options: {
   })
 }
 
+function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
+  return (
+    graphic.stroke?.width ??
+    graphic.stroke?._sxWidth?.value ??
+    graphic._sxStroke?._sxWidth?.value ??
+    graphic.width ??
+    graphic._sxWidth?.value ??
+    fallback
+  )
+}
+
 /**
  * Rotates a point by a given angle (in degrees)
  */
@@ -179,7 +190,7 @@ export function createFootprintLine(
   const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
 
   const layer = mapTextLayer(line.layer)
-  const strokeWidth = line.stroke?.width || line.width || 0.12
+  const strokeWidth = getGraphicStrokeWidth(line)
 
   insertFootprintRoute({
     ctx,
@@ -228,7 +239,7 @@ export function createFootprintRect(
   const layer = mapTextLayer(rect.layer)
   const width = Math.abs(end.x - start.x)
   const height = Math.abs(end.y - start.y)
-  const strokeWidth = rect.stroke?.width || rect.width || 0.12
+  const strokeWidth = getGraphicStrokeWidth(rect)
 
   if (renderLayer.endsWith("_courtyard")) {
     ctx.db.pcb_courtyard_rect.insert({
@@ -316,7 +327,7 @@ export function createFootprintCircle(
   const centerPos = applyToPoint(ctx.k2cMatPcb, centerKicadPos)
 
   const layer = mapTextLayer(circle.layer)
-  const strokeWidth = circle.stroke?.width || circle.width || 0.12
+  const strokeWidth = getGraphicStrokeWidth(circle)
 
   if (renderLayer.endsWith("_courtyard")) {
     ctx.db.pcb_courtyard_circle.insert({
