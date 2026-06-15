@@ -21,6 +21,9 @@ test("kicad-to-circuit-json: via-grid board PCB", async () => {
   // Verify we got some output
   expect(circuitJson).toBeDefined()
   expect(circuitJson.length).toBeGreaterThan(0)
+  expect(
+    circuitJson.filter((element) => element.type === "pcb_via"),
+  ).toHaveLength(70)
 
   // Write Circuit JSON to file for inspection
   const fs = await import("node:fs/promises")
@@ -38,13 +41,13 @@ test("kicad-to-circuit-json: via-grid board PCB", async () => {
   const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!
 
   const circuitJsonPng = await takeCircuitJsonSnapshot({
-    circuitJson: circuitJson as any,
+    circuitJson,
     outputType: "pcb",
   })
 
   // Also export the circuit JSON as SVG for inspection
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
-  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson, {
     showCourtyards: true,
   })
   await fs.writeFile(

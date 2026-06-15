@@ -46,9 +46,9 @@ test("highlights Arduino Uno standalone pcb_vias not represented in trace routes
   )
 
   expect(routeVias).toHaveLength(39)
-  expect(pcbVias).toHaveLength(36)
+  expect(pcbVias).toHaveLength(75)
   expect(unconnectedPcbVias).toHaveLength(33)
-  expect(standalonePcbViasOnTraceRoute).toHaveLength(3)
+  expect(standalonePcbViasOnTraceRoute).toHaveLength(42)
 
   const baseSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
     showCourtyards: true,

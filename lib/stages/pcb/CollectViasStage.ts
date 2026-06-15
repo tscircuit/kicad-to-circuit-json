@@ -1,3 +1,4 @@
+import type { PcbVia } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import {
@@ -9,8 +10,6 @@ import {
  * CollectViasStage converts KiCad vias into Circuit JSON pcb_via elements.
  */
 export class CollectViasStage extends ConverterStage {
-  private readonly POINT_KEY_PRECISION = 1e6
-
   step(): boolean {
     if (!this.ctx.kicadPcb || !this.ctx.k2cMatPcb || !this.ctx.netNumToName) {
       this.finished = true
@@ -46,50 +45,21 @@ export class CollectViasStage extends ConverterStage {
         ? mappedLayers
         : getPcbCopperLayerRefs(this.ctx.kicadPcb)
 
-    if (this.hasMatchingTraceRouteVia(pos, layers)) {
-      if (this.ctx.stats) {
-        this.ctx.stats.vias = (this.ctx.stats.vias || 0) + 1
-      }
-      return
-    }
-
-    // Create pcb_via
-    this.ctx.db.pcb_via.insert({
+    const pcbVia: Omit<PcbVia, "type" | "pcb_via_id"> = {
       x: pos.x,
       y: pos.y,
       outer_diameter: size,
       hole_diameter: drill,
       layers,
-    })
+    }
+
+    // Route vias inside pcb_trace describe layer transitions, but renderers such
+    // as pcb-viewer draw visible via drills from standalone pcb_via elements.
+    this.ctx.db.pcb_via.insert(pcbVia)
 
     // Update stats
     if (this.ctx.stats) {
       this.ctx.stats.vias = (this.ctx.stats.vias || 0) + 1
     }
-  }
-
-  private hasMatchingTraceRouteVia(
-    point: { x: number; y: number },
-    layers: string[],
-  ) {
-    const pointKey = this.getPointKey(point)
-    const layerSet = new Set(layers)
-    const pcbTraces = this.ctx.db.pcb_trace.list() as any[]
-
-    return pcbTraces.some((trace) =>
-      (trace.route ?? []).some(
-        (routePoint: any) =>
-          routePoint.route_type === "via" &&
-          this.getPointKey(routePoint) === pointKey &&
-          layerSet.has(routePoint.from_layer) &&
-          layerSet.has(routePoint.to_layer),
-      ),
-    )
-  }
-
-  private getPointKey(point: { x: number; y: number }): string {
-    const x = Math.round(point.x * this.POINT_KEY_PRECISION)
-    const y = Math.round(point.y * this.POINT_KEY_PRECISION)
-    return `${x},${y}`
   }
 }
