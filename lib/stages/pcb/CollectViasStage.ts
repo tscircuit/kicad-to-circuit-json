@@ -45,23 +45,12 @@ export class CollectViasStage extends ConverterStage {
         ? mappedLayers
         : getPcbCopperLayerRefs(this.ctx.kicadPcb)
 
-    const fromLayer = layers[0]
-    const toLayer = layers[layers.length - 1]
-
     const pcbVia: Omit<PcbVia, "type" | "pcb_via_id"> = {
       x: pos.x,
       y: pos.y,
       outer_diameter: size,
       hole_diameter: drill,
       layers,
-    }
-
-    if (fromLayer) {
-      pcbVia.from_layer = fromLayer
-    }
-
-    if (toLayer) {
-      pcbVia.to_layer = toLayer
     }
 
     // Route vias inside pcb_trace describe layer transitions, but renderers such
