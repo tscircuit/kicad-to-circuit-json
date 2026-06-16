@@ -25,7 +25,8 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const position = footprint.position
   const kicadPos = { x: position?.x ?? 0, y: position?.y ?? 0 }
   const cjPos = applyToPoint(ctx.k2cMatPcb, kicadPos)
-  const componentCcwRotationDegrees = (position as any)?.angle ?? 0
+  const componentCcwRotationDegrees =
+    position && "angle" in position ? (position.angle ?? 0) : 0
 
   // Get footprint UUID
   const uuid = footprint.uuid?.value || footprint.tstamp?.value
