@@ -1,7 +1,11 @@
 import type { Footprint, FpPoly, FpLine, FpCircle, FpArc } from "kicadts"
 import type { PcbRenderLayer } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
-import type { ConverterContext } from "../../../types"
+import type {
+  ConverterContext,
+  FootprintPlacement,
+  Point,
+} from "../../../types"
 import {
   isPcbAnnotationRenderLayer,
   mapKicadLayerToPcbRenderLayer,
@@ -59,54 +63,52 @@ function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
 /**
  * Rotates a point by a given angle (in degrees)
  */
-export function rotatePoint(
-  x: number,
-  y: number,
-  rotationDeg: number,
-): { x: number; y: number } {
-  const rotationRad = (rotationDeg * Math.PI) / 180
+export function rotatePoint(params: {
+  point: Point
+  ccwRotationDegrees: number
+}): Point {
+  const { point, ccwRotationDegrees } = params
+  const rotationRad = (ccwRotationDegrees * Math.PI) / 180
   return {
-    x: x * Math.cos(rotationRad) - y * Math.sin(rotationRad),
-    y: x * Math.sin(rotationRad) + y * Math.cos(rotationRad),
+    x: point.x * Math.cos(rotationRad) - point.y * Math.sin(rotationRad),
+    y: point.x * Math.sin(rotationRad) + point.y * Math.cos(rotationRad),
   }
 }
 
 /**
  * Processes all graphical elements in a footprint (lines, circles, arcs)
  */
-export function processFootprintGraphics(
-  ctx: ConverterContext,
-  footprint: Footprint,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function processFootprintGraphics(params: {
+  ctx: ConverterContext
+  footprint: Footprint
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, footprint, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   // Process fp_line elements
   const lines = footprint.fpLines || []
   const lineArray = Array.isArray(lines) ? lines : lines ? [lines] : []
   for (const line of lineArray) {
-    createFootprintLine(
+    createFootprintLine({
       ctx,
       line,
       componentId,
-      kicadComponentPos,
-      componentRotation,
-    )
+      footprintPlacement,
+    })
   }
 
   // Process fp_rect elements
   const rects = footprint.fpRects || []
   const rectArray = Array.isArray(rects) ? rects : rects ? [rects] : []
   for (const rect of rectArray) {
-    createFootprintRect(
+    createFootprintRect({
       ctx,
       rect,
       componentId,
-      kicadComponentPos,
-      componentRotation,
-    )
+      footprintPlacement,
+    })
   }
 
   // Process fp_circle elements
@@ -117,52 +119,49 @@ export function processFootprintGraphics(
       ? [circles]
       : []
   for (const circle of circleArray) {
-    createFootprintCircle(
+    createFootprintCircle({
       ctx,
       circle,
       componentId,
-      kicadComponentPos,
-      componentRotation,
-    )
+      footprintPlacement,
+    })
   }
 
   // Process fp_arc elements
   const arcs = footprint.fpArcs || []
   const arcArray = Array.isArray(arcs) ? arcs : arcs ? [arcs] : []
   for (const arc of arcArray) {
-    createFootprintArc(
+    createFootprintArc({
       ctx,
       arc,
       componentId,
-      kicadComponentPos,
-      componentRotation,
-    )
+      footprintPlacement,
+    })
   }
 
   // Process fp_poly elements
   const polys = footprint.fpPolys || []
   const polyArray = Array.isArray(polys) ? polys : polys ? [polys] : []
   for (const poly of polyArray) {
-    createFootprintPoly(
+    createFootprintPoly({
       ctx,
       poly,
       componentId,
-      kicadComponentPos,
-      componentRotation,
-    )
+      footprintPlacement,
+    })
   }
 }
 
 /**
  * Creates a footprint line graphic on the matching output layer type
  */
-export function createFootprintLine(
-  ctx: ConverterContext,
-  line: FpLine,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function createFootprintLine(params: {
+  ctx: ConverterContext
+  line: FpLine
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, line, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(line.layer)
@@ -172,17 +171,23 @@ export function createFootprintLine(
   const end = line.end || { x: 0, y: 0 }
 
   // Rotate line points by component rotation (negated for Y-axis flip)
-  const rotatedStart = rotatePoint(start.x, start.y, -componentRotation)
-  const rotatedEnd = rotatePoint(end.x, end.y, -componentRotation)
+  const rotatedStart = rotatePoint({
+    point: start,
+    ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+  })
+  const rotatedEnd = rotatePoint({
+    point: end,
+    ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+  })
 
   // Apply component position
   const startKicadPos = {
-    x: kicadComponentPos.x + rotatedStart.x,
-    y: kicadComponentPos.y + rotatedStart.y,
+    x: footprintPlacement.kicadComponentPos.x + rotatedStart.x,
+    y: footprintPlacement.kicadComponentPos.y + rotatedStart.y,
   }
   const endKicadPos = {
-    x: kicadComponentPos.x + rotatedEnd.x,
-    y: kicadComponentPos.y + rotatedEnd.y,
+    x: footprintPlacement.kicadComponentPos.x + rotatedEnd.x,
+    y: footprintPlacement.kicadComponentPos.y + rotatedEnd.y,
   }
 
   // Transform to Circuit JSON coordinates
@@ -205,13 +210,13 @@ export function createFootprintLine(
 /**
  * Creates a footprint rectangle graphic on the matching output layer type
  */
-export function createFootprintRect(
-  ctx: ConverterContext,
-  rect: any,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function createFootprintRect(params: {
+  ctx: ConverterContext
+  rect: any
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, rect, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(rect.layer)
@@ -225,12 +230,15 @@ export function createFootprintRect(
   }
 
   // Rotate rectangle center by component rotation (negated for Y-axis flip)
-  const rotatedCenter = rotatePoint(center.x, center.y, -componentRotation)
+  const rotatedCenter = rotatePoint({
+    point: center,
+    ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+  })
 
   // Apply component position
   const centerKicadPos = {
-    x: kicadComponentPos.x + rotatedCenter.x,
-    y: kicadComponentPos.y + rotatedCenter.y,
+    x: footprintPlacement.kicadComponentPos.x + rotatedCenter.x,
+    y: footprintPlacement.kicadComponentPos.y + rotatedCenter.y,
   }
 
   // Transform to Circuit JSON coordinates
@@ -248,7 +256,7 @@ export function createFootprintRect(
       width,
       height,
       layer,
-      ccw_rotation: -componentRotation,
+      ccw_rotation: -footprintPlacement.componentCcwRotationDegrees,
     })
     return
   }
@@ -275,10 +283,13 @@ export function createFootprintRect(
     { x: start.x, y: start.y },
   ]
   const route = corners.map((point) => {
-    const rotated = rotatePoint(point.x, point.y, -componentRotation)
+    const rotated = rotatePoint({
+      point,
+      ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+    })
     const kicadPos = {
-      x: kicadComponentPos.x + rotated.x,
-      y: kicadComponentPos.y + rotated.y,
+      x: footprintPlacement.kicadComponentPos.x + rotated.x,
+      y: footprintPlacement.kicadComponentPos.y + rotated.y,
     }
     return applyToPoint(ctx.k2cMatPcb!, kicadPos)
   })
@@ -296,13 +307,13 @@ export function createFootprintRect(
 /**
  * Creates a footprint circle graphic on the matching output layer type
  */
-export function createFootprintCircle(
-  ctx: ConverterContext,
-  circle: FpCircle,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function createFootprintCircle(params: {
+  ctx: ConverterContext
+  circle: FpCircle
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, circle, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(circle.layer)
@@ -315,12 +326,15 @@ export function createFootprintCircle(
   const radius = Math.sqrt((end.x - center.x) ** 2 + (end.y - center.y) ** 2)
 
   // Rotate center by component rotation (negated for Y-axis flip)
-  const rotatedCenter = rotatePoint(center.x, center.y, -componentRotation)
+  const rotatedCenter = rotatePoint({
+    point: center,
+    ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+  })
 
   // Apply component position
   const centerKicadPos = {
-    x: kicadComponentPos.x + rotatedCenter.x,
-    y: kicadComponentPos.y + rotatedCenter.y,
+    x: footprintPlacement.kicadComponentPos.x + rotatedCenter.x,
+    y: footprintPlacement.kicadComponentPos.y + rotatedCenter.y,
   }
 
   // Transform to Circuit JSON coordinates
@@ -363,15 +377,16 @@ export function createFootprintCircle(
 /**
  * Calculates the center and radius of a circle passing through three points
  */
-function calculateArcCenter(
-  p1: { x: number; y: number },
-  p2: { x: number; y: number },
-  p3: { x: number; y: number },
-): { center: { x: number; y: number }; radius: number } | null {
-  const ax = p1.x - p2.x
-  const ay = p1.y - p2.y
-  const bx = p2.x - p3.x
-  const by = p2.y - p3.y
+function calculateArcCenter(params: {
+  start: Point
+  mid: Point
+  end: Point
+}): { center: { x: number; y: number }; radius: number } | null {
+  const { start, mid, end } = params
+  const ax = start.x - mid.x
+  const ay = start.y - mid.y
+  const bx = mid.x - end.x
+  const by = mid.y - end.y
 
   const denom = 2 * (ax * by - ay * bx)
 
@@ -380,13 +395,14 @@ function calculateArcCenter(
     return null
   }
 
-  const d1 = p1.x * p1.x + p1.y * p1.y - p2.x * p2.x - p2.y * p2.y
-  const d2 = p2.x * p2.x + p2.y * p2.y - p3.x * p3.x - p3.y * p3.y
+  const d1 =
+    start.x * start.x + start.y * start.y - mid.x * mid.x - mid.y * mid.y
+  const d2 = mid.x * mid.x + mid.y * mid.y - end.x * end.x - end.y * end.y
 
   const cx = (d1 * by - d2 * ay) / denom
   const cy = (ax * d2 - bx * d1) / denom
 
-  const radius = Math.sqrt((p1.x - cx) ** 2 + (p1.y - cy) ** 2)
+  const radius = Math.sqrt((start.x - cx) ** 2 + (start.y - cy) ** 2)
 
   return { center: { x: cx, y: cy }, radius }
 }
@@ -394,13 +410,13 @@ function calculateArcCenter(
 /**
  * Creates a footprint arc graphic on the matching output layer type
  */
-export function createFootprintArc(
-  ctx: ConverterContext,
-  arc: FpArc,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function createFootprintArc(params: {
+  ctx: ConverterContext
+  arc: FpArc
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, arc, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(arc.layer)
@@ -411,29 +427,42 @@ export function createFootprintArc(
   const end = arc.end || { x: 0, y: 0 }
 
   // Rotate arc points by component rotation (negated for Y-axis flip)
-  const rotatedStart = rotatePoint(start.x, start.y, -componentRotation)
-  const rotatedMid = rotatePoint(mid.x, mid.y, -componentRotation)
-  const rotatedEnd = rotatePoint(end.x, end.y, -componentRotation)
+  const rotatedStart = rotatePoint({
+    point: start,
+    ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+  })
+  const rotatedMid = rotatePoint({
+    point: mid,
+    ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+  })
+  const rotatedEnd = rotatePoint({
+    point: end,
+    ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+  })
 
   // Apply component position - these are now in KiCad global coordinates
   const startKicadPos = {
-    x: kicadComponentPos.x + rotatedStart.x,
-    y: kicadComponentPos.y + rotatedStart.y,
+    x: footprintPlacement.kicadComponentPos.x + rotatedStart.x,
+    y: footprintPlacement.kicadComponentPos.y + rotatedStart.y,
   }
   const midKicadPos = {
-    x: kicadComponentPos.x + rotatedMid.x,
-    y: kicadComponentPos.y + rotatedMid.y,
+    x: footprintPlacement.kicadComponentPos.x + rotatedMid.x,
+    y: footprintPlacement.kicadComponentPos.y + rotatedMid.y,
   }
   const endKicadPos = {
-    x: kicadComponentPos.x + rotatedEnd.x,
-    y: kicadComponentPos.y + rotatedEnd.y,
+    x: footprintPlacement.kicadComponentPos.x + rotatedEnd.x,
+    y: footprintPlacement.kicadComponentPos.y + rotatedEnd.y,
   }
 
   const layer = mapTextLayer(arc.layer)
   const strokeWidth = arc.stroke?.width || arc.width || 0.12
 
   // Calculate the arc center and radius IN KICAD SPACE (before coordinate transformation)
-  const arcInfo = calculateArcCenter(startKicadPos, midKicadPos, endKicadPos)
+  const arcInfo = calculateArcCenter({
+    start: startKicadPos,
+    mid: midKicadPos,
+    end: endKicadPos,
+  })
 
   if (!arcInfo) {
     // If points are collinear, fall back to straight line
@@ -521,13 +550,13 @@ export function createFootprintArc(
   })
 }
 
-export function createFootprintPoly(
-  ctx: ConverterContext,
-  poly: FpPoly,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentCcwRotationDegrees: number,
-) {
+export function createFootprintPoly(params: {
+  ctx: ConverterContext
+  poly: FpPoly
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, poly, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(poly.layer)
@@ -548,10 +577,13 @@ export function createFootprintPoly(
     // Handle both {x, y} and {xy: {x, y}} or {token: 'xy', x, y}
     const x = p.x ?? p.xy?.x ?? 0
     const y = p.y ?? p.xy?.y ?? 0
-    const rotated = rotatePoint(x, y, -componentCcwRotationDegrees)
+    const rotated = rotatePoint({
+      point: { x, y },
+      ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+    })
     const kicadPos = {
-      x: kicadComponentPos.x + rotated.x,
-      y: kicadComponentPos.y + rotated.y,
+      x: footprintPlacement.kicadComponentPos.x + rotated.x,
+      y: footprintPlacement.kicadComponentPos.y + rotated.y,
     }
     return applyToPoint(ctx.k2cMatPcb!, kicadPos)
   })

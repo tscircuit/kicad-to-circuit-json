@@ -6,7 +6,7 @@ import type {
   PcbSilkscreenText,
 } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
-import type { ConverterContext } from "../../../types"
+import type { ConverterContext, FootprintPlacement } from "../../../types"
 import {
   isPcbTextRenderLayer,
   mapKicadLayerToPcbRenderLayer,
@@ -101,23 +101,22 @@ function isFabTextSameLabelAndPositionAsVisibleSilkscreenText(
 /**
  * Processes all text elements in a footprint (properties and fp_text)
  */
-export function processFootprintText(
-  ctx: ConverterContext,
-  footprint: Footprint,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function processFootprintText(params: {
+  ctx: ConverterContext
+  footprint: Footprint
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, footprint, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   // Process properties (Reference, Value, etc.) that are on silkscreen/fabrication layers
-  processFootprintProperties(
+  processFootprintProperties({
     ctx,
     footprint,
     componentId,
-    kicadComponentPos,
-    componentRotation,
-  )
+    footprintPlacement,
+  })
 
   // Process additional fp_text elements
   const texts = footprint.fpTexts || []
@@ -142,28 +141,27 @@ export function processFootprintText(
       _sxEffects: (text as any)._sxEffects, // Pass _sxEffects for font size access
     }
 
-    createGraphicText(
+    createGraphicText({
       ctx,
       textElement,
       renderLayer,
       componentId,
-      kicadComponentPos,
-      componentRotation,
       footprint,
-    )
+      footprintPlacement,
+    })
   }
 }
 
 /**
  * Processes footprint properties that should be shown on silkscreen/fabrication
  */
-export function processFootprintProperties(
-  ctx: ConverterContext,
-  footprint: Footprint,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function processFootprintProperties(params: {
+  ctx: ConverterContext
+  footprint: Footprint
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, footprint, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   const properties = footprint.properties || []
@@ -188,63 +186,74 @@ export function processFootprintProperties(
       _sxEffects: (property as any)._sxEffects, // Pass _sxEffects for font size access
     }
 
-    createGraphicText(
+    createGraphicText({
       ctx,
       textElement,
       renderLayer,
       componentId,
-      kicadComponentPos,
-      componentRotation,
       footprint,
-    )
+      footprintPlacement,
+    })
   }
 }
 
 /**
  * Creates a footprint text element in the matching Circuit JSON output type
  */
-export function createGraphicText(
-  ctx: ConverterContext,
-  text: any,
-  renderLayer: PcbRenderLayer,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-  footprint: Footprint,
-) {
+export function createGraphicText(params: {
+  ctx: ConverterContext
+  textElement: any
+  renderLayer: PcbRenderLayer
+  componentId: string
+  footprint: Footprint
+  footprintPlacement: FootprintPlacement
+}) {
+  const {
+    ctx,
+    textElement,
+    renderLayer,
+    componentId,
+    footprint,
+    footprintPlacement,
+  } = params
   if (!ctx.k2cMatPcb) return
 
-  const at = text.at
+  const at = textElement.at
   // Text position in footprint is relative to footprint position and needs to be rotated
   const textLocalX = at?.x ?? 0
   const textLocalY = at?.y ?? 0
 
   // Negate rotation to account for Y-axis flip in coordinate transform
-  const rotationRad = (-componentRotation * Math.PI) / 180
+  const rotationRad =
+    (-footprintPlacement.componentCcwRotationDegrees * Math.PI) / 180
   const rotatedTextX =
     textLocalX * Math.cos(rotationRad) - textLocalY * Math.sin(rotationRad)
   const rotatedTextY =
     textLocalX * Math.sin(rotationRad) + textLocalY * Math.cos(rotationRad)
 
   const textKicadPos = {
-    x: kicadComponentPos.x + rotatedTextX,
-    y: kicadComponentPos.y + rotatedTextY,
+    x: footprintPlacement.kicadComponentPos.x + rotatedTextX,
+    y: footprintPlacement.kicadComponentPos.y + rotatedTextY,
   }
   const pos = applyToPoint(ctx.k2cMatPcb, textKicadPos)
 
-  const layer = mapTextLayer(text.layer)
+  const layer = mapTextLayer(textElement.layer)
 
   // Substitute KiCad variables in text
-  const processedText = substituteKicadVariables(text.text || "", footprint)
+  const processedText = substituteKicadVariables(
+    textElement.text || "",
+    footprint,
+  )
 
   // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
   const kicadFontSize =
-    text._sxEffects?._sxFont?._sxSize?._height ||
-    text.effects?.font?.size?.y ||
+    textElement._sxEffects?._sxFont?._sxSize?._height ||
+    textElement.effects?.font?.size?.y ||
     1
   const fontSize = kicadFontSize * KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE
   const ccwRotation = convertKiCadAngleToCircuitJsonCcwRotation(at?.angle)
-  const justify = text._sxEffects?._sxJustify || text.effects?.justify
+  const justify =
+    textElement._sxEffects?._sxJustify || textElement.effects?.justify
   const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
 
   if (renderLayer.endsWith("_silkscreen")) {

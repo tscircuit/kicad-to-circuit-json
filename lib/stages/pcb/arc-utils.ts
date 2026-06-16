@@ -92,23 +92,20 @@ export function getTopLevelCopperArcs(kicadPcb: KicadPcb): PcbArc[] {
   return normalizeToArray(kicadPcb.arcs)
 }
 
-export function approximateArcPoints(
-  start: PcbPoint,
-  mid: PcbPoint,
-  end: PcbPoint,
-  options?: {
-    segmentLength?: number
-    minSegments?: number
-  },
-): PcbPoint[] {
-  const geometry = getArcGeometry(start, mid, end)
+export function approximateArcPoints(params: {
+  start: PcbPoint
+  mid: PcbPoint
+  end: PcbPoint
+  segmentLength?: number
+  minSegments?: number
+}): PcbPoint[] {
+  const { start, mid, end, segmentLength = 0.25, minSegments = 8 } = params
+  const geometry = getArcGeometry({ start, mid, end })
 
   if (!geometry) {
     return [start, end]
   }
 
-  const segmentLength = options?.segmentLength ?? 0.25
-  const minSegments = options?.minSegments ?? 8
   const arcLength = Math.abs(geometry.radius * geometry.sweepAngle)
   const numSegments = Math.max(
     2,
@@ -153,18 +150,22 @@ export function getCurvePoints(curve: GrCurve): {
   }
 }
 
-export function approximateCubicBezierPoints(
-  start: PcbPoint,
-  control1: PcbPoint,
-  control2: PcbPoint,
-  end: PcbPoint,
-  options?: {
-    segmentLength?: number
-    minSegments?: number
-  },
-): PcbPoint[] {
-  const segmentLength = options?.segmentLength ?? 0.25
-  const minSegments = options?.minSegments ?? 8
+export function approximateCubicBezierPoints(params: {
+  start: PcbPoint
+  control1: PcbPoint
+  control2: PcbPoint
+  end: PcbPoint
+  segmentLength?: number
+  minSegments?: number
+}): PcbPoint[] {
+  const {
+    start,
+    control1,
+    control2,
+    end,
+    segmentLength = 0.25,
+    minSegments = 8,
+  } = params
   const controlPolygonLength =
     getDistance(start, control1) +
     getDistance(control1, control2) +
@@ -197,21 +198,18 @@ export function approximateCubicBezierPoints(
   return points
 }
 
-export function approximateCirclePoints(
-  center: PcbPoint,
-  end: PcbPoint,
-  options?: {
-    segmentLength?: number
-    minSegments?: number
-  },
-): PcbPoint[] {
+export function approximateCirclePoints(params: {
+  center: PcbPoint
+  end: PcbPoint
+  segmentLength?: number
+  minSegments?: number
+}): PcbPoint[] {
+  const { center, end, segmentLength = 0.25, minSegments = 16 } = params
   const radius = getDistance(center, end)
   if (radius <= 0) {
     return [center]
   }
 
-  const segmentLength = options?.segmentLength ?? 0.25
-  const minSegments = options?.minSegments ?? 16
   const circumference = FULL_TURN * radius
   const numSegments = Math.max(
     8,
@@ -233,17 +231,18 @@ export function approximateCirclePoints(
   return points
 }
 
-function getArcGeometry(
-  start: PcbPoint,
-  mid: PcbPoint,
-  end: PcbPoint,
-): {
+function getArcGeometry(params: {
+  start: PcbPoint
+  mid: PcbPoint
+  end: PcbPoint
+}): {
   center: PcbPoint
   radius: number
   startAngle: number
   sweepAngle: number
 } | null {
-  const circle = calculateArcCenter(start, mid, end)
+  const { start, mid, end } = params
+  const circle = calculateArcCenter({ start, mid, end })
 
   if (!circle) {
     return null
@@ -282,17 +281,18 @@ function normalizeSignedAngle(angle: number): number {
   return angle
 }
 
-function calculateArcCenter(
-  p1: PcbPoint,
-  p2: PcbPoint,
-  p3: PcbPoint,
-): { center: PcbPoint; radius: number } | null {
-  const ax = p1.x
-  const ay = p1.y
-  const bx = p2.x
-  const by = p2.y
-  const cx = p3.x
-  const cy = p3.y
+function calculateArcCenter(params: {
+  start: PcbPoint
+  mid: PcbPoint
+  end: PcbPoint
+}): { center: PcbPoint; radius: number } | null {
+  const { start, mid, end } = params
+  const ax = start.x
+  const ay = start.y
+  const bx = mid.x
+  const by = mid.y
+  const cx = end.x
+  const cy = end.y
 
   const determinant = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
 

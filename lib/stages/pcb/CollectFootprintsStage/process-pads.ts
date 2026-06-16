@@ -15,7 +15,11 @@ import type {
 } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
-import type { ConverterContext } from "../../../types"
+import type {
+  ConverterContext,
+  FootprintPlacement,
+  Point,
+} from "../../../types"
 import {
   getCopperSpanLayerRefsFromLayers,
   getLayerRefsFromLayers,
@@ -54,13 +58,13 @@ const getNextPcbPlatedHoleId = (ctx: ConverterContext) => {
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
  */
-export function processPads(
-  ctx: ConverterContext,
-  footprint: Footprint,
-  componentId: string,
-  kicadComponentPos: { x: number; y: number },
-  componentRotation: number,
-) {
+export function processPads(params: {
+  ctx: ConverterContext
+  footprint: Footprint
+  componentId: string
+  footprintPlacement: FootprintPlacement
+}) {
+  const { ctx, footprint, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
   const pads = footprint.fpPads || []
@@ -71,8 +75,7 @@ export function processPads(
       ctx,
       pad,
       componentId,
-      kicadComponentPos: kicadComponentPos,
-      componentRotation: componentRotation,
+      footprintPlacement,
     })
   }
 }
@@ -84,14 +87,12 @@ export function processPad({
   ctx,
   pad,
   componentId,
-  kicadComponentPos,
-  componentRotation,
+  footprintPlacement,
 }: {
   ctx: ConverterContext
   pad: any
   componentId: string
-  kicadComponentPos: { x: number; y: number }
-  componentRotation: number
+  footprintPlacement: FootprintPlacement
 }): void {
   if (!ctx.k2cMatPcb) return
 
@@ -102,15 +103,16 @@ export function processPad({
   // Get pad position in KiCad global coordinates
   // Pad position is relative to component and needs to be rotated
   // Negate rotation to account for Y-axis flip in coordinate transform
-  const rotationRad = (-componentRotation * Math.PI) / 180
+  const rotationRad =
+    (-footprintPlacement.componentCcwRotationDegrees * Math.PI) / 180
   const rotatedPadX =
     padAt.x * Math.cos(rotationRad) - padAt.y * Math.sin(rotationRad)
   const rotatedPadY =
     padAt.x * Math.sin(rotationRad) + padAt.y * Math.cos(rotationRad)
 
   const padKicadPos = {
-    x: kicadComponentPos.x + rotatedPadX,
-    y: kicadComponentPos.y + rotatedPadY,
+    x: footprintPlacement.kicadComponentPos.x + rotatedPadX,
+    y: footprintPlacement.kicadComponentPos.y + rotatedPadY,
   }
 
   // Transform from KiCad to Circuit JSON coordinates
@@ -196,22 +198,25 @@ export function processPad({
       totalCcwRotationDegrees,
     })
   } else if (padType === "np_thru_hole") {
-    createNpthHole(ctx, pad, componentId, globalPos, drill)
+    createNpthHole({
+      ctx,
+      componentId,
+      pos: globalPos,
+      drill,
+    })
   } else {
     // thru_hole (plated)
-    createPlatedHole(
+    createPlatedHole({
       ctx,
       pad,
       componentId,
-      globalPos,
+      pos: globalPos,
       size,
       drill,
       padShape,
-      copperLayers,
-      totalCcwRotationDegrees,
+      layers: copperLayers,
       pcbPortId,
-      sourcePortId,
-    )
+    })
   }
 }
 
@@ -288,7 +293,10 @@ export function createSmdPad({
           const x = pt.x ?? pt.xy?.x
           const y = pt.y ?? pt.xy?.y
           if (x !== undefined && y !== undefined) {
-            const rotated = rotatePoint(x, y, totalCcwRotationDegrees)
+            const rotated = rotatePoint({
+              point: { x, y },
+              ccwRotationDegrees: totalCcwRotationDegrees,
+            })
             const kicadPos = {
               x: padKicadPos.x + rotated.x,
               y: padKicadPos.y + rotated.y,
@@ -334,11 +342,10 @@ export function createSmdPad({
             ? centerlineRadius + strokeWidth / 2
             : centerlineRadius
 
-        const rotatedCenter = rotatePoint(
-          center.x,
-          center.y,
-          totalCcwRotationDegrees,
-        )
+        const rotatedCenter = rotatePoint({
+          point: center,
+          ccwRotationDegrees: totalCcwRotationDegrees,
+        })
         const kicadCenterPos = {
           x: padKicadPos.x + rotatedCenter.x,
           y: padKicadPos.y + rotatedCenter.y,
@@ -527,19 +534,28 @@ function getRightAngleTurns(rotationDegrees: number): number | null {
 /**
  * Creates a plated hole (through-hole pad) in Circuit JSON
  */
-export function createPlatedHole(
-  ctx: ConverterContext,
-  pad: any,
-  componentId: string,
-  pos: { x: number; y: number },
-  size: { x: number; y: number },
-  drill: any,
-  shape: string,
-  layers: LayerRef[],
-  _rotation = 0,
-  pcbPortId?: string,
-  _sourcePortId: string | undefined = undefined,
-) {
+export function createPlatedHole(params: {
+  ctx: ConverterContext
+  pad: any
+  componentId: string
+  pos: Point
+  size: Point
+  drill: any
+  padShape: string
+  layers: LayerRef[]
+  pcbPortId?: string
+}) {
+  const {
+    ctx,
+    pad,
+    componentId,
+    pos,
+    size,
+    drill,
+    padShape,
+    layers,
+    pcbPortId,
+  } = params
   // Extract drill dimensions - drill can be scalar (circular) or x/y (oval)
   const drillX =
     typeof drill === "object"
@@ -562,7 +578,7 @@ export function createPlatedHole(
   const outerHeight = size.y
 
   // Build plated hole object based on shape
-  if (shape === "circle") {
+  if (padShape === "circle") {
     // Circular pad with circular hole
     const platedHole: PcbPlatedHoleCircle = {
       type: "pcb_plated_hole",
@@ -577,7 +593,7 @@ export function createPlatedHole(
       layers,
     } as PcbPlatedHoleCircle
     ctx.db.pcb_plated_hole.insert(platedHole)
-  } else if (shape === "oval") {
+  } else if (padShape === "oval") {
     // Oval/pill-shaped pad with pill hole
     const platedHole: PcbPlatedHoleOval = {
       type: "pcb_plated_hole",
@@ -595,7 +611,11 @@ export function createPlatedHole(
       layers,
     } as PcbPlatedHoleOval
     ctx.db.pcb_plated_hole.insert(platedHole)
-  } else if (shape === "rect" || shape === "square" || shape === "roundrect") {
+  } else if (
+    padShape === "rect" ||
+    padShape === "square" ||
+    padShape === "roundrect"
+  ) {
     // Rectangular pad with pill hole
     const normalizedCcwRotationDegrees = normalizeRotationDegrees(pad.at?.angle)
     if (drillIsOval) {
@@ -618,7 +638,7 @@ export function createPlatedHole(
           hole_offset_y: 0,
           layers,
         } as PcbHolePillWithRectPad
-        if (shape === "roundrect") {
+        if (padShape === "roundrect") {
           const roundrectRatio =
             pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
           if (roundrectRatio !== undefined) {
@@ -648,7 +668,7 @@ export function createPlatedHole(
           hole_offset_y: 0,
           layers,
         } as PcbHoleRotatedPillWithRectPad
-        if (shape === "roundrect") {
+        if (padShape === "roundrect") {
           const roundrectRatio =
             pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
           if (roundrectRatio !== undefined) {
@@ -678,7 +698,7 @@ export function createPlatedHole(
         hole_offset_y: 0,
         layers,
       } as PcbHoleCircularWithRectPad
-      if (shape === "roundrect") {
+      if (padShape === "roundrect") {
         const roundrectRatio =
           pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
         if (roundrectRatio !== undefined) {
@@ -698,13 +718,13 @@ export function createPlatedHole(
 /**
  * Creates an NPTH (non-plated through-hole) in Circuit JSON
  */
-export function createNpthHole(
-  ctx: ConverterContext,
-  _pad: any,
-  componentId: string,
-  pos: { x: number; y: number },
-  drill: any,
-) {
+export function createNpthHole(params: {
+  ctx: ConverterContext
+  componentId: string
+  pos: Point
+  drill: any
+}) {
+  const { ctx, componentId, pos, drill } = params
   const holeDiameter = drill?.diameter || drill || 1.0
 
   const hole: PcbHoleCircle = {

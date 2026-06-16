@@ -172,7 +172,10 @@ export class CollectTracesStage extends ConverterStage {
 
     const netNum = this.getSegmentNet(arc)
 
-    const points = approximateArcPoints(start, mid, end, {
+    const points = approximateArcPoints({
+      start,
+      mid,
+      end,
       segmentLength: Math.max(width, 0.1),
       minSegments: 8,
     })
@@ -252,19 +255,24 @@ export class CollectTracesStage extends ConverterStage {
 
       for (const edgeId of graph.adjacency.get(nodeKey) ?? []) {
         if (visitedEdgeIds.has(edgeId)) continue
-        const path = this.walkTracePath(nodeKey, edgeId, graph, visitedEdgeIds)
+        const path = this.walkTracePath({
+          startNodeKey: nodeKey,
+          firstEdgeId: edgeId,
+          graph,
+          visitedEdgeIds,
+        })
         this.insertTracePath(path)
       }
     }
 
     for (const edge of graph.edges) {
       if (visitedEdgeIds.has(edge.id)) continue
-      const path = this.walkTracePath(
-        edge.startKey,
-        edge.id,
+      const path = this.walkTracePath({
+        startNodeKey: edge.startKey,
+        firstEdgeId: edge.id,
         graph,
         visitedEdgeIds,
-      )
+      })
       this.insertTracePath(path)
     }
   }
@@ -298,12 +306,13 @@ export class CollectTracesStage extends ConverterStage {
     return { edges, adjacency }
   }
 
-  private walkTracePath(
-    startNodeKey: string,
-    firstEdgeId: number,
-    graph: TraceGraph,
-    visitedEdgeIds: Set<number>,
-  ): OrientedTraceEdge[] {
+  private walkTracePath(params: {
+    startNodeKey: string
+    firstEdgeId: number
+    graph: TraceGraph
+    visitedEdgeIds: Set<number>
+  }): OrientedTraceEdge[] {
+    const { startNodeKey, firstEdgeId, graph, visitedEdgeIds } = params
     const path: OrientedTraceEdge[] = []
     let currentNodeKey = startNodeKey
     let edgeId = firstEdgeId
@@ -548,11 +557,12 @@ export class CollectTracesStage extends ConverterStage {
     const nodes = new Map<string, PcbTraceConnectivityNode>()
     const adjacency = new Map<string, Set<string>>()
 
-    const ensureNode = (
-      netNum: number | null,
-      layer: LayerRef,
-      point: TracePoint,
-    ) => {
+    const ensureNode = (params: {
+      netNum: number | null
+      layer: LayerRef
+      point: TracePoint
+    }) => {
+      const { netNum, layer, point } = params
       const key = this.getPcbTraceNodeKey({ netNum, layer, point })
       if (!nodes.has(key)) {
         nodes.set(key, { key, point, layer, netNum })
@@ -571,16 +581,16 @@ export class CollectTracesStage extends ConverterStage {
     for (const primitive of primitives) {
       if (primitive.primitiveType !== "wire") continue
 
-      const startKey = ensureNode(
-        primitive.netNum,
-        primitive.layer!,
-        primitive.start,
-      )
-      const endKey = ensureNode(
-        primitive.netNum,
-        primitive.layer!,
-        primitive.end,
-      )
+      const startKey = ensureNode({
+        netNum: primitive.netNum,
+        layer: primitive.layer!,
+        point: primitive.start,
+      })
+      const endKey = ensureNode({
+        netNum: primitive.netNum,
+        layer: primitive.layer!,
+        point: primitive.end,
+      })
       connectNodes(startKey, endKey)
     }
 
@@ -602,7 +612,7 @@ export class CollectTracesStage extends ConverterStage {
           : getPcbCopperLayerRefs(this.ctx.kicadPcb)
 
       const viaNodeKeys = layers.map((layer) =>
-        ensureNode(netNum, layer, point),
+        ensureNode({ netNum, layer, point }),
       )
       for (let i = 1; i < viaNodeKeys.length; i++) {
         connectNodes(viaNodeKeys[0]!, viaNodeKeys[i]!)

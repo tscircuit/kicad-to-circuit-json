@@ -78,7 +78,10 @@ export class InitializePcbContextStage extends ConverterStage {
       if (!layerStr.includes("Edge.Cuts")) continue
 
       const { start, mid, end } = getArcStartMidEnd(arc)
-      for (const point of approximateArcPoints(start, mid, end, {
+      for (const point of approximateArcPoints({
+        start,
+        mid,
+        end,
         segmentLength: 0.25,
         minSegments: 16,
       })) {
@@ -92,7 +95,9 @@ export class InitializePcbContextStage extends ConverterStage {
       if (!layerStr.includes("Edge.Cuts")) continue
 
       const { center, end } = getCircleCenterEnd(circle)
-      for (const point of approximateCirclePoints(center, end, {
+      for (const point of approximateCirclePoints({
+        center,
+        end,
         segmentLength: 0.25,
         minSegments: 16,
       })) {
@@ -108,16 +113,14 @@ export class InitializePcbContextStage extends ConverterStage {
       const points = getCurvePoints(curve)
       if (!points) continue
 
-      for (const point of approximateCubicBezierPoints(
-        points.start,
-        points.control1,
-        points.control2,
-        points.end,
-        {
-          segmentLength: 0.25,
-          minSegments: 16,
-        },
-      )) {
+      for (const point of approximateCubicBezierPoints({
+        start: points.start,
+        control1: points.control1,
+        control2: points.control2,
+        end: points.end,
+        segmentLength: 0.25,
+        minSegments: 16,
+      })) {
         xs.push(point.x)
         ys.push(point.y)
       }
