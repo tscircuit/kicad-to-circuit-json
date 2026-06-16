@@ -33,7 +33,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_0",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_0",
     "pcb_port_id": "pcb_port_0",
@@ -652,7 +652,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_2",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_1",
     "pcb_port_id": "pcb_port_2",
@@ -3076,7 +3076,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_45",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_8",
     "pcb_port_id": "pcb_port_43",
@@ -4810,7 +4810,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_46",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_9",
     "pcb_port_id": "pcb_port_44",
@@ -5507,7 +5507,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_54",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_10",
     "pcb_port_id": "pcb_port_52",
@@ -6204,7 +6204,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_62",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_11",
     "pcb_port_id": "pcb_port_60",
@@ -6857,7 +6857,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_70",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_12",
     "pcb_port_id": "pcb_port_68",
@@ -8214,7 +8214,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_98",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_13",
     "pcb_port_id": "pcb_port_96",
@@ -9241,7 +9241,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_116",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_14",
     "pcb_port_id": "pcb_port_114",
@@ -10093,7 +10093,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_130",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_15",
     "pcb_port_id": "pcb_port_128",
@@ -10464,7 +10464,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_132",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_16",
     "pcb_port_id": "pcb_port_130",
@@ -10835,7 +10835,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_134",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_17",
     "pcb_port_id": "pcb_port_132",
@@ -11206,7 +11206,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_136",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_18",
     "pcb_port_id": "pcb_port_134",
@@ -11577,7 +11577,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_138",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_19",
     "pcb_port_id": "pcb_port_136",
@@ -11960,7 +11960,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_140",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_20",
     "pcb_port_id": "pcb_port_138",
@@ -12345,7 +12345,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_142",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_21",
     "pcb_port_id": "pcb_port_140",
@@ -12716,7 +12716,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_144",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_22",
     "pcb_port_id": "pcb_port_142",
@@ -13807,7 +13807,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_155",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_23",
     "pcb_port_id": "pcb_port_153",
@@ -15070,7 +15070,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_158",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_24",
     "pcb_port_id": "pcb_port_156",
@@ -16334,7 +16334,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_161",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_25",
     "pcb_port_id": "pcb_port_159",
@@ -22543,7 +22543,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_204",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_46",
     "pcb_port_id": "pcb_port_202",
@@ -24143,7 +24143,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_206",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_47",
     "pcb_port_id": "pcb_port_204",
@@ -25743,7 +25743,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_208",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_48",
     "pcb_port_id": "pcb_port_206",
@@ -28605,7 +28605,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_220",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_54",
     "pcb_port_id": "pcb_port_218",
@@ -30249,7 +30249,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_225",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_56",
     "pcb_port_id": "pcb_port_223",
@@ -32431,7 +32431,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_227",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_57",
     "pcb_port_id": "pcb_port_225",
@@ -34857,7 +34857,7 @@
   },
   {
     "type": "pcb_plated_hole",
-    "pcb_plated_hole_id": "pcb_plated_hole_id",
+    "pcb_plated_hole_id": "pcb_plated_hole_236",
     "shape": "circular_hole_with_rect_pad",
     "pcb_component_id": "pcb_component_61",
     "pcb_port_id": "pcb_port_234",
@@ -35227,7 +35227,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_0",
     "shape": "polygon",
     "pcb_component_id": "pcb_component_62",
     "pcb_port_id": "pcb_port_236",
@@ -35271,7 +35271,7 @@
   },
   {
     "type": "pcb_smtpad",
-    "pcb_smtpad_id": "pcb_smtpad_id",
+    "pcb_smtpad_id": "pcb_smtpad_1",
     "shape": "polygon",
     "pcb_component_id": "pcb_component_62",
     "pcb_port_id": "pcb_port_237",
