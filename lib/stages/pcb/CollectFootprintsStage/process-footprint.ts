@@ -1,6 +1,6 @@
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
-import type { ConverterContext } from "../../../types"
+import type { ConverterContext, FootprintPlacement } from "../../../types"
 import { getComponentLayer } from "./layer-utils"
 import { processPads } from "./process-pads"
 import { processFootprintText } from "./process-text"
@@ -25,7 +25,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const position = footprint.position
   const kicadPos = { x: position?.x ?? 0, y: position?.y ?? 0 }
   const cjPos = applyToPoint(ctx.k2cMatPcb, kicadPos)
-  const rotation = (position as any)?.angle ?? 0
+  const componentCcwRotationDegrees = (position as any)?.angle ?? 0
 
   // Get footprint UUID
   const uuid = footprint.uuid?.value || footprint.tstamp?.value
@@ -86,7 +86,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const inserted = ctx.db.pcb_component.insert({
     center: { x: cjPos.x, y: cjPos.y },
     layer: getComponentLayer(footprint),
-    rotation: -rotation, // Negate rotation due to Y-axis flip in coordinate transform
+    rotation: -componentCcwRotationDegrees, // Negate rotation due to Y-axis flip in coordinate transform
     width: 0, // Will be computed from pads if needed
     height: 0,
     source_component_id: sourceComponentId,
@@ -98,14 +98,34 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   ctx.footprintUuidToComponentId?.set(uuid, componentId)
   ctx.footprintUuidToSourceComponentId?.set(uuid, sourceComponentId)
 
+  const footprintPlacement: FootprintPlacement = {
+    kicadComponentPos: kicadPos,
+    componentCcwRotationDegrees,
+  }
+
   // Process pads - pass KiCad position for correct transformation
-  processPads(ctx, footprint, componentId, kicadPos, rotation)
+  processPads({
+    ctx,
+    footprint,
+    componentId,
+    footprintPlacement,
+  })
 
   // Process footprint text as silkscreen - pass KiCad position and rotation for correct transformation
-  processFootprintText(ctx, footprint, componentId, kicadPos, rotation)
+  processFootprintText({
+    ctx,
+    footprint,
+    componentId,
+    footprintPlacement,
+  })
 
   // Process footprint graphics (fp_line, fp_circle, fp_arc) as silkscreen
-  processFootprintGraphics(ctx, footprint, componentId, kicadPos, rotation)
+  processFootprintGraphics({
+    ctx,
+    footprint,
+    componentId,
+    footprintPlacement,
+  })
 
   // Update stats
   if (ctx.stats) {

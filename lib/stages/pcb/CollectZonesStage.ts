@@ -161,7 +161,13 @@ export class CollectZonesStage extends ConverterStage {
       }
 
       if (point instanceof PtsArc && point.start && point.mid && point.end) {
-        points.push(...approximateArcPoints(point.start, point.mid, point.end))
+        points.push(
+          ...approximateArcPoints({
+            start: point.start,
+            mid: point.mid,
+            end: point.end,
+          }),
+        )
       }
     }
 

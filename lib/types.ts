@@ -32,6 +32,16 @@ export interface ConverterContext {
   }
 }
 
+export interface Point {
+  x: number
+  y: number
+}
+
+export interface FootprintPlacement {
+  kicadComponentPos: Point
+  componentCcwRotationDegrees: number
+}
+
 /**
  * Base class for converter stages that process KiCad data into Circuit JSON.
  * Each stage performs a specific transformation step and can run iteratively.

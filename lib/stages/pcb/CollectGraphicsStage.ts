@@ -282,15 +282,15 @@ export class CollectGraphicsStage extends ConverterStage {
 
         const { start, end } = getLineStartEnd(line as any)
         primitives.push(
-          this.transformFootprintPrimitive(
-            {
+          this.transformFootprintPrimitive({
+            primitive: {
               type: "line",
               start,
               end,
             },
             footprintPosition,
-            footprintRotation,
-          ),
+            footprintCcwRotationDegrees: footprintRotation,
+          }),
         )
       }
 
@@ -302,16 +302,16 @@ export class CollectGraphicsStage extends ConverterStage {
 
         const { start, mid, end } = getArcStartMidEnd(arc as any)
         primitives.push(
-          this.transformFootprintPrimitive(
-            {
+          this.transformFootprintPrimitive({
+            primitive: {
               type: "arc",
               start,
               mid,
               end,
             },
             footprintPosition,
-            footprintRotation,
-          ),
+            footprintCcwRotationDegrees: footprintRotation,
+          }),
         )
       }
 
@@ -323,16 +323,16 @@ export class CollectGraphicsStage extends ConverterStage {
 
         const { center, end } = getCircleCenterEnd(circle as any)
         primitives.push(
-          this.transformFootprintPrimitive(
-            {
+          this.transformFootprintPrimitive({
+            primitive: {
               type: "circle",
               center,
               start: end,
               end,
             },
             footprintPosition,
-            footprintRotation,
-          ),
+            footprintCcwRotationDegrees: footprintRotation,
+          }),
         )
       }
 
@@ -344,11 +344,11 @@ export class CollectGraphicsStage extends ConverterStage {
 
         primitives.push(
           ...this.getRectEdgeCutPrimitives(rect).map((primitive) =>
-            this.transformFootprintPrimitive(
+            this.transformFootprintPrimitive({
               primitive,
               footprintPosition,
-              footprintRotation,
-            ),
+              footprintCcwRotationDegrees: footprintRotation,
+            }),
           ),
         )
       }
@@ -357,100 +357,105 @@ export class CollectGraphicsStage extends ConverterStage {
     return primitives
   }
 
-  private transformFootprintPrimitive(
-    primitive: BoardPrimitive,
-    footprintPosition: { x: number; y: number },
-    footprintRotation: number,
-  ): BoardPrimitive {
+  private transformFootprintPrimitive(params: {
+    primitive: BoardPrimitive
+    footprintPosition: { x: number; y: number }
+    footprintCcwRotationDegrees: number
+  }): BoardPrimitive {
+    const { primitive, footprintPosition, footprintCcwRotationDegrees } = params
     if (primitive.type === "arc") {
       return {
         type: "arc",
-        start: this.transformFootprintPoint(
-          primitive.start,
+        start: this.transformFootprintPoint({
+          point: primitive.start,
           footprintPosition,
-          footprintRotation,
-        ),
-        mid: this.transformFootprintPoint(
-          primitive.mid,
+          footprintCcwRotationDegrees,
+        }),
+        mid: this.transformFootprintPoint({
+          point: primitive.mid,
           footprintPosition,
-          footprintRotation,
-        ),
-        end: this.transformFootprintPoint(
-          primitive.end,
+          footprintCcwRotationDegrees,
+        }),
+        end: this.transformFootprintPoint({
+          point: primitive.end,
           footprintPosition,
-          footprintRotation,
-        ),
+          footprintCcwRotationDegrees,
+        }),
       }
     }
 
     if (primitive.type === "circle") {
       return {
         type: "circle",
-        center: this.transformFootprintPoint(
-          primitive.center,
+        center: this.transformFootprintPoint({
+          point: primitive.center,
           footprintPosition,
-          footprintRotation,
-        ),
-        start: this.transformFootprintPoint(
-          primitive.start,
+          footprintCcwRotationDegrees,
+        }),
+        start: this.transformFootprintPoint({
+          point: primitive.start,
           footprintPosition,
-          footprintRotation,
-        ),
-        end: this.transformFootprintPoint(
-          primitive.end,
+          footprintCcwRotationDegrees,
+        }),
+        end: this.transformFootprintPoint({
+          point: primitive.end,
           footprintPosition,
-          footprintRotation,
-        ),
+          footprintCcwRotationDegrees,
+        }),
       }
     }
 
     if (primitive.type === "curve") {
       return {
         type: "curve",
-        start: this.transformFootprintPoint(
-          primitive.start,
+        start: this.transformFootprintPoint({
+          point: primitive.start,
           footprintPosition,
-          footprintRotation,
-        ),
-        control1: this.transformFootprintPoint(
-          primitive.control1,
+          footprintCcwRotationDegrees,
+        }),
+        control1: this.transformFootprintPoint({
+          point: primitive.control1,
           footprintPosition,
-          footprintRotation,
-        ),
-        control2: this.transformFootprintPoint(
-          primitive.control2,
+          footprintCcwRotationDegrees,
+        }),
+        control2: this.transformFootprintPoint({
+          point: primitive.control2,
           footprintPosition,
-          footprintRotation,
-        ),
-        end: this.transformFootprintPoint(
-          primitive.end,
+          footprintCcwRotationDegrees,
+        }),
+        end: this.transformFootprintPoint({
+          point: primitive.end,
           footprintPosition,
-          footprintRotation,
-        ),
+          footprintCcwRotationDegrees,
+        }),
       }
     }
 
     return {
       type: "line",
-      start: this.transformFootprintPoint(
-        primitive.start,
+      start: this.transformFootprintPoint({
+        point: primitive.start,
         footprintPosition,
-        footprintRotation,
-      ),
-      end: this.transformFootprintPoint(
-        primitive.end,
+        footprintCcwRotationDegrees,
+      }),
+      end: this.transformFootprintPoint({
+        point: primitive.end,
         footprintPosition,
-        footprintRotation,
-      ),
+        footprintCcwRotationDegrees,
+      }),
     }
   }
 
-  private transformFootprintPoint(
-    point: { x: number; y: number },
-    footprintPosition: { x: number; y: number },
-    footprintRotation: number,
-  ) {
-    const rotated = rotatePoint(point.x, point.y, -footprintRotation)
+  private transformFootprintPoint(params: {
+    point: { x: number; y: number }
+    footprintPosition: { x: number; y: number }
+    footprintCcwRotationDegrees: number
+  }) {
+    const { point, footprintPosition, footprintCcwRotationDegrees } = params
+    const rotated = rotatePoint({
+      point,
+      ccwRotationDegrees: -footprintCcwRotationDegrees,
+    })
     return {
       x: footprintPosition.x + rotated.x,
       y: footprintPosition.y + rotated.y,
@@ -579,30 +584,33 @@ export class CollectGraphicsStage extends ConverterStage {
 
   private getPrimitivePoints(segment: BoardPrimitive) {
     if (segment.type === "arc") {
-      return approximateArcPoints(segment.start, segment.mid, segment.end, {
+      return approximateArcPoints({
+        start: segment.start,
+        mid: segment.mid,
+        end: segment.end,
         segmentLength: 0.25,
         minSegments: 16,
       })
     }
 
     if (segment.type === "circle") {
-      return approximateCirclePoints(segment.center, segment.end, {
+      return approximateCirclePoints({
+        center: segment.center,
+        end: segment.end,
         segmentLength: 0.25,
         minSegments: 16,
       })
     }
 
     if (segment.type === "curve") {
-      return approximateCubicBezierPoints(
-        segment.start,
-        segment.control1,
-        segment.control2,
-        segment.end,
-        {
-          segmentLength: 0.25,
-          minSegments: 16,
-        },
-      )
+      return approximateCubicBezierPoints({
+        start: segment.start,
+        control1: segment.control1,
+        control2: segment.control2,
+        end: segment.end,
+        segmentLength: 0.25,
+        minSegments: 16,
+      })
     }
 
     return [segment.start, segment.end]
@@ -672,7 +680,10 @@ export class CollectGraphicsStage extends ConverterStage {
     if (!this.ctx.k2cMatPcb) return
 
     const { start, mid, end } = getArcStartMidEnd(arc)
-    const route = approximateArcPoints(start, mid, end, {
+    const route = approximateArcPoints({
+      start,
+      mid,
+      end,
       segmentLength: 0.1,
       minSegments: 8,
     }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
@@ -945,11 +956,11 @@ export class CollectGraphicsStage extends ConverterStage {
         points.push({ x: pt.x, y: pt.y })
       } else if (pt.token === "arc") {
         // Arc - convert to multiple points
-        const arcPoints = approximateArcPoints(
-          { x: pt._sxStart?._x, y: pt._sxStart?._y },
-          { x: pt._sxMid?._x, y: pt._sxMid?._y },
-          { x: pt._sxEnd?._x, y: pt._sxEnd?._y },
-        )
+        const arcPoints = approximateArcPoints({
+          start: { x: pt._sxStart?._x, y: pt._sxStart?._y },
+          mid: { x: pt._sxMid?._x, y: pt._sxMid?._y },
+          end: { x: pt._sxEnd?._x, y: pt._sxEnd?._y },
+        })
         points.push(...arcPoints)
       }
     }

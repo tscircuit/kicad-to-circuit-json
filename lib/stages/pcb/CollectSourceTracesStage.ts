@@ -143,11 +143,11 @@ export class CollectSourceTracesStage extends ConverterStage {
       }
 
       // Create a source_port for this pad if it doesn't exist
-      const sourcePortId = this.getOrCreateSourcePort(
+      const sourcePortId = this.getOrCreateSourcePort({
         componentId,
         padNumber,
         footprint,
-      )
+      })
 
       // Add to the net mapping
       if (!netToPads.has(netNum)) {
@@ -177,11 +177,12 @@ export class CollectSourceTracesStage extends ConverterStage {
     return null
   }
 
-  private getOrCreateSourcePort(
-    componentId: string,
-    padNumber: string,
-    footprint: Footprint,
-  ): string {
+  private getOrCreateSourcePort(params: {
+    componentId: string
+    padNumber: string
+    footprint: Footprint
+  }): string {
+    const { componentId, padNumber, footprint } = params
     // Create a unique source_port_id based on component and pad
     const sourcePortId = `${componentId}_port_${padNumber}`
 

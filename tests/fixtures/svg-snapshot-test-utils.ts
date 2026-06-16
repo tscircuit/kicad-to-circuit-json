@@ -27,14 +27,19 @@ export function convertKicadPcbToSvgSnapshot(params: {
     },
   )
 
-  expectSvgSnapshot(circuitJsonSvg, params.testPath, params.snapshotName)
+  expectSvgSnapshot({
+    svg: circuitJsonSvg,
+    testPath: params.testPath,
+    snapshotName: params.snapshotName,
+  })
 }
 
-function expectSvgSnapshot(
-  svg: string,
-  testPath: string,
-  snapshotName: string,
-) {
+function expectSvgSnapshot(params: {
+  svg: string
+  testPath: string
+  snapshotName: string
+}) {
+  const { svg, testPath, snapshotName } = params
   const normalizedSvg = normalizeTransientSvgIds(svg)
   const snapshotDir = path.join(path.dirname(testPath), "__snapshots__")
   const snapshotPath = path.join(snapshotDir, `${snapshotName}.snap.svg`)
