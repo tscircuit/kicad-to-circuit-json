@@ -246,7 +246,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -261,7 +261,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -453,7 +453,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -468,7 +468,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -726,7 +726,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -741,7 +741,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -889,7 +889,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -904,7 +904,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -2571,7 +2571,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -2586,7 +2586,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -2733,7 +2733,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -2748,7 +2748,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -2860,7 +2860,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -2875,7 +2875,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -2936,7 +2936,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -5271,7 +5271,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -5286,7 +5286,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -7561,7 +7561,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -7576,7 +7576,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -7844,7 +7844,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -7859,7 +7859,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -8076,7 +8076,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -8091,7 +8091,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -8593,7 +8593,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -8608,7 +8608,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -9795,7 +9795,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -9810,7 +9810,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -10275,7 +10275,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -10290,7 +10290,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -11330,7 +11330,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -11345,7 +11345,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -11601,7 +11601,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -11616,7 +11616,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -12023,7 +12023,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -12038,7 +12038,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -12194,7 +12194,7 @@
     },
     "rotation": -90,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -12209,7 +12209,7 @@
     },
     "rotation": -90,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -12629,7 +12629,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -12644,7 +12644,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -12946,7 +12946,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -12961,7 +12961,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -13041,7 +13041,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -13056,7 +13056,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -13433,7 +13433,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -13448,7 +13448,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -13755,7 +13755,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -13770,7 +13770,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -13873,7 +13873,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -13888,7 +13888,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -13991,7 +13991,7 @@
     },
     "rotation": -90,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -14006,7 +14006,7 @@
     },
     "rotation": -90,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -14156,7 +14156,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -14171,7 +14171,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -14372,7 +14372,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -14387,7 +14387,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -14530,7 +14530,7 @@
     },
     "rotation": 0,
     "anchor": "left",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -14545,7 +14545,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -14618,7 +14618,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -14633,7 +14633,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -15675,7 +15675,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -15690,7 +15690,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -15925,7 +15925,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -15940,7 +15940,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -16406,7 +16406,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -16421,7 +16421,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -16499,7 +16499,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -16514,7 +16514,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -16594,7 +16594,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -16609,7 +16609,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_symbol",
@@ -17546,7 +17546,7 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
@@ -17561,6 +17561,6 @@
     },
     "rotation": 0,
     "anchor": "center",
-    "color": "rgb(132, 0, 0)"
+    "color": "rgb(0, 100, 100)"
   }
 ]
