@@ -94,6 +94,21 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
 
   expect(getComponent("R")?.ftype).toBe("simple_resistor")
   expect(getPorts("R").map((port) => port.pin_number)).toEqual([1, 2])
+  expect(getComponent("Conn_01x04")).toMatchObject({
+    ftype: "simple_pin_header",
+    pin_count: 4,
+    gender: "male",
+  })
+  expect(getComponent("Conn_01x10_MountingPin")).toMatchObject({
+    ftype: "simple_pin_header",
+    pin_count: 11,
+    gender: "male",
+  })
+  expect(getComponent("Conn_01x22_Socket")).toMatchObject({
+    ftype: "simple_pin_header",
+    pin_count: 22,
+    gender: "female",
+  })
   const resistorComponent = getComponent("R")
   const resistorSchematicComponent = schematicComponents.find(
     (component) =>
