@@ -4,6 +4,7 @@ import path from "node:path"
 import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import sharp from "sharp"
 import { KicadToCircuitJsonConverter } from "../../../lib"
+import { colorMap } from "../../../lib/color"
 
 const POINT_KEY_PRECISION = 1e6
 
@@ -298,15 +299,15 @@ function addViaOverlayToSvg({
   const routeViaMarkers = routeVias
     .map((via) => {
       const point = toScreen(via)
-      return `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius * 0.62}" fill="none" stroke="#00ff66" stroke-width="${strokeWidth}" opacity="0.95" data-overlay-type="route-via"/>`
+      return `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius * 0.62}" fill="none" stroke="${colorMap.debug.viaOverlay.routeStroke}" stroke-width="${strokeWidth}" opacity="0.95" data-overlay-type="route-via"/>`
     })
     .join("")
   const unconnectedViaMarkers = unconnectedPcbVias
     .map((via) => {
       const point = toScreen(via)
       return [
-        `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius}" fill="rgba(255,0,0,0.18)" stroke="#ff1744" stroke-width="${strokeWidth}" opacity="0.98" data-overlay-type="standalone-pcb-via"/>`,
-        `<path d="M ${point.x - crosshair} ${point.y} L ${point.x + crosshair} ${point.y} M ${point.x} ${point.y - crosshair} L ${point.x} ${point.y + crosshair}" stroke="#ff1744" stroke-width="${strokeWidth * 0.8}" stroke-linecap="round" data-overlay-type="standalone-pcb-via-crosshair"/>`,
+        `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius}" fill="${colorMap.debug.viaOverlay.unconnectedFill}" stroke="${colorMap.debug.viaOverlay.unconnectedStroke}" stroke-width="${strokeWidth}" opacity="0.98" data-overlay-type="standalone-pcb-via"/>`,
+        `<path d="M ${point.x - crosshair} ${point.y} L ${point.x + crosshair} ${point.y} M ${point.x} ${point.y - crosshair} L ${point.x} ${point.y + crosshair}" stroke="${colorMap.debug.viaOverlay.unconnectedStroke}" stroke-width="${strokeWidth * 0.8}" stroke-linecap="round" data-overlay-type="standalone-pcb-via-crosshair"/>`,
       ].join("")
     })
     .join("")
@@ -314,17 +315,17 @@ function addViaOverlayToSvg({
     .map((via) => {
       const point = toScreen(via)
       return [
-        `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius}" fill="rgba(255,176,0,0.16)" stroke="#ffb000" stroke-width="${strokeWidth}" opacity="0.98" data-overlay-type="standalone-pcb-via-on-trace-route"/>`,
-        `<path d="M ${point.x - crosshair} ${point.y - crosshair} L ${point.x + crosshair} ${point.y + crosshair} M ${point.x + crosshair} ${point.y - crosshair} L ${point.x - crosshair} ${point.y + crosshair}" stroke="#ffb000" stroke-width="${strokeWidth * 0.8}" stroke-linecap="round" data-overlay-type="standalone-pcb-via-on-trace-route-x"/>`,
+        `<circle cx="${point.x}" cy="${point.y}" r="${markerRadius}" fill="${colorMap.debug.viaOverlay.onTraceFill}" stroke="${colorMap.debug.viaOverlay.onTraceStroke}" stroke-width="${strokeWidth}" opacity="0.98" data-overlay-type="standalone-pcb-via-on-trace-route"/>`,
+        `<path d="M ${point.x - crosshair} ${point.y - crosshair} L ${point.x + crosshair} ${point.y + crosshair} M ${point.x + crosshair} ${point.y - crosshair} L ${point.x - crosshair} ${point.y + crosshair}" stroke="${colorMap.debug.viaOverlay.onTraceStroke}" stroke-width="${strokeWidth * 0.8}" stroke-linecap="round" data-overlay-type="standalone-pcb-via-on-trace-route-x"/>`,
       ].join("")
     })
     .join("")
 
   const overlay = `<g id="via-route-overlay" data-route-via-count="${routeVias.length}" data-unconnected-standalone-pcb-via-count="${unconnectedPcbVias.length}" data-standalone-pcb-via-on-trace-route-count="${standalonePcbViasOnTraceRoute.length}">
-    <rect x="12" y="12" width="390" height="80" rx="4" fill="rgba(0,0,0,0.72)" stroke="#ffffff" stroke-width="1"/>
-    <text x="24" y="34" fill="#00ff66" font-family="Arial, sans-serif" font-size="14">green rings: vias embedded in pcb_trace.route (${routeVias.length})</text>
-    <text x="24" y="56" fill="#ff5a76" font-family="Arial, sans-serif" font-size="14">red targets: standalone pcb_via not on any trace route point (${unconnectedPcbVias.length})</text>
-    <text x="24" y="78" fill="#ffcf57" font-family="Arial, sans-serif" font-size="14">orange x: standalone pcb_via touching a trace point (${standalonePcbViasOnTraceRoute.length})</text>
+    <rect x="12" y="12" width="390" height="80" rx="4" fill="${colorMap.debug.viaOverlay.panelFill}" stroke="${colorMap.debug.viaOverlay.panelStroke}" stroke-width="1"/>
+    <text x="24" y="34" fill="${colorMap.debug.viaOverlay.routeStroke}" font-family="Arial, sans-serif" font-size="14">green rings: vias embedded in pcb_trace.route (${routeVias.length})</text>
+    <text x="24" y="56" fill="${colorMap.debug.viaOverlay.unconnectedLabel}" font-family="Arial, sans-serif" font-size="14">red targets: standalone pcb_via not on any trace route point (${unconnectedPcbVias.length})</text>
+    <text x="24" y="78" fill="${colorMap.debug.viaOverlay.onTraceLabel}" font-family="Arial, sans-serif" font-size="14">orange x: standalone pcb_via touching a trace point (${standalonePcbViasOnTraceRoute.length})</text>
     ${routeViaMarkers}
     ${unconnectedViaMarkers}
     ${standaloneOnTraceMarkers}

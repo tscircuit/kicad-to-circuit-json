@@ -3,6 +3,7 @@ import { mkdtemp, readdir, readFile, rm } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import sharp from "sharp"
+import { colorMap } from "../../lib/color"
 
 export interface KicadSymbolLibrarySnapshotOptions {
   kicadFilePath: string
@@ -85,7 +86,8 @@ async function createSymbolContactSheet(params: {
       const resized = await sharp(png)
         .resize(tileWidth - 24, tileHeight - 24, {
           fit: "contain",
-          background: { r: 245, g: 241, b: 237, alpha: 0 },
+          background:
+            colorMap.snapshots.sharp.transparentKicadSchematicBackground,
         })
         .png()
         .toBuffer()
@@ -108,7 +110,7 @@ async function createSymbolContactSheet(params: {
       width,
       height,
       channels: 4,
-      background: { r: 245, g: 241, b: 237, alpha: 1 },
+      background: colorMap.snapshots.sharp.kicadSchematicBackground,
     },
   })
     .composite(composites)

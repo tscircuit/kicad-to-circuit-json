@@ -1,4 +1,5 @@
 import sharp from "sharp"
+import { colorMap } from "../../lib/color"
 
 export const stackPngsVertically = async (pngs: Buffer[]): Promise<Buffer> => {
   if (pngs.length === 0) {
@@ -46,7 +47,7 @@ export const stackPngsVertically = async (pngs: Buffer[]): Promise<Buffer> => {
       width: maxWidth,
       height: totalHeight,
       channels: 4,
-      background: { r: 255, g: 255, b: 255, alpha: 1 },
+      background: colorMap.snapshots.sharp.white,
     },
   })
     .composite(compositeOps)
