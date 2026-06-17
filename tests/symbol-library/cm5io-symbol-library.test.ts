@@ -215,6 +215,22 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
         element.text === "TYPEC-305-ACP16H458",
     ),
   ).toBe(true)
+  expect(
+    circuitJson.some(
+      (element) =>
+        element.type === "schematic_text" &&
+        element.text === "USB701" &&
+        element.color === "rgb(0, 100, 100)",
+    ),
+  ).toBe(true)
+  expect(
+    circuitJson.some(
+      (element) =>
+        element.type === "schematic_text" &&
+        element.text === "TYPEC-305-ACP16H458" &&
+        element.color === "rgb(0, 100, 100)",
+    ),
+  ).toBe(true)
 
   const schematicSvg = await convertCircuitJsonToSchematicSvg(circuitJson, {
     width: 1200,

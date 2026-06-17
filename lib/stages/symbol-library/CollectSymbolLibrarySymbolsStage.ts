@@ -38,6 +38,7 @@ const PREVIEW_CELL_HEIGHT = 9.5
 const PREVIEW_CELL_FILL_RATIO = 0.95
 const DEFAULT_STROKE_COLOR = "rgb(132, 0, 0)"
 const DEFAULT_FILL_COLOR = "rgb(255, 255, 194)"
+const DEFAULT_PROPERTY_TEXT_COLOR = "rgb(0, 100, 100)"
 
 type SymbolLibrarySourceComponentData =
   | Omit<SourceSimpleResistor, "type" | "source_component_id">
@@ -479,7 +480,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         }),
         rotation: -(property.at?.angle ?? 0),
         anchor: this.getTextAnchor(property.effects?.justify?.horizontal),
-        color: DEFAULT_STROKE_COLOR,
+        color: DEFAULT_PROPERTY_TEXT_COLOR,
       }
       this.ctx.db.schematic_text.insert(textData)
     }
