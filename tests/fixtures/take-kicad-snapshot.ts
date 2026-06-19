@@ -3,7 +3,6 @@ import { tmpdir } from "node:os"
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 import sharp from "sharp"
-import { colorMap } from "../../lib/color"
 
 type FilePath = string
 type FileContent = Buffer
@@ -111,7 +110,7 @@ export const takeKicadSnapshot = async (params: {
               width: metadata.width || 1,
               height: metadata.height || 1,
               channels: 4,
-              background: colorMap.snapshots.sharp.black,
+              background: { r: 0, g: 0, b: 0, alpha: 1 },
             },
           })
             .png()
@@ -129,7 +128,7 @@ export const takeKicadSnapshot = async (params: {
               width,
               height,
               channels: 4,
-              background: colorMap.snapshots.sharp.black,
+              background: { r: 0, g: 0, b: 0, alpha: 1 },
             },
           })
             .png()

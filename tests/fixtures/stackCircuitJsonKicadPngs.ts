@@ -1,5 +1,4 @@
 import sharp from "sharp"
-import { colorMap } from "../../lib/color"
 
 export const stackCircuitJsonKicadPngs = async (
   circuitJsonPng: Buffer,
@@ -32,12 +31,12 @@ export const stackCircuitJsonKicadPngs = async (
 
     return Buffer.from(`
       <svg width="${boxWidth}" height="${boxHeight}">
-        <rect width="100%" height="100%" fill="${colorMap.snapshots.label.background}"/>
+        <rect width="100%" height="100%" fill="black"/>
         <text x="${labelPadding}" y="${labelPadding + labelFontSize * 0.8}"
           font-family="Arial, sans-serif"
           font-size="${labelFontSize}"
           font-weight="bold"
-          fill="${colorMap.snapshots.label.text}">
+          fill="white">
           ${text}
         </text>
       </svg>
@@ -77,7 +76,7 @@ export const stackCircuitJsonKicadPngs = async (
       width: maxWidth,
       height: totalHeight,
       channels: 4,
-      background: colorMap.snapshots.sharp.white,
+      background: { r: 255, g: 255, b: 255, alpha: 1 },
     },
   })
     .composite(compositeOps)

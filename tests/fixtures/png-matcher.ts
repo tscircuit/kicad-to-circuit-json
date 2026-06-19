@@ -2,7 +2,6 @@ import { expect, type MatcherResult } from "bun:test"
 import * as fs from "node:fs"
 import * as path from "node:path"
 import looksSame from "looks-same"
-import { colorMap } from "../../lib/color"
 
 /**
  * Matcher for PNG snapshot testing with cross-platform tolerance.
@@ -121,7 +120,7 @@ async function toMatchPngSnapshot(
       reference: Buffer.from(existingSnapshot),
       current: Buffer.from(received),
       diff: diffPath,
-      highlightColor: colorMap.snapshots.diffHighlight,
+      highlightColor: "#ff00ff",
     })
 
     return {
@@ -137,7 +136,7 @@ async function toMatchPngSnapshot(
     reference: Buffer.from(existingSnapshot),
     current: Buffer.from(received),
     diff: diffPath,
-    highlightColor: colorMap.snapshots.diffHighlight,
+    highlightColor: "#ff00ff",
   })
 
   console.log(`📸 Snapshot mismatch (no diff bounds available)`)
