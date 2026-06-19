@@ -68,49 +68,6 @@ export function inferSourceComponentFtype(params: {
   return "simple_chip"
 }
 
-export function inferPinHeaderGender(params: {
-  name?: string
-  metadata?: string
-}): "male" | "female" {
-  const combined = `${params.name || ""} ${params.metadata || ""}`.toLowerCase()
-
-  if (
-    combined.includes("socket") ||
-    combined.includes("female") ||
-    combined.includes("pinsocket")
-  ) {
-    return "female"
-  }
-
-  return "male"
-}
-
-export function inferPinHeaderPinCountFromName(
-  name: string | undefined,
-): number | undefined {
-  if (!name) return undefined
-
-  const match = name.match(/(?:pin(?:header|socket)|conn)_(\d+)x(\d+)/i)
-  if (!match) return undefined
-
-  const rows = Number.parseInt(match[1]!, 10)
-  const columns = Number.parseInt(match[2]!, 10)
-
-  if (!Number.isFinite(rows) || !Number.isFinite(columns)) return undefined
-
-  return rows * columns
-}
-
-export function countUniquePinIdentifiers(
-  identifiers: Array<string | number | undefined | null>,
-): number {
-  return new Set(
-    identifiers
-      .map((identifier) => `${identifier ?? ""}`.trim())
-      .filter(Boolean),
-  ).size
-}
-
 function isPinHeaderLike(params: {
   name?: string
   metadata?: string

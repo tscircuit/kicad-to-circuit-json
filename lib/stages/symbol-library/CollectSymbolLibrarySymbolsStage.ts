@@ -31,11 +31,9 @@ import type {
   SymbolText,
 } from "kicadts"
 import {
-  countUniquePinIdentifiers,
-  inferPinHeaderGender,
-  inferPinHeaderPinCountFromName,
   inferSourceComponentFtype,
-} from "../../component-inference"
+  type SupportedSourceComponentFtype,
+} from "./infer-source-component-ftype"
 import { rotationToDirection } from "../schematic/utils/rotationToDirection"
 
 const MAX_KICAD_SYMBOL_UNIT_TO_CJ = 1
@@ -55,7 +53,7 @@ type SymbolLibrarySourceComponentData =
   | Omit<SourceSimpleTransistor, "type" | "source_component_id">
   | Omit<SourceSimplePinHeader, "type" | "source_component_id">
   | Omit<SourceSimpleChip, "type" | "source_component_id">
-type SymbolLibrarySourceFtype = SymbolLibrarySourceComponentData["ftype"]
+type SymbolLibrarySourceFtype = SupportedSourceComponentFtype
 type SourcePortData = Omit<SourcePort, "type" | "source_port_id">
 type SchematicComponentData = Omit<
   SchematicComponent,
@@ -763,12 +761,9 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
           ftype,
           pin_count:
             this.getUniquePinCount(pins) ||
-            inferPinHeaderPinCountFromName(this.getSymbolName(symbol)) ||
+            this.inferPinHeaderPinCountFromName(symbol) ||
             1,
-          gender: inferPinHeaderGender({
-            name: this.getSymbolName(symbol),
-            metadata: this.getSymbolMetadataText(symbol),
-          }),
+          gender: this.inferPinHeaderGender(symbol),
         }
       case "simple_led":
       case "simple_diode":
@@ -793,9 +788,53 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private getUniquePinCount(pins: SymbolPin[]): number {
-    return countUniquePinIdentifiers(
+    return this.countUniquePinIdentifiers(
       pins.map((pin) => pin.numberString || pin._sxNumber?.value),
     )
+  }
+
+  private countUniquePinIdentifiers(
+    identifiers: Array<string | number | undefined | null>,
+  ): number {
+    return new Set(
+      identifiers
+        .map((identifier) => `${identifier ?? ""}`.trim())
+        .filter(Boolean),
+    ).size
+  }
+
+  private inferPinHeaderGender(
+    symbol: KicadSchematicSymbol,
+  ): "male" | "female" {
+    const combined =
+      `${this.getSymbolName(symbol)} ${this.getSymbolMetadataText(symbol)}`.toLowerCase()
+
+    if (
+      combined.includes("socket") ||
+      combined.includes("female") ||
+      combined.includes("pinsocket")
+    ) {
+      return "female"
+    }
+
+    return "male"
+  }
+
+  private inferPinHeaderPinCountFromName(
+    symbol: KicadSchematicSymbol,
+  ): number | undefined {
+    const name = this.getSymbolName(symbol)
+    if (!name) return undefined
+
+    const match = name.match(/(?:pin(?:header|socket)|conn)_(\d+)x(\d+)/i)
+    if (!match) return undefined
+
+    const rows = Number.parseInt(match[1]!, 10)
+    const columns = Number.parseInt(match[2]!, 10)
+
+    if (!Number.isFinite(rows) || !Number.isFinite(columns)) return undefined
+
+    return rows * columns
   }
 
   private getPortName(pin: SymbolPin, pinNumber: string): string {
