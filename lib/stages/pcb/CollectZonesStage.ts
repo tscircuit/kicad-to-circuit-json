@@ -19,6 +19,11 @@ type ZonePolygonRecord = {
   layer: LayerRef
   points: KicadPoint[]
 }
+type CopperPourRect = {
+  center: KicadPoint
+  width: number
+  height: number
+}
 
 /**
  * CollectZonesStage converts KiCad zones with filled copper into Circuit JSON pcb_copper_pour elements.
@@ -47,7 +52,10 @@ export class CollectZonesStage extends ConverterStage {
   }
 
   private isZoneFilled(zone: Zone): boolean {
-    return zone.fill?.filled === true || zone.filledPolygons.length > 0
+    return (
+      zone.fill?.filled === true ||
+      (Array.isArray(zone.filledPolygons) && zone.filledPolygons.length > 0)
+    )
   }
 
   private createCopperPourFromZone(zone: Zone) {
@@ -64,45 +72,80 @@ export class CollectZonesStage extends ConverterStage {
       return
     }
 
-    // Get net info
     const netNum = typeof zone.net === "number" ? zone.net : 0
     const netName = this.ctx.netNumToName!.get(netNum) || zone.netName || ""
+    const sourceNetId = this.ctx.netNumToSourceNetId?.get(netNum)
 
-    // Create a copper pour for each filled polygon
     for (const polygonRecord of polygonRecords) {
-      // Transform coordinates from KiCad to Circuit JSON
       const transformedPoints = polygonRecord.points.map((point) =>
         applyToPoint(this.ctx.k2cMatPcb!, { x: point.x, y: point.y }),
       )
+      const bounds = this.getBoundsFromPoints(transformedPoints)
+      if (!bounds) continue
 
-      // Create pcb_copper_pour
       this.ctx.db.pcb_copper_pour.insert({
         layer: polygonRecord.layer,
         net_name: netName,
-        points: transformedPoints,
-        shape: "polygon",
+        source_net_id: sourceNetId,
+        shape: "rect",
+        center: bounds.center,
+        width: bounds.width,
+        height: bounds.height,
+        covered_with_solder_mask: true,
       } as any)
 
-      // Update stats if available
       if (this.ctx.stats) {
         this.ctx.stats.copper_pours = (this.ctx.stats.copper_pours || 0) + 1
       }
     }
   }
 
+  private getBoundsFromPoints(points: KicadPoint[]): CopperPourRect | null {
+    if (points.length === 0) return null
+
+    const xs = points.map((point) => point.x)
+    const ys = points.map((point) => point.y)
+    const minX = Math.min(...xs)
+    const maxX = Math.max(...xs)
+    const minY = Math.min(...ys)
+    const maxY = Math.max(...ys)
+
+    if (
+      !Number.isFinite(minX) ||
+      !Number.isFinite(maxX) ||
+      !Number.isFinite(minY) ||
+      !Number.isFinite(maxY)
+    ) {
+      return null
+    }
+
+    return {
+      center: {
+        x: (minX + maxX) / 2,
+        y: (minY + maxY) / 2,
+      },
+      width: maxX - minX,
+      height: maxY - minY,
+    }
+  }
+
   private getZonePolygonRecords(zone: Zone): ZonePolygonRecord[] {
-    const filledPolygonRecords = zone.filledPolygons.flatMap((filledPolygon) =>
+    const filledPolygons = Array.isArray(zone.filledPolygons)
+      ? zone.filledPolygons
+      : []
+    const polygons = Array.isArray(zone.polygons) ? zone.polygons : []
+    const zonePolygonRecords = polygons.flatMap((polygon) =>
+      this.createZonePolygonRecordsFromShape(polygon, this.getZoneLayers(zone)),
+    )
+    if (zonePolygonRecords.length > 0) {
+      return zonePolygonRecords
+    }
+
+    return filledPolygons.flatMap((filledPolygon) =>
       this.createZonePolygonRecordsFromShape(
         filledPolygon,
         this.getPolygonLayers(zone, filledPolygon),
       ),
-    )
-    if (filledPolygonRecords.length > 0) {
-      return filledPolygonRecords
-    }
-
-    return zone.polygons.flatMap((polygon) =>
-      this.createZonePolygonRecordsFromShape(polygon, this.getZoneLayers(zone)),
     )
   }
 
