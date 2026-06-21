@@ -29,6 +29,10 @@ import type {
   SymbolRectangle,
   SymbolText,
 } from "kicadts"
+import {
+  defaultSchematicFillColor,
+  defaultSchematicStrokeColor,
+} from "../../color"
 import { rotationToDirection } from "../schematic/utils/rotationToDirection"
 
 const MAX_KICAD_SYMBOL_UNIT_TO_CJ = 1
@@ -36,8 +40,6 @@ const PREVIEW_COLUMNS = 6
 const PREVIEW_CELL_WIDTH = 10
 const PREVIEW_CELL_HEIGHT = 9.5
 const PREVIEW_CELL_FILL_RATIO = 0.95
-const DEFAULT_STROKE_COLOR = "rgb(132, 0, 0)"
-const DEFAULT_FILL_COLOR = "rgb(255, 255, 194)"
 
 type SymbolLibrarySourceComponentData =
   | Omit<SourceSimpleResistor, "type" | "source_component_id">
@@ -366,7 +368,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
           this.getShapeStroke(rectangle)?.width,
           scale,
         ),
-        color: DEFAULT_STROKE_COLOR,
+        color: defaultSchematicStrokeColor,
         is_filled: this.isFilled(this.getShapeFillType(rectangle)),
         fill_color: this.getFillColor(this.getShapeFillType(rectangle)),
         is_dashed: this.getShapeStroke(rectangle)?.type === "dash",
@@ -388,7 +390,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
           this.getShapeStroke(circle)?.width,
           scale,
         ),
-        color: DEFAULT_STROKE_COLOR,
+        color: defaultSchematicStrokeColor,
         is_filled: this.isFilled(this.getShapeFillType(circle)),
         fill_color: this.getFillColor(this.getShapeFillType(circle)),
         is_dashed: this.getShapeStroke(circle)?.type === "dash",
@@ -412,7 +414,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
             this.getShapeStroke(arc)?.width,
             scale,
           ),
-          stroke_color: DEFAULT_STROKE_COLOR,
+          stroke_color: defaultSchematicStrokeColor,
         }
         this.ctx.db.schematic_path.insert(pathData)
         continue
@@ -426,7 +428,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
           this.getShapeStroke(arc)?.width,
           scale,
         ),
-        color: DEFAULT_STROKE_COLOR,
+        color: defaultSchematicStrokeColor,
         is_dashed: this.getShapeStroke(arc)?.type === "dash",
       }
       this.ctx.db.schematic_arc.insert(arcData)
@@ -447,7 +449,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         }),
         rotation: -(text.at?.angle ?? 0),
         anchor: "center",
-        color: DEFAULT_STROKE_COLOR,
+        color: defaultSchematicStrokeColor,
       }
       this.ctx.db.schematic_text.insert(textData)
     }
@@ -479,7 +481,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         }),
         rotation: -(property.at?.angle ?? 0),
         anchor: this.getTextAnchor(property.effects?.justify?.horizontal),
-        color: DEFAULT_STROKE_COLOR,
+        color: defaultSchematicStrokeColor,
       }
       this.ctx.db.schematic_text.insert(textData)
     }
@@ -517,7 +519,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
           this.toSchematicPoint({ point, origin, scale }),
         ),
         stroke_width: this.toStrokeWidth(polyline.stroke?.width, scale),
-        stroke_color: DEFAULT_STROKE_COLOR,
+        stroke_color: defaultSchematicStrokeColor,
         is_filled: true,
         fill_color: this.getFillColor(polyline.fill?.type),
       }
@@ -543,7 +545,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         x2: end.x,
         y2: end.y,
         stroke_width: this.toStrokeWidth(polyline.stroke?.width, scale),
-        color: DEFAULT_STROKE_COLOR,
+        color: defaultSchematicStrokeColor,
         is_dashed: polyline.stroke?.type === "dash",
       }
       this.ctx.db.schematic_line.insert(lineData)
@@ -580,7 +582,9 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
   private getFillColor(fillType: string | undefined): string | undefined {
     if (!this.isFilled(fillType)) return undefined
-    return fillType === "background" ? DEFAULT_FILL_COLOR : DEFAULT_STROKE_COLOR
+    return fillType === "background"
+      ? defaultSchematicFillColor
+      : defaultSchematicStrokeColor
   }
 
   private getFontSize(

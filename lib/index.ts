@@ -1,6 +1,8 @@
 export { KicadFootprintToCircuitJsonConverter } from "./KicadFootprintToCircuitJsonConverter"
 export { KicadSymbolToCircuitJsonConverter } from "./KicadSymbolToCircuitJsonConverter"
 export { KicadToCircuitJsonConverter } from "./KicadToCircuitJsonConverter"
+export { colorMap } from "./color"
 export { ConverterStage } from "./types"
+export type { ColorMap } from "./color"
 export type { ConverterContext } from "./types"
 export * from "./stages"

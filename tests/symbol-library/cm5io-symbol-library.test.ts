@@ -2,6 +2,7 @@ import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { convertCircuitJsonToSchematicSvg } from "circuit-to-svg"
 import { KicadToCircuitJsonConverter } from "../../lib"
+import { colorMap } from "../../lib/color"
 import { takeCircuitJsonSnapshot } from "../fixtures/take-circuit-json-snapshot"
 import { takeKicadSymbolLibrarySnapshot } from "../fixtures/take-kicad-symbol-library-snapshot"
 import { stackCircuitJsonKicadPngs } from "../fixtures/stackCircuitJsonKicadPngs"
@@ -148,7 +149,7 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
       (element) =>
         element.type === "schematic_rect" &&
         element.is_filled &&
-        element.fill_color === "rgb(255, 255, 194)",
+        element.fill_color === colorMap.kicad.schematic.componentBody,
     ),
   ).toBe(true)
   expect(
@@ -158,7 +159,7 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
           element.type === "schematic_circle" ||
           element.type === "schematic_rect") &&
         element.is_filled &&
-        element.fill_color === "rgb(132, 0, 0)",
+        element.fill_color === colorMap.kicad.schematic.componentOutline,
     ),
   ).toBe(true)
 
