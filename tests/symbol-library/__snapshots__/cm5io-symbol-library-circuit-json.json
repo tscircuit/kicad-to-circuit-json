@@ -1451,8 +1451,8 @@
       "y": 0
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 3.966766006537206,
+      "height": 7.933532013074409
     },
     "is_box_with_pins": true,
     "symbol_display_value": "Bus_M.2_Socket_M"
@@ -2541,24 +2541,6 @@
     "distance_from_component_edge": 0.22037588925206691
   },
   {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_3",
-    "schematic_component_id": "schematic_component_4",
-    "schematic_symbol_id": "schematic_symbol_4",
-    "center": {
-      "x": 15,
-      "y": 0
-    },
-    "width": 3.966766006537206,
-    "height": 7.933532013074409,
-    "rotation": 0,
-    "stroke_width": 0.022037588925206693,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_8",
     "schematic_component_id": "schematic_component_4",
@@ -2687,7 +2669,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_4",
+    "schematic_rect_id": "schematic_rect_3",
     "schematic_component_id": "schematic_component_5",
     "schematic_symbol_id": "schematic_symbol_5",
     "center": {
@@ -2704,7 +2686,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_5",
+    "schematic_rect_id": "schematic_rect_4",
     "schematic_component_id": "schematic_component_5",
     "schematic_symbol_id": "schematic_symbol_5",
     "center": {
@@ -2895,33 +2877,15 @@
     "source_component_id": "source_component_7",
     "schematic_symbol_id": "schematic_symbol_7",
     "center": {
-      "x": -15,
-      "y": -9.5
-    },
-    "size": {
-      "width": 0,
-      "height": 0
-    },
-    "is_box_with_pins": true,
-    "symbol_display_value": "Compute-Module-4_H1.5mm"
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_6",
-    "schematic_component_id": "schematic_component_7",
-    "schematic_symbol_id": "schematic_symbol_7",
-    "center": {
       "x": -11.943533333333333,
       "y": -11.410291666666666
     },
-    "width": 6.112933333333334,
-    "height": 3.8205833333333334,
-    "rotation": 0,
-    "stroke_width": 0.15282333333333334,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
+    "size": {
+      "width": 6.112933333333334,
+      "height": 3.8205833333333334
+    },
+    "is_box_with_pins": true,
+    "symbol_display_value": "Compute-Module-4_H1.5mm"
   },
   {
     "type": "schematic_text",
@@ -5168,7 +5132,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_7",
+    "schematic_rect_id": "schematic_rect_5",
     "schematic_component_id": "schematic_component_8",
     "schematic_symbol_id": "schematic_symbol_8",
     "center": {
@@ -7518,7 +7482,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_8",
+    "schematic_rect_id": "schematic_rect_6",
     "schematic_component_id": "schematic_component_9",
     "schematic_symbol_id": "schematic_symbol_9",
     "center": {
@@ -7634,11 +7598,11 @@
     "schematic_symbol_id": "schematic_symbol_10",
     "center": {
       "x": 15,
-      "y": -9.5
+      "y": -10.067413366336634
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 1.1348267326732682,
+      "height": 4.53930693069307
     },
     "is_box_with_pins": true,
     "symbol_display_value": "Conn_01x04_MountingPin"
@@ -7732,25 +7696,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_9",
-    "schematic_component_id": "schematic_component_10",
-    "schematic_symbol_id": "schematic_symbol_10",
-    "center": {
-      "x": 15,
-      "y": -10.067413366336634
-    },
-    "width": 1.1348267326732682,
-    "height": 4.53930693069307,
-    "rotation": 0,
-    "stroke_width": 0.11348267326732674,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_10",
+    "schematic_rect_id": "schematic_rect_7",
     "schematic_component_id": "schematic_component_10",
     "schematic_symbol_id": "schematic_symbol_10",
     "center": {
@@ -7767,7 +7713,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_11",
+    "schematic_rect_id": "schematic_rect_8",
     "schematic_component_id": "schematic_component_10",
     "schematic_symbol_id": "schematic_symbol_10",
     "center": {
@@ -7784,7 +7730,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_12",
+    "schematic_rect_id": "schematic_rect_9",
     "schematic_component_id": "schematic_component_10",
     "schematic_symbol_id": "schematic_symbol_10",
     "center": {
@@ -7801,7 +7747,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_13",
+    "schematic_rect_id": "schematic_rect_10",
     "schematic_component_id": "schematic_component_10",
     "schematic_symbol_id": "schematic_symbol_10",
     "center": {
@@ -7908,11 +7854,11 @@
     "schematic_symbol_id": "schematic_symbol_11",
     "center": {
       "x": 25,
-      "y": -9.5
+      "y": -10.258052248677249
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 1.5161044973544975,
+      "height": 6.06441798941799
     },
     "is_box_with_pins": true,
     "symbol_display_value": "Conn_01x04"
@@ -7979,25 +7925,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_14",
-    "schematic_component_id": "schematic_component_11",
-    "schematic_symbol_id": "schematic_symbol_11",
-    "center": {
-      "x": 25,
-      "y": -10.258052248677249
-    },
-    "width": 1.5161044973544975,
-    "height": 6.06441798941799,
-    "rotation": 0,
-    "stroke_width": 0.15161044973544974,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_15",
+    "schematic_rect_id": "schematic_rect_11",
     "schematic_component_id": "schematic_component_11",
     "schematic_symbol_id": "schematic_symbol_11",
     "center": {
@@ -8014,7 +7942,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_16",
+    "schematic_rect_id": "schematic_rect_12",
     "schematic_component_id": "schematic_component_11",
     "schematic_symbol_id": "schematic_symbol_11",
     "center": {
@@ -8031,7 +7959,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_17",
+    "schematic_rect_id": "schematic_rect_13",
     "schematic_component_id": "schematic_component_11",
     "schematic_symbol_id": "schematic_symbol_11",
     "center": {
@@ -8048,7 +7976,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_18",
+    "schematic_rect_id": "schematic_rect_14",
     "schematic_component_id": "schematic_component_11",
     "schematic_symbol_id": "schematic_symbol_11",
     "center": {
@@ -8191,11 +8119,11 @@
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
       "x": -25,
-      "y": -19
+      "y": -19.32341281038375
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 0.6468256207674941,
+      "height": 6.468256207674944
     },
     "is_box_with_pins": true,
     "symbol_display_value": "Conn_01x10_MountingPin"
@@ -8379,25 +8307,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_19",
-    "schematic_component_id": "schematic_component_12",
-    "schematic_symbol_id": "schematic_symbol_12",
-    "center": {
-      "x": -25,
-      "y": -19.32341281038375
-    },
-    "width": 0.6468256207674941,
-    "height": 6.468256207674944,
-    "rotation": 0,
-    "stroke_width": 0.06468256207674944,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_20",
+    "schematic_rect_id": "schematic_rect_15",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8414,7 +8324,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_21",
+    "schematic_rect_id": "schematic_rect_16",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8431,7 +8341,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_22",
+    "schematic_rect_id": "schematic_rect_17",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8448,7 +8358,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_23",
+    "schematic_rect_id": "schematic_rect_18",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8465,7 +8375,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_24",
+    "schematic_rect_id": "schematic_rect_19",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8482,7 +8392,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_25",
+    "schematic_rect_id": "schematic_rect_20",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8499,7 +8409,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_26",
+    "schematic_rect_id": "schematic_rect_21",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8516,7 +8426,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_27",
+    "schematic_rect_id": "schematic_rect_22",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8533,7 +8443,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_28",
+    "schematic_rect_id": "schematic_rect_23",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -8550,7 +8460,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_29",
+    "schematic_rect_id": "schematic_rect_24",
     "schematic_component_id": "schematic_component_12",
     "schematic_symbol_id": "schematic_symbol_12",
     "center": {
@@ -9502,7 +9412,7 @@
       "x": -14.999672942470564,
       "y": -17.116083168967993
     },
-    "radius": 0.07535738297333706,
+    "radius": 0.07535738297333708,
     "start_angle_degrees": -90.24866939621405,
     "end_angle_degrees": 90.24866939621268,
     "direction": "clockwise",
@@ -9570,7 +9480,7 @@
       "x": -14.999672942470564,
       "y": -18.6232166337941
     },
-    "radius": 0.07535738297300312,
+    "radius": 0.07535738297300311,
     "start_angle_degrees": -90.24866939621515,
     "end_angle_degrees": 90.24866939621157,
     "direction": "clockwise",
@@ -9604,7 +9514,7 @@
       "x": -14.999672942470564,
       "y": -19.376783366206684
     },
-    "radius": 0.07535738297330509,
+    "radius": 0.0753573829733051,
     "start_angle_degrees": -90.24866939621415,
     "end_angle_degrees": 90.24866939621256,
     "direction": "clockwise",
@@ -9655,7 +9565,7 @@
       "x": -14.999672942470289,
       "y": -20.50713346482601
     },
-    "radius": 0.07535738297331339,
+    "radius": 0.0753573829733134,
     "start_angle_degrees": -90.2486693964235,
     "end_angle_degrees": 90.24866939642192,
     "direction": "clockwise",
@@ -9672,7 +9582,7 @@
       "x": -14.999672942470564,
       "y": -20.883916831032792
     },
-    "radius": 0.07535738297297115,
+    "radius": 0.07535738297297113,
     "start_angle_degrees": -90.24866939621526,
     "end_angle_degrees": 90.24866939621147,
     "direction": "clockwise",
@@ -9942,12 +9852,12 @@
     "source_component_id": "source_component_14",
     "schematic_symbol_id": "schematic_symbol_14",
     "center": {
-      "x": -5,
-      "y": -19
+      "x": -1.3227356860809474,
+      "y": -21.54579837117473
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 5.0915967423494575,
+      "height": 6.788795656465943
     },
     "is_box_with_pins": true,
     "symbol_display_value": "GLPLX-SMT-188S7-QQ-Y_G"
@@ -10245,24 +10155,6 @@
     "is_dashed": true
   },
   {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_30",
-    "schematic_component_id": "schematic_component_14",
-    "schematic_symbol_id": "schematic_symbol_14",
-    "center": {
-      "x": -1.3227356860809474,
-      "y": -21.54579837117473
-    },
-    "width": 5.0915967423494575,
-    "height": 6.788795656465943,
-    "rotation": 0,
-    "stroke_width": 0.05657329713721619,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_35",
     "schematic_component_id": "schematic_component_14",
@@ -10479,12 +10371,12 @@
     "source_component_id": "source_component_15",
     "schematic_symbol_id": "schematic_symbol_15",
     "center": {
-      "x": 5,
+      "x": 5.180841748185548,
       "y": -19
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 2.531784474597665,
+      "height": 7.2336699274219
     },
     "is_box_with_pins": true,
     "symbol_display_value": "HDMI_A_1.4"
@@ -11300,24 +11192,6 @@
     "is_dashed": false
   },
   {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_31",
-    "schematic_component_id": "schematic_component_15",
-    "schematic_symbol_id": "schematic_symbol_15",
-    "center": {
-      "x": 5.180841748185548,
-      "y": -19
-    },
-    "width": 2.531784474597665,
-    "height": 7.2336699274219,
-    "rotation": 0,
-    "stroke_width": 0.03616834963710949,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_37",
     "schematic_component_id": "schematic_component_15",
@@ -11749,11 +11623,11 @@
     "schematic_symbol_id": "schematic_symbol_17",
     "center": {
       "x": 25,
-      "y": -19
+      "y": -19.323412810383747
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 5.1746049661399525,
+      "height": 5.8214305869074465
     },
     "is_box_with_pins": true,
     "symbol_display_value": "LIS3DH"
@@ -11993,24 +11867,6 @@
     "distance_from_component_edge": 0.6468256207674944
   },
   {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_32",
-    "schematic_component_id": "schematic_component_17",
-    "schematic_symbol_id": "schematic_symbol_17",
-    "center": {
-      "x": 25,
-      "y": -19.323412810383747
-    },
-    "width": 5.1746049661399525,
-    "height": 5.8214305869074465,
-    "rotation": 0,
-    "stroke_width": 0.06468256207674944,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_41",
     "schematic_component_id": "schematic_component_17",
@@ -12122,7 +11978,7 @@
       "x": -25.001615048024636,
       "y": -27.36292162698405
     },
-    "radius": 0.379029565220475,
+    "radius": 0.37902956522047504,
     "start_angle_degrees": 89.75586148408715,
     "end_angle_degrees": -89.75586148408726,
     "direction": "clockwise",
@@ -12156,7 +12012,7 @@
       "x": -25.001615048024636,
       "y": -28.879026124338676
     },
-    "radius": 0.3790295652206029,
+    "radius": 0.37902956522060294,
     "start_angle_degrees": 89.75586148408725,
     "end_angle_degrees": -89.75586148408718,
     "direction": "clockwise",
@@ -12701,12 +12557,12 @@
     "source_component_id": "source_component_20",
     "schematic_symbol_id": "schematic_symbol_20",
     "center": {
-      "x": -5,
+      "x": -4.386749716874292,
       "y": -28.5
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 2.3238958097395237,
+      "height": 1.0973952434881085
     },
     "is_box_with_pins": true,
     "symbol_display_value": "MK-11C04-G013"
@@ -12913,24 +12769,6 @@
     "y2": -27.133635334088336,
     "stroke_width": null,
     "color": "rgb(132, 0, 0)",
-    "is_dashed": false
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_33",
-    "schematic_component_id": "schematic_component_20",
-    "schematic_symbol_id": "schematic_symbol_20",
-    "center": {
-      "x": -4.386749716874292,
-      "y": -28.5
-    },
-    "width": 2.3238958097395237,
-    "height": 1.0973952434881085,
-    "rotation": 0,
-    "stroke_width": null,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
     "is_dashed": false
   },
   {
@@ -13147,11 +12985,11 @@
     "schematic_symbol_id": "schematic_symbol_22",
     "center": {
       "x": 15,
-      "y": -28.5
+      "y": -27.526465175537936
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 6.490232163080407,
+      "height": 8.43730181200453
     },
     "is_box_with_pins": true,
     "symbol_display_value": "PUSB3F96X"
@@ -13385,24 +13223,6 @@
     "y2": -30.447069648924124,
     "stroke_width": null,
     "color": "rgb(132, 0, 0)",
-    "is_dashed": false
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_34",
-    "schematic_component_id": "schematic_component_22",
-    "schematic_symbol_id": "schematic_symbol_22",
-    "center": {
-      "x": 15,
-      "y": -27.526465175537936
-    },
-    "width": 6.490232163080407,
-    "height": 8.43730181200453,
-    "rotation": 0,
-    "stroke_width": null,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
     "is_dashed": false
   },
   {
@@ -13845,7 +13665,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_35",
+    "schematic_rect_id": "schematic_rect_25",
     "schematic_component_id": "schematic_component_24",
     "schematic_symbol_id": "schematic_symbol_24",
     "center": {
@@ -13963,7 +13783,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_36",
+    "schematic_rect_id": "schematic_rect_26",
     "schematic_component_id": "schematic_component_25",
     "schematic_symbol_id": "schematic_symbol_25",
     "center": {
@@ -14056,11 +13876,11 @@
     "schematic_symbol_id": "schematic_symbol_26",
     "center": {
       "x": -5,
-      "y": -38
+      "y": -38.59727722772277
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 8.361881188118815,
+      "height": 2.389108910891089
     },
     "is_box_with_pins": true,
     "symbol_display_value": "SM02B-SRSS-TB (LF)(SN)"
@@ -14124,24 +13944,6 @@
     "display_pin_label": "3",
     "side_of_component": "top",
     "distance_from_component_edge": 1.1945544554455447
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_37",
-    "schematic_component_id": "schematic_component_26",
-    "schematic_symbol_id": "schematic_symbol_26",
-    "center": {
-      "x": -5,
-      "y": -38.59727722772277
-    },
-    "width": 8.361881188118815,
-    "height": 2.389108910891089,
-    "rotation": 0,
-    "stroke_width": null,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
   },
   {
     "type": "schematic_text",
@@ -14230,8 +14032,8 @@
       "y": -38
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 5.867477203647416,
+      "height": 3.2282674772036444
     },
     "is_box_with_pins": true,
     "symbol_display_value": "STMPS2151STR"
@@ -14310,24 +14112,6 @@
     "display_pin_label": "EN",
     "side_of_component": "right",
     "distance_from_component_edge": 0.733434650455927
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_38",
-    "schematic_component_id": "schematic_component_27",
-    "schematic_symbol_id": "schematic_symbol_27",
-    "center": {
-      "x": 5,
-      "y": -38
-    },
-    "width": 5.867477203647416,
-    "height": 3.2282674772036444,
-    "rotation": 0,
-    "stroke_width": null,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
   },
   {
     "type": "schematic_circle",
@@ -14727,8 +14511,8 @@
       "y": -47.5
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 4.400607902735565,
+      "height": 4.400607902735558
     },
     "is_box_with_pins": true,
     "symbol_display_value": "TPD4EUSB30"
@@ -15469,7 +15253,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_39",
+    "schematic_rect_id": "schematic_rect_27",
     "schematic_component_id": "schematic_component_30",
     "schematic_symbol_id": "schematic_symbol_30",
     "center": {
@@ -15482,24 +15266,6 @@
     "stroke_width": null,
     "color": "rgb(132, 0, 0)",
     "is_filled": false,
-    "is_dashed": false
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_40",
-    "schematic_component_id": "schematic_component_30",
-    "schematic_symbol_id": "schematic_symbol_30",
-    "center": {
-      "x": -25,
-      "y": -47.5
-    },
-    "width": 4.400607902735565,
-    "height": 4.400607902735558,
-    "rotation": 0,
-    "stroke_width": 0.0733434650455927,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
     "is_dashed": false
   },
   {
@@ -16112,11 +15878,11 @@
     "schematic_symbol_id": "schematic_symbol_32",
     "center": {
       "x": -5,
-      "y": -47.5
+      "y": -47.76618091035765
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 4.791256386437528,
+      "height": 7.985427310729214
     },
     "is_box_with_pins": true,
     "symbol_display_value": "TYPEC-305-ACP16H458"
@@ -16359,24 +16125,6 @@
     "display_pin_label": "GND",
     "side_of_component": "right",
     "distance_from_component_edge": 0.532361820715281
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_41",
-    "schematic_component_id": "schematic_component_32",
-    "schematic_symbol_id": "schematic_symbol_32",
-    "center": {
-      "x": -5,
-      "y": -47.76618091035765
-    },
-    "width": 4.791256386437528,
-    "height": 7.985427310729214,
-    "rotation": 0,
-    "stroke_width": null,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
   },
   {
     "type": "schematic_circle",
@@ -16784,8 +16532,8 @@
       "y": -47.5
     },
     "size": {
-      "width": 0,
-      "height": 0
+      "width": 4.021666666666668,
+      "height": 7.037916666666661
     },
     "is_box_with_pins": true,
     "symbol_display_value": "USB_C_Receptacle_USB2.0"
@@ -17177,7 +16925,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_42",
+    "schematic_rect_id": "schematic_rect_28",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17194,7 +16942,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_43",
+    "schematic_rect_id": "schematic_rect_29",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17211,7 +16959,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_44",
+    "schematic_rect_id": "schematic_rect_30",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17228,7 +16976,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_45",
+    "schematic_rect_id": "schematic_rect_31",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17245,7 +16993,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_46",
+    "schematic_rect_id": "schematic_rect_32",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17262,7 +17010,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_47",
+    "schematic_rect_id": "schematic_rect_33",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17279,7 +17027,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_48",
+    "schematic_rect_id": "schematic_rect_34",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17296,7 +17044,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_49",
+    "schematic_rect_id": "schematic_rect_35",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17313,7 +17061,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_50",
+    "schematic_rect_id": "schematic_rect_36",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17330,7 +17078,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_51",
+    "schematic_rect_id": "schematic_rect_37",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17347,25 +17095,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_52",
-    "schematic_component_id": "schematic_component_35",
-    "schematic_symbol_id": "schematic_symbol_35",
-    "center": {
-      "x": 25,
-      "y": -47.5
-    },
-    "width": 4.021666666666668,
-    "height": 7.037916666666661,
-    "rotation": 0,
-    "stroke_width": 0.050270833333333334,
-    "color": "rgb(132, 0, 0)",
-    "is_filled": true,
-    "fill_color": "rgb(255, 255, 194)",
-    "is_dashed": false
-  },
-  {
-    "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_53",
+    "schematic_rect_id": "schematic_rect_38",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
@@ -17383,7 +17113,7 @@
   },
   {
     "type": "schematic_rect",
-    "schematic_rect_id": "schematic_rect_54",
+    "schematic_rect_id": "schematic_rect_39",
     "schematic_component_id": "schematic_component_35",
     "schematic_symbol_id": "schematic_symbol_35",
     "center": {
