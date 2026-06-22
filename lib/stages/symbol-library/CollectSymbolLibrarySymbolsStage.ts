@@ -256,6 +256,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       schematicComponentData,
     )
 
+    // KiCad symbols can hide pin names at the symbol level (e.g. connectors
+    // whose pins are all named "Pin_N"); when hidden, the names must not be
+    // drawn or they overlap the closely-stacked pins.
+    const pinNamesHidden = symbol.pinNames?.hide === true
+
     for (const pin of pins) {
       if (!pin.at) continue
       const pinNumber = pin.numberString || ""
@@ -271,7 +276,12 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
           scale,
         }),
         facing_direction: rotationToDirection(pin.at.angle ?? 0),
-        ...this.getSchematicPortPinMetadata({ pin, pinNumber, scale }),
+        ...this.getSchematicPortPinMetadata({
+          pin,
+          pinNumber,
+          scale,
+          pinNamesHidden,
+        }),
       }
       this.ctx.db.schematic_port.insert(schematicPortData)
     }
@@ -744,11 +754,16 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     const cross =
       (mid.x - start.x) * (end.y - mid.y) - (mid.y - start.y) * (end.x - mid.x)
 
+    // circuit-to-svg recomputes the arc endpoints from these angles in its
+    // screen space (Y-down) while our points are in Circuit JSON space (Y-up),
+    // so negate the angles to keep start/end on the correct side. The
+    // cross-product direction is already in the convention circuit-to-svg
+    // expects, so it is left as-is.
     return {
       center,
       radius,
-      start_angle_degrees: startAngleDegrees,
-      end_angle_degrees: endAngleDegrees,
+      start_angle_degrees: -startAngleDegrees,
+      end_angle_degrees: -endAngleDegrees,
       direction: cross >= 0 ? "counterclockwise" : "clockwise",
     }
   }
@@ -841,6 +856,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     pin: SymbolPin
     pinNumber: string
     scale: number
+    pinNamesHidden: boolean
   }): Partial<
     Pick<
       SchematicPortData,
@@ -850,7 +866,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       | "distance_from_component_edge"
     >
   > {
-    const { pin, pinNumber, scale } = params
+    const { pin, pinNumber, scale, pinNamesHidden } = params
     const metadata: Partial<
       Pick<
         SchematicPortData,
@@ -867,7 +883,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       metadata.display_pin_label = pinNumber
     }
 
-    if (pin.name) {
+    if (pin.name && !pinNamesHidden) {
       metadata.display_pin_label = pin.name
     }
 
