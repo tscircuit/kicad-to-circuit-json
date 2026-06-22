@@ -7552,7 +7552,9 @@
     "source_component_id": "source_component_10",
     "name": "Conn_01x04_MountingPin",
     "manufacturer_part_number": "Conn_01x04_MountingPin",
-    "ftype": "simple_chip"
+    "ftype": "simple_pin_header",
+    "pin_count": 5,
+    "gender": "male"
   },
   {
     "type": "source_port",
@@ -7817,7 +7819,9 @@
     "source_component_id": "source_component_11",
     "name": "Conn_01x04",
     "manufacturer_part_number": "Conn_01x04",
-    "ftype": "simple_chip"
+    "ftype": "simple_pin_header",
+    "pin_count": 4,
+    "gender": "male"
   },
   {
     "type": "source_port",
@@ -8031,7 +8035,9 @@
     "source_component_id": "source_component_12",
     "name": "Conn_01x10_MountingPin",
     "manufacturer_part_number": "Conn_01x10_MountingPin",
-    "ftype": "simple_chip"
+    "ftype": "simple_pin_header",
+    "pin_count": 11,
+    "gender": "male"
   },
   {
     "type": "source_port",
@@ -8530,7 +8536,9 @@
     "source_component_id": "source_component_13",
     "name": "Conn_01x22_Socket",
     "manufacturer_part_number": "Conn_01x22_Socket",
-    "ftype": "simple_chip"
+    "ftype": "simple_pin_header",
+    "pin_count": 22,
+    "gender": "female"
   },
   {
     "type": "source_port",
@@ -13838,8 +13846,7 @@
     "source_component_id": "source_component_26",
     "name": "SM02B-SRSS-TB(LF)(SN)",
     "manufacturer_part_number": "SM02B-SRSS-TB (LF)(SN)",
-    "ftype": "simple_capacitor",
-    "capacitance": 0
+    "ftype": "simple_chip"
   },
   {
     "type": "source_port",
