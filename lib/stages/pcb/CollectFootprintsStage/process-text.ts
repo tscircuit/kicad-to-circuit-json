@@ -40,6 +40,10 @@ function getPropertyKey(property: any): string {
   return String(property?._key ?? property?.key ?? property?.name ?? "")
 }
 
+function getFpTextKind(text: any): string {
+  return String(text?._type ?? text?.type ?? text?.kind ?? "")
+}
+
 function getKiCadTextAnchor(text: any) {
   return text?._sxPosition || text?.at || text?._sxAt
 }
@@ -148,6 +152,9 @@ export function processFootprintText(params: {
       componentId,
       footprint,
       footprintPlacement,
+      isReferenceText:
+        ctx.standaloneFootprintConversion &&
+        getFpTextKind(text) === "reference",
     })
   }
 }
@@ -193,6 +200,9 @@ export function processFootprintProperties(params: {
       componentId,
       footprint,
       footprintPlacement,
+      isReferenceText:
+        ctx.standaloneFootprintConversion &&
+        getPropertyKey(property) === "Reference",
     })
   }
 }
@@ -207,6 +217,7 @@ export function createGraphicText(params: {
   componentId: string
   footprint: Footprint
   footprintPlacement: FootprintPlacement
+  isReferenceText?: boolean
 }) {
   const {
     ctx,
@@ -215,6 +226,7 @@ export function createGraphicText(params: {
     componentId,
     footprint,
     footprintPlacement,
+    isReferenceText = false,
   } = params
   if (!ctx.k2cMatPcb) return
 
@@ -251,7 +263,9 @@ export function createGraphicText(params: {
     textElement.effects?.font?.size?.y ||
     1
   const fontSize = kicadFontSize * KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE
-  const ccwRotation = convertKiCadAngleToCircuitJsonCcwRotation(at?.angle)
+  const ccwRotation = isReferenceText
+    ? 0
+    : convertKiCadAngleToCircuitJsonCcwRotation(at?.angle)
   const justify =
     textElement._sxEffects?._sxJustify || textElement.effects?.justify
   const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)

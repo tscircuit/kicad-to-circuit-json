@@ -48,6 +48,7 @@ export class KicadFootprintToCircuitJsonConverter {
       footprintUuidToSourceComponentId: new Map(),
       warnings: [],
       stats: {},
+      standaloneFootprintConversion: true,
     }
 
     processFootprint(this.ctx, this.ensureFootprintUuid(footprint))
