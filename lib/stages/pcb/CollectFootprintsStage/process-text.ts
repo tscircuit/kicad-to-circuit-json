@@ -152,7 +152,9 @@ export function processFootprintText(params: {
       componentId,
       footprint,
       footprintPlacement,
-      isReferenceText: getFpTextKind(text) === "reference",
+      isReferenceText:
+        ctx.standaloneFootprintConversion &&
+        getFpTextKind(text) === "reference",
     })
   }
 }
