@@ -32,6 +32,8 @@ export function inferComponentType(
       return "simple_diode"
     case "LED":
       return "simple_led"
+    case "SW":
+      return "simple_switch"
     case "Q":
       // Q* is a generic transistor designator; actual transistor
       // polarity (npn/pnp) is determined later from the footprint

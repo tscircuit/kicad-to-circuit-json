@@ -70,12 +70,18 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
   expect(schematicComponents.length).toBe(36)
   expect(
     schematicComponents.every(
-      (schematicComponent) =>
-        schematicComponent.is_box_with_pins === true &&
-        schematicComponent.size.width === 0 &&
-        schematicComponent.size.height === 0,
+      (schematicComponent) => schematicComponent.is_box_with_pins === true,
     ),
   ).toBe(true)
+  // Symbols with a KiCad body rectangle expose its bounds as the component box
+  // (circuit-to-svg fills it beneath the pin labels); others keep a zero-size
+  // box and rely solely on their imported primitives.
+  const componentsWithBody = schematicComponents.filter(
+    (schematicComponent) =>
+      schematicComponent.size.width > 0 && schematicComponent.size.height > 0,
+  )
+  expect(componentsWithBody.length).toBeGreaterThan(0)
+  expect(componentsWithBody.length).toBeLessThan(schematicComponents.length)
   expect(converter.getStats()).toEqual({
     components: 36,
     pads: 487,
@@ -140,8 +146,8 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
     circuitJson.filter(
       (element) =>
         element.type === "schematic_line" &&
-        element.schematic_component_id ===
-          resistorSchematicComponent?.schematic_component_id &&
+        element.schematic_symbol_id ===
+          resistorSchematicComponent?.schematic_symbol_id &&
         Math.hypot(element.x2 - element.x1, element.y2 - element.y1) > 0,
     ).length,
   ).toBe(0)
@@ -155,17 +161,15 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
   )
   const usbCElements = circuitJson.filter(
     (element) =>
-      element.schematic_component_id ===
-      usbCSchematicComponent?.schematic_component_id,
+      "schematic_symbol_id" in element &&
+      element.schematic_symbol_id ===
+        usbCSchematicComponent?.schematic_symbol_id,
   )
-  expect(
-    usbCElements.some(
-      (element) =>
-        element.type === "schematic_rect" &&
-        element.is_filled &&
-        element.fill_color === "rgb(255, 255, 194)",
-    ),
-  ).toBe(true)
+  // The USB-C body rectangle is represented as the component box (filled by
+  // circuit-to-svg beneath the pin labels), not as a schematic_rect primitive.
+  expect(usbCSchematicComponent?.size.width).toBeGreaterThan(0)
+  expect(usbCSchematicComponent?.size.height).toBeGreaterThan(0)
+  // The foreground-filled USB logo is still emitted as primitives on top.
   expect(
     usbCElements.some(
       (element) =>

@@ -239,15 +239,22 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     } = params
     const bounds = this.getPinBounds(pins)
     const scale = this.getPreviewScale(bounds)
-    const center = this.getPreviewCenter()
+    const origin = this.getPreviewCenter()
+    const bodyBox = this.getBodyBox({ symbol, origin, scale })
 
     const schematicComponentData: SchematicComponentData = {
       source_component_id: sourceComponentId,
       schematic_symbol_id: schematicSymbolId,
-      center,
-      // Let circuit-to-svg render schematic_port pin lines without drawing
-      // a generic box over the imported KiCad symbol primitives.
-      size: { width: 0, height: 0 },
+      // When the symbol has a body rectangle, hand its bounds to circuit-to-svg
+      // as the component box. circuit-to-svg fills that box (with the same
+      // body/outline colors KiCad uses) and paints it beneath the pin
+      // lines/labels, so the body never covers the pin names. Symbols without a
+      // body rectangle (e.g. passives) keep a zero-size box and rely solely on
+      // their imported primitives.
+      center: bodyBox?.center ?? origin,
+      size: bodyBox
+        ? { width: bodyBox.width, height: bodyBox.height }
+        : { width: 0, height: 0 },
       is_box_with_pins: true,
       symbol_display_value:
         this.getSymbolProperties(symbol).Value || this.getSymbolName(symbol),
@@ -267,7 +274,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         source_port_id: sourcePortId,
         center: this.toSchematicPoint({
           point: pin.at,
-          origin: center,
+          origin,
           scale,
         }),
         facing_direction: rotationToDirection(pin.at.angle ?? 0),
@@ -280,7 +287,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
       schematicSymbolId,
-      origin: center,
+      origin,
       scale,
     })
 
@@ -288,7 +295,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
       schematicSymbolId,
-      origin: center,
+      origin,
       scale,
     })
   }
@@ -353,6 +360,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
 
     for (const rectangle of this.collectRectangles(symbol)) {
+      // The background-filled body rectangle is rendered by circuit-to-svg as
+      // the component box (see createSchematicPreview), so it is not emitted as
+      // a primitive here.
+      if (this.getShapeFillType(rectangle) === "background") continue
+
       const startPoint = this.getShapePoint(rectangle, "start")
       const endPoint = this.getShapePoint(rectangle, "end")
       if (!startPoint || !endPoint) continue
@@ -588,6 +600,35 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   private getFillColor(fillType: string | undefined): string | undefined {
     if (!this.isFilled(fillType)) return undefined
     return fillType === "background" ? DEFAULT_FILL_COLOR : DEFAULT_STROKE_COLOR
+  }
+
+  /**
+   * Returns the schematic-space bounds of the symbol's body rectangle (the
+   * single KiCad "background"-filled rectangle) so it can be used as the
+   * schematic_component box. Returns null for symbols without a body rectangle.
+   */
+  private getBodyBox(params: {
+    symbol: KicadSchematicSymbol
+    origin: Point
+    scale: number
+  }): { center: Point; width: number; height: number } | null {
+    const { symbol, origin, scale } = params
+    for (const rectangle of this.collectRectangles(symbol)) {
+      if (this.getShapeFillType(rectangle) !== "background") continue
+
+      const startPoint = this.getShapePoint(rectangle, "start")
+      const endPoint = this.getShapePoint(rectangle, "end")
+      if (!startPoint || !endPoint) continue
+
+      const start = this.toSchematicPoint({ point: startPoint, origin, scale })
+      const end = this.toSchematicPoint({ point: endPoint, origin, scale })
+      return {
+        center: { x: (start.x + end.x) / 2, y: (start.y + end.y) / 2 },
+        width: Math.abs(end.x - start.x),
+        height: Math.abs(end.y - start.y),
+      }
+    }
+    return null
   }
 
   private getFontSize(
