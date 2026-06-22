@@ -35,7 +35,7 @@ test("repro: standalone footprint reference at 180 should not flip refdes", asyn
   const valueText = output.find(
     (el) =>
       el.type === "pcb_fabrication_note_text" &&
-      el.text === "SMA_Samtec_SMA-J-P-H-ST-EM1_EdgeMount",
+      el.text === "Scratch_RefRotation_EdgeConnector",
   )
 
   expect(referenceText).toBeDefined()
