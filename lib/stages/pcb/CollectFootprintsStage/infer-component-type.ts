@@ -86,7 +86,10 @@ function isMechanicalSwitchFootprint(
 
 function isLedFootprint(footprint: Footprint | undefined): boolean {
   const metadata = getFootprintMetadata(footprint)
-  return metadata.includes("led") || metadata.includes("light emitting diode")
+  return (
+    /(?:^|[^a-z])led(?:[^a-z]|$)/.test(metadata) ||
+    metadata.includes("light emitting diode")
+  )
 }
 
 function getFootprintMetadata(footprint: Footprint | undefined): string {
