@@ -7,6 +7,7 @@ export interface ConverterContext {
   kicadPcb?: KicadPcb
   kicadSch?: KicadSch
   kicadSymbolLib?: KicadSym
+  standaloneFootprintConversion?: boolean
 
   // Transformation matrices (KiCad → Circuit JSON)
   k2cMatSch?: Matrix

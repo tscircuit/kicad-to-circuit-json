@@ -1,0 +1,83 @@
+(footprint "Scratch_RefRotation_EdgeConnector"
+  (version 20260206)
+  (generator "kicad-to-circuit-json-test")
+  (layer "F.Cu")
+  (descr "Original regression fixture for standalone reference text rotation")
+  (property "Reference" "REF**"
+    (at 0 -4 180)
+    (layer "F.SilkS")
+    (uuid "11111111-1111-4111-8111-111111111111")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15)
+      )
+    )
+  )
+  (property "Value" "Scratch_RefRotation_EdgeConnector"
+    (at 0 4 0)
+    (layer "F.Fab")
+    (uuid "22222222-2222-4222-8222-222222222222")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15)
+      )
+    )
+  )
+  (attr smd)
+  (fp_line
+    (start -3 -2)
+    (end 3 -2)
+    (stroke
+      (width 0.12)
+      (type solid)
+    )
+    (layer "F.SilkS")
+    (uuid "33333333-3333-4333-8333-333333333333")
+  )
+  (fp_line
+    (start -3 2)
+    (end 3 2)
+    (stroke
+      (width 0.12)
+      (type solid)
+    )
+    (layer "F.SilkS")
+    (uuid "44444444-4444-4444-8444-444444444444")
+  )
+  (fp_rect
+    (start -3.5 -2.5)
+    (end 3.5 2.5)
+    (stroke
+      (width 0.1)
+      (type solid)
+    )
+    (fill no)
+    (layer "F.Fab")
+    (uuid "55555555-5555-4555-8555-555555555555")
+  )
+  (fp_rect
+    (start -4 -3)
+    (end 4 3)
+    (stroke
+      (width 0.05)
+      (type solid)
+    )
+    (fill no)
+    (layer "F.CrtYd")
+    (uuid "66666666-6666-4666-8666-666666666666")
+  )
+  (pad "1" smd rect
+    (at -1.5 0)
+    (size 1.2 2)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "77777777-7777-4777-8777-777777777777")
+  )
+  (pad "2" smd rect
+    (at 1.5 0)
+    (size 1.2 2)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "88888888-8888-4888-8888-888888888888")
+  )
+)
