@@ -18,6 +18,7 @@ import type {
   SourceSimpleLed,
   SourceSimplePinHeader,
   SourceSimpleResistor,
+  SourceSimpleTestPoint,
   SourceSimpleTransistor,
 } from "circuit-json"
 import type {
@@ -52,6 +53,7 @@ type SymbolLibrarySourceComponentData =
   | Omit<SourceSimpleDiode, "type" | "source_component_id">
   | Omit<SourceSimpleTransistor, "type" | "source_component_id">
   | Omit<SourceSimplePinHeader, "type" | "source_component_id">
+  | Omit<SourceSimpleTestPoint, "type" | "source_component_id">
   | Omit<SourceSimpleChip, "type" | "source_component_id">
 type SymbolLibrarySourceFtype = SupportedSourceComponentFtype
 type SourcePortData = Omit<SourcePort, "type" | "source_port_id">
@@ -806,6 +808,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
             1,
           gender: this.inferPinHeaderGender(symbol),
         }
+      case "simple_test_point":
       case "simple_led":
       case "simple_diode":
       case "simple_chip":

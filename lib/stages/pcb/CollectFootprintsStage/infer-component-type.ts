@@ -19,6 +19,13 @@ export function inferComponentType(
   ) {
     return "simple_fiducial"
   }
+  if (
+    prefix === "TP" ||
+    isTestPointReference(normalizedReference) ||
+    isTestPointFootprint(footprint)
+  ) {
+    return "simple_test_point"
+  }
 
   switch (prefix) {
     case "R":
@@ -61,6 +68,15 @@ function isFiducialFootprint(footprint: Footprint | undefined): boolean {
 function isLedFootprint(footprint: Footprint | undefined): boolean {
   const metadata = getFootprintMetadata(footprint)
   return metadata.includes("led") || metadata.includes("light emitting diode")
+}
+
+function isTestPointReference(reference: string | undefined): boolean {
+  return /^TP\d+/i.test(reference || "")
+}
+
+function isTestPointFootprint(footprint: Footprint | undefined): boolean {
+  const metadata = getFootprintMetadata(footprint)
+  return metadata.includes("testpoint") || metadata.includes("test point")
 }
 
 function getFootprintMetadata(footprint: Footprint | undefined): string {

@@ -9420,7 +9420,7 @@
       "x": -14.999672942470564,
       "y": -17.116083168967993
     },
-    "radius": 0.07535738297333708,
+    "radius": 0.07535738297333706,
     "start_angle_degrees": -90.24866939621405,
     "end_angle_degrees": 90.24866939621268,
     "direction": "clockwise",
@@ -9488,7 +9488,7 @@
       "x": -14.999672942470564,
       "y": -18.6232166337941
     },
-    "radius": 0.07535738297300311,
+    "radius": 0.07535738297300312,
     "start_angle_degrees": -90.24866939621515,
     "end_angle_degrees": 90.24866939621157,
     "direction": "clockwise",
@@ -9522,7 +9522,7 @@
       "x": -14.999672942470564,
       "y": -19.376783366206684
     },
-    "radius": 0.0753573829733051,
+    "radius": 0.07535738297330509,
     "start_angle_degrees": -90.24866939621415,
     "end_angle_degrees": 90.24866939621256,
     "direction": "clockwise",
@@ -9573,7 +9573,7 @@
       "x": -14.999672942470289,
       "y": -20.50713346482601
     },
-    "radius": 0.0753573829733134,
+    "radius": 0.07535738297331339,
     "start_angle_degrees": -90.2486693964235,
     "end_angle_degrees": 90.24866939642192,
     "direction": "clockwise",
@@ -9590,7 +9590,7 @@
       "x": -14.999672942470564,
       "y": -20.883916831032792
     },
-    "radius": 0.07535738297297113,
+    "radius": 0.07535738297297115,
     "start_angle_degrees": -90.24866939621526,
     "end_angle_degrees": 90.24866939621147,
     "direction": "clockwise",
@@ -11986,7 +11986,7 @@
       "x": -25.001615048024636,
       "y": -27.36292162698405
     },
-    "radius": 0.37902956522047504,
+    "radius": 0.379029565220475,
     "start_angle_degrees": 89.75586148408715,
     "end_angle_degrees": -89.75586148408726,
     "direction": "clockwise",
@@ -12020,7 +12020,7 @@
       "x": -25.001615048024636,
       "y": -28.879026124338676
     },
-    "radius": 0.37902956522060294,
+    "radius": 0.3790295652206029,
     "start_angle_degrees": 89.75586148408725,
     "end_angle_degrees": -89.75586148408718,
     "direction": "clockwise",
@@ -16188,7 +16188,7 @@
     "source_component_id": "source_component_33",
     "name": "TestPoint_Small",
     "manufacturer_part_number": "TestPoint_Small",
-    "ftype": "simple_chip"
+    "ftype": "simple_test_point"
   },
   {
     "type": "source_port",
@@ -16281,7 +16281,7 @@
     "source_component_id": "source_component_34",
     "name": "TestPoint",
     "manufacturer_part_number": "TestPoint",
-    "ftype": "simple_chip"
+    "ftype": "simple_test_point"
   },
   {
     "type": "source_port",
