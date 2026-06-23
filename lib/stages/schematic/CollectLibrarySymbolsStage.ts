@@ -103,6 +103,17 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
   private inferFtype(libId: string, reference: string): string {
     // Infer component type from library id or reference prefix
     const lower = libId.toLowerCase()
+    const upperReference = reference.toUpperCase()
+
+    if (
+      upperReference.startsWith("SW") ||
+      /^S\d+/i.test(reference) ||
+      /(?:^|[:_])sw(?:$|[_-])/i.test(libId) ||
+      lower.includes("slide switch") ||
+      lower.includes("toggle switch")
+    ) {
+      return "simple_switch"
+    }
 
     if (lower.includes(":r_") || reference.startsWith("R"))
       return "simple_resistor"

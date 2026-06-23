@@ -4,6 +4,7 @@ export type SupportedSourceComponentFtype =
   | "simple_inductor"
   | "simple_diode"
   | "simple_led"
+  | "simple_switch"
   | "simple_transistor"
   | "simple_chip"
   | "simple_pin_header"
@@ -21,6 +22,10 @@ export function inferSourceComponentFtype(params: {
 
   if (isPinHeaderLike({ name, metadata })) {
     return "simple_pin_header"
+  }
+
+  if (isSwitchLike({ name, reference, metadata })) {
+    return "simple_switch"
   }
 
   if (
@@ -66,6 +71,28 @@ export function inferSourceComponentFtype(params: {
   }
 
   return "simple_chip"
+}
+
+function isSwitchLike(params: {
+  name?: string
+  reference?: string
+  metadata?: string
+}): boolean {
+  const name = params.name || ""
+  const reference = params.reference?.trim() || ""
+  const metadata = params.metadata || ""
+  const combined = `${name} ${metadata}`.toLowerCase()
+  const prefix = reference.match(/^([A-Z]+)/i)?.[1]?.toUpperCase()
+
+  if (prefix === "SW" || prefix === "S") return true
+
+  return [
+    /(?:^|[\s:_-])sw(?:$|[\s:_-])/,
+    /\b(?:slide|toggle)[-\s]switch(?:es)?\b/,
+    /\bpush(?:-| )?button switch\b/,
+    /\bswitch,\s*(?:generic|single pole|double pole|dual pole)\b/,
+    /\bswitch\s+(?:dpdt|spdt|spst|dpst)\b/,
+  ].some((pattern) => pattern.test(combined))
 }
 
 function isPinHeaderLike(params: {

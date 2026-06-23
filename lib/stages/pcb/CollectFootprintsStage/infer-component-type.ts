@@ -1,5 +1,8 @@
 import type { Footprint } from "kicadts"
-import { findFootprintPropertyValue } from "./footprint-properties"
+import {
+  findFootprintPropertyValue,
+  getFootprintProperties,
+} from "./footprint-properties"
 
 /**
  * Infers the component type (ftype) from the reference designator.
@@ -20,6 +23,13 @@ export function inferComponentType(
     return "simple_fiducial"
   }
 
+  if (
+    isSwitchReference(normalizedReference) ||
+    isMechanicalSwitchFootprint(footprint)
+  ) {
+    return "simple_switch"
+  }
+
   switch (prefix) {
     case "R":
       return "simple_resistor"
@@ -32,8 +42,6 @@ export function inferComponentType(
       return "simple_diode"
     case "LED":
       return "simple_led"
-    case "SW":
-      return "simple_switch"
     case "Q":
       // Q* is a generic transistor designator; actual transistor
       // polarity (npn/pnp) is determined later from the footprint
@@ -54,8 +62,26 @@ function isFiducialReference(reference: string | undefined): boolean {
   return /^FID\d+/i.test(reference || "")
 }
 
+function isSwitchReference(reference: string | undefined): boolean {
+  return /^(?:SW|S)\d+/i.test(reference || "")
+}
+
 function isFiducialFootprint(footprint: Footprint | undefined): boolean {
   return getFootprintMetadata(footprint).includes("fiducial")
+}
+
+function isMechanicalSwitchFootprint(
+  footprint: Footprint | undefined,
+): boolean {
+  const metadata = getFootprintMetadata(footprint)
+
+  return [
+    /(?:^|[\s:_-])sw(?:$|[\s:_-])/,
+    /\b(?:slide|toggle)[-\s]switch(?:es)?\b/,
+    /\bpush(?:-| )?button switch\b/,
+    /\bswitch,\s*(?:generic|single pole|double pole|dual pole)\b/,
+    /\bswitch\s+(?:dpdt|spdt|spst|dpst)\b/,
+  ].some((pattern) => pattern.test(metadata))
 }
 
 function isLedFootprint(footprint: Footprint | undefined): boolean {
@@ -70,6 +96,7 @@ function getFootprintMetadata(footprint: Footprint | undefined): string {
     footprint.libraryLink,
     footprint.descr?.value,
     footprint.tags?.value,
+    ...getFootprintProperties(footprint).map((property) => property.value),
     findFootprintPropertyValue(footprint, "Footprint"),
     findFootprintPropertyValue(footprint, "Description"),
     findFootprintPropertyValue(footprint, "Value"),
