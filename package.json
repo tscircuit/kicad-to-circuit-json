@@ -44,6 +44,6 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "schematic-symbols": "^0.0.202"
+    "schematic-symbols": "^0.0.227"
   }
 }
