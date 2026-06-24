@@ -10268,7 +10268,7 @@
     "type": "source_component",
     "source_component_id": "source_component_27",
     "name": "TP2",
-    "ftype": "simple_chip"
+    "ftype": "simple_test_point"
   },
   {
     "type": "pcb_component",
@@ -11527,7 +11527,7 @@
     "type": "source_component",
     "source_component_id": "source_component_30",
     "name": "TP1",
-    "ftype": "simple_chip"
+    "ftype": "simple_test_point"
   },
   {
     "type": "pcb_component",
@@ -21175,9 +21175,321 @@
   {
     "type": "pcb_via",
     "pcb_via_id": "pcb_via_17",
+    "x": -18.5514,
+    "y": 5.435600000000008,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_18",
     "x": -20.574000000000012,
     "y": -2.158999999999992,
     "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_19",
+    "x": 9.651999999999987,
+    "y": 3.8100000000000023,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_20",
+    "x": -0.7874000000000194,
+    "y": -4.165599999999998,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_21",
+    "x": 3.9369999999999834,
+    "y": -5.079999999999998,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_22",
+    "x": -9.990000000000009,
+    "y": -1.6899999999999977,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_23",
+    "x": -3.390000000000015,
+    "y": 2.3100000000000023,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_24",
+    "x": 4.063999999999993,
+    "y": -3.809999999999988,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_25",
+    "x": 11.810999999999979,
+    "y": -0.8889999999999958,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_26",
+    "x": -2.890000000000015,
+    "y": -4.189999999999998,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_27",
+    "x": 3.987799999999993,
+    "y": 4.546600000000012,
+    "outer_diameter": 0.8128,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_28",
+    "x": 4.572000000000003,
+    "y": 2.8194000000000017,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_29",
+    "x": 4.622799999999984,
+    "y": -2.539999999999992,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_30",
+    "x": 5.257800000000003,
+    "y": -3.5559999999999974,
+    "outer_diameter": 0.8128,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_31",
+    "x": -18.808700000000016,
+    "y": -5.029199999999989,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_32",
+    "x": 17.399,
+    "y": 5.841999999999999,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_33",
+    "x": 3.7338000000000022,
+    "y": -0.7620000000000005,
+    "outer_diameter": 0.8128,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_34",
+    "x": 4.673599999999993,
+    "y": 0,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_35",
+    "x": -2.2900000000000205,
+    "y": 0.10999999999999943,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_36",
+    "x": 3.9624000000000024,
+    "y": 0.8636000000000053,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_37",
+    "x": 15.01139999999998,
+    "y": 5.029200000000003,
+    "outer_diameter": 0.8128,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_38",
+    "x": -0.5900000000000034,
+    "y": 1.0100000000000051,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_39",
+    "x": -10.090000000000003,
+    "y": 0.3100000000000023,
+    "outer_diameter": 0.9064,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_40",
+    "x": -12.547600000000017,
+    "y": -5.841999999999999,
+    "outer_diameter": 0.8128,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_41",
+    "x": -9.855199999999996,
+    "y": -5.4609999999999985,
+    "outer_diameter": 0.8128,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_42",
+    "x": -12.192000000000007,
+    "y": -0.7620000000000005,
+    "outer_diameter": 0.8128,
+    "hole_diameter": 0.5,
+    "layers": [
+      "top",
+      "bottom"
+    ]
+  },
+  {
+    "type": "pcb_via",
+    "pcb_via_id": "pcb_via_43",
+    "x": -12.623800000000017,
+    "y": 0.3810000000000002,
+    "outer_diameter": 0.8128,
     "hole_diameter": 0.5,
     "layers": [
       "top",
