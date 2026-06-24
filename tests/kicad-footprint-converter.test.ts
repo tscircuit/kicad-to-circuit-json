@@ -155,6 +155,20 @@ test("kicad footprint converter: preserves footprint text font height", () => {
   expect(userText.font_size).toBeCloseTo(0.6)
 })
 
+test("kicad footprint converter: converts fp_poly without uuid or tstamp", () => {
+  const output = convertFootprint("fp_poly_missing_identity.kicad_mod")
+  const silkscreenPaths = output.filter(
+    (el: any) => el.type === "pcb_silkscreen_path",
+  )
+
+  expect(silkscreenPaths).toHaveLength(1)
+  expect(silkscreenPaths[0]).toMatchObject({
+    layer: "top",
+    stroke_width: 0.12,
+  })
+  expect(silkscreenPaths[0].route).toHaveLength(5)
+})
+
 test("kicad footprint converter: DIP-10 SVG snapshot", async () => {
   const converter = new KicadFootprintToCircuitJsonConverter()
   converter.addFile(

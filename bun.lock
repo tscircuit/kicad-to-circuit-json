@@ -18,7 +18,7 @@
         "@vitejs/plugin-react": "^6.0.1",
         "bun-match-svg": "^0.0.14",
         "circuit-json-to-connectivity-map": "^0.0.23",
-        "kicadts": "^0.0.48",
+        "kicadts": "^0.0.49",
         "react": "^19.2.0",
         "react-dom": "^19.2.5",
         "tscircuit": "^0.0.1825",
@@ -924,7 +924,7 @@
 
     "kicad-to-circuit-json": ["kicad-to-circuit-json@0.0.60", "", { "dependencies": { "schematic-symbols": "^0.0.202" }, "peerDependencies": { "typescript": "^5" } }, "sha512-lqYF0v0XNx4BmLb+sXW+3yImwy3bmIYlcB5B/jqa13Ebtl5qWJz+E3Trez8I1fMi/zwusnvhfiyU2ssgty2svw=="],
 
-    "kicadts": ["kicadts@0.0.48", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-aOJ46Gc0EZCYOPN5xYaHQwyFxgV9HVs/Migp04ybP/Epe3EKl1zJqT7hl9nHJH6q1SF7O5miDqo3Bqjg54DjMQ=="],
+    "kicadts": ["kicadts@0.0.49", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-5YEzTAxcErEImxuBn61oavH4dHkaYJDQ5iomXvJftQG9gosXt3uE/Dl5lG8C0qcleDVQO4tYv6OJ2xGMakZBzA=="],
 
     "kind-of": ["kind-of@3.2.2", "", { "dependencies": { "is-buffer": "^1.1.5" } }, "sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ=="],
 
