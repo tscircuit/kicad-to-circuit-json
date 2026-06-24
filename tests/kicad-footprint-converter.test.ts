@@ -1,6 +1,7 @@
 import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { mkdir, writeFile } from "node:fs/promises"
+import { addDeterministicFpPolyTstamps } from "../lib/add-deterministic-fp-poly-tstamps"
 import { KicadFootprintToCircuitJsonConverter } from "../lib/KicadFootprintToCircuitJsonConverter"
 
 function convertFootprint(assetName: string) {
@@ -153,6 +154,48 @@ test("kicad footprint converter: preserves footprint text font height", () => {
   expect(referenceText.font_size).toBeCloseTo(1)
   expect(valueText.font_size).toBeCloseTo(1)
   expect(userText.font_size).toBeCloseTo(0.6)
+})
+
+test("kicad footprint converter: converts fp_poly without uuid or tstamp", () => {
+  const output = convertFootprint("fp_poly_missing_identity.kicad_mod")
+  const silkscreenPaths = output.filter(
+    (el: any) => el.type === "pcb_silkscreen_path",
+  )
+
+  expect(silkscreenPaths).toHaveLength(1)
+  expect(silkscreenPaths[0]).toMatchObject({
+    layer: "top",
+    stroke_width: 0.12,
+  })
+  expect(silkscreenPaths[0].route).toHaveLength(5)
+})
+
+test("kicad footprint converter: generates deterministic fp_poly fallback tstamps", () => {
+  const source = readFileSync(
+    "tests/assets/fp_poly_missing_identity.kicad_mod",
+    "utf8",
+  )
+
+  const first = addDeterministicFpPolyTstamps(source)
+  const second = addDeterministicFpPolyTstamps(source)
+  const firstTstamp = first.match(
+    /\(tstamp "kicad-to-circuit-json-fp-poly-[0-9a-f]{8}"\)/,
+  )?.[0]
+  const secondTstamp = second.match(
+    /\(tstamp "kicad-to-circuit-json-fp-poly-[0-9a-f]{8}"\)/,
+  )?.[0]
+
+  expect(first).toBe(second)
+  expect(firstTstamp).toBeDefined()
+  expect(firstTstamp).toBe(secondTstamp)
+})
+
+test("kicad footprint converter: preserves fp_poly uuid and tstamp when present", () => {
+  const withUuid = `(footprint "Test:PolyWithUuid" (fp_poly (pts (xy 0 0) (xy 1 0) (xy 0 0)) (layer "F.SilkS") (uuid "existing-uuid")))`
+  const withTstamp = `(footprint "Test:PolyWithTstamp" (fp_poly (pts (xy 0 0) (xy 1 0) (xy 0 0)) (layer "F.SilkS") (tstamp "existing-tstamp")))`
+
+  expect(addDeterministicFpPolyTstamps(withUuid)).toBe(withUuid)
+  expect(addDeterministicFpPolyTstamps(withTstamp)).toBe(withTstamp)
 })
 
 test("kicad footprint converter: DIP-10 SVG snapshot", async () => {

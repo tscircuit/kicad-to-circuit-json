@@ -2,6 +2,7 @@ import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
 import { type Footprint, parseKicadMod } from "kicadts"
 import { compose, scale, translate } from "transformation-matrix"
+import { addDeterministicFpPolyTstamps } from "./add-deterministic-fp-poly-tstamps"
 import { processFootprint } from "./stages/pcb/CollectFootprintsStage/process-footprint"
 import type { ConverterContext } from "./types"
 
@@ -31,7 +32,9 @@ export class KicadFootprintToCircuitJsonConverter {
       throw new Error("No .kicad_mod file was added to the converter")
     }
 
-    const footprint = parseKicadMod(this.fsMap[footprintFile]!)
+    const footprint = parseKicadMod(
+      addDeterministicFpPolyTstamps(this.fsMap[footprintFile]!),
+    )
     const position = footprint.position
     const footprintOrigin = {
       x: position?.x ?? 0,
