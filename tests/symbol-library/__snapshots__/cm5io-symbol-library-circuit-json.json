@@ -7620,7 +7620,6 @@
     },
     "facing_direction": "up",
     "pin_number": 1,
-    "display_pin_label": "Pin_1",
     "side_of_component": "left",
     "distance_from_component_edge": 1.7022400990099011
   },
@@ -7635,7 +7634,6 @@
     },
     "facing_direction": "up",
     "pin_number": 2,
-    "display_pin_label": "Pin_2",
     "side_of_component": "left",
     "distance_from_component_edge": 1.7022400990099011
   },
@@ -7650,7 +7648,6 @@
     },
     "facing_direction": "up",
     "pin_number": 3,
-    "display_pin_label": "Pin_3",
     "side_of_component": "left",
     "distance_from_component_edge": 1.7022400990099011
   },
@@ -7665,7 +7662,6 @@
     },
     "facing_direction": "up",
     "pin_number": 4,
-    "display_pin_label": "Pin_4",
     "side_of_component": "left",
     "distance_from_component_edge": 1.7022400990099011
   },
@@ -7679,7 +7675,7 @@
       "y": -14.03930693069307
     },
     "facing_direction": "right",
-    "display_pin_label": "MountPin",
+    "display_pin_label": "MP",
     "side_of_component": "bottom",
     "distance_from_component_edge": 1.3617920792079208
   },
@@ -7878,7 +7874,6 @@
     },
     "facing_direction": "up",
     "pin_number": 1,
-    "display_pin_label": "Pin_1",
     "side_of_component": "left",
     "distance_from_component_edge": 2.2741567460317462
   },
@@ -7893,7 +7888,6 @@
     },
     "facing_direction": "up",
     "pin_number": 2,
-    "display_pin_label": "Pin_2",
     "side_of_component": "left",
     "distance_from_component_edge": 2.2741567460317462
   },
@@ -7908,7 +7902,6 @@
     },
     "facing_direction": "up",
     "pin_number": 3,
-    "display_pin_label": "Pin_3",
     "side_of_component": "left",
     "distance_from_component_edge": 2.2741567460317462
   },
@@ -7923,7 +7916,6 @@
     },
     "facing_direction": "up",
     "pin_number": 4,
-    "display_pin_label": "Pin_4",
     "side_of_component": "left",
     "distance_from_component_edge": 2.2741567460317462
   },
@@ -8145,7 +8137,6 @@
     },
     "facing_direction": "up",
     "pin_number": 1,
-    "display_pin_label": "Pin_1",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8160,7 +8151,6 @@
     },
     "facing_direction": "up",
     "pin_number": 2,
-    "display_pin_label": "Pin_2",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8175,7 +8165,6 @@
     },
     "facing_direction": "up",
     "pin_number": 3,
-    "display_pin_label": "Pin_3",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8190,7 +8179,6 @@
     },
     "facing_direction": "up",
     "pin_number": 4,
-    "display_pin_label": "Pin_4",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8205,7 +8193,6 @@
     },
     "facing_direction": "up",
     "pin_number": 5,
-    "display_pin_label": "Pin_5",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8220,7 +8207,6 @@
     },
     "facing_direction": "up",
     "pin_number": 6,
-    "display_pin_label": "Pin_6",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8235,7 +8221,6 @@
     },
     "facing_direction": "up",
     "pin_number": 7,
-    "display_pin_label": "Pin_7",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8250,7 +8235,6 @@
     },
     "facing_direction": "up",
     "pin_number": 8,
-    "display_pin_label": "Pin_8",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8265,7 +8249,6 @@
     },
     "facing_direction": "up",
     "pin_number": 9,
-    "display_pin_label": "Pin_9",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8280,7 +8263,6 @@
     },
     "facing_direction": "up",
     "pin_number": 10,
-    "display_pin_label": "Pin_10",
     "side_of_component": "left",
     "distance_from_component_edge": 0.9702384311512415
   },
@@ -8294,7 +8276,7 @@
       "y": -23.527779345372462
     },
     "facing_direction": "right",
-    "display_pin_label": "MountPin",
+    "display_pin_label": "MP",
     "side_of_component": "bottom",
     "distance_from_component_edge": 0.7761907449209933
   },
@@ -8721,7 +8703,6 @@
     },
     "facing_direction": "up",
     "pin_number": 1,
-    "display_pin_label": "Pin_1",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8736,7 +8717,6 @@
     },
     "facing_direction": "up",
     "pin_number": 2,
-    "display_pin_label": "Pin_2",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8751,7 +8731,6 @@
     },
     "facing_direction": "up",
     "pin_number": 3,
-    "display_pin_label": "Pin_3",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8766,7 +8745,6 @@
     },
     "facing_direction": "up",
     "pin_number": 4,
-    "display_pin_label": "Pin_4",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8781,7 +8759,6 @@
     },
     "facing_direction": "up",
     "pin_number": 5,
-    "display_pin_label": "Pin_5",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8796,7 +8773,6 @@
     },
     "facing_direction": "up",
     "pin_number": 6,
-    "display_pin_label": "Pin_6",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8811,7 +8787,6 @@
     },
     "facing_direction": "up",
     "pin_number": 7,
-    "display_pin_label": "Pin_7",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8826,7 +8801,6 @@
     },
     "facing_direction": "up",
     "pin_number": 8,
-    "display_pin_label": "Pin_8",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8841,7 +8815,6 @@
     },
     "facing_direction": "up",
     "pin_number": 9,
-    "display_pin_label": "Pin_9",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8856,7 +8829,6 @@
     },
     "facing_direction": "up",
     "pin_number": 10,
-    "display_pin_label": "Pin_10",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8871,7 +8843,6 @@
     },
     "facing_direction": "up",
     "pin_number": 11,
-    "display_pin_label": "Pin_11",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8886,7 +8857,6 @@
     },
     "facing_direction": "up",
     "pin_number": 12,
-    "display_pin_label": "Pin_12",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8901,7 +8871,6 @@
     },
     "facing_direction": "up",
     "pin_number": 13,
-    "display_pin_label": "Pin_13",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8916,7 +8885,6 @@
     },
     "facing_direction": "up",
     "pin_number": 14,
-    "display_pin_label": "Pin_14",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8931,7 +8899,6 @@
     },
     "facing_direction": "up",
     "pin_number": 15,
-    "display_pin_label": "Pin_15",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8946,7 +8913,6 @@
     },
     "facing_direction": "up",
     "pin_number": 16,
-    "display_pin_label": "Pin_16",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8961,7 +8927,6 @@
     },
     "facing_direction": "up",
     "pin_number": 17,
-    "display_pin_label": "Pin_17",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8976,7 +8941,6 @@
     },
     "facing_direction": "up",
     "pin_number": 18,
-    "display_pin_label": "Pin_18",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -8991,7 +8955,6 @@
     },
     "facing_direction": "up",
     "pin_number": 19,
-    "display_pin_label": "Pin_19",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -9006,7 +8969,6 @@
     },
     "facing_direction": "up",
     "pin_number": 20,
-    "display_pin_label": "Pin_20",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -9021,7 +8983,6 @@
     },
     "facing_direction": "up",
     "pin_number": 21,
-    "display_pin_label": "Pin_21",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -9036,7 +8997,6 @@
     },
     "facing_direction": "up",
     "pin_number": 22,
-    "display_pin_label": "Pin_22",
     "side_of_component": "left",
     "distance_from_component_edge": 0.5651750493096647
   },
@@ -9336,8 +9296,8 @@
       "y": -15.232166337935626
     },
     "radius": 0.07535738297349417,
-    "start_angle_degrees": -90.24866939666192,
-    "end_angle_degrees": 90.24866939666157,
+    "start_angle_degrees": 90.24866939666192,
+    "end_angle_degrees": -90.24866939666157,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9353,8 +9313,8 @@
       "y": -15.608949704141901
     },
     "radius": 0.07535738297366115,
-    "start_angle_degrees": -90.24866939666138,
-    "end_angle_degrees": 90.24866939666212,
+    "start_angle_degrees": 90.24866939666138,
+    "end_angle_degrees": -90.24866939666212,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9370,8 +9330,8 @@
       "y": -15.985733070347864
     },
     "radius": 0.0753573829741394,
-    "start_angle_degrees": -90.24866939642075,
-    "end_angle_degrees": 90.24866939642465,
+    "start_angle_degrees": 90.24866939642075,
+    "end_angle_degrees": -90.24866939642465,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9387,8 +9347,8 @@
       "y": -16.362516436555097
     },
     "radius": 0.0753573829733491,
-    "start_angle_degrees": -90.24866939645307,
-    "end_angle_degrees": 90.24866939645177,
+    "start_angle_degrees": 90.24866939645307,
+    "end_angle_degrees": -90.24866939645177,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9404,8 +9364,8 @@
       "y": -16.739299802761703
     },
     "radius": 0.07535738297318567,
-    "start_angle_degrees": -90.24866939645362,
-    "end_angle_degrees": 90.24866939645122,
+    "start_angle_degrees": 90.24866939645362,
+    "end_angle_degrees": -90.24866939645122,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9421,8 +9381,8 @@
       "y": -17.116083168967993
     },
     "radius": 0.07535738297333706,
-    "start_angle_degrees": -90.24866939621405,
-    "end_angle_degrees": 90.24866939621268,
+    "start_angle_degrees": 90.24866939621405,
+    "end_angle_degrees": -90.24866939621268,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9438,8 +9398,8 @@
       "y": -17.492866535174226
     },
     "radius": 0.07535738297355415,
-    "start_angle_degrees": -90.24866939690081,
-    "end_angle_degrees": 90.24866939690081,
+    "start_angle_degrees": 90.24866939690081,
+    "end_angle_degrees": -90.24866939690081,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9455,8 +9415,8 @@
       "y": -17.8696499013805
     },
     "radius": 0.0753573829737184,
-    "start_angle_degrees": -90.24866939642213,
-    "end_angle_degrees": 90.24866939642325,
+    "start_angle_degrees": 90.24866939642213,
+    "end_angle_degrees": -90.24866939642325,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9472,8 +9432,8 @@
       "y": -18.246433267587093
     },
     "radius": 0.07535738297357328,
-    "start_angle_degrees": -90.2486693971398,
-    "end_angle_degrees": 90.24866939713993,
+    "start_angle_degrees": 90.2486693971398,
+    "end_angle_degrees": -90.24866939713993,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9489,8 +9449,8 @@
       "y": -18.6232166337941
     },
     "radius": 0.07535738297300312,
-    "start_angle_degrees": -90.24866939621515,
-    "end_angle_degrees": 90.24866939621157,
+    "start_angle_degrees": 90.24866939621515,
+    "end_angle_degrees": -90.24866939621157,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9506,8 +9466,8 @@
       "y": -19.000000000000394
     },
     "radius": 0.07535738297315098,
-    "start_angle_degrees": -90.24866939597695,
-    "end_angle_degrees": 90.24866939597436,
+    "start_angle_degrees": 90.24866939597695,
+    "end_angle_degrees": -90.24866939597436,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9523,8 +9483,8 @@
       "y": -19.376783366206684
     },
     "radius": 0.07535738297330509,
-    "start_angle_degrees": -90.24866939621415,
-    "end_angle_degrees": 90.24866939621256,
+    "start_angle_degrees": 90.24866939621415,
+    "end_angle_degrees": -90.24866939621256,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9540,8 +9500,8 @@
       "y": -19.75356673241314
     },
     "radius": 0.07535738297329427,
-    "start_angle_degrees": -90.24866939618448,
-    "end_angle_degrees": 90.2486693961828,
+    "start_angle_degrees": 90.24866939618448,
+    "end_angle_degrees": -90.2486693961828,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9557,8 +9517,8 @@
       "y": -20.13035009861942
     },
     "radius": 0.07535738297346178,
-    "start_angle_degrees": -90.24866939690111,
-    "end_angle_degrees": 90.2486693969005,
+    "start_angle_degrees": 90.24866939690111,
+    "end_angle_degrees": -90.2486693969005,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9574,8 +9534,8 @@
       "y": -20.50713346482601
     },
     "radius": 0.07535738297331339,
-    "start_angle_degrees": -90.2486693964235,
-    "end_angle_degrees": 90.24866939642192,
+    "start_angle_degrees": 90.2486693964235,
+    "end_angle_degrees": -90.24866939642192,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9591,8 +9551,8 @@
       "y": -20.883916831032792
     },
     "radius": 0.07535738297297115,
-    "start_angle_degrees": -90.24866939621526,
-    "end_angle_degrees": 90.24866939621147,
+    "start_angle_degrees": 90.24866939621526,
+    "end_angle_degrees": -90.24866939621147,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9608,8 +9568,8 @@
       "y": -21.260700197239398
     },
     "radius": 0.07535738297280908,
-    "start_angle_degrees": -90.24866939645486,
-    "end_angle_degrees": 90.24866939644998,
+    "start_angle_degrees": 90.24866939645486,
+    "end_angle_degrees": -90.24866939644998,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9625,8 +9585,8 @@
       "y": -21.637483563445688
     },
     "radius": 0.07535738297295913,
-    "start_angle_degrees": -90.2486693959776,
-    "end_angle_degrees": 90.24866939597374,
+    "start_angle_degrees": 90.2486693959776,
+    "end_angle_degrees": -90.24866939597374,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9642,8 +9602,8 @@
       "y": -22.014266929651665
     },
     "radius": 0.07535738297342454,
-    "start_angle_degrees": -90.24866939597607,
-    "end_angle_degrees": 90.24866939597527,
+    "start_angle_degrees": 90.24866939597607,
+    "end_angle_degrees": -90.24866939597527,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9659,8 +9619,8 @@
       "y": -22.39105029585827
     },
     "radius": 0.07535738297326519,
-    "start_angle_degrees": -90.24866939669239,
-    "end_angle_degrees": 90.24866939669053,
+    "start_angle_degrees": 90.24866939669239,
+    "end_angle_degrees": -90.24866939669053,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9676,8 +9636,8 @@
       "y": -22.767833662063982
     },
     "radius": 0.07535738297400042,
-    "start_angle_degrees": -90.24866939666026,
-    "end_angle_degrees": 90.24866939666323,
+    "start_angle_degrees": 90.24866939666026,
+    "end_angle_degrees": -90.24866939666323,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -9693,8 +9653,8 @@
       "y": -23.144617028270886
     },
     "radius": 0.07535738297353585,
-    "start_angle_degrees": -90.24866939618369,
-    "end_angle_degrees": 90.2486693961836,
+    "start_angle_degrees": 90.24866939618369,
+    "end_angle_degrees": -90.2486693961836,
     "direction": "clockwise",
     "stroke_width": 0.022607001972386586,
     "color": "rgb(132, 0, 0)",
@@ -11282,7 +11242,6 @@
     },
     "facing_direction": "up",
     "pin_number": 1,
-    "display_pin_label": "K",
     "side_of_component": "left",
     "distance_from_component_edge": 1.5958994708994707
   },
@@ -11297,7 +11256,6 @@
     },
     "facing_direction": "down",
     "pin_number": 2,
-    "display_pin_label": "A",
     "side_of_component": "right",
     "distance_from_component_edge": 1.5958994708994707
   },
@@ -11958,7 +11916,6 @@
     },
     "facing_direction": "left",
     "pin_number": 1,
-    "display_pin_label": "1",
     "side_of_component": "top",
     "distance_from_component_edge": 0.7580522486772487
   },
@@ -11973,7 +11930,6 @@
     },
     "facing_direction": "right",
     "pin_number": 2,
-    "display_pin_label": "2",
     "side_of_component": "bottom",
     "distance_from_component_edge": 0.7580522486772487
   },
@@ -11987,8 +11943,8 @@
       "y": -27.36292162698405
     },
     "radius": 0.379029565220475,
-    "start_angle_degrees": 89.75586148408715,
-    "end_angle_degrees": -89.75586148408726,
+    "start_angle_degrees": -89.75586148408715,
+    "end_angle_degrees": 89.75586148408726,
     "direction": "clockwise",
     "stroke_width": null,
     "color": "rgb(132, 0, 0)",
@@ -12004,8 +11960,8 @@
       "y": -28.120973875661313
     },
     "radius": 0.37902956522048836,
-    "start_angle_degrees": 89.75586148411725,
-    "end_angle_degrees": -89.75586148411732,
+    "start_angle_degrees": -89.75586148411725,
+    "end_angle_degrees": 89.75586148411732,
     "direction": "clockwise",
     "stroke_width": null,
     "color": "rgb(132, 0, 0)",
@@ -12021,8 +11977,8 @@
       "y": -28.879026124338676
     },
     "radius": 0.3790295652206029,
-    "start_angle_degrees": 89.75586148408725,
-    "end_angle_degrees": -89.75586148408718,
+    "start_angle_degrees": -89.75586148408725,
+    "end_angle_degrees": 89.75586148408718,
     "direction": "clockwise",
     "stroke_width": null,
     "color": "rgb(132, 0, 0)",
@@ -12038,8 +11994,8 @@
       "y": -29.63707837301604
     },
     "radius": 0.3790295652207183,
-    "start_angle_degrees": 89.75586148402716,
-    "end_angle_degrees": -89.75586148402695,
+    "start_angle_degrees": -89.75586148402716,
+    "end_angle_degrees": 89.75586148402695,
     "direction": "clockwise",
     "stroke_width": null,
     "color": "rgb(132, 0, 0)",
@@ -12855,7 +12811,6 @@
     },
     "facing_direction": "right",
     "pin_number": 1,
-    "display_pin_label": "1",
     "side_of_component": "bottom",
     "distance_from_component_edge": 2.54
   },
@@ -13338,7 +13293,6 @@
     },
     "facing_direction": "up",
     "pin_number": 3,
-    "display_pin_label": "A",
     "side_of_component": "left",
     "distance_from_component_edge": 1.3663646659116646
   },
@@ -13353,7 +13307,6 @@
     },
     "facing_direction": "down",
     "pin_number": 1,
-    "display_pin_label": "K1",
     "side_of_component": "right",
     "distance_from_component_edge": 1.3663646659116646
   },
@@ -13368,7 +13321,6 @@
     },
     "facing_direction": "down",
     "pin_number": 2,
-    "display_pin_label": "K2",
     "side_of_component": "right",
     "distance_from_component_edge": 1.3663646659116646
   },
@@ -14233,7 +14185,6 @@
     },
     "facing_direction": "up",
     "pin_number": 1,
-    "display_pin_label": "1",
     "side_of_component": "left",
     "distance_from_component_edge": 1.3663646659116646
   },
@@ -14248,7 +14199,6 @@
     },
     "facing_direction": "down",
     "pin_number": 2,
-    "display_pin_label": "2",
     "side_of_component": "right",
     "distance_from_component_edge": 1.3663646659116646
   },
@@ -16223,8 +16173,7 @@
       "y": -47.5
     },
     "facing_direction": "right",
-    "pin_number": 1,
-    "display_pin_label": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_circle",
@@ -16317,7 +16266,6 @@
     },
     "facing_direction": "right",
     "pin_number": 1,
-    "display_pin_label": "1",
     "side_of_component": "bottom",
     "distance_from_component_edge": 2.54
   },
@@ -17178,8 +17126,8 @@
       "y": -46.746473015923634
     },
     "radius": 0.12567822425747374,
-    "start_angle_degrees": 179.75586148423378,
-    "end_angle_degrees": 0.24413851576676082,
+    "start_angle_degrees": -179.75586148423378,
+    "end_angle_degrees": -0.24413851576676082,
     "direction": "clockwise",
     "stroke_width": 0.050270833333333334,
     "color": "rgb(132, 0, 0)",
@@ -17195,8 +17143,8 @@
       "y": -46.746473015923634
     },
     "radius": 0.12567822425747374,
-    "start_angle_degrees": 179.75586148423378,
-    "end_angle_degrees": 0.24413851576676082,
+    "start_angle_degrees": -179.75586148423378,
+    "end_angle_degrees": -0.24413851576676082,
     "direction": "clockwise",
     "stroke_width": 0.050270833333333334,
     "color": "rgb(132, 0, 0)",
@@ -17212,8 +17160,8 @@
       "y": -46.7475838025969
     },
     "radius": 0.3770348442637842,
-    "start_angle_degrees": 179.74982023073838,
-    "end_angle_degrees": 0.25017976926199575,
+    "start_angle_degrees": -179.74982023073838,
+    "end_angle_degrees": -0.25017976926199575,
     "direction": "clockwise",
     "stroke_width": 0.10054166666666667,
     "color": "rgb(132, 0, 0)",
@@ -17229,8 +17177,8 @@
       "y": -48.25241619740405
     },
     "radius": 0.37703484426321515,
-    "start_angle_degrees": -0.25017976911730794,
-    "end_angle_degrees": -179.74982023088307,
+    "start_angle_degrees": 0.25017976911730794,
+    "end_angle_degrees": 179.74982023088307,
     "direction": "clockwise",
     "stroke_width": 0.10054166666666667,
     "color": "rgb(132, 0, 0)",
@@ -17246,8 +17194,8 @@
       "y": -48.25352698407703
     },
     "radius": 0.1256782242581033,
-    "start_angle_degrees": -0.24413851546375462,
-    "end_angle_degrees": -179.75586148453326,
+    "start_angle_degrees": 0.24413851546375462,
+    "end_angle_degrees": 179.75586148453326,
     "direction": "clockwise",
     "stroke_width": 0.050270833333333334,
     "color": "rgb(132, 0, 0)",
@@ -17263,8 +17211,8 @@
       "y": -48.25352698407703
     },
     "radius": 0.1256782242581033,
-    "start_angle_degrees": -0.24413851546375462,
-    "end_angle_degrees": -179.75586148453326,
+    "start_angle_degrees": 0.24413851546375462,
+    "end_angle_degrees": 179.75586148453326,
     "direction": "clockwise",
     "stroke_width": 0.050270833333333334,
     "color": "rgb(132, 0, 0)",
