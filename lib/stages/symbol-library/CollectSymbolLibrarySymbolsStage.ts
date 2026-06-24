@@ -19,6 +19,7 @@ import type {
   SourceSimplePinHeader,
   SourceSimpleResistor,
   SourceSimpleSwitch,
+  SourceSimpleTestPoint,
   SourceSimpleTransistor,
 } from "circuit-json"
 import type {
@@ -32,10 +33,28 @@ import type {
   SymbolText,
 } from "kicadts"
 import {
+  applyToPoint,
+  compose,
+  type Matrix,
+  scale,
+  translate,
+} from "transformation-matrix"
+import {
   inferSourceComponentFtype,
   type SupportedSourceComponentFtype,
 } from "./infer-source-component-ftype"
+
 import { rotationToDirection } from "../schematic/utils/rotationToDirection"
+
+/**
+ * circuit-to-svg recomputes an arc's endpoints from its start/end angles in the
+ * renderer's screen space (Y-down), while only the arc center is run through the
+ * Y-flipping render transform. Measuring our (Y-up) arc angles in this mirrored
+ * frame keeps the rendered arc on the correct side. This is intentionally NOT
+ * applied to positions: circuit-to-svg already treats Circuit JSON as Y-up and
+ * flips Y itself, so flipping positions here would render symbols upside-down.
+ */
+const SCHEMATIC_ARC_ANGLE_FRAME = scale(1, -1)
 
 const MAX_KICAD_SYMBOL_UNIT_TO_CJ = 1
 const PREVIEW_COLUMNS = 6
@@ -54,6 +73,7 @@ type SymbolLibrarySourceComponentData =
   | Omit<SourceSimpleSwitch, "type" | "source_component_id">
   | Omit<SourceSimpleTransistor, "type" | "source_component_id">
   | Omit<SourceSimplePinHeader, "type" | "source_component_id">
+  | Omit<SourceSimpleTestPoint, "type" | "source_component_id">
   | Omit<SourceSimpleChip, "type" | "source_component_id">
 type SymbolLibrarySourceFtype = SupportedSourceComponentFtype
 type SourcePortData = Omit<SourcePort, "type" | "source_port_id">
@@ -240,9 +260,16 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       sourcePortIdByPinNumber,
     } = params
     const bounds = this.getPinBounds(pins)
-    const scale = this.getPreviewScale(bounds)
     const origin = this.getPreviewCenter()
-    const bodyBox = this.getBodyBox({ symbol, origin, scale })
+    // Single matrix that maps KiCad symbol coordinates into schematic space
+    // (uniform scale + translate, no Y flip — KiCad symbol space is already
+    // Y-up like Circuit JSON). Threaded through every geometry helper so the
+    // coordinate conversion lives in one place.
+    const transform = compose(
+      translate(origin.x, origin.y),
+      scale(this.getPreviewScale(bounds)),
+    )
+    const bodyBox = this.getBodyBox({ symbol, transform })
 
     const schematicComponentData: SchematicComponentData = {
       source_component_id: sourceComponentId,
@@ -265,6 +292,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       schematicComponentData,
     )
 
+    // KiCad symbols can hide pin names at the symbol level (e.g. connectors
+    // whose pins are all named "Pin_N"); when hidden, the names must not be
+    // drawn or they overlap the closely-stacked pins.
+    const pinNamesHidden = symbol.pinNames?.hide === true
+
     for (const pin of pins) {
       if (!pin.at) continue
       const pinNumber = pin.numberString || ""
@@ -274,13 +306,14 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const schematicPortData: SchematicPortData = {
         schematic_component_id: schematicComponent.schematic_component_id,
         source_port_id: sourcePortId,
-        center: this.toSchematicPoint({
-          point: pin.at,
-          origin,
-          scale,
-        }),
+        center: applyToPoint(transform, { x: pin.at.x, y: pin.at.y }),
         facing_direction: rotationToDirection(pin.at.angle ?? 0),
-        ...this.getSchematicPortPinMetadata({ pin, pinNumber, scale }),
+        ...this.getSchematicPortPinMetadata({
+          pin,
+          pinNumber,
+          transform,
+          pinNamesHidden,
+        }),
       }
       this.ctx.db.schematic_port.insert(schematicPortData)
     }
@@ -289,16 +322,14 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
       schematicSymbolId,
-      origin,
-      scale,
+      transform,
     })
 
     this.createPropertyTextPrimitives({
       symbol,
       schematicComponentId: schematicComponent.schematic_component_id,
       schematicSymbolId,
-      origin,
-      scale,
+      transform,
     })
   }
 
@@ -345,19 +376,18 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     symbol: KicadSchematicSymbol
     schematicComponentId: string
     schematicSymbolId: string
-    origin: Point
-    scale: number
+    transform: Matrix
   }) {
-    const { symbol, schematicComponentId, schematicSymbolId, origin, scale } =
+    const { symbol, schematicComponentId, schematicSymbolId, transform } =
       params
+    const scale = this.scaleOf(transform)
 
     for (const polyline of this.collectPolylines(symbol)) {
       this.createPolylinePrimitives({
         polyline,
         schematicComponentId,
         schematicSymbolId,
-        origin,
-        scale,
+        transform,
       })
     }
 
@@ -371,8 +401,8 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const endPoint = this.getShapePoint(rectangle, "end")
       if (!startPoint || !endPoint) continue
 
-      const start = this.toSchematicPoint({ point: startPoint, origin, scale })
-      const end = this.toSchematicPoint({ point: endPoint, origin, scale })
+      const start = applyToPoint(transform, startPoint)
+      const end = applyToPoint(transform, endPoint)
       const rectData: SchematicRectData = {
         schematic_component_id: schematicComponentId,
         schematic_symbol_id: schematicSymbolId,
@@ -403,7 +433,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const circleData: SchematicCircleData = {
         schematic_component_id: schematicComponentId,
         schematic_symbol_id: schematicSymbolId,
-        center: this.toSchematicPoint({ point: center, origin, scale }),
+        center: applyToPoint(transform, center),
         radius: radius * scale,
         stroke_width: this.toStrokeWidth(
           this.getShapeStroke(circle)?.width,
@@ -421,13 +451,13 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const arcPoints = this.getArcPoints(arc)
       if (!arcPoints) continue
 
-      const arcGeometry = this.getArcGeometry({ arc, origin, scale })
+      const arcGeometry = this.getArcGeometry({ arc, transform })
       if (!arcGeometry) {
         const pathData: SchematicPathData = {
           schematic_component_id: schematicComponentId,
           schematic_symbol_id: schematicSymbolId,
           points: [arcPoints.start, arcPoints.mid, arcPoints.end].map((point) =>
-            this.toSchematicPoint({ point, origin, scale }),
+            applyToPoint(transform, point),
           ),
           stroke_width: this.toStrokeWidth(
             this.getShapeStroke(arc)?.width,
@@ -461,11 +491,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         schematic_symbol_id: schematicSymbolId,
         text: text.value,
         font_size: Math.max(0.1, this.getFontSize(text.effects) * scale),
-        position: this.toSchematicPoint({
-          point: text.at ?? { x: 0, y: 0 },
-          origin,
-          scale,
-        }),
+        position: applyToPoint(transform, text.at ?? { x: 0, y: 0 }),
         rotation: -(text.at?.angle ?? 0),
         anchor: "center",
         color: DEFAULT_STROKE_COLOR,
@@ -478,11 +504,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     symbol: KicadSchematicSymbol
     schematicComponentId: string
     schematicSymbolId: string
-    origin: Point
-    scale: number
+    transform: Matrix
   }) {
-    const { symbol, schematicComponentId, schematicSymbolId, origin, scale } =
+    const { symbol, schematicComponentId, schematicSymbolId, transform } =
       params
+    const scale = this.scaleOf(transform)
 
     for (const property of symbol.properties) {
       if (property.hidden || !property.value) continue
@@ -493,11 +519,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         schematic_symbol_id: schematicSymbolId,
         text: property.value,
         font_size: Math.max(0.1, this.getFontSize(property.effects) * scale),
-        position: this.toSchematicPoint({
-          point: property.at ?? { x: 0, y: 0 },
-          origin,
-          scale,
-        }),
+        position: applyToPoint(transform, property.at ?? { x: 0, y: 0 }),
         rotation: -(property.at?.angle ?? 0),
         anchor: this.getTextAnchor(property.effects?.justify?.horizontal),
         color: DEFAULT_STROKE_COLOR,
@@ -522,11 +544,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     polyline: SymbolPolyline
     schematicComponentId: string
     schematicSymbolId: string
-    origin: Point
-    scale: number
+    transform: Matrix
   }) {
-    const { polyline, schematicComponentId, schematicSymbolId, origin, scale } =
+    const { polyline, schematicComponentId, schematicSymbolId, transform } =
       params
+    const scale = this.scaleOf(transform)
     const points = this.getPolylinePoints(polyline)
     if (points.length < 2) return
 
@@ -534,9 +556,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const pathData: SchematicPathData = {
         schematic_component_id: schematicComponentId,
         schematic_symbol_id: schematicSymbolId,
-        points: points.map((point) =>
-          this.toSchematicPoint({ point, origin, scale }),
-        ),
+        points: points.map((point) => applyToPoint(transform, point)),
         stroke_width: this.toStrokeWidth(polyline.stroke?.width, scale),
         stroke_color: DEFAULT_STROKE_COLOR,
         is_filled: true,
@@ -546,16 +566,8 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
 
     for (let index = 1; index < points.length; index++) {
-      const start = this.toSchematicPoint({
-        point: points[index - 1]!,
-        origin,
-        scale,
-      })
-      const end = this.toSchematicPoint({
-        point: points[index]!,
-        origin,
-        scale,
-      })
+      const start = applyToPoint(transform, points[index - 1]!)
+      const end = applyToPoint(transform, points[index]!)
       const lineData: SchematicLineData = {
         schematic_component_id: schematicComponentId,
         schematic_symbol_id: schematicSymbolId,
@@ -571,20 +583,12 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
   }
 
-  private toSchematicPoint(params: {
-    point: KicadSymbolPoint
-    origin?: Point
-    scale?: number
-  }): Point {
-    const {
-      point,
-      origin = { x: 0, y: 0 },
-      scale = MAX_KICAD_SYMBOL_UNIT_TO_CJ,
-    } = params
-    return {
-      x: origin.x + point.x * scale,
-      y: origin.y + point.y * scale,
-    }
+  /**
+   * Uniform scale factor of a symbol→schematic transform, used to scale
+   * radii, pin lengths, font sizes and stroke widths that aren't points.
+   */
+  private scaleOf(transform: Matrix): number {
+    return Math.hypot(transform.a, transform.b)
   }
 
   private toStrokeWidth(
@@ -611,10 +615,9 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
    */
   private getBodyBox(params: {
     symbol: KicadSchematicSymbol
-    origin: Point
-    scale: number
+    transform: Matrix
   }): { center: Point; width: number; height: number } | null {
-    const { symbol, origin, scale } = params
+    const { symbol, transform } = params
     for (const rectangle of this.collectRectangles(symbol)) {
       if (this.getShapeFillType(rectangle) !== "background") continue
 
@@ -622,8 +625,8 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       const endPoint = this.getShapePoint(rectangle, "end")
       if (!startPoint || !endPoint) continue
 
-      const start = this.toSchematicPoint({ point: startPoint, origin, scale })
-      const end = this.toSchematicPoint({ point: endPoint, origin, scale })
+      const start = applyToPoint(transform, startPoint)
+      const end = applyToPoint(transform, endPoint)
       return {
         center: { x: (start.x + end.x) / 2, y: (start.y + end.y) / 2 },
         width: Math.abs(end.x - start.x),
@@ -701,8 +704,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
 
   private getArcGeometry(params: {
     arc: SymbolArc
-    origin: Point
-    scale: number
+    transform: Matrix
   }): Pick<
     SchematicArcData,
     | "center"
@@ -711,17 +713,13 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     | "end_angle_degrees"
     | "direction"
   > | null {
-    const { arc, origin, scale } = params
+    const { arc, transform } = params
     const arcPoints = this.getArcPoints(arc)
     if (!arcPoints) return null
 
-    const start = this.toSchematicPoint({
-      point: arcPoints.start,
-      origin,
-      scale,
-    })
-    const mid = this.toSchematicPoint({ point: arcPoints.mid, origin, scale })
-    const end = this.toSchematicPoint({ point: arcPoints.end, origin, scale })
+    const start = applyToPoint(transform, arcPoints.start)
+    const mid = applyToPoint(transform, arcPoints.mid)
+    const end = applyToPoint(transform, arcPoints.end)
 
     const denominator =
       2 *
@@ -748,22 +746,27 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
 
     const radius = Math.hypot(start.x - center.x, start.y - center.y)
-    const startAngleDegrees = this.getAngleDegrees(start, center)
-    const endAngleDegrees = this.getAngleDegrees(end, center)
     const cross =
       (mid.x - start.x) * (end.y - mid.y) - (mid.y - start.y) * (end.x - mid.x)
 
+    // Angles are measured in circuit-to-svg's arc-angle frame (see
+    // SCHEMATIC_ARC_ANGLE_FRAME). The cross-product direction is already in the
+    // convention circuit-to-svg expects, so it is left as-is.
     return {
       center,
       radius,
-      start_angle_degrees: startAngleDegrees,
-      end_angle_degrees: endAngleDegrees,
+      start_angle_degrees: this.getArcAngleDegrees(start, center),
+      end_angle_degrees: this.getArcAngleDegrees(end, center),
       direction: cross >= 0 ? "counterclockwise" : "clockwise",
     }
   }
 
-  private getAngleDegrees(point: Point, center: Point): number {
-    return (Math.atan2(point.y - center.y, point.x - center.x) * 180) / Math.PI
+  private getArcAngleDegrees(point: Point, center: Point): number {
+    const { x, y } = applyToPoint(SCHEMATIC_ARC_ANGLE_FRAME, {
+      x: point.x - center.x,
+      y: point.y - center.y,
+    })
+    return (Math.atan2(y, x) * 180) / Math.PI
   }
 
   private getManufacturerPartNumber(
@@ -810,6 +813,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
             1,
           gender: this.inferPinHeaderGender(symbol),
         }
+      case "simple_test_point":
       case "simple_led":
       case "simple_diode":
       case "simple_chip":
@@ -901,7 +905,8 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   private getSchematicPortPinMetadata(params: {
     pin: SymbolPin
     pinNumber: string
-    scale: number
+    transform: Matrix
+    pinNamesHidden: boolean
   }): Partial<
     Pick<
       SchematicPortData,
@@ -911,7 +916,8 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       | "distance_from_component_edge"
     >
   > {
-    const { pin, pinNumber, scale } = params
+    const { pin, pinNumber, transform, pinNamesHidden } = params
+    const scale = this.scaleOf(transform)
     const metadata: Partial<
       Pick<
         SchematicPortData,
@@ -928,7 +934,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       metadata.display_pin_label = pinNumber
     }
 
-    if (pin.name) {
+    if (pin.name && !pinNamesHidden) {
       metadata.display_pin_label = pin.name
     }
 

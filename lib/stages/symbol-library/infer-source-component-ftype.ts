@@ -5,6 +5,7 @@ export type SupportedSourceComponentFtype =
   | "simple_diode"
   | "simple_led"
   | "simple_switch"
+  | "simple_test_point"
   | "simple_transistor"
   | "simple_chip"
   | "simple_pin_header"
@@ -22,6 +23,9 @@ export function inferSourceComponentFtype(params: {
 
   if (isPinHeaderLike({ name, metadata })) {
     return "simple_pin_header"
+  }
+  if (isTestPointLike({ name, reference, metadata })) {
+    return "simple_test_point"
   }
 
   if (isSwitchLike({ name, reference, metadata })) {
@@ -110,5 +114,24 @@ function isPinHeaderLike(params: {
     combined.includes("pin header") ||
     combined.includes("pinsocket") ||
     combined.includes("pin socket")
+  )
+}
+
+function isTestPointLike(params: {
+  name?: string
+  reference?: string
+  metadata?: string
+}): boolean {
+  const name = params.name || ""
+  const reference = params.reference?.trim() || ""
+  const metadata = params.metadata || ""
+  const combined = `${name} ${metadata}`.toLowerCase()
+  const prefix = reference.match(/^([A-Z]+)/i)?.[1]?.toUpperCase()
+
+  return (
+    prefix === "TP" ||
+    /(?:^|:)testpoint(?:_|$)/i.test(name) ||
+    combined.includes("test point") ||
+    combined.includes("testpoint")
   )
 }

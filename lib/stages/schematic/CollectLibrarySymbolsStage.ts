@@ -1,6 +1,7 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
 import type { SchematicSymbol } from "kicadts"
+import { inferSourceComponentFtype } from "../symbol-library/infer-source-component-ftype"
 import { inferSymbolName } from "./utils/inferSymbolName"
 import { rotationToDirection } from "./utils/rotationToDirection"
 
@@ -101,33 +102,10 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
   }
 
   private inferFtype(libId: string, reference: string): string {
-    // Infer component type from library id or reference prefix
-    const lower = libId.toLowerCase()
-    const upperReference = reference.toUpperCase()
-
-    if (
-      upperReference.startsWith("SW") ||
-      /^S\d+/i.test(reference) ||
-      /(?:^|[:_])sw(?:$|[_-])/i.test(libId) ||
-      lower.includes("slide switch") ||
-      lower.includes("toggle switch")
-    ) {
-      return "simple_switch"
-    }
-
-    if (lower.includes(":r_") || reference.startsWith("R"))
-      return "simple_resistor"
-    if (lower.includes(":c_") || reference.startsWith("C"))
-      return "simple_capacitor"
-    if (lower.includes(":l_") || reference.startsWith("L"))
-      return "simple_inductor"
-    if (lower.includes(":d_") || reference.startsWith("D"))
-      return "simple_diode"
-    if (lower.includes(":led") || reference.startsWith("LED"))
-      return "simple_led"
-    if (lower.includes(":q_") || reference.startsWith("Q"))
-      return "simple_transistor"
-    return "simple_chip"
+    return inferSourceComponentFtype({
+      name: libId,
+      reference,
+    })
   }
 
   private estimateSize(symbol: SchematicSymbol): {

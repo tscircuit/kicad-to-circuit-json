@@ -115,6 +115,12 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
     pin_count: 22,
     gender: "female",
   })
+  expect(getComponent("TestPoint")?.ftype).toBe("simple_test_point")
+  expect(getPorts("TestPoint").map((port) => port.pin_number)).toEqual([1])
+  expect(getComponent("TestPoint_Small")?.ftype).toBe("simple_test_point")
+  expect(getPorts("TestPoint_Small").map((port) => port.pin_number)).toEqual([
+    1,
+  ])
   const resistorComponent = getComponent("R")
   const resistorSchematicComponent = schematicComponents.find(
     (component) =>
