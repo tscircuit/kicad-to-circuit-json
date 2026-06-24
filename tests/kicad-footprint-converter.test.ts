@@ -120,6 +120,41 @@ test("kicad footprint converter: converts a standalone .kicad_mod footprint", ()
   expect(converter.getStats()).toMatchObject({ components: 1, pads: 10 })
 })
 
+test("kicad footprint converter: preserves footprint text font height", () => {
+  const converter = new KicadFootprintToCircuitJsonConverter()
+  converter.addFile(
+    "TextSize.kicad_mod",
+    `(footprint "Test:TextSize" (version 20240108) (generator "test") (layer "F.Cu")
+      (property "Reference" "REF**" (at 0 -2 0) (layer "F.SilkS")
+        (effects (font (size 1 1) (thickness 0.15)))
+      )
+      (property "Value" "TextSize" (at 0 2 0) (layer "F.Fab")
+        (effects (font (size 1 1) (thickness 0.15)))
+      )
+      (fp_text user "USER" (at 0 0 0) (layer "F.SilkS")
+        (effects (font (size 0.6 0.6) (thickness 0.1)))
+      )
+      (pad "1" smd rect (at 0 0) (size 1 1) (layers "F.Cu"))
+    )`,
+  )
+  converter.runUntilFinished()
+
+  const output = converter.getOutput() as any[]
+  const referenceText = output.find(
+    (el) => el.type === "pcb_silkscreen_text" && el.text === "REF**",
+  )
+  const userText = output.find(
+    (el) => el.type === "pcb_silkscreen_text" && el.text === "USER",
+  )
+  const valueText = output.find(
+    (el) => el.type === "pcb_fabrication_note_text" && el.text === "TextSize",
+  )
+
+  expect(referenceText.font_size).toBeCloseTo(1)
+  expect(valueText.font_size).toBeCloseTo(1)
+  expect(userText.font_size).toBeCloseTo(0.6)
+})
+
 test("kicad footprint converter: DIP-10 SVG snapshot", async () => {
   const converter = new KicadFootprintToCircuitJsonConverter()
   converter.addFile(

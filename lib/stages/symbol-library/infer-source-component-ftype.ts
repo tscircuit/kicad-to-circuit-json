@@ -4,7 +4,6 @@ export type SupportedSourceComponentFtype =
   | "simple_inductor"
   | "simple_diode"
   | "simple_led"
-  | "simple_switch"
   | "simple_test_point"
   | "simple_transistor"
   | "simple_chip"
