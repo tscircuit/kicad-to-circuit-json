@@ -2,7 +2,10 @@ import { expect } from "bun:test"
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import path from "node:path"
 import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
-import { KicadToCircuitJsonConverter } from "../../lib"
+import {
+  KicadFootprintToCircuitJsonConverter,
+  KicadToCircuitJsonConverter,
+} from "../../lib"
 
 export function convertKicadPcbToSvgSnapshot(params: {
   kicadPcbPath: string
@@ -26,6 +29,32 @@ export function convertKicadPcbToSvgSnapshot(params: {
       showCourtyards: true,
     },
   )
+
+  expectSvgSnapshot({
+    svg: circuitJsonSvg,
+    testPath: params.testPath,
+    snapshotName: params.snapshotName,
+  })
+}
+
+export function convertKicadFootprintToSvgSnapshot(params: {
+  kicadModPath: string
+  kicadFileName: string
+  testPath: string
+  snapshotName: string
+}) {
+  const kicadModContent = readFileSync(params.kicadModPath, "utf-8")
+
+  const converter = new KicadFootprintToCircuitJsonConverter()
+  converter.addFile(params.kicadFileName, kicadModContent)
+  converter.runUntilFinished()
+
+  const circuitJson = converter.getOutput()
+  expect(circuitJson.length).toBeGreaterThan(0)
+
+  const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
+    showCourtyards: true,
+  })
 
   expectSvgSnapshot({
     svg: circuitJsonSvg,
