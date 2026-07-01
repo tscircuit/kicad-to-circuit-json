@@ -259,6 +259,19 @@ export function createSmdPad({
     // List of primitives already processed (to avoid duplicates if we add more types)
     let primitivesProcessed = 0
 
+    // Track the bounding box of all primitive copper so we can tell whether the
+    // anchor shape adds copper beyond the primitives (and skip it if it doesn't).
+    let primMinX = Number.POSITIVE_INFINITY
+    let primMinY = Number.POSITIVE_INFINITY
+    let primMaxX = Number.NEGATIVE_INFINITY
+    let primMaxY = Number.NEGATIVE_INFINITY
+    const expandPrimBounds = (x: number, y: number) => {
+      if (x < primMinX) primMinX = x
+      if (x > primMaxX) primMaxX = x
+      if (y < primMinY) primMinY = y
+      if (y > primMaxY) primMaxY = y
+    }
+
     // Look for graphics primitives (gr_poly, gr_circle, etc.)
     for (const primitive of primitivesArray) {
       if (primitive.token === "gr_poly") {
@@ -301,7 +314,9 @@ export function createSmdPad({
               x: padKicadPos.x + rotated.x,
               y: padKicadPos.y + rotated.y,
             }
-            points.push(applyToPoint(ctx.k2cMatPcb!, kicadPos))
+            const globalPt = applyToPoint(ctx.k2cMatPcb!, kicadPos)
+            points.push(globalPt)
+            expandPrimBounds(globalPt.x, globalPt.y)
           }
         }
 
@@ -351,6 +366,8 @@ export function createSmdPad({
           y: padKicadPos.y + rotatedCenter.y,
         }
         const globalCenter = applyToPoint(ctx.k2cMatPcb!, kicadCenterPos)
+        expandPrimBounds(globalCenter.x - radius, globalCenter.y - radius)
+        expandPrimBounds(globalCenter.x + radius, globalCenter.y + radius)
 
         const smtpad: PcbSmtPadCircle = {
           type: "pcb_smtpad",
@@ -372,15 +389,112 @@ export function createSmdPad({
       }
     }
 
-    if (primitivesProcessed > 0) {
-      if (ctx.stats) {
-        ctx.stats.pads = (ctx.stats.pads || 0) + primitivesProcessed
+    // A KiCad custom pad's copper is the union of its anchor shape (the
+    // rect/circle at the pad's at + size) and its primitive graphics. The
+    // converter emits the primitives but used to drop the anchor, which loses
+    // real copper when the anchor reaches past the primitives -- e.g. the
+    // SOT-89 collector-tab neck that extends toward the leads.
+    //
+    // Only emit the anchor when it actually adds copper: skip KiCad's near-zero
+    // placeholder anchors (size ~0.001), and skip anchors that sit within the
+    // primitives' footprint (those would just be an overlapping duplicate pad).
+    const anchorShape = pad.options?.anchor ?? "rect"
+    const anchorCcwRotation = normalizeRotationDegrees(pad.at?.angle)
+    const anchorIsPlaceholder = size.x < 0.01 || size.y < 0.01
+
+    let anchorExtendsBeyondPrimitives = true
+    if (primitivesProcessed > 0 && primMinX !== Number.POSITIVE_INFINITY) {
+      const halfX = size.x / 2
+      const halfY = size.y / 2
+      let anchorMinX = Number.POSITIVE_INFINITY
+      let anchorMinY = Number.POSITIVE_INFINITY
+      let anchorMaxX = Number.NEGATIVE_INFINITY
+      let anchorMaxY = Number.NEGATIVE_INFINITY
+      const anchorCorners: Array<[number, number]> = [
+        [-halfX, -halfY],
+        [halfX, -halfY],
+        [halfX, halfY],
+        [-halfX, halfY],
+      ]
+      for (const [dx, dy] of anchorCorners) {
+        const rotated = rotatePoint({
+          point: { x: dx, y: dy },
+          ccwRotationDegrees: totalCcwRotationDegrees,
+        })
+        const corner = applyToPoint(ctx.k2cMatPcb!, {
+          x: padKicadPos.x + rotated.x,
+          y: padKicadPos.y + rotated.y,
+        })
+        if (corner.x < anchorMinX) anchorMinX = corner.x
+        if (corner.x > anchorMaxX) anchorMaxX = corner.x
+        if (corner.y < anchorMinY) anchorMinY = corner.y
+        if (corner.y > anchorMaxY) anchorMaxY = corner.y
       }
-      // If there are primitives, we'll assume we've handled the pad entirely.
-      // In KiCad, custom pads also have an "anchor" shape, but often it's
-      // just a placeholder. For now, let's stop here if we found primitives.
-      return
+      const tolerance = 0.01
+      anchorExtendsBeyondPrimitives =
+        anchorMinX < primMinX - tolerance ||
+        anchorMaxX > primMaxX + tolerance ||
+        anchorMinY < primMinY - tolerance ||
+        anchorMaxY > primMaxY + tolerance
     }
+
+    let anchorEmitted = 0
+
+    if (!anchorIsPlaceholder && anchorExtendsBeyondPrimitives) {
+      if (anchorShape === "circle") {
+        ctx.db.pcb_smtpad.insert({
+          type: "pcb_smtpad",
+          shape: "circle",
+          pcb_component_id: componentId,
+          pcb_port_id: pcbPortId,
+          pcb_smtpad_id: getNextPcbSmtPadId(ctx),
+          layer,
+          port_hints: [pad.number.toString()],
+          x: pos.x,
+          y: pos.y,
+          width: size.x,
+          height: size.y,
+          radius: Math.max(size.x, size.y) / 2,
+        } as PcbSmtPadCircle)
+      } else if (anchorCcwRotation !== 0) {
+        ctx.db.pcb_smtpad.insert({
+          type: "pcb_smtpad",
+          shape: "rotated_rect",
+          pcb_component_id: componentId,
+          pcb_port_id: pcbPortId,
+          pcb_smtpad_id: getNextPcbSmtPadId(ctx),
+          layer,
+          port_hints: [pad.number.toString()],
+          x: pos.x,
+          y: pos.y,
+          width: size.x,
+          height: size.y,
+          ccw_rotation: anchorCcwRotation,
+        } as PcbSmtPadRotatedRect)
+      } else {
+        ctx.db.pcb_smtpad.insert({
+          type: "pcb_smtpad",
+          shape: "rect",
+          pcb_component_id: componentId,
+          pcb_port_id: pcbPortId,
+          pcb_smtpad_id: getNextPcbSmtPadId(ctx),
+          layer,
+          port_hints: [pad.number.toString()],
+          x: pos.x,
+          y: pos.y,
+          width: size.x,
+          height: size.y,
+        } as PcbSmtPadRect)
+      }
+      anchorEmitted = 1
+    }
+
+    if (ctx.stats) {
+      ctx.stats.pads =
+        (ctx.stats.pads || 0) + primitivesProcessed + anchorEmitted
+    }
+    // Custom pads are fully handled here (anchor + primitives).
+    return
   }
 
   // Handle standard shapes (circle, oval, rect, roundrect)

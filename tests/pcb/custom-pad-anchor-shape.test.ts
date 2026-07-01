@@ -28,12 +28,11 @@ function padMinX(pad: any): number {
 // collector tab (pad 2) is an anchor rect (1.475 x 0.9 at x=-1.8625, whose left
 // edge reaches x=-2.6) plus a wide polygon (left edge x=-1.125). The converter
 // drops the anchor rect and keeps only the polygon, so the tab loses the neck
-// that connects toward the leads.
-//
-// test.failing until the anchor shape is included.
-test.failing("custom pad keeps its anchor base shape (SOT-89-3 collector tab)", () => {
-  // Visual snapshot of the converted footprint so the collector tab is
-  // reviewable. On this branch (no fix) the tab is missing its neck.
+// that connects toward the leads. The converter now emits the anchor shape in
+// addition to the primitives, so the full tab is preserved.
+test("custom pad keeps its anchor base shape (SOT-89-3 collector tab)", () => {
+  // Visual snapshot of the converted footprint so the collector tab (with its
+  // restored neck) is reviewable.
   convertKicadFootprintToSvgSnapshot({
     kicadModPath: "tests/assets/SOT-89-3.kicad_mod",
     kicadFileName: "SOT-89-3.kicad_mod",

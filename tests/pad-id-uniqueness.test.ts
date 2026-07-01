@@ -53,7 +53,9 @@ test("kicad-to-circuit-json: assigns unique ids to generated pad primitives", ()
     .filter((el: any) => el.type === "pcb_plated_hole")
     .map((el: any) => el.pcb_plated_hole_id)
 
-  expect(smtpadIds).toHaveLength(2)
+  // Each smd custom pad yields its primitive shape (the gr_circle) plus its
+  // anchor shape (the 1x1 rect): 2 custom pads x 2 = 4 smt pads.
+  expect(smtpadIds).toHaveLength(4)
   expect(smtpadIds.every((id) => typeof id === "string")).toBe(true)
   expect(new Set(smtpadIds).size).toBe(smtpadIds.length)
   expect(smtpadIds).not.toContain("pcb_smtpad_id")
