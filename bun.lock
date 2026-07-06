@@ -4,7 +4,7 @@
     "": {
       "name": "kicad-to-circuit-json",
       "dependencies": {
-        "schematic-symbols": "^0.0.202",
+        "schematic-symbols": "^0.0.227",
       },
       "devDependencies": {
         "@biomejs/biome": "^2.2.7",
@@ -1188,7 +1188,7 @@
 
     "scheduler": ["scheduler@0.27.0", "", {}, "sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q=="],
 
-    "schematic-symbols": ["schematic-symbols@0.0.202", "", { "peerDependencies": { "typescript": "^5.5.4" } }, "sha512-zMdY7VaEg2Sc25T0h9LkWttEoyxGamgBfFDQKUXtYRoLSChrNDOKbNLaxU/GH2L2GbsasV8OLiHyHGb5u7NUpg=="],
+    "schematic-symbols": ["schematic-symbols@0.0.227", "", { "peerDependencies": { "typescript": "^5.5.4" } }, "sha512-6Ar92sSlcL6BARGuLmeKeICAOZl/J/+L3hPUmgQ/KXXRv/CX86xPPau4uRLe7S5DapW/ztgW4qYF9y8IRDcSWA=="],
 
     "semver": ["semver@7.5.4", "", { "dependencies": { "lru-cache": "^6.0.0" }, "bin": { "semver": "bin/semver.js" } }, "sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA=="],
 
@@ -1451,6 +1451,8 @@
     "glob/minimatch": ["minimatch@10.2.5", "", { "dependencies": { "brace-expansion": "^5.0.5" } }, "sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg=="],
 
     "jscad-electronics/circuit-json": ["circuit-json@0.0.429", "", {}, "sha512-qUgShhNX7o2xuTj9aFW0uk1vfL94dyfOCF9d609CwN1BieoAsBVk4gDC+NBKVtIeoTovkjxT4ZQ9D38+rRLc0A=="],
+
+    "kicad-to-circuit-json/schematic-symbols": ["schematic-symbols@0.0.202", "", { "peerDependencies": { "typescript": "^5.5.4" } }, "sha512-zMdY7VaEg2Sc25T0h9LkWttEoyxGamgBfFDQKUXtYRoLSChrNDOKbNLaxU/GH2L2GbsasV8OLiHyHGb5u7NUpg=="],
 
     "kind-of/is-buffer": ["is-buffer@1.1.6", "", {}, "sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w=="],
 
