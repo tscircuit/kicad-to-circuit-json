@@ -2,17 +2,12 @@ import type {
   NinePointAnchor,
   PcbCopperText,
   PcbFabricationNoteText,
+  PcbNoteLine,
   PcbRenderLayer,
+  PcbNotePath,
   PcbSilkscreenText,
 } from "circuit-json"
-import type {
-  GrArc,
-  GrCircle,
-  GrCurve,
-  GrLine,
-  GrText,
-  Layer,
-} from "kicadts"
+import type { GrArc, GrCircle, GrCurve, GrLine, GrText, Layer } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import {
@@ -1096,7 +1091,7 @@ export class CollectGraphicsStage extends ConverterStage {
       y2: endPos.y,
       layer: mapKicadLayerToVisibleLayer(line.layer),
       stroke_width: line.stroke?.width ?? line.width ?? 0.15,
-    } as any)
+    } as PcbNoteLine)
   }
 
   private createNoteArc(arc: GrArc) {
@@ -1171,7 +1166,7 @@ export class CollectGraphicsStage extends ConverterStage {
       layer: mapKicadLayerToVisibleLayer(layerInfo),
       route,
       stroke_width: strokeWidth,
-    } as any)
+    } as PcbNotePath)
   }
 
   private createNoteText(text: GrText) {
