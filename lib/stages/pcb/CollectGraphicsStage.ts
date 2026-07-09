@@ -1,9 +1,18 @@
 import type {
+  NinePointAnchor,
   PcbCopperText,
   PcbFabricationNoteText,
   PcbRenderLayer,
   PcbSilkscreenText,
 } from "circuit-json"
+import type {
+  GrArc,
+  GrCircle,
+  GrCurve,
+  GrLine,
+  GrText,
+  Layer,
+} from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import {
@@ -19,6 +28,7 @@ import {
   getGraphicLayerNames,
   getLineStartEnd,
   getPcbPoint,
+  type PcbPoint,
 } from "./arc-utils"
 import { rotatePoint } from "./CollectFootprintsStage/process-graphics"
 import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
@@ -65,11 +75,15 @@ interface BoardContour {
 const EDGE_CUT_POINT_EPSILON = 0.01
 // Keep PCB text sizing inverse to circuit-json-to-kicad's /1.5 mapping.
 const KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE = 1.5
-const NOTE_TEXT_ALIGNMENTS = new Set([
-  "center",
+const NOTE_TEXT_ALIGNMENTS = new Set<NinePointAnchor>([
   "top_left",
+  "top_center",
   "top_right",
+  "center_left",
+  "center",
+  "center_right",
   "bottom_left",
+  "bottom_center",
   "bottom_right",
 ])
 
@@ -103,8 +117,12 @@ function isPcbNoteLayer(layer: any): boolean {
   })
 }
 
-function normalizeNoteTextAnchorAlignment(alignment: string) {
-  return NOTE_TEXT_ALIGNMENTS.has(alignment) ? alignment : "center"
+function isNinePointAnchor(alignment: string): alignment is NinePointAnchor {
+  return NOTE_TEXT_ALIGNMENTS.has(alignment as NinePointAnchor)
+}
+
+function normalizeNoteTextAnchorAlignment(alignment: string): NinePointAnchor {
+  return isNinePointAnchor(alignment) ? alignment : "center"
 }
 
 /**
@@ -1063,7 +1081,7 @@ export class CollectGraphicsStage extends ConverterStage {
     }
   }
 
-  private createNoteLine(line: any) {
+  private createNoteLine(line: GrLine) {
     if (!this.ctx.k2cMatPcb) return
 
     const { start, end } = getLineStartEnd(line)
@@ -1081,7 +1099,7 @@ export class CollectGraphicsStage extends ConverterStage {
     } as any)
   }
 
-  private createNoteArc(arc: any) {
+  private createNoteArc(arc: GrArc) {
     if (!this.ctx.k2cMatPcb) return
 
     const { start, mid, end } = getArcStartMidEnd(arc)
@@ -1100,7 +1118,7 @@ export class CollectGraphicsStage extends ConverterStage {
     })
   }
 
-  private createNoteCircle(circle: any) {
+  private createNoteCircle(circle: GrCircle) {
     if (!this.ctx.k2cMatPcb) return
 
     const { center, end } = getCircleCenterEnd(circle)
@@ -1118,7 +1136,7 @@ export class CollectGraphicsStage extends ConverterStage {
     })
   }
 
-  private createNoteCurve(curve: any) {
+  private createNoteCurve(curve: GrCurve) {
     if (!this.ctx.k2cMatPcb) return
 
     const points = getCurvePoints(curve)
@@ -1141,8 +1159,8 @@ export class CollectGraphicsStage extends ConverterStage {
   }
 
   private createNotePath(params: {
-    layerInfo: any
-    route: Array<{ x: number; y: number }>
+    layerInfo: Layer | undefined
+    route: PcbPoint[]
     strokeWidth: number
   }) {
     const { layerInfo, route, strokeWidth } = params
@@ -1156,7 +1174,7 @@ export class CollectGraphicsStage extends ConverterStage {
     } as any)
   }
 
-  private createNoteText(text: any) {
+  private createNoteText(text: GrText) {
     if (!this.ctx.k2cMatPcb) return
 
     const at = text.position

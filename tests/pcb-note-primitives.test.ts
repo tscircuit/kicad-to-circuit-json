@@ -16,6 +16,9 @@ test("kicad-to-circuit-json: maps drawing-layer graphics to pcb_note primitives"
   (gr_text "BOARD NOTE" (at 8 9 90) (layer "Dwgs.User")
     (effects (font (size 1 1) (thickness 0.15)))
   )
+  (gr_text "LEFT NOTE" (at 12 9 0) (layer "Dwgs.User")
+    (effects (font (size 1 1) (thickness 0.15)) (justify left))
+  )
   (dimension (type aligned) (layer "Dwgs.User") (tstamp "dimension-1")
     (pts (xy 20 20) (xy 30 20))
     (height 5)
@@ -37,6 +40,11 @@ test("kicad-to-circuit-json: maps drawing-layer graphics to pcb_note primitives"
   expect(noteText.text).toBe("BOARD NOTE")
   expect(noteText.layer).toBe("top")
   expect(noteText.font_size).toBe(1.5)
+
+  const leftNoteText = output.find(
+    (el: any) => el.type === "pcb_note_text" && el.text === "LEFT NOTE",
+  ) as any
+  expect(leftNoteText.anchor_alignment).toBe("center_left")
 
   const noteLine = output.find((el: any) => el.type === "pcb_note_line") as any
   expect(noteLine.stroke_width).toBe(0.2)
