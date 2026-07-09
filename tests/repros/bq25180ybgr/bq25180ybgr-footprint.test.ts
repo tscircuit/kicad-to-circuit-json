@@ -5,18 +5,14 @@ import { KicadFootprintToCircuitJsonConverter } from "../../../lib/KicadFootprin
 import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
 
 test("repro: BQ25180YBGR legacy module footprint snapshots and conversion audit", async () => {
-  const sourcePath =
-    "tests/repros/bq25180ybgr/BQ25180YBGR.source.kicad_mod"
+  const sourcePath = "tests/repros/bq25180ybgr/BQ25180YBGR.source.kicad_mod"
   const snapshotDir = "tests/repros/bq25180ybgr/__snapshots__"
   const jsonSnapshotPath = `${snapshotDir}/BQ25180YBGR-circuit-json.json`
   const svgSnapshotPath = `${snapshotDir}/BQ25180YBGR-circuit-json.svg`
   const pngSnapshotPath = `${snapshotDir}/BQ25180YBGR-circuit-json.snap.png`
 
   const converter = new KicadFootprintToCircuitJsonConverter()
-  converter.addFile(
-    "BQ25180YBGR.kicad_mod",
-    readFileSync(sourcePath, "utf8"),
-  )
+  converter.addFile("BQ25180YBGR.kicad_mod", readFileSync(sourcePath, "utf8"))
   converter.runUntilFinished()
 
   const output = converter.getOutput() as any[]
