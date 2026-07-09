@@ -65,6 +65,13 @@ interface BoardContour {
 const EDGE_CUT_POINT_EPSILON = 0.01
 // Keep PCB text sizing inverse to circuit-json-to-kicad's /1.5 mapping.
 const KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE = 1.5
+const NOTE_TEXT_ALIGNMENTS = new Set([
+  "center",
+  "top_left",
+  "top_right",
+  "bottom_left",
+  "bottom_right",
+])
 
 function convertKiCadAngleToCircuitJsonCcwRotation(
   rotationDegrees: number | undefined,
@@ -77,6 +84,29 @@ function convertKiCadAngleToCircuitJsonCcwRotation(
     : circuitJsonRotation
 }
 
+function isPcbNoteLayer(layer: any): boolean {
+  const layerNames = extractKicadLayerNames(layer)
+  if (layerNames.length === 0) return false
+
+  return layerNames.some((layerName) => {
+    if (
+      layerName.includes("Edge.Cuts") ||
+      layerName.includes("SilkS") ||
+      layerName.includes("Fab") ||
+      layerName.includes("CrtYd") ||
+      layerName.endsWith(".Cu")
+    ) {
+      return false
+    }
+
+    return true
+  })
+}
+
+function normalizeNoteTextAnchorAlignment(alignment: string) {
+  return NOTE_TEXT_ALIGNMENTS.has(alignment) ? alignment : "center"
+}
+
 /**
  * CollectGraphicsStage processes KiCad graphics elements:
  * - gr_line on Edge.Cuts → pcb_board.outline
@@ -84,6 +114,7 @@ function convertKiCadAngleToCircuitJsonCcwRotation(
  * - gr_line/gr_arc on silk/fab/courtyard layers → matching PCB output
  * - gr_rect on copper layers (filled) → pcb_smtpad
  * - gr_poly on copper layers (filled) → pcb_smtpad (polygon)
+ * - gr_* on user/comment/drawing layers → matching pcb_note_* output
  */
 export class CollectGraphicsStage extends ConverterStage {
   step(): boolean {
@@ -119,6 +150,8 @@ export class CollectGraphicsStage extends ConverterStage {
       ) {
         const renderLayer = mapKicadLayerToPcbRenderLayer(line.layer)
         if (renderLayer) this.createGraphicPath(line, renderLayer)
+      } else if (isPcbNoteLayer(line.layer)) {
+        this.createNoteLine(line)
       }
     }
     // Process gr_arc elements
@@ -139,38 +172,44 @@ export class CollectGraphicsStage extends ConverterStage {
       ) {
         const renderLayer = mapKicadLayerToPcbRenderLayer(arc.layer)
         if (renderLayer) this.createGraphicArc(arc, renderLayer)
+      } else if (isPcbNoteLayer(arc.layer)) {
+        this.createNoteArc(arc)
       }
     }
 
     // Process gr_circle elements
     for (const circle of circleArray) {
       const layerStr = getGraphicLayerNames(circle).join(" ")
-      if (!layerStr.includes("Edge.Cuts")) continue
-
-      const { center, end } = getCircleCenterEnd(circle)
-      edgeCutPrimitives.push({
-        type: "circle",
-        center,
-        start: end,
-        end,
-      })
+      if (layerStr.includes("Edge.Cuts")) {
+        const { center, end } = getCircleCenterEnd(circle)
+        edgeCutPrimitives.push({
+          type: "circle",
+          center,
+          start: end,
+          end,
+        })
+      } else if (isPcbNoteLayer(circle.layer)) {
+        this.createNoteCircle(circle)
+      }
     }
 
     // Process gr_curve elements
     for (const curve of curveArray) {
       const layerStr = getGraphicLayerNames(curve).join(" ")
-      if (!layerStr.includes("Edge.Cuts")) continue
+      if (layerStr.includes("Edge.Cuts")) {
+        const points = getCurvePoints(curve)
+        if (!points) continue
 
-      const points = getCurvePoints(curve)
-      if (!points) continue
-
-      edgeCutPrimitives.push({
-        type: "curve",
-        start: points.start,
-        control1: points.control1,
-        control2: points.control2,
-        end: points.end,
-      })
+        edgeCutPrimitives.push({
+          type: "curve",
+          start: points.start,
+          control1: points.control1,
+          control2: points.control2,
+          end: points.end,
+        })
+      } else if (isPcbNoteLayer(curve.layer)) {
+        this.createNoteCurve(curve)
+      }
     }
 
     for (const rect of rectArray) {
@@ -203,8 +242,13 @@ export class CollectGraphicsStage extends ConverterStage {
     const texts = this.ctx.kicadPcb.graphicTexts || []
     const textArray = Array.isArray(texts) ? texts : [texts]
     for (const text of textArray) {
-      const renderLayer = mapKicadLayerToPcbRenderLayer(text.layer)
-      if (renderLayer) this.createGraphicText(text, renderLayer)
+      const layer = text.layer
+      const renderLayer = mapKicadLayerToPcbRenderLayer(layer)
+      if (renderLayer) {
+        this.createGraphicText(text, renderLayer)
+      } else if (isPcbNoteLayer(layer)) {
+        this.createNoteText(text)
+      }
     }
 
     this.finished = true
@@ -553,12 +597,12 @@ export class CollectGraphicsStage extends ConverterStage {
   private getRectStartEnd(rect: any) {
     return {
       start: {
-        x: rect.start?.x ?? rect._sxStart?._x ?? 0,
-        y: rect.start?.y ?? rect._sxStart?._y ?? 0,
+        x: rect.start?.x ?? 0,
+        y: rect.start?.y ?? 0,
       },
       end: {
-        x: rect.end?.x ?? rect._sxEnd?._x ?? 0,
-        y: rect.end?.y ?? rect._sxEnd?._y ?? 0,
+        x: rect.end?.x ?? 0,
+        y: rect.end?.y ?? 0,
       },
     }
   }
@@ -665,7 +709,7 @@ export class CollectGraphicsStage extends ConverterStage {
     const startPos = applyToPoint(this.ctx.k2cMatPcb, start)
     const endPos = applyToPoint(this.ctx.k2cMatPcb, end)
     const layer = mapKicadLayerToVisibleLayer(line.layer)
-    const strokeWidth = line.width || 0.15
+    const strokeWidth = line.stroke?.width ?? line.width ?? 0.15
 
     this.insertRouteGraphic({
       layer,
@@ -689,8 +733,7 @@ export class CollectGraphicsStage extends ConverterStage {
     }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
 
     const layer = mapKicadLayerToVisibleLayer(arc.layer)
-    const strokeWidth =
-      arc.stroke?.width ?? arc._sxStroke?._sxWidth?.value ?? arc.width ?? 0.15
+    const strokeWidth = arc.stroke?.width ?? arc.width ?? 0.15
 
     this.insertRouteGraphic({
       layer,
@@ -740,20 +783,17 @@ export class CollectGraphicsStage extends ConverterStage {
   private processRectangle(rect: any) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Extract rectangle properties from kicadts internal structure
     const start = {
-      x: rect._sxStart?._x ?? 0,
-      y: rect._sxStart?._y ?? 0,
+      x: rect.start?.x ?? 0,
+      y: rect.start?.y ?? 0,
     }
     const end = {
-      x: rect._sxEnd?._x ?? 0,
-      y: rect._sxEnd?._y ?? 0,
+      x: rect.end?.x ?? 0,
+      y: rect.end?.y ?? 0,
     }
-    const renderLayer = mapKicadLayerToPcbRenderLayer(rect._sxLayer)
-    const isFilled =
-      rect._sxFill &&
-      (rect._sxFill.isFilled === true ||
-        String(rect._sxFill).includes("fill yes"))
+    const layerInfo = rect.layer
+    const renderLayer = mapKicadLayerToPcbRenderLayer(layerInfo)
+    const isFilled = rect.fill === true
 
     // Check if this is a filled rectangle on a copper layer
     const isCopperLayer = renderLayer?.endsWith("_copper")
@@ -772,7 +812,7 @@ export class CollectGraphicsStage extends ConverterStage {
     // Only create pcb_smtpad for filled rectangles on copper layers
     if (isFilled && isCopperLayer) {
       // Map layer to top/bottom
-      const layer = mapKicadLayerToLayerRef(rect._sxLayer)
+      const layer = mapKicadLayerToLayerRef(layerInfo)
 
       // Create pcb_smtpad
       this.ctx.db.pcb_smtpad.insert({
@@ -793,12 +833,8 @@ export class CollectGraphicsStage extends ConverterStage {
       return
     }
 
-    const layer = mapKicadLayerToVisibleLayer(rect._sxLayer)
-    const strokeWidth =
-      rect.stroke?.width ??
-      rect._sxStroke?._sxWidth?.value ??
-      rect.width ??
-      0.15
+    const layer = mapKicadLayerToVisibleLayer(layerInfo)
+    const strokeWidth = rect.stroke?.width ?? rect.width ?? 0.15
 
     if (renderLayer?.endsWith("_fabrication_note")) {
       this.ctx.db.pcb_fabrication_note_rect.insert({
@@ -822,14 +858,27 @@ export class CollectGraphicsStage extends ConverterStage {
         height: heightKicad,
         layer,
       })
+      return
+    }
+
+    if (isPcbNoteLayer(layerInfo)) {
+      this.ctx.db.insert({
+        type: "pcb_note_rect",
+        center: centerCJ,
+        width: widthKicad,
+        height: heightKicad,
+        layer,
+        stroke_width: strokeWidth,
+        is_filled: isFilled,
+        has_stroke: true,
+      } as any)
     }
   }
 
   private createGraphicText(text: any, renderLayer: PcbRenderLayer) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Get position from either at or _sxPosition (kicadts internal field)
-    const at = text.at || text._sxPosition
+    const at = text.position
     const pos = applyToPoint(this.ctx.k2cMatPcb, {
       x: at?.x ?? 0,
       y: at?.y ?? 0,
@@ -838,14 +887,10 @@ export class CollectGraphicsStage extends ConverterStage {
 
     const layer = mapKicadLayerToVisibleLayer(text.layer)
 
-    // Access font size from kicadts internal structure (_sxEffects._sxFont._sxSize._height)
-    const kicadFontSize =
-      text._sxEffects?._sxFont?._sxSize?._height ||
-      text.effects?.font?.size?.y ||
-      1
+    const kicadFontSize = text.effects?.font?.size?.height ?? 1
     const fontSize = kicadFontSize * KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE
-    const textValue = text.text || text._text || ""
-    const justify = text._sxEffects?._sxJustify || text.effects?.justify
+    const textValue = text.text || ""
+    const justify = text.effects?.justify
     const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
     const isKnockout = extractKicadLayerNames(text.layer).includes("knockout")
 
@@ -934,32 +979,36 @@ export class CollectGraphicsStage extends ConverterStage {
   private processPolygon(poly: any) {
     if (!this.ctx.k2cMatPcb) return
 
-    // Extract layer information
-    const renderLayer = mapKicadLayerToPcbRenderLayer(poly._sxLayer)
+    const layerInfo = poly.layer
+    const renderLayer = mapKicadLayerToPcbRenderLayer(layerInfo)
 
     // Check if this is a filled polygon on a copper layer
-    const isFilled = poly._sxFill?.filled === true
+    const isFilled = poly.fill === true
     const isCopperLayer = renderLayer?.endsWith("_copper")
 
     // Only create pcb_smtpad for filled polygons on copper layers
-    if (!isFilled && !renderLayer?.endsWith("_courtyard")) {
+    if (
+      !isFilled &&
+      !renderLayer?.endsWith("_courtyard") &&
+      !isPcbNoteLayer(layerInfo)
+    ) {
       return
     }
 
     // Extract points from the polygon
-    const ptsData = poly._sxPts?.points || []
+    const ptsData = poly.points?.points || []
     const points: Array<{ x: number; y: number }> = []
 
     for (const pt of ptsData) {
-      if (pt.token === "xy") {
+      if ("x" in pt) {
         // Simple XY point
         points.push({ x: pt.x, y: pt.y })
       } else if (pt.token === "arc") {
         // Arc - convert to multiple points
         const arcPoints = approximateArcPoints({
-          start: { x: pt._sxStart?._x, y: pt._sxStart?._y },
-          mid: { x: pt._sxMid?._x, y: pt._sxMid?._y },
-          end: { x: pt._sxEnd?._x, y: pt._sxEnd?._y },
+          start: { x: pt.start?.x ?? 0, y: pt.start?.y ?? 0 },
+          mid: { x: pt.mid?.x ?? 0, y: pt.mid?.y ?? 0 },
+          end: { x: pt.end?.x ?? 0, y: pt.end?.y ?? 0 },
         })
         points.push(...arcPoints)
       }
@@ -977,7 +1026,7 @@ export class CollectGraphicsStage extends ConverterStage {
 
     if (isFilled && isCopperLayer) {
       // Map layer to top/bottom
-      const layer = mapKicadLayerToLayerRef(poly._sxLayer)
+      const layer = mapKicadLayerToLayerRef(layerInfo)
 
       // Create pcb_smtpad with polygon shape
       this.ctx.db.pcb_smtpad.insert({
@@ -996,12 +1045,140 @@ export class CollectGraphicsStage extends ConverterStage {
     }
 
     if (renderLayer?.endsWith("_courtyard")) {
-      const layer = mapKicadLayerToVisibleLayer(poly._sxLayer)
+      const layer = mapKicadLayerToVisibleLayer(layerInfo)
       this.ctx.db.pcb_courtyard_outline.insert({
         pcb_component_id: "",
         layer,
         outline: transformedPoints,
       })
+      return
     }
+
+    if (isPcbNoteLayer(layerInfo)) {
+      this.createNotePath({
+        layerInfo,
+        route: transformedPoints,
+        strokeWidth: poly.stroke?.width ?? poly.width ?? 0.15,
+      })
+    }
+  }
+
+  private createNoteLine(line: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const { start, end } = getLineStartEnd(line)
+    const startPos = applyToPoint(this.ctx.k2cMatPcb, start)
+    const endPos = applyToPoint(this.ctx.k2cMatPcb, end)
+
+    this.ctx.db.insert({
+      type: "pcb_note_line",
+      x1: startPos.x,
+      y1: startPos.y,
+      x2: endPos.x,
+      y2: endPos.y,
+      layer: mapKicadLayerToVisibleLayer(line.layer),
+      stroke_width: line.stroke?.width ?? line.width ?? 0.15,
+    } as any)
+  }
+
+  private createNoteArc(arc: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const { start, mid, end } = getArcStartMidEnd(arc)
+    const route = approximateArcPoints({
+      start,
+      mid,
+      end,
+      segmentLength: 0.1,
+      minSegments: 8,
+    }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
+
+    this.createNotePath({
+      layerInfo: arc.layer,
+      route,
+      strokeWidth: arc.stroke?.width ?? arc.width ?? 0.15,
+    })
+  }
+
+  private createNoteCircle(circle: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const { center, end } = getCircleCenterEnd(circle)
+    const route = approximateCirclePoints({
+      center,
+      end,
+      segmentLength: 0.1,
+      minSegments: 16,
+    }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
+
+    this.createNotePath({
+      layerInfo: circle.layer,
+      route,
+      strokeWidth: circle.stroke?.width ?? circle.width ?? 0.15,
+    })
+  }
+
+  private createNoteCurve(curve: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const points = getCurvePoints(curve)
+    if (!points) return
+
+    const route = approximateCubicBezierPoints({
+      start: points.start,
+      control1: points.control1,
+      control2: points.control2,
+      end: points.end,
+      segmentLength: 0.1,
+      minSegments: 8,
+    }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
+
+    this.createNotePath({
+      layerInfo: curve.layer,
+      route,
+      strokeWidth: curve.stroke?.width ?? curve.width ?? 0.15,
+    })
+  }
+
+  private createNotePath(params: {
+    layerInfo: any
+    route: Array<{ x: number; y: number }>
+    strokeWidth: number
+  }) {
+    const { layerInfo, route, strokeWidth } = params
+    if (route.length < 2) return
+
+    this.ctx.db.insert({
+      type: "pcb_note_path",
+      layer: mapKicadLayerToVisibleLayer(layerInfo),
+      route,
+      stroke_width: strokeWidth,
+    } as any)
+  }
+
+  private createNoteText(text: any) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const at = text.position
+    const pos = applyToPoint(this.ctx.k2cMatPcb, {
+      x: at?.x ?? 0,
+      y: at?.y ?? 0,
+    })
+    const kicadFontSize = text.effects?.font?.size?.height ?? 1
+    const justify = text.effects?.justify
+    const anchorAlignment = normalizeNoteTextAnchorAlignment(
+      mapKicadJustifyToAnchorAlignment(justify),
+    )
+
+    this.ctx.db.insert({
+      type: "pcb_note_text",
+      text: text.text || "",
+      anchor_position: pos,
+      anchor_alignment: anchorAlignment,
+      layer: mapKicadLayerToVisibleLayer(text.layer),
+      font_size: kicadFontSize * KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE,
+      font: "tscircuit2024",
+      ccw_rotation: convertKiCadAngleToCircuitJsonCcwRotation(at?.angle),
+    } as any)
   }
 }
