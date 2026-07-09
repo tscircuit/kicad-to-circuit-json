@@ -54,8 +54,7 @@ const circuitJson = converter.getOutput()
 ```
 
 Legacy KiCad 5 standalone footprints are handled through a separate best-effort
-upgrade step before parsing. Today that upgrade path normalizes the old
-`(module ...)` root into KiCad 6's `(footprint ...)`.
+upgrade step before parsing.
 
 For a single `.kicad_sym` symbol library, use the dedicated symbol converter:
 
