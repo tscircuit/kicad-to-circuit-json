@@ -53,6 +53,9 @@ converter.runUntilFinished()
 const circuitJson = converter.getOutput()
 ```
 
+Legacy KiCad 5 standalone footprints are handled through a separate best-effort
+upgrade step before parsing.
+
 For a single `.kicad_sym` symbol library, use the dedicated symbol converter:
 
 ```typescript
