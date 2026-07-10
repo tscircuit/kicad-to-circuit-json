@@ -487,7 +487,7 @@ export class CollectTracesStage extends ConverterStage {
 
     const { point, layer } = this.getTraceGraphNodeFromKey(nodeKey)
     const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
-    if (this.findPortAtPosition(transformedPoint, layer)) return true
+    if (this.findPortCenterAtPosition(transformedPoint, layer)) return true
 
     return false
   }
@@ -638,7 +638,10 @@ export class CollectTracesStage extends ConverterStage {
         traceNodeKeys.push(nodeKey)
 
         const transformedPoint = applyToPoint(this.ctx.k2cMatPcb, node.point)
-        const pcbPortId = this.findPortAtPosition(transformedPoint, node.layer)
+        const pcbPortId = this.findPortCenterAtPosition(
+          transformedPoint,
+          node.layer,
+        )
         const sourcePortId = this.getConnectedSourcePortIds([pcbPortId])[0]
         if (sourcePortId) {
           traceConnectedSourcePortIds.add(sourcePortId)
@@ -686,6 +689,16 @@ export class CollectTracesStage extends ConverterStage {
     point: { x: number; y: number },
     layer: LayerRef,
   ): string | undefined {
+    const portAtCenter = this.findPortCenterAtPosition(point, layer)
+    if (portAtCenter) return portAtCenter
+
+    return this.findPortContainingPoint(point, layer)
+  }
+
+  private findPortCenterAtPosition(
+    point: { x: number; y: number },
+    layer: LayerRef,
+  ): string | undefined {
     const ports = this.ctx.db.pcb_port.list() as any[]
 
     for (const port of ports) {
@@ -703,6 +716,228 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     return undefined
+  }
+
+  private findPortContainingPoint(
+    point: { x: number; y: number },
+    layer: LayerRef,
+  ): string | undefined {
+    const candidates: Array<{ pcbPortId: string; distanceSq: number }> = []
+    const collectCandidate = (pad: any) => {
+      const pcbPortId = pad.pcb_port_id
+      if (!pcbPortId || !this.isPadOnLayer(pad, layer)) return
+      if (!this.isPointInsidePadCopper(point, pad)) return
+
+      const dx = (pad.x ?? 0) - point.x
+      const dy = (pad.y ?? 0) - point.y
+      candidates.push({ pcbPortId, distanceSq: dx * dx + dy * dy })
+    }
+
+    for (const pad of this.ctx.db.pcb_smtpad.list() as any[]) {
+      collectCandidate(pad)
+    }
+
+    for (const pad of this.ctx.db.pcb_plated_hole.list() as any[]) {
+      collectCandidate(pad)
+    }
+
+    candidates.sort((a, b) => a.distanceSq - b.distanceSq)
+    return candidates[0]?.pcbPortId
+  }
+
+  private isPadOnLayer(pad: any, layer: LayerRef): boolean {
+    if (pad.layer && pad.layer !== layer) return false
+
+    const layers = pad.layers as string[] | undefined
+    if (layers?.length && !layers.includes(layer)) return false
+
+    return true
+  }
+
+  private isPointInsidePadCopper(
+    point: { x: number; y: number },
+    pad: any,
+  ): boolean {
+    const shape = pad.shape
+
+    if (shape === "circle") {
+      return this.isPointInsideCircle(point, pad)
+    }
+
+    if (shape === "polygon") {
+      return this.isPointInsidePolygon(point, pad.points ?? [])
+    }
+
+    if (shape === "pill" || shape === "rotated_pill") {
+      const width = pad.width ?? pad.outer_width
+      const height = pad.height ?? pad.outer_height
+      const rotation = shape === "rotated_pill" ? pad.ccw_rotation : 0
+      return this.isPointInsidePill(point, pad, width, height, rotation)
+    }
+
+    if (shape === "rect" || shape === "rotated_rect") {
+      const rotation = shape === "rotated_rect" ? pad.ccw_rotation : 0
+      return this.isPointInsideRect(point, pad, pad.width, pad.height, rotation)
+    }
+
+    if (
+      shape === "circular_hole_with_rect_pad" ||
+      shape === "pill_hole_with_rect_pad" ||
+      shape === "rotated_pill_hole_with_rect_pad"
+    ) {
+      return this.isPointInsideRect(
+        point,
+        pad,
+        pad.rect_pad_width,
+        pad.rect_pad_height,
+        pad.rect_ccw_rotation,
+      )
+    }
+
+    return false
+  }
+
+  private isPointInsideCircle(point: { x: number; y: number }, pad: any) {
+    const radius =
+      pad.radius ??
+      (pad.outer_diameter !== undefined ? pad.outer_diameter / 2 : undefined) ??
+      (pad.width !== undefined && pad.height !== undefined
+        ? Math.max(pad.width, pad.height) / 2
+        : undefined)
+    if (radius === undefined) return false
+
+    const dx = point.x - (pad.x ?? 0)
+    const dy = point.y - (pad.y ?? 0)
+    return dx * dx + dy * dy <= (radius + this.PORT_MATCH_TOLERANCE) ** 2
+  }
+
+  private isPointInsideRect(
+    point: { x: number; y: number },
+    pad: any,
+    width: number | undefined,
+    height: number | undefined,
+    ccwRotationDegrees: number | undefined,
+  ) {
+    if (width === undefined || height === undefined) return false
+
+    const local = this.getLocalPadPoint(point, pad, ccwRotationDegrees)
+    return (
+      Math.abs(local.x) <= width / 2 + this.PORT_MATCH_TOLERANCE &&
+      Math.abs(local.y) <= height / 2 + this.PORT_MATCH_TOLERANCE
+    )
+  }
+
+  private isPointInsidePill(
+    point: { x: number; y: number },
+    pad: any,
+    width: number | undefined,
+    height: number | undefined,
+    ccwRotationDegrees: number | undefined,
+  ) {
+    if (width === undefined || height === undefined) return false
+
+    const local = this.getLocalPadPoint(point, pad, ccwRotationDegrees)
+    const radius = Math.min(width, height) / 2
+    const tolerance = this.PORT_MATCH_TOLERANCE
+
+    if (width >= height) {
+      const centerHalfWidth = width / 2 - radius
+      if (
+        Math.abs(local.x) <= centerHalfWidth + tolerance &&
+        Math.abs(local.y) <= radius + tolerance
+      ) {
+        return true
+      }
+
+      const capX = local.x < 0 ? -centerHalfWidth : centerHalfWidth
+      return (
+        (local.x - capX) ** 2 + local.y ** 2 <= (radius + tolerance) ** 2
+      )
+    }
+
+    const centerHalfHeight = height / 2 - radius
+    if (
+      Math.abs(local.x) <= radius + tolerance &&
+      Math.abs(local.y) <= centerHalfHeight + tolerance
+    ) {
+      return true
+    }
+
+    const capY = local.y < 0 ? -centerHalfHeight : centerHalfHeight
+    return local.x ** 2 + (local.y - capY) ** 2 <= (radius + tolerance) ** 2
+  }
+
+  private isPointInsidePolygon(
+    point: { x: number; y: number },
+    points: Array<{ x: number; y: number }>,
+  ) {
+    if (points.length < 3) return false
+
+    for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+      if (
+        this.getDistanceToSegment(point, points[j]!, points[i]!) <=
+        this.PORT_MATCH_TOLERANCE
+      ) {
+        return true
+      }
+    }
+
+    let inside = false
+    for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+      const current = points[i]!
+      const previous = points[j]!
+      const crosses =
+        current.y > point.y !== previous.y > point.y &&
+        point.x <
+          ((previous.x - current.x) * (point.y - current.y)) /
+            (previous.y - current.y) +
+            current.x
+
+      if (crosses) inside = !inside
+    }
+
+    return inside
+  }
+
+  private getLocalPadPoint(
+    point: { x: number; y: number },
+    pad: any,
+    ccwRotationDegrees: number | undefined,
+  ) {
+    const dx = point.x - (pad.x ?? 0)
+    const dy = point.y - (pad.y ?? 0)
+    const radians = (-(ccwRotationDegrees ?? 0) * Math.PI) / 180
+    const cos = Math.cos(radians)
+    const sin = Math.sin(radians)
+
+    return {
+      x: dx * cos - dy * sin,
+      y: dx * sin + dy * cos,
+    }
+  }
+
+  private getDistanceToSegment(
+    point: { x: number; y: number },
+    start: { x: number; y: number },
+    end: { x: number; y: number },
+  ) {
+    const dx = end.x - start.x
+    const dy = end.y - start.y
+    const lengthSq = dx * dx + dy * dy
+    if (lengthSq === 0) {
+      return Math.hypot(point.x - start.x, point.y - start.y)
+    }
+
+    const projection = Math.max(
+      0,
+      Math.min(
+        1,
+        ((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSq,
+      ),
+    )
+    const projectedX = start.x + projection * dx
+    const projectedY = start.y + projection * dy
+    return Math.hypot(point.x - projectedX, point.y - projectedY)
   }
 
   private getConnectedSourcePortIds(pcbPortIds: Array<string | undefined>) {
