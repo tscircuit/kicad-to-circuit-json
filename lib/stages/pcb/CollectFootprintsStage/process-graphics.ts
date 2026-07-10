@@ -60,6 +60,22 @@ function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
   )
 }
 
+function getPolyPoints(poly: FpPoly): any[] {
+  const rawPoly = poly as any
+  const pointCandidates = [
+    rawPoly.points?.points,
+    rawPoly._sxPts?.points,
+    rawPoly.pts,
+    rawPoly._points?.points,
+  ]
+
+  for (const points of pointCandidates) {
+    if (Array.isArray(points)) return points
+  }
+
+  return []
+}
+
 /**
  * Rotates a point by a given angle (in degrees)
  */
@@ -563,14 +579,14 @@ export function createFootprintPoly(params: {
   if (!isPcbAnnotationRenderLayer(renderLayer)) return
 
   // Extract points
-  const ptArray: any[] = poly.points?.points || []
+  const ptArray = getPolyPoints(poly)
   if (ptArray.length === 0) return
 
   // Extract layer
   const layer = mapTextLayer(poly.layer)
 
   // Extract stroke width
-  const strokeWidth = poly.stroke?.width || poly.width || 0.12
+  const strokeWidth = getGraphicStrokeWidth(poly)
 
   // Map and transform points
   const transformedPts = ptArray.map((p: any) => {

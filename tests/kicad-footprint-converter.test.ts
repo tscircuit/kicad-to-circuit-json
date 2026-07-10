@@ -169,6 +169,52 @@ test("kicad footprint converter: converts fp_poly without uuid or tstamp", () =>
   expect(silkscreenPaths[0].route).toHaveLength(5)
 })
 
+test("kicad footprint converter: converts current KiCad QFN-60 footprint with uuid-less fp_poly", () => {
+  const converter = new KicadFootprintToCircuitJsonConverter()
+  converter.addFile(
+    "QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm.kicad_mod",
+    readFileSync(
+      "tests/assets/QFN-60-1EP_7x7mm_P0.4mm_EP3.4x3.4mm.kicad_mod",
+      "utf8",
+    ),
+  )
+  converter.runUntilFinished()
+
+  const output = converter.getOutput() as any[]
+  const smtPads = output.filter((el: any) => el.type === "pcb_smtpad")
+  const silkscreenPaths = output.filter(
+    (el: any) => el.type === "pcb_silkscreen_path",
+  )
+  const fabPaths = output.filter(
+    (el: any) => el.type === "pcb_fabrication_note_path",
+  )
+  const padByHint = Object.fromEntries(
+    smtPads.flatMap((pad: any) =>
+      (pad.port_hints ?? []).map((hint: string) => [hint, pad]),
+    ),
+  )
+
+  expect(converter.getWarnings()).toEqual([])
+  expect(converter.getStats()).toMatchObject({ components: 1, pads: 61 })
+  expect(smtPads).toHaveLength(61)
+  expect(padByHint["1"]).toMatchObject({
+    x: -3.45,
+    y: 2.8,
+    width: 0.8,
+    height: 0.2,
+  })
+  expect(padByHint["61"]).toMatchObject({
+    x: 0,
+    y: 0,
+    width: 3.4,
+    height: 3.4,
+  })
+  expect(silkscreenPaths.some((path: any) => path.route?.length === 3)).toBe(
+    true,
+  )
+  expect(fabPaths.some((path: any) => path.route?.length === 5)).toBe(true)
+})
+
 test("kicad footprint converter: DIP-10 SVG snapshot", async () => {
   const converter = new KicadFootprintToCircuitJsonConverter()
   converter.addFile(
