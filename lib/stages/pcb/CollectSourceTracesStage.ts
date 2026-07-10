@@ -10,8 +10,7 @@ import { getTopLevelCopperArcs } from "./arc-utils"
  * 1. Iterates through all footprints and their pads
  * 2. Builds a mapping of nets to connected pads
  * 3. Creates source_port elements for each pad
- * 4. Creates source_net elements for each net. Physical trace collection creates
- *    one source_trace for each routed source_net.
+ * 4. Creates one source_net and one source_trace element for each net.
  */
 export class CollectSourceTracesStage extends ConverterStage {
   private processedNets = new Set<number>()
@@ -51,11 +50,12 @@ export class CollectSourceTracesStage extends ConverterStage {
         continue
       }
 
-      this.ctx.netNumToSourcePortIds?.set(
-        netNum,
+      const sourcePortIds = this.getUniqueSourcePortIds(
         pads.map((p) => p.sourcePortId),
       )
-      this.createSourceNet(netNum)
+      this.ctx.netNumToSourcePortIds?.set(netNum, sourcePortIds)
+      const sourceNetId = this.createSourceNet(netNum)
+      this.createSourceTrace(netNum, sourceNetId, sourcePortIds)
       this.processedNets.add(netNum)
     }
 
@@ -241,5 +241,33 @@ export class CollectSourceTracesStage extends ConverterStage {
     if (this.ctx.stats) {
       this.ctx.stats.traces = (this.ctx.stats.traces || 0) + 1
     }
+
+    return sourceNet.source_net_id
+  }
+
+  private createSourceTrace(
+    netNum: number,
+    sourceNetId: string,
+    sourcePortIds: string[],
+  ) {
+    const netName = this.ctx.netNumToName?.get(netNum) || `Net-${netNum}`
+    const sourceTrace = this.ctx.db.source_trace.insert({
+      connected_source_port_ids: sourcePortIds,
+      connected_source_net_ids: [sourceNetId],
+      display_name: netName,
+    })
+
+    this.ctx.netNumToSourceTraceId?.set(netNum, sourceTrace.source_trace_id)
+  }
+
+  private getUniqueSourcePortIds(sourcePortIds: string[]) {
+    const uniqueSourcePortIds: string[] = []
+    for (const sourcePortId of sourcePortIds) {
+      if (!uniqueSourcePortIds.includes(sourcePortId)) {
+        uniqueSourcePortIds.push(sourcePortId)
+      }
+    }
+
+    return uniqueSourcePortIds
   }
 }

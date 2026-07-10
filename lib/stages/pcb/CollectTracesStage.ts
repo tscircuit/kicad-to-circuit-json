@@ -67,7 +67,6 @@ interface TraceRoutePointVia {
 }
 
 type TraceRoutePoint = TraceRoutePointWire | TraceRoutePointVia
-type SourceTraceId = string
 
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
@@ -76,17 +75,13 @@ type SourceTraceId = string
 export class CollectTracesStage extends ConverterStage {
   private readonly PORT_MATCH_TOLERANCE = 1e-3
   private readonly POINT_KEY_PRECISION = 1e6
-  private readonly sourceTraceIdBySourceNetId = new Map<
-    string,
-    SourceTraceId
-  >()
 
   step(): boolean {
     if (
       !this.ctx.kicadPcb ||
       !this.ctx.k2cMatPcb ||
       !this.ctx.netNumToName ||
-      !this.ctx.netNumToSourceNetId
+      !this.ctx.netNumToSourceTraceId
     ) {
       this.finished = true
       return false
@@ -331,7 +326,7 @@ export class CollectTracesStage extends ConverterStage {
   }
 
   private insertTracePath(path: OrientedTraceEdge[]) {
-    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceNetId) return
+    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceTraceId) return
     if (path.length === 0) return
 
     const routePoints = this.getPathRoutePoints(path)
@@ -344,10 +339,6 @@ export class CollectTracesStage extends ConverterStage {
       this.getOrientedTraceEdgeEndKey(path[path.length - 1]!),
     )
     const netNum = path[0]!.edge.netNum
-    const sourceNetId =
-      netNum !== null
-        ? (this.ctx.netNumToSourceNetId.get(netNum) ?? undefined)
-        : undefined
 
     const startPoint = applyToPoint(this.ctx.k2cMatPcb, firstNode.point)
     const lastPoint = applyToPoint(this.ctx.k2cMatPcb, lastNode.point)
@@ -361,12 +352,10 @@ export class CollectTracesStage extends ConverterStage {
       lastNode.layer,
       netNum,
     )
-    const sourceTraceId = sourceNetId
-      ? this.createSourceTraceForPath({
-          sourceNetId,
-          netNum,
-        })
-      : undefined
+    const sourceTraceId =
+      netNum !== null
+        ? (this.ctx.netNumToSourceTraceId.get(netNum) ?? undefined)
+        : undefined
 
     const firstWireIndex = routePoints.findIndex(
       (point) => point.routeType === "wire",
@@ -722,9 +711,7 @@ export class CollectTracesStage extends ConverterStage {
       }
 
       const capX = local.x < 0 ? -centerHalfWidth : centerHalfWidth
-      return (
-        (local.x - capX) ** 2 + local.y ** 2 <= (radius + tolerance) ** 2
-      )
+      return (local.x - capX) ** 2 + local.y ** 2 <= (radius + tolerance) ** 2
     }
 
     const centerHalfHeight = height / 2 - radius
@@ -810,51 +797,5 @@ export class CollectTracesStage extends ConverterStage {
     const projectedX = start.x + projection * dx
     const projectedY = start.y + projection * dy
     return Math.hypot(point.x - projectedX, point.y - projectedY)
-  }
-
-  private createSourceTraceForPath({
-    sourceNetId,
-    netNum,
-  }: {
-    sourceNetId: string
-    netNum: number | null
-  }) {
-    const netName =
-      netNum !== null
-        ? (this.ctx.netNumToName?.get(netNum) ?? `Net-${netNum}`)
-        : undefined
-    const existingSourceTraceId =
-      this.sourceTraceIdBySourceNetId.get(sourceNetId)
-    if (existingSourceTraceId) {
-      return existingSourceTraceId
-    }
-
-    const connectedSourcePortIds = this.getUniqueSourcePortIdsForNet(netNum)
-    const sourceTrace = this.ctx.db.source_trace.insert({
-      connected_source_port_ids: connectedSourcePortIds,
-      connected_source_net_ids: [sourceNetId],
-      display_name: netName,
-    })
-
-    this.sourceTraceIdBySourceNetId.set(
-      sourceNetId,
-      sourceTrace.source_trace_id,
-    )
-
-    return sourceTrace.source_trace_id
-  }
-
-  private getUniqueSourcePortIdsForNet(netNum: number | null) {
-    if (netNum === null) return []
-
-    const sourcePortIds = this.ctx.netNumToSourcePortIds?.get(netNum) ?? []
-    const uniqueSourcePortIds: string[] = []
-    for (const sourcePortId of sourcePortIds) {
-      if (!uniqueSourcePortIds.includes(sourcePortId)) {
-        uniqueSourcePortIds.push(sourcePortId)
-      }
-    }
-
-    return uniqueSourcePortIds
   }
 }

@@ -35,7 +35,7 @@ test("kicad-to-circuit-json repro: OV5640 dual camera board PCB", () => {
   )
 
   expect(new Set(logicalTraceKeys).size).toBe(logicalTraceKeys.length)
-  expect(sourceTraces).toHaveLength(52)
+  expect(sourceTraces).toHaveLength(124)
   expect(pcbTraces).toHaveLength(272)
 
   const c18SourceTraces = sourceTraces.filter(
@@ -46,11 +46,13 @@ test("kicad-to-circuit-json repro: OV5640 dual camera board PCB", () => {
     [...c18SourceTraces[0].connected_source_port_ids].sort((a, b) =>
       a.localeCompare(b),
     ),
-  ).toEqual([
-    "pcb_component_16_port_1",
-    "pcb_component_58_port_1",
-    "pcb_component_5_port_I10",
-  ].sort((a, b) => a.localeCompare(b)))
+  ).toEqual(
+    [
+      "pcb_component_16_port_1",
+      "pcb_component_58_port_1",
+      "pcb_component_5_port_I10",
+    ].sort((a, b) => a.localeCompare(b)),
+  )
   expect(
     pcbTraces.filter(
       (pcbTrace) =>
