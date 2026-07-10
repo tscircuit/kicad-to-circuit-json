@@ -22,12 +22,12 @@ test("pcb footprint inference classifies LED footprints as simple_led", () => {
       (sourceComponent) => sourceComponent.name === name,
     )
     expect(component).toBeDefined()
-    expect(component.ftype).toBe("simple_led")
+    expect(component!.ftype).toBe("simple_led")
   }
 
   const d1 = sourceComponents.find(
     (sourceComponent) => sourceComponent.name === "D1",
   )
   expect(d1).toBeDefined()
-  expect(d1.ftype).toBe("simple_diode")
+  expect(d1!.ftype).toBe("simple_diode")
 })

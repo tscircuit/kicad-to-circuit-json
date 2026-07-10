@@ -22,6 +22,6 @@ test("pcb footprint inference classifies test points as simple_test_point", () =
       (sourceComponent) => sourceComponent.name === name,
     )
     expect(component).toBeDefined()
-    expect(component.ftype).toBe("simple_test_point")
+    expect(component!.ftype).toBe("simple_test_point")
   }
 })

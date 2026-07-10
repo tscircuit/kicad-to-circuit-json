@@ -22,6 +22,6 @@ test("pcb footprint inference classifies fiducials as simple_fiducial", () => {
       (sourceComponent) => sourceComponent.name === name,
     )
     expect(component).toBeDefined()
-    expect(component.ftype).toBe("simple_fiducial")
+    expect(component!.ftype).toBe("simple_fiducial")
   }
 })

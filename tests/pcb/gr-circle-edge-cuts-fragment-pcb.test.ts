@@ -1,4 +1,5 @@
 import { test, expect } from "bun:test"
+import type { PcbBoard } from "circuit-json"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../lib"
 import { takeKicadSnapshot } from "../fixtures/take-kicad-snapshot"
@@ -19,12 +20,12 @@ test("kicad-to-circuit-json: Edge.Cuts gr_circle fragment PCB", async () => {
   expect(circuitJson.length).toBeGreaterThan(0)
 
   const pcbBoard = circuitJson.find(
-    (element: any) => element.type === "pcb_board",
+    (element): element is PcbBoard => element.type === "pcb_board",
   )
   expect(pcbBoard).toBeDefined()
-  expect(pcbBoard.outline.length).toBeGreaterThan(100)
-  expect(pcbBoard.width).toBeCloseTo(20.05, 2)
-  expect(pcbBoard.height).toBeCloseTo(20.05, 2)
+  expect(pcbBoard!.outline!.length).toBeGreaterThan(100)
+  expect(pcbBoard!.width).toBeCloseTo(20.05, 2)
+  expect(pcbBoard!.height).toBeCloseTo(20.05, 2)
 
   const fs = await import("node:fs/promises")
   await fs.writeFile(

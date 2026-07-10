@@ -94,7 +94,7 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
     const component = getComponent(componentName)
     expect(component).toBeDefined()
     return sourcePorts.filter(
-      (port) => port.source_component_id === component.source_component_id,
+      (port) => port.source_component_id === component!.source_component_id,
     )
   }
 

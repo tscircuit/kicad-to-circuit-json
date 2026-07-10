@@ -1,4 +1,5 @@
 import { expect, test } from "bun:test"
+import type { PcbCutout } from "circuit-json"
 import { KicadToCircuitJsonConverter } from "../../lib"
 
 test("converts disconnected Edge.Cuts contours into board outline plus cutouts", () => {
@@ -27,14 +28,18 @@ test("converts disconnected Edge.Cuts contours into board outline plus cutouts",
 
   const circuitJson = converter.getOutput()
   const board = circuitJson.find((el: any) => el.type === "pcb_board") as any
-  const cutouts = circuitJson.filter((el: any) => el.type === "pcb_cutout")
+  const cutouts = circuitJson.filter(
+    (el): el is PcbCutout => el.type === "pcb_cutout",
+  )
 
   expect(board).toBeDefined()
   expect(board.width).toBeCloseTo(20)
   expect(board.height).toBeCloseTo(10)
   expect(cutouts).toHaveLength(1)
-  expect(cutouts[0].shape).toBe("polygon")
-  expect(cutouts[0].points).toHaveLength(5)
+  const cutout = cutouts[0]!
+  expect(cutout.shape).toBe("polygon")
+  if (cutout.shape !== "polygon") throw new Error("Expected polygon cutout")
+  expect(cutout.points).toHaveLength(5)
 })
 
 test("keeps near-touching Edge.Cuts segments in one board outline", () => {
