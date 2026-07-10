@@ -25,6 +25,7 @@ import {
   getLayerRefsFromLayers,
   getPcbCopperLayerRefs,
 } from "../layer-mapping"
+import { getSourcePortIdForPad } from "../pad-source-port-id"
 import { determineLayerFromLayers } from "./layer-utils"
 import { rotatePoint } from "./process-graphics"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
@@ -73,6 +74,7 @@ export function processPads(params: {
   for (const pad of padArray) {
     processPad({
       ctx,
+      footprint,
       pad,
       componentId,
       footprintPlacement,
@@ -85,11 +87,13 @@ export function processPads(params: {
  */
 export function processPad({
   ctx,
+  footprint,
   pad,
   componentId,
   footprintPlacement,
 }: {
   ctx: ConverterContext
+  footprint: Footprint
   pad: any
   componentId: string
   footprintPlacement: FootprintPlacement
@@ -154,6 +158,11 @@ export function processPad({
   let pcbPortId: string | undefined
   let sourcePortId: string | undefined
   if (padNumber) {
+    sourcePortId = getSourcePortIdForPad({
+      componentId,
+      footprint,
+      pad,
+    })
     const padLayers =
       padType === "smd"
         ? copperLayers.slice(0, 1)
@@ -163,6 +172,7 @@ export function processPad({
 
     const padPortInfo: PadPortInfo = {
       padNumber,
+      sourcePortId,
       padType,
       layers: padLayers,
       position: globalPos,
@@ -174,9 +184,7 @@ export function processPad({
       padInfo: padPortInfo,
     })
 
-    if (pcbPortId) {
-      sourcePortId = `${componentId}_port_${padNumber}`
-    }
+    if (!pcbPortId) sourcePortId = undefined
   }
 
   // Determine pad type and create appropriate CJ element

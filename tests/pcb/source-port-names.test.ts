@@ -107,3 +107,44 @@ test("pcb source ports preserve nonnumeric pad names as local aliases", () => {
   expect(j2R).toBeDefined()
   expect(j2R.name).toBe("R")
 })
+
+test("duplicate pad labels on different nets use distinct source ports", () => {
+  const circuitJson = convertPcb(
+    "tests/assets/dual-camera-to-gmsl-serializer-csi-adapter.kicad_pcb",
+  )
+  const sourceComponents = circuitJson.filter(
+    (element) => element.type === "source_component",
+  )
+  const sourcePorts = circuitJson.filter(
+    (element) => element.type === "source_port",
+  )
+  const sourceTraces = circuitJson.filter(
+    (element) => element.type === "source_trace",
+  )
+
+  for (const refdes of ["J4", "J5"]) {
+    const component = sourceComponents.find(
+      (sourceComponent) => sourceComponent.name === refdes,
+    )
+    expect(component).toBeDefined()
+
+    const mpPorts = sourcePorts.filter(
+      (sourcePort) =>
+        sourcePort.source_component_id === component.source_component_id &&
+        sourcePort.pin_number === "MP",
+    )
+    expect(mpPorts).toHaveLength(2)
+    expect(new Set(mpPorts.map((port) => port.source_port_id)).size).toBe(2)
+
+    const connectedSourceTraceIds = new Set(
+      mpPorts.map((port) => {
+        const sourceTrace = sourceTraces.find((trace) =>
+          trace.connected_source_port_ids.includes(port.source_port_id),
+        )
+        expect(sourceTrace).toBeDefined()
+        return sourceTrace.source_trace_id
+      }),
+    )
+    expect(connectedSourceTraceIds.size).toBe(2)
+  }
+})

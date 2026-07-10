@@ -332,26 +332,7 @@ export class CollectTracesStage extends ConverterStage {
     const routePoints = this.getPathRoutePoints(path)
     if (routePoints.length < 2) return
 
-    const firstNode = this.getTraceGraphNodeFromKey(
-      this.getOrientedTraceEdgeStartKey(path[0]!),
-    )
-    const lastNode = this.getTraceGraphNodeFromKey(
-      this.getOrientedTraceEdgeEndKey(path[path.length - 1]!),
-    )
     const netNum = path[0]!.edge.netNum
-
-    const startPoint = applyToPoint(this.ctx.k2cMatPcb, firstNode.point)
-    const lastPoint = applyToPoint(this.ctx.k2cMatPcb, lastNode.point)
-    const startPcbPortId = this.findPortAtPosition(
-      startPoint,
-      firstNode.layer,
-      netNum,
-    )
-    const endPcbPortId = this.findPortAtPosition(
-      lastPoint,
-      lastNode.layer,
-      netNum,
-    )
     const sourceTraceId =
       netNum !== null
         ? (this.ctx.netNumToSourceTraceId.get(netNum) ?? undefined)
@@ -364,6 +345,19 @@ export class CollectTracesStage extends ConverterStage {
       (point) => point.routeType === "wire",
     )
     if (firstWireIndex === -1) return
+
+    const firstWirePoint = routePoints[firstWireIndex] as TraceRoutePointWire
+    const lastWirePoint = routePoints[lastWireIndex] as TraceRoutePointWire
+    const startPcbPortId = this.findPortAtPosition(
+      { x: firstWirePoint.x, y: firstWirePoint.y },
+      firstWirePoint.layer,
+      netNum,
+    )
+    const endPcbPortId = this.findPortAtPosition(
+      { x: lastWirePoint.x, y: lastWirePoint.y },
+      lastWirePoint.layer,
+      netNum,
+    )
 
     const route = routePoints.map((point, index) => {
       if (point.routeType === "via") {
@@ -501,14 +495,6 @@ export class CollectTracesStage extends ConverterStage {
       layer: layer as LayerRef,
       point: this.getPointFromKey(pointKeyParts.join(":")),
     }
-  }
-
-  private getOrientedTraceEdgeStartKey({ edge, reversed }: OrientedTraceEdge) {
-    return reversed ? edge.endKey : edge.startKey
-  }
-
-  private getOrientedTraceEdgeEndKey({ edge, reversed }: OrientedTraceEdge) {
-    return reversed ? edge.startKey : edge.endKey
   }
 
   private pointsMatch(a: TracePoint, b: TracePoint): boolean {

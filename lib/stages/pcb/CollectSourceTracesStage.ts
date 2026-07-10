@@ -1,6 +1,7 @@
 import type { Footprint } from "kicadts"
 import { ConverterStage } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
+import { getPadNetNum, getSourcePortIdForPad } from "./pad-source-port-id"
 
 /**
  * CollectSourceTracesStage extracts logical nets from KiCad PCB by analyzing net
@@ -147,6 +148,7 @@ export class CollectSourceTracesStage extends ConverterStage {
         componentId,
         padNumber,
         footprint,
+        pad,
       })
 
       // Add to the net mapping
@@ -163,28 +165,22 @@ export class CollectSourceTracesStage extends ConverterStage {
   }
 
   private getPadNet(pad: any): number | null {
-    // Extract net number from pad
-    // KiCad pads have a '_sxNet' property (from kicadts) or 'net' property
-    const net = pad._sxNet || pad.net
-    if (!net) return null
-
-    // Net can be a number or an object with _id/_name properties (kicadts format)
-    if (typeof net === "number") return net
-    if (typeof net === "object") {
-      return net._id ?? net.number ?? net.ordinal ?? null
-    }
-
-    return null
+    return getPadNetNum(pad)
   }
 
   private getOrCreateSourcePort(params: {
     componentId: string
     padNumber: string
     footprint: Footprint
+    pad: any
   }): string {
-    const { componentId, padNumber, footprint } = params
-    // Create a unique source_port_id based on component and pad
-    const sourcePortId = `${componentId}_port_${padNumber}`
+    const { componentId, padNumber, footprint, pad } = params
+    const sourcePortId = getSourcePortIdForPad({
+      componentId,
+      footprint,
+      pad,
+    })
+    if (!sourcePortId) return `${componentId}_port_${padNumber}`
 
     // Check if source_port already exists
     const existingPort = this.ctx.db.source_port
