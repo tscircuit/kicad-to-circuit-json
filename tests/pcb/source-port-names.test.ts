@@ -64,10 +64,13 @@ test("pcb source ports use local numeric pad aliases", () => {
     sourceNets.map((net) => net.source_net_id).filter(Boolean),
   )
   expect(sourceNets.length).toBeGreaterThan(0)
+  const sourceTraceNetIds = new Set<string>()
   for (const sourceTrace of sourceTraces) {
-    expect(sourceTrace.connected_source_port_ids.length).toBeLessThanOrEqual(2)
     expect(sourceTrace.connected_source_net_ids.length).toBe(1)
-    expect(sourceNetIds.has(sourceTrace.connected_source_net_ids[0])).toBe(true)
+    const sourceNetId = sourceTrace.connected_source_net_ids[0]
+    expect(sourceNetIds.has(sourceNetId)).toBe(true)
+    expect(sourceTraceNetIds.has(sourceNetId)).toBe(false)
+    sourceTraceNetIds.add(sourceNetId)
 
     for (const sourcePortId of sourceTrace.connected_source_port_ids ?? []) {
       expect(sourcePortIds.has(sourcePortId)).toBe(true)

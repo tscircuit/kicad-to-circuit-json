@@ -11,7 +11,7 @@ import { getTopLevelCopperArcs } from "./arc-utils"
  * 2. Builds a mapping of nets to connected pads
  * 3. Creates source_port elements for each pad
  * 4. Creates source_net elements for each net. Physical trace collection creates
- *    smaller source_trace elements that point at these source nets.
+ *    one source_trace for each routed source_net.
  */
 export class CollectSourceTracesStage extends ConverterStage {
   private processedNets = new Set<number>()

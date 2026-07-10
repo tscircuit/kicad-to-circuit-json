@@ -46,17 +46,15 @@ test("pcb trace endpoints inside smd pads connect to owning source ports", () =>
 
   const c3Pad1SourcePortId = getSourcePortId("C3", "1")
   const u6Pad1SourcePortId = getSourcePortId("U6", "1")
-  const expectedSourcePortIds = [c3Pad1SourcePortId, u6Pad1SourcePortId].sort(
-    (a, b) => a.localeCompare(b),
-  )
 
   const c3ToU6SourceTrace = sourceTraces.find((sourceTrace) => {
-    const connectedSourcePortIds = [
-      ...(sourceTrace.connected_source_port_ids ?? []),
-    ].sort((a, b) => a.localeCompare(b))
+    const connectedSourcePortIds = new Set(
+      sourceTrace.connected_source_port_ids ?? [],
+    )
     return (
       sourceTrace.display_name === "P3V3" &&
-      connectedSourcePortIds.join("|") === expectedSourcePortIds.join("|")
+      connectedSourcePortIds.has(c3Pad1SourcePortId) &&
+      connectedSourcePortIds.has(u6Pad1SourcePortId)
     )
   })
   expect(c3ToU6SourceTrace).toBeDefined()

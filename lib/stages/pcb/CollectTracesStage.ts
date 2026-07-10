@@ -30,7 +30,6 @@ interface TracePrimitive {
   outerDiameter?: number
   holeDiameter?: number
   netNum: number | null
-  connectedSourcePortIds?: string[]
 }
 
 interface TraceEdge extends TracePrimitive {
@@ -68,15 +67,7 @@ interface TraceRoutePointVia {
 }
 
 type TraceRoutePoint = TraceRoutePointWire | TraceRoutePointVia
-type NetTraceKey = string
 type SourceTraceId = string
-
-interface PcbTraceConnectivityNode {
-  key: string
-  point: TracePoint
-  layer: LayerRef
-  netNum: number | null
-}
 
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
@@ -85,8 +76,8 @@ interface PcbTraceConnectivityNode {
 export class CollectTracesStage extends ConverterStage {
   private readonly PORT_MATCH_TOLERANCE = 1e-3
   private readonly POINT_KEY_PRECISION = 1e6
-  private readonly sourceTraceIdByNetTraceKey = new Map<
-    NetTraceKey,
+  private readonly sourceTraceIdBySourceNetId = new Map<
+    string,
     SourceTraceId
   >()
 
@@ -123,7 +114,6 @@ export class CollectTracesStage extends ConverterStage {
       if (primitive) primitives.push(primitive)
     }
 
-    this.annotatePrimitivesWithConnectedSourcePorts(primitives)
     this.createTracesFromPrimitives(primitives)
 
     this.finished = true
@@ -361,23 +351,19 @@ export class CollectTracesStage extends ConverterStage {
 
     const startPoint = applyToPoint(this.ctx.k2cMatPcb, firstNode.point)
     const lastPoint = applyToPoint(this.ctx.k2cMatPcb, lastNode.point)
-    const startPcbPortId = this.findPortAtPosition(startPoint, firstNode.layer)
-    const endPcbPortId = this.findPortAtPosition(lastPoint, lastNode.layer)
-    const connectedSourcePortIds = this.getConnectedSourcePortIds([
-      startPcbPortId,
-      endPcbPortId,
-    ])
-    const traceConnectedSourcePortIds =
-      this.getTraceConnectedSourcePortIds(path)
-    const inferredSourcePortIds = this.getSourcePortIdsForTrace({
+    const startPcbPortId = this.findPortAtPosition(
+      startPoint,
+      firstNode.layer,
       netNum,
-      connectedSourcePortIds,
-      traceConnectedSourcePortIds,
-    })
+    )
+    const endPcbPortId = this.findPortAtPosition(
+      lastPoint,
+      lastNode.layer,
+      netNum,
+    )
     const sourceTraceId = sourceNetId
       ? this.createSourceTraceForPath({
           sourceNetId,
-          connectedSourcePortIds: inferredSourcePortIds,
           netNum,
         })
       : undefined
@@ -487,7 +473,10 @@ export class CollectTracesStage extends ConverterStage {
 
     const { point, layer } = this.getTraceGraphNodeFromKey(nodeKey)
     const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
-    if (this.findPortCenterAtPosition(transformedPoint, layer)) return true
+    const netNum = graph.edges[edgeIds[0]!]?.netNum ?? null
+    if (this.findPortCenterAtPosition(transformedPoint, layer, netNum)) {
+      return true
+    }
 
     return false
   }
@@ -537,142 +526,6 @@ export class CollectTracesStage extends ConverterStage {
     return this.getPointKey(a) === this.getPointKey(b)
   }
 
-  private getPcbTraceNodeKey({
-    netNum,
-    layer,
-    point,
-  }: {
-    netNum: number | null
-    layer: LayerRef
-    point: TracePoint
-  }) {
-    return `${netNum ?? "no-net"}:${layer}:${this.getPointKey(point)}`
-  }
-
-  private annotatePrimitivesWithConnectedSourcePorts(
-    primitives: TracePrimitive[],
-  ) {
-    if (!this.ctx.k2cMatPcb || primitives.length === 0) return
-
-    const nodes = new Map<string, PcbTraceConnectivityNode>()
-    const adjacency = new Map<string, Set<string>>()
-
-    const ensureNode = (params: {
-      netNum: number | null
-      layer: LayerRef
-      point: TracePoint
-    }) => {
-      const { netNum, layer, point } = params
-      const key = this.getPcbTraceNodeKey({ netNum, layer, point })
-      if (!nodes.has(key)) {
-        nodes.set(key, { key, point, layer, netNum })
-      }
-      if (!adjacency.has(key)) {
-        adjacency.set(key, new Set())
-      }
-      return key
-    }
-
-    const connectNodes = (a: string, b: string) => {
-      adjacency.get(a)?.add(b)
-      adjacency.get(b)?.add(a)
-    }
-
-    for (const primitive of primitives) {
-      if (primitive.primitiveType !== "wire") continue
-
-      const startKey = ensureNode({
-        netNum: primitive.netNum,
-        layer: primitive.layer!,
-        point: primitive.start,
-      })
-      const endKey = ensureNode({
-        netNum: primitive.netNum,
-        layer: primitive.layer!,
-        point: primitive.end,
-      })
-      connectNodes(startKey, endKey)
-    }
-
-    const vias = this.ctx.kicadPcb?.vias || []
-    const viaArray = Array.isArray(vias) ? vias : [vias]
-
-    for (const via of viaArray) {
-      const netNum = this.getSegmentNet(via)
-      if (netNum === null) continue
-
-      const at = via.at || { x: 0, y: 0 }
-      const point = { x: at.x, y: at.y }
-      const viaLayers = via.layers
-        ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
-        : []
-      const layers =
-        viaLayers.length > 0
-          ? viaLayers
-          : getPcbCopperLayerRefs(this.ctx.kicadPcb)
-
-      const viaNodeKeys = layers.map((layer) =>
-        ensureNode({ netNum, layer, point }),
-      )
-      for (let i = 1; i < viaNodeKeys.length; i++) {
-        connectNodes(viaNodeKeys[0]!, viaNodeKeys[i]!)
-      }
-    }
-
-    const connectedSourcePortIdsByNodeKey = new Map<string, string[]>()
-    const visited = new Set<string>()
-
-    for (const startNodeKey of nodes.keys()) {
-      if (visited.has(startNodeKey)) continue
-
-      const traceNodeKeys: string[] = []
-      const traceConnectedSourcePortIds = new Set<string>()
-      const stack = [startNodeKey]
-      visited.add(startNodeKey)
-
-      while (stack.length > 0) {
-        const nodeKey = stack.pop()!
-        const node = nodes.get(nodeKey)
-        if (!node) continue
-
-        traceNodeKeys.push(nodeKey)
-
-        const transformedPoint = applyToPoint(this.ctx.k2cMatPcb, node.point)
-        const pcbPortId = this.findPortCenterAtPosition(
-          transformedPoint,
-          node.layer,
-        )
-        const sourcePortId = this.getConnectedSourcePortIds([pcbPortId])[0]
-        if (sourcePortId) {
-          traceConnectedSourcePortIds.add(sourcePortId)
-        }
-
-        for (const neighborNodeKey of adjacency.get(nodeKey) ?? []) {
-          if (visited.has(neighborNodeKey)) continue
-          visited.add(neighborNodeKey)
-          stack.push(neighborNodeKey)
-        }
-      }
-
-      const sourcePortIds = [...traceConnectedSourcePortIds]
-      for (const nodeKey of traceNodeKeys) {
-        connectedSourcePortIdsByNodeKey.set(nodeKey, sourcePortIds)
-      }
-    }
-
-    for (const primitive of primitives) {
-      if (primitive.primitiveType !== "wire") continue
-
-      const nodeKey = this.getPcbTraceNodeKey({
-        netNum: primitive.netNum,
-        layer: primitive.layer!,
-        point: primitive.start,
-      })
-      primitive.connectedSourcePortIds =
-        connectedSourcePortIdsByNodeKey.get(nodeKey) ?? []
-    }
-  }
-
   private getSegmentNet(segment: any): number | null {
     const net = segment?.net
     if (!net) return null
@@ -688,20 +541,24 @@ export class CollectTracesStage extends ConverterStage {
   private findPortAtPosition(
     point: { x: number; y: number },
     layer: LayerRef,
+    netNum: number | null,
   ): string | undefined {
-    const portAtCenter = this.findPortCenterAtPosition(point, layer)
+    const portAtCenter = this.findPortCenterAtPosition(point, layer, netNum)
     if (portAtCenter) return portAtCenter
 
-    return this.findPortContainingPoint(point, layer)
+    return this.findPortContainingPoint(point, layer, netNum)
   }
 
   private findPortCenterAtPosition(
     point: { x: number; y: number },
     layer: LayerRef,
+    netNum: number | null,
   ): string | undefined {
     const ports = this.ctx.db.pcb_port.list() as any[]
 
     for (const port of ports) {
+      if (!this.isPcbPortOnNet(port, netNum)) continue
+
       const layers = port.layers as string[] | undefined
       if (layers?.length && !layers.includes(layer)) {
         continue
@@ -721,11 +578,14 @@ export class CollectTracesStage extends ConverterStage {
   private findPortContainingPoint(
     point: { x: number; y: number },
     layer: LayerRef,
+    netNum: number | null,
   ): string | undefined {
     const candidates: Array<{ pcbPortId: string; distanceSq: number }> = []
     const collectCandidate = (pad: any) => {
       const pcbPortId = pad.pcb_port_id
       if (!pcbPortId || !this.isPadOnLayer(pad, layer)) return
+      const pcbPort = this.ctx.db.pcb_port.get(pcbPortId)
+      if (!this.isPcbPortOnNet(pcbPort, netNum)) return
       if (!this.isPointInsidePadCopper(point, pad)) return
 
       const dx = (pad.x ?? 0) - point.x
@@ -743,6 +603,18 @@ export class CollectTracesStage extends ConverterStage {
 
     candidates.sort((a, b) => a.distanceSq - b.distanceSq)
     return candidates[0]?.pcbPortId
+  }
+
+  private isPcbPortOnNet(port: any, netNum: number | null) {
+    if (netNum === null) return true
+
+    const sourcePortId = port?.source_port_id
+    if (!sourcePortId) return false
+
+    return (
+      this.ctx.netNumToSourcePortIds?.get(netNum)?.includes(sourcePortId) ??
+      false
+    )
   }
 
   private isPadOnLayer(pad: any, layer: LayerRef): boolean {
@@ -940,118 +812,49 @@ export class CollectTracesStage extends ConverterStage {
     return Math.hypot(point.x - projectedX, point.y - projectedY)
   }
 
-  private getConnectedSourcePortIds(pcbPortIds: Array<string | undefined>) {
-    const connectedSourcePortIds: string[] = []
-
-    for (const pcbPortId of pcbPortIds) {
-      if (!pcbPortId) continue
-
-      const pcbPort = this.ctx.db.pcb_port.get(pcbPortId)
-      const sourcePortId = pcbPort?.source_port_id
-      if (!sourcePortId || connectedSourcePortIds.includes(sourcePortId)) {
-        continue
-      }
-
-      connectedSourcePortIds.push(sourcePortId)
-    }
-
-    return connectedSourcePortIds
-  }
-
-  private getSourcePortIdsForTrace({
-    netNum,
-    connectedSourcePortIds,
-    traceConnectedSourcePortIds,
-  }: {
-    netNum: number | null
-    connectedSourcePortIds: string[]
-    traceConnectedSourcePortIds: string[]
-  }) {
-    if (netNum === null || connectedSourcePortIds.length >= 2) {
-      return connectedSourcePortIds
-    }
-
-    const inferredSourcePortIds = [...connectedSourcePortIds]
-    for (const sourcePortId of traceConnectedSourcePortIds) {
-      if (!inferredSourcePortIds.includes(sourcePortId)) {
-        inferredSourcePortIds.push(sourcePortId)
-      }
-      if (inferredSourcePortIds.length >= 2) {
-        return inferredSourcePortIds.slice(0, 2)
-      }
-    }
-
-    const netSourcePortIds = this.ctx.netNumToSourcePortIds?.get(netNum) ?? []
-    for (const sourcePortId of netSourcePortIds) {
-      if (!inferredSourcePortIds.includes(sourcePortId)) {
-        inferredSourcePortIds.push(sourcePortId)
-      }
-      if (inferredSourcePortIds.length >= 2) {
-        return inferredSourcePortIds.slice(0, 2)
-      }
-    }
-
-    return inferredSourcePortIds
-  }
-
-  private getTraceConnectedSourcePortIds(path: OrientedTraceEdge[]) {
-    const sourcePortIds: string[] = []
-
-    for (const { edge } of path) {
-      for (const sourcePortId of edge.connectedSourcePortIds ?? []) {
-        if (!sourcePortIds.includes(sourcePortId)) {
-          sourcePortIds.push(sourcePortId)
-        }
-      }
-    }
-
-    return sourcePortIds
-  }
-
   private createSourceTraceForPath({
     sourceNetId,
-    connectedSourcePortIds,
     netNum,
   }: {
     sourceNetId: string
-    connectedSourcePortIds: string[]
     netNum: number | null
   }) {
     const netName =
       netNum !== null
         ? (this.ctx.netNumToName?.get(netNum) ?? `Net-${netNum}`)
         : undefined
-    const netTraceKey = this.getNetTraceKey({
-      sourceNetId,
-      connectedSourcePortIds,
-    })
     const existingSourceTraceId =
-      this.sourceTraceIdByNetTraceKey.get(netTraceKey)
+      this.sourceTraceIdBySourceNetId.get(sourceNetId)
     if (existingSourceTraceId) {
       return existingSourceTraceId
     }
 
+    const connectedSourcePortIds = this.getUniqueSourcePortIdsForNet(netNum)
     const sourceTrace = this.ctx.db.source_trace.insert({
       connected_source_port_ids: connectedSourcePortIds,
       connected_source_net_ids: [sourceNetId],
       display_name: netName,
     })
 
-    this.sourceTraceIdByNetTraceKey.set(
-      netTraceKey,
+    this.sourceTraceIdBySourceNetId.set(
+      sourceNetId,
       sourceTrace.source_trace_id,
     )
 
     return sourceTrace.source_trace_id
   }
 
-  private getNetTraceKey({
-    sourceNetId,
-    connectedSourcePortIds,
-  }: {
-    sourceNetId: string
-    connectedSourcePortIds: string[]
-  }) {
-    return `${sourceNetId}:${[...connectedSourcePortIds].sort().join("|")}`
+  private getUniqueSourcePortIdsForNet(netNum: number | null) {
+    if (netNum === null) return []
+
+    const sourcePortIds = this.ctx.netNumToSourcePortIds?.get(netNum) ?? []
+    const uniqueSourcePortIds: string[] = []
+    for (const sourcePortId of sourcePortIds) {
+      if (!uniqueSourcePortIds.includes(sourcePortId)) {
+        uniqueSourcePortIds.push(sourcePortId)
+      }
+    }
+
+    return uniqueSourcePortIds
   }
 }
