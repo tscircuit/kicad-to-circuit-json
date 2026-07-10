@@ -1,4 +1,10 @@
 import { expect, test } from "bun:test"
+import type {
+  PcbBoard,
+  PcbComponent,
+  PcbPlatedHole,
+  PcbSmtPad,
+} from "circuit-json"
 import { existsSync, readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../lib"
 import { stackCircuitJsonKicadPngs } from "./fixtures/stackCircuitJsonKicadPngs"
@@ -44,7 +50,7 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
 
   // Check a few components
   const components = circuitJson.filter(
-    (el: any) => el.type === "pcb_component",
+    (el): el is PcbComponent => el.type === "pcb_component",
   )
   console.log("\nSample components:")
   for (const c of components.slice(0, 3)) {
@@ -55,11 +61,15 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
 
   // Check pads
   const pads = circuitJson.filter(
-    (el: any) => el.type === "pcb_smtpad" || el.type === "pcb_plated_hole",
+    (el): el is PcbSmtPad | PcbPlatedHole =>
+      el.type === "pcb_smtpad" || el.type === "pcb_plated_hole",
   )
   console.log("\nSample pads:")
   for (const p of pads.slice(0, 3)) {
-    console.log(`  - ${p.type}: x=${p.x ?? "N/A"}, y=${p.y ?? "N/A"}`)
+    const position = "x" in p && "y" in p ? p : undefined
+    console.log(
+      `  - ${p.type}: x=${position?.x ?? "N/A"}, y=${position?.y ?? "N/A"}`,
+    )
   }
 
   // Check coordinate ranges
@@ -74,7 +84,9 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
   )
 
   // Check board
-  const boards = circuitJson.filter((el: any) => el.type === "pcb_board")
+  const boards = circuitJson.filter(
+    (el): el is PcbBoard => el.type === "pcb_board",
+  )
   console.log("\nBoards:", boards.length)
   if (boards[0]) {
     const board = boards[0]

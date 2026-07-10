@@ -462,6 +462,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
             scale,
           ),
           stroke_color: DEFAULT_STROKE_COLOR,
+          is_dashed: this.getShapeStroke(arc)?.type === "dash",
         }
         this.ctx.db.schematic_path.insert(pathData)
         continue
@@ -557,6 +558,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         points: points.map((point) => applyToPoint(transform, point)),
         stroke_width: this.toStrokeWidth(polyline.stroke?.width, scale),
         stroke_color: DEFAULT_STROKE_COLOR,
+        is_dashed: polyline.stroke?.type === "dash",
         is_filled: true,
         fill_color: this.getFillColor(polyline.fill?.type),
       }
