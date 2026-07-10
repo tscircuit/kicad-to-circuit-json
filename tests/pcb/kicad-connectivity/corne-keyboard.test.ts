@@ -6,11 +6,16 @@ import {
   hasKicadCli,
 } from "../../fixtures/kicad-gencad-netlist"
 import { expectCircuitJsonTraceEndpointsMatchKicadIpc2581 } from "../../fixtures/kicad-ipc2581-physical-connectivity"
+import {
+  expectCircuitJsonConnectivityMatchesKicadPcbnewPhysical,
+  hasKicadPcbnewPhysicalConnectivity,
+} from "../../fixtures/kicad-pcbnew-physical-connectivity"
 
 const kicadPcbPath = "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb"
-const kicadCliTest = hasKicadCli() ? test : test.skip
+const kicadConnectivityTest =
+  hasKicadCli() && hasKicadPcbnewPhysicalConnectivity() ? test : test.skip
 
-kicadCliTest(
+kicadConnectivityTest(
   "Corne Keyboard connectivity matches KiCad exports",
   () => {
     const circuitJson = convertKicadPcbToCircuitJson(kicadPcbPath)
@@ -26,8 +31,15 @@ kicadCliTest(
       kicadPcbPath,
       circuitJson,
     }
+    const pcbnewPhysicalConnectivityCheck = {
+      kicadPcbPath,
+      circuitJson,
+    }
 
     expectCircuitJsonConnectivityMatchesKicadGencad(gencadConnectivityCheck)
+    expectCircuitJsonConnectivityMatchesKicadPcbnewPhysical(
+      pcbnewPhysicalConnectivityCheck,
+    )
     expectCircuitJsonConnectivityMatchesKicadDrc(drcConnectivityCheck)
     expectCircuitJsonTraceEndpointsMatchKicadIpc2581(
       ipc2581PhysicalConnectivityCheck,
