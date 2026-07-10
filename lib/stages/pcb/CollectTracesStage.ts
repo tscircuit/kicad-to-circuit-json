@@ -12,6 +12,10 @@ import {
   getPcbCopperLayerRefs,
   mapKicadLayerToLayerRef,
 } from "./layer-mapping"
+import {
+  isPointInsidePolygonContours,
+  type PolygonPoint,
+} from "./polygon-contours"
 
 interface TracePoint {
   x: number
@@ -612,7 +616,11 @@ export class CollectTracesStage extends ConverterStage {
     }
 
     if (shape === "polygon") {
-      return this.isPointInsidePolygon(point, pad.points ?? [])
+      return isPointInsidePolygonContours(
+        point,
+        this.getPadPolygonContours(pad),
+        this.PORT_MATCH_TOLERANCE,
+      )
     }
 
     if (shape === "pill" || shape === "rotated_pill") {
@@ -712,36 +720,14 @@ export class CollectTracesStage extends ConverterStage {
     return local.x ** 2 + (local.y - capY) ** 2 <= (radius + tolerance) ** 2
   }
 
-  private isPointInsidePolygon(
-    point: { x: number; y: number },
-    points: Array<{ x: number; y: number }>,
-  ) {
-    if (points.length < 3) return false
+  private getPadPolygonContours(pad: any): PolygonPoint[][] {
+    const contours = pad.contours as PolygonPoint[][] | undefined
+    const validContours =
+      contours?.filter((contour) => contour.length >= 3) ?? []
+    if (validContours.length > 0) return validContours
 
-    for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
-      if (
-        this.getDistanceToSegment(point, points[j]!, points[i]!) <=
-        this.PORT_MATCH_TOLERANCE
-      ) {
-        return true
-      }
-    }
-
-    let inside = false
-    for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
-      const current = points[i]!
-      const previous = points[j]!
-      const crosses =
-        current.y > point.y !== previous.y > point.y &&
-        point.x <
-          ((previous.x - current.x) * (point.y - current.y)) /
-            (previous.y - current.y) +
-            current.x
-
-      if (crosses) inside = !inside
-    }
-
-    return inside
+    const points = pad.points as PolygonPoint[] | undefined
+    return points && points.length >= 3 ? [points] : []
   }
 
   private getLocalPadPoint(
@@ -759,29 +745,5 @@ export class CollectTracesStage extends ConverterStage {
       x: dx * cos - dy * sin,
       y: dx * sin + dy * cos,
     }
-  }
-
-  private getDistanceToSegment(
-    point: { x: number; y: number },
-    start: { x: number; y: number },
-    end: { x: number; y: number },
-  ) {
-    const dx = end.x - start.x
-    const dy = end.y - start.y
-    const lengthSq = dx * dx + dy * dy
-    if (lengthSq === 0) {
-      return Math.hypot(point.x - start.x, point.y - start.y)
-    }
-
-    const projection = Math.max(
-      0,
-      Math.min(
-        1,
-        ((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSq,
-      ),
-    )
-    const projectedX = start.x + projection * dx
-    const projectedY = start.y + projection * dy
-    return Math.hypot(point.x - projectedX, point.y - projectedY)
   }
 }

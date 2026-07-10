@@ -56,6 +56,52 @@ const getNextPcbPlatedHoleId = (ctx: ConverterContext) => {
   return candidate
 }
 
+type PolygonContour = Array<{ x: number; y: number }>
+type PcbSmtPadPolygonWithContours = PcbSmtPadPolygon & {
+  contours?: PolygonContour[]
+}
+
+function getCustomPadPolygonRawContours(grPoly: any): any[][] {
+  const explicitContours = getRawContourArray(
+    grPoly._contours ?? grPoly.contours,
+  )
+  if (explicitContours.length > 0) return explicitContours
+
+  const rawPoints = getRawPointArray(
+    grPoly._sxPts ?? grPoly.points ?? grPoly.pts,
+  )
+  return rawPoints.length > 0 ? [rawPoints] : []
+}
+
+function getRawContourArray(contours: any): any[][] {
+  const contourArray = Array.isArray(contours)
+    ? contours
+    : contours
+      ? [contours]
+      : []
+
+  return contourArray
+    .map(getRawPointArray)
+    .filter((points) => points.length > 0)
+}
+
+function getRawPointArray(container: any): any[] {
+  if (!container) return []
+  if (Array.isArray(container)) return container
+  if (Array.isArray(container.points)) return container.points
+  if (Array.isArray(container.pts)) return container.pts
+  if (Array.isArray(container._sxPts)) return container._sxPts
+  return []
+}
+
+function attachPadPolygonContours(pad: any, contours: PolygonContour[]) {
+  Object.defineProperty(pad, "contours", {
+    value: contours,
+    enumerable: false,
+    configurable: true,
+  })
+}
+
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
  */
@@ -284,53 +330,43 @@ export function createSmdPad({
     for (const primitive of primitivesArray) {
       if (primitive.token === "gr_poly") {
         const grPoly = primitive.gr_poly || primitive
-        let rawPts: any[] = []
-        const ptsContainer = grPoly._sxPts || grPoly.points || grPoly.pts
-        const contours = grPoly._contours || grPoly.contours
-
-        if (ptsContainer) {
-          if (Array.isArray(ptsContainer)) {
-            rawPts = ptsContainer
-          } else if (Array.isArray(ptsContainer.points)) {
-            rawPts = ptsContainer.points
-          } else if (Array.isArray(ptsContainer.pts)) {
-            rawPts = ptsContainer.pts
-          }
-        } else if (Array.isArray(contours)) {
-          // Flatten points from all contours
-          for (const contour of contours) {
-            const contourPts = contour.points || contour.pts || []
-            rawPts.push(
-              ...(Array.isArray(contourPts) ? contourPts : [contourPts]),
-            )
-          }
-        }
+        const rawContours = getCustomPadPolygonRawContours(grPoly)
 
         // Extract points and transform them
-        const points: Array<{ x: number; y: number }> = []
+        const polygonContours: PolygonContour[] = []
 
-        for (const pt of rawPts) {
-          // Handle various point formats ({x,y}, {xy:{x,y}}, SxClass with x,y)
-          const x = pt.x ?? pt.xy?.x
-          const y = pt.y ?? pt.xy?.y
-          if (x !== undefined && y !== undefined) {
-            const rotated = rotatePoint({
-              point: { x, y },
-              ccwRotationDegrees: totalCcwRotationDegrees,
-            })
-            const kicadPos = {
-              x: padKicadPos.x + rotated.x,
-              y: padKicadPos.y + rotated.y,
+        for (const rawContour of rawContours) {
+          const contourPoints: PolygonContour = []
+
+          for (const pt of rawContour) {
+            // Handle various point formats ({x,y}, {xy:{x,y}}, SxClass with x,y)
+            const x = pt.x ?? pt.xy?.x
+            const y = pt.y ?? pt.xy?.y
+            if (x !== undefined && y !== undefined) {
+              const rotated = rotatePoint({
+                point: { x, y },
+                ccwRotationDegrees: totalCcwRotationDegrees,
+              })
+              const kicadPos = {
+                x: padKicadPos.x + rotated.x,
+                y: padKicadPos.y + rotated.y,
+              }
+              const globalPt = applyToPoint(ctx.k2cMatPcb!, kicadPos)
+              contourPoints.push(globalPt)
+              expandPrimBounds(globalPt.x, globalPt.y)
             }
-            const globalPt = applyToPoint(ctx.k2cMatPcb!, kicadPos)
-            points.push(globalPt)
-            expandPrimBounds(globalPt.x, globalPt.y)
+          }
+
+          if (contourPoints.length > 0) {
+            polygonContours.push(contourPoints)
           }
         }
+
+        const points = polygonContours.flat()
 
         if (points.length > 0) {
           // Create polygon SMT pad
-          const smtpad: PcbSmtPadPolygon = {
+          const smtpad: PcbSmtPadPolygonWithContours = {
             type: "pcb_smtpad",
             shape: "polygon",
             pcb_component_id: componentId,
@@ -339,9 +375,12 @@ export function createSmdPad({
             layer: layer,
             port_hints: [pad.number.toString()],
             points: points,
-          } as PcbSmtPadPolygon
+          } as PcbSmtPadPolygonWithContours
 
-          ctx.db.pcb_smtpad.insert(smtpad)
+          const insertedPad = ctx.db.pcb_smtpad.insert(smtpad)
+          if (polygonContours.length > 1) {
+            attachPadPolygonContours(insertedPad, polygonContours)
+          }
           primitivesProcessed++
         }
       }

@@ -379,7 +379,7 @@ function getNodeKeyFromDrcItem(item: string) {
   return getNodeKey(match[2]!, match[1]!)
 }
 
-function getConnectivityIndex(groups: string[][]) {
+export function getConnectivityIndex(groups: string[][]) {
   const groupSignaturesByNode = new Map<string, Set<string>>()
   for (const group of groups) {
     const signature = getGroupSignature(group)
@@ -393,29 +393,48 @@ function getConnectivityIndex(groups: string[][]) {
   return groupSignaturesByNode
 }
 
-function doesDrcConnectivityAssertionMatchCircuitJson(
+export function doesDrcConnectivityAssertionMatchCircuitJson(
   assertion: {
     expectedRelation: string
     nodes: string[]
   },
   connectivityIndex: Map<string, Set<string>>,
 ) {
-  const [firstNode, secondNode] = assertion.nodes
-  if (!firstNode || !secondNode) return true
+  const pairs = getUniqueNodePairs(assertion.nodes)
+  if (pairs.length === 0) return true
 
-  const firstGroups = connectivityIndex.get(firstNode) ?? new Set()
-  const secondGroups = connectivityIndex.get(secondNode) ?? new Set()
-  if (firstGroups.size === 0 || secondGroups.size === 0) return false
+  for (const [firstNode, secondNode] of pairs) {
+    const firstGroups = connectivityIndex.get(firstNode) ?? new Set()
+    const secondGroups = connectivityIndex.get(secondNode) ?? new Set()
+    if (firstGroups.size === 0 || secondGroups.size === 0) return false
 
-  const shareGroup = [...firstGroups].some((signature) =>
-    secondGroups.has(signature),
-  )
+    const shareGroup = [...firstGroups].some((signature) =>
+      secondGroups.has(signature),
+    )
 
-  if (assertion.expectedRelation === "same-net") {
-    return shareGroup
+    if (assertion.expectedRelation === "same-net" && !shareGroup) {
+      return false
+    }
+
+    if (assertion.expectedRelation === "different-net" && shareGroup) {
+      return false
+    }
   }
 
-  return !shareGroup
+  return true
+}
+
+function getUniqueNodePairs(nodes: string[]) {
+  const uniqueNodes = [...new Set(nodes)].sort(compareNodeKeys)
+  const pairs: Array<[string, string]> = []
+
+  for (let i = 0; i < uniqueNodes.length; i++) {
+    for (let j = i + 1; j < uniqueNodes.length; j++) {
+      pairs.push([uniqueNodes[i]!, uniqueNodes[j]!])
+    }
+  }
+
+  return pairs
 }
 
 function getQuotedFields(line: string) {
