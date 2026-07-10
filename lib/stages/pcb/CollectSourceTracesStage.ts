@@ -1,6 +1,7 @@
 import type { Footprint } from "kicadts"
 import { ConverterStage } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
+import { getPadNetNum, getSourcePortIdForPad } from "./pad-source-port-id"
 
 /**
  * CollectSourceTracesStage extracts logical nets from KiCad PCB by analyzing net
@@ -10,8 +11,7 @@ import { getTopLevelCopperArcs } from "./arc-utils"
  * 1. Iterates through all footprints and their pads
  * 2. Builds a mapping of nets to connected pads
  * 3. Creates source_port elements for each pad
- * 4. Creates source_net elements for each net. Physical trace collection creates
- *    smaller source_trace elements that point at these source nets.
+ * 4. Creates one source_net and one source_trace element for each net.
  */
 export class CollectSourceTracesStage extends ConverterStage {
   private processedNets = new Set<number>()
@@ -51,11 +51,12 @@ export class CollectSourceTracesStage extends ConverterStage {
         continue
       }
 
-      this.ctx.netNumToSourcePortIds?.set(
-        netNum,
+      const sourcePortIds = this.getUniqueSourcePortIds(
         pads.map((p) => p.sourcePortId),
       )
-      this.createSourceNet(netNum)
+      this.ctx.netNumToSourcePortIds?.set(netNum, sourcePortIds)
+      const sourceNetId = this.createSourceNet(netNum)
+      this.createSourceTrace(netNum, sourceNetId, sourcePortIds)
       this.processedNets.add(netNum)
     }
 
@@ -147,6 +148,7 @@ export class CollectSourceTracesStage extends ConverterStage {
         componentId,
         padNumber,
         footprint,
+        pad,
       })
 
       // Add to the net mapping
@@ -163,28 +165,22 @@ export class CollectSourceTracesStage extends ConverterStage {
   }
 
   private getPadNet(pad: any): number | null {
-    // Extract net number from pad
-    // KiCad pads have a '_sxNet' property (from kicadts) or 'net' property
-    const net = pad._sxNet || pad.net
-    if (!net) return null
-
-    // Net can be a number or an object with _id/_name properties (kicadts format)
-    if (typeof net === "number") return net
-    if (typeof net === "object") {
-      return net._id ?? net.number ?? net.ordinal ?? null
-    }
-
-    return null
+    return getPadNetNum(pad)
   }
 
   private getOrCreateSourcePort(params: {
     componentId: string
     padNumber: string
     footprint: Footprint
+    pad: any
   }): string {
-    const { componentId, padNumber, footprint } = params
-    // Create a unique source_port_id based on component and pad
-    const sourcePortId = `${componentId}_port_${padNumber}`
+    const { componentId, padNumber, footprint, pad } = params
+    const sourcePortId = getSourcePortIdForPad({
+      componentId,
+      footprint,
+      pad,
+    })
+    if (!sourcePortId) return `${componentId}_port_${padNumber}`
 
     // Check if source_port already exists
     const existingPort = this.ctx.db.source_port
@@ -241,5 +237,33 @@ export class CollectSourceTracesStage extends ConverterStage {
     if (this.ctx.stats) {
       this.ctx.stats.traces = (this.ctx.stats.traces || 0) + 1
     }
+
+    return sourceNet.source_net_id
+  }
+
+  private createSourceTrace(
+    netNum: number,
+    sourceNetId: string,
+    sourcePortIds: string[],
+  ) {
+    const netName = this.ctx.netNumToName?.get(netNum) || `Net-${netNum}`
+    const sourceTrace = this.ctx.db.source_trace.insert({
+      connected_source_port_ids: sourcePortIds,
+      connected_source_net_ids: [sourceNetId],
+      display_name: netName,
+    })
+
+    this.ctx.netNumToSourceTraceId?.set(netNum, sourceTrace.source_trace_id)
+  }
+
+  private getUniqueSourcePortIds(sourcePortIds: string[]) {
+    const uniqueSourcePortIds: string[] = []
+    for (const sourcePortId of sourcePortIds) {
+      if (!uniqueSourcePortIds.includes(sourcePortId)) {
+        uniqueSourcePortIds.push(sourcePortId)
+      }
+    }
+
+    return uniqueSourcePortIds
   }
 }

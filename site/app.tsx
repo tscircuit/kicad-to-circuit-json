@@ -156,6 +156,7 @@ export function App() {
         )
         nextSimpleRouteJson = getSimpleRouteJsonFromCircuitJson({
           circuitJson: stripRoutesForSimpleRouteExport(nextCircuitJson),
+          ignoreExistingTopLevelPcbRouteState: true,
         }).simpleRouteJson
       } catch (error) {
         nextWarnings.push(

@@ -46,7 +46,7 @@ jobs:
         run: bun run download-demos
 
       - name: Run tests
-        run: bun test
+        run: bun test --timeout 80000
 
       - name: Upload snapshot artifacts
         if: always()

@@ -82,10 +82,12 @@ test("stitches Arduino Uno PCB segments into contiguous pcb_trace routes", () =>
     ),
   ).toBe(true)
   expect(
-    sourceTraces.every(
-      (sourceTrace) => sourceTrace.connected_source_port_ids.length <= 2,
-    ),
-  ).toBe(true)
+    new Set(
+      sourceTraces.map(
+        (sourceTrace) => sourceTrace.connected_source_net_ids[0],
+      ),
+    ).size,
+  ).toBe(sourceTraces.length)
   expect(
     pcbTraces.every((pcbTrace) => {
       const sourceTrace = sourceTracesById.get(pcbTrace.source_trace_id)

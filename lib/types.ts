@@ -16,6 +16,7 @@ export interface ConverterContext {
   // Maps for tracking relationships
   netNumToName?: Map<number, string>
   netNumToSourceNetId?: Map<number, string>
+  netNumToSourceTraceId?: Map<number, string>
   netNumToSourcePortIds?: Map<number, string[]>
   footprintUuidToComponentId?: Map<string, string>
   footprintUuidToSourceComponentId?: Map<string, string>

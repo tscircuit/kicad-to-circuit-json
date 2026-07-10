@@ -64,10 +64,13 @@ test("pcb source ports use local numeric pad aliases", () => {
     sourceNets.map((net) => net.source_net_id).filter(Boolean),
   )
   expect(sourceNets.length).toBeGreaterThan(0)
+  const sourceTraceNetIds = new Set<string>()
   for (const sourceTrace of sourceTraces) {
-    expect(sourceTrace.connected_source_port_ids.length).toBeLessThanOrEqual(2)
     expect(sourceTrace.connected_source_net_ids.length).toBe(1)
-    expect(sourceNetIds.has(sourceTrace.connected_source_net_ids[0])).toBe(true)
+    const sourceNetId = sourceTrace.connected_source_net_ids[0]
+    expect(sourceNetIds.has(sourceNetId)).toBe(true)
+    expect(sourceTraceNetIds.has(sourceNetId)).toBe(false)
+    sourceTraceNetIds.add(sourceNetId)
 
     for (const sourcePortId of sourceTrace.connected_source_port_ids ?? []) {
       expect(sourcePortIds.has(sourcePortId)).toBe(true)
@@ -103,4 +106,45 @@ test("pcb source ports preserve nonnumeric pad names as local aliases", () => {
   )
   expect(j2R).toBeDefined()
   expect(j2R.name).toBe("R")
+})
+
+test("duplicate pad labels on different nets use distinct source ports", () => {
+  const circuitJson = convertPcb(
+    "tests/assets/dual-camera-to-gmsl-serializer-csi-adapter.kicad_pcb",
+  )
+  const sourceComponents = circuitJson.filter(
+    (element) => element.type === "source_component",
+  )
+  const sourcePorts = circuitJson.filter(
+    (element) => element.type === "source_port",
+  )
+  const sourceTraces = circuitJson.filter(
+    (element) => element.type === "source_trace",
+  )
+
+  for (const refdes of ["J4", "J5"]) {
+    const component = sourceComponents.find(
+      (sourceComponent) => sourceComponent.name === refdes,
+    )
+    expect(component).toBeDefined()
+
+    const mpPorts = sourcePorts.filter(
+      (sourcePort) =>
+        sourcePort.source_component_id === component.source_component_id &&
+        sourcePort.pin_number === "MP",
+    )
+    expect(mpPorts).toHaveLength(2)
+    expect(new Set(mpPorts.map((port) => port.source_port_id)).size).toBe(2)
+
+    const connectedSourceTraceIds = new Set(
+      mpPorts.map((port) => {
+        const sourceTrace = sourceTraces.find((trace) =>
+          trace.connected_source_port_ids.includes(port.source_port_id),
+        )
+        expect(sourceTrace).toBeDefined()
+        return sourceTrace.source_trace_id
+      }),
+    )
+    expect(connectedSourceTraceIds.size).toBe(2)
+  }
 })

@@ -3,6 +3,7 @@ import type { ConverterContext } from "../../../types"
 
 export interface PadPortInfo {
   padNumber: string
+  sourcePortId?: string
   padType: "smd" | "thru_hole" | "np_thru_hole"
   layers: string[]
   position: { x: number; y: number }
@@ -22,7 +23,8 @@ export function createPcbPort({
   }
 
   // Generate the source_port_id that will be created by CollectSourceTracesStage
-  const sourcePortId = `${componentId}_port_${padInfo.padNumber}`
+  const sourcePortId =
+    padInfo.sourcePortId ?? `${componentId}_port_${padInfo.padNumber}`
 
   const insertedPort = ctx.db.pcb_port.insert({
     pcb_component_id: componentId,

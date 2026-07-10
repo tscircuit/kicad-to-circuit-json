@@ -75,7 +75,7 @@
     "pcb_silkscreen_text_id": "pcb_silkscreen_text_0",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
-    "font_size": 1.5,
+    "font_size": 1,
     "text": "REF**",
     "anchor_position": {
       "x": 0,
@@ -89,7 +89,7 @@
     "pcb_fabrication_note_text_id": "",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
-    "font_size": 1.5,
+    "font_size": 1,
     "text": "Scratch_RefRotation_EdgeConnector",
     "anchor_position": {
       "x": 0,

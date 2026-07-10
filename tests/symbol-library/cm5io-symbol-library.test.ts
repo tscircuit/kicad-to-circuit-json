@@ -245,9 +245,9 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
     width: 1200,
     height: 1140,
   })
-  expect(schematicSvg.match(/class="component-pin"/g)?.length).toBe(
-    sourcePorts.length * 2,
-  )
+  expect(
+    schematicSvg.match(/class="[^"]*\bcomponent-pin\b[^"]*"/g)?.length,
+  ).toBe(sourcePorts.length * 2)
   expect(schematicSvg).toContain("Ethernet_Pair1_P")
   expect(schematicSvg).toContain("CC1")
 })

@@ -12,6 +12,10 @@ import {
   getPcbCopperLayerRefs,
   mapKicadLayerToLayerRef,
 } from "./layer-mapping"
+import {
+  isPointInsidePolygonContours,
+  type PolygonPoint,
+} from "./polygon-contours"
 
 interface TracePoint {
   x: number
@@ -30,7 +34,6 @@ interface TracePrimitive {
   outerDiameter?: number
   holeDiameter?: number
   netNum: number | null
-  connectedSourcePortIds?: string[]
 }
 
 interface TraceEdge extends TracePrimitive {
@@ -68,15 +71,6 @@ interface TraceRoutePointVia {
 }
 
 type TraceRoutePoint = TraceRoutePointWire | TraceRoutePointVia
-type NetTraceKey = string
-type SourceTraceId = string
-
-interface PcbTraceConnectivityNode {
-  key: string
-  point: TracePoint
-  layer: LayerRef
-  netNum: number | null
-}
 
 /**
  * CollectTracesStage converts KiCad PCB segments (traces) into Circuit JSON pcb_trace elements.
@@ -85,17 +79,13 @@ interface PcbTraceConnectivityNode {
 export class CollectTracesStage extends ConverterStage {
   private readonly PORT_MATCH_TOLERANCE = 1e-3
   private readonly POINT_KEY_PRECISION = 1e6
-  private readonly sourceTraceIdByNetTraceKey = new Map<
-    NetTraceKey,
-    SourceTraceId
-  >()
 
   step(): boolean {
     if (
       !this.ctx.kicadPcb ||
       !this.ctx.k2cMatPcb ||
       !this.ctx.netNumToName ||
-      !this.ctx.netNumToSourceNetId
+      !this.ctx.netNumToSourceTraceId
     ) {
       this.finished = true
       return false
@@ -123,7 +113,6 @@ export class CollectTracesStage extends ConverterStage {
       if (primitive) primitives.push(primitive)
     }
 
-    this.annotatePrimitivesWithConnectedSourcePorts(primitives)
     this.createTracesFromPrimitives(primitives)
 
     this.finished = true
@@ -341,46 +330,17 @@ export class CollectTracesStage extends ConverterStage {
   }
 
   private insertTracePath(path: OrientedTraceEdge[]) {
-    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceNetId) return
+    if (!this.ctx.k2cMatPcb || !this.ctx.netNumToSourceTraceId) return
     if (path.length === 0) return
 
     const routePoints = this.getPathRoutePoints(path)
     if (routePoints.length < 2) return
 
-    const firstNode = this.getTraceGraphNodeFromKey(
-      this.getOrientedTraceEdgeStartKey(path[0]!),
-    )
-    const lastNode = this.getTraceGraphNodeFromKey(
-      this.getOrientedTraceEdgeEndKey(path[path.length - 1]!),
-    )
     const netNum = path[0]!.edge.netNum
-    const sourceNetId =
+    const sourceTraceId =
       netNum !== null
-        ? (this.ctx.netNumToSourceNetId.get(netNum) ?? undefined)
+        ? (this.ctx.netNumToSourceTraceId.get(netNum) ?? undefined)
         : undefined
-
-    const startPoint = applyToPoint(this.ctx.k2cMatPcb, firstNode.point)
-    const lastPoint = applyToPoint(this.ctx.k2cMatPcb, lastNode.point)
-    const startPcbPortId = this.findPortAtPosition(startPoint, firstNode.layer)
-    const endPcbPortId = this.findPortAtPosition(lastPoint, lastNode.layer)
-    const connectedSourcePortIds = this.getConnectedSourcePortIds([
-      startPcbPortId,
-      endPcbPortId,
-    ])
-    const traceConnectedSourcePortIds =
-      this.getTraceConnectedSourcePortIds(path)
-    const inferredSourcePortIds = this.getSourcePortIdsForTrace({
-      netNum,
-      connectedSourcePortIds,
-      traceConnectedSourcePortIds,
-    })
-    const sourceTraceId = sourceNetId
-      ? this.createSourceTraceForPath({
-          sourceNetId,
-          connectedSourcePortIds: inferredSourcePortIds,
-          netNum,
-        })
-      : undefined
 
     const firstWireIndex = routePoints.findIndex(
       (point) => point.routeType === "wire",
@@ -389,6 +349,19 @@ export class CollectTracesStage extends ConverterStage {
       (point) => point.routeType === "wire",
     )
     if (firstWireIndex === -1) return
+
+    const firstWirePoint = routePoints[firstWireIndex] as TraceRoutePointWire
+    const lastWirePoint = routePoints[lastWireIndex] as TraceRoutePointWire
+    const startPcbPortId = this.findPortAtPosition(
+      { x: firstWirePoint.x, y: firstWirePoint.y },
+      firstWirePoint.layer,
+      netNum,
+    )
+    const endPcbPortId = this.findPortAtPosition(
+      { x: lastWirePoint.x, y: lastWirePoint.y },
+      lastWirePoint.layer,
+      netNum,
+    )
 
     const route = routePoints.map((point, index) => {
       if (point.routeType === "via") {
@@ -487,7 +460,10 @@ export class CollectTracesStage extends ConverterStage {
 
     const { point, layer } = this.getTraceGraphNodeFromKey(nodeKey)
     const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
-    if (this.findPortAtPosition(transformedPoint, layer)) return true
+    const netNum = graph.edges[edgeIds[0]!]?.netNum ?? null
+    if (this.findPortCenterAtPosition(transformedPoint, layer, netNum)) {
+      return true
+    }
 
     return false
   }
@@ -525,149 +501,8 @@ export class CollectTracesStage extends ConverterStage {
     }
   }
 
-  private getOrientedTraceEdgeStartKey({ edge, reversed }: OrientedTraceEdge) {
-    return reversed ? edge.endKey : edge.startKey
-  }
-
-  private getOrientedTraceEdgeEndKey({ edge, reversed }: OrientedTraceEdge) {
-    return reversed ? edge.startKey : edge.endKey
-  }
-
   private pointsMatch(a: TracePoint, b: TracePoint): boolean {
     return this.getPointKey(a) === this.getPointKey(b)
-  }
-
-  private getPcbTraceNodeKey({
-    netNum,
-    layer,
-    point,
-  }: {
-    netNum: number | null
-    layer: LayerRef
-    point: TracePoint
-  }) {
-    return `${netNum ?? "no-net"}:${layer}:${this.getPointKey(point)}`
-  }
-
-  private annotatePrimitivesWithConnectedSourcePorts(
-    primitives: TracePrimitive[],
-  ) {
-    if (!this.ctx.k2cMatPcb || primitives.length === 0) return
-
-    const nodes = new Map<string, PcbTraceConnectivityNode>()
-    const adjacency = new Map<string, Set<string>>()
-
-    const ensureNode = (params: {
-      netNum: number | null
-      layer: LayerRef
-      point: TracePoint
-    }) => {
-      const { netNum, layer, point } = params
-      const key = this.getPcbTraceNodeKey({ netNum, layer, point })
-      if (!nodes.has(key)) {
-        nodes.set(key, { key, point, layer, netNum })
-      }
-      if (!adjacency.has(key)) {
-        adjacency.set(key, new Set())
-      }
-      return key
-    }
-
-    const connectNodes = (a: string, b: string) => {
-      adjacency.get(a)?.add(b)
-      adjacency.get(b)?.add(a)
-    }
-
-    for (const primitive of primitives) {
-      if (primitive.primitiveType !== "wire") continue
-
-      const startKey = ensureNode({
-        netNum: primitive.netNum,
-        layer: primitive.layer!,
-        point: primitive.start,
-      })
-      const endKey = ensureNode({
-        netNum: primitive.netNum,
-        layer: primitive.layer!,
-        point: primitive.end,
-      })
-      connectNodes(startKey, endKey)
-    }
-
-    const vias = this.ctx.kicadPcb?.vias || []
-    const viaArray = Array.isArray(vias) ? vias : [vias]
-
-    for (const via of viaArray) {
-      const netNum = this.getSegmentNet(via)
-      if (netNum === null) continue
-
-      const at = via.at || { x: 0, y: 0 }
-      const point = { x: at.x, y: at.y }
-      const viaLayers = via.layers
-        ? getCopperSpanLayerRefsFromLayers(via.layers, this.ctx.kicadPcb)
-        : []
-      const layers =
-        viaLayers.length > 0
-          ? viaLayers
-          : getPcbCopperLayerRefs(this.ctx.kicadPcb)
-
-      const viaNodeKeys = layers.map((layer) =>
-        ensureNode({ netNum, layer, point }),
-      )
-      for (let i = 1; i < viaNodeKeys.length; i++) {
-        connectNodes(viaNodeKeys[0]!, viaNodeKeys[i]!)
-      }
-    }
-
-    const connectedSourcePortIdsByNodeKey = new Map<string, string[]>()
-    const visited = new Set<string>()
-
-    for (const startNodeKey of nodes.keys()) {
-      if (visited.has(startNodeKey)) continue
-
-      const traceNodeKeys: string[] = []
-      const traceConnectedSourcePortIds = new Set<string>()
-      const stack = [startNodeKey]
-      visited.add(startNodeKey)
-
-      while (stack.length > 0) {
-        const nodeKey = stack.pop()!
-        const node = nodes.get(nodeKey)
-        if (!node) continue
-
-        traceNodeKeys.push(nodeKey)
-
-        const transformedPoint = applyToPoint(this.ctx.k2cMatPcb, node.point)
-        const pcbPortId = this.findPortAtPosition(transformedPoint, node.layer)
-        const sourcePortId = this.getConnectedSourcePortIds([pcbPortId])[0]
-        if (sourcePortId) {
-          traceConnectedSourcePortIds.add(sourcePortId)
-        }
-
-        for (const neighborNodeKey of adjacency.get(nodeKey) ?? []) {
-          if (visited.has(neighborNodeKey)) continue
-          visited.add(neighborNodeKey)
-          stack.push(neighborNodeKey)
-        }
-      }
-
-      const sourcePortIds = [...traceConnectedSourcePortIds]
-      for (const nodeKey of traceNodeKeys) {
-        connectedSourcePortIdsByNodeKey.set(nodeKey, sourcePortIds)
-      }
-    }
-
-    for (const primitive of primitives) {
-      if (primitive.primitiveType !== "wire") continue
-
-      const nodeKey = this.getPcbTraceNodeKey({
-        netNum: primitive.netNum,
-        layer: primitive.layer!,
-        point: primitive.start,
-      })
-      primitive.connectedSourcePortIds =
-        connectedSourcePortIdsByNodeKey.get(nodeKey) ?? []
-    }
   }
 
   private getSegmentNet(segment: any): number | null {
@@ -685,10 +520,24 @@ export class CollectTracesStage extends ConverterStage {
   private findPortAtPosition(
     point: { x: number; y: number },
     layer: LayerRef,
+    netNum: number | null,
+  ): string | undefined {
+    const portAtCenter = this.findPortCenterAtPosition(point, layer, netNum)
+    if (portAtCenter) return portAtCenter
+
+    return this.findPortContainingPoint(point, layer, netNum)
+  }
+
+  private findPortCenterAtPosition(
+    point: { x: number; y: number },
+    layer: LayerRef,
+    netNum: number | null,
   ): string | undefined {
     const ports = this.ctx.db.pcb_port.list() as any[]
 
     for (const port of ports) {
+      if (!this.isPcbPortOnNet(port, netNum)) continue
+
       const layers = port.layers as string[] | undefined
       if (layers?.length && !layers.includes(layer)) {
         continue
@@ -705,118 +554,196 @@ export class CollectTracesStage extends ConverterStage {
     return undefined
   }
 
-  private getConnectedSourcePortIds(pcbPortIds: Array<string | undefined>) {
-    const connectedSourcePortIds: string[] = []
-
-    for (const pcbPortId of pcbPortIds) {
-      if (!pcbPortId) continue
-
+  private findPortContainingPoint(
+    point: { x: number; y: number },
+    layer: LayerRef,
+    netNum: number | null,
+  ): string | undefined {
+    const candidates: Array<{ pcbPortId: string; distanceSq: number }> = []
+    const collectCandidate = (pad: any) => {
+      const pcbPortId = pad.pcb_port_id
+      if (!pcbPortId || !this.isPadOnLayer(pad, layer)) return
       const pcbPort = this.ctx.db.pcb_port.get(pcbPortId)
-      const sourcePortId = pcbPort?.source_port_id
-      if (!sourcePortId || connectedSourcePortIds.includes(sourcePortId)) {
-        continue
-      }
+      if (!this.isPcbPortOnNet(pcbPort, netNum)) return
+      if (!this.isPointInsidePadCopper(point, pad)) return
 
-      connectedSourcePortIds.push(sourcePortId)
+      const dx = (pad.x ?? 0) - point.x
+      const dy = (pad.y ?? 0) - point.y
+      candidates.push({ pcbPortId, distanceSq: dx * dx + dy * dy })
     }
 
-    return connectedSourcePortIds
+    for (const pad of this.ctx.db.pcb_smtpad.list() as any[]) {
+      collectCandidate(pad)
+    }
+
+    for (const pad of this.ctx.db.pcb_plated_hole.list() as any[]) {
+      collectCandidate(pad)
+    }
+
+    candidates.sort((a, b) => a.distanceSq - b.distanceSq)
+    return candidates[0]?.pcbPortId
   }
 
-  private getSourcePortIdsForTrace({
-    netNum,
-    connectedSourcePortIds,
-    traceConnectedSourcePortIds,
-  }: {
-    netNum: number | null
-    connectedSourcePortIds: string[]
-    traceConnectedSourcePortIds: string[]
-  }) {
-    if (netNum === null || connectedSourcePortIds.length >= 2) {
-      return connectedSourcePortIds
-    }
+  private isPcbPortOnNet(port: any, netNum: number | null) {
+    if (netNum === null) return true
 
-    const inferredSourcePortIds = [...connectedSourcePortIds]
-    for (const sourcePortId of traceConnectedSourcePortIds) {
-      if (!inferredSourcePortIds.includes(sourcePortId)) {
-        inferredSourcePortIds.push(sourcePortId)
-      }
-      if (inferredSourcePortIds.length >= 2) {
-        return inferredSourcePortIds.slice(0, 2)
-      }
-    }
+    const sourcePortId = port?.source_port_id
+    if (!sourcePortId) return false
 
-    const netSourcePortIds = this.ctx.netNumToSourcePortIds?.get(netNum) ?? []
-    for (const sourcePortId of netSourcePortIds) {
-      if (!inferredSourcePortIds.includes(sourcePortId)) {
-        inferredSourcePortIds.push(sourcePortId)
-      }
-      if (inferredSourcePortIds.length >= 2) {
-        return inferredSourcePortIds.slice(0, 2)
-      }
-    }
-
-    return inferredSourcePortIds
-  }
-
-  private getTraceConnectedSourcePortIds(path: OrientedTraceEdge[]) {
-    const sourcePortIds: string[] = []
-
-    for (const { edge } of path) {
-      for (const sourcePortId of edge.connectedSourcePortIds ?? []) {
-        if (!sourcePortIds.includes(sourcePortId)) {
-          sourcePortIds.push(sourcePortId)
-        }
-      }
-    }
-
-    return sourcePortIds
-  }
-
-  private createSourceTraceForPath({
-    sourceNetId,
-    connectedSourcePortIds,
-    netNum,
-  }: {
-    sourceNetId: string
-    connectedSourcePortIds: string[]
-    netNum: number | null
-  }) {
-    const netName =
-      netNum !== null
-        ? (this.ctx.netNumToName?.get(netNum) ?? `Net-${netNum}`)
-        : undefined
-    const netTraceKey = this.getNetTraceKey({
-      sourceNetId,
-      connectedSourcePortIds,
-    })
-    const existingSourceTraceId =
-      this.sourceTraceIdByNetTraceKey.get(netTraceKey)
-    if (existingSourceTraceId) {
-      return existingSourceTraceId
-    }
-
-    const sourceTrace = this.ctx.db.source_trace.insert({
-      connected_source_port_ids: connectedSourcePortIds,
-      connected_source_net_ids: [sourceNetId],
-      display_name: netName,
-    })
-
-    this.sourceTraceIdByNetTraceKey.set(
-      netTraceKey,
-      sourceTrace.source_trace_id,
+    return (
+      this.ctx.netNumToSourcePortIds?.get(netNum)?.includes(sourcePortId) ??
+      false
     )
-
-    return sourceTrace.source_trace_id
   }
 
-  private getNetTraceKey({
-    sourceNetId,
-    connectedSourcePortIds,
-  }: {
-    sourceNetId: string
-    connectedSourcePortIds: string[]
-  }) {
-    return `${sourceNetId}:${[...connectedSourcePortIds].sort().join("|")}`
+  private isPadOnLayer(pad: any, layer: LayerRef): boolean {
+    if (pad.layer && pad.layer !== layer) return false
+
+    const layers = pad.layers as string[] | undefined
+    if (layers?.length && !layers.includes(layer)) return false
+
+    return true
+  }
+
+  private isPointInsidePadCopper(
+    point: { x: number; y: number },
+    pad: any,
+  ): boolean {
+    const shape = pad.shape
+
+    if (shape === "circle") {
+      return this.isPointInsideCircle(point, pad)
+    }
+
+    if (shape === "polygon") {
+      return isPointInsidePolygonContours(
+        point,
+        this.getPadPolygonContours(pad),
+        this.PORT_MATCH_TOLERANCE,
+      )
+    }
+
+    if (shape === "pill" || shape === "rotated_pill") {
+      const width = pad.width ?? pad.outer_width
+      const height = pad.height ?? pad.outer_height
+      const rotation = shape === "rotated_pill" ? pad.ccw_rotation : 0
+      return this.isPointInsidePill(point, pad, width, height, rotation)
+    }
+
+    if (shape === "rect" || shape === "rotated_rect") {
+      const rotation = shape === "rotated_rect" ? pad.ccw_rotation : 0
+      return this.isPointInsideRect(point, pad, pad.width, pad.height, rotation)
+    }
+
+    if (
+      shape === "circular_hole_with_rect_pad" ||
+      shape === "pill_hole_with_rect_pad" ||
+      shape === "rotated_pill_hole_with_rect_pad"
+    ) {
+      return this.isPointInsideRect(
+        point,
+        pad,
+        pad.rect_pad_width,
+        pad.rect_pad_height,
+        pad.rect_ccw_rotation,
+      )
+    }
+
+    return false
+  }
+
+  private isPointInsideCircle(point: { x: number; y: number }, pad: any) {
+    const radius =
+      pad.radius ??
+      (pad.outer_diameter !== undefined ? pad.outer_diameter / 2 : undefined) ??
+      (pad.width !== undefined && pad.height !== undefined
+        ? Math.max(pad.width, pad.height) / 2
+        : undefined)
+    if (radius === undefined) return false
+
+    const dx = point.x - (pad.x ?? 0)
+    const dy = point.y - (pad.y ?? 0)
+    return dx * dx + dy * dy <= (radius + this.PORT_MATCH_TOLERANCE) ** 2
+  }
+
+  private isPointInsideRect(
+    point: { x: number; y: number },
+    pad: any,
+    width: number | undefined,
+    height: number | undefined,
+    ccwRotationDegrees: number | undefined,
+  ) {
+    if (width === undefined || height === undefined) return false
+
+    const local = this.getLocalPadPoint(point, pad, ccwRotationDegrees)
+    return (
+      Math.abs(local.x) <= width / 2 + this.PORT_MATCH_TOLERANCE &&
+      Math.abs(local.y) <= height / 2 + this.PORT_MATCH_TOLERANCE
+    )
+  }
+
+  private isPointInsidePill(
+    point: { x: number; y: number },
+    pad: any,
+    width: number | undefined,
+    height: number | undefined,
+    ccwRotationDegrees: number | undefined,
+  ) {
+    if (width === undefined || height === undefined) return false
+
+    const local = this.getLocalPadPoint(point, pad, ccwRotationDegrees)
+    const radius = Math.min(width, height) / 2
+    const tolerance = this.PORT_MATCH_TOLERANCE
+
+    if (width >= height) {
+      const centerHalfWidth = width / 2 - radius
+      if (
+        Math.abs(local.x) <= centerHalfWidth + tolerance &&
+        Math.abs(local.y) <= radius + tolerance
+      ) {
+        return true
+      }
+
+      const capX = local.x < 0 ? -centerHalfWidth : centerHalfWidth
+      return (local.x - capX) ** 2 + local.y ** 2 <= (radius + tolerance) ** 2
+    }
+
+    const centerHalfHeight = height / 2 - radius
+    if (
+      Math.abs(local.x) <= radius + tolerance &&
+      Math.abs(local.y) <= centerHalfHeight + tolerance
+    ) {
+      return true
+    }
+
+    const capY = local.y < 0 ? -centerHalfHeight : centerHalfHeight
+    return local.x ** 2 + (local.y - capY) ** 2 <= (radius + tolerance) ** 2
+  }
+
+  private getPadPolygonContours(pad: any): PolygonPoint[][] {
+    const contours = pad.contours as PolygonPoint[][] | undefined
+    const validContours =
+      contours?.filter((contour) => contour.length >= 3) ?? []
+    if (validContours.length > 0) return validContours
+
+    const points = pad.points as PolygonPoint[] | undefined
+    return points && points.length >= 3 ? [points] : []
+  }
+
+  private getLocalPadPoint(
+    point: { x: number; y: number },
+    pad: any,
+    ccwRotationDegrees: number | undefined,
+  ) {
+    const dx = point.x - (pad.x ?? 0)
+    const dy = point.y - (pad.y ?? 0)
+    const radians = (-(ccwRotationDegrees ?? 0) * Math.PI) / 180
+    const cos = Math.cos(radians)
+    const sin = Math.sin(radians)
+
+    return {
+      x: dx * cos - dy * sin,
+      y: dx * sin + dy * cos,
+    }
   }
 }
