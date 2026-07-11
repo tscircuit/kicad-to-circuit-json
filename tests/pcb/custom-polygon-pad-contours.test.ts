@@ -1,6 +1,9 @@
 import { expect, test } from "bun:test"
 import { cju } from "@tscircuit/circuit-json-util"
-import { createSmdPad } from "../../lib/stages/pcb/CollectFootprintsStage/process-pads"
+import {
+  createSmdPad,
+  processPad,
+} from "../../lib/stages/pcb/CollectFootprintsStage/process-pads"
 import { isPointInsidePolygonContours } from "../../lib/stages/pcb/polygon-contours"
 
 test("custom polygon pads preserve holes for trace endpoint matching", () => {
@@ -63,4 +66,58 @@ test("custom polygon pads preserve holes for trace endpoint matching", () => {
   expect(polygonPad.contours).toEqual(contours)
   expect(Object.keys(polygonPad)).not.toContain("contours")
   expect(JSON.parse(JSON.stringify(polygonPad)).contours).toBeUndefined()
+})
+
+test("custom pad polygons include the footprint placement rotation", () => {
+  const circuitJson: any[] = []
+  const ctx = {
+    db: cju(circuitJson),
+    k2cMatPcb: { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 },
+    stats: {},
+  } as any
+  const pad = {
+    number: "1",
+    padType: "smd",
+    shape: "custom",
+    at: { x: 0, y: 0, angle: 270 },
+    size: { x: 0.001, y: 0.001 },
+    layers: ["F.Cu"],
+    _sxPrimitives: {
+      _graphics: [
+        {
+          token: "gr_poly",
+          gr_poly: {
+            _contours: [
+              {
+                points: [
+                  { x: 1, y: 0 },
+                  { x: 0, y: 0 },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+  }
+
+  processPad({
+    ctx,
+    footprint: { fpPads: [pad] } as any,
+    pad,
+    componentId: "pcb_component_0",
+    footprintPlacement: {
+      kicadComponentPos: { x: 0, y: 0 },
+      componentCcwRotationDegrees: 180,
+    },
+  })
+
+  const polygonPad = ctx.db.pcb_smtpad
+    .list()
+    .find((entry: any) => entry.shape === "polygon") as any
+
+  // 270° pad rotation combined with a 180° footprint rotation yields a 90°
+  // primitive rotation. Without the footprint rotation this point is mirrored.
+  expect(polygonPad.points[0].x).toBeCloseTo(0)
+  expect(polygonPad.points[0].y).toBeCloseTo(1)
 })
