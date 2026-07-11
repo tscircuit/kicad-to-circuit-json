@@ -38,12 +38,10 @@
     "tscircuit": "^0.0.2040",
     "tsup": "^8.5.0",
     "vercel": "^50.42.0",
-    "vite": "^8.0.8"
+    "vite": "^8.0.8",
+    "schematic-symbols": "^0.0.231"
   },
   "peerDependencies": {
     "typescript": "^5"
-  },
-  "dependencies": {
-    "schematic-symbols": "^0.0.202"
   }
 }
