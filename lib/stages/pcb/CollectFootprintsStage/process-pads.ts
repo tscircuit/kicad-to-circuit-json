@@ -196,8 +196,13 @@ export function processPad({
         ? getPcbCopperLayerRefs(ctx.kicadPcb)
         : []
 
-  // Calculate total rotation
-  const totalCcwRotationDegrees = padAt.angle || 0
+  // Custom-pad primitive coordinates are local to the pad. Unlike regular pad
+  // shapes, they are emitted as absolute polygon points, so they must include
+  // the footprint placement rotation before the KiCad-to-Circuit-JSON Y flip.
+  // The pad angle is already expressed in the coordinate convention expected
+  // by the primitive conversion below.
+  const totalCcwRotationDegrees =
+    (padAt.angle || 0) - footprintPlacement.componentCcwRotationDegrees
 
   // Create pcb_port for this pad (if it has a pad number)
   const padNumber = pad.number?.toString()
