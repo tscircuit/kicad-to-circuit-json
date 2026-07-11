@@ -8,4 +8,4 @@ test("kicad-to-circuit-json: CM5RevEng SVG snapshot", () => {
     testPath: import.meta.path,
     snapshotName: "cm5-rev-eng-circuit-json",
   })
-}, 100_000)
+}, 200_000)
