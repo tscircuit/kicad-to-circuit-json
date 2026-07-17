@@ -125,8 +125,9 @@ export function processPads(params: {
 
   const pads = footprint.fpPads || []
   const padArray = Array.isArray(pads) ? pads : [pads]
+  const orderedPadArray = orderCustomThroughHolePadsBeforeMatchingPads(padArray)
 
-  for (const pad of padArray) {
+  for (const pad of orderedPadArray) {
     processPad({
       ctx,
       footprint,
@@ -136,6 +137,65 @@ export function processPads(params: {
       shouldCreatePorts,
     })
   }
+}
+
+/**
+ * KiCad footprints can construct one physical plated slot from overlapping pads
+ * that share a pad number. Circuit JSON keeps those pads separate, and its SVG
+ * renderer draws each pad's copper and drill together. Emit custom copper first
+ * so a later matching drill is not hidden by the custom pad's copper polygon.
+ */
+function orderCustomThroughHolePadsBeforeMatchingPads(pads: any[]): any[] {
+  const orderedPads = [...pads]
+  const positionsByPadNumber = new Map<string, number[]>()
+
+  for (const [index, pad] of pads.entries()) {
+    const padNumber = pad.number?.toString()
+    if (!padNumber) continue
+    const positions = positionsByPadNumber.get(padNumber) ?? []
+    positions.push(index)
+    positionsByPadNumber.set(padNumber, positions)
+  }
+
+  for (const positions of positionsByPadNumber.values()) {
+    const matchingPads = positions.map((position) => pads[position])
+    const reorderedMatchingPads = [...matchingPads].sort((padA, padB) => {
+      const padAIsCustom = isCustomThroughHolePad(padA)
+      const padBIsCustom = isCustomThroughHolePad(padB)
+      if (padAIsCustom === padBIsCustom || !padsMayOverlap(padA, padB)) {
+        return 0
+      }
+      return padAIsCustom ? -1 : 1
+    })
+
+    for (const [groupIndex, position] of positions.entries()) {
+      orderedPads[position] = reorderedMatchingPads[groupIndex]
+    }
+  }
+
+  return orderedPads
+}
+
+function isCustomThroughHolePad(pad: any): boolean {
+  const padType = pad.padType ?? pad.type ?? "smd"
+  return padType === "thru_hole" && pad.shape === "custom"
+}
+
+function padsMayOverlap(padA: any, padB: any): boolean {
+  const getPadRadius = (pad: any): number => {
+    const size = pad.size ?? {}
+    const width = Array.isArray(size) ? size[0] : (size._width ?? size.x ?? 0)
+    const height = Array.isArray(size) ? size[1] : (size._height ?? size.y ?? 0)
+    return Math.hypot(width / 2, height / 2)
+  }
+  const padAPos = padA.at ?? { x: 0, y: 0 }
+  const padBPos = padB.at ?? { x: 0, y: 0 }
+  const centerDistance = Math.hypot(
+    (padAPos.x ?? 0) - (padBPos.x ?? 0),
+    (padAPos.y ?? 0) - (padBPos.y ?? 0),
+  )
+
+  return centerDistance <= getPadRadius(padA) + getPadRadius(padB)
 }
 
 /**
