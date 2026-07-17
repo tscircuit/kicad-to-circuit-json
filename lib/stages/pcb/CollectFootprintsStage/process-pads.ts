@@ -110,14 +110,14 @@ export function processPads(params: {
   footprint: Footprint
   componentId: string
   footprintPlacement: FootprintPlacement
-  createPorts?: boolean
+  shouldCreatePorts?: boolean
 }) {
   const {
     ctx,
     footprint,
     componentId,
     footprintPlacement,
-    createPorts = true,
+    shouldCreatePorts = true,
   } = params
   if (!ctx.k2cMatPcb) return
 
@@ -131,7 +131,7 @@ export function processPads(params: {
       pad,
       componentId,
       footprintPlacement,
-      createPorts,
+      shouldCreatePorts,
     })
   }
 }
@@ -145,14 +145,14 @@ export function processPad({
   pad,
   componentId,
   footprintPlacement,
-  createPorts = true,
+  shouldCreatePorts = true,
 }: {
   ctx: ConverterContext
   footprint: Footprint
   pad: any
   componentId: string
   footprintPlacement: FootprintPlacement
-  createPorts?: boolean
+  shouldCreatePorts?: boolean
 }): void {
   if (!ctx.k2cMatPcb) return
 
@@ -218,7 +218,7 @@ export function processPad({
   const padNumber = pad.number?.toString()
   let pcbPortId: string | undefined
   let sourcePortId: string | undefined
-  if (padNumber && createPorts) {
+  if (padNumber && shouldCreatePorts) {
     sourcePortId = getSourcePortIdForPad({
       componentId,
       footprint,
@@ -249,6 +249,8 @@ export function processPad({
   }
 
   // Determine pad type and create appropriate CJ element
+  // KiCad's "connect" type represents a surface copper contact, commonly used
+  // for exposed connector or test contacts, so it maps to an SMT pad in CJ.
   if (padType === "smd" || padType === "connect") {
     if (copperLayers.length === 0) {
       return

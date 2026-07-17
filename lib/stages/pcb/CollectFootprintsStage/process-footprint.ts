@@ -44,9 +44,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
 
   // Create source_component with type-specific properties
   const sourceComponentData: any = {
-    name: hasReference
-      ? refdes
-      : `UNREFERENCED_${uuid.replace(/[^a-zA-Z0-9_]/g, "_")}`,
+    name: refdes ?? "",
     ftype: ftype,
   }
 
@@ -114,7 +112,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
     footprint,
     componentId,
     footprintPlacement,
-    createPorts: hasReference,
+    shouldCreatePorts: hasReference,
   })
 
   // Process footprint text as silkscreen - pass KiCad position and rotation for correct transformation

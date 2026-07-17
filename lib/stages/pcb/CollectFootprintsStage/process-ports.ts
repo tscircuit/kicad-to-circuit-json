@@ -4,6 +4,7 @@ import type { ConverterContext } from "../../../types"
 export interface PadPortInfo {
   padNumber: string
   sourcePortId?: string
+  /** KiCad's "connect" pad type is a surface copper contact without paste. */
   padType: "smd" | "connect" | "thru_hole" | "np_thru_hole"
   layers: string[]
   position: { x: number; y: number }

@@ -93,9 +93,7 @@ test("connect pads are emitted as surface copper with PCB ports", () => {
 test("anonymous board-only pads keep geometry without source connectivity", () => {
   const circuitJson = convertBoard()
   const anonymousComponents = circuitJson.filter(
-    (element) =>
-      element.type === "source_component" &&
-      element.name.startsWith("UNREFERENCED_"),
+    (element) => element.type === "source_component" && element.name === "",
   )
   const anonymousComponentIds = new Set(
     anonymousComponents.map((component) => component.source_component_id),
@@ -112,7 +110,9 @@ test("anonymous board-only pads keep geometry without source connectivity", () =
 
   expect(anonymousComponents).toHaveLength(2)
   expect(
-    new Set(anonymousComponents.map((component) => component.name)).size,
+    new Set(
+      anonymousComponents.map((component) => component.source_component_id),
+    ).size,
   ).toBe(2)
   expect(
     circuitJson.filter(

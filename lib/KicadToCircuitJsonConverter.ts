@@ -1,7 +1,6 @@
 import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
 import { parseKicadPcb, parseKicadSch, parseKicadSym } from "kicadts"
-import { normalizeKicadPcbForParser } from "./normalize-kicad-pcb-for-parser"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
@@ -54,9 +53,7 @@ export class KicadToCircuitJsonConverter {
 
     this.ctx = {
       db: cju([]),
-      kicadPcb: pcbFile
-        ? parseKicadPcb(normalizeKicadPcbForParser(this.fsMap[pcbFile]!))
-        : undefined,
+      kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
       kicadSymbolLib: symbolLibFile
         ? parseKicadSym(this.fsMap[symbolLibFile]!)
