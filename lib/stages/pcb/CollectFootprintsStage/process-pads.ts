@@ -4,7 +4,6 @@ import type {
   PcbHoleCircularWithRectPad,
   PcbHolePillWithRectPad,
   PcbHoleRotatedPillWithRectPad,
-  PcbHoleWithPolygonPad,
   PcbPlatedHoleCircle,
   PcbPlatedHoleOval,
   PcbSmtPadCircle,
@@ -14,8 +13,12 @@ import type {
   PcbSmtPadRotatedPill,
   PcbSmtPadRotatedRect,
 } from "circuit-json"
-import Flatten from "@flatten-js/core"
-import type { Footprint } from "kicadts"
+import {
+  type Footprint,
+  type FootprintPad,
+  PadPrimitiveGrCircle,
+  PadPrimitiveGrPoly,
+} from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
   ConverterContext,
@@ -28,81 +31,20 @@ import {
   getPcbCopperLayerRefs,
 } from "../layer-mapping"
 import { getSourcePortIdForPad } from "../pad-source-port-id"
+import { createCustomPlatedHole } from "./create-custom-plated-hole"
+import {
+  attachPadPolygonContours,
+  getCustomPadPolygonContours,
+  type PcbSmtPadPolygonWithContours,
+  type PolygonContour,
+} from "./custom-pad-polygon-contours"
+import { getSupportedPadType } from "./get-supported-pad-type"
 import { determineLayerFromLayers } from "./layer-utils"
+import { orderOverlappingFootprintPads } from "./order-overlapping-footprint-pads"
+import { getNextPcbPlatedHoleId, getNextPcbSmtPadId } from "./pad-element-ids"
+import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
 import { rotatePoint } from "./process-graphics"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
-
-const getNextPcbSmtPadId = (ctx: ConverterContext) => {
-  const usedIds = new Set(
-    ctx.db.pcb_smtpad.list().map((pad) => pad.pcb_smtpad_id),
-  )
-  let index = usedIds.size
-  let candidate = `pcb_smtpad_${index}`
-  while (usedIds.has(candidate)) {
-    index++
-    candidate = `pcb_smtpad_${index}`
-  }
-  return candidate
-}
-
-const getNextPcbPlatedHoleId = (ctx: ConverterContext) => {
-  const usedIds = new Set(
-    ctx.db.pcb_plated_hole.list().map((hole) => hole.pcb_plated_hole_id),
-  )
-  let index = usedIds.size
-  let candidate = `pcb_plated_hole_${index}`
-  while (usedIds.has(candidate)) {
-    index++
-    candidate = `pcb_plated_hole_${index}`
-  }
-  return candidate
-}
-
-type PolygonContour = Array<{ x: number; y: number }>
-type PcbSmtPadPolygonWithContours = PcbSmtPadPolygon & {
-  contours?: PolygonContour[]
-}
-
-function getCustomPadPolygonRawContours(grPoly: any): any[][] {
-  const explicitContours = getRawContourArray(
-    grPoly._contours ?? grPoly.contours,
-  )
-  if (explicitContours.length > 0) return explicitContours
-
-  const rawPoints = getRawPointArray(
-    grPoly._sxPts ?? grPoly.points ?? grPoly.pts,
-  )
-  return rawPoints.length > 0 ? [rawPoints] : []
-}
-
-function getRawContourArray(contours: any): any[][] {
-  const contourArray = Array.isArray(contours)
-    ? contours
-    : contours
-      ? [contours]
-      : []
-
-  return contourArray
-    .map(getRawPointArray)
-    .filter((points) => points.length > 0)
-}
-
-function getRawPointArray(container: any): any[] {
-  if (!container) return []
-  if (Array.isArray(container)) return container
-  if (Array.isArray(container.points)) return container.points
-  if (Array.isArray(container.pts)) return container.pts
-  if (Array.isArray(container._sxPts)) return container._sxPts
-  return []
-}
-
-function attachPadPolygonContours(pad: any, contours: PolygonContour[]) {
-  Object.defineProperty(pad, "contours", {
-    value: contours,
-    enumerable: false,
-    configurable: true,
-  })
-}
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -123,11 +65,11 @@ export function processPads(params: {
   } = params
   if (!ctx.k2cMatPcb) return
 
-  const pads = footprint.fpPads || []
-  const padArray = Array.isArray(pads) ? pads : [pads]
-  const orderedPadArray = orderCustomThroughHolePadsBeforeMatchingPads(padArray)
+  const padsInConversionOrder = orderOverlappingFootprintPads(
+    footprint.fpPads ?? [],
+  )
 
-  for (const pad of orderedPadArray) {
+  for (const pad of padsInConversionOrder) {
     processPad({
       ctx,
       footprint,
@@ -137,65 +79,6 @@ export function processPads(params: {
       shouldCreatePorts,
     })
   }
-}
-
-/**
- * KiCad footprints can construct one physical plated slot from overlapping pads
- * that share a pad number. Circuit JSON keeps those pads separate, and its SVG
- * renderer draws each pad's copper and drill together. Emit custom copper first
- * so a later matching drill is not hidden by the custom pad's copper polygon.
- */
-function orderCustomThroughHolePadsBeforeMatchingPads(pads: any[]): any[] {
-  const orderedPads = [...pads]
-  const positionsByPadNumber = new Map<string, number[]>()
-
-  for (const [index, pad] of pads.entries()) {
-    const padNumber = pad.number?.toString()
-    if (!padNumber) continue
-    const positions = positionsByPadNumber.get(padNumber) ?? []
-    positions.push(index)
-    positionsByPadNumber.set(padNumber, positions)
-  }
-
-  for (const positions of positionsByPadNumber.values()) {
-    const matchingPads = positions.map((position) => pads[position])
-    const reorderedMatchingPads = [...matchingPads].sort((padA, padB) => {
-      const padAIsCustom = isCustomThroughHolePad(padA)
-      const padBIsCustom = isCustomThroughHolePad(padB)
-      if (padAIsCustom === padBIsCustom || !padsMayOverlap(padA, padB)) {
-        return 0
-      }
-      return padAIsCustom ? -1 : 1
-    })
-
-    for (const [groupIndex, position] of positions.entries()) {
-      orderedPads[position] = reorderedMatchingPads[groupIndex]
-    }
-  }
-
-  return orderedPads
-}
-
-function isCustomThroughHolePad(pad: any): boolean {
-  const padType = pad.padType ?? pad.type ?? "smd"
-  return padType === "thru_hole" && pad.shape === "custom"
-}
-
-function padsMayOverlap(padA: any, padB: any): boolean {
-  const getPadRadius = (pad: any): number => {
-    const size = pad.size ?? {}
-    const width = Array.isArray(size) ? size[0] : (size._width ?? size.x ?? 0)
-    const height = Array.isArray(size) ? size[1] : (size._height ?? size.y ?? 0)
-    return Math.hypot(width / 2, height / 2)
-  }
-  const padAPos = padA.at ?? { x: 0, y: 0 }
-  const padBPos = padB.at ?? { x: 0, y: 0 }
-  const centerDistance = Math.hypot(
-    (padAPos.x ?? 0) - (padBPos.x ?? 0),
-    (padAPos.y ?? 0) - (padBPos.y ?? 0),
-  )
-
-  return centerDistance <= getPadRadius(padA) + getPadRadius(padB)
 }
 
 /**
@@ -211,7 +94,7 @@ export function processPad({
 }: {
   ctx: ConverterContext
   footprint: Footprint
-  pad: any
+  pad: FootprintPad
   componentId: string
   footprintPlacement: FootprintPlacement
   shouldCreatePorts?: boolean
@@ -219,7 +102,7 @@ export function processPad({
   if (!ctx.k2cMatPcb) return
 
   const padAt = pad.at || { x: 0, y: 0, angle: 0 }
-  const padType = pad.padType || pad.type || "thru_hole"
+  const padType = getSupportedPadType(pad)
   const padShape = pad.shape || "circle"
 
   // Get pad position in KiCad global coordinates
@@ -240,22 +123,10 @@ export function processPad({
   // Transform from KiCad to Circuit JSON coordinates
   const globalPos = applyToPoint(ctx.k2cMatPcb, padKicadPos)
 
-  // Get pad size - handle various formats
-  let sizeX = 1
-  let sizeY = 1
-  if (pad.size) {
-    if (Array.isArray(pad.size)) {
-      // Array format: [width, height]
-      sizeX = pad.size[0] || 1
-      sizeY = pad.size[1] || 1
-    } else if (typeof pad.size === "object") {
-      // kicadts returns a Size object with _width and _height properties
-      sizeX = pad.size._width || pad.size.x || 1
-      sizeY = pad.size._height || pad.size.y || 1
-    }
+  const size = {
+    x: pad.size?.width || 1,
+    y: pad.size?.height || 1,
   }
-
-  const size = { x: sizeX, y: sizeY }
   const drill = pad.drill
   const mappedCopperLayers =
     padType === "thru_hole"
@@ -369,7 +240,7 @@ export function createSmdPad({
   customPrimitiveKicadRotationDegrees = 0,
 }: {
   ctx: ConverterContext
-  pad: any
+  pad: FootprintPad
   componentId: string
   pos: { x: number; y: number }
   size: { x: number; y: number }
@@ -383,11 +254,7 @@ export function createSmdPad({
   const layer = determineLayerFromLayers(layers)
 
   if (shape === "custom") {
-    // Access primitives from kicadts structure: _sxPrimitives._graphics
-    const primitives = pad._sxPrimitives?._graphics || pad.primitives || []
-    const primitivesArray = Array.isArray(primitives)
-      ? primitives
-      : [primitives]
+    const primitives = pad.primitives?.graphics ?? []
 
     // List of primitives already processed (to avoid duplicates if we add more types)
     let primitivesProcessed = 0
@@ -406,10 +273,9 @@ export function createSmdPad({
     }
 
     // Look for graphics primitives (gr_poly, gr_circle, etc.)
-    for (const primitive of primitivesArray) {
-      if (primitive.token === "gr_poly") {
-        const grPoly = primitive.gr_poly || primitive
-        const rawContours = getCustomPadPolygonRawContours(grPoly)
+    for (const primitive of primitives) {
+      if (primitive instanceof PadPrimitiveGrPoly) {
+        const rawContours = getCustomPadPolygonContours(primitive)
 
         // Extract points and transform them
         const polygonContours: PolygonContour[] = []
@@ -417,23 +283,18 @@ export function createSmdPad({
         for (const rawContour of rawContours) {
           const contourPoints: PolygonContour = []
 
-          for (const pt of rawContour) {
-            // Handle various point formats ({x,y}, {xy:{x,y}}, SxClass with x,y)
-            const x = pt.x ?? pt.xy?.x
-            const y = pt.y ?? pt.xy?.y
-            if (x !== undefined && y !== undefined) {
-              const rotated = rotatePoint({
-                point: { x, y },
-                ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
-              })
-              const kicadPos = {
-                x: padKicadPos.x + rotated.x,
-                y: padKicadPos.y + rotated.y,
-              }
-              const globalPt = applyToPoint(ctx.k2cMatPcb!, kicadPos)
-              contourPoints.push(globalPt)
-              expandPrimBounds(globalPt.x, globalPt.y)
+          for (const point of rawContour) {
+            const rotatedPoint = rotatePoint({
+              point,
+              ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
+            })
+            const kicadPosition = {
+              x: padKicadPos.x + rotatedPoint.x,
+              y: padKicadPos.y + rotatedPoint.y,
             }
+            const globalPoint = applyToPoint(ctx.k2cMatPcb!, kicadPosition)
+            contourPoints.push(globalPoint)
+            expandPrimBounds(globalPoint.x, globalPoint.y)
           }
 
           if (contourPoints.length > 0) {
@@ -458,28 +319,25 @@ export function createSmdPad({
 
           const insertedPad = ctx.db.pcb_smtpad.insert(smtpad)
           if (polygonContours.length > 1) {
-            attachPadPolygonContours(insertedPad, polygonContours)
+            attachPadPolygonContours(
+              insertedPad as PcbSmtPadPolygon,
+              polygonContours,
+            )
           }
           primitivesProcessed++
         }
       }
 
-      if (primitive.token === "gr_circle") {
-        const grCircle = primitive.gr_circle || primitive
-        const center = grCircle.center || grCircle._sxCenter || { x: 0, y: 0 }
-        const end = grCircle.end || grCircle._sxEnd || { x: 0, y: 0 }
+      if (primitive instanceof PadPrimitiveGrCircle) {
+        const grCircle = primitive
+        const center = grCircle.center ?? { x: 0, y: 0 }
+        const end = grCircle.end ?? { x: 0, y: 0 }
         const centerlineRadius = Math.sqrt(
           (end.x - center.x) ** 2 + (end.y - center.y) ** 2,
         )
-        const strokeWidth =
-          grCircle.stroke?.width ||
-          grCircle.width ||
-          grCircle._sxWidth?.value ||
-          0
-        const fill =
-          grCircle.fill?.value || grCircle.fill || grCircle._sxFill?.value
+        const strokeWidth = grCircle.width ?? 0
         const radius =
-          fill === "no" && strokeWidth > 0
+          grCircle.fill === false && strokeWidth > 0
             ? centerlineRadius + strokeWidth / 2
             : centerlineRadius
 
@@ -685,7 +543,7 @@ export function createSmdPad({
 
     ctx.db.pcb_smtpad.insert(smtpad)
   } else if (shape === "rect" || shape === "roundrect") {
-    const roundrectRatio = pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+    const roundrectRatio = pad.roundrectRatio
     let cornerRadius: number | undefined
     if (shape === "roundrect" && roundrectRatio !== undefined) {
       // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
@@ -754,311 +612,16 @@ export function createSmdPad({
   }
 }
 
-function normalizeRotationDegrees(rotationDegrees: number | undefined): number {
-  if (!rotationDegrees) return 0
-
-  const normalized = rotationDegrees % 360
-  return normalized < 0 ? normalized + 360 : normalized
-}
-
-function getRightAngleTurns(rotationDegrees: number): number | null {
-  const quarterTurns = rotationDegrees / 90
-
-  if (Math.abs(quarterTurns - Math.round(quarterTurns)) > 1e-9) {
-    return null
-  }
-
-  return Math.round(quarterTurns)
-}
-
-function createEllipsePolygon(params: {
-  center?: Point
-  width: number
-  height: number
-  segments?: number
-}): InstanceType<typeof Flatten.Polygon> {
-  const { center = { x: 0, y: 0 }, width, height, segments = 32 } = params
-  const points: Array<[number, number]> = []
-
-  for (let index = 0; index < segments; index++) {
-    const angle = (index / segments) * Math.PI * 2
-    points.push([
-      center.x + (width / 2) * Math.cos(angle),
-      center.y + (height / 2) * Math.sin(angle),
-    ])
-  }
-
-  return new Flatten.Polygon(points)
-}
-
-function createRectPolygon(start: Point, end: Point) {
-  return new Flatten.Polygon([
-    [Math.min(start.x, end.x), Math.min(start.y, end.y)],
-    [Math.max(start.x, end.x), Math.min(start.y, end.y)],
-    [Math.max(start.x, end.x), Math.max(start.y, end.y)],
-    [Math.min(start.x, end.x), Math.max(start.y, end.y)],
-  ])
-}
-
-function createCapsulePolygon(params: {
-  start: Point
-  end: Point
-  width: number
-  capSegments?: number
-}) {
-  const { start, end, width, capSegments = 8 } = params
-  const radius = width / 2
-  const dx = end.x - start.x
-  const dy = end.y - start.y
-
-  if (Math.hypot(dx, dy) < 1e-9) {
-    return createEllipsePolygon({
-      center: start,
-      width,
-      height: width,
-      segments: capSegments * 2,
-    })
-  }
-
-  const direction = Math.atan2(dy, dx)
-  const points: Array<[number, number]> = []
-
-  for (let index = 0; index <= capSegments; index++) {
-    const angle = direction - Math.PI / 2 + (index / capSegments) * Math.PI
-    points.push([
-      end.x + radius * Math.cos(angle),
-      end.y + radius * Math.sin(angle),
-    ])
-  }
-
-  for (let index = 0; index <= capSegments; index++) {
-    const angle = direction + Math.PI / 2 + (index / capSegments) * Math.PI
-    points.push([
-      start.x + radius * Math.cos(angle),
-      start.y + radius * Math.sin(angle),
-    ])
-  }
-
-  return new Flatten.Polygon(points)
-}
-
-function getCustomPadCopperOutline(params: { pad: any; size: Point }): Point[] {
-  const { pad, size } = params
-  const polygons: Array<InstanceType<typeof Flatten.Polygon>> = []
-  const anchorShape = pad.options?.anchor ?? "rect"
-
-  if (size.x >= 0.01 && size.y >= 0.01) {
-    if (anchorShape === "circle") {
-      polygons.push(createEllipsePolygon({ width: size.x, height: size.y }))
-    } else {
-      polygons.push(
-        createRectPolygon(
-          { x: -size.x / 2, y: -size.y / 2 },
-          { x: size.x / 2, y: size.y / 2 },
-        ),
-      )
-    }
-  }
-
-  const primitives = pad._sxPrimitives?._graphics || pad.primitives || []
-  const primitiveArray = Array.isArray(primitives) ? primitives : [primitives]
-
-  for (const primitive of primitiveArray) {
-    if (primitive.token === "gr_poly") {
-      const grPoly = primitive.gr_poly || primitive
-      for (const rawContour of getCustomPadPolygonRawContours(grPoly)) {
-        const points = rawContour.flatMap((point: any) => {
-          const x = point.x ?? point.xy?.x
-          const y = point.y ?? point.xy?.y
-          return x === undefined || y === undefined ? [] : [[x, y]]
-        }) as Array<[number, number]>
-
-        if (points.length >= 3) polygons.push(new Flatten.Polygon(points))
-      }
-    }
-
-    if (primitive.token === "gr_circle") {
-      const circle = primitive.gr_circle || primitive
-      const center = circle.center || circle._sxCenter || { x: 0, y: 0 }
-      const end = circle.end || circle._sxEnd || { x: 0, y: 0 }
-      const centerlineRadius = Math.hypot(end.x - center.x, end.y - center.y)
-      const strokeWidth =
-        circle.stroke?.width || circle.width || circle._sxWidth?.value || 0
-      const fill = circle.fill?.value || circle.fill || circle._sxFill?.value
-      const radius =
-        fill === "no" && strokeWidth > 0
-          ? centerlineRadius + strokeWidth / 2
-          : centerlineRadius
-
-      polygons.push(
-        createEllipsePolygon({
-          center,
-          width: radius * 2,
-          height: radius * 2,
-        }),
-      )
-    }
-
-    if (primitive.token === "gr_line") {
-      const line = primitive.gr_line || primitive
-      const start = line.start || line._sxStart
-      const end = line.end || line._sxEnd
-      const width = line.width || line._sxWidth?.value || 0
-
-      if (start && end && width > 0) {
-        polygons.push(createCapsulePolygon({ start, end, width }))
-      }
-    }
-
-    if (primitive.token === "gr_rect") {
-      const rect = primitive.gr_rect || primitive
-      const start = rect.start || rect._sxStart
-      const end = rect.end || rect._sxEnd
-      if (start && end) polygons.push(createRectPolygon(start, end))
-    }
-  }
-
-  if (polygons.length === 0) {
-    return [
-      { x: -size.x / 2, y: -size.y / 2 },
-      { x: size.x / 2, y: -size.y / 2 },
-      { x: size.x / 2, y: size.y / 2 },
-      { x: -size.x / 2, y: size.y / 2 },
-    ]
-  }
-
-  let union = polygons[0]!
-  for (const polygon of polygons.slice(1)) {
-    union = Flatten.BooleanOperations.unify(union, polygon)
-  }
-
-  const largestIsland = union
-    .splitToIslands()
-    .sort((islandA, islandB) => islandB.area() - islandA.area())[0]
-
-  return (largestIsland ?? union).vertices.map((point) => ({
-    x: point.x,
-    y: point.y,
-  }))
-}
-
-function transformCustomPadLocalPoint(params: {
-  ctx: ConverterContext
-  point: Point
-  padKicadPos: Point
-  customPrimitiveKicadRotationDegrees: number
-}): Point {
-  const { ctx, point, padKicadPos, customPrimitiveKicadRotationDegrees } =
-    params
-  const rotated = rotatePoint({
-    point,
-    ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
-  })
-
-  return applyToPoint(ctx.k2cMatPcb!, {
-    x: padKicadPos.x + rotated.x,
-    y: padKicadPos.y + rotated.y,
-  })
-}
-
-function createCustomPlatedHole(params: {
-  ctx: ConverterContext
-  pad: any
-  componentId: string
-  pos: Point
-  size: Point
-  drill: any
-  layers: LayerRef[]
-  pcbPortId?: string
-  padKicadPos: Point
-  customPrimitiveKicadRotationDegrees: number
-}) {
-  const {
-    ctx,
-    pad,
-    componentId,
-    pos,
-    size,
-    drill,
-    layers,
-    pcbPortId,
-    padKicadPos,
-    customPrimitiveKicadRotationDegrees,
-  } = params
-  const localCopperOutline = getCustomPadCopperOutline({ pad, size })
-  const padOutline = localCopperOutline.map((point) => {
-    const globalPoint = transformCustomPadLocalPoint({
-      ctx,
-      point,
-      padKicadPos,
-      customPrimitiveKicadRotationDegrees,
-    })
-    return { x: globalPoint.x - pos.x, y: globalPoint.y - pos.y }
-  })
-
-  const drillX =
-    typeof drill === "object"
-      ? drill?.x || drill?._width || drill?.diameter || 0.8
-      : drill || 0.8
-  const drillY =
-    typeof drill === "object"
-      ? drill?.y || drill?._height || drill?.diameter || drillX
-      : drill || 0.8
-  const drillIsOval =
-    typeof drill === "object" && Math.abs(drillX - drillY) > 1e-9
-  const normalizedRotation = normalizeRotationDegrees(pad.at?.angle)
-  const rightAngleTurns = getRightAngleTurns(normalizedRotation)
-
-  const platedHole: PcbHoleWithPolygonPad = {
-    type: "pcb_plated_hole",
-    shape: "hole_with_polygon_pad",
-    pcb_component_id: componentId,
-    pcb_port_id: pcbPortId,
-    pcb_plated_hole_id: getNextPcbPlatedHoleId(ctx),
-    x: pos.x,
-    y: pos.y,
-    port_hints: [pad.number?.toString()],
-    hole_shape: drillIsOval ? "pill" : "circle",
-    hole_offset_x: 0,
-    hole_offset_y: 0,
-    pad_outline: padOutline,
-    layers,
-  }
-
-  if (drillIsOval) {
-    const unrotatedWidth = drillY
-    const unrotatedHeight = drillX
-    const shouldSwapDimensions =
-      rightAngleTurns !== null && Math.abs(rightAngleTurns) % 2 === 1
-
-    platedHole.hole_width = shouldSwapDimensions
-      ? unrotatedHeight
-      : unrotatedWidth
-    platedHole.hole_height = shouldSwapDimensions
-      ? unrotatedWidth
-      : unrotatedHeight
-
-    if (rightAngleTurns === null && normalizedRotation !== 0) {
-      platedHole.hole_shape = "rotated_pill"
-      platedHole.ccw_rotation = normalizedRotation
-    }
-  } else {
-    platedHole.hole_diameter = Math.max(drillX, drillY)
-  }
-
-  ctx.db.pcb_plated_hole.insert(platedHole)
-}
-
 /**
  * Creates a plated hole (through-hole pad) in Circuit JSON
  */
 export function createPlatedHole(params: {
   ctx: ConverterContext
-  pad: any
+  pad: FootprintPad
   componentId: string
   pos: Point
   size: Point
-  drill: any
+  drill: FootprintPad["drill"]
   padShape: string
   layers: LayerRef[]
   pcbPortId?: string
@@ -1084,13 +647,12 @@ export function createPlatedHole(params: {
       ctx,
       pad,
       componentId,
-      pos,
+      position: pos,
       size,
-      drill,
       layers,
       pcbPortId,
-      padKicadPos,
-      customPrimitiveKicadRotationDegrees,
+      padKicadPosition: padKicadPos,
+      primitiveKicadRotationDegrees: customPrimitiveKicadRotationDegrees,
     })
 
     if (ctx.stats) ctx.stats.pads = (ctx.stats.pads || 0) + 1
@@ -1098,22 +660,12 @@ export function createPlatedHole(params: {
   }
 
   // Extract drill dimensions - drill can be scalar (circular) or x/y (oval)
-  const drillX =
-    typeof drill === "object"
-      ? drill?.x || drill?._width || drill?.diameter || 0.8
-      : drill || 0.8
-  const drillY =
-    typeof drill === "object"
-      ? drill?.y || drill?._height || drill?.diameter || drillX
-      : drill || 0.8
+  const drillX = drill?.width ?? drill?.diameter ?? 0.8
+  const drillY = drill?.diameter ?? drillX
   const holeDiameter = Math.max(drillX, drillY)
 
   // Determine drill shape (circular or oval)
-  const drillIsOval =
-    typeof drill === "object" &&
-    drillX !== undefined &&
-    drillY !== undefined &&
-    drillX !== drillY
+  const drillIsOval = drill?.oval ?? Math.abs(drillX - drillY) > 1e-9
 
   const outerWidth = size.x
   const outerHeight = size.y
@@ -1180,8 +732,7 @@ export function createPlatedHole(params: {
           layers,
         } as PcbHolePillWithRectPad
         if (padShape === "roundrect") {
-          const roundrectRatio =
-            pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+          const roundrectRatio = pad.roundrectRatio
           if (roundrectRatio !== undefined) {
             const minDimension = Math.min(outerWidth, outerHeight)
             platedHole.rect_border_radius = (minDimension * roundrectRatio) / 2
@@ -1210,8 +761,7 @@ export function createPlatedHole(params: {
           layers,
         } as PcbHoleRotatedPillWithRectPad
         if (padShape === "roundrect") {
-          const roundrectRatio =
-            pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+          const roundrectRatio = pad.roundrectRatio
           if (roundrectRatio !== undefined) {
             const minDimension = Math.min(outerWidth, outerHeight)
             platedHole.rect_border_radius = (minDimension * roundrectRatio) / 2
@@ -1240,8 +790,7 @@ export function createPlatedHole(params: {
         layers,
       } as PcbHoleCircularWithRectPad
       if (padShape === "roundrect") {
-        const roundrectRatio =
-          pad._sxRoundrectRatio?.value ?? pad.roundrect_rratio
+        const roundrectRatio = pad.roundrectRatio
         if (roundrectRatio !== undefined) {
           const minDimension = Math.min(outerWidth, outerHeight)
           platedHole.rect_border_radius = (minDimension * roundrectRatio) / 2
@@ -1263,10 +812,10 @@ export function createNpthHole(params: {
   ctx: ConverterContext
   componentId: string
   pos: Point
-  drill: any
+  drill: FootprintPad["drill"]
 }) {
   const { ctx, componentId, pos, drill } = params
-  const holeDiameter = drill?.diameter || drill || 1.0
+  const holeDiameter = drill?.diameter ?? 1
 
   const hole: PcbHoleCircle = {
     type: "pcb_hole",

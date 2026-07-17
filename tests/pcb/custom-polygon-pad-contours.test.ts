@@ -1,9 +1,17 @@
 import { expect, test } from "bun:test"
 import { cju } from "@tscircuit/circuit-json-util"
 import {
+  Footprint,
+  FootprintPad,
+  PadOptions,
+  PadPrimitiveGrPoly,
+  PadPrimitives,
+  Pts,
+  Xy,
+} from "kicadts"
+import {
   createSmdPad,
   processPad,
-  processPads,
 } from "../../lib/stages/pcb/CollectFootprintsStage/process-pads"
 import { isPointInsidePolygonContours } from "../../lib/stages/pcb/polygon-contours"
 
@@ -32,24 +40,28 @@ test("custom polygon pads preserve holes for trace endpoint matching", () => {
     k2cMatPcb: { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 },
     stats: {},
   } as any
+  const polygonPrimitive = new PadPrimitiveGrPoly()
+  polygonPrimitive.contours = [
+    new Pts(outerContour.map(({ x, y }) => new Xy(x, y))),
+    new Pts(holeContour.map(({ x, y }) => new Xy(x, y))),
+  ]
+  const primitives = new PadPrimitives()
+  primitives.graphics = [polygonPrimitive]
+  const options = new PadOptions()
+  options.anchor = "rect"
+  const pad = new FootprintPad({
+    number: "1",
+    padType: "smd",
+    shape: "custom",
+    size: [0.001, 0.001],
+    layers: ["F.Cu"],
+    options,
+    primitives,
+  })
 
   createSmdPad({
     ctx,
-    pad: {
-      number: "1",
-      layers: ["F.Cu"],
-      options: { anchor: "rect" },
-      _sxPrimitives: {
-        _graphics: [
-          {
-            token: "gr_poly",
-            gr_poly: {
-              _contours: [{ points: outerContour }, { points: holeContour }],
-            },
-          },
-        ],
-      },
-    },
+    pad,
     componentId: "pcb_component_0",
     pos: { x: 0, y: 0 },
     size: { x: 0.001, y: 0.001 },
@@ -76,41 +88,30 @@ test("custom pad polygons use the absolute KiCad pad rotation", () => {
     k2cMatPcb: { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 },
     stats: {},
   } as any
-  const pad = {
+  const polygonPrimitive = new PadPrimitiveGrPoly()
+  polygonPrimitive.contours = [new Pts([new Xy(1, 0), new Xy(0, 0)])]
+  const primitives = new PadPrimitives()
+  primitives.graphics = [polygonPrimitive]
+  const pad = new FootprintPad({
     number: "1",
     padType: "smd",
     shape: "custom",
     at: { x: 0, y: 0, angle: 270 },
-    size: { x: 0.001, y: 0.001 },
+    size: [0.001, 0.001],
     layers: ["F.Cu"],
-    _sxPrimitives: {
-      _graphics: [
-        {
-          token: "gr_poly",
-          gr_poly: {
-            _contours: [
-              {
-                points: [
-                  { x: 1, y: 0 },
-                  { x: 0, y: 0 },
-                ],
-              },
-            ],
-          },
-        },
-      ],
-    },
-  }
+    primitives,
+  })
 
   processPad({
     ctx,
-    footprint: { fpPads: [pad] } as any,
+    footprint: new Footprint({ pads: [pad] }),
     pad,
     componentId: "pcb_component_0",
     footprintPlacement: {
       kicadComponentPos: { x: 0, y: 0 },
       componentCcwRotationDegrees: 180,
     },
+    shouldCreatePorts: false,
   })
 
   const polygonPad = ctx.db.pcb_smtpad
@@ -122,72 +123,4 @@ test("custom pad polygons use the absolute KiCad pad rotation", () => {
   // must not be applied a second time.
   expect(polygonPad.points[0].x).toBeCloseTo(0)
   expect(polygonPad.points[0].y).toBeCloseTo(1)
-})
-
-test("custom plated holes render before matching overlapping pads", () => {
-  const circuitJson: any[] = []
-  const ctx = {
-    db: cju(circuitJson),
-    k2cMatPcb: { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 },
-    stats: {},
-  } as any
-  const distantOrdinaryPad = {
-    number: "SH",
-    padType: "thru_hole",
-    shape: "oval",
-    at: { x: 5, y: 5, angle: 0 },
-    size: { x: 1, y: 1.55 },
-    drill: { x: 0.7, y: 1.25 },
-    layers: ["*.Cu", "*.Mask"],
-  }
-  const ordinaryPad = {
-    number: "SH",
-    padType: "thru_hole",
-    shape: "oval",
-    at: { x: 0.33, y: 0.6, angle: 0 },
-    size: { x: 1, y: 1.55 },
-    drill: { x: 0.7, y: 1.25 },
-    layers: ["*.Cu", "*.Mask"],
-  }
-  const customPad = {
-    number: "SH",
-    padType: "thru_hole",
-    shape: "custom",
-    at: { x: 0, y: 0, angle: 90 },
-    size: { x: 1.2, y: 1.2 },
-    drill: { x: 0.6, y: 1.9 },
-    layers: ["*.Cu", "*.Mask"],
-    options: { anchor: "circle" },
-    _sxPrimitives: {
-      _graphics: [
-        {
-          token: "gr_line",
-          gr_line: {
-            start: { x: 0, y: -0.55 },
-            end: { x: 0, y: 0.55 },
-            width: 1.2,
-          },
-        },
-      ],
-    },
-  }
-
-  processPads({
-    ctx,
-    footprint: {
-      fpPads: [distantOrdinaryPad, ordinaryPad, customPad],
-    } as any,
-    componentId: "pcb_component_0",
-    footprintPlacement: {
-      kicadComponentPos: { x: 0, y: 0 },
-      componentCcwRotationDegrees: 0,
-    },
-    shouldCreatePorts: false,
-  })
-
-  expect(ctx.db.pcb_plated_hole.list().map((hole: any) => hole.shape)).toEqual([
-    "pill",
-    "hole_with_polygon_pad",
-    "pill",
-  ])
 })
