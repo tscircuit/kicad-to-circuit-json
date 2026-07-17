@@ -525,7 +525,23 @@ export class CollectTracesStage extends ConverterStage {
     const portAtCenter = this.findPortCenterAtPosition(point, layer, netNum)
     if (portAtCenter) return portAtCenter
 
-    return this.findPortContainingPoint(point, layer, netNum)
+    const portContainingPoint = this.findPortContainingPoint(
+      point,
+      layer,
+      netNum,
+    )
+    if (portContainingPoint) return portContainingPoint
+
+    if (netNum === null) return undefined
+
+    // KiCad permits copper to physically enter a pad whose assigned logical
+    // net differs from the track net (for example, an intentional short across
+    // two no-connect pins). Prefer the declared net above, but preserve the
+    // actual copper connection when geometry provides the only match.
+    return (
+      this.findPortCenterAtPosition(point, layer, null) ??
+      this.findPortContainingPoint(point, layer, null)
+    )
   }
 
   private findPortCenterAtPosition(

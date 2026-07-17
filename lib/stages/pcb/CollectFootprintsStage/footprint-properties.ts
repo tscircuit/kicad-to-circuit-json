@@ -36,6 +36,28 @@ export function findFootprintPropertyValue(
   return getFootprintPropertyValue(property)
 }
 
+/**
+ * Extracts the reference designator from a footprint (for example, R1 or U3).
+ * Board-only copper features may intentionally have no reference.
+ */
+export function getFootprintReference(
+  footprint: Footprint,
+): string | undefined {
+  const propertyValue = findFootprintPropertyValue(footprint, "Reference")
+  if (propertyValue) return propertyValue
+
+  const textItems = footprint.fpTexts || []
+  const textArray = Array.isArray(textItems) ? textItems : [textItems]
+
+  for (const text of textArray) {
+    if ((text as any).type === "reference" && text.text) {
+      return text.text
+    }
+  }
+
+  return undefined
+}
+
 export function parseSupplierPartNumbers(
   value: string | undefined,
 ): string[] | undefined {

@@ -1,18 +1,19 @@
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext, FootprintPlacement } from "../../../types"
-import { getComponentLayer } from "./layer-utils"
-import { processPads } from "./process-pads"
-import { processFootprintText } from "./process-text"
-import { processFootprintGraphics } from "./process-graphics"
+import {
+  findFootprintPropertyValue,
+  getFootprintReference,
+  parseSupplierPartNumbers,
+} from "./footprint-properties"
 import {
   inferComponentType,
   inferTransistorTypeFromFootprint,
 } from "./infer-component-type"
-import {
-  findFootprintPropertyValue,
-  parseSupplierPartNumbers,
-} from "./footprint-properties"
+import { getComponentLayer } from "./layer-utils"
+import { processFootprintGraphics } from "./process-graphics"
+import { processPads } from "./process-pads"
+import { processFootprintText } from "./process-text"
 
 /**
  * Processes a complete footprint and creates all associated Circuit JSON elements
@@ -34,6 +35,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
 
   // Get the reference and value from footprint properties
   const refdes = getFootprintReference(footprint)
+  const hasReference = Boolean(refdes?.trim())
   const value = getFootprintValue(footprint)
   const jlcpcbPartNumbers = getJlcpcbPartNumbers(footprint)
 
@@ -42,7 +44,9 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
 
   // Create source_component with type-specific properties
   const sourceComponentData: any = {
-    name: refdes || "U",
+    name: hasReference
+      ? refdes
+      : `UNREFERENCED_${uuid.replace(/[^a-zA-Z0-9_]/g, "_")}`,
     ftype: ftype,
   }
 
@@ -110,6 +114,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
     footprint,
     componentId,
     footprintPlacement,
+    createPorts: hasReference,
   })
 
   // Process footprint text as silkscreen - pass KiCad position and rotation for correct transformation
@@ -132,27 +137,6 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   if (ctx.stats) {
     ctx.stats.components = (ctx.stats.components || 0) + 1
   }
-}
-
-/**
- * Extracts the reference designator from a footprint (e.g., "R1", "C2", "U3")
- */
-function getFootprintReference(footprint: Footprint): string | undefined {
-  const propertyValue = findFootprintPropertyValue(footprint, "Reference")
-  if (propertyValue) return propertyValue
-
-  // Fallback: try fpTexts
-  const textItems = footprint.fpTexts || []
-  const textArray = Array.isArray(textItems) ? textItems : [textItems]
-
-  for (const text of textArray) {
-    // FpText objects have a type field that indicates reference/value
-    if ((text as any).type === "reference") {
-      return text.text
-    }
-  }
-
-  return undefined
 }
 
 /**

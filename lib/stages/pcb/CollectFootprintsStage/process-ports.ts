@@ -4,7 +4,7 @@ import type { ConverterContext } from "../../../types"
 export interface PadPortInfo {
   padNumber: string
   sourcePortId?: string
-  padType: "smd" | "thru_hole" | "np_thru_hole"
+  padType: "smd" | "connect" | "thru_hole" | "np_thru_hole"
   layers: string[]
   position: { x: number; y: number }
 }

@@ -1,6 +1,7 @@
 import type { Footprint } from "kicadts"
 import { ConverterStage } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
+import { getFootprintReference } from "./CollectFootprintsStage/footprint-properties"
 import { getPadNetNum, getSourcePortIdForPad } from "./pad-source-port-id"
 
 /**
@@ -120,6 +121,11 @@ export class CollectSourceTracesStage extends ConverterStage {
       }>
     >,
   ) {
+    // Anonymous footprints are board-only copper/mechanical features, not
+    // addressable source components. Keep their PCB geometry but do not invent
+    // a reference such as U.1 in logical connectivity.
+    if (!getFootprintReference(footprint)?.trim()) return
+
     // Extract UUID value (kicadts stores it in a .value property)
     const footprintUuid = footprint.uuid?.value || footprint.tstamp?.value
     if (!footprintUuid) return
