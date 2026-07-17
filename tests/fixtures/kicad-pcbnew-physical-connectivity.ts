@@ -80,6 +80,7 @@ export function getKicadPcbnewPhysicalConnectivityGroups(kicadPcbPath: string) {
     {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "pipe"],
+      maxBuffer: 128 * 1024 * 1024,
     },
   )
 
@@ -149,7 +150,10 @@ function normalizeConnectivityGroups(groups: string[][]) {
 
   for (const group of groups) {
     const normalizedGroup = [...new Set(group)].sort(compareNodeKeys)
-    if (normalizedGroup.length === 0) continue
+    // A singleton cannot assert physical connectivity. GenCAD still checks
+    // logical one-pad nets, while this comparison focuses on copper-connected
+    // groups of two or more pads.
+    if (normalizedGroup.length < 2) continue
 
     groupsBySignature.set(getGroupSignature(normalizedGroup), normalizedGroup)
   }

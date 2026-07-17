@@ -174,4 +174,8 @@ preview. The site does not need the runframe package installed locally.
 
 ## License
 
-MIT
+Original code and documentation in this repository are licensed under the MIT
+License unless otherwise stated. The SRJ24 KiCad fixtures in
+`tests/assets/dataset-srj24/` remain under Apache-2.0 and are not relicensed by
+the repository-level MIT license. See `LICENSE`, `THIRD_PARTY_NOTICES.md`, and
+`LICENSES/Apache-2.0.txt` for the complete terms and attribution.
