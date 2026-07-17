@@ -4,6 +4,7 @@ import type {
   PcbHoleCircularWithRectPad,
   PcbHolePillWithRectPad,
   PcbHoleRotatedPillWithRectPad,
+  PcbHoleWithPolygonPad,
   PcbPlatedHoleCircle,
   PcbPlatedHoleOval,
   PcbSmtPadCircle,
@@ -13,6 +14,7 @@ import type {
   PcbSmtPadRotatedPill,
   PcbSmtPadRotatedRect,
 } from "circuit-json"
+import Flatten from "@flatten-js/core"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
@@ -206,13 +208,11 @@ export function processPad({
         ? getPcbCopperLayerRefs(ctx.kicadPcb)
         : []
 
-  // Custom-pad primitive coordinates are local to the pad. Unlike regular pad
-  // shapes, they are emitted as absolute polygon points, so they must include
-  // the footprint placement rotation before the KiCad-to-Circuit-JSON Y flip.
-  // The pad angle is already expressed in the coordinate convention expected
-  // by the primitive conversion below.
-  const totalCcwRotationDegrees =
-    (padAt.angle || 0) - footprintPlacement.componentCcwRotationDegrees
+  // Pad angles in a .kicad_pcb are absolute board angles even though the pad
+  // position is footprint-local. Custom primitive points therefore rotate by
+  // the negated absolute pad angle in KiCad space before the PCB Y-axis flip.
+  // Combining the angle with the footprint again rotates custom copper twice.
+  const customPrimitiveKicadRotationDegrees = -(padAt.angle || 0)
 
   // Create pcb_port for this pad (if it has a pad number)
   const padNumber = pad.number?.toString()
@@ -266,7 +266,7 @@ export function processPad({
       pcbPortId,
       sourcePortId,
       padKicadPos,
-      totalCcwRotationDegrees,
+      customPrimitiveKicadRotationDegrees,
     })
   } else if (padType === "np_thru_hole") {
     createNpthHole({
@@ -287,6 +287,8 @@ export function processPad({
       padShape,
       layers: copperLayers,
       pcbPortId,
+      padKicadPos,
+      customPrimitiveKicadRotationDegrees,
     })
   }
 }
@@ -304,7 +306,7 @@ export function createSmdPad({
   pcbPortId,
   sourcePortId: _sourcePortId,
   padKicadPos,
-  totalCcwRotationDegrees = 0,
+  customPrimitiveKicadRotationDegrees = 0,
 }: {
   ctx: ConverterContext
   pad: any
@@ -315,7 +317,7 @@ export function createSmdPad({
   pcbPortId?: string
   sourcePortId?: string
   padKicadPos: { x: number; y: number }
-  totalCcwRotationDegrees?: number
+  customPrimitiveKicadRotationDegrees?: number
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
@@ -362,7 +364,7 @@ export function createSmdPad({
             if (x !== undefined && y !== undefined) {
               const rotated = rotatePoint({
                 point: { x, y },
-                ccwRotationDegrees: totalCcwRotationDegrees,
+                ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
               })
               const kicadPos = {
                 x: padKicadPos.x + rotated.x,
@@ -423,7 +425,7 @@ export function createSmdPad({
 
         const rotatedCenter = rotatePoint({
           point: center,
-          ccwRotationDegrees: totalCcwRotationDegrees,
+          ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
         })
         const kicadCenterPos = {
           x: padKicadPos.x + rotatedCenter.x,
@@ -483,7 +485,7 @@ export function createSmdPad({
       for (const [dx, dy] of anchorCorners) {
         const rotated = rotatePoint({
           point: { x: dx, y: dy },
-          ccwRotationDegrees: totalCcwRotationDegrees,
+          ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
         })
         const corner = applyToPoint(ctx.k2cMatPcb!, {
           x: padKicadPos.x + rotated.x,
@@ -709,6 +711,284 @@ function getRightAngleTurns(rotationDegrees: number): number | null {
   return Math.round(quarterTurns)
 }
 
+function createEllipsePolygon(params: {
+  center?: Point
+  width: number
+  height: number
+  segments?: number
+}): InstanceType<typeof Flatten.Polygon> {
+  const { center = { x: 0, y: 0 }, width, height, segments = 32 } = params
+  const points: Array<[number, number]> = []
+
+  for (let index = 0; index < segments; index++) {
+    const angle = (index / segments) * Math.PI * 2
+    points.push([
+      center.x + (width / 2) * Math.cos(angle),
+      center.y + (height / 2) * Math.sin(angle),
+    ])
+  }
+
+  return new Flatten.Polygon(points)
+}
+
+function createRectPolygon(start: Point, end: Point) {
+  return new Flatten.Polygon([
+    [Math.min(start.x, end.x), Math.min(start.y, end.y)],
+    [Math.max(start.x, end.x), Math.min(start.y, end.y)],
+    [Math.max(start.x, end.x), Math.max(start.y, end.y)],
+    [Math.min(start.x, end.x), Math.max(start.y, end.y)],
+  ])
+}
+
+function createCapsulePolygon(params: {
+  start: Point
+  end: Point
+  width: number
+  capSegments?: number
+}) {
+  const { start, end, width, capSegments = 8 } = params
+  const radius = width / 2
+  const dx = end.x - start.x
+  const dy = end.y - start.y
+
+  if (Math.hypot(dx, dy) < 1e-9) {
+    return createEllipsePolygon({
+      center: start,
+      width,
+      height: width,
+      segments: capSegments * 2,
+    })
+  }
+
+  const direction = Math.atan2(dy, dx)
+  const points: Array<[number, number]> = []
+
+  for (let index = 0; index <= capSegments; index++) {
+    const angle = direction - Math.PI / 2 + (index / capSegments) * Math.PI
+    points.push([
+      end.x + radius * Math.cos(angle),
+      end.y + radius * Math.sin(angle),
+    ])
+  }
+
+  for (let index = 0; index <= capSegments; index++) {
+    const angle = direction + Math.PI / 2 + (index / capSegments) * Math.PI
+    points.push([
+      start.x + radius * Math.cos(angle),
+      start.y + radius * Math.sin(angle),
+    ])
+  }
+
+  return new Flatten.Polygon(points)
+}
+
+function getCustomPadCopperOutline(params: { pad: any; size: Point }): Point[] {
+  const { pad, size } = params
+  const polygons: Array<InstanceType<typeof Flatten.Polygon>> = []
+  const anchorShape = pad.options?.anchor ?? "rect"
+
+  if (size.x >= 0.01 && size.y >= 0.01) {
+    if (anchorShape === "circle") {
+      polygons.push(createEllipsePolygon({ width: size.x, height: size.y }))
+    } else {
+      polygons.push(
+        createRectPolygon(
+          { x: -size.x / 2, y: -size.y / 2 },
+          { x: size.x / 2, y: size.y / 2 },
+        ),
+      )
+    }
+  }
+
+  const primitives = pad._sxPrimitives?._graphics || pad.primitives || []
+  const primitiveArray = Array.isArray(primitives) ? primitives : [primitives]
+
+  for (const primitive of primitiveArray) {
+    if (primitive.token === "gr_poly") {
+      const grPoly = primitive.gr_poly || primitive
+      for (const rawContour of getCustomPadPolygonRawContours(grPoly)) {
+        const points = rawContour.flatMap((point: any) => {
+          const x = point.x ?? point.xy?.x
+          const y = point.y ?? point.xy?.y
+          return x === undefined || y === undefined ? [] : [[x, y]]
+        }) as Array<[number, number]>
+
+        if (points.length >= 3) polygons.push(new Flatten.Polygon(points))
+      }
+    }
+
+    if (primitive.token === "gr_circle") {
+      const circle = primitive.gr_circle || primitive
+      const center = circle.center || circle._sxCenter || { x: 0, y: 0 }
+      const end = circle.end || circle._sxEnd || { x: 0, y: 0 }
+      const centerlineRadius = Math.hypot(end.x - center.x, end.y - center.y)
+      const strokeWidth =
+        circle.stroke?.width || circle.width || circle._sxWidth?.value || 0
+      const fill = circle.fill?.value || circle.fill || circle._sxFill?.value
+      const radius =
+        fill === "no" && strokeWidth > 0
+          ? centerlineRadius + strokeWidth / 2
+          : centerlineRadius
+
+      polygons.push(
+        createEllipsePolygon({
+          center,
+          width: radius * 2,
+          height: radius * 2,
+        }),
+      )
+    }
+
+    if (primitive.token === "gr_line") {
+      const line = primitive.gr_line || primitive
+      const start = line.start || line._sxStart
+      const end = line.end || line._sxEnd
+      const width = line.width || line._sxWidth?.value || 0
+
+      if (start && end && width > 0) {
+        polygons.push(createCapsulePolygon({ start, end, width }))
+      }
+    }
+
+    if (primitive.token === "gr_rect") {
+      const rect = primitive.gr_rect || primitive
+      const start = rect.start || rect._sxStart
+      const end = rect.end || rect._sxEnd
+      if (start && end) polygons.push(createRectPolygon(start, end))
+    }
+  }
+
+  if (polygons.length === 0) {
+    return [
+      { x: -size.x / 2, y: -size.y / 2 },
+      { x: size.x / 2, y: -size.y / 2 },
+      { x: size.x / 2, y: size.y / 2 },
+      { x: -size.x / 2, y: size.y / 2 },
+    ]
+  }
+
+  let union = polygons[0]!
+  for (const polygon of polygons.slice(1)) {
+    union = Flatten.BooleanOperations.unify(union, polygon)
+  }
+
+  const largestIsland = union
+    .splitToIslands()
+    .sort((islandA, islandB) => islandB.area() - islandA.area())[0]
+
+  return (largestIsland ?? union).vertices.map((point) => ({
+    x: point.x,
+    y: point.y,
+  }))
+}
+
+function transformCustomPadLocalPoint(params: {
+  ctx: ConverterContext
+  point: Point
+  padKicadPos: Point
+  customPrimitiveKicadRotationDegrees: number
+}): Point {
+  const { ctx, point, padKicadPos, customPrimitiveKicadRotationDegrees } =
+    params
+  const rotated = rotatePoint({
+    point,
+    ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
+  })
+
+  return applyToPoint(ctx.k2cMatPcb!, {
+    x: padKicadPos.x + rotated.x,
+    y: padKicadPos.y + rotated.y,
+  })
+}
+
+function createCustomPlatedHole(params: {
+  ctx: ConverterContext
+  pad: any
+  componentId: string
+  pos: Point
+  size: Point
+  drill: any
+  layers: LayerRef[]
+  pcbPortId?: string
+  padKicadPos: Point
+  customPrimitiveKicadRotationDegrees: number
+}) {
+  const {
+    ctx,
+    pad,
+    componentId,
+    pos,
+    size,
+    drill,
+    layers,
+    pcbPortId,
+    padKicadPos,
+    customPrimitiveKicadRotationDegrees,
+  } = params
+  const localCopperOutline = getCustomPadCopperOutline({ pad, size })
+  const padOutline = localCopperOutline.map((point) => {
+    const globalPoint = transformCustomPadLocalPoint({
+      ctx,
+      point,
+      padKicadPos,
+      customPrimitiveKicadRotationDegrees,
+    })
+    return { x: globalPoint.x - pos.x, y: globalPoint.y - pos.y }
+  })
+
+  const drillX =
+    typeof drill === "object"
+      ? drill?.x || drill?._width || drill?.diameter || 0.8
+      : drill || 0.8
+  const drillY =
+    typeof drill === "object"
+      ? drill?.y || drill?._height || drill?.diameter || drillX
+      : drill || 0.8
+  const drillIsOval =
+    typeof drill === "object" && Math.abs(drillX - drillY) > 1e-9
+  const normalizedRotation = normalizeRotationDegrees(pad.at?.angle)
+  const rightAngleTurns = getRightAngleTurns(normalizedRotation)
+
+  const platedHole: PcbHoleWithPolygonPad = {
+    type: "pcb_plated_hole",
+    shape: "hole_with_polygon_pad",
+    pcb_component_id: componentId,
+    pcb_port_id: pcbPortId,
+    pcb_plated_hole_id: getNextPcbPlatedHoleId(ctx),
+    x: pos.x,
+    y: pos.y,
+    port_hints: [pad.number?.toString()],
+    hole_shape: drillIsOval ? "pill" : "circle",
+    hole_offset_x: 0,
+    hole_offset_y: 0,
+    pad_outline: padOutline,
+    layers,
+  }
+
+  if (drillIsOval) {
+    const unrotatedWidth = drillY
+    const unrotatedHeight = drillX
+    const shouldSwapDimensions =
+      rightAngleTurns !== null && Math.abs(rightAngleTurns) % 2 === 1
+
+    platedHole.hole_width = shouldSwapDimensions
+      ? unrotatedHeight
+      : unrotatedWidth
+    platedHole.hole_height = shouldSwapDimensions
+      ? unrotatedWidth
+      : unrotatedHeight
+
+    if (rightAngleTurns === null && normalizedRotation !== 0) {
+      platedHole.hole_shape = "rotated_pill"
+      platedHole.ccw_rotation = normalizedRotation
+    }
+  } else {
+    platedHole.hole_diameter = Math.max(drillX, drillY)
+  }
+
+  ctx.db.pcb_plated_hole.insert(platedHole)
+}
+
 /**
  * Creates a plated hole (through-hole pad) in Circuit JSON
  */
@@ -722,6 +1002,8 @@ export function createPlatedHole(params: {
   padShape: string
   layers: LayerRef[]
   pcbPortId?: string
+  padKicadPos: Point
+  customPrimitiveKicadRotationDegrees: number
 }) {
   const {
     ctx,
@@ -733,7 +1015,28 @@ export function createPlatedHole(params: {
     padShape,
     layers,
     pcbPortId,
+    padKicadPos,
+    customPrimitiveKicadRotationDegrees,
   } = params
+
+  if (padShape === "custom") {
+    createCustomPlatedHole({
+      ctx,
+      pad,
+      componentId,
+      pos,
+      size,
+      drill,
+      layers,
+      pcbPortId,
+      padKicadPos,
+      customPrimitiveKicadRotationDegrees,
+    })
+
+    if (ctx.stats) ctx.stats.pads = (ctx.stats.pads || 0) + 1
+    return
+  }
+
   // Extract drill dimensions - drill can be scalar (circular) or x/y (oval)
   const drillX =
     typeof drill === "object"

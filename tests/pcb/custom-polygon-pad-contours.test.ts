@@ -68,7 +68,7 @@ test("custom polygon pads preserve holes for trace endpoint matching", () => {
   expect(JSON.parse(JSON.stringify(polygonPad)).contours).toBeUndefined()
 })
 
-test("custom pad polygons include the footprint placement rotation", () => {
+test("custom pad polygons use the absolute KiCad pad rotation", () => {
   const circuitJson: any[] = []
   const ctx = {
     db: cju(circuitJson),
@@ -116,8 +116,9 @@ test("custom pad polygons include the footprint placement rotation", () => {
     .list()
     .find((entry: any) => entry.shape === "polygon") as any
 
-  // 270° pad rotation combined with a 180° footprint rotation yields a 90°
-  // primitive rotation. Without the footprint rotation this point is mirrored.
+  // Board-level KiCad pad angles are already absolute. Negating 270° for the
+  // KiCad-to-Circuit-JSON transform yields 90°; the 180° footprint rotation
+  // must not be applied a second time.
   expect(polygonPad.points[0].x).toBeCloseTo(0)
   expect(polygonPad.points[0].y).toBeCloseTo(1)
 })
