@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.7",
+    "@flatten-js/core": "^1.6.12",
     "@tscircuit/circuit-json-util": "^0.0.94",
     "@tscircuit/copper-pour-solver": "^0.0.36",
     "@tscircuit/core": "^0.0.1414",

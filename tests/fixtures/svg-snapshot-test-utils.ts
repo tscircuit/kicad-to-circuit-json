@@ -12,6 +12,7 @@ export function convertKicadPcbToSvgSnapshot(params: {
   kicadFileName: string
   testPath: string
   snapshotName: string
+  assertSnapshot?: boolean
 }) {
   const kicadPcbContent = readFileSync(params.kicadPcbPath, "utf-8")
 
@@ -34,6 +35,7 @@ export function convertKicadPcbToSvgSnapshot(params: {
     svg: circuitJsonSvg,
     testPath: params.testPath,
     snapshotName: params.snapshotName,
+    assertSnapshot: params.assertSnapshot,
   })
 }
 
@@ -42,6 +44,7 @@ export function convertKicadFootprintToSvgSnapshot(params: {
   kicadFileName: string
   testPath: string
   snapshotName: string
+  assertSnapshot?: boolean
 }) {
   const kicadModContent = readFileSync(params.kicadModPath, "utf-8")
 
@@ -60,6 +63,7 @@ export function convertKicadFootprintToSvgSnapshot(params: {
     svg: circuitJsonSvg,
     testPath: params.testPath,
     snapshotName: params.snapshotName,
+    assertSnapshot: params.assertSnapshot,
   })
 }
 
@@ -67,6 +71,7 @@ function expectSvgSnapshot(params: {
   svg: string
   testPath: string
   snapshotName: string
+  assertSnapshot?: boolean
 }) {
   const { svg, testPath, snapshotName } = params
   const normalizedSvg = normalizeTransientSvgIds(svg)
@@ -83,6 +88,10 @@ function expectSvgSnapshot(params: {
 
   if (!existsSync(snapshotPath) || shouldUpdateSnapshot) {
     writeFileSync(snapshotPath, normalizedSvg)
+  }
+
+  if (params.assertSnapshot) {
+    expect(normalizedSvg).toBe(readFileSync(snapshotPath, "utf-8"))
   }
 }
 
