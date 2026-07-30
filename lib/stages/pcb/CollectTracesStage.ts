@@ -435,6 +435,12 @@ export class CollectTracesStage extends ConverterStage {
           lastWireLayer === layer &&
           this.pointsMatch(lastRawPoint, point)
         ) {
+          // A wire point's width applies to the segment leaving that point.
+          // Keep the shared point, but give it the outgoing edge's width.
+          const lastRoutePoint = routePoints[routePoints.length - 1]
+          if (lastRoutePoint?.routeType === "wire") {
+            lastRoutePoint.width = width
+          }
           continue
         }
 
