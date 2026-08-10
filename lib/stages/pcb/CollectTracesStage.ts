@@ -1,6 +1,7 @@
 import type { LayerRef } from "circuit-json"
+import type { PcbArc, Segment, Via } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
-import { ConverterStage } from "../../types"
+import { ConverterStage, type KicadNetKey } from "../../types"
 import {
   approximateArcPoints,
   getArcStartMidEnd,
@@ -12,6 +13,7 @@ import {
   getPcbCopperLayerRefs,
   mapKicadLayerToLayerRef,
 } from "./layer-mapping"
+import { getKicadNetKey } from "./net-utils"
 import {
   isPointInsidePolygonContours,
   type PolygonPoint,
@@ -33,7 +35,7 @@ interface TracePrimitive {
   toLayer?: LayerRef
   outerDiameter?: number
   holeDiameter?: number
-  netNum: number | null
+  netKey: KicadNetKey | null
 }
 
 interface TraceEdge extends TracePrimitive {
@@ -91,12 +93,10 @@ export class CollectTracesStage extends ConverterStage {
       return false
     }
 
-    const segments = this.ctx.kicadPcb.segments || []
-    const segmentArray = Array.isArray(segments) ? segments : [segments]
     const arcArray = getTopLevelCopperArcs(this.ctx.kicadPcb)
     const primitives: TracePrimitive[] = []
 
-    for (const segment of segmentArray) {
+    for (const segment of this.ctx.kicadPcb.segments) {
       const primitive = this.getTracePrimitiveFromSegment(segment)
       if (primitive) primitives.push(primitive)
     }
@@ -106,9 +106,7 @@ export class CollectTracesStage extends ConverterStage {
       if (primitive) primitives.push(primitive)
     }
 
-    const vias = this.ctx.kicadPcb.vias || []
-    const viaArray = Array.isArray(vias) ? vias : [vias]
-    for (const via of viaArray) {
+    for (const via of this.ctx.kicadPcb.vias) {
       const primitive = this.getTracePrimitiveFromVia(via)
       if (primitive) primitives.push(primitive)
     }
@@ -120,7 +118,7 @@ export class CollectTracesStage extends ConverterStage {
   }
 
   private getTracePrimitiveFromSegment(
-    segment: any,
+    segment: Segment,
   ): TracePrimitive | undefined {
     if (!this.ctx.k2cMatPcb) return undefined
 
@@ -132,7 +130,7 @@ export class CollectTracesStage extends ConverterStage {
     const layerNames = getLayerNames(layer)
     const layerStr = layerNames.join(" ")
     const mappedLayer = mapKicadLayerToLayerRef(layerStr)
-    const netNum = this.getSegmentNet(segment)
+    const netKey = getKicadNetKey(segment)
 
     const startPoint = { x: start.x, y: start.y }
     const endPoint = { x: end.x, y: end.y }
@@ -147,19 +145,19 @@ export class CollectTracesStage extends ConverterStage {
       points: [startPoint, endPoint],
       width,
       layer: mappedLayer,
-      netNum,
+      netKey,
     }
   }
 
-  private getTracePrimitiveFromArc(arc: any): TracePrimitive | undefined {
+  private getTracePrimitiveFromArc(arc: PcbArc): TracePrimitive | undefined {
     if (!this.ctx.k2cMatPcb) return undefined
 
     const { start, mid, end } = getArcStartMidEnd(arc)
-    const width = arc.width ?? arc._sxWidth?.value ?? 0.2
+    const width = arc.width ?? 0.2
     const layerStr = getLayerNames(arc.layer).join(" ")
     const mappedLayer = mapKicadLayerToLayerRef(layerStr)
 
-    const netNum = this.getSegmentNet(arc)
+    const netKey = getKicadNetKey(arc)
 
     const points = approximateArcPoints({
       start,
@@ -183,13 +181,13 @@ export class CollectTracesStage extends ConverterStage {
       points,
       width,
       layer: mappedLayer,
-      netNum,
+      netKey,
     }
   }
 
-  private getTracePrimitiveFromVia(via: any): TracePrimitive | undefined {
-    const netNum = this.getSegmentNet(via)
-    if (netNum === null) return undefined
+  private getTracePrimitiveFromVia(via: Via): TracePrimitive | undefined {
+    const netKey = getKicadNetKey(via)
+    if (netKey === null) return undefined
 
     const at = via.at || { x: 0, y: 0 }
     const point = { x: at.x, y: at.y }
@@ -214,7 +212,7 @@ export class CollectTracesStage extends ConverterStage {
       toLayer,
       outerDiameter: via.size || 0.8,
       holeDiameter: via.drill || 0.4,
-      netNum,
+      netKey,
     }
   }
 
@@ -336,11 +334,11 @@ export class CollectTracesStage extends ConverterStage {
     const routePoints = this.getPathRoutePoints(path)
     if (routePoints.length < 2) return
 
-    const netNum = path[0]!.edge.netNum
-    const sourceTraceId =
-      netNum !== null
-        ? (this.ctx.netNumToSourceTraceId.get(netNum) ?? undefined)
-        : undefined
+    const netKey = path[0]!.edge.netKey
+    let sourceTraceId: string | undefined
+    if (netKey !== null) {
+      sourceTraceId = this.ctx.netNumToSourceTraceId.get(netKey)
+    }
 
     const firstWireIndex = routePoints.findIndex(
       (point) => point.routeType === "wire",
@@ -355,12 +353,12 @@ export class CollectTracesStage extends ConverterStage {
     const startPcbPortId = this.findPortAtPosition(
       { x: firstWirePoint.x, y: firstWirePoint.y },
       firstWirePoint.layer,
-      netNum,
+      netKey,
     )
     const endPcbPortId = this.findPortAtPosition(
       { x: lastWirePoint.x, y: lastWirePoint.y },
       lastWirePoint.layer,
-      netNum,
+      netKey,
     )
 
     const route = routePoints.map((point, index) => {
@@ -466,8 +464,8 @@ export class CollectTracesStage extends ConverterStage {
 
     const { point, layer } = this.getTraceGraphNodeFromKey(nodeKey)
     const transformedPoint = applyToPoint(this.ctx.k2cMatPcb!, point)
-    const netNum = graph.edges[edgeIds[0]!]?.netNum ?? null
-    if (this.findPortCenterAtPosition(transformedPoint, layer, netNum)) {
+    const netKey = graph.edges[edgeIds[0]!]?.netKey ?? null
+    if (this.findPortCenterAtPosition(transformedPoint, layer, netKey)) {
       return true
     }
 
@@ -475,7 +473,8 @@ export class CollectTracesStage extends ConverterStage {
   }
 
   private getPrimitiveGroupKey(primitive: TracePrimitive): string {
-    return `${primitive.netNum ?? "no-net"}`
+    if (primitive.netKey === null) return "no-net"
+    return `${typeof primitive.netKey}:${primitive.netKey}`
   }
 
   private getPointKey(point: TracePoint): string {
@@ -511,34 +510,22 @@ export class CollectTracesStage extends ConverterStage {
     return this.getPointKey(a) === this.getPointKey(b)
   }
 
-  private getSegmentNet(segment: any): number | null {
-    const net = segment?.net
-    if (!net) return null
-
-    if (typeof net === "number") return net
-    if (typeof net === "object") {
-      return net._id ?? net.number ?? net.ordinal ?? null
-    }
-
-    return null
-  }
-
   private findPortAtPosition(
     point: { x: number; y: number },
     layer: LayerRef,
-    netNum: number | null,
+    netKey: KicadNetKey | null,
   ): string | undefined {
-    const portAtCenter = this.findPortCenterAtPosition(point, layer, netNum)
+    const portAtCenter = this.findPortCenterAtPosition(point, layer, netKey)
     if (portAtCenter) return portAtCenter
 
     const portContainingPoint = this.findPortContainingPoint(
       point,
       layer,
-      netNum,
+      netKey,
     )
     if (portContainingPoint) return portContainingPoint
 
-    if (netNum === null) return undefined
+    if (netKey === null) return undefined
 
     // KiCad permits copper to physically enter a pad whose assigned logical
     // net differs from the track net (for example, an intentional short across
@@ -553,12 +540,12 @@ export class CollectTracesStage extends ConverterStage {
   private findPortCenterAtPosition(
     point: { x: number; y: number },
     layer: LayerRef,
-    netNum: number | null,
+    netKey: KicadNetKey | null,
   ): string | undefined {
     const ports = this.ctx.db.pcb_port.list() as any[]
 
     for (const port of ports) {
-      if (!this.isPcbPortOnNet(port, netNum)) continue
+      if (!this.isPcbPortOnNet(port, netKey)) continue
 
       const layers = port.layers as string[] | undefined
       if (layers?.length && !layers.includes(layer)) {
@@ -579,14 +566,14 @@ export class CollectTracesStage extends ConverterStage {
   private findPortContainingPoint(
     point: { x: number; y: number },
     layer: LayerRef,
-    netNum: number | null,
+    netKey: KicadNetKey | null,
   ): string | undefined {
     const candidates: Array<{ pcbPortId: string; distanceSq: number }> = []
     const collectCandidate = (pad: any) => {
       const pcbPortId = pad.pcb_port_id
       if (!pcbPortId || !this.isPadOnLayer(pad, layer)) return
       const pcbPort = this.ctx.db.pcb_port.get(pcbPortId)
-      if (!this.isPcbPortOnNet(pcbPort, netNum)) return
+      if (!this.isPcbPortOnNet(pcbPort, netKey)) return
       if (!this.isPointInsidePadCopper(point, pad)) return
 
       const dx = (pad.x ?? 0) - point.x
@@ -606,14 +593,14 @@ export class CollectTracesStage extends ConverterStage {
     return candidates[0]?.pcbPortId
   }
 
-  private isPcbPortOnNet(port: any, netNum: number | null) {
-    if (netNum === null) return true
+  private isPcbPortOnNet(port: any, netKey: KicadNetKey | null) {
+    if (netKey === null) return true
 
     const sourcePortId = port?.source_port_id
     if (!sourcePortId) return false
 
     return (
-      this.ctx.netNumToSourcePortIds?.get(netNum)?.includes(sourcePortId) ??
+      this.ctx.netNumToSourcePortIds?.get(netKey)?.includes(sourcePortId) ??
       false
     )
   }

@@ -2,6 +2,8 @@ import type { CircuitJsonUtilObjects } from "@tscircuit/circuit-json-util"
 import type { KicadPcb, KicadSch, KicadSym } from "kicadts"
 import type { Matrix } from "transformation-matrix"
 
+export type KicadNetKey = number | string
+
 export interface ConverterContext {
   db: CircuitJsonUtilObjects
   kicadPcb?: KicadPcb
@@ -13,11 +15,11 @@ export interface ConverterContext {
   k2cMatSch?: Matrix
   k2cMatPcb?: Matrix
 
-  // Maps for tracking relationships
-  netNumToName?: Map<number, string>
-  netNumToSourceNetId?: Map<number, string>
-  netNumToSourceTraceId?: Map<number, string>
-  netNumToSourcePortIds?: Map<number, string[]>
+  // Legacy field names: KiCad 10 may use a net name instead of a net number.
+  netNumToName?: Map<KicadNetKey, string>
+  netNumToSourceNetId?: Map<KicadNetKey, string>
+  netNumToSourceTraceId?: Map<KicadNetKey, string>
+  netNumToSourcePortIds?: Map<KicadNetKey, string[]>
   footprintUuidToComponentId?: Map<string, string>
   footprintUuidToSourceComponentId?: Map<string, string>
   symbolUuidToComponentId?: Map<string, string>
