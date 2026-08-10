@@ -16,12 +16,30 @@ export type KicadNetElement =
       netName?: string
     }
 
+function isKicadNetReference(
+  netElement: KicadNetElement,
+): netElement is KicadNetReference {
+  if (typeof netElement !== "object") return false
+
+  return (
+    "id" in netElement ||
+    "name" in netElement ||
+    "number" in netElement ||
+    "ordinal" in netElement
+  )
+}
+
 function getNet(netElement: KicadNetElement): KicadNet | undefined {
   if (typeof netElement === "object" && "net" in netElement) {
     return netElement.net
   }
 
-  return netElement
+  if (isKicadNetReference(netElement)) return netElement
+  if (typeof netElement === "number" || typeof netElement === "string") {
+    return netElement
+  }
+
+  return undefined
 }
 
 /**
