@@ -54,7 +54,7 @@ export function getLineStartEnd(line: GrLine): {
   }
 }
 
-export function getArcStartMidEnd(arc: GrArc): {
+export function getArcStartMidEnd(arc: GrArc | PcbArc): {
   start: PcbPoint
   mid: PcbPoint
   end: PcbPoint

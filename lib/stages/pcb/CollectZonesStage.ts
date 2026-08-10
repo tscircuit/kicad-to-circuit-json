@@ -1,4 +1,3 @@
-import { ConverterStage } from "../../types"
 import type { LayerRef } from "circuit-json"
 import {
   PtsArc,
@@ -8,11 +7,13 @@ import {
   type ZonePolygon,
 } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
+import { ConverterStage } from "../../types"
 import { approximateArcPoints } from "./arc-utils"
 import {
   getLayerRefsFromLayers,
   mapKicadLayerToLayerRef,
 } from "./layer-mapping"
+import { getKicadNetKey } from "./net-utils"
 
 type KicadPoint = { x: number; y: number }
 type ZonePolygonRecord = {
@@ -65,8 +66,11 @@ export class CollectZonesStage extends ConverterStage {
     }
 
     // Get net info
-    const netNum = typeof zone.net === "number" ? zone.net : 0
-    const netName = this.ctx.netNumToName!.get(netNum) || zone.netName || ""
+    const netKey = getKicadNetKey(zone)
+    let netName = zone.netName || ""
+    if (netKey !== null) {
+      netName = this.ctx.netNumToName!.get(netKey) || netName
+    }
 
     // Create a copper pour for each filled polygon
     for (const polygonRecord of polygonRecords) {

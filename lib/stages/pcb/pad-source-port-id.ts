@@ -1,21 +1,10 @@
-import type { Footprint } from "kicadts"
-
-export function getPadNetNum(pad: any): number | null {
-  const net = pad?._sxNet || pad?.net
-  if (!net) return null
-
-  if (typeof net === "number") return net
-  if (typeof net === "object") {
-    return net._id ?? net.number ?? net.ordinal ?? null
-  }
-
-  return null
-}
+import type { Footprint, FootprintPad } from "kicadts"
+import { getKicadNetKey } from "./net-utils"
 
 export function getSourcePortIdForPad(params: {
   componentId: string
   footprint: Footprint
-  pad: any
+  pad: FootprintPad
 }) {
   const { componentId, footprint, pad } = params
   const padNumber = pad.number?.toString()
@@ -26,7 +15,7 @@ export function getSourcePortIdForPad(params: {
     return baseSourcePortId
   }
 
-  return `${baseSourcePortId}_net_${getPadNetNum(pad) ?? "none"}`
+  return `${baseSourcePortId}_net_${getKicadNetKey(pad) ?? "none"}`
 }
 
 function hasDuplicatePadNumberOnDifferentNets(
@@ -39,7 +28,7 @@ function hasDuplicatePadNumberOnDifferentNets(
 
   for (const pad of padArray) {
     if (pad.number?.toString() !== padNumber) continue
-    netKeys.add(String(getPadNetNum(pad) ?? "none"))
+    netKeys.add(String(getKicadNetKey(pad) ?? "none"))
   }
 
   return netKeys.size > 1

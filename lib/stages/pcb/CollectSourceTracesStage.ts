@@ -1,8 +1,15 @@
-import type { Footprint } from "kicadts"
-import { ConverterStage } from "../../types"
+import type { Footprint, FootprintPad } from "kicadts"
+import { ConverterStage, type KicadNetKey } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
 import { getFootprintReference } from "./CollectFootprintsStage/footprint-properties"
-import { getPadNetNum, getSourcePortIdForPad } from "./pad-source-port-id"
+import { getKicadNetKey } from "./net-utils"
+import { getSourcePortIdForPad } from "./pad-source-port-id"
+
+interface NetPadConnection {
+  componentId: string
+  padNumber: string
+  sourcePortId: string
+}
 
 /**
  * CollectSourceTracesStage extracts logical nets from KiCad PCB by analyzing net
@@ -15,7 +22,7 @@ import { getPadNetNum, getSourcePortIdForPad } from "./pad-source-port-id"
  * 4. Creates one source_net and one source_trace element for each net.
  */
 export class CollectSourceTracesStage extends ConverterStage {
-  private processedNets = new Set<number>()
+  private processedNets = new Set<KicadNetKey>()
 
   step(): boolean {
     if (!this.ctx.kicadPcb || !this.ctx.netNumToName) {
@@ -24,21 +31,11 @@ export class CollectSourceTracesStage extends ConverterStage {
     }
 
     // Build a map of net -> list of (component_id, pad_number, source_port_id)
-    const netToPads = new Map<
-      number,
-      Array<{
-        componentId: string
-        padNumber: string
-        sourcePortId: string
-      }>
-    >()
+    const netToPads = new Map<KicadNetKey, NetPadConnection[]>()
 
     // Extract all footprints from KiCad PCB
-    const footprints = this.ctx.kicadPcb.footprints || []
-    const footprintArray = Array.isArray(footprints) ? footprints : [footprints]
-
     // Process each footprint and its pads
-    for (const footprint of footprintArray) {
+    for (const footprint of this.ctx.kicadPcb.footprints) {
       this.processFootprintPads(footprint, netToPads)
     }
 
@@ -47,18 +44,18 @@ export class CollectSourceTracesStage extends ConverterStage {
     this.collectNetsFromCopper(netToPads)
 
     // Create source_net elements for each discovered net.
-    for (const [netNum, pads] of netToPads.entries()) {
-      if (this.processedNets.has(netNum)) {
+    for (const [netKey, pads] of netToPads.entries()) {
+      if (this.processedNets.has(netKey)) {
         continue
       }
 
       const sourcePortIds = this.getUniqueSourcePortIds(
         pads.map((p) => p.sourcePortId),
       )
-      this.ctx.netNumToSourcePortIds?.set(netNum, sourcePortIds)
-      const sourceNetId = this.createSourceNet(netNum)
-      this.createSourceTrace(netNum, sourceNetId, sourcePortIds)
-      this.processedNets.add(netNum)
+      this.ctx.netNumToSourcePortIds?.set(netKey, sourcePortIds)
+      const sourceNetId = this.createSourceNet(netKey)
+      this.createSourceTrace(netKey, sourceNetId, sourcePortIds)
+      this.processedNets.add(netKey)
     }
 
     this.finished = true
@@ -66,60 +63,39 @@ export class CollectSourceTracesStage extends ConverterStage {
   }
 
   private collectNetsFromCopper(
-    netToPads: Map<
-      number,
-      Array<{
-        componentId: string
-        padNumber: string
-        sourcePortId: string
-      }>
-    >,
+    netToPads: Map<KicadNetKey, NetPadConnection[]>,
   ) {
     if (!this.ctx.kicadPcb) return
 
-    const segments = this.ctx.kicadPcb.segments || []
-    const segmentArray = Array.isArray(segments) ? segments : [segments]
-
-    for (const segment of segmentArray) {
-      const netNum = this.getSegmentNet(segment)
-      if (!netNum) continue
-      if (!netToPads.has(netNum)) {
-        netToPads.set(netNum, [])
+    for (const segment of this.ctx.kicadPcb.segments) {
+      const netKey = getKicadNetKey(segment)
+      if (netKey === null || netKey === 0) continue
+      if (!netToPads.has(netKey)) {
+        netToPads.set(netKey, [])
       }
     }
 
     const arcArray = getTopLevelCopperArcs(this.ctx.kicadPcb)
     for (const arc of arcArray) {
-      const netNum = this.getSegmentNet(arc)
-      if (!netNum) continue
-      if (!netToPads.has(netNum)) {
-        netToPads.set(netNum, [])
+      const netKey = getKicadNetKey(arc)
+      if (netKey === null || netKey === 0) continue
+      if (!netToPads.has(netKey)) {
+        netToPads.set(netKey, [])
+      }
+    }
+
+    for (const via of this.ctx.kicadPcb.vias) {
+      const netKey = getKicadNetKey(via)
+      if (netKey === null || netKey === 0) continue
+      if (!netToPads.has(netKey)) {
+        netToPads.set(netKey, [])
       }
     }
   }
 
-  private getSegmentNet(segment: any): number | null {
-    const net = segment?.net
-    if (!net) return null
-
-    if (typeof net === "number") return net
-    if (typeof net === "object") {
-      return net._id ?? net.number ?? net.ordinal ?? null
-    }
-
-    return null
-  }
-
   private processFootprintPads(
     footprint: Footprint,
-    netToPads: Map<
-      number,
-      Array<{
-        componentId: string
-        padNumber: string
-        sourcePortId: string
-      }>
-    >,
+    netToPads: Map<KicadNetKey, NetPadConnection[]>,
   ) {
     // Anonymous footprints are board-only copper/mechanical features, not
     // addressable source components. Keep their PCB geometry but do not invent
@@ -135,16 +111,13 @@ export class CollectSourceTracesStage extends ConverterStage {
     if (!componentId) return
 
     // Get all pads from the footprint
-    const pads = footprint.fpPads || []
-    const padArray = Array.isArray(pads) ? pads : [pads]
-
-    for (const pad of padArray) {
+    for (const pad of footprint.fpPads) {
       const padNumber = pad.number?.toString()
       if (!padNumber) continue
 
       // Get the net assignment for this pad
-      const netNum = this.getPadNet(pad)
-      if (netNum === null || netNum === undefined || netNum === 0) {
+      const netKey = getKicadNetKey(pad)
+      if (netKey === null || netKey === 0) {
         // Net 0 or undefined typically means no connection
         continue
       }
@@ -158,11 +131,11 @@ export class CollectSourceTracesStage extends ConverterStage {
       })
 
       // Add to the net mapping
-      if (!netToPads.has(netNum)) {
-        netToPads.set(netNum, [])
+      if (!netToPads.has(netKey)) {
+        netToPads.set(netKey, [])
       }
 
-      netToPads.get(netNum)!.push({
+      netToPads.get(netKey)!.push({
         componentId,
         padNumber,
         sourcePortId,
@@ -170,15 +143,11 @@ export class CollectSourceTracesStage extends ConverterStage {
     }
   }
 
-  private getPadNet(pad: any): number | null {
-    return getPadNetNum(pad)
-  }
-
   private getOrCreateSourcePort(params: {
     componentId: string
     padNumber: string
     footprint: Footprint
-    pad: any
+    pad: FootprintPad
   }): string {
     const { componentId, padNumber, footprint, pad } = params
     const sourcePortId = getSourcePortIdForPad({
@@ -229,15 +198,15 @@ export class CollectSourceTracesStage extends ConverterStage {
     return padNumber
   }
 
-  private createSourceNet(netNum: number) {
-    const netName = this.ctx.netNumToName?.get(netNum) || `Net-${netNum}`
+  private createSourceNet(netKey: KicadNetKey) {
+    const netName = this.ctx.netNumToName?.get(netKey) || `Net-${netKey}`
 
     const sourceNet = this.ctx.db.source_net.insert({
       name: netName,
       member_source_group_ids: [],
     } as any)
 
-    this.ctx.netNumToSourceNetId?.set(netNum, sourceNet.source_net_id)
+    this.ctx.netNumToSourceNetId?.set(netKey, sourceNet.source_net_id)
 
     // Update stats
     if (this.ctx.stats) {
@@ -248,18 +217,18 @@ export class CollectSourceTracesStage extends ConverterStage {
   }
 
   private createSourceTrace(
-    netNum: number,
+    netKey: KicadNetKey,
     sourceNetId: string,
     sourcePortIds: string[],
   ) {
-    const netName = this.ctx.netNumToName?.get(netNum) || `Net-${netNum}`
+    const netName = this.ctx.netNumToName?.get(netKey) || `Net-${netKey}`
     const sourceTrace = this.ctx.db.source_trace.insert({
       connected_source_port_ids: sourcePortIds,
       connected_source_net_ids: [sourceNetId],
       display_name: netName,
     })
 
-    this.ctx.netNumToSourceTraceId?.set(netNum, sourceTrace.source_trace_id)
+    this.ctx.netNumToSourceTraceId?.set(netKey, sourceTrace.source_trace_id)
   }
 
   private getUniqueSourcePortIds(sourcePortIds: string[]) {

@@ -1,4 +1,10 @@
-import { ConverterStage } from "../../types"
+import { ConverterStage, type KicadNetKey } from "../../types"
+import { getTopLevelCopperArcs } from "./arc-utils"
+import {
+  getKicadNetKey,
+  getKicadNetName,
+  type KicadNetElement,
+} from "./net-utils"
 
 export function sanitizeCircuitJsonNetName(
   rawName: string | undefined,
@@ -28,27 +34,33 @@ export class CollectNetsStage extends ConverterStage {
     }
 
     // Extract nets from KiCad PCB
-    const nets = this.ctx.kicadPcb.nets || []
-    const netArray = Array.isArray(nets) ? nets : [nets]
+    const netArray = this.getNetElements()
     const usedNetNames = new Set<string>()
 
-    for (const net of netArray) {
-      // kicadts stores net number in _id property
-      const netNum =
-        (net as any)._id ?? (net as any).number ?? (net as any).ordinal ?? 0
-      // kicadts stores net name in _name property
-      const rawNetName = (net as any)._name ?? net.name
+    for (const netElement of netArray) {
+      const netKey = getKicadNetKey(netElement)
+      if (
+        netKey === null ||
+        netKey === 0 ||
+        this.ctx.netNumToName.has(netKey)
+      ) {
+        continue
+      }
+
+      const rawNetName = getKicadNetName(netElement)
       const sanitizedNetName = sanitizeCircuitJsonNetName(
         rawNetName,
-        `Net_${netNum}`,
+        `Net_${netKey}`,
       )
-      const netName = usedNetNames.has(sanitizedNetName)
-        ? `${sanitizedNetName}_${netNum}`
-        : sanitizedNetName
+      const netName = this.getUniqueNetName({
+        sanitizedNetName,
+        netKey,
+        usedNetNames,
+      })
       usedNetNames.add(netName)
 
       // Store mapping
-      this.ctx.netNumToName.set(netNum, netName)
+      this.ctx.netNumToName.set(netKey, netName)
     }
 
     // Special case: net 0 is typically "no connection" or sometimes GND
@@ -59,5 +71,42 @@ export class CollectNetsStage extends ConverterStage {
 
     this.finished = true
     return false
+  }
+
+  private getNetElements(): KicadNetElement[] {
+    if (!this.ctx.kicadPcb) return []
+
+    const pads = this.ctx.kicadPcb.footprints.flatMap(
+      (footprint) => footprint.fpPads,
+    )
+
+    return [
+      ...this.ctx.kicadPcb.nets,
+      ...pads,
+      ...this.ctx.kicadPcb.segments,
+      ...getTopLevelCopperArcs(this.ctx.kicadPcb),
+      ...this.ctx.kicadPcb.vias,
+      ...this.ctx.kicadPcb.zones,
+    ]
+  }
+
+  private getUniqueNetName({
+    sanitizedNetName,
+    netKey,
+    usedNetNames,
+  }: {
+    sanitizedNetName: string
+    netKey: KicadNetKey
+    usedNetNames: Set<string>
+  }) {
+    if (!usedNetNames.has(sanitizedNetName)) return sanitizedNetName
+
+    if (typeof netKey === "number") {
+      return `${sanitizedNetName}_${netKey}`
+    }
+
+    let suffix = 2
+    while (usedNetNames.has(`${sanitizedNetName}_${suffix}`)) suffix++
+    return `${sanitizedNetName}_${suffix}`
   }
 }
