@@ -1,5 +1,10 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import type { Point } from "circuit-json"
+import type { PtsArc, Wire, Xy } from "kicadts"
+
+const isXyPoint = (point: Xy | PtsArc): point is Xy =>
+  "x" in point && "y" in point
 
 /**
  * CollectSchematicTracesStage converts KiCad schematic wires and junctions
@@ -12,33 +17,32 @@ export class CollectSchematicTracesStage extends ConverterStage {
       return false
     }
 
-    // Process wires
-    const wires = this.ctx.kicadSch.wires || []
-    const wireArray = Array.isArray(wires) ? wires : [wires]
+    const junctions = this.ctx.kicadSch.junctions.flatMap((junction) =>
+      junction.at
+        ? [
+            applyToPoint(this.ctx.k2cMatSch!, {
+              x: junction.at.x,
+              y: junction.at.y,
+            }),
+          ]
+        : [],
+    )
 
-    // Group wires by net/connection for better trace representation
-    // For MVP, create one trace per wire
-    for (const wire of wireArray) {
-      this.processWire(wire)
-    }
-
-    // Process junctions
-    const junctions = this.ctx.kicadSch.junctions || []
-    const junctionArray = Array.isArray(junctions) ? junctions : [junctions]
-
-    for (const junction of junctionArray) {
-      this.processJunction(junction)
+    // Keep one trace per KiCad wire. Junction-only traces are not rendered by
+    // circuit-to-svg, so attach the schematic's junctions to the first wire.
+    for (const [index, wire] of this.ctx.kicadSch.wires.entries()) {
+      this.processWire(wire, index === 0 ? junctions : [])
     }
 
     this.finished = true
     return false
   }
 
-  private processWire(wire: any) {
-    if (!this.ctx.k2cMatSch || !wire.pts) return
+  private processWire(wire: Wire, junctions: Point[]) {
+    if (!this.ctx.k2cMatSch) return
 
     // Get start and end points
-    const pts = Array.isArray(wire.pts.xy) ? wire.pts.xy : [wire.pts.xy]
+    const pts = wire.points?.points.filter(isXyPoint) ?? []
     if (pts.length < 2) return
 
     const edges: Array<{
@@ -48,13 +52,17 @@ export class CollectSchematicTracesStage extends ConverterStage {
 
     // Convert wire segments to edges
     for (let i = 0; i < pts.length - 1; i++) {
+      const fromPoint = pts[i]
+      const toPoint = pts[i + 1]
+      if (!fromPoint || !toPoint) continue
+
       const from = applyToPoint(this.ctx.k2cMatSch, {
-        x: pts[i].x,
-        y: pts[i].y,
+        x: fromPoint.x,
+        y: fromPoint.y,
       })
       const to = applyToPoint(this.ctx.k2cMatSch, {
-        x: pts[i + 1].x,
-        y: pts[i + 1].y,
+        x: toPoint.x,
+        y: toPoint.y,
       })
 
       edges.push({ from, to })
@@ -62,30 +70,13 @@ export class CollectSchematicTracesStage extends ConverterStage {
 
     // Create schematic trace
     this.ctx.db.schematic_trace.insert({
-      edges: edges,
-    } as any)
+      edges,
+      junctions,
+    })
 
     // Update stats
     if (this.ctx.stats) {
       this.ctx.stats.traces = (this.ctx.stats.traces || 0) + 1
     }
-  }
-
-  private processJunction(junction: any) {
-    if (!this.ctx.k2cMatSch || !junction.at) return
-
-    // Transform junction position
-    const pos = applyToPoint(this.ctx.k2cMatSch, {
-      x: junction.at.x,
-      y: junction.at.y,
-    })
-
-    // Junctions in Circuit JSON are typically part of schematic_trace
-    // For now, create a minimal trace with just a junction point
-    // A more sophisticated approach would merge this with connected wires
-    this.ctx.db.schematic_trace.insert({
-      edges: [],
-      junctions: [pos],
-    } as any)
   }
 }

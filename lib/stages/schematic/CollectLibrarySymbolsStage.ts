@@ -6,7 +6,11 @@ import {
   type SupportedSourceComponentFtype,
 } from "../symbol-library/infer-source-component-ftype"
 import { inferSymbolName } from "./utils/inferSymbolName"
-import { rotationToDirection } from "./utils/rotationToDirection"
+import {
+  createSymbolTransform,
+  emitKicadSymbolGeometry,
+  getPinsForSymbolInstance,
+} from "./emitKicadSymbolGeometry"
 
 /**
  * CollectLibrarySymbolsStage extracts KiCad schematic symbols and creates:
@@ -65,13 +69,18 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     if (!uuid) return
 
     const symbolName = inferSymbolName({ libId, reference, rotation })
+    const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
+      (librarySymbol) => librarySymbol.libraryId === libId,
+    )
 
     const inserted = this.ctx.db.schematic_component.insert({
       source_component_id: sourceComponent.source_component_id,
       center: { x: cjPos.x, y: cjPos.y },
-      size: this.estimateSize(symbol),
-      ...(symbolName ? { symbol_name: symbolName } : {}),
-    } as any)
+      size: { width: 1, height: 1 },
+      is_box_with_pins: !libSymbol,
+      ...(!libSymbol && symbolName ? { symbol_name: symbolName } : {}),
+      symbol_display_value: value || undefined,
+    })
 
     const componentId = inserted.schematic_component_id
 
@@ -79,7 +88,26 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     this.ctx.symbolUuidToComponentId?.set(uuid, componentId)
 
     // Create ports for pins
-    this.createPorts(symbol, componentId)
+    if (libSymbol) {
+      this.createPorts(
+        symbol,
+        libSymbol,
+        sourceComponent.source_component_id,
+        componentId,
+        cjPos,
+      )
+      const geometry = emitKicadSymbolGeometry({
+        ctx: this.ctx,
+        instance: symbol,
+        librarySymbol: libSymbol,
+        schematicComponentId: componentId,
+        componentCenter: cjPos,
+      })
+      this.ctx.db.schematic_component.update(componentId, {
+        size: geometry.size,
+      })
+    }
+    this.createPropertyTexts(symbol)
 
     // Update stats
     if (this.ctx.stats) {
@@ -106,99 +134,122 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     })
   }
 
-  private estimateSize(symbol: SchematicSymbol): {
-    width: number
-    height: number
-  } {
-    // For MVP, use a default size
-    // In a more complete implementation, we would parse the symbol's graphical primitives
-    // or derive from pin extents
-    return { width: 1, height: 1 }
-  }
-
-  private createPorts(symbol: SchematicSymbol, componentId: string) {
-    // Get the library symbol definition to find pin information
-    const libId = symbol.libraryId
-    const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
-      (ls: any) => ls.libraryId === libId,
-    )
-
-    if (!libSymbol) return
-
-    // Pins might be in the main symbol or in subSymbols
-    // Collect pins from all possible locations
-    const allPins: any[] = []
-
-    // Check main symbol pins
-    if (
-      libSymbol.pins &&
-      Array.isArray(libSymbol.pins) &&
-      libSymbol.pins.length > 0
-    ) {
-      allPins.push(...libSymbol.pins)
-    } else if (libSymbol.pins && !Array.isArray(libSymbol.pins)) {
-      allPins.push(libSymbol.pins)
-    }
-
-    // Check subSymbols for pins (KiCad often puts pins in subSymbols)
-    if (libSymbol.subSymbols && Array.isArray(libSymbol.subSymbols)) {
-      for (const subSymbol of libSymbol.subSymbols) {
-        if (
-          subSymbol.pins &&
-          Array.isArray(subSymbol.pins) &&
-          subSymbol.pins.length > 0
-        ) {
-          allPins.push(...subSymbol.pins)
-        } else if (subSymbol.pins && !Array.isArray(subSymbol.pins)) {
-          allPins.push(subSymbol.pins)
-        }
-      }
-    }
+  private createPorts(
+    symbol: SchematicSymbol,
+    libSymbol: SchematicSymbol,
+    sourceComponentId: string,
+    componentId: string,
+    componentCenter: { x: number; y: number },
+  ) {
+    if (!this.ctx.k2cMatSch) return
+    const allPins = getPinsForSymbolInstance(libSymbol, symbol)
 
     if (allPins.length === 0) return
 
-    // Get component rotation
-    const componentRotation = symbol.at?.angle ?? 0
+    const scaleFactor = Math.abs(this.ctx.k2cMatSch.a || 1 / 15)
+    const transform = createSymbolTransform(
+      symbol,
+      componentCenter,
+      scaleFactor,
+    )
 
     for (const pin of allPins) {
-      // Transform pin position from KiCad to circuit-json coordinates
-      // Pin position in KiCad is relative to symbol origin
-      const pinAt = pin._sxAt
+      const pinAt = pin.at
       if (!pinAt) continue
-
-      // Apply component rotation to pin position (rotate around origin)
-      const rotRad = (componentRotation * Math.PI) / 180
-      const cosR = Math.cos(rotRad)
-      const sinR = Math.sin(rotRad)
-
-      const rotatedPinPos = {
-        x: pinAt.x * cosR - pinAt.y * sinR,
-        y: pinAt.x * sinR + pinAt.y * cosR,
-      }
-
-      // Transform to circuit-json space scale (k2cMatSch just scales, doesn't rotate)
-      const scaleFactor = Math.abs(this.ctx.k2cMatSch?.a || 1 / 15)
-      const relativePos = {
-        x: rotatedPinPos.x * scaleFactor,
-        y: -rotatedPinPos.y * scaleFactor, // Flip Y axis
-      }
+      const portCenter = applyToPoint(transform, pinAt)
+      const pinAngle = ((pinAt.angle ?? 0) * Math.PI) / 180
+      const innerPoint = applyToPoint(transform, {
+        x: pinAt.x + Math.cos(pinAngle) * (pin.length || 1),
+        y: pinAt.y + Math.sin(pinAngle) * (pin.length || 1),
+      })
+      const pinNumberText = pin.numberString || ""
+      const facingDirection = this.vectorToDirection({
+        x: portCenter.x - innerPoint.x,
+        y: portCenter.y - innerPoint.y,
+      })
+      const sourcePort = this.ctx.db.source_port.insert({
+        source_component_id: sourceComponentId,
+        name:
+          pin.name ||
+          (/^\d+$/.test(pinNumberText) ? `pin${pinNumberText}` : pinNumberText),
+        ...(/^\d+$/.test(pinNumberText)
+          ? { pin_number: Number(pinNumberText) }
+          : { port_hints: pinNumberText ? [pinNumberText] : [] }),
+      })
 
       this.ctx.db.schematic_port.insert({
         schematic_component_id: componentId,
-        center: relativePos,
-        facing_direction: this.inferPinDirection(pin, componentRotation),
-        pin_number: pin._sxNumber?.value ?? (pin as any).pinNumber ?? undefined,
-      } as any)
+        source_port_id: sourcePort.source_port_id,
+        center: portCenter,
+        facing_direction: facingDirection,
+        side_of_component:
+          facingDirection === "up"
+            ? "top"
+            : facingDirection === "down"
+              ? "bottom"
+              : facingDirection,
+        pin_number: /^\d+$/.test(pinNumberText)
+          ? Number(pinNumberText)
+          : undefined,
+        display_pin_label:
+          !libSymbol.pinNames?.hide && pin.name && pin.name !== "~"
+            ? pin.name
+            : undefined,
+        distance_from_component_edge:
+          !pin.hidden && pin.length ? pin.length * scaleFactor : undefined,
+      })
     }
   }
 
-  private inferPinDirection(
-    pin: any,
-    componentRotation: number,
-  ): "up" | "down" | "left" | "right" {
-    const pinAngle = pin.at?.angle ?? 0
-    const totalAngle = pinAngle + componentRotation
-
-    return rotationToDirection(totalAngle)
+  private vectorToDirection(vector: {
+    x: number
+    y: number
+  }): "up" | "down" | "left" | "right" {
+    if (Math.abs(vector.x) >= Math.abs(vector.y)) {
+      return vector.x >= 0 ? "right" : "left"
+    }
+    return vector.y >= 0 ? "up" : "down"
   }
+
+  private createPropertyTexts(symbol: SchematicSymbol) {
+    if (!this.ctx.k2cMatSch) return
+
+    for (const property of symbol.properties) {
+      if (
+        property.hidden ||
+        property.effects?.hiddenText ||
+        !property.value ||
+        (property.key !== "Reference" && property.key !== "Value")
+      ) {
+        continue
+      }
+
+      const fontSize = property.effects?.font?.size
+      this.ctx.db.schematic_text.insert({
+        text: property.value,
+        font_size: Math.max(
+          0.05,
+          Math.max(fontSize?.height ?? 1.27, fontSize?.width ?? 1.27) *
+            Math.abs(this.ctx.k2cMatSch.a),
+        ),
+        position: applyToPoint(
+          this.ctx.k2cMatSch,
+          property.at ?? symbol.at ?? { x: 0, y: 0 },
+        ),
+        rotation: normalizeReadableRotation(
+          -(property.at?.angle ?? 0) + (symbol.at?.angle ?? 0),
+        ),
+        anchor: property.effects?.justify?.horizontal ?? "center",
+        color: "rgb(132, 0, 0)",
+      })
+    }
+  }
+}
+
+const normalizeReadableRotation = (rotation: number): number => {
+  let normalized = ((rotation % 360) + 360) % 360
+  if (normalized > 180) normalized -= 360
+  if (normalized > 90) normalized -= 180
+  if (normalized < -90) normalized += 180
+  return normalized
 }
