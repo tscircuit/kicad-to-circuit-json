@@ -1,7 +1,10 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
 import type { SchematicSymbol } from "kicadts"
-import { inferSourceComponentFtype } from "../symbol-library/infer-source-component-ftype"
+import {
+  inferSourceComponentFtype,
+  type SupportedSourceComponentFtype,
+} from "../symbol-library/infer-source-component-ftype"
 import { inferSymbolName } from "./utils/inferSymbolName"
 import { rotationToDirection } from "./utils/rotationToDirection"
 
@@ -53,7 +56,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
 
     const sourceComponent = this.ctx.db.source_component.insert({
       name: libId || reference,
-      ftype: ftype as any, // TODO: Fix ftype - should be mapped to valid CJ simple component types
+      ftype,
       manufacturer_part_number: value || undefined,
     })
 
@@ -93,7 +96,10 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     return prop?.value
   }
 
-  private inferFtype(libId: string, reference: string): string {
+  private inferFtype(
+    libId: string,
+    reference: string,
+  ): SupportedSourceComponentFtype {
     return inferSourceComponentFtype({
       name: libId,
       reference,

@@ -1,26 +1,16 @@
 import { expect, test } from "bun:test"
-import { KicadSch, SchematicSymbol, SymbolProperty } from "kicadts"
+import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../lib"
+import { stackCircuitJsonKicadPngs } from "./fixtures/stackCircuitJsonKicadPngs"
+import { takeCircuitJsonSnapshot } from "./fixtures/take-circuit-json-snapshot"
+import { takeKicadSnapshot } from "./fixtures/take-kicad-snapshot"
+import "./fixtures/png-matcher"
 
-test("schematic components reference their inserted source components", () => {
-  const schematic = new KicadSch({
-    version: 20231120,
-    generator: "kicad_eeschema",
-    uuid: "00000000-0000-0000-0000-000000000001",
-    symbols: [
-      new SchematicSymbol({
-        libraryId: "Device:R",
-        at: { x: 100, y: 100 },
-        uuid: "00000000-0000-0000-0000-000000000002",
-        properties: [
-          new SymbolProperty({ key: "Reference", value: "R1" }),
-          new SymbolProperty({ key: "Value", value: "10k" }),
-        ],
-      }),
-    ],
-  })
+test("schematic components reference their inserted source components", async () => {
+  const schematicPath = "tests/assets/schematic-source-component-link.kicad_sch"
+  const schematicContent = readFileSync(schematicPath, "utf8")
   const converter = new KicadToCircuitJsonConverter()
-  converter.addFile("source-component-link.kicad_sch", schematic.getString())
+  converter.addFile("source-component-link.kicad_sch", schematicContent)
   converter.runUntilFinished()
 
   const circuitJson = converter.getOutput()
@@ -36,4 +26,23 @@ test("schematic components reference their inserted source components", () => {
   expect(schematicComponent?.source_component_id).toBe(
     sourceComponent?.source_component_id,
   )
-})
+
+  const [kicadSnapshot, circuitJsonPng] = await Promise.all([
+    takeKicadSnapshot({
+      kicadFilePath: schematicPath,
+      kicadFileType: "sch",
+    }),
+    takeCircuitJsonSnapshot({
+      circuitJson: circuitJson as any,
+      outputType: "schematic",
+    }),
+  ])
+  const kicadPng =
+    kicadSnapshot.generatedFileContent["schematic-source-component-link.png"]!
+  const comparisonPng = await stackCircuitJsonKicadPngs(
+    circuitJsonPng,
+    kicadPng,
+  )
+
+  await expect(comparisonPng).toMatchPngSnapshot(import.meta.path)
+}, 10_000)
