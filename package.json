@@ -17,7 +17,6 @@
     "dev": "vite --config vite.config.ts",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "download-references": "bun run scripts/download-references.ts",
     "download-demos": "git clone --depth 1 --filter=blob:none --sparse https://gitlab.com/kicad/code/kicad.git kicad-demos && cd kicad-demos && git sparse-checkout set demos",
     "preview": "vite preview --config vite.config.ts",
     "pull:reference:notests": "git clone --depth 1 https://github.com/tscircuit/circuit-json-to-kicad circuit-json-to-kicad && rm -rf circuit-json-to-kicad/tests",
@@ -38,16 +37,14 @@
     "@vitejs/plugin-react": "^6.0.1",
     "bun-match-svg": "^0.0.14",
     "circuit-json-to-connectivity-map": "^0.0.25",
-    "circuit-json-to-kicad": "0.0.200",
     "kicadts": "^0.0.53",
-    "polygon-clipping": "0.15.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
-    "schematic-symbols": "^0.0.231",
     "tscircuit": "^0.0.2040",
     "tsup": "^8.5.0",
     "vercel": "^50.42.0",
-    "vite": "^8.0.8"
+    "vite": "^8.0.8",
+    "schematic-symbols": "^0.0.231"
   },
   "peerDependencies": {
     "typescript": "^5"
