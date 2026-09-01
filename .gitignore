@@ -41,3 +41,6 @@ debug*.ts
 .vercel
 
 DO_NOT_COMMIT
+
+# downloaded open-source board references
+references/*.kicad_sch
