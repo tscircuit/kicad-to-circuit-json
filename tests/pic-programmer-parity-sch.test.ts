@@ -60,8 +60,12 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
     circuitJsonSvg,
   )
 
-  // Stack them vertically with labels (Circuit JSON on top, KiCad on bottom)
-  const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
+  // Compare the native KiCad source on the left with Circuit JSON on the right
+  const stackedPng = await stackCircuitJsonKicadPngs(
+    circuitJsonPng,
+    kicadPng,
+    "horizontal",
+  )
 
   // Save as snapshot for visual comparison
   await expect(stackedPng).toMatchPngSnapshot(

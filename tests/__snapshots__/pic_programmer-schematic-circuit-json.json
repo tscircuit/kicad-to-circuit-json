@@ -9,7 +9,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_0",
-    "source_component_id": "pic_programmer:DB9_source",
+    "source_component_id": "source_component_0",
     "center": {
       "x": -4.883333333333333,
       "y": 3.8040000000000003
@@ -24,70 +24,15 @@
     "schematic_port_id": "schematic_port_0",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.7619999999999999,
-      "y": 0.6773333333333335
+      "x": 0.7620000000000001,
+      "y": -0.6773333333333332
     },
     "facing_direction": "down",
-    "pin_number": "5"
+    "pin_number": "1"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_1",
-    "schematic_component_id": "schematic_component_0",
-    "center": {
-      "x": 0.7619999999999999,
-      "y": 0.5080000000000001
-    },
-    "facing_direction": "down",
-    "pin_number": "9"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_2",
-    "schematic_component_id": "schematic_component_0",
-    "center": {
-      "x": 0.762,
-      "y": 0.3386666666666668
-    },
-    "facing_direction": "down",
-    "pin_number": "4"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_3",
-    "schematic_component_id": "schematic_component_0",
-    "center": {
-      "x": 0.762,
-      "y": 0.16933333333333342
-    },
-    "facing_direction": "down",
-    "pin_number": "8"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_4",
-    "schematic_component_id": "schematic_component_0",
-    "center": {
-      "x": 0.762,
-      "y": 9.331808609502832e-17
-    },
-    "facing_direction": "down",
-    "pin_number": "3"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_5",
-    "schematic_component_id": "schematic_component_0",
-    "center": {
-      "x": 0.762,
-      "y": -0.16933333333333325
-    },
-    "facing_direction": "down",
-    "pin_number": "7"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_6",
     "schematic_component_id": "schematic_component_0",
     "center": {
       "x": 0.762,
@@ -98,7 +43,40 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_7",
+    "schematic_port_id": "schematic_port_2",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": 9.331808609502832e-17
+    },
+    "facing_direction": "down",
+    "pin_number": "3"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_3",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": 0.3386666666666668
+    },
+    "facing_direction": "down",
+    "pin_number": "4"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_4",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.7619999999999999,
+      "y": 0.6773333333333335
+    },
+    "facing_direction": "down",
+    "pin_number": "5"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_5",
     "schematic_component_id": "schematic_component_0",
     "center": {
       "x": 0.7620000000000001,
@@ -109,14 +87,36 @@
   },
   {
     "type": "schematic_port",
+    "schematic_port_id": "schematic_port_6",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": -0.16933333333333325
+    },
+    "facing_direction": "down",
+    "pin_number": "7"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_7",
+    "schematic_component_id": "schematic_component_0",
+    "center": {
+      "x": 0.762,
+      "y": 0.16933333333333342
+    },
+    "facing_direction": "down",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
     "schematic_port_id": "schematic_port_8",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.7620000000000001,
-      "y": -0.6773333333333332
+      "x": 0.7619999999999999,
+      "y": 0.5080000000000001
     },
     "facing_direction": "down",
-    "pin_number": "1"
+    "pin_number": "9"
   },
   {
     "type": "source_component",
@@ -128,7 +128,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_1",
-    "source_component_id": "pic_programmer:74LS125_source",
+    "source_component_id": "source_component_1",
     "center": {
       "x": -0.3113333333333337,
       "y": 7.021333333333334
@@ -144,17 +144,6 @@
     "schematic_component_id": "schematic_component_1",
     "center": {
       "x": -0.08466666666666667,
-      "y": -0.33866666666666667
-    },
-    "facing_direction": "left",
-    "pin_number": "14"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_10",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": -0.08466666666666667,
       "y": 0.33866666666666667
     },
     "facing_direction": "right",
@@ -162,18 +151,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_11",
+    "schematic_port_id": "schematic_port_10",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "2"
+    "facing_direction": "left",
+    "pin_number": "14"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_12",
+    "schematic_port_id": "schematic_port_11",
     "schematic_component_id": "schematic_component_1",
     "center": {
       "x": 0.16933333333333334,
@@ -181,6 +170,17 @@
     },
     "facing_direction": "right",
     "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_12",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
   },
   {
     "type": "schematic_port",
@@ -198,22 +198,22 @@
     "schematic_port_id": "schematic_port_14",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "5"
+    "facing_direction": "right",
+    "pin_number": "4"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_15",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": -0.508,
+      "y": 0
     },
-    "facing_direction": "right",
-    "pin_number": "4"
+    "facing_direction": "up",
+    "pin_number": "5"
   },
   {
     "type": "schematic_port",
@@ -231,6 +231,17 @@
     "schematic_port_id": "schematic_port_17",
     "schematic_component_id": "schematic_component_1",
     "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "down",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_18",
+    "schematic_component_id": "schematic_component_1",
+    "center": {
       "x": -0.508,
       "y": 0
     },
@@ -239,7 +250,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_18",
+    "schematic_port_id": "schematic_port_19",
     "schematic_component_id": "schematic_component_1",
     "center": {
       "x": 0.16933333333333334,
@@ -250,18 +261,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_19",
+    "schematic_port_id": "schematic_port_20",
     "schematic_component_id": "schematic_component_1",
     "center": {
       "x": 0.508,
       "y": 0
     },
     "facing_direction": "down",
-    "pin_number": "8"
+    "pin_number": "11"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_20",
+    "schematic_port_id": "schematic_port_21",
     "schematic_component_id": "schematic_component_1",
     "center": {
       "x": -0.508,
@@ -272,7 +283,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_21",
+    "schematic_port_id": "schematic_port_22",
     "schematic_component_id": "schematic_component_1",
     "center": {
       "x": 0.16933333333333334,
@@ -280,17 +291,6 @@
     },
     "facing_direction": "right",
     "pin_number": "13"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_22",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
   },
   {
     "type": "source_component",
@@ -302,7 +302,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_2",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_2",
     "center": {
       "x": -1.7506666666666675,
       "y": 7.021333333333334
@@ -345,7 +345,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_3",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_3",
     "center": {
       "x": -2.2586666666666666,
       "y": 6.513333333333334
@@ -388,7 +388,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_4",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_4",
     "center": {
       "x": -1.1580000000000004,
       "y": 7.4446666666666665
@@ -431,7 +431,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_5",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_5",
     "center": {
       "x": -1.1580000000000004,
       "y": 6.513333333333334
@@ -474,7 +474,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_6",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_6",
     "center": {
       "x": -0.14199999999999946,
       "y": 6.682666666666668
@@ -505,7 +505,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_7",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_7",
     "center": {
       "x": -1.1580000000000004,
       "y": 6.174666666666667
@@ -536,7 +536,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_8",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_8",
     "center": {
       "x": -1.1580000000000004,
       "y": 7.783333333333333
@@ -567,7 +567,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_9",
-    "source_component_id": "pic_programmer:74LS125_source",
+    "source_component_id": "source_component_9",
     "center": {
       "x": 0.36599999999999966,
       "y": 4.566
@@ -583,17 +583,6 @@
     "schematic_component_id": "schematic_component_9",
     "center": {
       "x": -0.08466666666666667,
-      "y": -0.33866666666666667
-    },
-    "facing_direction": "left",
-    "pin_number": "14"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_35",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": -0.08466666666666667,
       "y": 0.33866666666666667
     },
     "facing_direction": "right",
@@ -601,18 +590,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_36",
+    "schematic_port_id": "schematic_port_35",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "2"
+    "facing_direction": "left",
+    "pin_number": "14"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_37",
+    "schematic_port_id": "schematic_port_36",
     "schematic_component_id": "schematic_component_9",
     "center": {
       "x": 0.16933333333333334,
@@ -620,6 +609,17 @@
     },
     "facing_direction": "right",
     "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_37",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
   },
   {
     "type": "schematic_port",
@@ -637,22 +637,22 @@
     "schematic_port_id": "schematic_port_39",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "5"
+    "facing_direction": "right",
+    "pin_number": "4"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_40",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": -0.508,
+      "y": 0
     },
-    "facing_direction": "right",
-    "pin_number": "4"
+    "facing_direction": "up",
+    "pin_number": "5"
   },
   {
     "type": "schematic_port",
@@ -670,6 +670,17 @@
     "schematic_port_id": "schematic_port_42",
     "schematic_component_id": "schematic_component_9",
     "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "down",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_43",
+    "schematic_component_id": "schematic_component_9",
+    "center": {
       "x": -0.508,
       "y": 0
     },
@@ -678,7 +689,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_43",
+    "schematic_port_id": "schematic_port_44",
     "schematic_component_id": "schematic_component_9",
     "center": {
       "x": 0.16933333333333334,
@@ -689,18 +700,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_44",
+    "schematic_port_id": "schematic_port_45",
     "schematic_component_id": "schematic_component_9",
     "center": {
       "x": 0.508,
       "y": 0
     },
     "facing_direction": "down",
-    "pin_number": "8"
+    "pin_number": "11"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_45",
+    "schematic_port_id": "schematic_port_46",
     "schematic_component_id": "schematic_component_9",
     "center": {
       "x": -0.508,
@@ -711,7 +722,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_46",
+    "schematic_port_id": "schematic_port_47",
     "schematic_component_id": "schematic_component_9",
     "center": {
       "x": 0.16933333333333334,
@@ -719,17 +730,6 @@
     },
     "facing_direction": "right",
     "pin_number": "13"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_47",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
   },
   {
     "type": "source_component",
@@ -741,7 +741,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_10",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_10",
     "center": {
       "x": -1.0733333333333333,
       "y": 4.566
@@ -784,7 +784,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_11",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_11",
     "center": {
       "x": -1.5813333333333333,
       "y": 4.058000000000001
@@ -827,7 +827,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_12",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_12",
     "center": {
       "x": -0.48066666666666613,
       "y": 4.989333333333334
@@ -870,7 +870,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_13",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_13",
     "center": {
       "x": -0.48066666666666613,
       "y": 4.058000000000001
@@ -913,7 +913,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_14",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_14",
     "center": {
       "x": 0.535333333333333,
       "y": 4.227333333333333
@@ -944,7 +944,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_15",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_15",
     "center": {
       "x": -0.48066666666666613,
       "y": 3.8040000000000003
@@ -975,7 +975,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_16",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_16",
     "center": {
       "x": -0.48066666666666613,
       "y": 5.328
@@ -1006,7 +1006,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_17",
-    "source_component_id": "pic_programmer:74LS125_source",
+    "source_component_id": "source_component_17",
     "center": {
       "x": 0.36599999999999966,
       "y": 1.2640000000000011
@@ -1022,17 +1022,6 @@
     "schematic_component_id": "schematic_component_17",
     "center": {
       "x": -0.08466666666666667,
-      "y": -0.33866666666666667
-    },
-    "facing_direction": "left",
-    "pin_number": "14"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_60",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": -0.08466666666666667,
       "y": 0.33866666666666667
     },
     "facing_direction": "right",
@@ -1040,18 +1029,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_61",
+    "schematic_port_id": "schematic_port_60",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "2"
+    "facing_direction": "left",
+    "pin_number": "14"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_62",
+    "schematic_port_id": "schematic_port_61",
     "schematic_component_id": "schematic_component_17",
     "center": {
       "x": 0.16933333333333334,
@@ -1059,6 +1048,17 @@
     },
     "facing_direction": "right",
     "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_62",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
   },
   {
     "type": "schematic_port",
@@ -1076,22 +1076,22 @@
     "schematic_port_id": "schematic_port_64",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "5"
+    "facing_direction": "right",
+    "pin_number": "4"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_65",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": -0.508,
+      "y": 0
     },
-    "facing_direction": "right",
-    "pin_number": "4"
+    "facing_direction": "up",
+    "pin_number": "5"
   },
   {
     "type": "schematic_port",
@@ -1109,6 +1109,17 @@
     "schematic_port_id": "schematic_port_67",
     "schematic_component_id": "schematic_component_17",
     "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "down",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_68",
+    "schematic_component_id": "schematic_component_17",
+    "center": {
       "x": -0.508,
       "y": 0
     },
@@ -1117,7 +1128,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_68",
+    "schematic_port_id": "schematic_port_69",
     "schematic_component_id": "schematic_component_17",
     "center": {
       "x": 0.16933333333333334,
@@ -1128,18 +1139,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_69",
+    "schematic_port_id": "schematic_port_70",
     "schematic_component_id": "schematic_component_17",
     "center": {
       "x": 0.508,
       "y": 0
     },
     "facing_direction": "down",
-    "pin_number": "8"
+    "pin_number": "11"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_70",
+    "schematic_port_id": "schematic_port_71",
     "schematic_component_id": "schematic_component_17",
     "center": {
       "x": -0.508,
@@ -1150,7 +1161,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_71",
+    "schematic_port_id": "schematic_port_72",
     "schematic_component_id": "schematic_component_17",
     "center": {
       "x": 0.16933333333333334,
@@ -1158,17 +1169,6 @@
     },
     "facing_direction": "right",
     "pin_number": "13"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_72",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
   },
   {
     "type": "source_component",
@@ -1180,7 +1180,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_18",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_18",
     "center": {
       "x": -1.0733333333333333,
       "y": 1.2640000000000011
@@ -1223,7 +1223,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_19",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_19",
     "center": {
       "x": -1.5813333333333333,
       "y": 0.7560000000000002
@@ -1266,7 +1266,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_20",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_20",
     "center": {
       "x": -0.48066666666666613,
       "y": 1.6873333333333331
@@ -1309,7 +1309,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_21",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_21",
     "center": {
       "x": -0.48066666666666613,
       "y": 0.7560000000000002
@@ -1352,7 +1352,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_22",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_22",
     "center": {
       "x": 0.535333333333333,
       "y": 0.9253333333333327
@@ -1383,7 +1383,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_23",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_23",
     "center": {
       "x": -0.48066666666666613,
       "y": 0.41733333333333356
@@ -1414,7 +1414,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_24",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_24",
     "center": {
       "x": -0.48066666666666613,
       "y": 2.0260000000000007
@@ -1445,7 +1445,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_25",
-    "source_component_id": "pic_programmer:74LS125_source",
+    "source_component_id": "source_component_25",
     "center": {
       "x": 0.36599999999999966,
       "y": 2.7880000000000003
@@ -1461,17 +1461,6 @@
     "schematic_component_id": "schematic_component_25",
     "center": {
       "x": -0.08466666666666667,
-      "y": -0.33866666666666667
-    },
-    "facing_direction": "left",
-    "pin_number": "14"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_85",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": -0.08466666666666667,
       "y": 0.33866666666666667
     },
     "facing_direction": "right",
@@ -1479,18 +1468,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_86",
+    "schematic_port_id": "schematic_port_85",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": -0.08466666666666667,
+      "y": -0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "2"
+    "facing_direction": "left",
+    "pin_number": "14"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_87",
+    "schematic_port_id": "schematic_port_86",
     "schematic_component_id": "schematic_component_25",
     "center": {
       "x": 0.16933333333333334,
@@ -1498,6 +1487,17 @@
     },
     "facing_direction": "right",
     "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_87",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
+      "x": -0.508,
+      "y": 0
+    },
+    "facing_direction": "up",
+    "pin_number": "2"
   },
   {
     "type": "schematic_port",
@@ -1515,22 +1515,22 @@
     "schematic_port_id": "schematic_port_89",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": 0.16933333333333334,
+      "y": 0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "5"
+    "facing_direction": "right",
+    "pin_number": "4"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_90",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": -0.508,
+      "y": 0
     },
-    "facing_direction": "right",
-    "pin_number": "4"
+    "facing_direction": "up",
+    "pin_number": "5"
   },
   {
     "type": "schematic_port",
@@ -1548,6 +1548,17 @@
     "schematic_port_id": "schematic_port_92",
     "schematic_component_id": "schematic_component_25",
     "center": {
+      "x": 0.508,
+      "y": 0
+    },
+    "facing_direction": "down",
+    "pin_number": "8"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_93",
+    "schematic_component_id": "schematic_component_25",
+    "center": {
       "x": -0.508,
       "y": 0
     },
@@ -1556,7 +1567,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_93",
+    "schematic_port_id": "schematic_port_94",
     "schematic_component_id": "schematic_component_25",
     "center": {
       "x": 0.16933333333333334,
@@ -1567,18 +1578,18 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_94",
+    "schematic_port_id": "schematic_port_95",
     "schematic_component_id": "schematic_component_25",
     "center": {
       "x": 0.508,
       "y": 0
     },
     "facing_direction": "down",
-    "pin_number": "8"
+    "pin_number": "11"
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_95",
+    "schematic_port_id": "schematic_port_96",
     "schematic_component_id": "schematic_component_25",
     "center": {
       "x": -0.508,
@@ -1589,7 +1600,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_96",
+    "schematic_port_id": "schematic_port_97",
     "schematic_component_id": "schematic_component_25",
     "center": {
       "x": 0.16933333333333334,
@@ -1597,17 +1608,6 @@
     },
     "facing_direction": "right",
     "pin_number": "13"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_97",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
   },
   {
     "type": "source_component",
@@ -1619,7 +1619,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_26",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_26",
     "center": {
       "x": 0.19666666666666632,
       "y": 2.4493333333333336
@@ -1650,7 +1650,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_27",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_27",
     "center": {
       "x": 1.6359999999999992,
       "y": 4.566
@@ -1693,7 +1693,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_28",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_28",
     "center": {
       "x": 1.6359999999999992,
       "y": 1.2640000000000011
@@ -1736,7 +1736,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_29",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_29",
     "center": {
       "x": 0.9586666666666659,
       "y": 7.021333333333334
@@ -1779,7 +1779,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_30",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_30",
     "center": {
       "x": -1.5813333333333333,
       "y": 3.8040000000000003
@@ -1810,7 +1810,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_31",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_31",
     "center": {
       "x": -1.5813333333333333,
       "y": 0.5020000000000007
@@ -1841,7 +1841,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_32",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_32",
     "center": {
       "x": -2.2586666666666666,
       "y": 6.259333333333334
@@ -1872,7 +1872,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_33",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_33",
     "center": {
       "x": -4.121333333333333,
       "y": 3.126666666666668
@@ -1903,7 +1903,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_34",
-    "source_component_id": "pic_programmer:BC237_source",
+    "source_component_id": "source_component_34",
     "center": {
       "x": 2.059333333333333,
       "y": 7.021333333333334
@@ -1919,22 +1919,22 @@
     "schematic_port_id": "schematic_port_109",
     "schematic_component_id": "schematic_component_34",
     "center": {
-      "x": -0.33866666666666667,
-      "y": 0
+      "x": 0.16933333333333334,
+      "y": -0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "2"
+    "facing_direction": "left",
+    "pin_number": "1"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_110",
     "schematic_component_id": "schematic_component_34",
     "center": {
-      "x": 0.16933333333333334,
-      "y": -0.33866666666666667
+      "x": -0.33866666666666667,
+      "y": 0
     },
-    "facing_direction": "left",
-    "pin_number": "1"
+    "facing_direction": "up",
+    "pin_number": "2"
   },
   {
     "type": "schematic_port",
@@ -1957,7 +1957,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_35",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_35",
     "center": {
       "x": 2.2286666666666672,
       "y": 6.682666666666668
@@ -1988,7 +1988,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_36",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_36",
     "center": {
       "x": 2.736666666666668,
       "y": 7.529333333333334
@@ -2031,7 +2031,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_37",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_37",
     "center": {
       "x": 3.3293333333333326,
       "y": 8.206666666666667
@@ -2074,7 +2074,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_38",
-    "source_component_id": "pic_programmer:BC307_source",
+    "source_component_id": "source_component_38",
     "center": {
       "x": 3.9220000000000006,
       "y": 7.529333333333334
@@ -2090,22 +2090,22 @@
     "schematic_port_id": "schematic_port_117",
     "schematic_component_id": "schematic_component_38",
     "center": {
-      "x": -0.33866666666666667,
-      "y": 0
+      "x": 0.16933333333333334,
+      "y": -0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "2"
+    "facing_direction": "left",
+    "pin_number": "1"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_118",
     "schematic_component_id": "schematic_component_38",
     "center": {
-      "x": 0.16933333333333334,
-      "y": -0.33866666666666667
+      "x": -0.33866666666666667,
+      "y": 0
     },
-    "facing_direction": "left",
-    "pin_number": "1"
+    "facing_direction": "up",
+    "pin_number": "2"
   },
   {
     "type": "schematic_port",
@@ -2128,7 +2128,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_39",
-    "source_component_id": "pic_programmer:VPP_source",
+    "source_component_id": "source_component_39",
     "center": {
       "x": 3.3293333333333326,
       "y": 8.714666666666666
@@ -2159,7 +2159,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_40",
-    "source_component_id": "pic_programmer:VPP_source",
+    "source_component_id": "source_component_40",
     "center": {
       "x": 4.091333333333333,
       "y": 8.037333333333333
@@ -2190,7 +2190,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_41",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_41",
     "center": {
       "x": 4.091333333333333,
       "y": 6.682666666666668
@@ -2227,13 +2227,13 @@
     "type": "source_component",
     "source_component_id": "source_component_42",
     "name": "pic_programmer:LED",
-    "ftype": "simple_diode",
+    "ftype": "simple_led",
     "manufacturer_part_number": "RED-LED"
   },
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_42",
-    "source_component_id": "pic_programmer:LED_source",
+    "source_component_id": "source_component_42",
     "center": {
       "x": 4.091333333333333,
       "y": 5.836
@@ -2276,7 +2276,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_43",
-    "source_component_id": "pic_programmer:CONN_2_source",
+    "source_component_id": "source_component_43",
     "center": {
       "x": -5.306666666666667,
       "y": -1.5299999999999994
@@ -2318,7 +2318,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_44",
-    "source_component_id": "pic_programmer:D_source",
+    "source_component_id": "source_component_44",
     "center": {
       "x": -4.206,
       "y": -1.3606666666666651
@@ -2361,7 +2361,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_45",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_45",
     "center": {
       "x": -4.629333333333333,
       "y": -1.783999999999999
@@ -2392,7 +2392,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_46",
-    "source_component_id": "pic_programmer:CP_source",
+    "source_component_id": "source_component_46",
     "center": {
       "x": -3.698,
       "y": -1.783999999999999
@@ -2435,7 +2435,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_47",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_47",
     "center": {
       "x": -3.698,
       "y": -2.0379999999999985
@@ -2466,7 +2466,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_48",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_48",
     "center": {
       "x": -2.428,
       "y": -1.868666666666666
@@ -2497,7 +2497,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_49",
-    "source_component_id": "pic_programmer:CP_source",
+    "source_component_id": "source_component_49",
     "center": {
       "x": -1.5813333333333333,
       "y": -1.783999999999999
@@ -2540,7 +2540,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_50",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_50",
     "center": {
       "x": -1.5813333333333333,
       "y": -2.0379999999999985
@@ -2571,7 +2571,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_51",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_51",
     "center": {
       "x": -0.48066666666666613,
       "y": -1.3606666666666651
@@ -2608,13 +2608,13 @@
     "type": "source_component",
     "source_component_id": "source_component_52",
     "name": "pic_programmer:LED",
-    "ftype": "simple_diode",
+    "ftype": "simple_led",
     "manufacturer_part_number": "GREEN-LED"
   },
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_52",
-    "source_component_id": "pic_programmer:LED_source",
+    "source_component_id": "source_component_52",
     "center": {
       "x": 0.027333333333332988,
       "y": -1.868666666666666
@@ -2657,7 +2657,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_53",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_53",
     "center": {
       "x": 0.027333333333332988,
       "y": -2.2073333333333345
@@ -2688,7 +2688,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_54",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_54",
     "center": {
       "x": -1.2426666666666666,
       "y": -1.275999999999998
@@ -2719,7 +2719,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_55",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_55",
     "center": {
       "x": 4.937999999999999,
       "y": 6.513333333333334
@@ -2762,7 +2762,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_56",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_56",
     "center": {
       "x": 4.937999999999999,
       "y": 6.259333333333334
@@ -2793,7 +2793,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_57",
-    "source_component_id": "pic_programmer:INDUCTOR_source",
+    "source_component_id": "source_component_57",
     "center": {
       "x": 8.409333333333333,
       "y": 1.179333333333334
@@ -2835,7 +2835,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_58",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_58",
     "center": {
       "x": 6.123333333333333,
       "y": 2.0260000000000007
@@ -2866,7 +2866,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_59",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_59",
     "center": {
       "x": 5.615333333333332,
       "y": -0.5139999999999993
@@ -2897,7 +2897,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_60",
-    "source_component_id": "pic_programmer:VPP_source",
+    "source_component_id": "source_component_60",
     "center": {
       "x": 10.35666666666667,
       "y": 0.8406666666666673
@@ -2928,7 +2928,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_61",
-    "source_component_id": "pic_programmer:CP_source",
+    "source_component_id": "source_component_61",
     "center": {
       "x": 10.864666666666668,
       "y": 0.7560000000000002
@@ -2971,7 +2971,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_62",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_62",
     "center": {
       "x": 11.288,
       "y": 0.6713333333333331
@@ -3002,7 +3002,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_63",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_63",
     "center": {
       "x": 8.917333333333332,
       "y": 1.3486666666666665
@@ -3033,7 +3033,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_64",
-    "source_component_id": "pic_programmer:PWR_FLAG_source",
+    "source_component_id": "source_component_64",
     "center": {
       "x": 10.018,
       "y": 0.8406666666666673
@@ -3064,7 +3064,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_65",
-    "source_component_id": "pic_programmer:C_source",
+    "source_component_id": "source_component_65",
     "center": {
       "x": 8.24,
       "y": -0.2599999999999998
@@ -3107,7 +3107,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_66",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_66",
     "center": {
       "x": 8.663333333333332,
       "y": -0.2599999999999998
@@ -3138,7 +3138,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_67",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_67",
     "center": {
       "x": 9.933333333333334,
       "y": -0.5139999999999993
@@ -3181,7 +3181,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_68",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_68",
     "center": {
       "x": 9.933333333333334,
       "y": 0.3326666666666682
@@ -3224,7 +3224,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_69",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_69",
     "center": {
       "x": 10.35666666666667,
       "y": -0.5986666666666647
@@ -3255,7 +3255,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_70",
-    "source_component_id": "pic_programmer:LT1373_source",
+    "source_component_id": "source_component_70",
     "center": {
       "x": 6.123333333333333,
       "y": 0.7560000000000002
@@ -3270,6 +3270,28 @@
     "schematic_port_id": "schematic_port_165",
     "schematic_component_id": "schematic_component_70",
     "center": {
+      "x": 0.4233333333333333,
+      "y": 1.1853333333333333
+    },
+    "facing_direction": "right",
+    "pin_number": "1"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_166",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
+      "x": 1.6933333333333331,
+      "y": 0.4233333333333333
+    },
+    "facing_direction": "down",
+    "pin_number": "2"
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_167",
+    "schematic_component_id": "schematic_component_70",
+    "center": {
       "x": -1.6933333333333331,
       "y": -0.4233333333333333
     },
@@ -3278,7 +3300,7 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_166",
+    "schematic_port_id": "schematic_port_168",
     "schematic_component_id": "schematic_component_70",
     "center": {
       "x": -1.6933333333333331,
@@ -3286,28 +3308,6 @@
     },
     "facing_direction": "up",
     "pin_number": "4"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_167",
-    "schematic_component_id": "schematic_component_70",
-    "center": {
-      "x": -0.508,
-      "y": 1.1853333333333333
-    },
-    "facing_direction": "right",
-    "pin_number": "7"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_168",
-    "schematic_component_id": "schematic_component_70",
-    "center": {
-      "x": -0.254,
-      "y": 1.1853333333333333
-    },
-    "facing_direction": "right",
-    "pin_number": "6"
   },
   {
     "type": "schematic_port",
@@ -3325,22 +3325,22 @@
     "schematic_port_id": "schematic_port_170",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": 0.4233333333333333,
+      "x": -0.254,
       "y": 1.1853333333333333
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": "6"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_171",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": 1.6933333333333331,
-      "y": -0.4233333333333333
+      "x": -0.508,
+      "y": 1.1853333333333333
     },
-    "facing_direction": "down",
-    "pin_number": "8"
+    "facing_direction": "right",
+    "pin_number": "7"
   },
   {
     "type": "schematic_port",
@@ -3348,10 +3348,10 @@
     "schematic_component_id": "schematic_component_70",
     "center": {
       "x": 1.6933333333333331,
-      "y": 0.4233333333333333
+      "y": -0.4233333333333333
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": "8"
   },
   {
     "type": "source_component",
@@ -3363,7 +3363,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_71",
-    "source_component_id": "pic_programmer:C_source",
+    "source_component_id": "source_component_71",
     "center": {
       "x": 7.985999999999999,
       "y": -0.7680000000000007
@@ -3406,7 +3406,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_72",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_72",
     "center": {
       "x": 7.139333333333333,
       "y": -0.42933333333333223
@@ -3449,7 +3449,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_73",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_73",
     "center": {
       "x": 8.917333333333332,
       "y": 0.7560000000000002
@@ -3492,7 +3492,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_74",
-    "source_component_id": "pic_programmer:PWR_FLAG_source",
+    "source_component_id": "source_component_74",
     "center": {
       "x": -4.290666666666667,
       "y": -1.783999999999999
@@ -3523,7 +3523,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_75",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_75",
     "center": {
       "x": 4.091333333333333,
       "y": 5.4126666666666665
@@ -3554,7 +3554,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_76",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_76",
     "center": {
       "x": 5.446,
       "y": 7.190666666666667
@@ -3591,13 +3591,13 @@
     "type": "source_component",
     "source_component_id": "source_component_77",
     "name": "pic_programmer:POT",
-    "ftype": "simple_resistor",
+    "ftype": "simple_chip",
     "manufacturer_part_number": "1K"
   },
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_77",
-    "source_component_id": "pic_programmer:POT_source",
+    "source_component_id": "source_component_77",
     "center": {
       "x": 9.256,
       "y": -0.09066666666666734
@@ -3650,7 +3650,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_78",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_78",
     "center": {
       "x": 5.530666666666667,
       "y": 5.4126666666666665
@@ -3681,7 +3681,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_79",
-    "source_component_id": "pic_programmer:BC307_source",
+    "source_component_id": "source_component_79",
     "center": {
       "x": 6.8853333333333335,
       "y": 4.989333333333334
@@ -3697,22 +3697,22 @@
     "schematic_port_id": "schematic_port_187",
     "schematic_component_id": "schematic_component_79",
     "center": {
-      "x": -0.33866666666666667,
-      "y": 0
+      "x": 0.16933333333333334,
+      "y": -0.33866666666666667
     },
-    "facing_direction": "up",
-    "pin_number": "2"
+    "facing_direction": "left",
+    "pin_number": "1"
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_188",
     "schematic_component_id": "schematic_component_79",
     "center": {
-      "x": 0.16933333333333334,
-      "y": -0.33866666666666667
+      "x": -0.33866666666666667,
+      "y": 0
     },
-    "facing_direction": "left",
-    "pin_number": "1"
+    "facing_direction": "up",
+    "pin_number": "2"
   },
   {
     "type": "schematic_port",
@@ -3735,7 +3735,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_80",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_80",
     "center": {
       "x": 5.954000000000001,
       "y": 4.989333333333334
@@ -3778,7 +3778,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_81",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_81",
     "center": {
       "x": 5.954000000000001,
       "y": 5.4126666666666665
@@ -3821,7 +3821,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_82",
-    "source_component_id": "pic_programmer:R_source",
+    "source_component_id": "source_component_82",
     "center": {
       "x": 6.377333333333333,
       "y": 4.481333333333334
@@ -3858,13 +3858,13 @@
     "type": "source_component",
     "source_component_id": "source_component_83",
     "name": "pic_programmer:LED",
-    "ftype": "simple_diode",
+    "ftype": "simple_led",
     "manufacturer_part_number": "YELLOW-LED"
   },
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_83",
-    "source_component_id": "pic_programmer:LED_source",
+    "source_component_id": "source_component_83",
     "center": {
       "x": 5.954000000000001,
       "y": 3.9733333333333336
@@ -3907,7 +3907,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_84",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_84",
     "center": {
       "x": 5.954000000000001,
       "y": 3.634666666666667
@@ -3938,7 +3938,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_85",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_85",
     "center": {
       "x": 7.054666666666666,
       "y": 5.328
@@ -3969,7 +3969,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_86",
-    "source_component_id": "pic_programmer:D_Schottky_source",
+    "source_component_id": "source_component_86",
     "center": {
       "x": 5.107333333333335,
       "y": 4.989333333333334
@@ -4012,7 +4012,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_87",
-    "source_component_id": "pic_programmer:JUMPER_source",
+    "source_component_id": "source_component_87",
     "center": {
       "x": 7.647333333333334,
       "y": 5.074000000000001
@@ -4054,7 +4054,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_88",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_88",
     "center": {
       "x": 7.647333333333334,
       "y": 5.582000000000001
@@ -4085,7 +4085,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_89",
-    "source_component_id": "pic_programmer:C_source",
+    "source_component_id": "source_component_89",
     "center": {
       "x": 2.6519999999999992,
       "y": 8.206666666666667
@@ -4128,7 +4128,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_90",
-    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "source_component_id": "source_component_90",
     "center": {
       "x": 3.8373333333333335,
       "y": -1.6146666666666665
@@ -4148,7 +4148,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_91",
-    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "source_component_id": "source_component_91",
     "center": {
       "x": 3.8373333333333335,
       "y": -1.868666666666666
@@ -4168,7 +4168,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_92",
-    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "source_component_id": "source_component_92",
     "center": {
       "x": 3.8373333333333335,
       "y": -2.1226666666666656
@@ -4188,7 +4188,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_93",
-    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "source_component_id": "source_component_93",
     "center": {
       "x": 3.8373333333333335,
       "y": -2.376666666666667
@@ -4208,7 +4208,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_94",
-    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "source_component_id": "source_component_94",
     "center": {
       "x": 3.8373333333333335,
       "y": -2.6306666666666665
@@ -4228,7 +4228,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_95",
-    "source_component_id": "pic_programmer:MOUNTING_HOLE_source",
+    "source_component_id": "source_component_95",
     "center": {
       "x": 3.8373333333333335,
       "y": -2.884666666666666
@@ -4248,7 +4248,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_96",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_96",
     "center": {
       "x": 0.28133333333333344,
       "y": 4.227333333333333
@@ -4279,7 +4279,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_97",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_97",
     "center": {
       "x": 0.45066666666666677,
       "y": 2.4493333333333336
@@ -4310,7 +4310,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_98",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_98",
     "center": {
       "x": 0.28133333333333344,
       "y": 0.9253333333333327
@@ -4341,7 +4341,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_99",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_99",
     "center": {
       "x": 0.28133333333333344,
       "y": 1.6026666666666678
@@ -4372,7 +4372,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_100",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_100",
     "center": {
       "x": 0.45066666666666677,
       "y": 3.126666666666668
@@ -4403,7 +4403,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_101",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_101",
     "center": {
       "x": 0.28133333333333344,
       "y": 4.9046666666666665
@@ -4434,7 +4434,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_102",
-    "source_component_id": "pic_programmer:GND_source",
+    "source_component_id": "source_component_102",
     "center": {
       "x": -0.3959999999999999,
       "y": 6.682666666666668
@@ -4465,7 +4465,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_103",
-    "source_component_id": "pic_programmer:VCC_source",
+    "source_component_id": "source_component_103",
     "center": {
       "x": -0.3959999999999999,
       "y": 7.36
@@ -4496,7 +4496,7 @@
   {
     "type": "schematic_component",
     "schematic_component_id": "schematic_component_104",
-    "source_component_id": "pic_programmer:7805_source",
+    "source_component_id": "source_component_104",
     "center": {
       "x": -2.428,
       "y": -1.445333333333334
