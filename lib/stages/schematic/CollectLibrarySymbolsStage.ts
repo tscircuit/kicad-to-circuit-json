@@ -1,6 +1,6 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
-import type { SchematicSymbol } from "kicadts"
+import type { SchematicSymbol, SymbolPin } from "kicadts"
 import {
   inferSourceComponentFtype,
   type SupportedSourceComponentFtype,
@@ -79,7 +79,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     this.ctx.symbolUuidToComponentId?.set(uuid, componentId)
 
     // Create ports for pins
-    this.createPorts(symbol, componentId)
+    this.createPorts(symbol, componentId, cjPos)
 
     // Update stats
     if (this.ctx.stats) {
@@ -116,7 +116,11 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     return { width: 1, height: 1 }
   }
 
-  private createPorts(symbol: SchematicSymbol, componentId: string) {
+  private createPorts(
+    symbol: SchematicSymbol,
+    componentId: string,
+    componentCenter: { x: number; y: number },
+  ) {
     // Get the library symbol definition to find pin information
     const libId = symbol.libraryId
     const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
@@ -125,35 +129,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
 
     if (!libSymbol) return
 
-    // Pins might be in the main symbol or in subSymbols
-    // Collect pins from all possible locations
-    const allPins: any[] = []
-
-    // Check main symbol pins
-    if (
-      libSymbol.pins &&
-      Array.isArray(libSymbol.pins) &&
-      libSymbol.pins.length > 0
-    ) {
-      allPins.push(...libSymbol.pins)
-    } else if (libSymbol.pins && !Array.isArray(libSymbol.pins)) {
-      allPins.push(libSymbol.pins)
-    }
-
-    // Check subSymbols for pins (KiCad often puts pins in subSymbols)
-    if (libSymbol.subSymbols && Array.isArray(libSymbol.subSymbols)) {
-      for (const subSymbol of libSymbol.subSymbols) {
-        if (
-          subSymbol.pins &&
-          Array.isArray(subSymbol.pins) &&
-          subSymbol.pins.length > 0
-        ) {
-          allPins.push(...subSymbol.pins)
-        } else if (subSymbol.pins && !Array.isArray(subSymbol.pins)) {
-          allPins.push(subSymbol.pins)
-        }
-      }
-    }
+    const allPins = this.getPinsForSymbolUnit(libSymbol, symbol)
 
     if (allPins.length === 0) return
 
@@ -163,8 +139,13 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     for (const pin of allPins) {
       // Transform pin position from KiCad to circuit-json coordinates
       // Pin position in KiCad is relative to symbol origin
-      const pinAt = pin._sxAt
+      const pinAt = pin.at
       if (!pinAt) continue
+
+      const mirroredPinPos = {
+        x: symbol.mirror === "y" ? -pinAt.x : pinAt.x,
+        y: symbol.mirror === "x" ? -pinAt.y : pinAt.y,
+      }
 
       // Apply component rotation to pin position (rotate around origin)
       const rotRad = (componentRotation * Math.PI) / 180
@@ -172,28 +153,54 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       const sinR = Math.sin(rotRad)
 
       const rotatedPinPos = {
-        x: pinAt.x * cosR - pinAt.y * sinR,
-        y: pinAt.x * sinR + pinAt.y * cosR,
+        x: mirroredPinPos.x * cosR - mirroredPinPos.y * sinR,
+        y: mirroredPinPos.x * sinR + mirroredPinPos.y * cosR,
       }
 
       // Transform to circuit-json space scale (k2cMatSch just scales, doesn't rotate)
       const scaleFactor = Math.abs(this.ctx.k2cMatSch?.a || 1 / 15)
-      const relativePos = {
-        x: rotatedPinPos.x * scaleFactor,
-        y: -rotatedPinPos.y * scaleFactor, // Flip Y axis
+      const portCenter = {
+        x: componentCenter.x + rotatedPinPos.x * scaleFactor,
+        y: componentCenter.y - rotatedPinPos.y * scaleFactor,
       }
+      const pinNumber = Number(pin.numberString)
 
       this.ctx.db.schematic_port.insert({
         schematic_component_id: componentId,
-        center: relativePos,
+        center: portCenter,
         facing_direction: this.inferPinDirection(pin, componentRotation),
-        pin_number: pin._sxNumber?.value ?? (pin as any).pinNumber ?? undefined,
+        pin_number: Number.isFinite(pinNumber) ? pinNumber : undefined,
       } as any)
     }
   }
 
+  private getPinsForSymbolUnit(
+    libSymbol: SchematicSymbol,
+    symbol: SchematicSymbol,
+  ): SymbolPin[] {
+    const unit = symbol.unit ?? 1
+    const bodyStyle = symbol.bodyStyle ?? 1
+    const applicableSubSymbols = libSymbol.subSymbols.filter((subSymbol) => {
+      const unitAndBodyStyle = subSymbol.libraryId?.match(/_(\d+)_(\d+)$/)
+      if (!unitAndBodyStyle) return true
+
+      const subSymbolUnit = Number(unitAndBodyStyle[1])
+      const subSymbolBodyStyle = Number(unitAndBodyStyle[2])
+
+      return (
+        (subSymbolUnit === 0 || subSymbolUnit === unit) &&
+        (subSymbolBodyStyle === 0 || subSymbolBodyStyle === bodyStyle)
+      )
+    })
+
+    return [
+      ...libSymbol.pins,
+      ...applicableSubSymbols.flatMap((subSymbol) => subSymbol.pins),
+    ]
+  }
+
   private inferPinDirection(
-    pin: any,
+    pin: SymbolPin,
     componentRotation: number,
   ): "up" | "down" | "left" | "right" {
     const pinAngle = pin.at?.angle ?? 0

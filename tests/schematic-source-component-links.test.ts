@@ -27,6 +27,34 @@ test("schematic components reference their inserted source components", async ()
     sourceComponent?.source_component_id,
   )
 
+  const schematicComponentsById = new Map(
+    circuitJson
+      .filter((element) => element.type === "schematic_component")
+      .map((component) => [component.schematic_component_id, component]),
+  )
+  const schematicPorts = circuitJson.filter(
+    (element) => element.type === "schematic_port",
+  )
+  const wireTraces = circuitJson.filter(
+    (element) => element.type === "schematic_trace" && element.edges.length > 0,
+  )
+
+  expect(wireTraces).toHaveLength(13)
+  expect(
+    schematicPorts.every((port) => {
+      if (!port.schematic_component_id) return false
+      const component = schematicComponentsById.get(port.schematic_component_id)
+      if (!component) return false
+
+      return (
+        Math.hypot(
+          port.center.x - component.center.x,
+          port.center.y - component.center.y,
+        ) < 2
+      )
+    }),
+  ).toBe(true)
+
   const [kicadSnapshot, circuitJsonPng] = await Promise.all([
     takeKicadSnapshot({
       kicadFilePath: schematicPath,

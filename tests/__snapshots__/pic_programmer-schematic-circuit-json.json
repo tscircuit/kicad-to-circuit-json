@@ -24,99 +24,99 @@
     "schematic_port_id": "schematic_port_0",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.7620000000000001,
-      "y": -0.6773333333333332
+      "x": -4.121333333333332,
+      "y": 3.126666666666667
     },
     "facing_direction": "down",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_1",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.762,
-      "y": -0.33866666666666656
+      "x": -4.121333333333332,
+      "y": 3.4653333333333336
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_2",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.762,
-      "y": 9.331808609502832e-17
+      "x": -4.121333333333332,
+      "y": 3.8040000000000003
     },
     "facing_direction": "down",
-    "pin_number": "3"
+    "pin_number": 3
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_3",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.762,
-      "y": 0.3386666666666668
+      "x": -4.121333333333332,
+      "y": 4.142666666666667
     },
     "facing_direction": "down",
-    "pin_number": "4"
+    "pin_number": 4
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_4",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.7619999999999999,
-      "y": 0.6773333333333335
+      "x": -4.121333333333333,
+      "y": 4.481333333333334
     },
     "facing_direction": "down",
-    "pin_number": "5"
+    "pin_number": 5
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_5",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.7620000000000001,
-      "y": -0.5079999999999999
+      "x": -4.121333333333332,
+      "y": 3.2960000000000003
     },
     "facing_direction": "down",
-    "pin_number": "6"
+    "pin_number": 6
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_6",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.762,
-      "y": -0.16933333333333325
+      "x": -4.121333333333332,
+      "y": 3.634666666666667
     },
     "facing_direction": "down",
-    "pin_number": "7"
+    "pin_number": 7
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_7",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.762,
-      "y": 0.16933333333333342
+      "x": -4.121333333333332,
+      "y": 3.9733333333333336
     },
     "facing_direction": "down",
-    "pin_number": "8"
+    "pin_number": 8
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_8",
     "schematic_component_id": "schematic_component_0",
     "center": {
-      "x": 0.7619999999999999,
-      "y": 0.5080000000000001
+      "x": -4.121333333333333,
+      "y": 4.312
     },
     "facing_direction": "down",
-    "pin_number": "9"
+    "pin_number": 9
   },
   {
     "type": "source_component",
@@ -143,154 +143,55 @@
     "schematic_port_id": "schematic_port_9",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": -0.08466666666666667,
-      "y": 0.33866666666666667
+      "x": -0.39600000000000035,
+      "y": 7.36
     },
     "facing_direction": "right",
-    "pin_number": "7"
+    "pin_number": 7
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_10",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": -0.08466666666666667,
-      "y": -0.33866666666666667
+      "x": -0.39600000000000035,
+      "y": 6.682666666666667
     },
     "facing_direction": "left",
-    "pin_number": "14"
+    "pin_number": 14
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_11",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": -0.14200000000000035,
+      "y": 7.36
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_12",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": -0.8193333333333337,
+      "y": 7.021333333333334
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
     "schematic_port_id": "schematic_port_13",
     "schematic_component_id": "schematic_component_1",
     "center": {
-      "x": 0.508,
-      "y": 0
+      "x": 0.19666666666666632,
+      "y": 7.021333333333334
     },
     "facing_direction": "down",
-    "pin_number": "3"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_14",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "4"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_15",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "5"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_16",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "6"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_17",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "8"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_18",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "9"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_19",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "10"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_20",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_21",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "12"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_22",
-    "schematic_component_id": "schematic_component_1",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "13"
+    "pin_number": 3
   },
   {
     "type": "source_component",
@@ -315,25 +216,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_23",
+    "schematic_port_id": "schematic_port_14",
     "schematic_component_id": "schematic_component_2",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": -2.0046666666666675,
+      "y": 7.021333333333334
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_24",
+    "schematic_port_id": "schematic_port_15",
     "schematic_component_id": "schematic_component_2",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": -1.4966666666666675,
+      "y": 7.021333333333334
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -358,25 +259,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_25",
+    "schematic_port_id": "schematic_port_16",
     "schematic_component_id": "schematic_component_3",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": -2.2586666666666666,
+      "y": 6.259333333333334
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_26",
+    "schematic_port_id": "schematic_port_17",
     "schematic_component_id": "schematic_component_3",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": -2.2586666666666666,
+      "y": 6.767333333333333
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -401,25 +302,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_27",
+    "schematic_port_id": "schematic_port_18",
     "schematic_component_id": "schematic_component_4",
     "center": {
-      "x": 4.665904304751415e-17,
-      "y": -0.254
+      "x": -1.1580000000000004,
+      "y": 7.190666666666667
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_28",
+    "schematic_port_id": "schematic_port_19",
     "schematic_component_id": "schematic_component_4",
     "center": {
-      "x": -4.665904304751415e-17,
-      "y": 0.254
+      "x": -1.1580000000000004,
+      "y": 7.698666666666666
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -444,25 +345,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_29",
+    "schematic_port_id": "schematic_port_20",
     "schematic_component_id": "schematic_component_5",
     "center": {
-      "x": 4.665904304751415e-17,
-      "y": -0.254
+      "x": -1.1580000000000004,
+      "y": 6.259333333333334
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_30",
+    "schematic_port_id": "schematic_port_21",
     "schematic_component_id": "schematic_component_5",
     "center": {
-      "x": -4.665904304751415e-17,
-      "y": 0.254
+      "x": -1.1580000000000004,
+      "y": 6.767333333333333
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -486,14 +387,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_31",
+    "schematic_port_id": "schematic_port_22",
     "schematic_component_id": "schematic_component_6",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -0.14199999999999946,
+      "y": 6.682666666666668
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -517,14 +418,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_32",
+    "schematic_port_id": "schematic_port_23",
     "schematic_component_id": "schematic_component_7",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -1.1580000000000004,
+      "y": 6.174666666666667
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -548,14 +449,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_33",
+    "schematic_port_id": "schematic_port_24",
     "schematic_component_id": "schematic_component_8",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -1.1580000000000004,
+      "y": 7.783333333333333
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -579,157 +480,58 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_34",
+    "schematic_port_id": "schematic_port_25",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": -0.08466666666666667,
-      "y": 0.33866666666666667
+      "x": 0.281333333333333,
+      "y": 4.9046666666666665
     },
     "facing_direction": "right",
-    "pin_number": "7"
+    "pin_number": 7
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_35",
+    "schematic_port_id": "schematic_port_26",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": -0.08466666666666667,
-      "y": -0.33866666666666667
+      "x": 0.281333333333333,
+      "y": 4.227333333333333
     },
     "facing_direction": "left",
-    "pin_number": "14"
+    "pin_number": 14
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_36",
+    "schematic_port_id": "schematic_port_27",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": 0.535333333333333,
+      "y": 4.9046666666666665
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 4
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_37",
+    "schematic_port_id": "schematic_port_28",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": -0.508,
-      "y": 0
+      "x": -0.14200000000000035,
+      "y": 4.566
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 5
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_38",
+    "schematic_port_id": "schematic_port_29",
     "schematic_component_id": "schematic_component_9",
     "center": {
-      "x": 0.508,
-      "y": 0
+      "x": 0.8739999999999997,
+      "y": 4.566
     },
     "facing_direction": "down",
-    "pin_number": "3"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_39",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "4"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_40",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "5"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_41",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "6"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_42",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "8"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_43",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "9"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_44",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "10"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_45",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_46",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "12"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_47",
-    "schematic_component_id": "schematic_component_9",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "13"
+    "pin_number": 6
   },
   {
     "type": "source_component",
@@ -754,25 +556,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_48",
+    "schematic_port_id": "schematic_port_30",
     "schematic_component_id": "schematic_component_10",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": -1.3273333333333333,
+      "y": 4.566
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_49",
+    "schematic_port_id": "schematic_port_31",
     "schematic_component_id": "schematic_component_10",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": -0.8193333333333332,
+      "y": 4.566
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -797,25 +599,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_50",
+    "schematic_port_id": "schematic_port_32",
     "schematic_component_id": "schematic_component_11",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": -1.5813333333333333,
+      "y": 3.8040000000000007
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_51",
+    "schematic_port_id": "schematic_port_33",
     "schematic_component_id": "schematic_component_11",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": -1.5813333333333333,
+      "y": 4.312000000000001
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -840,25 +642,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_52",
+    "schematic_port_id": "schematic_port_34",
     "schematic_component_id": "schematic_component_12",
     "center": {
-      "x": 4.665904304751415e-17,
-      "y": -0.254
+      "x": -0.4806666666666661,
+      "y": 4.735333333333333
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_53",
+    "schematic_port_id": "schematic_port_35",
     "schematic_component_id": "schematic_component_12",
     "center": {
-      "x": -4.665904304751415e-17,
-      "y": 0.254
+      "x": -0.4806666666666662,
+      "y": 5.243333333333334
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -883,25 +685,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_54",
+    "schematic_port_id": "schematic_port_36",
     "schematic_component_id": "schematic_component_13",
     "center": {
-      "x": 4.665904304751415e-17,
-      "y": -0.254
+      "x": -0.4806666666666661,
+      "y": 3.8040000000000007
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_55",
+    "schematic_port_id": "schematic_port_37",
     "schematic_component_id": "schematic_component_13",
     "center": {
-      "x": -4.665904304751415e-17,
-      "y": 0.254
+      "x": -0.4806666666666662,
+      "y": 4.312000000000001
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -925,14 +727,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_56",
+    "schematic_port_id": "schematic_port_38",
     "schematic_component_id": "schematic_component_14",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.535333333333333,
+      "y": 4.227333333333333
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -956,14 +758,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_57",
+    "schematic_port_id": "schematic_port_39",
     "schematic_component_id": "schematic_component_15",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -0.48066666666666613,
+      "y": 3.8040000000000003
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -987,14 +789,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_58",
+    "schematic_port_id": "schematic_port_40",
     "schematic_component_id": "schematic_component_16",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -0.48066666666666613,
+      "y": 5.328
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1018,157 +820,58 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_59",
+    "schematic_port_id": "schematic_port_41",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": -0.08466666666666667,
-      "y": 0.33866666666666667
+      "x": 0.281333333333333,
+      "y": 1.6026666666666678
     },
     "facing_direction": "right",
-    "pin_number": "7"
+    "pin_number": 7
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_60",
+    "schematic_port_id": "schematic_port_42",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": -0.08466666666666667,
-      "y": -0.33866666666666667
+      "x": 0.281333333333333,
+      "y": 0.9253333333333345
     },
     "facing_direction": "left",
-    "pin_number": "14"
+    "pin_number": 14
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_61",
+    "schematic_port_id": "schematic_port_43",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "1"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_62",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "2"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_63",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": 0.508,
-      "y": 0
+      "x": 0.8739999999999997,
+      "y": 1.2640000000000011
     },
     "facing_direction": "down",
-    "pin_number": "3"
+    "pin_number": 8
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_64",
+    "schematic_port_id": "schematic_port_44",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "4"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_65",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": -0.508,
-      "y": 0
+      "x": -0.14200000000000035,
+      "y": 1.2640000000000011
     },
     "facing_direction": "up",
-    "pin_number": "5"
+    "pin_number": 9
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_66",
+    "schematic_port_id": "schematic_port_45",
     "schematic_component_id": "schematic_component_17",
     "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "6"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_67",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "8"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_68",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "9"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_69",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": 0.535333333333333,
+      "y": 1.6026666666666678
     },
     "facing_direction": "right",
-    "pin_number": "10"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_70",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_71",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "12"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_72",
-    "schematic_component_id": "schematic_component_17",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "13"
+    "pin_number": 10
   },
   {
     "type": "source_component",
@@ -1193,25 +896,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_73",
+    "schematic_port_id": "schematic_port_46",
     "schematic_component_id": "schematic_component_18",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": -1.3273333333333333,
+      "y": 1.2640000000000011
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_74",
+    "schematic_port_id": "schematic_port_47",
     "schematic_component_id": "schematic_component_18",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": -0.8193333333333332,
+      "y": 1.2640000000000011
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -1236,25 +939,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_75",
+    "schematic_port_id": "schematic_port_48",
     "schematic_component_id": "schematic_component_19",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": -1.5813333333333333,
+      "y": 0.5020000000000002
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_76",
+    "schematic_port_id": "schematic_port_49",
     "schematic_component_id": "schematic_component_19",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": -1.5813333333333333,
+      "y": 1.0100000000000002
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -1279,25 +982,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_77",
+    "schematic_port_id": "schematic_port_50",
     "schematic_component_id": "schematic_component_20",
     "center": {
-      "x": 4.665904304751415e-17,
-      "y": -0.254
+      "x": -0.4806666666666661,
+      "y": 1.4333333333333331
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_78",
+    "schematic_port_id": "schematic_port_51",
     "schematic_component_id": "schematic_component_20",
     "center": {
-      "x": -4.665904304751415e-17,
-      "y": 0.254
+      "x": -0.4806666666666662,
+      "y": 1.9413333333333331
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -1322,25 +1025,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_79",
+    "schematic_port_id": "schematic_port_52",
     "schematic_component_id": "schematic_component_21",
     "center": {
-      "x": 4.665904304751415e-17,
-      "y": -0.254
+      "x": -0.4806666666666661,
+      "y": 0.5020000000000002
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_80",
+    "schematic_port_id": "schematic_port_53",
     "schematic_component_id": "schematic_component_21",
     "center": {
-      "x": -4.665904304751415e-17,
-      "y": 0.254
+      "x": -0.4806666666666662,
+      "y": 1.0100000000000002
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -1364,14 +1067,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_81",
+    "schematic_port_id": "schematic_port_54",
     "schematic_component_id": "schematic_component_22",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.535333333333333,
+      "y": 0.9253333333333327
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1395,14 +1098,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_82",
+    "schematic_port_id": "schematic_port_55",
     "schematic_component_id": "schematic_component_23",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -0.48066666666666613,
+      "y": 0.41733333333333356
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1426,14 +1129,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_83",
+    "schematic_port_id": "schematic_port_56",
     "schematic_component_id": "schematic_component_24",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -0.48066666666666613,
+      "y": 2.0260000000000007
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1457,157 +1160,58 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_84",
+    "schematic_port_id": "schematic_port_57",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": -0.08466666666666667,
-      "y": 0.33866666666666667
+      "x": 0.4506666666666663,
+      "y": 3.126666666666667
     },
     "facing_direction": "right",
-    "pin_number": "7"
+    "pin_number": 7
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_85",
+    "schematic_port_id": "schematic_port_58",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": -0.08466666666666667,
-      "y": -0.33866666666666667
+      "x": 0.4506666666666663,
+      "y": 2.4493333333333336
     },
     "facing_direction": "left",
-    "pin_number": "14"
+    "pin_number": 14
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_86",
+    "schematic_port_id": "schematic_port_59",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "1"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_87",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "2"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_88",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": 0.508,
-      "y": 0
+      "x": -0.14200000000000035,
+      "y": 2.7880000000000003
     },
     "facing_direction": "down",
-    "pin_number": "3"
+    "pin_number": 11
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_89",
+    "schematic_port_id": "schematic_port_60",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "4"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_90",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": -0.508,
-      "y": 0
+      "x": 0.8739999999999997,
+      "y": 2.7880000000000003
     },
     "facing_direction": "up",
-    "pin_number": "5"
+    "pin_number": 12
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_91",
+    "schematic_port_id": "schematic_port_61",
     "schematic_component_id": "schematic_component_25",
     "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "6"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_92",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "8"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_93",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "9"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_94",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": 0.19666666666666632,
+      "y": 3.126666666666667
     },
     "facing_direction": "right",
-    "pin_number": "10"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_95",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": 0.508,
-      "y": 0
-    },
-    "facing_direction": "down",
-    "pin_number": "11"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_96",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": -0.508,
-      "y": 0
-    },
-    "facing_direction": "up",
-    "pin_number": "12"
-  },
-  {
-    "type": "schematic_port",
-    "schematic_port_id": "schematic_port_97",
-    "schematic_component_id": "schematic_component_25",
-    "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
-    },
-    "facing_direction": "right",
-    "pin_number": "13"
+    "pin_number": 13
   },
   {
     "type": "source_component",
@@ -1631,14 +1235,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_98",
+    "schematic_port_id": "schematic_port_62",
     "schematic_component_id": "schematic_component_26",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.19666666666666632,
+      "y": 2.4493333333333336
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1663,25 +1267,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_99",
+    "schematic_port_id": "schematic_port_63",
     "schematic_component_id": "schematic_component_27",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 1.3819999999999992,
+      "y": 4.566
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_100",
+    "schematic_port_id": "schematic_port_64",
     "schematic_component_id": "schematic_component_27",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 1.8899999999999992,
+      "y": 4.566
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -1706,25 +1310,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_101",
+    "schematic_port_id": "schematic_port_65",
     "schematic_component_id": "schematic_component_28",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 1.3819999999999992,
+      "y": 1.2640000000000011
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_102",
+    "schematic_port_id": "schematic_port_66",
     "schematic_component_id": "schematic_component_28",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 1.8899999999999992,
+      "y": 1.2640000000000011
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -1749,25 +1353,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_103",
+    "schematic_port_id": "schematic_port_67",
     "schematic_component_id": "schematic_component_29",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 0.7046666666666659,
+      "y": 7.021333333333334
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_104",
+    "schematic_port_id": "schematic_port_68",
     "schematic_component_id": "schematic_component_29",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 1.212666666666666,
+      "y": 7.021333333333334
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -1791,14 +1395,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_105",
+    "schematic_port_id": "schematic_port_69",
     "schematic_component_id": "schematic_component_30",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -1.5813333333333333,
+      "y": 3.8040000000000003
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1822,14 +1426,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_106",
+    "schematic_port_id": "schematic_port_70",
     "schematic_component_id": "schematic_component_31",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -1.5813333333333333,
+      "y": 0.5020000000000007
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1853,14 +1457,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_107",
+    "schematic_port_id": "schematic_port_71",
     "schematic_component_id": "schematic_component_32",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -2.2586666666666666,
+      "y": 6.259333333333334
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1884,14 +1488,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_108",
+    "schematic_port_id": "schematic_port_72",
     "schematic_component_id": "schematic_component_33",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -4.121333333333333,
+      "y": 3.126666666666668
     },
     "facing_direction": "down",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -1916,36 +1520,36 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_109",
+    "schematic_port_id": "schematic_port_73",
     "schematic_component_id": "schematic_component_34",
     "center": {
-      "x": 0.16933333333333334,
-      "y": -0.33866666666666667
+      "x": 2.2286666666666664,
+      "y": 6.682666666666667
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_110",
+    "schematic_port_id": "schematic_port_74",
     "schematic_component_id": "schematic_component_34",
     "center": {
-      "x": -0.33866666666666667,
-      "y": 0
+      "x": 1.7206666666666663,
+      "y": 7.021333333333334
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_111",
+    "schematic_port_id": "schematic_port_75",
     "schematic_component_id": "schematic_component_34",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": 2.2286666666666664,
+      "y": 7.36
     },
     "facing_direction": "right",
-    "pin_number": "3"
+    "pin_number": 3
   },
   {
     "type": "source_component",
@@ -1969,14 +1573,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_112",
+    "schematic_port_id": "schematic_port_76",
     "schematic_component_id": "schematic_component_35",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 2.2286666666666672,
+      "y": 6.682666666666668
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2001,25 +1605,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_113",
+    "schematic_port_id": "schematic_port_77",
     "schematic_component_id": "schematic_component_36",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 2.482666666666668,
+      "y": 7.529333333333334
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_114",
+    "schematic_port_id": "schematic_port_78",
     "schematic_component_id": "schematic_component_36",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 2.990666666666668,
+      "y": 7.529333333333334
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2044,25 +1648,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_115",
+    "schematic_port_id": "schematic_port_79",
     "schematic_component_id": "schematic_component_37",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": 3.3293333333333326,
+      "y": 7.952666666666667
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_116",
+    "schematic_port_id": "schematic_port_80",
     "schematic_component_id": "schematic_component_37",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": 3.3293333333333326,
+      "y": 8.460666666666667
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2087,36 +1691,36 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_117",
+    "schematic_port_id": "schematic_port_81",
     "schematic_component_id": "schematic_component_38",
     "center": {
-      "x": 0.16933333333333334,
-      "y": -0.33866666666666667
+      "x": 4.091333333333334,
+      "y": 7.868
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_118",
+    "schematic_port_id": "schematic_port_82",
     "schematic_component_id": "schematic_component_38",
     "center": {
-      "x": -0.33866666666666667,
-      "y": 0
+      "x": 3.583333333333334,
+      "y": 7.529333333333334
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_119",
+    "schematic_port_id": "schematic_port_83",
     "schematic_component_id": "schematic_component_38",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": 4.091333333333334,
+      "y": 7.190666666666667
     },
     "facing_direction": "right",
-    "pin_number": "3"
+    "pin_number": 3
   },
   {
     "type": "source_component",
@@ -2140,14 +1744,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_120",
+    "schematic_port_id": "schematic_port_84",
     "schematic_component_id": "schematic_component_39",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 3.3293333333333326,
+      "y": 8.714666666666666
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2171,14 +1775,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_121",
+    "schematic_port_id": "schematic_port_85",
     "schematic_component_id": "schematic_component_40",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 4.091333333333333,
+      "y": 8.037333333333333
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2203,25 +1807,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_122",
+    "schematic_port_id": "schematic_port_86",
     "schematic_component_id": "schematic_component_41",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": 4.091333333333333,
+      "y": 6.428666666666668
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_123",
+    "schematic_port_id": "schematic_port_87",
     "schematic_component_id": "schematic_component_41",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": 4.091333333333333,
+      "y": 6.936666666666667
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2246,25 +1850,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_124",
+    "schematic_port_id": "schematic_port_88",
     "schematic_component_id": "schematic_component_42",
     "center": {
-      "x": -2.0737352465561847e-17,
-      "y": 0.33866666666666667
+      "x": 4.091333333333333,
+      "y": 6.174666666666667
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_125",
+    "schematic_port_id": "schematic_port_89",
     "schematic_component_id": "schematic_component_42",
     "center": {
-      "x": 2.0737352465561847e-17,
-      "y": -0.33866666666666667
+      "x": 4.091333333333333,
+      "y": 5.497333333333334
     },
     "facing_direction": "left",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2288,25 +1892,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_126",
+    "schematic_port_id": "schematic_port_90",
     "schematic_component_id": "schematic_component_43",
     "center": {
-      "x": 0.5926666666666667,
-      "y": 0.1693333333333334
+      "x": -4.714,
+      "y": -1.360666666666666
     },
     "facing_direction": "down",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_127",
+    "schematic_port_id": "schematic_port_91",
     "schematic_component_id": "schematic_component_43",
     "center": {
-      "x": 0.5926666666666667,
-      "y": -0.16933333333333328
+      "x": -4.714,
+      "y": -1.6993333333333327
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2331,25 +1935,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_128",
+    "schematic_port_id": "schematic_port_92",
     "schematic_component_id": "schematic_component_44",
     "center": {
-      "x": 0.254,
-      "y": 3.110602869834277e-17
+      "x": -3.9520000000000004,
+      "y": -1.3606666666666651
     },
     "facing_direction": "down",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_129",
+    "schematic_port_id": "schematic_port_93",
     "schematic_component_id": "schematic_component_44",
     "center": {
-      "x": -0.254,
-      "y": -3.110602869834277e-17
+      "x": -4.460000000000001,
+      "y": -1.3606666666666651
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2373,14 +1977,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_130",
+    "schematic_port_id": "schematic_port_94",
     "schematic_component_id": "schematic_component_45",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -4.629333333333333,
+      "y": -1.783999999999999
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2405,25 +2009,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_131",
+    "schematic_port_id": "schematic_port_95",
     "schematic_component_id": "schematic_component_46",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": -3.698,
+      "y": -2.037999999999999
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_132",
+    "schematic_port_id": "schematic_port_96",
     "schematic_component_id": "schematic_component_46",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": -3.698,
+      "y": -1.529999999999999
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2447,14 +2051,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_133",
+    "schematic_port_id": "schematic_port_97",
     "schematic_component_id": "schematic_component_47",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -3.698,
+      "y": -2.0379999999999985
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2478,14 +2082,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_134",
+    "schematic_port_id": "schematic_port_98",
     "schematic_component_id": "schematic_component_48",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -2.428,
+      "y": -1.868666666666666
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2510,25 +2114,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_135",
+    "schematic_port_id": "schematic_port_99",
     "schematic_component_id": "schematic_component_49",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": -1.5813333333333333,
+      "y": -2.037999999999999
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_136",
+    "schematic_port_id": "schematic_port_100",
     "schematic_component_id": "schematic_component_49",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": -1.5813333333333333,
+      "y": -1.529999999999999
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2552,14 +2156,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_137",
+    "schematic_port_id": "schematic_port_101",
     "schematic_component_id": "schematic_component_50",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -1.5813333333333333,
+      "y": -2.0379999999999985
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2584,25 +2188,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_138",
+    "schematic_port_id": "schematic_port_102",
     "schematic_component_id": "schematic_component_51",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": -0.7346666666666661,
+      "y": -1.3606666666666651
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_139",
+    "schematic_port_id": "schematic_port_103",
     "schematic_component_id": "schematic_component_51",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": -0.22666666666666613,
+      "y": -1.3606666666666651
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2627,25 +2231,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_140",
+    "schematic_port_id": "schematic_port_104",
     "schematic_component_id": "schematic_component_52",
     "center": {
-      "x": -2.0737352465561847e-17,
-      "y": 0.33866666666666667
+      "x": 0.027333333333332967,
+      "y": -1.5299999999999994
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_141",
+    "schematic_port_id": "schematic_port_105",
     "schematic_component_id": "schematic_component_52",
     "center": {
-      "x": 2.0737352465561847e-17,
-      "y": -0.33866666666666667
+      "x": 0.02733333333333301,
+      "y": -2.2073333333333327
     },
     "facing_direction": "left",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2669,14 +2273,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_142",
+    "schematic_port_id": "schematic_port_106",
     "schematic_component_id": "schematic_component_53",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.027333333333332988,
+      "y": -2.2073333333333345
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2700,14 +2304,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_143",
+    "schematic_port_id": "schematic_port_107",
     "schematic_component_id": "schematic_component_54",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -1.2426666666666666,
+      "y": -1.275999999999998
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2732,25 +2336,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_144",
+    "schematic_port_id": "schematic_port_108",
     "schematic_component_id": "schematic_component_55",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": 4.937999999999999,
+      "y": 6.259333333333334
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_145",
+    "schematic_port_id": "schematic_port_109",
     "schematic_component_id": "schematic_component_55",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": 4.937999999999999,
+      "y": 6.767333333333333
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2774,14 +2378,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_146",
+    "schematic_port_id": "schematic_port_110",
     "schematic_component_id": "schematic_component_56",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 4.937999999999999,
+      "y": 6.259333333333334
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2805,25 +2409,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_147",
+    "schematic_port_id": "schematic_port_111",
     "schematic_component_id": "schematic_component_57",
     "center": {
-      "x": -0.508,
-      "y": -3.110602869834277e-17
+      "x": 7.901333333333333,
+      "y": 1.179333333333334
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_148",
+    "schematic_port_id": "schematic_port_112",
     "schematic_component_id": "schematic_component_57",
     "center": {
-      "x": 0.508,
-      "y": 3.110602869834277e-17
+      "x": 8.917333333333332,
+      "y": 1.179333333333334
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2847,14 +2451,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_149",
+    "schematic_port_id": "schematic_port_113",
     "schematic_component_id": "schematic_component_58",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 6.123333333333333,
+      "y": 2.0260000000000007
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2878,14 +2482,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_150",
+    "schematic_port_id": "schematic_port_114",
     "schematic_component_id": "schematic_component_59",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 5.615333333333332,
+      "y": -0.5139999999999993
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2909,14 +2513,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_151",
+    "schematic_port_id": "schematic_port_115",
     "schematic_component_id": "schematic_component_60",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 10.35666666666667,
+      "y": 0.8406666666666673
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -2941,25 +2545,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_152",
+    "schematic_port_id": "schematic_port_116",
     "schematic_component_id": "schematic_component_61",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 10.610666666666669,
+      "y": 0.7560000000000002
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_153",
+    "schematic_port_id": "schematic_port_117",
     "schematic_component_id": "schematic_component_61",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 11.118666666666668,
+      "y": 0.7560000000000002
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -2983,14 +2587,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_154",
+    "schematic_port_id": "schematic_port_118",
     "schematic_component_id": "schematic_component_62",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 11.288,
+      "y": 0.6713333333333331
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3014,14 +2618,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_155",
+    "schematic_port_id": "schematic_port_119",
     "schematic_component_id": "schematic_component_63",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 8.917333333333332,
+      "y": 1.3486666666666665
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3045,14 +2649,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_156",
+    "schematic_port_id": "schematic_port_120",
     "schematic_component_id": "schematic_component_64",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 10.018,
+      "y": 0.8406666666666673
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3077,25 +2681,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_157",
+    "schematic_port_id": "schematic_port_121",
     "schematic_component_id": "schematic_component_65",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 7.986000000000001,
+      "y": -0.2599999999999998
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_158",
+    "schematic_port_id": "schematic_port_122",
     "schematic_component_id": "schematic_component_65",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 8.494,
+      "y": -0.2599999999999998
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3119,14 +2723,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_159",
+    "schematic_port_id": "schematic_port_123",
     "schematic_component_id": "schematic_component_66",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 8.663333333333332,
+      "y": -0.2599999999999998
     },
     "facing_direction": "down",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3151,25 +2755,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_160",
+    "schematic_port_id": "schematic_port_124",
     "schematic_component_id": "schematic_component_67",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 9.679333333333334,
+      "y": -0.5139999999999993
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_161",
+    "schematic_port_id": "schematic_port_125",
     "schematic_component_id": "schematic_component_67",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 10.187333333333333,
+      "y": -0.5139999999999993
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3194,25 +2798,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_162",
+    "schematic_port_id": "schematic_port_126",
     "schematic_component_id": "schematic_component_68",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 9.679333333333334,
+      "y": 0.3326666666666682
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_163",
+    "schematic_port_id": "schematic_port_127",
     "schematic_component_id": "schematic_component_68",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 10.187333333333333,
+      "y": 0.3326666666666682
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3236,14 +2840,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_164",
+    "schematic_port_id": "schematic_port_128",
     "schematic_component_id": "schematic_component_69",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 10.35666666666667,
+      "y": -0.5986666666666647
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3267,91 +2871,91 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_165",
+    "schematic_port_id": "schematic_port_129",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": 0.4233333333333333,
-      "y": 1.1853333333333333
+      "x": 6.546666666666666,
+      "y": 1.9413333333333336
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_166",
+    "schematic_port_id": "schematic_port_130",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": 1.6933333333333331,
-      "y": 0.4233333333333333
+      "x": 7.816666666666666,
+      "y": 1.1793333333333336
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_167",
+    "schematic_port_id": "schematic_port_131",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": -1.6933333333333331,
-      "y": -0.4233333333333333
+      "x": 4.43,
+      "y": 0.33266666666666694
     },
     "facing_direction": "up",
-    "pin_number": "3"
+    "pin_number": 3
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_168",
+    "schematic_port_id": "schematic_port_132",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": -1.6933333333333331,
-      "y": 0.4233333333333333
+      "x": 4.43,
+      "y": 1.1793333333333336
     },
     "facing_direction": "up",
-    "pin_number": "4"
+    "pin_number": 4
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_169",
+    "schematic_port_id": "schematic_port_133",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": 0,
-      "y": -1.1853333333333333
+      "x": 6.123333333333333,
+      "y": -0.4293333333333331
     },
     "facing_direction": "left",
-    "pin_number": "5"
+    "pin_number": 5
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_170",
+    "schematic_port_id": "schematic_port_134",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": -0.254,
-      "y": 1.1853333333333333
+      "x": 5.8693333333333335,
+      "y": 1.9413333333333336
     },
     "facing_direction": "right",
-    "pin_number": "6"
+    "pin_number": 6
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_171",
+    "schematic_port_id": "schematic_port_135",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": -0.508,
-      "y": 1.1853333333333333
+      "x": 5.615333333333333,
+      "y": 1.9413333333333336
     },
     "facing_direction": "right",
-    "pin_number": "7"
+    "pin_number": 7
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_172",
+    "schematic_port_id": "schematic_port_136",
     "schematic_component_id": "schematic_component_70",
     "center": {
-      "x": 1.6933333333333331,
-      "y": -0.4233333333333333
+      "x": 7.816666666666666,
+      "y": 0.33266666666666694
     },
     "facing_direction": "down",
-    "pin_number": "8"
+    "pin_number": 8
   },
   {
     "type": "source_component",
@@ -3376,25 +2980,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_173",
+    "schematic_port_id": "schematic_port_137",
     "schematic_component_id": "schematic_component_71",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 7.731999999999999,
+      "y": -0.7680000000000007
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_174",
+    "schematic_port_id": "schematic_port_138",
     "schematic_component_id": "schematic_component_71",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 8.239999999999998,
+      "y": -0.7680000000000007
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3419,25 +3023,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_175",
+    "schematic_port_id": "schematic_port_139",
     "schematic_component_id": "schematic_component_72",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 6.8853333333333335,
+      "y": -0.42933333333333223
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_176",
+    "schematic_port_id": "schematic_port_140",
     "schematic_component_id": "schematic_component_72",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 7.393333333333333,
+      "y": -0.42933333333333223
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3462,25 +3066,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_177",
+    "schematic_port_id": "schematic_port_141",
     "schematic_component_id": "schematic_component_73",
     "center": {
-      "x": 0.254,
-      "y": 3.110602869834277e-17
+      "x": 9.171333333333331,
+      "y": 0.7560000000000002
     },
     "facing_direction": "down",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_178",
+    "schematic_port_id": "schematic_port_142",
     "schematic_component_id": "schematic_component_73",
     "center": {
-      "x": -0.254,
-      "y": -3.110602869834277e-17
+      "x": 8.663333333333332,
+      "y": 0.7560000000000002
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3504,14 +3108,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_179",
+    "schematic_port_id": "schematic_port_143",
     "schematic_component_id": "schematic_component_74",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -4.290666666666667,
+      "y": -1.783999999999999
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3535,14 +3139,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_180",
+    "schematic_port_id": "schematic_port_144",
     "schematic_component_id": "schematic_component_75",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 4.091333333333333,
+      "y": 5.4126666666666665
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3567,25 +3171,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_181",
+    "schematic_port_id": "schematic_port_145",
     "schematic_component_id": "schematic_component_76",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 5.192,
+      "y": 7.190666666666667
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_182",
+    "schematic_port_id": "schematic_port_146",
     "schematic_component_id": "schematic_component_76",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 5.699999999999999,
+      "y": 7.190666666666667
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3609,36 +3213,36 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_183",
+    "schematic_port_id": "schematic_port_147",
     "schematic_component_id": "schematic_component_77",
     "center": {
-      "x": -2.5921690581952306e-17,
-      "y": 0.4233333333333333
+      "x": 9.256,
+      "y": 0.33266666666666594
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_184",
+    "schematic_port_id": "schematic_port_148",
     "schematic_component_id": "schematic_component_77",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 9.002,
+      "y": -0.09066666666666735
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_185",
+    "schematic_port_id": "schematic_port_149",
     "schematic_component_id": "schematic_component_77",
     "center": {
-      "x": 2.5921690581952306e-17,
-      "y": -0.4233333333333333
+      "x": 9.256,
+      "y": -0.5140000000000007
     },
     "facing_direction": "left",
-    "pin_number": "3"
+    "pin_number": 3
   },
   {
     "type": "source_component",
@@ -3662,14 +3266,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_186",
+    "schematic_port_id": "schematic_port_150",
     "schematic_component_id": "schematic_component_78",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 5.530666666666667,
+      "y": 5.4126666666666665
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3694,36 +3298,36 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_187",
+    "schematic_port_id": "schematic_port_151",
     "schematic_component_id": "schematic_component_79",
     "center": {
-      "x": 0.16933333333333334,
-      "y": -0.33866666666666667
+      "x": 7.054666666666667,
+      "y": 5.328
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_188",
+    "schematic_port_id": "schematic_port_152",
     "schematic_component_id": "schematic_component_79",
     "center": {
-      "x": -0.33866666666666667,
-      "y": 0
+      "x": 6.546666666666667,
+      "y": 4.989333333333334
     },
     "facing_direction": "up",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_189",
+    "schematic_port_id": "schematic_port_153",
     "schematic_component_id": "schematic_component_79",
     "center": {
-      "x": 0.16933333333333334,
-      "y": 0.33866666666666667
+      "x": 7.054666666666667,
+      "y": 4.650666666666667
     },
     "facing_direction": "right",
-    "pin_number": "3"
+    "pin_number": 3
   },
   {
     "type": "source_component",
@@ -3748,25 +3352,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_190",
+    "schematic_port_id": "schematic_port_154",
     "schematic_component_id": "schematic_component_80",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 5.700000000000001,
+      "y": 4.989333333333334
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_191",
+    "schematic_port_id": "schematic_port_155",
     "schematic_component_id": "schematic_component_80",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 6.208,
+      "y": 4.989333333333334
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3791,25 +3395,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_192",
+    "schematic_port_id": "schematic_port_156",
     "schematic_component_id": "schematic_component_81",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 5.700000000000001,
+      "y": 5.4126666666666665
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_193",
+    "schematic_port_id": "schematic_port_157",
     "schematic_component_id": "schematic_component_81",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 6.208,
+      "y": 5.4126666666666665
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3834,25 +3438,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_194",
+    "schematic_port_id": "schematic_port_158",
     "schematic_component_id": "schematic_component_82",
     "center": {
-      "x": -0.254,
-      "y": -1.5553014349171385e-17
+      "x": 6.123333333333333,
+      "y": 4.481333333333334
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_195",
+    "schematic_port_id": "schematic_port_159",
     "schematic_component_id": "schematic_component_82",
     "center": {
-      "x": 0.254,
-      "y": 1.5553014349171385e-17
+      "x": 6.631333333333332,
+      "y": 4.481333333333334
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3877,25 +3481,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_196",
+    "schematic_port_id": "schematic_port_160",
     "schematic_component_id": "schematic_component_83",
     "center": {
-      "x": -2.0737352465561847e-17,
-      "y": 0.33866666666666667
+      "x": 5.954000000000001,
+      "y": 4.312
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_197",
+    "schematic_port_id": "schematic_port_161",
     "schematic_component_id": "schematic_component_83",
     "center": {
-      "x": 2.0737352465561847e-17,
-      "y": -0.33866666666666667
+      "x": 5.954000000000001,
+      "y": 3.634666666666667
     },
     "facing_direction": "left",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -3919,14 +3523,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_198",
+    "schematic_port_id": "schematic_port_162",
     "schematic_component_id": "schematic_component_84",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 5.954000000000001,
+      "y": 3.634666666666667
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3950,14 +3554,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_199",
+    "schematic_port_id": "schematic_port_163",
     "schematic_component_id": "schematic_component_85",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 7.054666666666666,
+      "y": 5.328
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -3982,25 +3586,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_200",
+    "schematic_port_id": "schematic_port_164",
     "schematic_component_id": "schematic_component_86",
     "center": {
-      "x": -0.254,
-      "y": 0
+      "x": 4.853333333333335,
+      "y": 4.989333333333334
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_201",
+    "schematic_port_id": "schematic_port_165",
     "schematic_component_id": "schematic_component_86",
     "center": {
-      "x": 0.254,
-      "y": 0
+      "x": 5.361333333333334,
+      "y": 4.989333333333334
     },
     "facing_direction": "down",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -4024,25 +3628,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_202",
+    "schematic_port_id": "schematic_port_166",
     "schematic_component_id": "schematic_component_87",
     "center": {
-      "x": 9.33180860950283e-17,
-      "y": -0.508
+      "x": 7.647333333333334,
+      "y": 4.566000000000001
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_203",
+    "schematic_port_id": "schematic_port_167",
     "schematic_component_id": "schematic_component_87",
     "center": {
-      "x": -9.33180860950283e-17,
-      "y": 0.508
+      "x": 7.647333333333334,
+      "y": 5.582000000000001
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -4066,14 +3670,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_204",
+    "schematic_port_id": "schematic_port_168",
     "schematic_component_id": "schematic_component_88",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 7.647333333333334,
+      "y": 5.582000000000001
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4098,25 +3702,25 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_205",
+    "schematic_port_id": "schematic_port_169",
     "schematic_component_id": "schematic_component_89",
     "center": {
-      "x": 0,
-      "y": -0.254
+      "x": 2.6519999999999992,
+      "y": 7.952666666666667
     },
     "facing_direction": "left",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_206",
+    "schematic_port_id": "schematic_port_170",
     "schematic_component_id": "schematic_component_89",
     "center": {
-      "x": 0,
-      "y": 0.254
+      "x": 2.6519999999999992,
+      "y": 8.460666666666667
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "source_component",
@@ -4260,14 +3864,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_207",
+    "schematic_port_id": "schematic_port_171",
     "schematic_component_id": "schematic_component_96",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.28133333333333344,
+      "y": 4.227333333333333
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4291,14 +3895,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_208",
+    "schematic_port_id": "schematic_port_172",
     "schematic_component_id": "schematic_component_97",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.45066666666666677,
+      "y": 2.4493333333333336
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4322,14 +3926,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_209",
+    "schematic_port_id": "schematic_port_173",
     "schematic_component_id": "schematic_component_98",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.28133333333333344,
+      "y": 0.9253333333333327
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4353,14 +3957,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_210",
+    "schematic_port_id": "schematic_port_174",
     "schematic_component_id": "schematic_component_99",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.28133333333333344,
+      "y": 1.6026666666666678
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4384,14 +3988,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_211",
+    "schematic_port_id": "schematic_port_175",
     "schematic_component_id": "schematic_component_100",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.45066666666666677,
+      "y": 3.126666666666668
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4415,14 +4019,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_212",
+    "schematic_port_id": "schematic_port_176",
     "schematic_component_id": "schematic_component_101",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": 0.28133333333333344,
+      "y": 4.9046666666666665
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4446,14 +4050,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_213",
+    "schematic_port_id": "schematic_port_177",
     "schematic_component_id": "schematic_component_102",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -0.3959999999999999,
+      "y": 6.682666666666668
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4477,14 +4081,14 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_214",
+    "schematic_port_id": "schematic_port_178",
     "schematic_component_id": "schematic_component_103",
     "center": {
-      "x": 0,
-      "y": 0
+      "x": -0.3959999999999999,
+      "y": 7.36
     },
     "facing_direction": "right",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "source_component",
@@ -4508,40 +4112,2267 @@
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_215",
+    "schematic_port_id": "schematic_port_179",
     "schematic_component_id": "schematic_component_104",
     "center": {
-      "x": -0.6773333333333333,
-      "y": -0.08466666666666667
+      "x": -3.1053333333333333,
+      "y": -1.5300000000000007
     },
     "facing_direction": "up",
-    "pin_number": "1"
+    "pin_number": 1
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_216",
+    "schematic_port_id": "schematic_port_180",
     "schematic_component_id": "schematic_component_104",
     "center": {
-      "x": 0,
-      "y": 0.4233333333333333
+      "x": -2.428,
+      "y": -1.0220000000000007
     },
     "facing_direction": "right",
-    "pin_number": "2"
+    "pin_number": 2
   },
   {
     "type": "schematic_port",
-    "schematic_port_id": "schematic_port_217",
+    "schematic_port_id": "schematic_port_181",
     "schematic_component_id": "schematic_component_104",
     "center": {
-      "x": 0.6773333333333333,
-      "y": -0.08466666666666667
+      "x": -1.7506666666666666,
+      "y": -1.5300000000000007
     },
     "facing_direction": "down",
-    "pin_number": "3"
+    "pin_number": 3
   },
   {
     "type": "schematic_trace",
     "schematic_trace_id": "schematic_trace_0",
+    "edges": [
+      {
+        "from": {
+          "x": -1.1580000000000004,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": -1.1580000000000004,
+          "y": 6.767333333333333
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_1",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": -0.14199999999999946,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_2",
+    "edges": [
+      {
+        "from": {
+          "x": -0.14199999999999946,
+          "y": 2.7880000000000003
+        },
+        "to": {
+          "x": -3.19,
+          "y": 2.7880000000000003
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_3",
+    "edges": [
+      {
+        "from": {
+          "x": 9.679333333333332,
+          "y": -0.5139999999999993
+        },
+        "to": {
+          "x": 9.256,
+          "y": -0.5139999999999993
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_4",
+    "edges": [
+      {
+        "from": {
+          "x": 0.027333333333332988,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -0.22666666666666746,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_5",
+    "edges": [
+      {
+        "from": {
+          "x": -3.19,
+          "y": 2.7880000000000003
+        },
+        "to": {
+          "x": -3.19,
+          "y": 3.634666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_6",
+    "edges": [
+      {
+        "from": {
+          "x": 9.679333333333332,
+          "y": 0.3326666666666682
+        },
+        "to": {
+          "x": 9.256,
+          "y": 0.3326666666666682
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_7",
+    "edges": [
+      {
+        "from": {
+          "x": -4.46,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -4.714,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_8",
+    "edges": [
+      {
+        "from": {
+          "x": 8.663333333333332,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 7.9013333333333335,
+          "y": 0.7560000000000002
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_9",
+    "edges": [
+      {
+        "from": {
+          "x": 4.091333333333333,
+          "y": 5.497333333333334
+        },
+        "to": {
+          "x": 4.091333333333333,
+          "y": 5.4126666666666665
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_10",
+    "edges": [
+      {
+        "from": {
+          "x": 1.8899999999999988,
+          "y": 4.566
+        },
+        "to": {
+          "x": 2.144,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_11",
+    "edges": [
+      {
+        "from": {
+          "x": 10.35666666666667,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 10.35666666666667,
+          "y": 0.3326666666666682
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_12",
+    "edges": [
+      {
+        "from": {
+          "x": 6.8853333333333335,
+          "y": -0.42933333333333223
+        },
+        "to": {
+          "x": 6.546666666666665,
+          "y": -0.42933333333333223
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_13",
+    "edges": [
+      {
+        "from": {
+          "x": 2.2286666666666672,
+          "y": 7.529333333333334
+        },
+        "to": {
+          "x": 2.482666666666667,
+          "y": 7.529333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_14",
+    "edges": [
+      {
+        "from": {
+          "x": 10.018,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 10.35666666666667,
+          "y": 0.7560000000000002
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_15",
+    "edges": [
+      {
+        "from": {
+          "x": 10.35666666666667,
+          "y": -0.5139999999999993
+        },
+        "to": {
+          "x": 10.35666666666667,
+          "y": -0.5986666666666647
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_16",
+    "edges": [
+      {
+        "from": {
+          "x": 6.377333333333333,
+          "y": 4.989333333333334
+        },
+        "to": {
+          "x": 6.377333333333333,
+          "y": 5.4126666666666665
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_17",
+    "edges": [
+      {
+        "from": {
+          "x": -0.8193333333333337,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_18",
+    "edges": [
+      {
+        "from": {
+          "x": 6.377333333333333,
+          "y": 5.4126666666666665
+        },
+        "to": {
+          "x": 6.208,
+          "y": 5.4126666666666665
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_19",
+    "edges": [
+      {
+        "from": {
+          "x": 1.7206666666666663,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": 1.2126666666666672,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_20",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 5.328
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 5.243333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_21",
+    "edges": [
+      {
+        "from": {
+          "x": -1.2426666666666666,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -1.2426666666666666,
+          "y": -1.275999999999998
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_22",
+    "edges": [
+      {
+        "from": {
+          "x": -4.629333333333333,
+          "y": -1.6993333333333336
+        },
+        "to": {
+          "x": -4.290666666666667,
+          "y": -1.6993333333333336
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_23",
+    "edges": [
+      {
+        "from": {
+          "x": 11.288,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 11.288,
+          "y": 0.6713333333333331
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_24",
+    "edges": [
+      {
+        "from": {
+          "x": 4.937999999999999,
+          "y": 6.767333333333333
+        },
+        "to": {
+          "x": 4.937999999999999,
+          "y": 7.190666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_25",
+    "edges": [
+      {
+        "from": {
+          "x": 8.494,
+          "y": -0.2599999999999998
+        },
+        "to": {
+          "x": 8.578666666666667,
+          "y": -0.2599999999999998
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_26",
+    "edges": [
+      {
+        "from": {
+          "x": 11.118666666666666,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 11.288,
+          "y": 0.7560000000000002
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_27",
+    "edges": [
+      {
+        "from": {
+          "x": 5.615333333333332,
+          "y": -0.42933333333333223
+        },
+        "to": {
+          "x": 5.869333333333332,
+          "y": -0.42933333333333223
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_28",
+    "edges": [
+      {
+        "from": {
+          "x": 6.208,
+          "y": 4.989333333333334
+        },
+        "to": {
+          "x": 6.377333333333333,
+          "y": 4.989333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_29",
+    "edges": [
+      {
+        "from": {
+          "x": -4.121333333333333,
+          "y": 3.634666666666667
+        },
+        "to": {
+          "x": -3.19,
+          "y": 3.634666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_30",
+    "edges": [
+      {
+        "from": {
+          "x": 2.2286666666666672,
+          "y": 7.529333333333334
+        },
+        "to": {
+          "x": 2.2286666666666672,
+          "y": 7.36
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_31",
+    "edges": [
+      {
+        "from": {
+          "x": 2.6519999999999992,
+          "y": 8.63
+        },
+        "to": {
+          "x": 3.3293333333333326,
+          "y": 8.63
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_32",
+    "edges": [
+      {
+        "from": {
+          "x": -3.19,
+          "y": 3.8040000000000003
+        },
+        "to": {
+          "x": -4.121333333333333,
+          "y": 3.8040000000000003
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_33",
+    "edges": [
+      {
+        "from": {
+          "x": 8.578666666666667,
+          "y": -0.2599999999999998
+        },
+        "to": {
+          "x": 8.663333333333332,
+          "y": -0.2599999999999998
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_34",
+    "edges": [
+      {
+        "from": {
+          "x": -1.5813333333333333,
+          "y": 4.566
+        },
+        "to": {
+          "x": -1.3273333333333328,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_35",
+    "edges": [
+      {
+        "from": {
+          "x": 2.2286666666666672,
+          "y": 7.36
+        },
+        "to": {
+          "x": 2.9060000000000006,
+          "y": 7.36
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_36",
+    "edges": [
+      {
+        "from": {
+          "x": 2.9060000000000006,
+          "y": 4.989333333333334
+        },
+        "to": {
+          "x": 4.8533333333333335,
+          "y": 4.989333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_37",
+    "edges": [
+      {
+        "from": {
+          "x": -4.629333333333333,
+          "y": -1.783999999999999
+        },
+        "to": {
+          "x": -4.629333333333333,
+          "y": -1.6993333333333336
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_38",
+    "edges": [
+      {
+        "from": {
+          "x": 2.144,
+          "y": 4.566
+        },
+        "to": {
+          "x": 3.16,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_39",
+    "edges": [
+      {
+        "from": {
+          "x": -1.5813333333333333,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -1.2426666666666666,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_40",
+    "edges": [
+      {
+        "from": {
+          "x": 8.578666666666667,
+          "y": 2.8726666666666674
+        },
+        "to": {
+          "x": 7.224,
+          "y": 2.8726666666666674
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_41",
+    "edges": [
+      {
+        "from": {
+          "x": 8.917333333333332,
+          "y": -0.09066666666666734
+        },
+        "to": {
+          "x": 8.917333333333332,
+          "y": 0.3326666666666682
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_42",
+    "edges": [
+      {
+        "from": {
+          "x": 0.8739999999999997,
+          "y": 4.566
+        },
+        "to": {
+          "x": 1.3819999999999997,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_43",
+    "edges": [
+      {
+        "from": {
+          "x": 6.631333333333332,
+          "y": 4.481333333333334
+        },
+        "to": {
+          "x": 7.054666666666666,
+          "y": 4.481333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_44",
+    "edges": [
+      {
+        "from": {
+          "x": -3.698,
+          "y": -1.5299999999999994
+        },
+        "to": {
+          "x": -3.698,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_45",
+    "edges": [
+      {
+        "from": {
+          "x": 7.054666666666666,
+          "y": 4.481333333333334
+        },
+        "to": {
+          "x": 7.054666666666666,
+          "y": 4.650666666666668
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_46",
+    "edges": [
+      {
+        "from": {
+          "x": -3.444,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": -1.5813333333333333,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_47",
+    "edges": [
+      {
+        "from": {
+          "x": -1.7506666666666675,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -1.5813333333333333,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_48",
+    "edges": [
+      {
+        "from": {
+          "x": 5.699999999999999,
+          "y": 7.190666666666667
+        },
+        "to": {
+          "x": 6.970000000000001,
+          "y": 7.190666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_49",
+    "edges": [
+      {
+        "from": {
+          "x": 3.3293333333333326,
+          "y": 7.952666666666667
+        },
+        "to": {
+          "x": 3.3293333333333326,
+          "y": 7.783333333333333
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_50",
+    "edges": [
+      {
+        "from": {
+          "x": 2.9060000000000006,
+          "y": 7.36
+        },
+        "to": {
+          "x": 2.9060000000000006,
+          "y": 4.989333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_51",
+    "edges": [
+      {
+        "from": {
+          "x": 7.054666666666666,
+          "y": 4.481333333333334
+        },
+        "to": {
+          "x": 7.647333333333334,
+          "y": 4.481333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_52",
+    "edges": [
+      {
+        "from": {
+          "x": -1.1580000000000004,
+          "y": 6.259333333333334
+        },
+        "to": {
+          "x": -1.1580000000000004,
+          "y": 6.174666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_53",
+    "edges": [
+      {
+        "from": {
+          "x": 5.530666666666667,
+          "y": 5.4126666666666665
+        },
+        "to": {
+          "x": 5.699999999999999,
+          "y": 5.4126666666666665
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_54",
+    "edges": [
+      {
+        "from": {
+          "x": 9.001999999999999,
+          "y": -0.09066666666666734
+        },
+        "to": {
+          "x": 8.917333333333332,
+          "y": -0.09066666666666734
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_55",
+    "edges": [
+      {
+        "from": {
+          "x": 5.954000000000001,
+          "y": 4.312000000000001
+        },
+        "to": {
+          "x": 5.954000000000001,
+          "y": 4.481333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_56",
+    "edges": [
+      {
+        "from": {
+          "x": 5.615333333333332,
+          "y": -0.5139999999999993
+        },
+        "to": {
+          "x": 5.615333333333332,
+          "y": -0.42933333333333223
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_57",
+    "edges": [
+      {
+        "from": {
+          "x": 0.7046666666666663,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": 0.19666666666666632,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_58",
+    "edges": [
+      {
+        "from": {
+          "x": 8.917333333333332,
+          "y": 1.3486666666666665
+        },
+        "to": {
+          "x": 8.917333333333332,
+          "y": 1.179333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_59",
+    "edges": [
+      {
+        "from": {
+          "x": -4.714,
+          "y": -1.6993333333333336
+        },
+        "to": {
+          "x": -4.629333333333333,
+          "y": -1.6993333333333336
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_60",
+    "edges": [
+      {
+        "from": {
+          "x": 8.24,
+          "y": -0.7680000000000007
+        },
+        "to": {
+          "x": 8.578666666666667,
+          "y": -0.7680000000000007
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_61",
+    "edges": [
+      {
+        "from": {
+          "x": -2.2586666666666666,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": -2.004666666666666,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_62",
+    "edges": [
+      {
+        "from": {
+          "x": 10.35666666666667,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 10.610666666666667,
+          "y": 0.7560000000000002
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_63",
+    "edges": [
+      {
+        "from": {
+          "x": 6.546666666666665,
+          "y": -0.7680000000000007
+        },
+        "to": {
+          "x": 7.731999999999999,
+          "y": -0.7680000000000007
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_64",
+    "edges": [
+      {
+        "from": {
+          "x": 4.091333333333333,
+          "y": 7.868
+        },
+        "to": {
+          "x": 4.091333333333333,
+          "y": 8.037333333333333
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_65",
+    "edges": [
+      {
+        "from": {
+          "x": -1.2426666666666666,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -0.7346666666666666,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_66",
+    "edges": [
+      {
+        "from": {
+          "x": 7.647333333333334,
+          "y": 4.481333333333334
+        },
+        "to": {
+          "x": 8.578666666666667,
+          "y": 4.481333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_67",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 4.735333333333334
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_68",
+    "edges": [
+      {
+        "from": {
+          "x": -3.19,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": -2.2586666666666666,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_69",
+    "edges": [
+      {
+        "from": {
+          "x": 10.35666666666667,
+          "y": -0.5139999999999993
+        },
+        "to": {
+          "x": 10.187333333333335,
+          "y": -0.5139999999999993
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_70",
+    "edges": [
+      {
+        "from": {
+          "x": 8.578666666666667,
+          "y": -0.7680000000000007
+        },
+        "to": {
+          "x": 8.578666666666667,
+          "y": -0.2599999999999998
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_71",
+    "edges": [
+      {
+        "from": {
+          "x": -2.8513333333333337,
+          "y": 3.4653333333333345
+        },
+        "to": {
+          "x": -2.8513333333333337,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_72",
+    "edges": [
+      {
+        "from": {
+          "x": -3.444,
+          "y": 3.9733333333333336
+        },
+        "to": {
+          "x": -4.121333333333333,
+          "y": 3.9733333333333336
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_73",
+    "edges": [
+      {
+        "from": {
+          "x": -2.8513333333333337,
+          "y": 3.4653333333333345
+        },
+        "to": {
+          "x": -4.121333333333333,
+          "y": 3.4653333333333345
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_74",
+    "edges": [
+      {
+        "from": {
+          "x": 7.224,
+          "y": 3.9733333333333336
+        },
+        "to": {
+          "x": 8.578666666666667,
+          "y": 3.9733333333333336
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_75",
+    "edges": [
+      {
+        "from": {
+          "x": 7.139333333333333,
+          "y": 3.3806666666666665
+        },
+        "to": {
+          "x": 8.578666666666667,
+          "y": 3.3806666666666665
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_76",
+    "edges": [
+      {
+        "from": {
+          "x": 3.3293333333333326,
+          "y": 7.783333333333333
+        },
+        "to": {
+          "x": 3.3293333333333326,
+          "y": 7.529333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_77",
+    "edges": [
+      {
+        "from": {
+          "x": 2.9906666666666677,
+          "y": 7.529333333333334
+        },
+        "to": {
+          "x": 3.3293333333333326,
+          "y": 7.529333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_78",
+    "edges": [
+      {
+        "from": {
+          "x": -1.1580000000000004,
+          "y": 7.698666666666667
+        },
+        "to": {
+          "x": -1.1580000000000004,
+          "y": 7.783333333333333
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_79",
+    "edges": [
+      {
+        "from": {
+          "x": 2.144,
+          "y": 2.7880000000000003
+        },
+        "to": {
+          "x": 2.144,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_80",
+    "edges": [
+      {
+        "from": {
+          "x": 7.562666666666667,
+          "y": -0.2599999999999998
+        },
+        "to": {
+          "x": 7.562666666666667,
+          "y": -0.42933333333333223
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_81",
+    "edges": [
+      {
+        "from": {
+          "x": 2.6519999999999992,
+          "y": 8.63
+        },
+        "to": {
+          "x": 2.6519999999999992,
+          "y": 8.460666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_82",
+    "edges": [
+      {
+        "from": {
+          "x": -3.19,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": -3.19,
+          "y": 3.8040000000000003
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_83",
+    "edges": [
+      {
+        "from": {
+          "x": 6.377333333333333,
+          "y": 4.989333333333334
+        },
+        "to": {
+          "x": 6.546666666666665,
+          "y": 4.989333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_84",
+    "edges": [
+      {
+        "from": {
+          "x": 2.6519999999999992,
+          "y": 7.783333333333333
+        },
+        "to": {
+          "x": 3.3293333333333326,
+          "y": 7.783333333333333
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_85",
+    "edges": [
+      {
+        "from": {
+          "x": -3.952,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -3.698,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_86",
+    "edges": [
+      {
+        "from": {
+          "x": 7.647333333333334,
+          "y": 4.481333333333334
+        },
+        "to": {
+          "x": 7.647333333333334,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_87",
+    "edges": [
+      {
+        "from": {
+          "x": 7.9013333333333335,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 7.9013333333333335,
+          "y": 1.179333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_88",
+    "edges": [
+      {
+        "from": {
+          "x": -1.5813333333333333,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": -1.3273333333333328,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_89",
+    "edges": [
+      {
+        "from": {
+          "x": 2.9060000000000006,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": 1.8899999999999988,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_90",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 4.566
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 4.312000000000001
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_91",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 4.566
+        },
+        "to": {
+          "x": -0.14199999999999946,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_92",
+    "edges": [
+      {
+        "from": {
+          "x": 3.3293333333333326,
+          "y": 8.714666666666666
+        },
+        "to": {
+          "x": 3.3293333333333326,
+          "y": 8.63
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_93",
+    "edges": [
+      {
+        "from": {
+          "x": 4.091333333333333,
+          "y": 7.190666666666667
+        },
+        "to": {
+          "x": 4.937999999999999,
+          "y": 7.190666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_94",
+    "edges": [
+      {
+        "from": {
+          "x": 6.546666666666665,
+          "y": -0.42933333333333223
+        },
+        "to": {
+          "x": 6.546666666666665,
+          "y": -0.7680000000000007
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_95",
+    "edges": [
+      {
+        "from": {
+          "x": -1.1580000000000004,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": -0.8193333333333337,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_96",
+    "edges": [
+      {
+        "from": {
+          "x": 10.35666666666667,
+          "y": 0.3326666666666682
+        },
+        "to": {
+          "x": 10.187333333333335,
+          "y": 0.3326666666666682
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_97",
+    "edges": [
+      {
+        "from": {
+          "x": 5.954000000000001,
+          "y": 4.481333333333334
+        },
+        "to": {
+          "x": 6.123333333333333,
+          "y": 4.481333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_98",
+    "edges": [
+      {
+        "from": {
+          "x": 4.091333333333333,
+          "y": 7.190666666666667
+        },
+        "to": {
+          "x": 4.091333333333333,
+          "y": 6.936666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_99",
+    "edges": [
+      {
+        "from": {
+          "x": 4.937999999999999,
+          "y": 7.190666666666667
+        },
+        "to": {
+          "x": 5.192,
+          "y": 7.190666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_100",
+    "edges": [
+      {
+        "from": {
+          "x": 0.027333333333332988,
+          "y": -1.5299999999999994
+        },
+        "to": {
+          "x": 0.027333333333332988,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_101",
+    "edges": [
+      {
+        "from": {
+          "x": -1.5813333333333333,
+          "y": 1.0100000000000016
+        },
+        "to": {
+          "x": -1.5813333333333333,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_102",
+    "edges": [
+      {
+        "from": {
+          "x": 10.35666666666667,
+          "y": 0.8406666666666673
+        },
+        "to": {
+          "x": 10.35666666666667,
+          "y": 0.7560000000000002
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_103",
+    "edges": [
+      {
+        "from": {
+          "x": -3.444,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": -3.444,
+          "y": 3.9733333333333336
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_104",
+    "edges": [
+      {
+        "from": {
+          "x": -1.5813333333333333,
+          "y": 4.312000000000001
+        },
+        "to": {
+          "x": -1.5813333333333333,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_105",
+    "edges": [
+      {
+        "from": {
+          "x": 3.3293333333333326,
+          "y": 7.529333333333334
+        },
+        "to": {
+          "x": 3.583333333333334,
+          "y": 7.529333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_106",
+    "edges": [
+      {
+        "from": {
+          "x": -2.8513333333333337,
+          "y": 4.566
+        },
+        "to": {
+          "x": -1.5813333333333333,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_107",
+    "edges": [
+      {
+        "from": {
+          "x": -1.1580000000000004,
+          "y": 7.190666666666667
+        },
+        "to": {
+          "x": -1.1580000000000004,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_108",
+    "edges": [
+      {
+        "from": {
+          "x": 5.699999999999999,
+          "y": 4.989333333333334
+        },
+        "to": {
+          "x": 5.361333333333333,
+          "y": 4.989333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_109",
+    "edges": [
+      {
+        "from": {
+          "x": -1.5813333333333333,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -1.5813333333333333,
+          "y": -1.5299999999999994
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_110",
+    "edges": [
+      {
+        "from": {
+          "x": 7.985999999999999,
+          "y": -0.2599999999999998
+        },
+        "to": {
+          "x": 7.562666666666667,
+          "y": -0.2599999999999998
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_111",
+    "edges": [
+      {
+        "from": {
+          "x": 10.018,
+          "y": 0.8406666666666673
+        },
+        "to": {
+          "x": 10.018,
+          "y": 0.7560000000000002
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_112",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 0.41733333333333356
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 0.5020000000000007
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_113",
+    "edges": [
+      {
+        "from": {
+          "x": 2.6519999999999992,
+          "y": 7.952666666666667
+        },
+        "to": {
+          "x": 2.6519999999999992,
+          "y": 7.783333333333333
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_114",
+    "edges": [
+      {
+        "from": {
+          "x": 0.8739999999999997,
+          "y": 2.7880000000000003
+        },
+        "to": {
+          "x": 2.144,
+          "y": 2.7880000000000003
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_115",
+    "edges": [
+      {
+        "from": {
+          "x": -0.8193333333333337,
+          "y": 4.566
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 4.566
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_116",
+    "edges": [
+      {
+        "from": {
+          "x": -1.496666666666667,
+          "y": 7.021333333333334
+        },
+        "to": {
+          "x": -1.1580000000000004,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_117",
+    "edges": [
+      {
+        "from": {
+          "x": 7.562666666666667,
+          "y": -0.42933333333333223
+        },
+        "to": {
+          "x": 7.393333333333333,
+          "y": -0.42933333333333223
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_118",
+    "edges": [
+      {
+        "from": {
+          "x": 4.091333333333333,
+          "y": 6.4286666666666665
+        },
+        "to": {
+          "x": 4.091333333333333,
+          "y": 6.174666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_119",
+    "edges": [
+      {
+        "from": {
+          "x": -4.290666666666667,
+          "y": -1.6993333333333336
+        },
+        "to": {
+          "x": -4.290666666666667,
+          "y": -1.783999999999999
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_120",
+    "edges": [
+      {
+        "from": {
+          "x": 1.3819999999999997,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": 0.8739999999999997,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_121",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 1.9413333333333345
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 2.0260000000000007
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_122",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 1.2640000000000011
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 1.0100000000000016
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_123",
+    "edges": [
+      {
+        "from": {
+          "x": -0.48066666666666613,
+          "y": 1.4333333333333336
+        },
+        "to": {
+          "x": -0.48066666666666613,
+          "y": 1.2640000000000011
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_124",
+    "edges": [
+      {
+        "from": {
+          "x": 6.123333333333333,
+          "y": 1.9413333333333345
+        },
+        "to": {
+          "x": 6.123333333333333,
+          "y": 2.0260000000000007
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_125",
+    "edges": [
+      {
+        "from": {
+          "x": 9.171333333333333,
+          "y": 0.7560000000000002
+        },
+        "to": {
+          "x": 10.018,
+          "y": 0.7560000000000002
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_126",
+    "edges": [
+      {
+        "from": {
+          "x": 3.3293333333333326,
+          "y": 8.63
+        },
+        "to": {
+          "x": 3.3293333333333326,
+          "y": 8.460666666666667
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_127",
+    "edges": [
+      {
+        "from": {
+          "x": 7.9013333333333335,
+          "y": 1.179333333333334
+        },
+        "to": {
+          "x": 7.816666666666666,
+          "y": 1.179333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_128",
+    "edges": [
+      {
+        "from": {
+          "x": -3.698,
+          "y": -1.3606666666666651
+        },
+        "to": {
+          "x": -3.1053333333333333,
+          "y": -1.3606666666666651
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_129",
+    "edges": [
+      {
+        "from": {
+          "x": -2.2586666666666666,
+          "y": 6.767333333333333
+        },
+        "to": {
+          "x": -2.2586666666666666,
+          "y": 7.021333333333334
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_130",
+    "edges": [
+      {
+        "from": {
+          "x": 8.917333333333332,
+          "y": 0.3326666666666682
+        },
+        "to": {
+          "x": 7.816666666666666,
+          "y": 0.3326666666666682
+        }
+      }
+    ],
+    "junctions": []
+  },
+  {
+    "type": "schematic_trace",
+    "schematic_trace_id": "schematic_trace_131",
     "edges": [],
     "junctions": [
       {
@@ -4552,7 +6383,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_1",
+    "schematic_trace_id": "schematic_trace_132",
     "edges": [],
     "junctions": [
       {
@@ -4563,7 +6394,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_2",
+    "schematic_trace_id": "schematic_trace_133",
     "edges": [],
     "junctions": [
       {
@@ -4574,7 +6405,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_3",
+    "schematic_trace_id": "schematic_trace_134",
     "edges": [],
     "junctions": [
       {
@@ -4585,7 +6416,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_4",
+    "schematic_trace_id": "schematic_trace_135",
     "edges": [],
     "junctions": [
       {
@@ -4596,7 +6427,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_5",
+    "schematic_trace_id": "schematic_trace_136",
     "edges": [],
     "junctions": [
       {
@@ -4607,7 +6438,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_6",
+    "schematic_trace_id": "schematic_trace_137",
     "edges": [],
     "junctions": [
       {
@@ -4618,7 +6449,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_7",
+    "schematic_trace_id": "schematic_trace_138",
     "edges": [],
     "junctions": [
       {
@@ -4629,7 +6460,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_8",
+    "schematic_trace_id": "schematic_trace_139",
     "edges": [],
     "junctions": [
       {
@@ -4640,7 +6471,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_9",
+    "schematic_trace_id": "schematic_trace_140",
     "edges": [],
     "junctions": [
       {
@@ -4651,7 +6482,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_10",
+    "schematic_trace_id": "schematic_trace_141",
     "edges": [],
     "junctions": [
       {
@@ -4662,7 +6493,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_11",
+    "schematic_trace_id": "schematic_trace_142",
     "edges": [],
     "junctions": [
       {
@@ -4673,7 +6504,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_12",
+    "schematic_trace_id": "schematic_trace_143",
     "edges": [],
     "junctions": [
       {
@@ -4684,7 +6515,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_13",
+    "schematic_trace_id": "schematic_trace_144",
     "edges": [],
     "junctions": [
       {
@@ -4695,7 +6526,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_14",
+    "schematic_trace_id": "schematic_trace_145",
     "edges": [],
     "junctions": [
       {
@@ -4706,7 +6537,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_15",
+    "schematic_trace_id": "schematic_trace_146",
     "edges": [],
     "junctions": [
       {
@@ -4717,7 +6548,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_16",
+    "schematic_trace_id": "schematic_trace_147",
     "edges": [],
     "junctions": [
       {
@@ -4728,7 +6559,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_17",
+    "schematic_trace_id": "schematic_trace_148",
     "edges": [],
     "junctions": [
       {
@@ -4739,7 +6570,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_18",
+    "schematic_trace_id": "schematic_trace_149",
     "edges": [],
     "junctions": [
       {
@@ -4750,7 +6581,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_19",
+    "schematic_trace_id": "schematic_trace_150",
     "edges": [],
     "junctions": [
       {
@@ -4761,7 +6592,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_20",
+    "schematic_trace_id": "schematic_trace_151",
     "edges": [],
     "junctions": [
       {
@@ -4772,7 +6603,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_21",
+    "schematic_trace_id": "schematic_trace_152",
     "edges": [],
     "junctions": [
       {
@@ -4783,7 +6614,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_22",
+    "schematic_trace_id": "schematic_trace_153",
     "edges": [],
     "junctions": [
       {
@@ -4794,7 +6625,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_23",
+    "schematic_trace_id": "schematic_trace_154",
     "edges": [],
     "junctions": [
       {
@@ -4805,7 +6636,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_24",
+    "schematic_trace_id": "schematic_trace_155",
     "edges": [],
     "junctions": [
       {
@@ -4816,7 +6647,7 @@
   },
   {
     "type": "schematic_trace",
-    "schematic_trace_id": "schematic_trace_25",
+    "schematic_trace_id": "schematic_trace_156",
     "edges": [],
     "junctions": [
       {

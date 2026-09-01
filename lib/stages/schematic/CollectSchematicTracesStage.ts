@@ -1,5 +1,9 @@
 import { ConverterStage } from "../../types"
 import { applyToPoint } from "transformation-matrix"
+import type { Junction, PtsArc, Wire, Xy } from "kicadts"
+
+const isXyPoint = (point: Xy | PtsArc): point is Xy =>
+  "x" in point && "y" in point
 
 /**
  * CollectSchematicTracesStage converts KiCad schematic wires and junctions
@@ -13,20 +17,14 @@ export class CollectSchematicTracesStage extends ConverterStage {
     }
 
     // Process wires
-    const wires = this.ctx.kicadSch.wires || []
-    const wireArray = Array.isArray(wires) ? wires : [wires]
-
     // Group wires by net/connection for better trace representation
     // For MVP, create one trace per wire
-    for (const wire of wireArray) {
+    for (const wire of this.ctx.kicadSch.wires) {
       this.processWire(wire)
     }
 
     // Process junctions
-    const junctions = this.ctx.kicadSch.junctions || []
-    const junctionArray = Array.isArray(junctions) ? junctions : [junctions]
-
-    for (const junction of junctionArray) {
+    for (const junction of this.ctx.kicadSch.junctions) {
       this.processJunction(junction)
     }
 
@@ -34,11 +32,11 @@ export class CollectSchematicTracesStage extends ConverterStage {
     return false
   }
 
-  private processWire(wire: any) {
-    if (!this.ctx.k2cMatSch || !wire.pts) return
+  private processWire(wire: Wire) {
+    if (!this.ctx.k2cMatSch) return
 
     // Get start and end points
-    const pts = Array.isArray(wire.pts.xy) ? wire.pts.xy : [wire.pts.xy]
+    const pts = wire.points?.points.filter(isXyPoint) ?? []
     if (pts.length < 2) return
 
     const edges: Array<{
@@ -48,13 +46,17 @@ export class CollectSchematicTracesStage extends ConverterStage {
 
     // Convert wire segments to edges
     for (let i = 0; i < pts.length - 1; i++) {
+      const fromPoint = pts[i]
+      const toPoint = pts[i + 1]
+      if (!fromPoint || !toPoint) continue
+
       const from = applyToPoint(this.ctx.k2cMatSch, {
-        x: pts[i].x,
-        y: pts[i].y,
+        x: fromPoint.x,
+        y: fromPoint.y,
       })
       const to = applyToPoint(this.ctx.k2cMatSch, {
-        x: pts[i + 1].x,
-        y: pts[i + 1].y,
+        x: toPoint.x,
+        y: toPoint.y,
       })
 
       edges.push({ from, to })
@@ -62,8 +64,9 @@ export class CollectSchematicTracesStage extends ConverterStage {
 
     // Create schematic trace
     this.ctx.db.schematic_trace.insert({
-      edges: edges,
-    } as any)
+      edges,
+      junctions: [],
+    })
 
     // Update stats
     if (this.ctx.stats) {
@@ -71,7 +74,7 @@ export class CollectSchematicTracesStage extends ConverterStage {
     }
   }
 
-  private processJunction(junction: any) {
+  private processJunction(junction: Junction) {
     if (!this.ctx.k2cMatSch || !junction.at) return
 
     // Transform junction position
@@ -86,6 +89,6 @@ export class CollectSchematicTracesStage extends ConverterStage {
     this.ctx.db.schematic_trace.insert({
       edges: [],
       junctions: [pos],
-    } as any)
+    })
   }
 }
