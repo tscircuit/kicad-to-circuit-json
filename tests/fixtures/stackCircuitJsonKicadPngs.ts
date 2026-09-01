@@ -3,6 +3,7 @@ import sharp from "sharp"
 export const stackCircuitJsonKicadPngs = async (
   circuitJsonPng: Buffer,
   kicadPng: Buffer,
+  layout: "vertical" | "horizontal" = "vertical",
 ): Promise<Buffer> => {
   const labelFontSize = 24
   const labelPadding = 8
@@ -18,9 +19,13 @@ export const stackCircuitJsonKicadPngs = async (
   const kicadWidth = kicadMetadata.width || 0
   const kicadHeight = kicadMetadata.height || 0
 
-  // Calculate canvas dimensions
-  const maxWidth = Math.max(cjWidth, kicadWidth)
-  const totalHeight = cjHeight + kicadHeight
+  const isHorizontal = layout === "horizontal"
+  const canvasWidth = isHorizontal
+    ? kicadWidth + cjWidth
+    : Math.max(cjWidth, kicadWidth)
+  const canvasHeight = isHorizontal
+    ? Math.max(kicadHeight, cjHeight)
+    : cjHeight + kicadHeight
 
   // Create text labels as SVG with black background and white text
   const createLabel = (text: string) => {
@@ -50,31 +55,35 @@ export const stackCircuitJsonKicadPngs = async (
   const compositeOps = [
     {
       input: await sharp(circuitJsonPng).toBuffer(),
-      left: Math.floor((maxWidth - cjWidth) / 2),
-      top: 0,
+      left: isHorizontal ? kicadWidth : Math.floor((canvasWidth - cjWidth) / 2),
+      top: isHorizontal ? Math.floor((canvasHeight - cjHeight) / 2) : 0,
     },
     {
       input: await sharp(kicadPng).toBuffer(),
-      left: Math.floor((maxWidth - kicadWidth) / 2),
-      top: cjHeight,
+      left: isHorizontal ? 0 : Math.floor((canvasWidth - kicadWidth) / 2),
+      top: isHorizontal
+        ? Math.floor((canvasHeight - kicadHeight) / 2)
+        : cjHeight,
     },
     {
       input: await sharp(cjLabel).png().toBuffer(),
-      left: 0,
-      top: 0,
+      left: isHorizontal ? kicadWidth : 0,
+      top: isHorizontal ? Math.floor((canvasHeight - cjHeight) / 2) : 0,
     },
     {
       input: await sharp(kicadLabel).png().toBuffer(),
       left: 0,
-      top: cjHeight,
+      top: isHorizontal
+        ? Math.floor((canvasHeight - kicadHeight) / 2)
+        : cjHeight,
     },
   ]
 
   // Create a blank canvas and composite all elements
   const result = await sharp({
     create: {
-      width: maxWidth,
-      height: totalHeight,
+      width: canvasWidth,
+      height: canvasHeight,
       channels: 4,
       background: { r: 255, g: 255, b: 255, alpha: 1 },
     },

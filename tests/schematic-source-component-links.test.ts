@@ -41,6 +41,7 @@ test("schematic components reference their inserted source components", async ()
   const comparisonPng = await stackCircuitJsonKicadPngs(
     circuitJsonPng,
     kicadPng,
+    "horizontal",
   )
 
   await expect(comparisonPng).toMatchPngSnapshot(import.meta.path)
