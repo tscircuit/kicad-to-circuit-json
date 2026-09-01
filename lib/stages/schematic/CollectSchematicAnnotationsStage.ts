@@ -1,6 +1,6 @@
 import type {
-  Point,
   SchematicArc as CircuitJsonSchematicArc,
+  Point,
 } from "circuit-json"
 import type {
   At,
@@ -18,9 +18,11 @@ import { ConverterStage } from "../../types"
 
 const GRAPHIC_COLOR = "rgb(0, 0, 132)"
 const TEXT_COLOR = "rgb(0, 0, 132)"
+const LOCAL_LABEL_COLOR = "rgb(15, 15, 15)"
+const SHEET_PIN_COLOR = "rgb(0, 100, 100)"
+const SHEET_FILE_COLOR = "rgb(132, 0, 0)"
 const NO_CONNECT_COLOR = "rgb(0, 0, 132)"
 
-type NetLabel = Label | GlobalLabel
 type TextAnchor =
   | "top_left"
   | "top_center"
@@ -43,8 +45,9 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       return false
     }
 
-    for (const label of [...kicadSch.labels, ...kicadSch.globalLabels]) {
-      this.processNetLabel(label)
+    for (const label of kicadSch.labels) this.processLocalLabel(label)
+    for (const label of kicadSch.globalLabels) {
+      this.processGlobalLabel(label)
     }
     for (const text of kicadSch.texts) this.processText(text)
     for (const sheet of kicadSch.sheets) this.processSheet(sheet)
@@ -63,19 +66,23 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     return false
   }
 
-  private processNetLabel(label: NetLabel) {
+  private processLocalLabel(label: Label) {
     if (!this.ctx.k2cMatSch || !label.at || !label.value) return
 
     const text = decodeKicadText(label.value)
-    let sourceNetId = this.sourceNetIds.get(text)
-    if (!sourceNetId) {
-      const sourceNet = this.ctx.db.source_net.insert({
-        name: text,
-        member_source_group_ids: [],
-      } as any)
-      sourceNetId = sourceNet.source_net_id
-      this.sourceNetIds.set(text, sourceNetId)
-    }
+    this.getOrCreateSourceNetId(text)
+    this.insertText(text, label.at, label.effects, {
+      color: LOCAL_LABEL_COLOR,
+    })
+
+    this.incrementLabelCount()
+  }
+
+  private processGlobalLabel(label: GlobalLabel) {
+    if (!this.ctx.k2cMatSch || !label.at || !label.value) return
+
+    const text = decodeKicadText(label.value)
+    const sourceNetId = this.getOrCreateSourceNetId(text)
 
     const position = applyToPoint(this.ctx.k2cMatSch, label.at)
     this.ctx.db.schematic_net_label.insert({
@@ -87,6 +94,22 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       is_movable: false,
     })
 
+    this.incrementLabelCount()
+  }
+
+  private getOrCreateSourceNetId(text: string): string {
+    const existingSourceNetId = this.sourceNetIds.get(text)
+    if (existingSourceNetId) return existingSourceNetId
+
+    const sourceNet = this.ctx.db.source_net.insert({
+      name: text,
+      member_source_group_ids: [],
+    } as any)
+    this.sourceNetIds.set(text, sourceNet.source_net_id)
+    return sourceNet.source_net_id
+  }
+
+  private incrementLabelCount() {
     if (this.ctx.stats) {
       this.ctx.stats.labels = (this.ctx.stats.labels || 0) + 1
     }
@@ -117,12 +140,57 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       if (!property.at || !property.value || property.effects?.hiddenText) {
         continue
       }
-      this.insertText(property.value, property.at, property.effects)
+      this.insertText(property.value, property.at, property.effects, {
+        color:
+          property.key === "Sheetname"
+            ? SHEET_PIN_COLOR
+            : property.key === "Sheetfile"
+              ? SHEET_FILE_COLOR
+              : TEXT_COLOR,
+      })
     }
 
     for (const pin of sheet.pins) {
       if (!pin.position || !pin.name || pin.effects?.hiddenText) continue
-      this.insertText(pin.name, pin.position, pin.effects)
+      const fontSize = getFontSize(pin.effects)
+      const angleRadians = ((pin.position.angle ?? 0) * Math.PI) / 180
+      const position = applyToPoint(this.ctx.k2cMatSch, pin.position)
+      const inset = fontSize * Math.abs(this.ctx.k2cMatSch.a) * 1.2
+      const pinTextPosition = {
+        x: position.x - Math.cos(angleRadians) * inset,
+        y: position.y + Math.sin(angleRadians) * inset,
+      }
+      const inward = {
+        x: -Math.cos(angleRadians),
+        y: Math.sin(angleRadians),
+      }
+      const perpendicular = { x: -inward.y, y: inward.x }
+      const halfMarkerHeight = fontSize * Math.abs(this.ctx.k2cMatSch.a) * 0.5
+      const markerDepth = fontSize * Math.abs(this.ctx.k2cMatSch.a) * (5 / 6)
+      this.ctx.db.schematic_path.insert({
+        points: [
+          {
+            x: position.x + perpendicular.x * halfMarkerHeight,
+            y: position.y + perpendicular.y * halfMarkerHeight,
+          },
+          {
+            x: position.x + inward.x * markerDepth,
+            y: position.y + inward.y * markerDepth,
+          },
+          {
+            x: position.x - perpendicular.x * halfMarkerHeight,
+            y: position.y - perpendicular.y * halfMarkerHeight,
+          },
+        ],
+        stroke_width: 0.01,
+        stroke_color: SHEET_PIN_COLOR,
+        is_dashed: false,
+        is_filled: false,
+      })
+      this.insertText(pin.name, pin.position, pin.effects, {
+        color: SHEET_PIN_COLOR,
+        position: pinTextPosition,
+      })
     }
   }
 
@@ -218,7 +286,12 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     })
   }
 
-  private insertText(value: string, at: At, effects?: TextEffects) {
+  private insertText(
+    value: string,
+    at: At,
+    effects?: TextEffects,
+    options: { color?: string; position?: Point } = {},
+  ) {
     if (!this.ctx.k2cMatSch) return
 
     this.ctx.db.schematic_text.insert({
@@ -227,10 +300,10 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
         0.05,
         getFontSize(effects) * Math.abs(this.ctx.k2cMatSch.a),
       ),
-      position: applyToPoint(this.ctx.k2cMatSch, at),
-      rotation: -(at.angle ?? 0),
+      position: options.position ?? applyToPoint(this.ctx.k2cMatSch, at),
+      rotation: normalizeReadableRotation(-(at.angle ?? 0)),
       anchor: getTextAnchor(effects),
-      color: TEXT_COLOR,
+      color: options.color ?? TEXT_COLOR,
     })
   }
 
@@ -340,3 +413,11 @@ const angleFromCenter = (center: Point, point: Point): number =>
   (Math.atan2(point.y - center.y, point.x - center.x) * 180) / Math.PI
 
 const normalizeAngle = (angle: number): number => ((angle % 360) + 360) % 360
+
+const normalizeReadableRotation = (rotation: number): number => {
+  let normalized = ((rotation % 360) + 360) % 360
+  if (normalized > 180) normalized -= 360
+  if (normalized > 90) normalized -= 180
+  if (normalized < -90) normalized += 180
+  return normalized
+}

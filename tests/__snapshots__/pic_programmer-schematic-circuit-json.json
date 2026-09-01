@@ -18500,20 +18500,17 @@
     "member_source_group_ids": []
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_0",
-    "source_net_id": "source_net_0",
-    "center": {
-      "x": 3.16,
-      "y": 4.566
-    },
-    "anchor_position": {
-      "x": 3.16,
-      "y": 4.566
-    },
-    "anchor_side": "right",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_256",
     "text": "DATA-RB7",
-    "is_movable": false
+    "font_size": 0.1016,
+    "position": {
+      "x": 3.16,
+      "y": 4.566
+    },
+    "rotation": 0,
+    "anchor": "bottom_right",
+    "color": "rgb(15, 15, 15)"
   },
   {
     "type": "source_net",
@@ -18522,20 +18519,17 @@
     "member_source_group_ids": []
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_1",
-    "source_net_id": "source_net_1",
-    "center": {
-      "x": 2.9060000000000006,
-      "y": 1.2640000000000011
-    },
-    "anchor_position": {
-      "x": 2.9060000000000006,
-      "y": 1.2640000000000011
-    },
-    "anchor_side": "right",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_257",
     "text": "CLOCK-RB6",
-    "is_movable": false
+    "font_size": 0.1016,
+    "position": {
+      "x": 2.9060000000000006,
+      "y": 1.2640000000000011
+    },
+    "rotation": 0,
+    "anchor": "bottom_right",
+    "color": "rgb(15, 15, 15)"
   },
   {
     "type": "source_net",
@@ -18544,36 +18538,30 @@
     "member_source_group_ids": []
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_2",
-    "source_net_id": "source_net_2",
-    "center": {
-      "x": -2.428,
-      "y": 2.7880000000000003
-    },
-    "anchor_position": {
-      "x": -2.428,
-      "y": 2.7880000000000003
-    },
-    "anchor_side": "left",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_258",
     "text": "PC-DATA-IN",
-    "is_movable": false
+    "font_size": 0.1016,
+    "position": {
+      "x": -2.428,
+      "y": 2.7880000000000003
+    },
+    "rotation": 0,
+    "anchor": "bottom_left",
+    "color": "rgb(15, 15, 15)"
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_3",
-    "source_net_id": "source_net_1",
-    "center": {
-      "x": 7.224,
-      "y": 2.8726666666666674
-    },
-    "anchor_position": {
-      "x": 7.224,
-      "y": 2.8726666666666674
-    },
-    "anchor_side": "left",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_259",
     "text": "CLOCK-RB6",
-    "is_movable": false
+    "font_size": 0.1016,
+    "position": {
+      "x": 7.224,
+      "y": 2.8726666666666674
+    },
+    "rotation": 0,
+    "anchor": "bottom_left",
+    "color": "rgb(15, 15, 15)"
   },
   {
     "type": "source_net",
@@ -18582,20 +18570,17 @@
     "member_source_group_ids": []
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_4",
-    "source_net_id": "source_net_3",
-    "center": {
-      "x": -2.7666666666666666,
-      "y": 4.566
-    },
-    "anchor_position": {
-      "x": -2.7666666666666666,
-      "y": 4.566
-    },
-    "anchor_side": "left",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_260",
     "text": "PC-DATA-OUT",
-    "is_movable": false
+    "font_size": 0.1016,
+    "position": {
+      "x": -2.7666666666666666,
+      "y": 4.566
+    },
+    "rotation": 0,
+    "anchor": "bottom_left",
+    "color": "rgb(15, 15, 15)"
   },
   {
     "type": "source_net",
@@ -18604,20 +18589,17 @@
     "member_source_group_ids": []
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_5",
-    "source_net_id": "source_net_4",
-    "center": {
-      "x": 6.970000000000001,
-      "y": 7.190666666666667
-    },
-    "anchor_position": {
-      "x": 6.970000000000001,
-      "y": 7.190666666666667
-    },
-    "anchor_side": "right",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_261",
     "text": "VPP/MCLR",
-    "is_movable": false
+    "font_size": 0.1016,
+    "position": {
+      "x": 6.970000000000001,
+      "y": 7.190666666666667
+    },
+    "rotation": 0,
+    "anchor": "bottom_right",
+    "color": "rgb(15, 15, 15)"
   },
   {
     "type": "source_net",
@@ -18626,20 +18608,17 @@
     "member_source_group_ids": []
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_6",
-    "source_net_id": "source_net_5",
-    "center": {
-      "x": -3.1053333333333333,
-      "y": 7.021333333333334
-    },
-    "anchor_position": {
-      "x": -3.1053333333333333,
-      "y": 7.021333333333334
-    },
-    "anchor_side": "left",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_262",
     "text": "VPP_ON",
-    "is_movable": false
+    "font_size": 0.1016,
+    "position": {
+      "x": -3.1053333333333333,
+      "y": 7.021333333333334
+    },
+    "rotation": 0,
+    "anchor": "bottom_left",
+    "color": "rgb(15, 15, 15)"
   },
   {
     "type": "source_net",
@@ -18648,56 +18627,47 @@
     "member_source_group_ids": []
   },
   {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_7",
-    "source_net_id": "source_net_6",
-    "center": {
-      "x": -3.020666666666667,
-      "y": 1.2640000000000011
-    },
-    "anchor_position": {
-      "x": -3.020666666666667,
-      "y": 1.2640000000000011
-    },
-    "anchor_side": "left",
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_263",
     "text": "PC-CLOCK-OUT",
-    "is_movable": false
-  },
-  {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_8",
-    "source_net_id": "source_net_4",
-    "center": {
-      "x": 7.224,
-      "y": 3.9733333333333336
+    "font_size": 0.1016,
+    "position": {
+      "x": -3.020666666666667,
+      "y": 1.2640000000000011
     },
-    "anchor_position": {
-      "x": 7.224,
-      "y": 3.9733333333333336
-    },
-    "anchor_side": "left",
-    "text": "VPP/MCLR",
-    "is_movable": false
-  },
-  {
-    "type": "schematic_net_label",
-    "schematic_net_label_id": "schematic_net_label_9",
-    "source_net_id": "source_net_0",
-    "center": {
-      "x": 7.139333333333333,
-      "y": 3.3806666666666665
-    },
-    "anchor_position": {
-      "x": 7.139333333333333,
-      "y": 3.3806666666666665
-    },
-    "anchor_side": "left",
-    "text": "DATA-RB7",
-    "is_movable": false
+    "rotation": 0,
+    "anchor": "bottom_left",
+    "color": "rgb(15, 15, 15)"
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_256",
+    "schematic_text_id": "schematic_text_264",
+    "text": "VPP/MCLR",
+    "font_size": 0.1016,
+    "position": {
+      "x": 7.224,
+      "y": 3.9733333333333336
+    },
+    "rotation": 0,
+    "anchor": "bottom_left",
+    "color": "rgb(15, 15, 15)"
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_265",
+    "text": "DATA-RB7",
+    "font_size": 0.1016,
+    "position": {
+      "x": 7.139333333333333,
+      "y": 3.3806666666666665
+    },
+    "rotation": 0,
+    "anchor": "bottom_left",
+    "color": "rgb(15, 15, 15)"
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_266",
     "text": "ADJUST for VPP = 13V",
     "font_size": 0.08466666666666667,
     "position": {
@@ -18710,7 +18680,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_257",
+    "schematic_text_id": "schematic_text_267",
     "text": "8 to 15V",
     "font_size": 0.1016,
     "position": {
@@ -18723,7 +18693,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_258",
+    "schematic_text_id": "schematic_text_268",
     "text": "VPP (13V) power",
     "font_size": 0.16933333333333334,
     "position": {
@@ -18736,7 +18706,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_259",
+    "schematic_text_id": "schematic_text_269",
     "text": "RTS",
     "font_size": 0.1016,
     "position": {
@@ -18749,7 +18719,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_260",
+    "schematic_text_id": "schematic_text_270",
     "text": "TXD",
     "font_size": 0.1016,
     "position": {
@@ -18762,7 +18732,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_261",
+    "schematic_text_id": "schematic_text_271",
     "text": "CTS",
     "font_size": 0.1016,
     "position": {
@@ -18775,7 +18745,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_262",
+    "schematic_text_id": "schematic_text_272",
     "text": "DTR",
     "font_size": 0.1016,
     "position": {
@@ -18788,7 +18758,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_263",
+    "schematic_text_id": "schematic_text_273",
     "text": "Mounting holes",
     "font_size": 0.06773333333333334,
     "position": {
@@ -18810,7 +18780,7 @@
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_264",
+    "schematic_text_id": "schematic_text_274",
     "text": "pic_sockets",
     "font_size": 0.1016,
     "position": {
@@ -18819,11 +18789,11 @@
     },
     "rotation": 0,
     "anchor": "bottom_left",
-    "color": "rgb(0, 0, 132)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_265",
+    "schematic_text_id": "schematic_text_275",
     "text": "pic_sockets.kicad_sch",
     "font_size": 0.1016,
     "position": {
@@ -18832,59 +18802,147 @@
     },
     "rotation": 0,
     "anchor": "top_left",
-    "color": "rgb(0, 0, 132)"
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_59",
+    "points": [
+      {
+        "x": 8.578666666666667,
+        "y": 4.024133333333333
+      },
+      {
+        "x": 8.663333333333334,
+        "y": 3.9733333333333336
+      },
+      {
+        "x": 8.578666666666667,
+        "y": 3.9225333333333334
+      }
+    ],
+    "stroke_width": 0.01,
+    "stroke_color": "rgb(0, 100, 100)",
+    "is_dashed": false,
+    "is_filled": false
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_266",
+    "schematic_text_id": "schematic_text_276",
     "text": "VPP-MCLR",
     "font_size": 0.1016,
     "position": {
-      "x": 8.578666666666667,
+      "x": 8.700586666666666,
       "y": 3.9733333333333336
     },
-    "rotation": -180,
+    "rotation": 0,
     "anchor": "center_left",
-    "color": "rgb(0, 0, 132)"
+    "color": "rgb(0, 100, 100)"
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_60",
+    "points": [
+      {
+        "x": 8.578666666666667,
+        "y": 2.9234666666666675
+      },
+      {
+        "x": 8.663333333333334,
+        "y": 2.8726666666666674
+      },
+      {
+        "x": 8.578666666666667,
+        "y": 2.821866666666667
+      }
+    ],
+    "stroke_width": 0.01,
+    "stroke_color": "rgb(0, 100, 100)",
+    "is_dashed": false,
+    "is_filled": false
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_267",
+    "schematic_text_id": "schematic_text_277",
     "text": "CLOCK-RB6",
     "font_size": 0.1016,
     "position": {
-      "x": 8.578666666666667,
+      "x": 8.700586666666666,
       "y": 2.8726666666666674
     },
-    "rotation": -180,
+    "rotation": 0,
     "anchor": "center_left",
-    "color": "rgb(0, 0, 132)"
+    "color": "rgb(0, 100, 100)"
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_61",
+    "points": [
+      {
+        "x": 8.578666666666667,
+        "y": 3.4314666666666667
+      },
+      {
+        "x": 8.663333333333334,
+        "y": 3.3806666666666665
+      },
+      {
+        "x": 8.578666666666667,
+        "y": 3.3298666666666663
+      }
+    ],
+    "stroke_width": 0.01,
+    "stroke_color": "rgb(0, 100, 100)",
+    "is_dashed": false,
+    "is_filled": false
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_268",
+    "schematic_text_id": "schematic_text_278",
     "text": "DATA-RB7",
     "font_size": 0.1016,
     "position": {
-      "x": 8.578666666666667,
+      "x": 8.700586666666666,
       "y": 3.3806666666666665
     },
-    "rotation": -180,
+    "rotation": 0,
     "anchor": "center_left",
-    "color": "rgb(0, 0, 132)"
+    "color": "rgb(0, 100, 100)"
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_62",
+    "points": [
+      {
+        "x": 8.578666666666667,
+        "y": 4.532133333333333
+      },
+      {
+        "x": 8.663333333333334,
+        "y": 4.481333333333334
+      },
+      {
+        "x": 8.578666666666667,
+        "y": 4.430533333333334
+      }
+    ],
+    "stroke_width": 0.01,
+    "stroke_color": "rgb(0, 100, 100)",
+    "is_dashed": false,
+    "is_filled": false
   },
   {
     "type": "schematic_text",
-    "schematic_text_id": "schematic_text_269",
+    "schematic_text_id": "schematic_text_279",
     "text": "VCC_PIC",
     "font_size": 0.1016,
     "position": {
-      "x": 8.578666666666667,
+      "x": 8.700586666666666,
       "y": 4.481333333333334
     },
-    "rotation": -180,
+    "rotation": 0,
     "anchor": "center_left",
-    "color": "rgb(0, 0, 132)"
+    "color": "rgb(0, 100, 100)"
   },
   {
     "type": "schematic_line",
@@ -19020,87 +19078,15 @@
   },
   {
     "type": "schematic_path",
-    "schematic_path_id": "schematic_path_59",
-    "points": [
-      {
-        "x": 4.514666666666667,
-        "y": -3.2233333333333327
-      },
-      {
-        "x": 2.9060000000000006,
-        "y": -3.2233333333333327
-      }
-    ],
-    "stroke_width": null,
-    "stroke_color": "rgb(0, 0, 132)",
-    "is_dashed": true,
-    "is_filled": false
-  },
-  {
-    "type": "schematic_path",
-    "schematic_path_id": "schematic_path_60",
-    "points": [
-      {
-        "x": 11.880666666666666,
-        "y": 2.2800000000000002
-      },
-      {
-        "x": 11.880666666666666,
-        "y": -1.0220000000000002
-      }
-    ],
-    "stroke_width": null,
-    "stroke_color": "rgb(0, 0, 132)",
-    "is_dashed": true,
-    "is_filled": false
-  },
-  {
-    "type": "schematic_path",
-    "schematic_path_id": "schematic_path_61",
-    "points": [
-      {
-        "x": 2.9060000000000006,
-        "y": -3.2233333333333327
-      },
-      {
-        "x": 2.9060000000000006,
-        "y": -1.445333333333334
-      }
-    ],
-    "stroke_width": null,
-    "stroke_color": "rgb(0, 0, 132)",
-    "is_dashed": true,
-    "is_filled": false
-  },
-  {
-    "type": "schematic_path",
-    "schematic_path_id": "schematic_path_62",
-    "points": [
-      {
-        "x": 4.514666666666667,
-        "y": -1.445333333333334
-      },
-      {
-        "x": 4.514666666666667,
-        "y": -3.2233333333333327
-      }
-    ],
-    "stroke_width": null,
-    "stroke_color": "rgb(0, 0, 132)",
-    "is_dashed": true,
-    "is_filled": false
-  },
-  {
-    "type": "schematic_path",
     "schematic_path_id": "schematic_path_63",
     "points": [
       {
-        "x": 3.8373333333333335,
-        "y": -1.0220000000000002
+        "x": 4.514666666666667,
+        "y": -3.2233333333333327
       },
       {
-        "x": 11.880666666666666,
-        "y": -1.0220000000000002
+        "x": 2.9060000000000006,
+        "y": -3.2233333333333327
       }
     ],
     "stroke_width": null,
@@ -19113,11 +19099,11 @@
     "schematic_path_id": "schematic_path_64",
     "points": [
       {
-        "x": 3.8373333333333335,
+        "x": 11.880666666666666,
         "y": 2.2800000000000002
       },
       {
-        "x": 3.8373333333333335,
+        "x": 11.880666666666666,
         "y": -1.0220000000000002
       }
     ],
@@ -19132,6 +19118,78 @@
     "points": [
       {
         "x": 2.9060000000000006,
+        "y": -3.2233333333333327
+      },
+      {
+        "x": 2.9060000000000006,
+        "y": -1.445333333333334
+      }
+    ],
+    "stroke_width": null,
+    "stroke_color": "rgb(0, 0, 132)",
+    "is_dashed": true,
+    "is_filled": false
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_66",
+    "points": [
+      {
+        "x": 4.514666666666667,
+        "y": -1.445333333333334
+      },
+      {
+        "x": 4.514666666666667,
+        "y": -3.2233333333333327
+      }
+    ],
+    "stroke_width": null,
+    "stroke_color": "rgb(0, 0, 132)",
+    "is_dashed": true,
+    "is_filled": false
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_67",
+    "points": [
+      {
+        "x": 3.8373333333333335,
+        "y": -1.0220000000000002
+      },
+      {
+        "x": 11.880666666666666,
+        "y": -1.0220000000000002
+      }
+    ],
+    "stroke_width": null,
+    "stroke_color": "rgb(0, 0, 132)",
+    "is_dashed": true,
+    "is_filled": false
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_68",
+    "points": [
+      {
+        "x": 3.8373333333333335,
+        "y": 2.2800000000000002
+      },
+      {
+        "x": 3.8373333333333335,
+        "y": -1.0220000000000002
+      }
+    ],
+    "stroke_width": null,
+    "stroke_color": "rgb(0, 0, 132)",
+    "is_dashed": true,
+    "is_filled": false
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_69",
+    "points": [
+      {
+        "x": 2.9060000000000006,
         "y": -1.445333333333334
       },
       {
@@ -19146,7 +19204,7 @@
   },
   {
     "type": "schematic_path",
-    "schematic_path_id": "schematic_path_66",
+    "schematic_path_id": "schematic_path_70",
     "points": [
       {
         "x": 11.880666666666666,

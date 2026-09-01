@@ -64,6 +64,9 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
         "schematic_arc",
       ].includes(element.type),
   )
+  const schematicTexts = circuitJson.filter(
+    (element) => element.type === "schematic_text",
+  )
 
   expect(schematicPorts).toHaveLength(182)
   expect(sourcePorts).toHaveLength(182)
@@ -104,7 +107,32 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
 
   expect(
     circuitJson.filter((element) => element.type === "schematic_net_label"),
-  ).toHaveLength(10)
+  ).toHaveLength(0)
+  const sourceNets = circuitJson.filter(
+    (element) => element.type === "source_net",
+  )
+  expect(sourceNets).toHaveLength(7)
+  expect(new Set(sourceNets.map((sourceNet) => sourceNet.name))).toEqual(
+    new Set([
+      "DATA-RB7",
+      "CLOCK-RB6",
+      "PC-DATA-IN",
+      "PC-DATA-OUT",
+      "VPP/MCLR",
+      "VPP_ON",
+      "PC-CLOCK-OUT",
+    ]),
+  )
+  const localLabelTexts = schematicTexts.filter(
+    (element) =>
+      element.schematic_component_id === undefined &&
+      element.color === "rgb(15, 15, 15)",
+  )
+  expect(localLabelTexts).toHaveLength(10)
+  expect(localLabelTexts.every((label) => label.rotation === 0)).toBe(true)
+  expect(new Set(localLabelTexts.map((label) => label.text))).toEqual(
+    new Set(sourceNets.map((sourceNet) => sourceNet.name)),
+  )
   expect(
     circuitJson.filter(
       (element) =>
@@ -118,6 +146,34 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
   expect(schematicTextValues).toContain("ADJUST for VPP = 13V")
   expect(schematicTextValues).toContain("pic_sockets")
   expect(schematicTextValues).toContain("VPP-MCLR")
+  const sheetPinNames = new Set([
+    "VPP-MCLR",
+    "CLOCK-RB6",
+    "DATA-RB7",
+    "VCC_PIC",
+  ])
+  const sheetPinTexts = schematicTexts.filter(
+    (element) =>
+      element.schematic_component_id === undefined &&
+      element.color === "rgb(0, 100, 100)" &&
+      sheetPinNames.has(element.text),
+  )
+  expect(sheetPinTexts).toHaveLength(4)
+  expect(sheetPinTexts.every((pin) => pin.rotation === 0)).toBe(true)
+  expect(sheetPinTexts.every((pin) => pin.anchor === "center_left")).toBe(true)
+  expect(
+    schematicTexts.some(
+      (text) =>
+        text.text === "pic_sockets" && text.color === "rgb(0, 100, 100)",
+    ),
+  ).toBe(true)
+  expect(
+    schematicTexts.some(
+      (text) =>
+        text.text === "pic_sockets.kicad_sch" &&
+        text.color === "rgb(132, 0, 0)",
+    ),
+  ).toBe(true)
   expect(
     circuitJson.filter((element) => element.type === "schematic_box"),
   ).toHaveLength(1)
@@ -134,7 +190,15 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
         element.type === "schematic_path" &&
         element.schematic_component_id === undefined,
     ),
-  ).toHaveLength(8)
+  ).toHaveLength(12)
+  expect(
+    circuitJson.filter(
+      (element) =>
+        element.type === "schematic_path" &&
+        element.schematic_component_id === undefined &&
+        element.stroke_color === "rgb(0, 100, 100)",
+    ),
+  ).toHaveLength(4)
 
   // Write Circuit JSON to file for inspection
   const fs = await import("node:fs/promises")
