@@ -43,12 +43,50 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
   const schematicPorts = circuitJson.filter(
     (element) => element.type === "schematic_port",
   )
+  const sourcePorts = circuitJson.filter(
+    (element) => element.type === "source_port",
+  )
   const wireTraces = circuitJson.filter(
     (element) => element.type === "schematic_trace" && element.edges.length > 0,
   )
+  const schematicTraces = circuitJson.filter(
+    (element) => element.type === "schematic_trace",
+  )
+  const componentPrimitives = circuitJson.filter(
+    (element) =>
+      "schematic_component_id" in element &&
+      element.schematic_component_id !== undefined &&
+      [
+        "schematic_line",
+        "schematic_path",
+        "schematic_rect",
+        "schematic_circle",
+        "schematic_arc",
+      ].includes(element.type),
+  )
 
   expect(schematicPorts).toHaveLength(182)
+  expect(sourcePorts).toHaveLength(182)
   expect(wireTraces).toHaveLength(131)
+  expect(schematicTraces).toHaveLength(131)
+  expect(
+    schematicTraces.reduce(
+      (junctionCount, trace) => junctionCount + trace.junctions.length,
+      0,
+    ),
+  ).toBe(26)
+  expect(componentPrimitives.length).toBeGreaterThan(100)
+  expect(
+    circuitJson.some(
+      (element) =>
+        element.type === "schematic_text" && element.text.startsWith("#PWR"),
+    ),
+  ).toBe(false)
+  expect(
+    schematicComponents.every(
+      (component) => component.is_box_with_pins === false,
+    ),
+  ).toBe(true)
   expect(
     schematicPorts.every((port) => {
       if (!port.schematic_component_id) return false
@@ -63,6 +101,40 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
       )
     }),
   ).toBe(true)
+
+  expect(
+    circuitJson.filter((element) => element.type === "schematic_net_label"),
+  ).toHaveLength(10)
+  expect(
+    circuitJson.filter(
+      (element) =>
+        element.type === "schematic_text" &&
+        element.schematic_component_id === undefined,
+    ).length,
+  ).toBeGreaterThanOrEqual(8)
+  const schematicTextValues = circuitJson.flatMap((element) =>
+    element.type === "schematic_text" ? [element.text] : [],
+  )
+  expect(schematicTextValues).toContain("ADJUST for VPP = 13V")
+  expect(schematicTextValues).toContain("pic_sockets")
+  expect(schematicTextValues).toContain("VPP-MCLR")
+  expect(
+    circuitJson.filter((element) => element.type === "schematic_box"),
+  ).toHaveLength(1)
+  expect(
+    circuitJson.filter(
+      (element) =>
+        element.type === "schematic_line" &&
+        element.schematic_component_id === undefined,
+    ),
+  ).toHaveLength(12)
+  expect(
+    circuitJson.filter(
+      (element) =>
+        element.type === "schematic_path" &&
+        element.schematic_component_id === undefined,
+    ),
+  ).toHaveLength(8)
 
   // Write Circuit JSON to file for inspection
   const fs = await import("node:fs/promises")

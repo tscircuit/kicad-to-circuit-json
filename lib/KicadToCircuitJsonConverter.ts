@@ -11,6 +11,7 @@ import { CollectZonesStage } from "./stages/pcb/CollectZonesStage"
 // Import PCB stages
 import { InitializePcbContextStage } from "./stages/pcb/InitializePcbContextStage"
 import { CollectLibrarySymbolsStage } from "./stages/schematic/CollectLibrarySymbolsStage"
+import { CollectSchematicAnnotationsStage } from "./stages/schematic/CollectSchematicAnnotationsStage"
 import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematicTracesStage"
 // Import schematic stages
 import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
@@ -79,6 +80,7 @@ export class KicadToCircuitJsonConverter {
         new InitializeSchematicContextStage(this.ctx),
         new CollectLibrarySymbolsStage(this.ctx),
         new CollectSchematicTracesStage(this.ctx),
+        new CollectSchematicAnnotationsStage(this.ctx),
       )
     }
 
