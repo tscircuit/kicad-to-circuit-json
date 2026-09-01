@@ -51,19 +51,11 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     // Infer component type from library id
     const ftype = this.inferFtype(libId, reference)
 
-    // Create source_component (if it doesn't exist)
-    const sourceComponentId = `${libId}_source`
-    const existingSource = this.ctx.db.source_component
-      .list()
-      .find((sc: any) => sc.source_component_id === sourceComponentId)
-
-    if (!existingSource) {
-      this.ctx.db.source_component.insert({
-        name: libId || reference,
-        ftype: ftype as any, // TODO: Fix ftype - should be mapped to valid CJ simple component types
-        manufacturer_part_number: value || undefined,
-      })
-    }
+    const sourceComponent = this.ctx.db.source_component.insert({
+      name: libId || reference,
+      ftype: ftype as any, // TODO: Fix ftype - should be mapped to valid CJ simple component types
+      manufacturer_part_number: value || undefined,
+    })
 
     // Create schematic_component
     const uuid = symbol.uuid
@@ -72,7 +64,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const symbolName = inferSymbolName({ libId, reference, rotation })
 
     const inserted = this.ctx.db.schematic_component.insert({
-      source_component_id: sourceComponentId,
+      source_component_id: sourceComponent.source_component_id,
       center: { x: cjPos.x, y: cjPos.y },
       size: this.estimateSize(symbol),
       ...(symbolName ? { symbol_name: symbolName } : {}),
