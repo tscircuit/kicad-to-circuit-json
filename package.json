@@ -10,7 +10,7 @@
   "files": [
     "dist"
   ],
-  "trustedDependencies": ["kicadts"],
+  "trustedDependencies": ["kicadts", "sharp"],
   "scripts": {
     "build": "bun run build:lib",
     "build:lib": "tsup-node lib/index.ts --format esm --dts",
