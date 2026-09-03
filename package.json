@@ -27,6 +27,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.2.7",
     "@flatten-js/core": "^1.6.12",
+    "@napi-rs/canvas": "^0.1.88",
     "@tscircuit/circuit-json-util": "^0.0.94",
     "@tscircuit/copper-pour-solver": "^0.0.36",
     "@tscircuit/core": "^0.0.1414",
@@ -37,6 +38,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "bun-match-svg": "^0.0.14",
     "circuit-json-to-connectivity-map": "^0.0.25",
+    "circuit-to-canvas": "^0.0.126",
     "kicadts": "^0.0.57",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
