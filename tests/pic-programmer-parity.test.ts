@@ -137,4 +137,21 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
     import.meta.path,
     "pic_programmer-pcb",
   )
+
+  const boardBoundsKicadSnapshot = await takeKicadSnapshot({
+    kicadFilePath: kicadPcbPath,
+    kicadFileType: "pcb",
+  })
+  const boardBoundsKicadPng = Object.values(
+    boardBoundsKicadSnapshot.generatedFileContent,
+  )[0]!
+  const sideBySidePng = await stackCircuitJsonKicadPngs(
+    circuitJsonPng,
+    boardBoundsKicadPng,
+    "horizontal",
+  )
+  await expect(sideBySidePng).toMatchPngSnapshot(
+    import.meta.path,
+    "pic_programmer-board-text-parity",
+  )
 })
