@@ -10,6 +10,7 @@
   "files": [
     "dist"
   ],
+  "trustedDependencies": ["kicadts"],
   "scripts": {
     "build": "bun run build:lib",
     "build:lib": "tsup-node lib/index.ts --format esm --dts",
@@ -21,6 +22,7 @@
     "preview": "vite preview --config vite.config.ts",
     "pull:reference:notests": "git clone --depth 1 https://github.com/tscircuit/circuit-json-to-kicad circuit-json-to-kicad && rm -rf circuit-json-to-kicad/tests",
     "pull:reference": "git clone --depth 1 https://github.com/tscircuit/circuit-json-to-kicad circuit-json-to-kicad",
+    "prepare": "bun run scripts/prepare-git-dependency.ts",
     "start": "bun run dev",
     "vercel-build": "bun run build:site"
   },
@@ -37,7 +39,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "bun-match-svg": "^0.0.14",
     "circuit-json-to-connectivity-map": "^0.0.25",
-    "kicadts": "github:tscircuit/kicadts#f7115b86bbb7cb779ee31c60d77ec1c4fac83c1b",
+    "kicadts": "github:tscircuit/kicadts#f3ea106bdc65ca901e9b23255ad3be0bd2a624ab",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
     "tscircuit": "^0.0.2040",
