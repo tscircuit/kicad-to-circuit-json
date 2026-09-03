@@ -1,10 +1,9 @@
 import { test, expect } from "bun:test"
+import "bun-match-svg"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../../lib"
+import { createSideBySideSvg } from "../../fixtures/create-side-by-side-svg"
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
-import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
-import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadPngs"
-import "../../fixtures/png-matcher"
 
 test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
   // Load the KiCad PCB file
@@ -29,18 +28,13 @@ test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
     JSON.stringify(circuitJson, null, 2),
   )
 
-  // Take snapshots
-  const kicadSnapshot = await takeKicadSnapshot({
+  // Render the original KiCad source directly to SVG.
+  const sourceSnapshot = await takeKicadSnapshot({
     kicadFilePath: kicadPcbPath,
     kicadFileType: "pcb",
+    generatePng: false,
   })
-
-  const kicadPng = Object.values(kicadSnapshot.generatedFileContent)[0]!
-
-  const circuitJsonPng = await takeCircuitJsonSnapshot({
-    circuitJson: circuitJson as any,
-    outputType: "pcb",
-  })
+  const sourceSvg = Object.values(sourceSnapshot.generatedFileContent)[0]!
 
   // Also export the circuit JSON as SVG for inspection
   const { convertCircuitJsonToPcbSvg } = await import("circuit-to-svg")
@@ -52,12 +46,11 @@ test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
     circuitJsonSvg,
   )
 
-  // Stack them vertically with labels (Circuit JSON on top, KiCad on bottom)
-  const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
-
-  // Save as snapshot for visual comparison
-  await expect(stackedPng).toMatchPngSnapshot(
-    import.meta.path,
-    "corne-keyboard-pcb",
+  const sideBySideSvg = createSideBySideSvg(
+    sourceSvg.toString("utf8"),
+    circuitJsonSvg,
   )
+  expect(sideBySideSvg).toContain('data-comparison="source"')
+  expect(sideBySideSvg).toContain('data-comparison="converted"')
+  await expect(sideBySideSvg).toMatchSvgSnapshot(import.meta.path)
 }, 30_000)
