@@ -23,6 +23,7 @@ import {
   translate,
 } from "transformation-matrix"
 import type { ConverterContext } from "../../types"
+import { getKicadSymbolArcPoints } from "../../getKicadSymbolArcPoints"
 
 const SYMBOL_STROKE_COLOR = "rgb(132, 0, 0)"
 const SYMBOL_FILL_COLOR = "rgb(255, 255, 194)"
@@ -340,10 +341,9 @@ const emitArc = (params: {
   scaleFactor: number
 }) => {
   const { ctx, schematicComponentId, arc, transformPoint, scaleFactor } = params
-  const start = getShapePoint(arc, "start")
-  const mid = getShapePoint(arc, "mid")
-  const end = getShapePoint(arc, "end")
-  if (!start || !mid || !end) return
+  const points = getKicadSymbolArcPoints(arc)
+  if (!points) return
+  const { start, mid, end } = points
 
   const transformedStart = transformPoint(start)
   const transformedMid = transformPoint(mid)

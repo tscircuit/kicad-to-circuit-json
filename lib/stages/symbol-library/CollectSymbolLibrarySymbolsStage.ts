@@ -44,6 +44,7 @@ import {
 } from "./infer-source-component-ftype"
 
 import { rotationToDirection } from "../schematic/utils/rotationToDirection"
+import { getKicadSymbolArcPoints } from "../../getKicadSymbolArcPoints"
 
 /**
  * circuit-to-svg recomputes an arc's endpoints from its start/end angles in the
@@ -695,11 +696,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     mid: KicadSymbolPoint
     end: KicadSymbolPoint
   } | null {
-    const start = this.getShapePoint(arc, "start")
-    const mid = this.getShapePoint(arc, "mid")
-    const end = this.getShapePoint(arc, "end")
-    if (!start || !mid || !end) return null
-    return { start, mid, end }
+    return getKicadSymbolArcPoints(arc)
   }
 
   private getArcGeometry(params: {
