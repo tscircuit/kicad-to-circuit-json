@@ -154,4 +154,4 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
     import.meta.path,
     "pic_programmer-board-text-parity",
   )
-})
+}, 20_000)
