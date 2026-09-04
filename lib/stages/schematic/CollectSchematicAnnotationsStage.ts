@@ -15,6 +15,12 @@ import type {
 } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import {
+  decodeKicadText,
+  getKicadOverlineSegment,
+  getKicadOverlineStrokeWidth,
+  parseKicadText,
+} from "./utils/decodeKicadText"
 
 const GRAPHIC_COLOR = "rgb(0, 0, 132)"
 const TEXT_COLOR = "rgb(0, 0, 132)"
@@ -71,7 +77,7 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
 
     const text = decodeKicadText(label.value)
     this.getOrCreateSourceNetId(text)
-    this.insertText(text, label.at, label.effects, {
+    this.insertText(label.value, label.at, label.effects, {
       color: LOCAL_LABEL_COLOR,
     })
 
@@ -294,17 +300,45 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
   ) {
     if (!this.ctx.k2cMatSch) return
 
+    const { text, overlineRanges } = parseKicadText(value)
+    const fontSize = Math.max(
+      0.05,
+      getFontSize(effects) * Math.abs(this.ctx.k2cMatSch.a),
+    )
+    const position = options.position ?? applyToPoint(this.ctx.k2cMatSch, at)
+    const rotation = normalizeReadableRotation(-(at.angle ?? 0))
+    const anchor = getTextAnchor(effects)
+    const color = options.color ?? TEXT_COLOR
     this.ctx.db.schematic_text.insert({
-      text: decodeKicadText(value),
-      font_size: Math.max(
-        0.05,
-        getFontSize(effects) * Math.abs(this.ctx.k2cMatSch.a),
-      ),
-      position: options.position ?? applyToPoint(this.ctx.k2cMatSch, at),
-      rotation: normalizeReadableRotation(-(at.angle ?? 0)),
-      anchor: getTextAnchor(effects),
-      color: options.color ?? TEXT_COLOR,
+      text,
+      font_size: fontSize,
+      position,
+      rotation,
+      anchor,
+      color,
     })
+
+    const [verticalAnchor, horizontalAnchor] = anchor.split("_")
+    for (const range of overlineRanges) {
+      const segment = getKicadOverlineSegment({
+        text,
+        range,
+        fontSize,
+        position,
+        rotation,
+        horizontalAnchor: horizontalAnchor as "left" | "center" | "right",
+        verticalAnchor: verticalAnchor as "top" | "middle" | "bottom",
+      })
+      this.ctx.db.schematic_line.insert({
+        x1: segment.start.x,
+        y1: segment.start.y,
+        x2: segment.end.x,
+        y2: segment.end.y,
+        stroke_width: getKicadOverlineStrokeWidth(fontSize),
+        color,
+        is_dashed: false,
+      })
+    }
   }
 
   private insertLine(start: Point, end: Point, color: string) {
@@ -319,9 +353,6 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     })
   }
 }
-
-const decodeKicadText = (text: string): string =>
-  text.replaceAll("{slash}", "/")
 
 const angleToAnchorSide = (
   angle: number | undefined,

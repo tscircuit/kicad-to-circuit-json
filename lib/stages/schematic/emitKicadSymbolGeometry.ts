@@ -23,6 +23,12 @@ import {
   translate,
 } from "transformation-matrix"
 import type { ConverterContext } from "../../types"
+import {
+  createJoiningOverlineText,
+  estimateKicadTextWidth,
+  getKicadOverlineSegment,
+  parseKicadText,
+} from "./utils/decodeKicadText"
 
 const SYMBOL_STROKE_COLOR = "rgb(132, 0, 0)"
 const SYMBOL_FILL_COLOR = "rgb(255, 255, 194)"
@@ -455,24 +461,44 @@ const emitPinTexts = (params: {
   }
 
   if (!pinNamesHidden && pin.name && pin.name !== "~") {
+    const { text: pinName, overlineRanges } = parseKicadText(pin.name)
     const fontSize = Math.max(
       0.05,
       getFontSize(pin._sxName?.effects) * scaleFactor,
     )
-    const estimatedTextWidth = pin.name.length * fontSize * 0.6
+    const estimatedTextWidth = estimateKicadTextWidth(pinName, fontSize)
     const distanceFromBody =
       pinNameOffset * scaleFactor + estimatedTextWidth / 2
+    const textPosition = {
+      x: pinEnd.x + inward.x * distanceFromBody,
+      y: pinEnd.y + inward.y * distanceFromBody,
+    }
     ctx.db.schematic_text.insert({
-      text: pin.name,
+      text: pinName,
       font_size: fontSize,
-      position: {
-        x: pinEnd.x + inward.x * distanceFromBody,
-        y: pinEnd.y + inward.y * distanceFromBody,
-      },
+      position: textPosition,
       rotation,
       anchor: "center",
       color: "rgb(0, 100, 100)",
     })
+
+    for (const range of overlineRanges) {
+      const segment = getKicadOverlineSegment({
+        text: pinName,
+        range,
+        fontSize,
+        position: textPosition,
+        rotation,
+      })
+      ctx.db.schematic_text.insert({
+        text: createJoiningOverlineText(range),
+        font_size: fontSize,
+        position: segment.center,
+        rotation,
+        anchor: "center",
+        color: "rgb(0, 100, 100)",
+      })
+    }
   }
 }
 
@@ -483,6 +509,7 @@ const insertLine = (
   end: Point,
   strokeWidth: number | null,
   isDashed: boolean,
+  color = SYMBOL_STROKE_COLOR,
 ) => {
   const lineData: Omit<SchematicLine, "type" | "schematic_line_id"> = {
     schematic_component_id: schematicComponentId,
@@ -491,7 +518,7 @@ const insertLine = (
     x2: end.x,
     y2: end.y,
     stroke_width: strokeWidth,
-    color: SYMBOL_STROKE_COLOR,
+    color,
     is_dashed: isDashed,
   }
   ctx.db.schematic_line.insert(lineData)

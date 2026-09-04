@@ -6,6 +6,7 @@ import {
   type SupportedSourceComponentFtype,
 } from "../symbol-library/infer-source-component-ftype"
 import { inferSymbolName } from "./utils/inferSymbolName"
+import { decodeKicadText } from "./utils/decodeKicadText"
 import {
   createSymbolTransform,
   emitKicadSymbolGeometry,
@@ -170,7 +171,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       const sourcePort = this.ctx.db.source_port.insert({
         source_component_id: sourceComponentId,
         name:
-          pin.name ||
+          (pin.name ? decodeKicadText(pin.name) : undefined) ||
           (/^\d+$/.test(pinNumberText) ? `pin${pinNumberText}` : pinNumberText),
         ...(/^\d+$/.test(pinNumberText)
           ? { pin_number: Number(pinNumberText) }
@@ -193,7 +194,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
           : undefined,
         display_pin_label:
           !libSymbol.pinNames?.hide && pin.name && pin.name !== "~"
-            ? pin.name
+            ? decodeKicadText(pin.name)
             : undefined,
         distance_from_component_edge:
           !pin.hidden && pin.length ? pin.length * scaleFactor : undefined,
