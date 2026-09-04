@@ -15,12 +15,7 @@ import type {
 } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
-import {
-  decodeKicadText,
-  getKicadOverlineSegment,
-  getKicadOverlineStrokeWidth,
-  parseKicadText,
-} from "./utils/decodeKicadText"
+import { decodeKicadText, parseKicadText } from "./utils/decodeKicadText"
 
 const GRAPHIC_COLOR = "rgb(0, 0, 132)"
 const TEXT_COLOR = "rgb(0, 0, 132)"
@@ -300,7 +295,7 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
   ) {
     if (!this.ctx.k2cMatSch) return
 
-    const { text, overlineRanges } = parseKicadText(value)
+    const { text, textDecorationRanges } = parseKicadText(value)
     const fontSize = Math.max(
       0.05,
       getFontSize(effects) * Math.abs(this.ctx.k2cMatSch.a),
@@ -316,29 +311,10 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       rotation,
       anchor,
       color,
+      ...(textDecorationRanges.length > 0 && {
+        text_decoration_ranges: textDecorationRanges,
+      }),
     })
-
-    const [verticalAnchor, horizontalAnchor] = anchor.split("_")
-    for (const range of overlineRanges) {
-      const segment = getKicadOverlineSegment({
-        text,
-        range,
-        fontSize,
-        position,
-        rotation,
-        horizontalAnchor: horizontalAnchor as "left" | "center" | "right",
-        verticalAnchor: verticalAnchor as "top" | "middle" | "bottom",
-      })
-      this.ctx.db.schematic_line.insert({
-        x1: segment.start.x,
-        y1: segment.start.y,
-        x2: segment.end.x,
-        y2: segment.end.y,
-        stroke_width: getKicadOverlineStrokeWidth(fontSize),
-        color,
-        is_dashed: false,
-      })
-    }
   }
 
   private insertLine(start: Point, end: Point, color: string) {

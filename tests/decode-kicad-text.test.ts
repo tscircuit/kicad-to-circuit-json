@@ -7,11 +7,11 @@ import {
 test("extracts KiCad overline ranges without including suffixes", () => {
   expect(parseKicadText("~{RTS}")).toEqual({
     text: "RTS",
-    overlineRanges: [{ start: 0, end: 3 }],
+    textDecorationRanges: [{ start: 0, end: 3, decoration: "overline" }],
   })
   expect(parseKicadText("~{RXT}/GPIO.1")).toEqual({
     text: "RXT/GPIO.1",
-    overlineRanges: [{ start: 0, end: 3 }],
+    textDecorationRanges: [{ start: 0, end: 3, decoration: "overline" }],
   })
 })
 
