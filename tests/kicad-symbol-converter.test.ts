@@ -60,3 +60,40 @@ test("kicad symbol converter: rejects missing .kicad_sym input", () => {
     "No .kicad_sym file was added to the converter",
   )
 })
+
+test("kicad symbol converter: parses overlined pin-name runs", () => {
+  const converter = new KicadSymbolToCircuitJsonConverter()
+  const symbol = readFileSync("tests/assets/CM5IO.kicad_sym", "utf8").replace(
+    '(name "VCC"',
+    '(name "A~{BC}D"',
+  )
+  converter.addFile("CM5IO.kicad_sym", symbol)
+  converter.runUntilFinished()
+
+  const sourcePort = converter
+    .getOutput()
+    .find(
+      (element) => element.type === "source_port" && element.name === "ABCD",
+    )
+  const schematicPort = converter
+    .getOutput()
+    .find(
+      (element) =>
+        element.type === "schematic_port" &&
+        element.display_pin_label === "ABCD",
+    ) as
+    | {
+        display_pin_label_text_runs?: Array<{
+          text: string
+          overline?: boolean
+        }>
+      }
+    | undefined
+
+  expect(sourcePort).toBeDefined()
+  expect(schematicPort?.display_pin_label_text_runs).toEqual([
+    { text: "A" },
+    { text: "BC", overline: true },
+    { text: "D" },
+  ])
+})

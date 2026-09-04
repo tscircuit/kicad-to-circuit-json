@@ -44,6 +44,7 @@ import {
 } from "./infer-source-component-ftype"
 
 import { rotationToDirection } from "../schematic/utils/rotationToDirection"
+import { getCircuitJsonPinLabel } from "../../utils/parse-kicad-overline-text"
 
 /**
  * circuit-to-svg recomputes an arc's endpoints from its start/end angles in the
@@ -79,7 +80,9 @@ type SchematicComponentData = Omit<
   SchematicComponent,
   "type" | "schematic_component_id"
 >
-type SchematicPortData = Omit<SchematicPort, "type" | "schematic_port_id">
+type SchematicPortData = Omit<SchematicPort, "type" | "schematic_port_id"> & {
+  display_pin_label_text_runs?: Array<{ text: string; overline?: boolean }>
+}
 type SchematicLineData = Omit<SchematicLine, "type" | "schematic_line_id">
 type SchematicRectData = Omit<SchematicRect, "type" | "schematic_rect_id">
 type SchematicCircleData = Omit<SchematicCircle, "type" | "schematic_circle_id">
@@ -885,7 +888,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private getPortName(pin: SymbolPin, pinNumber: string): string {
-    if (pin.name) return pin.name
+    if (pin.name) return getCircuitJsonPinLabel(pin.name).text
     if (/^\d+$/.test(pinNumber)) return `pin${Number(pinNumber)}`
     return pinNumber
   }
@@ -910,6 +913,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       SchematicPortData,
       | "pin_number"
       | "display_pin_label"
+      | "display_pin_label_text_runs"
       | "side_of_component"
       | "distance_from_component_edge"
     >
@@ -921,19 +925,25 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         SchematicPortData,
         | "pin_number"
         | "display_pin_label"
+        | "display_pin_label_text_runs"
         | "side_of_component"
         | "distance_from_component_edge"
       >
     > = {}
 
+    const pinNumberLabel = getCircuitJsonPinLabel(pinNumber)
+    const pinNameLabel = pin.name ? getCircuitJsonPinLabel(pin.name) : undefined
+
     if (/^\d+$/.test(pinNumber)) {
       metadata.pin_number = Number(pinNumber)
     } else {
-      metadata.display_pin_label = pinNumber
+      metadata.display_pin_label = pinNumberLabel.displayText
+      metadata.display_pin_label_text_runs = pinNumberLabel.textRuns
     }
 
     if (pin.name && !pinNamesHidden) {
-      metadata.display_pin_label = pin.name
+      metadata.display_pin_label = pinNameLabel?.displayText
+      metadata.display_pin_label_text_runs = pinNameLabel?.textRuns
     }
 
     if (!pin.hidden && pin.length && pin.length > 0) {

@@ -23,6 +23,7 @@ import {
   translate,
 } from "transformation-matrix"
 import type { ConverterContext } from "../../types"
+import { getCircuitJsonPinLabel } from "../../utils/parse-kicad-overline-text"
 
 const SYMBOL_STROKE_COLOR = "rgb(132, 0, 0)"
 const SYMBOL_FILL_COLOR = "rgb(255, 255, 194)"
@@ -455,15 +456,16 @@ const emitPinTexts = (params: {
   }
 
   if (!pinNamesHidden && pin.name && pin.name !== "~") {
+    const pinNameLabel = getCircuitJsonPinLabel(pin.name)
     const fontSize = Math.max(
       0.05,
       getFontSize(pin._sxName?.effects) * scaleFactor,
     )
-    const estimatedTextWidth = pin.name.length * fontSize * 0.6
+    const estimatedTextWidth = pinNameLabel.text.length * fontSize * 0.6
     const distanceFromBody =
       pinNameOffset * scaleFactor + estimatedTextWidth / 2
     ctx.db.schematic_text.insert({
-      text: pin.name,
+      text: pinNameLabel.text,
       font_size: fontSize,
       position: {
         x: pinEnd.x + inward.x * distanceFromBody,
