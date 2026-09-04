@@ -456,7 +456,7 @@ const emitPinTexts = (params: {
   }
 
   if (!pinNamesHidden && pin.name && pin.name !== "~") {
-    const { text: pinName, textDecorationRanges } = parseKicadText(pin.name)
+    const { text: pinName, overlineRanges } = parseKicadText(pin.name)
     const fontSize = Math.max(
       0.05,
       getFontSize(pin._sxName?.effects) * scaleFactor,
@@ -475,8 +475,11 @@ const emitPinTexts = (params: {
       rotation,
       anchor: "center",
       color: "rgb(0, 100, 100)",
-      ...(textDecorationRanges.length > 0 && {
-        text_decoration_ranges: textDecorationRanges,
+      ...(overlineRanges.length > 0 && {
+        overline_ranges: overlineRanges.map(({ startIndex, endIndex }) => ({
+          start_index: startIndex,
+          end_index: endIndex,
+        })),
       }),
     })
   }

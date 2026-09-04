@@ -295,7 +295,7 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
   ) {
     if (!this.ctx.k2cMatSch) return
 
-    const { text, textDecorationRanges } = parseKicadText(value)
+    const { text, overlineRanges } = parseKicadText(value)
     const fontSize = Math.max(
       0.05,
       getFontSize(effects) * Math.abs(this.ctx.k2cMatSch.a),
@@ -311,8 +311,11 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       rotation,
       anchor,
       color,
-      ...(textDecorationRanges.length > 0 && {
-        text_decoration_ranges: textDecorationRanges,
+      ...(overlineRanges.length > 0 && {
+        overline_ranges: overlineRanges.map(({ startIndex, endIndex }) => ({
+          start_index: startIndex,
+          end_index: endIndex,
+        })),
       }),
     })
   }

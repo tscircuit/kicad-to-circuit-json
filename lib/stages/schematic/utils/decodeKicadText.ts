@@ -1,9 +1,8 @@
 export interface DecodedKicadText {
   text: string
-  textDecorationRanges: Array<{
-    start: number
-    end: number
-    decoration: "overline"
+  overlineRanges: Array<{
+    startIndex: number
+    endIndex: number
   }>
 }
 
@@ -15,7 +14,7 @@ export interface DecodedKicadText {
 export const parseKicadText = (text: string): DecodedKicadText => {
   const decodedSlashes = text.replaceAll("{slash}", "/")
   let decoded = ""
-  const textDecorationRanges: DecodedKicadText["textDecorationRanges"] = []
+  const overlineRanges: DecodedKicadText["overlineRanges"] = []
 
   for (let index = 0; index < decodedSlashes.length; index++) {
     if (decodedSlashes[index] !== "~" || decodedSlashes[index + 1] !== "{") {
@@ -34,12 +33,12 @@ export const parseKicadText = (text: string): DecodedKicadText => {
     decoded += overlinedText
     const end = start + Array.from(overlinedText).length
     if (end > start) {
-      textDecorationRanges.push({ start, end, decoration: "overline" })
+      overlineRanges.push({ startIndex: start, endIndex: end })
     }
     index = closingBraceIndex
   }
 
-  return { text: decoded, textDecorationRanges }
+  return { text: decoded, overlineRanges }
 }
 
 export const decodeKicadText = (text: string): string =>
