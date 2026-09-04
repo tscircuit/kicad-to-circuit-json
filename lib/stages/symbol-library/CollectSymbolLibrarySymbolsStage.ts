@@ -1,4 +1,5 @@
 import { ConverterStage } from "../../types"
+import { decodeKicadText } from "../schematic/utils/decodeKicadText"
 import type {
   Point,
   SchematicArc,
@@ -885,7 +886,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private getPortName(pin: SymbolPin, pinNumber: string): string {
-    if (pin.name) return pin.name
+    if (pin.name) return decodeKicadText(pin.name)
     if (/^\d+$/.test(pinNumber)) return `pin${Number(pinNumber)}`
     return pinNumber
   }
@@ -933,7 +934,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
 
     if (pin.name && !pinNamesHidden) {
-      metadata.display_pin_label = pin.name
+      metadata.display_pin_label = decodeKicadText(pin.name)
     }
 
     if (!pin.hidden && pin.length && pin.length > 0) {

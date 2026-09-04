@@ -23,6 +23,7 @@ import {
   translate,
 } from "transformation-matrix"
 import type { ConverterContext } from "../../types"
+import { parseKicadText } from "./utils/decodeKicadText"
 
 const SYMBOL_STROKE_COLOR = "rgb(132, 0, 0)"
 const SYMBOL_FILL_COLOR = "rgb(255, 255, 194)"
@@ -455,23 +456,31 @@ const emitPinTexts = (params: {
   }
 
   if (!pinNamesHidden && pin.name && pin.name !== "~") {
+    const { text: pinName, overlineRanges } = parseKicadText(pin.name)
     const fontSize = Math.max(
       0.05,
       getFontSize(pin._sxName?.effects) * scaleFactor,
     )
-    const estimatedTextWidth = pin.name.length * fontSize * 0.6
+    const estimatedTextWidth = Array.from(pinName).length * fontSize * 0.6
     const distanceFromBody =
       pinNameOffset * scaleFactor + estimatedTextWidth / 2
+    const textPosition = {
+      x: pinEnd.x + inward.x * distanceFromBody,
+      y: pinEnd.y + inward.y * distanceFromBody,
+    }
     ctx.db.schematic_text.insert({
-      text: pin.name,
+      text: pinName,
       font_size: fontSize,
-      position: {
-        x: pinEnd.x + inward.x * distanceFromBody,
-        y: pinEnd.y + inward.y * distanceFromBody,
-      },
+      position: textPosition,
       rotation,
       anchor: "center",
       color: "rgb(0, 100, 100)",
+      ...(overlineRanges.length > 0 && {
+        overline_ranges: overlineRanges.map(({ startIndex, endIndex }) => ({
+          start_index: startIndex,
+          end_index: endIndex,
+        })),
+      }),
     })
   }
 }
