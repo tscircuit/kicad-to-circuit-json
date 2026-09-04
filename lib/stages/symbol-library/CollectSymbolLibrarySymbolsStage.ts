@@ -81,7 +81,10 @@ type SchematicComponentData = Omit<
   "type" | "schematic_component_id"
 >
 type SchematicPortData = Omit<SchematicPort, "type" | "schematic_port_id"> & {
-  display_pin_label_text_runs?: Array<{ text: string; overline?: boolean }>
+  display_pin_label_text_parts?: Array<{
+    text: string
+    is_overlined?: boolean
+  }>
 }
 type SchematicLineData = Omit<SchematicLine, "type" | "schematic_line_id">
 type SchematicRectData = Omit<SchematicRect, "type" | "schematic_rect_id">
@@ -913,7 +916,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       SchematicPortData,
       | "pin_number"
       | "display_pin_label"
-      | "display_pin_label_text_runs"
+      | "display_pin_label_text_parts"
       | "side_of_component"
       | "distance_from_component_edge"
     >
@@ -925,7 +928,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         SchematicPortData,
         | "pin_number"
         | "display_pin_label"
-        | "display_pin_label_text_runs"
+        | "display_pin_label_text_parts"
         | "side_of_component"
         | "distance_from_component_edge"
       >
@@ -938,12 +941,12 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       metadata.pin_number = Number(pinNumber)
     } else {
       metadata.display_pin_label = pinNumberLabel.displayText
-      metadata.display_pin_label_text_runs = pinNumberLabel.textRuns
+      metadata.display_pin_label_text_parts = pinNumberLabel.textParts
     }
 
     if (pin.name && !pinNamesHidden) {
       metadata.display_pin_label = pinNameLabel?.displayText
-      metadata.display_pin_label_text_runs = pinNameLabel?.textRuns
+      metadata.display_pin_label_text_parts = pinNameLabel?.textParts
     }
 
     if (!pin.hidden && pin.length && pin.length > 0) {

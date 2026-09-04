@@ -1,23 +1,27 @@
-export type KicadTextRun = { text: string; overline?: boolean }
+export type KicadTextPart = { text: string; is_overlined?: boolean }
 
-const appendRun = (runs: KicadTextRun[], text: string, overline: boolean) => {
+const appendPart = (
+  parts: KicadTextPart[],
+  text: string,
+  isOverlined: boolean,
+) => {
   if (!text) return
-  const previous = runs.at(-1)
-  if (previous && Boolean(previous.overline) === overline) {
+  const previous = parts.at(-1)
+  if (previous && Boolean(previous.is_overlined) === isOverlined) {
     previous.text += text
     return
   }
-  runs.push(overline ? { text, overline: true } : { text })
+  parts.push(isOverlined ? { text, is_overlined: true } : { text })
 }
 
 /** Parse KiCad's current ~{text} and legacy ~text~ overline markup. */
-export const parseKicadOverlineText = (value: string): KicadTextRun[] => {
-  const runs: KicadTextRun[] = []
+export const parseKicadOverlineText = (value: string): KicadTextPart[] => {
+  const parts: KicadTextPart[] = []
   let buffer = ""
   let legacyOverline = false
 
   const flush = () => {
-    appendRun(runs, buffer, legacyOverline)
+    appendPart(parts, buffer, legacyOverline)
     buffer = ""
   }
 
@@ -26,7 +30,7 @@ export const parseKicadOverlineText = (value: string): KicadTextRun[] => {
       const closeIndex = value.indexOf("}", index + 2)
       if (closeIndex !== -1) {
         flush()
-        appendRun(runs, value.slice(index + 2, closeIndex), true)
+        appendPart(parts, value.slice(index + 2, closeIndex), true)
         index = closeIndex + 1
         continue
       }
@@ -44,19 +48,19 @@ export const parseKicadOverlineText = (value: string): KicadTextRun[] => {
   }
 
   flush()
-  return runs
+  return parts
 }
 
 export const getCircuitJsonPinLabel = (value: string) => {
-  const textRuns = parseKicadOverlineText(value)
-  const text = textRuns.map((run) => run.text).join("")
-  const hasOverline = textRuns.some((run) => run.overline)
+  const textParts = parseKicadOverlineText(value)
+  const text = textParts.map((part) => part.text).join("")
+  const hasOverline = textParts.some((part) => part.is_overlined)
   const isFullyOverlined =
-    textRuns.length > 0 && textRuns.every((run) => run.overline)
+    textParts.length > 0 && textParts.every((part) => part.is_overlined)
 
   return {
     text,
     displayText: isFullyOverlined ? `N_${text}` : text,
-    textRuns: hasOverline ? textRuns : undefined,
+    textParts: hasOverline ? textParts : undefined,
   }
 }

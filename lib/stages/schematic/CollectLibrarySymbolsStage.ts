@@ -201,9 +201,9 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
           !libSymbol.pinNames?.hide && pin.name && pin.name !== "~"
             ? pinNameLabel?.displayText
             : undefined,
-        display_pin_label_text_runs:
+        display_pin_label_text_parts:
           !libSymbol.pinNames?.hide && pin.name && pin.name !== "~"
-            ? pinNameLabel?.textRuns
+            ? pinNameLabel?.textParts
             : undefined,
         distance_from_component_edge:
           !pin.hidden && pin.length ? pin.length * scaleFactor : undefined,
