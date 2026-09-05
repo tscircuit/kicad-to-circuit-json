@@ -22,12 +22,14 @@ export const takeKicadSnapshot = async (params: {
   kicadFilePath?: string
   kicadFileContent?: string
   kicadFileType: "sch" | "pcb"
+  generatePng?: boolean
   pcbSnapshotBounds?: "board" | "circuit-json"
 }): Promise<KicadOutput> => {
   const {
     kicadFilePath,
     kicadFileContent,
     kicadFileType,
+    generatePng = true,
     pcbSnapshotBounds = "board",
   } = params
 
@@ -93,6 +95,11 @@ export const takeKicadSnapshot = async (params: {
     // Convert each SVG to PNG using sharp
     for (const svgFilePath of svgFilePaths) {
       const svgBuffer = await readFile(svgFilePath)
+      if (!generatePng) {
+        const relativePath = svgFilePath.replace(`${outputDir}/`, "")
+        generatedFileContent[relativePath] = svgBuffer
+        continue
+      }
       let pngProcessor = sharp(svgBuffer, { density: 100 })
 
       // For PCB files, scale 3x and add black background

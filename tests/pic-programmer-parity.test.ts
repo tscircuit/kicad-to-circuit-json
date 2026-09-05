@@ -6,7 +6,10 @@ import type {
   PcbSmtPad,
 } from "circuit-json"
 import { existsSync, readFileSync } from "node:fs"
+import "bun-match-svg"
 import { KicadToCircuitJsonConverter } from "../lib"
+import { createSideBySideSvg } from "./fixtures/create-side-by-side-svg"
+import { renderCircuitJsonPcbToSvg } from "./fixtures/render-circuit-json-pcb-to-svg"
 import { stackCircuitJsonKicadPngs } from "./fixtures/stackCircuitJsonKicadPngs"
 import { takeCircuitJsonSnapshot } from "./fixtures/take-circuit-json-snapshot"
 import { takeKicadSnapshot } from "./fixtures/take-kicad-snapshot"
@@ -137,4 +140,22 @@ test("kicad-to-circuit-json: pic_programmer PCB", async () => {
     import.meta.path,
     "pic_programmer-pcb",
   )
-})
+
+  const sourceSvgSnapshot = await takeKicadSnapshot({
+    kicadFilePath: kicadPcbPath,
+    kicadFileType: "pcb",
+    generatePng: false,
+  })
+  const sourceSvg = Object.values(sourceSvgSnapshot.generatedFileContent)[0]!
+  const paritySvg = renderCircuitJsonPcbToSvg({ circuitJson })
+  const sideBySideSvg = createSideBySideSvg(
+    sourceSvg.toString("utf8"),
+    paritySvg,
+  )
+  expect(sideBySideSvg).toContain('data-comparison="source"')
+  expect(sideBySideSvg).toContain('data-comparison="converted"')
+  await expect(sideBySideSvg).toMatchSvgSnapshot(
+    import.meta.path,
+    "pic_programmer-board-text-parity",
+  )
+}, 20_000)
