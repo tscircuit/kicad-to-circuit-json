@@ -48,7 +48,8 @@ test("repro: BQ25180YBGR legacy module footprint snapshots and conversion audit"
     pcb_smtpad: 8,
     pcb_silkscreen_text: 3,
     pcb_fabrication_note_path: 4,
-    pcb_silkscreen_path: 3,
+    pcb_silkscreen_circle: 1,
+    pcb_silkscreen_path: 2,
   })
 
   expect(

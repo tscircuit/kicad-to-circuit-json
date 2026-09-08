@@ -13,44 +13,25 @@ function convertFootprint(assetName: string) {
   return converter.getOutput() as any[]
 }
 
-function getPathBounds(path: any) {
-  const xs = path.route.map((point: any) => point.x)
-  const ys = path.route.map((point: any) => point.y)
-  return {
-    minX: Math.min(...xs),
-    maxX: Math.max(...xs),
-    minY: Math.min(...ys),
-    maxY: Math.max(...ys),
-    centerX: (Math.min(...xs) + Math.max(...xs)) / 2,
-    centerY: (Math.min(...ys) + Math.max(...ys)) / 2,
-    radius: (Math.max(...xs) - Math.min(...xs)) / 2,
-  }
-}
-
 function expectPinOneSilkscreenDot(
   output: any[],
   expectedCenterX: number,
   expectedRadius: number,
 ) {
-  const silkscreenPaths = output.filter(
-    (el: any) => el.type === "pcb_silkscreen_path" && el.layer === "top",
+  const dotCircle = output.find(
+    (element: any) =>
+      element.type === "pcb_silkscreen_circle" &&
+      element.layer === "top" &&
+      Math.abs(element.center.x - expectedCenterX) < 1e-6 &&
+      Math.abs(element.center.y) < 1e-6,
   )
-  const dotPath = silkscreenPaths.find((path: any) => {
-    if (!Array.isArray(path.route) || path.route.length < 8) return false
-    const bounds = getPathBounds(path)
-    return (
-      Math.abs(bounds.centerX - expectedCenterX) < 1e-6 &&
-      Math.abs(bounds.centerY) < 1e-6
-    )
-  })
 
-  expect(dotPath).toBeDefined()
-  expect(dotPath.stroke_width).toBe(0.1)
-
-  const bounds = getPathBounds(dotPath)
-  expect(bounds.centerX).toBeCloseTo(expectedCenterX, 6)
-  expect(bounds.centerY).toBeCloseTo(0, 6)
-  expect(bounds.radius).toBeCloseTo(expectedRadius, 6)
+  expect(dotCircle).toBeDefined()
+  expect(dotCircle.stroke_width).toBe(0.1)
+  expect(dotCircle.is_filled).toBe(false)
+  expect(dotCircle.center.x).toBeCloseTo(expectedCenterX, 6)
+  expect(dotCircle.center.y).toBeCloseTo(0, 6)
+  expect(dotCircle.radius).toBeCloseTo(expectedRadius, 6)
 
   const pads = output.filter((el: any) => el.type === "pcb_smtpad")
   const padOne = pads.find((pad: any) => pad.port_hints?.includes("1"))
@@ -58,7 +39,7 @@ function expectPinOneSilkscreenDot(
   expect(padOne).toBeDefined()
   expect(padTwo).toBeDefined()
   expect(pads.some((pad: any) => pad.port_hints?.includes("0"))).toBe(false)
-  expect(bounds.centerX).toBeLessThan(padOne.x)
+  expect(dotCircle.center.x).toBeLessThan(padOne.x)
 }
 
 test("kicad footprint converter: converts a standalone .kicad_mod footprint", () => {
@@ -250,8 +231,8 @@ test("kicad footprint converter: diode SVG snapshots include pin-1 silkscreen ci
 
     await writeFile(`tests/__snapshots__/${snapshotName}`, svg)
 
-    expect(svg).toContain('data-type="pcb_silkscreen_path"')
-    expect(svg).toContain('class="pcb-silkscreen pcb-silkscreen-top"')
+    expect(svg).toContain('data-type="pcb_silkscreen_circle"')
+    expect(svg).toContain('class="pcb-silkscreen-circle pcb-silkscreen-top"')
   }
 })
 
