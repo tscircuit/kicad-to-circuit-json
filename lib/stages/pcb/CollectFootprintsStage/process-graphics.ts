@@ -1,5 +1,5 @@
-import type { Footprint, FpPoly, FpLine, FpCircle, FpArc } from "kicadts"
 import type { PcbRenderLayer } from "circuit-json"
+import type { Footprint, FpArc, FpCircle, FpLine, FpPoly } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
   ConverterContext,
@@ -369,8 +369,19 @@ export function createFootprintCircle(params: {
     return
   }
 
-  // Create circle as a path with many points
-  // For now, approximate with an octagon
+  if (renderLayer.endsWith("_silkscreen")) {
+    ctx.db.pcb_silkscreen_circle.insert({
+      pcb_component_id: componentId,
+      center: centerPos,
+      radius,
+      layer,
+      stroke_width: strokeWidth,
+      is_filled: circle.fill === true,
+    })
+    return
+  }
+
+  // Circuit JSON does not currently have a fabrication-note circle primitive.
   const numPoints = 16
   const circleRoute: Array<{ x: number; y: number }> = []
   for (let i = 0; i <= numPoints; i++) {

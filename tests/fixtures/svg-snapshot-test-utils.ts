@@ -37,6 +37,8 @@ export function convertKicadPcbToSvgSnapshot(params: {
     snapshotName: params.snapshotName,
     assertSnapshot: params.assertSnapshot,
   })
+
+  return circuitJson
 }
 
 export function convertKicadFootprintToSvgSnapshot(params: {
