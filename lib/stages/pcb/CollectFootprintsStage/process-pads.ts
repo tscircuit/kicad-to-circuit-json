@@ -481,7 +481,7 @@ export function createSmdPad({
     return
   }
 
-  // Handle standard shapes (circle, oval, rect, roundrect)
+  // A placed pad's angle already includes the footprint rotation.
   const ccwRotationDegrees = pad.at?.angle
 
   if (shape === "circle") {
@@ -542,7 +542,24 @@ export function createSmdPad({
     } as PcbSmtPadPill
 
     ctx.db.pcb_smtpad.insert(smtpad)
-  } else if (shape === "rect" || shape === "roundrect") {
+  } else {
+    // Rectangle fallbacks need the same rotation handling as ordinary pads.
+    // A zero-delta trapezoid is exactly a rectangle. For a tapered trapezoid,
+    // retain its full copper envelope and report the approximation explicitly.
+    let rectangleSize = size
+    if (shape === "trapezoid") {
+      const deltaX = pad.rectDelta?.x ?? 0
+      const deltaY = pad.rectDelta?.y ?? 0
+      if (deltaX !== 0 || deltaY !== 0) {
+        rectangleSize = {
+          x: size.x + Math.abs(deltaY),
+          y: size.y + Math.abs(deltaX),
+        }
+        ;(ctx.warnings ??= []).push(
+          `Trapezoid pad ${pad.number} on ${componentId} has nonzero rect_delta; using its conservative rotated rectangle envelope`,
+        )
+      }
+    }
     const roundrectRatio = pad.roundrectRatio
     let cornerRadius: number | undefined
     if (shape === "roundrect" && roundrectRatio !== undefined) {
@@ -560,16 +577,19 @@ export function createSmdPad({
         pcb_component_id: componentId,
         x: pos.x,
         y: pos.y,
-        width: size.x,
-        height: size.y,
+        width: rectangleSize.x,
+        height: rectangleSize.y,
         layer: layer,
         pcb_port_id: pcbPortId,
-        port_hints: [pad.number.toString()],
+        port_hints: [pad.number?.toString()],
         shape: "rotated_rect",
         ccw_rotation: normalizedCcwRotation,
         corner_radius: cornerRadius,
       } as PcbSmtPadRotatedRect
       ctx.db.pcb_smtpad.insert(rotatedsmtpad)
+      if (ctx.stats) {
+        ctx.stats.pads = (ctx.stats.pads || 0) + 1
+      }
       return
     }
 
@@ -581,30 +601,16 @@ export function createSmdPad({
       pcb_component_id: componentId,
       x: pos.x,
       y: pos.y,
-      width: shouldSwapDimensions ? size.y : size.x,
-      height: shouldSwapDimensions ? size.x : size.y,
+      width: shouldSwapDimensions ? rectangleSize.y : rectangleSize.x,
+      height: shouldSwapDimensions ? rectangleSize.x : rectangleSize.y,
       layer: layer,
       pcb_port_id: pcbPortId,
-      port_hints: [pad.number.toString()],
+      port_hints: [pad.number?.toString()],
       shape: "rect",
       corner_radius: cornerRadius,
     } as PcbSmtPadRect
 
     ctx.db.pcb_smtpad.insert(smtpad)
-  } else {
-    // Default to rect for unknown shapes
-    ctx.db.pcb_smtpad.insert({
-      type: "pcb_smtpad",
-      pcb_component_id: componentId,
-      x: pos.x,
-      y: pos.y,
-      width: size.x,
-      height: size.y,
-      layer: layer,
-      pcb_port_id: pcbPortId,
-      port_hints: [pad.number?.toString()],
-      shape: "rect",
-    } as PcbSmtPadRect)
   }
 
   if (ctx.stats) {
