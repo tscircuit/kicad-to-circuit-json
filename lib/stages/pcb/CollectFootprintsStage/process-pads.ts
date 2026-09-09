@@ -253,6 +253,49 @@ export function createSmdPad({
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
 
+  if (shape === "trapezoid") {
+    // KiCad omits rect_delta for a rectangular trapezoid. Keep that pad on
+    // the rectangle path so its absolute board rotation is still applied.
+    const delta = pad.rectDelta
+    const deltaX: number = delta?.x ?? 0
+    const deltaY: number = delta?.y ?? 0
+    if (deltaX === 0 && deltaY === 0) {
+      shape = "rect"
+    } else {
+      const halfWidth = size.x / 2
+      const halfHeight = size.y / 2
+      const halfDeltaX = deltaX / 2
+      const halfDeltaY = deltaY / 2
+      // KiCad's delta changes opposite sides by half its value. These are
+      // the pad-local corners after reflecting KiCad's downward Y axis.
+      const corners: Point[] = [
+        { x: -halfWidth - halfDeltaY, y: -halfHeight - halfDeltaX },
+        { x: halfWidth + halfDeltaY, y: -halfHeight + halfDeltaX },
+        { x: halfWidth - halfDeltaY, y: halfHeight - halfDeltaX },
+        { x: -halfWidth + halfDeltaY, y: halfHeight + halfDeltaX },
+      ]
+      const points = corners.map((point): Point => {
+        const rotated = rotatePoint({
+          point,
+          ccwRotationDegrees: pad.at?.angle ?? 0,
+        })
+        return { x: pos.x + rotated.x, y: pos.y + rotated.y }
+      })
+      ctx.db.pcb_smtpad.insert({
+        type: "pcb_smtpad",
+        shape: "polygon",
+        pcb_component_id: componentId,
+        pcb_port_id: pcbPortId,
+        pcb_smtpad_id: getNextPcbSmtPadId(ctx),
+        layer,
+        port_hints: [pad.number.toString()],
+        points,
+      } as PcbSmtPadPolygon)
+      if (ctx.stats) ctx.stats.pads = (ctx.stats.pads || 0) + 1
+      return
+    }
+  }
+
   if (shape === "custom") {
     const primitives = pad.primitives?.graphics ?? []
 
