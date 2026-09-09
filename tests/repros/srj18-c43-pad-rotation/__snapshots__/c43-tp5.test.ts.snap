@@ -1,0 +1,12 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`SRJ18 C43 and TP5: KiCad copper beside imported copper 1`] = `
+{
+  "c43": {
+    "height": 5.3,
+    "shape": "rect",
+    "width": 2.5,
+  },
+  "tp5CopperGap": -0.75,
+}
+`;
