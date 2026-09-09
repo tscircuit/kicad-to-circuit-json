@@ -3,10 +3,10 @@
 exports[`SRJ18 C43 and TP5: KiCad copper beside imported copper 1`] = `
 {
   "c43": {
-    "height": 5.3,
+    "height": 2.5,
     "shape": "rect",
-    "width": 2.5,
+    "width": 5.3,
   },
-  "tp5CopperGap": -0.75,
+  "tp5CopperGap": 0.65,
 }
 `;
