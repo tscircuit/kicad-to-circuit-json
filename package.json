@@ -39,7 +39,7 @@
     "bun-match-svg": "^0.0.14",
     "circuit-json-to-connectivity-map": "^0.0.25",
     "circuit-to-canvas": "^0.0.126",
-    "kicadts": "^0.0.57",
+    "kicadts": "^0.0.58",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
     "tscircuit": "^0.0.2040",
