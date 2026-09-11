@@ -8,7 +8,7 @@ import { collectEvidence } from "./evidence"
 test("KiCad import corrected invariant snapshots", () => {
   const evidence = collectEvidence()
   expect(evidence).toHaveLength(5)
-  const dir = join(import.meta.dir, "__snapshots__")
+  const dir = join(import.meta.dir, "assets")
   if (process.env.UPDATE_IMPORT_REPRO_SNAPSHOTS === "1")
     mkdirSync(dir, { recursive: true })
   for (const entry of evidence) {
