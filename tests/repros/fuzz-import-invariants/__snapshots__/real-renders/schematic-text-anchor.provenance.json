@@ -1,12 +1,10 @@
 {
+  "kicadSvgSha256": "16b091bc761e8156c3cb0663b934a7d1ac19d2b0b23f82d7e6fb1883e2c0cc00",
+  "circuitSvgSha256": "299fa040acd97dd47e762e9bca600b017e9f8d53c13483fc04b1498905efff53",
   "inputSha256": "edeff9b6e69f541e3f95ea71477b709afaf872b03628c9dcf153f398ccd23dac",
   "kicadVersion": "10.0.6",
   "circuitToSvgVersion": "0.0.370",
   "sha256": {
-    "kicad.svg": "16b091bc761e8156c3cb0663b934a7d1ac19d2b0b23f82d7e6fb1883e2c0cc00",
-    "kicad.png": "0d52790889445a104d590c2517ee4b642a3ff976471794fce6dab324d976bacf",
-    "circuit-json.svg": "299fa040acd97dd47e762e9bca600b017e9f8d53c13483fc04b1498905efff53",
-    "circuit-json.png": "7e4176cacd1bb891dfa9fff932d5b1f392c2c207707603b980260ea7174cf74f",
     "comparison.png": "87b0beb25530c4aa10558fb2b4b7f553613dee4f95017f4bfed9993f1636b43e",
     "circuit.json": "3c2a443501bae9fc5a53a200f30141ffd533f5f5dabdae63afff27c415cabbf2"
   }
