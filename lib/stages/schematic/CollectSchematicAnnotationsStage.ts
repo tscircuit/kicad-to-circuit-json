@@ -336,6 +336,7 @@ const angleToAnchorSide = (
 const getTextAnchor = (effects: TextEffects | undefined): TextAnchor => {
   const horizontal = effects?.justify?.horizontal ?? "center"
   const vertical = effects?.justify?.vertical ?? "center"
+  if (horizontal === "center" && vertical === "center") return "center"
   return `${vertical}_${horizontal}` as TextAnchor
 }
 

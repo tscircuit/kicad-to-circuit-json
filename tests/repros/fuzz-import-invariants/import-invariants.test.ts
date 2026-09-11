@@ -11,9 +11,12 @@ const hash = (value: string | Buffer) =>
   createHash("sha256").update(value).digest("hex")
 const update = process.env.UPDATE_IMPORT_REPRO_SNAPSHOTS === "1"
 
-test("KiCad import invariant characterization snapshots", async () => {
+test("KiCad import invariants match corrected snapshots", async () => {
   const evidence = collectEvidence()
   expect(evidence).toHaveLength(5)
+  for (const entry of evidence) {
+    expect(entry.passing, `${entry.name}: ${entry.actual}`).toBe(true)
+  }
   if (update) mkdirSync(dir, { recursive: true })
   for (const entry of evidence) {
     const svg = renderEvidence(entry)
