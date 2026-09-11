@@ -3,11 +3,11 @@
   "kicadVersion": "10.0.6",
   "circuitToSvgVersion": "0.0.370",
   "sha256": {
-    "kicad.svg": "aa103311c3082ef4b876f89bb697944c592dd6f06b887f111be5530641f2b540",
+    "kicad.svg": "a99fdb2a6be682bd4565edb085838f885b583f6e357017c56d64f56970657795",
     "kicad.png": "81508c2a717cb4a4ad9d923ac993bd600573e76d5928b5e961457e55f924b221",
     "circuit-json.svg": "7dd61162585b8d5782503cfc9b490791467468b74963060a3965d9b06deba79f",
     "circuit-json.png": "33dc657c4f0bb86299761b442be585855857dd5614dd2cd7049d5dcdab51ff91",
-    "comparison.png": "f95a761e7746a36eb6f7c529ea0165a915e83ad26f43c83114c6ba76a974d6d6",
+    "comparison.png": "2acc158cb4a3abe8a1d727eb420a9378fafebcc7003ea3fb0514d392bcfbfa88",
     "circuit.json": "11863e99ddb0271c8159bdbc46693c66f2337c1ef8cf2468b5dc78b384b48553"
   }
 }

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="tscircuit-schematic" width="1000" height="900" style="background-color: rgb(245, 241, 237)" data-real-to-screen-transform="matrix(208.3333333333,0,0,-208.3333333333,500,450)"><style>
+              .boundary { fill: rgb(245, 241, 237); }
+              .schematic-boundary { fill: none; stroke: #fff; }
+              .component { fill: none; stroke: rgb(132, 0, 0); }
+              .chip { fill: rgb(255, 255, 194); stroke: rgb(132, 0, 0); }
+              .component-pin { fill: none; stroke: rgb(132, 0, 0); }
+              /* Basic per-trace hover fallback */
+              .trace:hover {
+                filter: invert(1);
+              }
+              .trace:hover .trace-crossing-outline {
+                opacity: 0;
+              }
+              .trace:hover .trace-junction {
+                filter: invert(1);
+              }
+              /* Net-hover highlighting: when a trace or its overlays are hovered,
+                 invert color for all traces (base + overlays) sharing the same
+                 subcircuit connectivity key. Also hide crossing outline during hover. */
+              
+              .text { font-family: sans-serif; fill: rgb(0, 150, 0); }
+              .pin-number { fill: rgb(169, 0, 0); }
+              .port-label { fill: rgb(0, 100, 100); }
+              .component-name { fill: rgb(0, 100, 100); }
+              
+            </style><rect class="boundary" x="0" y="0" width="1000" height="900"/><text class="sch-text" x="500" y="450" fill="rgb(0, 0, 132)" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="41.66666666666001px" transform="rotate(0, 500, 450)">Centered annotation</text></svg>
