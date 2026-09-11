@@ -1,13 +1,12 @@
 import { expect, test } from "bun:test"
 import { createHash } from "node:crypto"
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { collectEvidence } from "./evidence"
 import {
   circuitRender,
   exportKicad,
-  pngFromSvg,
-  comparePngs,
+  compareSvgs,
   fixturePath,
   renderCases,
   renderDir,
@@ -18,13 +17,18 @@ const hash = (v: Buffer | string) =>
   createHash("sha256").update(v).digest("hex")
 const update = process.env.UPDATE_IMPORT_REPRO_SNAPSHOTS === "1"
 const updateKicad = process.env.UPDATE_KICAD_REFERENCES === "1"
+const assetDir = join(import.meta.dir, "assets")
 
 for (const name of renderCases) {
-  test(`real KiCad / Circuit JSON render: ${name}`, async () => {
-    const path = (suffix: string) => join(renderDir, `${name}.${suffix}`)
+  test(`real KiCad / Circuit JSON render: ${name}`, () => {
+    const assertion = (suffix: string) => join(assetDir, `${name}.${suffix}`)
     const reference = (suffix: string) =>
       join(referenceDir, `${name}.${suffix}`)
-    if (update) mkdirSync(renderDir, { recursive: true })
+    const snapshot = join(renderDir, `${name}.comparison.svg`)
+    if (update) {
+      mkdirSync(renderDir, { recursive: true })
+      mkdirSync(assetDir, { recursive: true })
+    }
     if (updateKicad) {
       if (!update)
         throw new Error(
@@ -34,64 +38,47 @@ for (const name of renderCases) {
       const version = exportKicad(name, reference("kicad.svg"))
       writeFileSync(reference("kicad-version.txt"), version + "\n")
     }
-    expect(
-      existsSync(reference("kicad.svg")),
-      "Generate a genuine KiCad reference before committing",
-    ).toBe(true)
+    const nativeSvg = readFileSync(reference("kicad.svg"), "utf8")
     const { svg, circuitJson } = circuitRender(name)
+    const comparison = compareSvgs(nativeSvg, svg, name)
     const json = JSON.stringify(circuitJson, null, 2) + "\n"
+    const provenance =
+      JSON.stringify(
+        {
+          inputSha256: hash(readFileSync(fixturePath(name))),
+          kicadSvgSha256: hash(nativeSvg),
+          circuitSvgSha256: hash(svg),
+          kicadVersion: readFileSync(
+            reference("kicad-version.txt"),
+            "utf8",
+          ).trim(),
+          circuitToSvgVersion: CIRCUIT_TO_SVG_VERSION,
+        },
+        null,
+        2,
+      ) + "\n"
     if (update) {
-      const png = await pngFromSvg(svg, name)
-      writeFileSync(path("circuit.json"), json)
-      writeFileSync(
-        path("comparison.png"),
-        await comparePngs(
-          await pngFromSvg(readFileSync(reference("kicad.svg"), "utf8"), name),
-          png,
-          name,
-        ),
-      )
-      const assets = ["comparison.png", "circuit.json"]
-      writeFileSync(
-        path("provenance.json"),
-        JSON.stringify(
-          {
-            kicadSvgSha256: hash(readFileSync(reference("kicad.svg"))),
-            circuitSvgSha256: hash(svg),
-            inputSha256: hash(readFileSync(fixturePath(name))),
-            kicadVersion: readFileSync(
-              reference("kicad-version.txt"),
-              "utf8",
-            ).trim(),
-            circuitToSvgVersion: CIRCUIT_TO_SVG_VERSION,
-            sha256: Object.fromEntries(
-              assets.map((suffix) => [
-                suffix,
-                hash(readFileSync(path(suffix))),
-              ]),
-            ),
-          },
-          null,
-          2,
-        ) + "\n",
-      )
+      writeFileSync(snapshot, comparison)
+      writeFileSync(assertion("circuit.json"), json)
+      writeFileSync(assertion("provenance.json"), provenance)
     }
-    expect(json).toBe(readFileSync(path("circuit.json"), "utf8"))
-    const provenance = JSON.parse(readFileSync(path("provenance.json"), "utf8"))
-    expect(hash(svg)).toBe(provenance.circuitSvgSha256)
-    expect(hash(readFileSync(reference("kicad.svg")))).toBe(
-      provenance.kicadSvgSha256,
-    )
-    expect(provenance.inputSha256).toBe(hash(readFileSync(fixturePath(name))))
-    for (const [suffix, expected] of Object.entries(
-      provenance.sha256 as Record<string, string>,
-    ))
-      expect(hash(readFileSync(path(suffix)))).toBe(expected)
+    expect(comparison).toBe(readFileSync(snapshot, "utf8"))
+    expect(json).toBe(readFileSync(assertion("circuit.json"), "utf8"))
+    expect(provenance).toBe(readFileSync(assertion("provenance.json"), "utf8"))
   })
 }
 
-// A new defect must get a native renderer comparison, not just a JSON record.
-test("every defect snapshot has a KiCad / Circuit JSON comparison", () => {
-  for (const entry of collectEvidence())
+test("every visual defect has a paired comparison and snapshots contain only SVGs", () => {
+  for (const entry of collectEvidence().filter(
+    (entry) => entry.kind !== "anchor",
+  ))
     expect([...renderCases] as string[]).toContain(entry.name)
+  const files = readdirSync(join(import.meta.dir, "__snapshots__"), {
+    recursive: true,
+    withFileTypes: true,
+  }).filter((entry) => entry.isFile())
+  expect(files).toHaveLength(renderCases.length)
+  expect(files.every((entry) => entry.name.endsWith(".comparison.svg"))).toBe(
+    true,
+  )
 })

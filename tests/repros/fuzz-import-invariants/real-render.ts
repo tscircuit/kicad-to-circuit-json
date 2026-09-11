@@ -3,7 +3,6 @@ import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs"
 import { collectEvidence } from "./evidence"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
-import sharp from "sharp"
 import {
   convertCircuitJsonToPcbSvg,
   convertCircuitJsonToSchematicSvg,
@@ -19,7 +18,6 @@ export const renderCases = [
   "fabrication-text-ids",
   "standalone-source-port",
   "no-net-source-port",
-  "schematic-text-anchor",
   "rounded-pads",
   "qfn60",
 ] as const
@@ -176,29 +174,24 @@ export function exportKicad(name: string, destination: string) {
     rmSync(temp, { recursive: true, force: true })
   }
 }
-export async function pngFromSvg(svg: string, name: string) {
-  // Display the native schematic at the same scale/origin as the renderer:
-  // its 4.8 x 4.32 CJ viewport is 72 x 64.8 KiCad mm (15:1 conversion).
-  // Only the SVG viewport changes for rasterization; raw native SVG is retained.
-  if (name === "schematic-text-anchor" && svg.includes("Eeschema-SVG")) {
-    svg = svg.replace(
-      /width="[^"]+" height="[^"]+" viewBox="[^"]+"/,
-      'width="1000" height="900" viewBox="69 116.1 72 64.8"',
-    )
+// Preserve each engine's actual vector geometry inside a paired SVG viewport.
+export function compareSvgs(kicad: string, circuitJson: string, name: string) {
+  const panel = (source: string, x: number, native: boolean) => {
+    source = source.slice(source.indexOf("<svg"))
+    return source.replace(/<svg\b([^>]*)>/, (_, attributes: string) => {
+      attributes = attributes.replace(/\s(?:width|height|x|y)="[^"]*"/g, "")
+      if (native && name === "schematic-text-anchor") {
+        // Same origin/scale as the 4.8 x 4.32 CJ viewport (15:1 conversion).
+        attributes = attributes.replace(
+          /viewBox="[^"]*"/,
+          'viewBox="69 116.1 72 64.8"',
+        )
+      } else if (!attributes.includes("viewBox=")) {
+        attributes += ' viewBox="0 0 1000 900"'
+      }
+      return `<svg${attributes} x="${x}" y="72" width="1000" height="900">`
+    })
   }
-  return sharp(Buffer.from(svg), { density: 200 })
-    .resize(1000, 900, { fit: "contain", background: background(name) })
-    .flatten({ background: background(name) })
-    .png()
-    .toBuffer()
-}
-export async function comparePngs(
-  kicad: Buffer,
-  circuitJson: Buffer,
-  name: string,
-) {
-  // Only the neutral engine labels are drawn here. Every circuit pixel below
-  // them comes from kicad-cli or circuit-to-svg, respectively.
   const evidence = collectEvidence().find((e) => e.name === name)
   const escape = (s: string) =>
     s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll('"', "&quot;")
@@ -223,21 +216,7 @@ export async function comparePngs(
           : "Four rounded pads: ratios 0.15, 0.25, 0.4, 0.5",
         "Inspect copper corners against KiCad. Font and silkscreen differences remain visible.",
       ]
-  const footer = Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="150"><rect width="2000" height="150" fill="#171d26"/><g fill="white" font-family="Arial, sans-serif" font-size="25">${lines.map((line, i) => `<text x="30" y="${37 + i * 40}">${escape(line)}</text>`).join("")}</g></svg>`,
-  )
-  const labels = Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="72"><rect width="2000" height="72" fill="#171d26"/><g fill="white" font-family="Arial, sans-serif" font-size="28"><text x="30" y="46">KiCad</text><text x="1030" y="46">Circuit JSON</text></g></svg>`,
-  )
-  return sharp({
-    create: { width: 2000, height: 1122, channels: 4, background: "#000000" },
-  })
-    .composite([
-      { input: footer, left: 0, top: 972 },
-      { input: labels, left: 0, top: 0 },
-      { input: kicad, left: 0, top: 72 },
-      { input: circuitJson, left: 1000, top: 72 },
-    ])
-    .png()
-    .toBuffer()
+  const footer = `<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="150" x="0" y="972"><rect width="2000" height="150" fill="#171d26"/><g fill="white" font-family="Arial, sans-serif" font-size="25">${lines.map((line, i) => `<text x="30" y="${37 + i * 40}">${escape(line)}</text>`).join("")}</g></svg>`
+  const labels = `<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="72"><rect width="2000" height="72" fill="#171d26"/><g fill="white" font-family="Arial, sans-serif" font-size="28"><text x="30" y="46">KiCad</text><text x="1030" y="46">Circuit JSON</text></g></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1122" viewBox="0 0 2000 1122"><rect width="2000" height="1122" fill="#000000"/><rect x="0" y="72" width="1000" height="900" fill="${background(name)}"/>${labels}${panel(kicad, 0, true)}${panel(circuitJson, 1000, false)}${footer}</svg>\n`
 }
