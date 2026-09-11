@@ -40,6 +40,7 @@ const sourceName = (name: string) =>
 export const background = (name: string) =>
   name === "schematic-text-anchor" ? "#ffffff" : "#000000"
 export const renderDir = join(import.meta.dir, "__snapshots__", "real-renders")
+export const referenceDir = join(import.meta.dir, "fixtures", "kicad-reference")
 export const fixturePath = (name: string) =>
   join(import.meta.dir, "fixtures", sourceName(name))
 export { CIRCUIT_TO_SVG_VERSION }
