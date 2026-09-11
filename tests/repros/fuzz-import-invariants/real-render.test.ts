@@ -2,6 +2,7 @@ import { expect, test } from "bun:test"
 import { createHash } from "node:crypto"
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
+import { collectEvidence } from "./evidence"
 import {
   circuitRender,
   exportKicad,
@@ -30,7 +31,7 @@ for (const name of renderCases) {
       writeFileSync(path("kicad-version.txt"), version + "\n")
       writeFileSync(
         path("kicad.png"),
-        await pngFromSvg(readFileSync(path("kicad.svg"), "utf8")),
+        await pngFromSvg(readFileSync(path("kicad.svg"), "utf8"), name),
       )
     }
     expect(
@@ -40,13 +41,13 @@ for (const name of renderCases) {
     const { svg, circuitJson } = circuitRender(name)
     const json = JSON.stringify(circuitJson, null, 2) + "\n"
     if (update) {
-      const png = await pngFromSvg(svg)
+      const png = await pngFromSvg(svg, name)
       writeFileSync(path("circuit-json.svg"), svg)
       writeFileSync(path("circuit-json.png"), png)
       writeFileSync(path("circuit.json"), json)
       writeFileSync(
         path("comparison.png"),
-        await comparePngs(readFileSync(path("kicad.png")), png),
+        await comparePngs(readFileSync(path("kicad.png")), png, name),
       )
       const assets = [
         "kicad.svg",
@@ -88,3 +89,9 @@ for (const name of renderCases) {
       expect(hash(readFileSync(path(suffix)))).toBe(expected)
   })
 }
+
+// A new defect must get a native renderer comparison, not just a JSON record.
+test("every defect snapshot has a KiCad / Circuit JSON comparison", () => {
+  for (const entry of collectEvidence())
+    expect([...renderCases] as string[]).toContain(entry.name)
+})
