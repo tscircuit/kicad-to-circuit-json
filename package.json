@@ -51,7 +51,8 @@
     "tsup": "^8.5.0",
     "vercel": "^50.42.0",
     "vite": "^8.0.8",
-    "schematic-symbols": "^0.0.231"
+    "schematic-symbols": "^0.0.231",
+    "circuit-to-svg": "0.0.370"
   },
   "peerDependencies": {
     "typescript": "^5"
