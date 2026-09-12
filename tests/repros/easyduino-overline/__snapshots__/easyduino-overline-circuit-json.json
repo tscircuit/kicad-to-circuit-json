@@ -275,8 +275,7 @@
     },
     "facing_direction": "up",
     "side_of_component": "top",
-    "pin_number": 1,
-    "display_pin_label": "GND"
+    "pin_number": 1
   },
   {
     "type": "schematic_line",
@@ -529,8 +528,7 @@
     },
     "facing_direction": "up",
     "side_of_component": "top",
-    "pin_number": 1,
-    "display_pin_label": "GND"
+    "pin_number": 1
   },
   {
     "type": "schematic_line",
@@ -898,8 +896,7 @@
     },
     "facing_direction": "up",
     "side_of_component": "top",
-    "pin_number": 1,
-    "display_pin_label": "GND"
+    "pin_number": 1
   },
   {
     "type": "schematic_line",
@@ -1152,8 +1149,7 @@
     },
     "facing_direction": "up",
     "side_of_component": "top",
-    "pin_number": 1,
-    "display_pin_label": "GND"
+    "pin_number": 1
   },
   {
     "type": "schematic_line",
@@ -1254,7 +1250,7 @@
     "type": "source_port",
     "source_port_id": "source_port_14",
     "source_component_id": "source_component_10",
-    "name": "~{DCD}",
+    "name": "N_DCD",
     "pin_number": 1
   },
   {
@@ -1269,14 +1265,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 1,
-    "display_pin_label": "~{DCD}",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_15",
     "source_component_id": "source_component_10",
-    "name": "~{RI}/CLK",
+    "name": "RI/CLK",
     "pin_number": 2
   },
   {
@@ -1291,7 +1286,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 2,
-    "display_pin_label": "~{RI}/CLK",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1313,7 +1307,6 @@
     "facing_direction": "down",
     "side_of_component": "bottom",
     "pin_number": 3,
-    "display_pin_label": "GND",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1335,7 +1328,6 @@
     "facing_direction": "left",
     "side_of_component": "left",
     "pin_number": 4,
-    "display_pin_label": "D+",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1357,7 +1349,6 @@
     "facing_direction": "left",
     "side_of_component": "left",
     "pin_number": 5,
-    "display_pin_label": "D-",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1379,7 +1370,6 @@
     "facing_direction": "up",
     "side_of_component": "top",
     "pin_number": 6,
-    "display_pin_label": "VDD",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1401,7 +1391,6 @@
     "facing_direction": "up",
     "side_of_component": "top",
     "pin_number": 7,
-    "display_pin_label": "VREGIN",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1423,14 +1412,13 @@
     "facing_direction": "left",
     "side_of_component": "left",
     "pin_number": 8,
-    "display_pin_label": "VBUS",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_22",
     "source_component_id": "source_component_10",
-    "name": "~{RST}",
+    "name": "N_RST",
     "pin_number": 9
   },
   {
@@ -1445,7 +1433,6 @@
     "facing_direction": "left",
     "side_of_component": "left",
     "pin_number": 9,
-    "display_pin_label": "~{RST}",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1466,14 +1453,13 @@
     },
     "facing_direction": "left",
     "side_of_component": "left",
-    "pin_number": 10,
-    "display_pin_label": "NC"
+    "pin_number": 10
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_24",
     "source_component_id": "source_component_10",
-    "name": "~{SUSPEND}",
+    "name": "N_SUSPEND",
     "pin_number": 11
   },
   {
@@ -1488,7 +1474,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 11,
-    "display_pin_label": "~{SUSPEND}",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1510,7 +1495,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 12,
-    "display_pin_label": "SUSPEND",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1532,7 +1516,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 13,
-    "display_pin_label": "CHREN",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1554,7 +1537,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 14,
-    "display_pin_label": "CHR1",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1576,14 +1558,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 15,
-    "display_pin_label": "CHR0",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_29",
     "source_component_id": "source_component_10",
-    "name": "~{WAKEUP}/GPIO.3",
+    "name": "WAKEUP/GPIO.3",
     "pin_number": 16
   },
   {
@@ -1598,7 +1579,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 16,
-    "display_pin_label": "~{WAKEUP}/GPIO.3",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1620,14 +1600,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 17,
-    "display_pin_label": "RS485/GPIO.2",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_31",
     "source_component_id": "source_component_10",
-    "name": "~{RXT}/GPIO.1",
+    "name": "RXT/GPIO.1",
     "pin_number": 18
   },
   {
@@ -1642,14 +1621,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 18,
-    "display_pin_label": "~{RXT}/GPIO.1",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_32",
     "source_component_id": "source_component_10",
-    "name": "~{TXT}/GPIO.0",
+    "name": "TXT/GPIO.0",
     "pin_number": 19
   },
   {
@@ -1664,7 +1642,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 19,
-    "display_pin_label": "~{TXT}/GPIO.0",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1686,7 +1663,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 20,
-    "display_pin_label": "GPIO.6",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1708,7 +1684,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 21,
-    "display_pin_label": "GPIO.5",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1730,14 +1705,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 22,
-    "display_pin_label": "GPIO.4",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_36",
     "source_component_id": "source_component_10",
-    "name": "~{CTS}",
+    "name": "N_CTS",
     "pin_number": 23
   },
   {
@@ -1752,14 +1726,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 23,
-    "display_pin_label": "~{CTS}",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_37",
     "source_component_id": "source_component_10",
-    "name": "~{RTS}",
+    "name": "N_RTS",
     "pin_number": 24
   },
   {
@@ -1774,7 +1747,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 24,
-    "display_pin_label": "~{RTS}",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1796,7 +1768,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 25,
-    "display_pin_label": "RXD",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1818,14 +1789,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 26,
-    "display_pin_label": "TXD",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_40",
     "source_component_id": "source_component_10",
-    "name": "~{DSR}",
+    "name": "N_DSR",
     "pin_number": 27
   },
   {
@@ -1840,14 +1810,13 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 27,
-    "display_pin_label": "~{DSR}",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
     "type": "source_port",
     "source_port_id": "source_port_41",
     "source_component_id": "source_component_10",
-    "name": "~{DTR}",
+    "name": "N_DTR",
     "pin_number": 28
   },
   {
@@ -1862,7 +1831,6 @@
     "facing_direction": "right",
     "side_of_component": "right",
     "pin_number": 28,
-    "display_pin_label": "~{DTR}",
     "distance_from_component_edge": 0.16933333333333334
   },
   {
@@ -1883,8 +1851,7 @@
     },
     "facing_direction": "down",
     "side_of_component": "bottom",
-    "pin_number": 29,
-    "display_pin_label": "GND"
+    "pin_number": 29
   },
   {
     "type": "schematic_line",
@@ -1914,10 +1881,16 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_15",
-    "text": "~{DCD}",
+    "text": "DCD",
+    "text_parts": [
+      {
+        "text": "DCD",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 3.1769333333333325,
+      "x": 3.2531333333333325,
       "y": 5.920666666666667
     },
     "rotation": 0,
@@ -1952,10 +1925,19 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_17",
-    "text": "~{RI}/CLK",
+    "text": "RI/CLK",
+    "text_parts": [
+      {
+        "text": "RI",
+        "is_overlined": true
+      },
+      {
+        "text": "/CLK"
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 3.1007333333333325,
+      "x": 3.1769333333333325,
       "y": 5.751333333333334
     },
     "rotation": 0,
@@ -2218,10 +2200,16 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_31",
-    "text": "~{RST}",
+    "text": "RST",
+    "text_parts": [
+      {
+        "text": "RST",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 2.127066666666666,
+      "x": 2.050866666666666,
       "y": 6.936666666666667
     },
     "rotation": 0,
@@ -2256,10 +2244,16 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_33",
-    "text": "~{SUSPEND}",
+    "text": "SUSPEND",
+    "text_parts": [
+      {
+        "text": "SUSPEND",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 3.0753333333333326,
+      "x": 3.1515333333333326,
       "y": 5.243333333333334
     },
     "rotation": 0,
@@ -2446,10 +2440,19 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_43",
-    "text": "~{WAKEUP}/GPIO.3",
+    "text": "WAKEUP/GPIO.3",
+    "text_parts": [
+      {
+        "text": "WAKEUP",
+        "is_overlined": true
+      },
+      {
+        "text": "/GPIO.3"
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 2.9229333333333325,
+      "x": 2.9991333333333325,
       "y": 4.396666666666667
     },
     "rotation": 0,
@@ -2522,10 +2525,19 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_47",
-    "text": "~{RXT}/GPIO.1",
+    "text": "RXT/GPIO.1",
+    "text_parts": [
+      {
+        "text": "RXT",
+        "is_overlined": true
+      },
+      {
+        "text": "/GPIO.1"
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 2.9991333333333325,
+      "x": 3.0753333333333326,
       "y": 4.735333333333334
     },
     "rotation": 0,
@@ -2560,10 +2572,19 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_49",
-    "text": "~{TXT}/GPIO.0",
+    "text": "TXT/GPIO.0",
+    "text_parts": [
+      {
+        "text": "TXT",
+        "is_overlined": true
+      },
+      {
+        "text": "/GPIO.0"
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 2.9991333333333325,
+      "x": 3.0753333333333326,
       "y": 4.904666666666667
     },
     "rotation": 0,
@@ -2712,10 +2733,16 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_57",
-    "text": "~{CTS}",
+    "text": "CTS",
+    "text_parts": [
+      {
+        "text": "CTS",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 3.1769333333333325,
+      "x": 3.2531333333333325,
       "y": 6.428666666666667
     },
     "rotation": 0,
@@ -2750,10 +2777,16 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_59",
-    "text": "~{RTS}",
+    "text": "RTS",
+    "text_parts": [
+      {
+        "text": "RTS",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 3.1769333333333325,
+      "x": 3.2531333333333325,
       "y": 6.598000000000001
     },
     "rotation": 0,
@@ -2864,10 +2897,16 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_65",
-    "text": "~{DSR}",
+    "text": "DSR",
+    "text_parts": [
+      {
+        "text": "DSR",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 3.1769333333333325,
+      "x": 3.2531333333333325,
       "y": 6.259333333333334
     },
     "rotation": 0,
@@ -2902,10 +2941,16 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_67",
-    "text": "~{DTR}",
+    "text": "DTR",
+    "text_parts": [
+      {
+        "text": "DTR",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
-      "x": 3.1769333333333325,
+      "x": 3.2531333333333325,
       "y": 6.090000000000001
     },
     "rotation": 0,
@@ -3678,7 +3723,13 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_73",
-    "text": "~{DTR}",
+    "text": "DTR",
+    "text_parts": [
+      {
+        "text": "DTR",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
       "x": 4.091333333333333,
@@ -3697,7 +3748,13 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_74",
-    "text": "~{RTS}",
+    "text": "RTS",
+    "text_parts": [
+      {
+        "text": "RTS",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
       "x": 4.091333333333333,
@@ -3716,7 +3773,13 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_75",
-    "text": "~{SUSPEND}",
+    "text": "SUSPEND",
+    "text_parts": [
+      {
+        "text": "SUSPEND",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
       "x": 3.668000000000001,
@@ -3735,7 +3798,13 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_76",
-    "text": "~{RST}",
+    "text": "RST",
+    "text_parts": [
+      {
+        "text": "RST",
+        "is_overlined": true
+      }
+    ],
     "font_size": 0.08466666666666667,
     "position": {
       "x": 1.551333333333334,

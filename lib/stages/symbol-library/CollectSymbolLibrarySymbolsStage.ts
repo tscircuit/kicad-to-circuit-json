@@ -1,5 +1,5 @@
-import { ConverterStage } from "../../types"
 import type {
+  SchematicSymbol as CircuitJsonSchematicSymbol,
   Point,
   SchematicArc,
   SchematicCircle,
@@ -8,7 +8,6 @@ import type {
   SchematicPath,
   SchematicPort,
   SchematicRect,
-  SchematicSymbol as CircuitJsonSchematicSymbol,
   SchematicText,
   SourcePort,
   SourceSimpleCapacitor,
@@ -38,12 +37,18 @@ import {
   scale,
   translate,
 } from "transformation-matrix"
+import { ConverterStage } from "../../types"
+import {
+  getSourcePortNameFromKicadText,
+  type ParsedKicadTextPart,
+  parseKicadOverlineText,
+} from "../../utils/parse-kicad-overline-text"
+
+import { rotationToDirection } from "../schematic/utils/rotationToDirection"
 import {
   inferSourceComponentFtype,
   type SupportedSourceComponentFtype,
 } from "./infer-source-component-ftype"
-
-import { rotationToDirection } from "../schematic/utils/rotationToDirection"
 
 /**
  * circuit-to-svg recomputes an arc's endpoints from its start/end angles in the
@@ -885,7 +890,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   }
 
   private getPortName(pin: SymbolPin, pinNumber: string): string {
-    if (pin.name) return pin.name
+    if (pin.name) return getSourcePortNameFromKicadText(pin.name)
     if (/^\d+$/.test(pinNumber)) return `pin${Number(pinNumber)}`
     return pinNumber
   }
@@ -913,7 +918,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       | "side_of_component"
       | "distance_from_component_edge"
     >
-  > {
+  > & { display_pin_label_text_parts?: ParsedKicadTextPart[] } {
     const { pin, pinNumber, transform, pinNamesHidden } = params
     const scale = this.scaleOf(transform)
     const metadata: Partial<
@@ -924,16 +929,21 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         | "side_of_component"
         | "distance_from_component_edge"
       >
-    > = {}
+    > & { display_pin_label_text_parts?: ParsedKicadTextPart[] } = {}
+
+    const pinNumberLabel = parseKicadOverlineText(pinNumber)
+    const pinNameLabel = pin.name ? parseKicadOverlineText(pin.name) : undefined
 
     if (/^\d+$/.test(pinNumber)) {
       metadata.pin_number = Number(pinNumber)
     } else {
-      metadata.display_pin_label = pinNumber
+      metadata.display_pin_label = pinNumberLabel.text
+      metadata.display_pin_label_text_parts = pinNumberLabel.textParts
     }
 
     if (pin.name && !pinNamesHidden) {
-      metadata.display_pin_label = pin.name
+      metadata.display_pin_label = pinNameLabel?.text
+      metadata.display_pin_label_text_parts = pinNameLabel?.textParts
     }
 
     if (!pin.hidden && pin.length && pin.length > 0) {

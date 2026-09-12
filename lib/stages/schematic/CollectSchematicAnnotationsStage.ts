@@ -15,6 +15,7 @@ import type {
 } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import { parseKicadOverlineText } from "../../utils/parse-kicad-overline-text"
 
 const GRAPHIC_COLOR = "rgb(0, 0, 132)"
 const TEXT_COLOR = "rgb(0, 0, 132)"
@@ -287,15 +288,17 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
   }
 
   private insertText(
-    value: string,
+    kicadText: string,
     at: At,
     effects?: TextEffects,
     options: { color?: string; position?: Point } = {},
   ) {
     if (!this.ctx.k2cMatSch) return
 
-    this.ctx.db.schematic_text.insert({
-      text: decodeKicadText(value),
+    const label = parseKicadOverlineText(decodeKicadText(kicadText))
+    const schematicText = {
+      text: label.text,
+      text_parts: label.textParts,
       font_size: Math.max(
         0.05,
         getFontSize(effects) * Math.abs(this.ctx.k2cMatSch.a),
@@ -304,7 +307,8 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       rotation: normalizeReadableRotation(-(at.angle ?? 0)),
       anchor: getTextAnchor(effects),
       color: options.color ?? TEXT_COLOR,
-    })
+    }
+    this.ctx.db.schematic_text.insert(schematicText)
   }
 
   private insertLine(start: Point, end: Point, color: string) {

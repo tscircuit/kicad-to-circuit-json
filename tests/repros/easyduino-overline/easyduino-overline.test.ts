@@ -7,7 +7,7 @@ import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadP
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 import "../../fixtures/png-matcher"
 
-test("Easyduino schematic reproduces KiCad overline markup rendering", async () => {
+test("Easyduino schematic converts active-low pin labels", async () => {
   const schematicPath = new URL(
     "../../assets/Easyduino_ESP32.kicad_sch",
     import.meta.url,
@@ -21,6 +21,38 @@ test("Easyduino schematic reproduces KiCad overline markup rendering", async () 
 
   const circuitJson = converter.getOutput()
   expect(circuitJson.length).toBeGreaterThan(0)
+
+  expect(circuitJson).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        type: "schematic_text",
+        text: "RI/CLK",
+        text_parts: [{ text: "RI", is_overlined: true }, { text: "/CLK" }],
+      }),
+      expect.objectContaining({
+        type: "source_port",
+        pin_number: 11,
+        name: "N_SUSPEND",
+      }),
+      expect.objectContaining({
+        type: "source_port",
+        pin_number: 12,
+        name: "SUSPEND",
+      }),
+      expect.objectContaining({
+        type: "schematic_text",
+        text: "SUSPEND",
+        color: "rgb(0, 100, 100)",
+        text_parts: [{ text: "SUSPEND", is_overlined: true }],
+      }),
+      expect.objectContaining({
+        type: "schematic_text",
+        text: "SUSPEND",
+        color: "rgb(15, 15, 15)",
+        text_parts: [{ text: "SUSPEND", is_overlined: true }],
+      }),
+    ]),
+  )
 
   const fs = await import("node:fs/promises")
   const snapshotDirectory = new URL("./__snapshots__/", import.meta.url)
@@ -38,7 +70,6 @@ test("Easyduino schematic reproduces KiCad overline markup rendering", async () 
   const kicadSvg = Object.values(kicadSnapshot.generatedFileContent)[0]
   if (!kicadSvg) throw new Error("Expected KiCad schematic snapshot")
 
-  // Render once, then use this exact SVG for both committed and stacked output.
   const { convertCircuitJsonToSchematicSvg } = await import("circuit-to-svg")
   const circuitJsonSvg = convertCircuitJsonToSchematicSvg(circuitJson as any, {
     width: 700,
@@ -48,8 +79,7 @@ test("Easyduino schematic reproduces KiCad overline markup rendering", async () 
     new URL("easyduino-overline-circuit-json.svg", snapshotDirectory),
     circuitJsonSvg,
   )
-  // Rasterize both vector renderings at the same density so GitHub previews
-  // remain sharp while preserving each SVG's geometry and aspect ratio.
+
   const snapshotDensity = 144
   const [circuitJsonPng, kicadPng] = await Promise.all([
     sharp(Buffer.from(circuitJsonSvg), { density: snapshotDensity })
@@ -57,8 +87,8 @@ test("Easyduino schematic reproduces KiCad overline markup rendering", async () 
       .toBuffer(),
     sharp(kicadSvg, { density: snapshotDensity }).png().toBuffer(),
   ])
-
   const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
+
   await expect(stackedPng).toMatchPngSnapshot(
     import.meta.path,
     "easyduino-overline",

@@ -1,16 +1,20 @@
-import { ConverterStage } from "../../types"
-import { applyToPoint } from "transformation-matrix"
 import type { SchematicSymbol } from "kicadts"
+import { applyToPoint } from "transformation-matrix"
+import { ConverterStage } from "../../types"
+import {
+  getSourcePortNameFromKicadText,
+  parseKicadOverlineText,
+} from "../../utils/parse-kicad-overline-text"
 import {
   inferSourceComponentFtype,
   type SupportedSourceComponentFtype,
 } from "../symbol-library/infer-source-component-ftype"
-import { inferSymbolName } from "./utils/inferSymbolName"
 import {
   createSymbolTransform,
   emitKicadSymbolGeometry,
   getPinsForSymbolInstance,
 } from "./emitKicadSymbolGeometry"
+import { inferSymbolName } from "./utils/inferSymbolName"
 
 /**
  * CollectLibrarySymbolsStage extracts KiCad schematic symbols and creates:
@@ -162,7 +166,8 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
         x: pinAt.x + Math.cos(pinAngle) * (pin.length || 1),
         y: pinAt.y + Math.sin(pinAngle) * (pin.length || 1),
       })
-      const pinNumberText = pin.numberString || ""
+      const pinNumberLabel = parseKicadOverlineText(pin.numberString || "")
+      const pinNumberText = pinNumberLabel.text
       const facingDirection = this.vectorToDirection({
         x: portCenter.x - innerPoint.x,
         y: portCenter.y - innerPoint.y,
@@ -170,34 +175,34 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       const sourcePort = this.ctx.db.source_port.insert({
         source_component_id: sourceComponentId,
         name:
-          pin.name ||
+          (pin.name ? getSourcePortNameFromKicadText(pin.name) : undefined) ||
           (/^\d+$/.test(pinNumberText) ? `pin${pinNumberText}` : pinNumberText),
         ...(/^\d+$/.test(pinNumberText)
           ? { pin_number: Number(pinNumberText) }
           : { port_hints: pinNumberText ? [pinNumberText] : [] }),
       })
 
-      this.ctx.db.schematic_port.insert({
+      const sideOfComponent: "top" | "bottom" | "left" | "right" =
+        facingDirection === "up"
+          ? "top"
+          : facingDirection === "down"
+            ? "bottom"
+            : facingDirection
+      const schematicPort = {
         schematic_component_id: componentId,
         source_port_id: sourcePort.source_port_id,
         center: portCenter,
         facing_direction: facingDirection,
-        side_of_component:
-          facingDirection === "up"
-            ? "top"
-            : facingDirection === "down"
-              ? "bottom"
-              : facingDirection,
+        side_of_component: sideOfComponent,
         pin_number: /^\d+$/.test(pinNumberText)
           ? Number(pinNumberText)
           : undefined,
-        display_pin_label:
-          !libSymbol.pinNames?.hide && pin.name && pin.name !== "~"
-            ? pin.name
-            : undefined,
+        // Pin names are emitted as positioned schematic_text primitives.
+        // A display_pin_label would make renderers draw the name twice.
         distance_from_component_edge:
           !pin.hidden && pin.length ? pin.length * scaleFactor : undefined,
-      })
+      }
+      this.ctx.db.schematic_port.insert(schematicPort)
     }
   }
 
