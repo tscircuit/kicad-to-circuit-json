@@ -3,20 +3,13 @@
   "title": "Schematic text: schema validity",
   "kind": "anchor",
   "description": "Centered text must use a valid Circuit JSON anchor enum.",
-  "passing": false,
+  "passing": true,
   "expected": "anchor: \"center\"",
-  "actual": "anchor: \"center_center\"",
+  "actual": "anchor: \"center\"",
   "detail": "Schema diagnostic from schematic_text.safeParse; not a schematic rendering.",
   "values": {
-    "anchor": "center_center",
-    "schemaValid": false,
-    "issues": [
-      {
-        "path": [
-          "anchor"
-        ],
-        "code": "invalid_union"
-      }
-    ]
+    "anchor": "center",
+    "schemaValid": true,
+    "issues": []
   }
 }
