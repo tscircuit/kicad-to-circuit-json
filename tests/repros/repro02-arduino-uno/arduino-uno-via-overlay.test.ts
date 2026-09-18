@@ -3,6 +3,9 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import path from "node:path"
 import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import sharp from "sharp"
+import { parseKicadPcb } from "kicadts"
+import { applyToPoint } from "transformation-matrix"
+import { sanitizeCircuitJsonNetName } from "../../../lib/stages/pcb/CollectNetsStage"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 
 const POINT_KEY_PRECISION = 1e6
@@ -23,6 +26,7 @@ test("highlights Arduino Uno standalone pcb_vias not represented in trace routes
   converter.addFile("arduino-uno.kicad_pcb", kicadPcbContent)
   converter.runUntilFinished()
 
+  const sourcePcb = parseKicadPcb(kicadPcbContent)
   const circuitJson = converter.getOutput()
   const pcbTraces = circuitJson.filter(
     (element: any) => element.type === "pcb_trace",
@@ -50,6 +54,23 @@ test("highlights Arduino Uno standalone pcb_vias not represented in trace routes
   expect(unconnectedPcbVias).toHaveLength(33)
   expect(standalonePcbViasOnTraceRoute).toHaveLength(42)
 
+  const sourceNets = circuitJson.filter(
+    (element) => element.type === "source_net",
+  )
+  expect(sourcePcb.vias).toHaveLength(pcbVias.length)
+  for (const [index, sourceVia] of sourcePcb.vias.entries()) {
+    const via = pcbVias[index]!
+    const position = applyToPoint(converter.ctx!.k2cMatPcb!, sourceVia.at!)
+    expect(via.x).toBeCloseTo(position.x, 6)
+    expect(via.y).toBeCloseTo(position.y, 6)
+    const sourceNet = sourcePcb.nets.find(
+      (net) => net.id === sourceVia.net?.id,
+    )!
+    expect(
+      sourceNets.find((net) => net.source_net_id === via.source_net_id)?.name,
+    ).toBe(sanitizeCircuitJsonNetName(sourceNet.name, `Net_${sourceNet.id}`))
+  }
+
   const baseSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
     showCourtyards: true,
   })
@@ -63,6 +84,8 @@ test("highlights Arduino Uno standalone pcb_vias not represented in trace routes
     routeVias,
     unconnectedPcbVias,
     standalonePcbViasOnTraceRoute,
+    assignedViaCount: pcbVias.filter((via) => via.source_net_id).length,
+    sourceNetCount: sourceNets.length,
   })
 
   expectSvgSnapshot(overlaySvg, import.meta.path, "arduino-uno-via-overlay")
@@ -276,6 +299,8 @@ function addViaOverlayToSvg({
   routeVias,
   unconnectedPcbVias,
   standalonePcbViasOnTraceRoute,
+  assignedViaCount,
+  sourceNetCount,
 }: {
   svg: string
   transform: {
@@ -286,6 +311,8 @@ function addViaOverlayToSvg({
   routeVias: Array<{ x: number; y: number }>
   unconnectedPcbVias: Array<{ x: number; y: number }>
   standalonePcbViasOnTraceRoute: Array<{ x: number; y: number }>
+  assignedViaCount: number
+  sourceNetCount: number
 }) {
   const toScreen = (point: { x: number; y: number }) => ({
     x: transform.translateX + point.x * transform.scale,
@@ -321,10 +348,12 @@ function addViaOverlayToSvg({
     .join("")
 
   const overlay = `<g id="via-route-overlay" data-route-via-count="${routeVias.length}" data-unconnected-standalone-pcb-via-count="${unconnectedPcbVias.length}" data-standalone-pcb-via-on-trace-route-count="${standalonePcbViasOnTraceRoute.length}">
-    <rect x="12" y="12" width="390" height="80" rx="4" fill="rgba(0,0,0,0.72)" stroke="#ffffff" stroke-width="1"/>
+    <rect x="12" y="12" width="540" height="124" rx="4" fill="rgba(0,0,0,0.72)" stroke="#ffffff" stroke-width="1"/>
     <text x="24" y="34" fill="#00ff66" font-family="Arial, sans-serif" font-size="14">green rings: vias embedded in pcb_trace.route (${routeVias.length})</text>
     <text x="24" y="56" fill="#ff5a76" font-family="Arial, sans-serif" font-size="14">red targets: standalone pcb_via not on any trace route point (${unconnectedPcbVias.length})</text>
     <text x="24" y="78" fill="#ffcf57" font-family="Arial, sans-serif" font-size="14">orange x: standalone pcb_via touching a trace point (${standalonePcbViasOnTraceRoute.length})</text>
+    <text x="24" y="100" fill="#00ff66" font-family="Arial, sans-serif" font-size="14">Fixed import: ${assignedViaCount}/${unconnectedPcbVias.length + standalonePcbViasOnTraceRoute.length} vias retain their source net</text>
+    <text x="24" y="122" fill="white" font-family="Arial, sans-serif" font-size="14">${sourceNetCount} source net definitions</text>
     ${routeViaMarkers}
     ${unconnectedViaMarkers}
     ${standaloneOnTraceMarkers}
