@@ -11,6 +11,7 @@
     "dist"
   ],
   "scripts": {
+    "prepare": "bun run build",
     "build": "bun run build:lib",
     "build:lib": "tsup-node lib/index.ts --format esm --dts",
     "build:site": "vite build --config vite.config.ts",
@@ -38,16 +39,17 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "bun-match-svg": "^0.0.14",
+    "circuit-json": "^0.0.480",
     "circuit-json-to-connectivity-map": "^0.0.25",
     "circuit-to-canvas": "^0.0.126",
     "kicadts": "^0.0.58",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
+    "schematic-symbols": "^0.0.231",
     "tscircuit": "^0.0.2040",
     "tsup": "^8.5.0",
     "vercel": "^50.42.0",
-    "vite": "^8.0.8",
-    "schematic-symbols": "^0.0.231"
+    "vite": "^8.0.8"
   },
   "peerDependencies": {
     "typescript": "^5"

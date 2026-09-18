@@ -1,6 +1,7 @@
 import type { PcbVia } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import { getKicadNetKey } from "./net-utils"
 import {
   getCopperSpanLayerRefsFromLayers,
   getPcbCopperLayerRefs,
@@ -45,12 +46,17 @@ export class CollectViasStage extends ConverterStage {
         ? mappedLayers
         : getPcbCopperLayerRefs(this.ctx.kicadPcb)
 
+    const netKey = getKicadNetKey(via)
     const pcbVia: Omit<PcbVia, "type" | "pcb_via_id"> = {
       x: pos.x,
       y: pos.y,
       outer_diameter: size,
       hole_diameter: drill,
       layers,
+      source_net_id:
+        netKey !== null && netKey !== 0
+          ? this.ctx.netNumToSourceNetId?.get(netKey)
+          : undefined,
     }
 
     // Route vias inside pcb_trace describe layer transitions, but renderers such
