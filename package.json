@@ -11,7 +11,6 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "bun run scripts/prepare-git-dependency.ts",
     "build": "bun run build:lib",
     "build:lib": "tsup-node lib/index.ts --format esm --dts",
     "build:site": "vite build --config vite.config.ts",
