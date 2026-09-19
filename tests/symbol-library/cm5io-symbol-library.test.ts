@@ -218,6 +218,7 @@ test("kicad-to-circuit-json: CM5IO symbol library emits source components and po
   expect(
     typeCPorts.find((port) => port.pin_number === 1 && port.name === "EP"),
   ).toBeDefined()
+  expect(getComponent("MK-11C04-G013")?.ftype).toBe("simple_switch")
 
   const getElementCount = (type: string) =>
     circuitJson.filter((element) => element.type === type).length
