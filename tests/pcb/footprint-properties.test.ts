@@ -2,7 +2,7 @@ import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../lib"
 
-test("kicad-to-circuit-json preserves JLCPCB footprint properties", () => {
+test("kicad-to-circuit-json preserves metadata from a real board", () => {
   const kicadPcbContent = readFileSync(
     "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb",
     "utf-8",
@@ -32,4 +32,26 @@ test("kicad-to-circuit-json preserves JLCPCB footprint properties", () => {
     (component) => component.source_component_id === u1.source_component_id,
   )
   expect(u1PcbComponent?.metadata?.kicad_footprint).toBeUndefined()
-})
+
+  const bt3 = sourceComponents.find((component) => component.name === "BT3")
+  const bt3PcbComponent = pcbComponents.find(
+    (component) => component.source_component_id === bt3.source_component_id,
+  )
+  expect(bt3PcbComponent?.metadata?.kicad_footprint?.attributes).toEqual({
+    exclude_from_pos_files: true,
+    exclude_from_bom: true,
+  })
+
+  expect(
+    pcbComponents.filter(
+      (component) =>
+        component.metadata?.kicad_footprint?.attributes?.exclude_from_bom,
+    ),
+  ).toHaveLength(14)
+  expect(
+    pcbComponents.filter(
+      (component) =>
+        component.metadata?.kicad_footprint?.attributes?.exclude_from_pos_files,
+    ),
+  ).toHaveLength(14)
+}, 10_000)
