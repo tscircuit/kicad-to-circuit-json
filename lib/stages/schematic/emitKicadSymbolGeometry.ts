@@ -120,6 +120,50 @@ export const emitKicadSymbolGeometry = ({
   const transformPoint = (point: Point): Point =>
     trackPoint(applyToPoint(transform, point))
 
+  const polylines = symbolParts.flatMap((symbolPart) => symbolPart.polylines)
+  const rectangles = symbolParts.flatMap((symbolPart) => symbolPart.rectangles)
+  const circles = symbolParts.flatMap((symbolPart) => symbolPart.circles)
+
+  // KiCad's `background` fill is a visual layer rather than ordinary drawing
+  // order. Emit those primitives first so they cannot cover symbol details
+  // such as the USB pictogram's polylines or pin graphics.
+  for (const polyline of polylines.filter(
+    (polyline) => polyline.fill?.type === "background",
+  )) {
+    emitPolyline({
+      ctx,
+      schematicComponentId,
+      polyline,
+      transformPoint,
+      scaleFactor,
+    })
+  }
+
+  for (const rectangle of rectangles.filter(
+    (rectangle) => getShapeFillType(rectangle) === "background",
+  )) {
+    emitRectangle({
+      ctx,
+      schematicComponentId,
+      rectangle,
+      transformPoint,
+      scaleFactor,
+    })
+  }
+
+  for (const circle of circles.filter(
+    (circle) => getShapeFillType(circle) === "background",
+  )) {
+    emitCircle({
+      ctx,
+      schematicComponentId,
+      circle,
+      transform,
+      transformPoint,
+      scaleFactor,
+    })
+  }
+
   for (const pin of symbolParts.flatMap((symbolPart) => symbolPart.pins)) {
     if (!pin.at) continue
     const pinStart = transformPoint(pin.at)
@@ -143,8 +187,8 @@ export const emitKicadSymbolGeometry = ({
     })
   }
 
-  for (const polyline of symbolParts.flatMap(
-    (symbolPart) => symbolPart.polylines,
+  for (const polyline of polylines.filter(
+    (polyline) => polyline.fill?.type !== "background",
   )) {
     emitPolyline({
       ctx,
@@ -155,8 +199,8 @@ export const emitKicadSymbolGeometry = ({
     })
   }
 
-  for (const rectangle of symbolParts.flatMap(
-    (symbolPart) => symbolPart.rectangles,
+  for (const rectangle of rectangles.filter(
+    (rectangle) => getShapeFillType(rectangle) !== "background",
   )) {
     emitRectangle({
       ctx,
@@ -167,8 +211,8 @@ export const emitKicadSymbolGeometry = ({
     })
   }
 
-  for (const circle of symbolParts.flatMap(
-    (symbolPart) => symbolPart.circles,
+  for (const circle of circles.filter(
+    (circle) => getShapeFillType(circle) !== "background",
   )) {
     emitCircle({
       ctx,

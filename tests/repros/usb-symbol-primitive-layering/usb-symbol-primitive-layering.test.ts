@@ -51,6 +51,34 @@ test("preserves the USB connector symbol arcs", async () => {
   )
   expect(usbArcs).toHaveLength(6)
 
+  const usbGraphicEntries = circuitJson.flatMap((element, index) =>
+    "schematic_component_id" in element &&
+    element.schematic_component_id ===
+      usbSchematicComponent.schematic_component_id &&
+    [
+      "schematic_line",
+      "schematic_path",
+      "schematic_circle",
+      "schematic_arc",
+    ].includes(element.type)
+      ? [{ element, index }]
+      : [],
+  )
+  const backgroundEntries = usbGraphicEntries.filter(
+    ({ element }) =>
+      "fill_color" in element && element.fill_color === "rgb(255, 255, 194)",
+  )
+  const foregroundEntries = usbGraphicEntries.filter(
+    ({ element }) =>
+      !("fill_color" in element) || element.fill_color !== "rgb(255, 255, 194)",
+  )
+
+  expect(backgroundEntries.length).toBeGreaterThan(0)
+  expect(foregroundEntries.length).toBeGreaterThan(0)
+  expect(Math.max(...backgroundEntries.map(({ index }) => index))).toBeLessThan(
+    Math.min(...foregroundEntries.map(({ index }) => index)),
+  )
+
   const fs = await import("node:fs/promises")
   const snapshotDirectory = new URL("./__snapshots__/", import.meta.url)
   await fs.mkdir(snapshotDirectory, { recursive: true })
