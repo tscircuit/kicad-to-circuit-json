@@ -7,7 +7,7 @@ import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadP
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 import "../../fixtures/png-matcher"
 
-test("preserves the USB connector symbol arcs", async () => {
+test("preserves and layers USB connector symbol graphics", async () => {
   const schematicPath = new URL(
     "../../assets/usb-symbol-primitive-layering.kicad_sch",
     import.meta.url,
@@ -50,6 +50,27 @@ test("preserves the USB connector symbol arcs", async () => {
         usbSchematicComponent.schematic_component_id,
   )
   expect(usbArcs).toHaveLength(6)
+
+  const usbGraphicTypes = new Set([
+    "schematic_line",
+    "schematic_path",
+    "schematic_circle",
+    "schematic_arc",
+  ])
+  const usbGraphics = circuitJson.filter(
+    (element) =>
+      "schematic_component_id" in element &&
+      element.schematic_component_id ===
+        usbSchematicComponent.schematic_component_id &&
+      usbGraphicTypes.has(element.type),
+  )
+  expect(
+    usbGraphics.map((element) => ({
+      type: element.type,
+      ...("is_filled" in element ? { is_filled: element.is_filled } : {}),
+      ...("fill_color" in element ? { fill_color: element.fill_color } : {}),
+    })),
+  ).toMatchSnapshot()
 
   const fs = await import("node:fs/promises")
   const snapshotDirectory = new URL("./__snapshots__/", import.meta.url)
