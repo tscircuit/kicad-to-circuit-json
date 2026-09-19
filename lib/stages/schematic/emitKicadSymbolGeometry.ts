@@ -120,6 +120,63 @@ export const emitKicadSymbolGeometry = ({
   const transformPoint = (point: Point): Point =>
     trackPoint(applyToPoint(transform, point))
 
+  const polylines = symbolParts.flatMap((symbolPart) => symbolPart.polylines)
+  const rectangles = symbolParts.flatMap((symbolPart) => symbolPart.rectangles)
+  const circles = symbolParts.flatMap((symbolPart) => symbolPart.circles)
+  const arcs = symbolParts.flatMap((symbolPart) => symbolPart.arcs)
+  const emitFillableGeometry = (layer: "background" | "foreground") => {
+    const belongsToLayer = (fillType: string | undefined) =>
+      (fillType === "background") === (layer === "background")
+
+    for (const polyline of polylines) {
+      if (belongsToLayer(polyline.fill?.type)) {
+        emitPolyline({
+          ctx,
+          schematicComponentId,
+          polyline,
+          transformPoint,
+          scaleFactor,
+        })
+      }
+    }
+    for (const rectangle of rectangles) {
+      if (belongsToLayer(getShapeFillType(rectangle))) {
+        emitRectangle({
+          ctx,
+          schematicComponentId,
+          rectangle,
+          transformPoint,
+          scaleFactor,
+        })
+      }
+    }
+    for (const circle of circles) {
+      if (belongsToLayer(getShapeFillType(circle))) {
+        emitCircle({
+          ctx,
+          schematicComponentId,
+          circle,
+          transform,
+          transformPoint,
+          scaleFactor,
+        })
+      }
+    }
+    for (const arc of arcs) {
+      if (belongsToLayer(getShapeFillType(arc))) {
+        emitArc({
+          ctx,
+          schematicComponentId,
+          arc,
+          transformPoint,
+          scaleFactor,
+        })
+      }
+    }
+  }
+
+  emitFillableGeometry("background")
+
   for (const pin of symbolParts.flatMap((symbolPart) => symbolPart.pins)) {
     if (!pin.at) continue
     const pinStart = transformPoint(pin.at)
@@ -143,52 +200,7 @@ export const emitKicadSymbolGeometry = ({
     })
   }
 
-  for (const polyline of symbolParts.flatMap(
-    (symbolPart) => symbolPart.polylines,
-  )) {
-    emitPolyline({
-      ctx,
-      schematicComponentId,
-      polyline,
-      transformPoint,
-      scaleFactor,
-    })
-  }
-
-  for (const rectangle of symbolParts.flatMap(
-    (symbolPart) => symbolPart.rectangles,
-  )) {
-    emitRectangle({
-      ctx,
-      schematicComponentId,
-      rectangle,
-      transformPoint,
-      scaleFactor,
-    })
-  }
-
-  for (const circle of symbolParts.flatMap(
-    (symbolPart) => symbolPart.circles,
-  )) {
-    emitCircle({
-      ctx,
-      schematicComponentId,
-      circle,
-      transform,
-      transformPoint,
-      scaleFactor,
-    })
-  }
-
-  for (const arc of symbolParts.flatMap((symbolPart) => symbolPart.arcs)) {
-    emitArc({
-      ctx,
-      schematicComponentId,
-      arc,
-      transformPoint,
-      scaleFactor,
-    })
-  }
+  emitFillableGeometry("foreground")
 
   for (const text of symbolParts.flatMap((symbolPart) => symbolPart.texts)) {
     emitSymbolText({ ctx, text, transform, scaleFactor })
@@ -240,19 +252,14 @@ const emitPolyline = (params: {
     return
   }
 
-  for (let index = 1; index < points.length; index++) {
-    const start = points[index - 1]
-    const end = points[index]
-    if (!start || !end) continue
-    insertLine(
-      ctx,
-      schematicComponentId,
-      start,
-      end,
-      toStrokeWidth(polyline.stroke?.width, scaleFactor),
-      polyline.stroke?.type === "dash",
-    )
-  }
+  insertPath(
+    ctx,
+    schematicComponentId,
+    points,
+    toStrokeWidth(polyline.stroke?.width, scaleFactor),
+    polyline.stroke?.type === "dash",
+    false,
+  )
 }
 
 const emitRectangle = (params: {
@@ -365,6 +372,24 @@ const emitArc = (params: {
       false,
     )
     return
+  }
+
+  const fillType = getShapeFillType(arc)
+  if (fillType !== undefined && fillType !== "none") {
+    // Circuit JSON arcs do not carry fill data, so emit the filled segment as
+    // a closed path and retain the arc element for its curved stroke.
+    const filledArcPoints = getFilledArcPathPoints(geometry, transformedMid)
+    filledArcPoints[0] = transformedStart
+    filledArcPoints[filledArcPoints.length - 1] = transformedEnd
+    insertPath(
+      ctx,
+      schematicComponentId,
+      filledArcPoints,
+      toStrokeWidth(getShapeStroke(arc)?.width, scaleFactor),
+      getShapeStroke(arc)?.type === "dash",
+      true,
+      fillType === "background" ? SYMBOL_FILL_COLOR : SYMBOL_STROKE_COLOR,
+    )
   }
 
   const arcData: Omit<SchematicArc, "type" | "schematic_arc_id"> = {
@@ -620,6 +645,36 @@ const getArcAngleDegrees = (point: Point, center: Point): number => {
     y: point.y - center.y,
   })
   return (Math.atan2(y, x) * 180) / Math.PI
+}
+
+const getFilledArcPathPoints = (
+  geometry: NonNullable<ReturnType<typeof getArcGeometry>>,
+  mid: Point,
+): Point[] => {
+  const {
+    center,
+    radius,
+    start_angle_degrees: startAngle,
+    end_angle_degrees: endAngle,
+  } = geometry
+  const positiveModulo = (value: number) => ((value % 360) + 360) % 360
+  const midAngle = getArcAngleDegrees(mid, center)
+  const counterclockwiseSweep = positiveModulo(endAngle - startAngle)
+  const counterclockwiseSweepToMid = positiveModulo(midAngle - startAngle)
+  const sweep =
+    counterclockwiseSweepToMid <= counterclockwiseSweep + 1e-9
+      ? counterclockwiseSweep
+      : -positiveModulo(startAngle - endAngle)
+  const segmentCount = Math.max(2, Math.ceil(Math.abs(sweep) / 10))
+
+  return Array.from({ length: segmentCount + 1 }, (_, index) => {
+    const angleDegrees = startAngle + (sweep * index) / segmentCount
+    const angleRadians = (angleDegrees * Math.PI) / 180
+    return {
+      x: center.x + radius * Math.cos(angleRadians),
+      y: center.y - radius * Math.sin(angleRadians),
+    }
+  })
 }
 
 const normalizeReadableRotation = (rotation: number): number => {

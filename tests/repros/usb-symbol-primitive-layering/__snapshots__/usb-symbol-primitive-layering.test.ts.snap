@@ -1,0 +1,172 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`preserves and layers USB connector symbol graphics 1`] = `
+[
+  {
+    "fill_color": "rgb(255, 255, 194)",
+    "is_filled": true,
+    "type": "schematic_path",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "type": "schematic_line",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": "rgb(132, 0, 0)",
+    "is_filled": true,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": undefined,
+    "is_filled": false,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": "rgb(132, 0, 0)",
+    "is_filled": true,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": "rgb(132, 0, 0)",
+    "is_filled": true,
+    "type": "schematic_path",
+  },
+  {
+    "fill_color": "rgb(132, 0, 0)",
+    "is_filled": true,
+    "type": "schematic_circle",
+  },
+  {
+    "fill_color": "rgb(132, 0, 0)",
+    "is_filled": true,
+    "type": "schematic_circle",
+  },
+  {
+    "type": "schematic_arc",
+  },
+  {
+    "type": "schematic_arc",
+  },
+  {
+    "fill_color": "rgb(132, 0, 0)",
+    "is_filled": true,
+    "type": "schematic_path",
+  },
+  {
+    "type": "schematic_arc",
+  },
+  {
+    "type": "schematic_arc",
+  },
+  {
+    "fill_color": "rgb(132, 0, 0)",
+    "is_filled": true,
+    "type": "schematic_path",
+  },
+  {
+    "type": "schematic_arc",
+  },
+  {
+    "type": "schematic_arc",
+  },
+]
+`;
