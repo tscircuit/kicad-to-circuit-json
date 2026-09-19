@@ -16,7 +16,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_0"
+    "source_component_id": "source_component_0",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -126,7 +134,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_1"
+    "source_component_id": "source_component_1",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -236,7 +252,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_2"
+    "source_component_id": "source_component_2",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -346,7 +370,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_3"
+    "source_component_id": "source_component_3",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -581,7 +613,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_4"
+    "source_component_id": "source_component_4",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -2075,7 +2115,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_6"
+    "source_component_id": "source_component_6",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -2185,7 +2233,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_7"
+    "source_component_id": "source_component_7",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -3679,7 +3735,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_9"
+    "source_component_id": "source_component_9",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -3789,7 +3853,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_10"
+    "source_component_id": "source_component_10",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -3899,7 +3971,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_11"
+    "source_component_id": "source_component_11",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -4416,7 +4496,15 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_13"
+    "source_component_id": "source_component_13",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -39415,7 +39503,15 @@
     "rotation": -90,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_115"
+    "source_component_id": "source_component_115",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -50632,7 +50728,15 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_148"
+    "source_component_id": "source_component_148",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -58322,7 +58426,15 @@
     "rotation": -180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_165"
+    "source_component_id": "source_component_165",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",

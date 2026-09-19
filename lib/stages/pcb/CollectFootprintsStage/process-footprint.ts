@@ -1,3 +1,4 @@
+import type { PcbComponentMetadata } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext, FootprintPlacement } from "../../../types"
@@ -84,6 +85,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const sourceComponent = ctx.db.source_component.insert(sourceComponentData)
 
   const sourceComponentId = sourceComponent.source_component_id
+  const footprintMetadata = getFootprintMetadata(footprint)
 
   // Create pcb_component linked to source_component
   const inserted = ctx.db.pcb_component.insert({
@@ -93,6 +95,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
     width: 0, // Will be computed from pads if needed
     height: 0,
     source_component_id: sourceComponentId,
+    ...(footprintMetadata ? { metadata: footprintMetadata } : {}),
   } as any)
 
   const componentId = inserted.pcb_component_id
@@ -134,6 +137,24 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   // Update stats
   if (ctx.stats) {
     ctx.stats.components = (ctx.stats.components || 0) + 1
+  }
+}
+
+function getFootprintMetadata(
+  footprint: Footprint,
+): PcbComponentMetadata | undefined {
+  const attr = footprint.attr
+  if (!attr) return undefined
+
+  if (!attr.excludeFromPosFiles && !attr.excludeFromBom) return undefined
+
+  return {
+    kicad_footprint: {
+      attributes: {
+        ...(attr.excludeFromPosFiles ? { exclude_from_pos_files: true } : {}),
+        ...(attr.excludeFromBom ? { exclude_from_bom: true } : {}),
+      },
+    },
   }
 }
 
