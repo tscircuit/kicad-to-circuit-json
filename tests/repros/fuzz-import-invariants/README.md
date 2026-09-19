@@ -2,7 +2,7 @@
 
 These images use **KiCad CLI SVG output on the left** and **`circuit-to-svg` rendering of the imported Circuit JSON on the right**. There is no hand-drawn replacement for circuit geometry. Engine-name headers and assertion captions are added outside the actual render panels. Every visual defect has a matching comparison SVG; a coverage test enforces SVG-only snapshots. The text-only schematic has an anchor assertion and no image snapshot.
 
-This baseline records the importer before the fixes. The second stacked PR uses identical fixtures and KiCad reference images, updates the actual Circuit JSON renders, and asserts the corrected invariants.
+This fix layer uses identical fixtures and KiCad reference images from the baseline PR, updates the actual Circuit JSON renders, and asserts the corrected invariants.
 
 ## Rounded-pad radius
 
@@ -67,4 +67,4 @@ Only paired comparison SVGs live in `__snapshots__/real-renders`. Circuit JSON, 
 
 Tests compare the complete paired SVG with its snapshot, assert imported JSON against `assets/`, and check fixture/renderer provenance. KiCad references are regenerated explicitly, because different KiCad versions can change plot serialization. The SVGs are real-render previews, not a cross-platform pixel-equivalence oracle.
 
-The five ID/reference/schema/geometry evidence JSON files remain characterization tests in this first stack layer. IDs and missing logical references are not reliably visible in a PCB render; their tests retain data assertions alongside real render comparisons, with explicit captions for nonvisual failures.
+The five ID/reference/schema/geometry evidence JSON files assert the corrected invariants in this fix layer. IDs and missing logical references are not reliably visible in a PCB render; their tests retain data assertions alongside real render comparisons, with explicit captions for nonvisual failures.

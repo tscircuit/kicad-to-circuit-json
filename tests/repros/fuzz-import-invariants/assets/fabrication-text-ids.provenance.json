@@ -1,7 +1,7 @@
 {
   "inputSha256": "03abcf13b0e8183823923d6a7216f1d1ba063ef135f497fe4ffacef103576f43",
   "kicadSvgSha256": "9fdb68a73b07371e0238c81966947fe1f474bc281fbefba300a7d44e36eda5b8",
-  "circuitSvgSha256": "df1b95084db0a06a309452aefe18ec1dda541d5cecca486f5a937ba414490f01",
+  "circuitSvgSha256": "9aecff5a2428df418c0098522a51ce5c4488b7d511c2807cde8fb17c93b27176",
   "kicadVersion": "10.0.6",
   "circuitToSvgVersion": "0.0.370"
 }

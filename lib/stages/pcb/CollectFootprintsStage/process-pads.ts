@@ -563,9 +563,9 @@ export function createSmdPad({
     const roundrectRatio = pad.roundrectRatio
     let cornerRadius: number | undefined
     if (shape === "roundrect" && roundrectRatio !== undefined) {
-      // KiCad's roundrect_rratio is the ratio of the corner radius to half the smaller dimension
+      // KiCad's roundrect_rratio is the corner radius divided by the smaller dimension
       const minDimension = Math.min(size.x, size.y)
-      cornerRadius = (minDimension * roundrectRatio) / 2
+      cornerRadius = minDimension * roundrectRatio
     }
 
     const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
