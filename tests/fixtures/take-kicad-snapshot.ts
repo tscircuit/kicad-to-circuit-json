@@ -23,6 +23,7 @@ export const takeKicadSnapshot = async (params: {
   kicadFileContent?: string
   kicadFileType: "sch" | "pcb"
   generatePng?: boolean
+  excludeDrawingSheet?: boolean
   pcbSnapshotBounds?: "board" | "circuit-json"
 }): Promise<KicadOutput> => {
   const {
@@ -30,6 +31,7 @@ export const takeKicadSnapshot = async (params: {
     kicadFileContent,
     kicadFileType,
     generatePng = true,
+    excludeDrawingSheet = false,
     pcbSnapshotBounds = "board",
   } = params
 
@@ -64,11 +66,14 @@ export const takeKicadSnapshot = async (params: {
     // Create output directory
     const outputDir = join(tempDir, "output")
     const pcbPageSizeMode = pcbSnapshotBounds === "circuit-json" ? 1 : 2
+    const schematicDrawingSheetArgs = excludeDrawingSheet
+      ? ["--exclude-drawing-sheet", "--no-background-color"]
+      : []
 
     // Export to SVG
     const exportCmd =
       kicadFileType === "sch"
-        ? $`kicad-cli sch export svg ${inputFilePath} -o ${outputDir} --theme Modern`
+        ? $`kicad-cli sch export svg ${inputFilePath} -o ${outputDir} --theme Modern ${schematicDrawingSheetArgs}`
         : $`kicad-cli pcb export svg ${inputFilePath} -o ${join(outputDir, "temp_file.svg")} --layers B.Cu,F.Cu,F.SilkS,B.SilkS,Edge.Cuts --mode-single --page-size-mode ${pcbPageSizeMode} --exclude-drawing-sheet`
 
     const exportResult = await exportCmd

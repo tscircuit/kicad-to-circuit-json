@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="tscircuit-schematic" width="700" height="400" style="background-color: rgb(245, 241, 237)" data-real-to-screen-transform="matrix(333.3333333333,0,0,-333.3333333333,1870.2777777778,621.3333333333)"><style>
+              .boundary { fill: rgb(245, 241, 237); }
+              .schematic-boundary { fill: none; stroke: #fff; }
+              .component { fill: none; stroke: rgb(132, 0, 0); }
+              .chip { fill: rgb(255, 255, 194); stroke: rgb(132, 0, 0); }
+              .component-pin { fill: none; stroke: rgb(132, 0, 0); }
+              /* Basic per-trace hover fallback */
+              .trace:hover {
+                filter: invert(1);
+              }
+              .trace:hover .trace-crossing-outline {
+                opacity: 0;
+              }
+              .trace:hover .trace-junction {
+                filter: invert(1);
+              }
+              /* Net-hover highlighting: when a trace or its overlays are hovered,
+                 invert color for all traces (base + overlays) sharing the same
+                 subcircuit connectivity key. Also hide crossing outline during hover. */
+              svg:has(:is(g.trace[data-subcircuit-connectivity-map-key="undefined"], g.trace-overlays[data-subcircuit-connectivity-map-key="undefined"]):hover) :is(g.trace[data-subcircuit-connectivity-map-key="undefined"], g.trace-overlays[data-subcircuit-connectivity-map-key="undefined"]) { filter: invert(1); }
+svg:has(:is(g.trace[data-subcircuit-connectivity-map-key="undefined"], g.trace-overlays[data-subcircuit-connectivity-map-key="undefined"]):hover) g.trace-overlays[data-subcircuit-connectivity-map-key="undefined"] .trace-crossing-outline { opacity: 0; }
+              .text { font-family: Arial, sans-serif; fill: rgb(0, 150, 0); }
+              .pin-number { fill: rgb(169, 0, 0); }
+              .port-label { fill: rgb(0, 100, 100); }
+              .component-name { fill: rgb(0, 100, 100); }
+
+            </style><rect class="boundary" x="0" y="0" width="700" height="400"/><g class="trace sch-trace" data-layer="base" data-circuit-json-type="schematic_trace" data-schematic-trace-id="schematic_trace_0"><path d="M 383.61111111128207 200.00000000000836 L 411.8333333335013 200.00000000000836" class="trace-invisible-hover-outline sch-trace-hitbox" stroke="rgb(0, 150, 0)" fill="none" stroke-width="53.333333333328px" stroke-linecap="round" opacity="0" stroke-linejoin="round"/><path class="sch-trace-path" d="M 383.61111111128207 200.00000000000836 L 411.8333333335013 200.00000000000836" stroke="rgb(0, 150, 0)" fill="none" stroke-width="6.666666666666px" stroke-linecap="round" stroke-linejoin="round"/></g><g class="trace-overlays sch-trace-overlays" data-layer="overlay" data-circuit-json-type="schematic_trace" data-schematic-trace-id="schematic_trace_0"/><g class="sch-component" data-circuit-json-type="schematic_component" data-schematic-component-id="schematic_component_0"><path class="sch-path" d="M 383.61111111128207 200.00000000000836 L 411.8333333335013 200.00000000000836 L 411.8333333335013 228.22222222222774 L 440.05555555572096 200.00000000000836 L 411.83333333350174 171.77777777778897 L 411.8333333335013 200.00000000000836" stroke="rgb(132, 0, 0)" stroke-width="6.666666666666" fill="none" stroke-linecap="round" stroke-linejoin="round" data-schematic-component-id="schematic_component_0"/></g><g class="schematic-port-hover sch-port-hover" data-schematic-port-id="source_port_0"><circle cx="383.61111111128207" cy="200.00000000000836" r="13.333333333332" fill="red" opacity="0"/></g><text class="sch-text" x="298.94444444462374" y="200.00000000000836" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="28.2222222222194px" transform="rotate(0, 298.94444444462374, 200.00000000000836)">GND</text></svg>
