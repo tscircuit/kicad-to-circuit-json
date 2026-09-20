@@ -8,7 +8,10 @@ import { stackCircuitJsonKicadPngs } from "../../fixtures/stackCircuitJsonKicadP
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 import "../../fixtures/png-matcher"
 
-const renderFocusedPreview = async (svg: Buffer | string): Promise<Buffer> => {
+const previewWidth = 1200
+const previewHeight = 800
+
+const renderPreview = async (svg: Buffer | string): Promise<Buffer> => {
   const rendered = await sharp(
     typeof svg === "string" ? Buffer.from(svg) : svg,
     { density: 192 },
@@ -30,8 +33,8 @@ const renderFocusedPreview = async (svg: Buffer | string): Promise<Buffer> => {
       background: "#F5F4EF",
     })
     .resize({
-      width: 700,
-      height: 400,
+      width: previewWidth,
+      height: previewHeight,
       fit: "contain",
       background: "#F5F4EF",
     })
@@ -47,7 +50,7 @@ test("reproduces the rotated mirrored GND graphic direction mismatch", async () 
   const schematicContent = readFileSync(schematicPath, "utf8")
   const schematic = parseKicadSch(schematicContent)
   const gndInstance = schematic.symbols.find(
-    (symbol) => symbol.libraryId === "power:GND",
+    (symbol) => symbol.uuid === "00000000-0000-0000-0000-000068d50852",
   )
 
   expect(gndInstance).toBeDefined()
@@ -61,21 +64,15 @@ test("reproduces the rotated mirrored GND graphic direction mismatch", async () 
   converter.runUntilFinished()
 
   const circuitJson = converter.getOutput()
-  const gndSourceComponent = circuitJson.find(
-    (element) =>
-      element.type === "source_component" && element.name === "power:GND",
-  )
-  if (gndSourceComponent?.type !== "source_component") {
-    throw new Error("Expected the GND source component")
-  }
-
   const gndSchematicComponent = circuitJson.find(
     (element) =>
       element.type === "schematic_component" &&
-      element.source_component_id === gndSourceComponent.source_component_id,
+      element.symbol_display_value === "GND" &&
+      Math.abs(element.center.x + 4.46) < 1e-9 &&
+      Math.abs(element.center.y - 1.264) < 1e-9,
   )
   if (gndSchematicComponent?.type !== "schematic_component") {
-    throw new Error("Expected the GND schematic component")
+    throw new Error("Expected the affected MIPI GND schematic component")
   }
 
   const gndPort = circuitJson.find(
@@ -113,8 +110,8 @@ test("reproduces the rotated mirrored GND graphic direction mismatch", async () 
 
   const { convertCircuitJsonToSchematicSvg } = await import("circuit-to-svg")
   const circuitJsonSvg = convertCircuitJsonToSchematicSvg(circuitJson, {
-    width: 700,
-    height: 400,
+    width: previewWidth,
+    height: previewHeight,
   })
     .replaceAll("sans-serif", "Arial, sans-serif")
     .replace(/[ \t]+$/gm, "")
@@ -136,8 +133,8 @@ test("reproduces the rotated mirrored GND graphic direction mismatch", async () 
   if (!kicadSvg) throw new Error("Expected a KiCad schematic snapshot")
 
   const [circuitJsonPng, kicadPng] = await Promise.all([
-    renderFocusedPreview(circuitJsonSvg),
-    renderFocusedPreview(kicadSvg),
+    renderPreview(circuitJsonSvg),
+    renderPreview(kicadSvg),
   ])
   const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
 
