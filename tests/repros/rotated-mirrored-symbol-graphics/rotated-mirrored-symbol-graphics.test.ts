@@ -42,7 +42,7 @@ const renderPreview = async (svg: Buffer | string): Promise<Buffer> => {
     .toBuffer()
 }
 
-test("reproduces the rotated mirrored GND graphic direction mismatch", async () => {
+test("converts rotated mirrored GND graphics in KiCad transform order", async () => {
   const schematicPath = new URL(
     "../../assets/mipi-rotated-mirrored-gnd.kicad_sch",
     import.meta.url,
@@ -102,7 +102,10 @@ test("reproduces the rotated mirrored GND graphic direction mismatch", async () 
   expect({
     graphicDirection,
     portFacingDirection: gndPort.facing_direction,
-  }).toMatchSnapshot()
+  }).toEqual({
+    graphicDirection: "left",
+    portFacingDirection: "right",
+  })
 
   const snapshotDirectory = new URL("./__snapshots__/", import.meta.url)
   const fs = await import("node:fs/promises")

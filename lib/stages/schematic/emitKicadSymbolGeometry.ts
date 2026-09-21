@@ -91,8 +91,10 @@ export const createSymbolTransform = (
   return compose(
     translate(componentCenter.x, componentCenter.y),
     scale(scaleFactor),
-    rotateDEG(instance.at?.angle ?? 0),
+    // compose applies the rightmost matrix first. KiCad rotates symbol
+    // geometry before applying the instance mirror.
     scale(mirrorX, mirrorY),
+    rotateDEG(instance.at?.angle ?? 0),
   )
 }
 
