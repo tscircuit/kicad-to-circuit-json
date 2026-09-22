@@ -2,7 +2,7 @@ import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../lib"
 
-test("preserves JLCPCB properties and KiCad assembly exclusions", () => {
+test("preserves JLCPCB properties and KiCad footprint assembly exclusions", () => {
   const kicadPcbContent = readFileSync(
     "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb",
     "utf-8",
