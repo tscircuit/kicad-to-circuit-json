@@ -91,7 +91,8 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const inserted = ctx.db.pcb_component.insert({
     center: { x: cjPos.x, y: cjPos.y },
     layer: getComponentLayer(footprint),
-    rotation: -componentCcwRotationDegrees, // Negate rotation due to Y-axis flip in coordinate transform
+    // KiCad footprint angles are CCW, matching Circuit JSON despite the Y flip.
+    rotation: componentCcwRotationDegrees,
     width: 0, // Will be computed from pads if needed
     height: 0,
     source_component_id: sourceComponentId,
