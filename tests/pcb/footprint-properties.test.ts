@@ -2,7 +2,7 @@ import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../lib"
 
-test("kicad-to-circuit-json preserves metadata from a real board", () => {
+test("preserves JLCPCB properties and KiCad assembly exclusions", () => {
   const kicadPcbContent = readFileSync(
     "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb",
     "utf-8",
