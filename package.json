@@ -11,9 +11,8 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "bun run build",
     "build": "bun run build:lib",
-    "build:lib": "tsup-node lib/index.ts --format esm && tsc -p tsconfig.build.json",
+    "build:lib": "tsup-node lib/index.ts --format esm --dts",
     "build:site": "vite build --config vite.config.ts",
     "dev": "vite --config vite.config.ts",
     "format": "biome format --write .",
