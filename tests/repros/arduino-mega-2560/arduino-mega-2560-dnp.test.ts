@@ -89,7 +89,10 @@ test("repro4948: Arduino Mega 2560 preserves components but loses DNP status on 
     includeVersion: false,
   })
   const contents = (svg: string) =>
-    svg.replace(/^[\s\S]*?<svg\b[^>]*>/, "").replace(/<\/svg>\s*$/, "")
+    svg
+      .replace(/^[\s\S]*?<svg\b[^>]*>/, "")
+      .replace(/<\/svg>\s*$/, "")
+      .replace(/<title>[\s\S]*?<\/title>/, "")
   const markers = (original: boolean) =>
     targets
       .map(({ reference, footprint, component }) => {
