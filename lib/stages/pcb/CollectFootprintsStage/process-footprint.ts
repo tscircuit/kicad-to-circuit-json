@@ -95,6 +95,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
     width: 0, // Will be computed from pads if needed
     height: 0,
     source_component_id: sourceComponentId,
+    ...(footprint.attr?.dnp ? { do_not_place: true } : {}),
     ...(footprintMetadata ? { metadata: footprintMetadata } : {}),
   } as any)
 
