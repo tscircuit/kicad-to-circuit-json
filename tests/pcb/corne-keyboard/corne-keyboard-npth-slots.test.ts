@@ -13,7 +13,7 @@ function svgContents(svg: string): string {
     .replace(/<title>[\s\S]*?<\/title>/, "")
 }
 
-test("repro4948: Corne Keyboard preserves NPTH count but loses all 46 slots on import", async () => {
+test("repro4948: Corne Keyboard preserves all 46 NPTH slots on import", async () => {
   const filename = "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -42,7 +42,7 @@ test("repro4948: Corne Keyboard preserves NPTH count but loses all 46 slots on i
   expect(sourceHoles).toHaveLength(332)
   expect(sourceSlots).toHaveLength(46)
   expect(holes).toHaveLength(sourceHoles.length)
-  expect(importedSlots).toHaveLength(0)
+  expect(importedSlots).toHaveLength(sourceSlots.length)
   expect(circuitJson.filter((e) => e.type === "pcb_plated_hole")).toHaveLength(
     source.footprints.flatMap((f) =>
       f.fpPads.filter((pad) => pad.padType === "thru_hole"),
@@ -79,12 +79,21 @@ test("repro4948: Corne Keyboard preserves NPTH count but loses all 46 slots on i
       const dy = at.x * Math.sin(radians) - at.y * Math.cos(radians)
       expect(hole.x).toBeCloseTo(component.center.x + dx, 6)
       expect(hole.y).toBeCloseTo(component.center.y + dy, 6)
+      if (!pad.drill?.oval) {
+        expect(hole).toMatchObject({
+          type: "pcb_hole",
+          hole_shape: "circle",
+          hole_diameter: pad.drill!.diameter,
+        })
+        return []
+      }
       expect(hole).toMatchObject({
         type: "pcb_hole",
-        hole_shape: "circle",
-        hole_diameter: pad.drill!.diameter,
+        hole_shape: "rotated_pill",
+        hole_width: pad.drill.diameter,
+        hole_height: pad.drill.width,
+        ccw_rotation: pad.at!.angle,
       })
-      if (!pad.drill?.oval) return []
       return [{ reference, pad, hole, component, footprint }]
     })
   })
@@ -144,13 +153,13 @@ test("repro4948: Corne Keyboard preserves NPTH count but loses all 46 slots on i
 <g font-family="sans-serif" fill="white">
 <text x="24" y="38" font-size="26">Corne Keyboard — non-plated mounting slots</text>
 <text x="24" y="80" font-size="21">Original KiCad · full board</text>
-<text x="732" y="80" font-size="21">Current Circuit JSON import · full board</text>
+<text x="732" y="80" font-size="21">Fixed Circuit JSON import · full board</text>
 <text x="24" y="110" font-size="18" fill="#8fd6a7">${sourceHoles.length} footprint NPTH holes · ${sourceSlots.length} slots</text>
-<text x="732" y="110" font-size="18" fill="#ff9b9b">${holes.length} footprint NPTH holes · ${importedSlots.length} slots · ${sourceSlots.length - importedSlots.length} lost</text>
+<text x="732" y="110" font-size="18" fill="#8fd6a7">${holes.length} footprint NPTH holes · ${importedSlots.length} slots · ${sourceSlots.length - importedSlots.length} lost</text>
 <text x="24" y="477" font-size="21">SW1 slot close-up · original</text>
 <text x="732" y="477" font-size="21">SW1 slot close-up · imported</text>
 <text x="24" y="507" font-size="18" fill="#8fd6a7">${sample.pad.drill!.diameter} × ${sample.pad.drill!.width} mm slot · ${sample.pad.at!.angle}° CCW</text>
-<text x="732" y="507" font-size="18" fill="#ff9b9b">1.5 mm circle · slot shape and angle lost</text>
+<text x="732" y="507" font-size="18" fill="#8fd6a7">1.5 × 2 mm slot · 246.12° CCW preserved</text>
 <text x="24" y="882" font-size="16">Same physical area in both close-ups · hole centers and NPTH count remain unchanged</text>
 </g>
 ${panel("original", sourceView, 24, 128, 300)}

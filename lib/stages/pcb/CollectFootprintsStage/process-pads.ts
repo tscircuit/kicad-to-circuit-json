@@ -205,6 +205,7 @@ export function processPad({
       componentId,
       pos: globalPos,
       drill,
+      ccwRotationDegrees: padAt.angle ?? 0,
     })
   } else {
     // thru_hole (plated)
@@ -819,8 +820,23 @@ export function createNpthHole(params: {
   componentId: string
   pos: Point
   drill: FootprintPad["drill"]
+  ccwRotationDegrees: number
 }) {
-  const { ctx, componentId, pos, drill } = params
+  const { ctx, componentId, pos, drill, ccwRotationDegrees } = params
+  if (drill?.oval) {
+    ctx.db.insert({
+      type: "pcb_hole",
+      hole_shape: "rotated_pill",
+      pcb_component_id: componentId,
+      x: pos.x,
+      y: pos.y,
+      hole_width: drill.diameter,
+      hole_height: drill.width ?? drill.diameter,
+      // KiCad pad angles are already absolute board angles, including on B.Cu.
+      ccw_rotation: ccwRotationDegrees,
+    })
+    return
+  }
   const holeDiameter = drill?.diameter ?? 1
 
   const hole: PcbHoleCircle = {
