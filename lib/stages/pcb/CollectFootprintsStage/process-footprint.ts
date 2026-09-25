@@ -39,6 +39,20 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const hasReference = Boolean(refdes?.trim())
   const value = getFootprintValue(footprint)
   const jlcpcbPartNumbers = getJlcpcbPartNumbers(footprint)
+  const manufacturerPartNumber = findFootprintPropertyValue(
+    footprint,
+    "MPN",
+  )?.trim()
+  const manufacturer = findFootprintPropertyValue(
+    footprint,
+    "Manufacturer",
+  )?.trim()
+
+  if (manufacturer) {
+    ;(ctx.warnings ??= []).push(
+      `Footprint ${refdes || uuid}: Manufacturer ${JSON.stringify(manufacturer)} is not supported by Circuit JSON and was not imported.`,
+    )
+  }
 
   // Infer component type from reference prefix
   const ftype = inferComponentType(refdes, footprint)
@@ -47,6 +61,9 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const sourceComponentData: any = {
     name: refdes ?? "",
     ftype: ftype,
+    ...(manufacturerPartNumber
+      ? { manufacturer_part_number: manufacturerPartNumber }
+      : {}),
   }
 
   // For simple transistors, we must provide a transistor_type

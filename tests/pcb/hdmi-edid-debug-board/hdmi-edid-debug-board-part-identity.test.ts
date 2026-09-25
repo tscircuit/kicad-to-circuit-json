@@ -16,7 +16,7 @@ const svgContents = (svg: string) =>
 const escapeXml = (value: string) =>
   value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 
-test("repro4948: HDMI EDID board preserves components but loses manufacturer and MPN on import", async () => {
+test("repro4948: HDMI EDID board preserves MPNs and reports unsupported manufacturers on import", async () => {
   const filename = "tests/assets/hdmi-edid-debug-board.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -56,7 +56,7 @@ test("repro4948: HDMI EDID board preserves components but loses manufacturer and
   for (const part of parts) {
     const component = components.find((item) => item.name === part.reference)
     if (!component) throw new Error(`Missing component ${part.reference}`)
-    expect(component.manufacturer_part_number).toBeUndefined()
+    expect(component.manufacturer_part_number).toBe(part.mpn)
     expect(
       source_component_base.parse(component).manufacturer_part_number,
     ).toBe(component.manufacturer_part_number)
@@ -64,11 +64,16 @@ test("repro4948: HDMI EDID board preserves components but loses manufacturer and
   const importedMpns = components.filter(
     (item) => item.manufacturer_part_number,
   )
-  expect(importedMpns).toHaveLength(0)
+  expect(importedMpns).toHaveLength(identifiedParts.length)
   const manufacturerWarnings = converter
     .getWarnings()
     .filter((message) => message.includes("Manufacturer"))
-  expect(manufacturerWarnings).toEqual([])
+  expect(manufacturerWarnings).toEqual(
+    manufacturers.map(
+      (part) =>
+        `Footprint ${part.reference}: Manufacturer ${JSON.stringify(part.manufacturer)} is not supported by Circuit JSON and was not imported.`,
+    ),
+  )
 
   const samples = ["R11", "Q1", "J5"].map((reference) => {
     const part = parts.find((item) => item.reference === reference)!

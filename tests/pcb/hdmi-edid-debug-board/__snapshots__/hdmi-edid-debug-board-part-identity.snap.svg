@@ -5,22 +5,22 @@
 <text x="24" y="80" font-size="21">Original KiCad · full board</text>
 <text x="732" y="80" font-size="21">Current Circuit JSON import · full board</text>
 <text x="24" y="112" font-size="18" fill="#8fd6a7">110 components · 98 MPNs · 98 manufacturer names</text>
-<text x="732" y="112" font-size="18" fill="#ff8585">110 components · 0 MPNs preserved · 98 lost</text>
-<text x="732" y="142" font-size="17" fill="#ff8585">Manufacturer names not imported: 98 · warnings: 0</text>
+<text x="732" y="112" font-size="18" fill="#8fd6a7">110 components · 98 MPNs preserved · 0 lost</text>
+<text x="732" y="142" font-size="17" fill="#f9d56e">Manufacturer names not imported: 98 · warnings: 98</text>
 <g font-size="18" fill="#b8c7d3">
 <text x="40" y="740">Reference</text><text x="155" y="740">Original manufacturer / MPN</text>
 <text x="732" y="740">Imported MPN</text><text x="1060" y="740">Manufacturer name</text>
 </g>
 <g font-size="18"><text x="40" y="786">R11</text>
 <text x="155" y="786">Bourns / CR0402-FX-5101GLF</text>
-<text x="732" y="786" fill="#ff8585">MPN lost</text>
-<text x="1060" y="786" fill="#ff8585">Lost without warning</text><text x="40" y="830">Q1</text>
+<text x="732" y="786" fill="#8fd6a7">CR0402-FX-5101GLF</text>
+<text x="1060" y="786" fill="#f9d56e">Unsupported; warning emitted</text><text x="40" y="830">Q1</text>
 <text x="155" y="830">Diodes Incorporated / DMG1012T-7</text>
-<text x="732" y="830" fill="#ff8585">MPN lost</text>
-<text x="1060" y="830" fill="#ff8585">Lost without warning</text><text x="40" y="874">J5</text>
+<text x="732" y="830" fill="#8fd6a7">DMG1012T-7</text>
+<text x="1060" y="830" fill="#f9d56e">Unsupported; warning emitted</text><text x="40" y="874">J5</text>
 <text x="155" y="874">GCT / USB4105-GF-A</text>
-<text x="732" y="874" fill="#ff8585">MPN lost</text>
-<text x="1060" y="874" fill="#ff8585">Lost without warning</text></g>
+<text x="732" y="874" fill="#8fd6a7">USB4105-GF-A</text>
+<text x="1060" y="874" fill="#f9d56e">Unsupported; warning emitted</text></g>
 <text x="24" y="927" font-size="17" fill="#b8c7d3">Metadata is checked for all 110 components. Highlighted examples link the table to the full-board views.</text>
 </g>
 <rect x="24" y="162" width="684" height="545" fill="black" stroke="#425563"/>
