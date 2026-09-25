@@ -6,7 +6,7 @@ import { parseKicadPcb } from "kicadts"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 
-test("repro4948: Arduino Mega 2560 preserves components but loses DNP status on import", async () => {
+test("repro4948: Arduino Mega 2560 preserves components and DNP status on import", async () => {
   const filename = "tests/assets/Arduino Mega 2560.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -40,7 +40,7 @@ test("repro4948: Arduino Mega 2560 preserves components but loses DNP status on 
   expect(components).toHaveLength(66)
   expect(
     importedDnp.map((component) => names[component.source_component_id]).sort(),
-  ).toEqual([])
+  ).toEqual(["R1", "R2"])
 
   const smtPads = circuitJson.filter((element) => element.type === "pcb_smtpad")
   const targets = sourceDnp.map((footprint, index) => {
@@ -112,7 +112,7 @@ test("repro4948: Arduino Mega 2560 preserves components but loses DNP status on 
 <g font-family="sans-serif" fill="white">
 <text x="24" y="38" font-size="26">Arduino Mega 2560 — Do Not Populate (DNP)</text>
 <text x="24" y="80" font-size="21">Original KiCad · full board</text>
-<text x="732" y="80" font-size="21">Current Circuit JSON import · full board</text>
+<text x="732" y="80" font-size="21">Fixed Circuit JSON import · full board</text>
 <text x="24" y="110" font-size="18" fill="#8fd6a7">${source.footprints.length} components · ${sourceDnp.length} DNP · R1, R2</text>
 <text x="732" y="110" font-size="18" fill="${statusColor}">${components.length} components · ${importedDnp.length} DNP · ${lost} DNP flags lost</text>
 <text x="24" y="570" font-size="18">R1 and R2 stay in the design with all four copper pads.</text>
