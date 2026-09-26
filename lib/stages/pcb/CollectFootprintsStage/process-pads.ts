@@ -41,6 +41,7 @@ import {
 import { getSupportedPadType } from "./get-supported-pad-type"
 import { determineLayerFromLayers } from "./layer-utils"
 import { orderOverlappingFootprintPads } from "./order-overlapping-footprint-pads"
+import { getCircuitJsonHoleOffset } from "./pad-drill-offset"
 import { getNextPcbPlatedHoleId, getNextPcbSmtPadId } from "./pad-element-ids"
 import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
 import { rotatePoint } from "./process-graphics"
@@ -200,10 +201,17 @@ export function processPad({
       customPrimitiveKicadRotationDegrees,
     })
   } else if (padType === "np_thru_hole") {
+    const holeOffset = getCircuitJsonHoleOffset({
+      drill,
+      padAngleDegrees: padAt.angle,
+    })
     createNpthHole({
       ctx,
       componentId,
-      pos: globalPos,
+      pos: {
+        x: globalPos.x + holeOffset.hole_offset_x,
+        y: globalPos.y + holeOffset.hole_offset_y,
+      },
       drill,
       ccwRotationDegrees: padAt.angle ?? 0,
     })
@@ -676,23 +684,53 @@ export function createPlatedHole(params: {
 
   const outerWidth = size.x
   const outerHeight = size.y
+  const holeOffset = getCircuitJsonHoleOffset({
+    drill,
+    padAngleDegrees: pad.at?.angle,
+  })
+  const hasHoleOffset =
+    holeOffset.hole_offset_x !== 0 || holeOffset.hole_offset_y !== 0
 
   // Build plated hole object based on shape
   if (padShape === "circle") {
-    // Circular pad with circular hole
-    const platedHole: PcbPlatedHoleCircle = {
-      type: "pcb_plated_hole",
-      shape: "circle",
-      pcb_component_id: componentId,
-      pcb_port_id: pcbPortId,
-      x: pos.x,
-      y: pos.y,
-      port_hints: [pad.number?.toString()],
-      hole_diameter: holeDiameter,
-      outer_diameter: Math.max(outerWidth, outerHeight),
-      layers,
-    } as PcbPlatedHoleCircle
-    ctx.db.pcb_plated_hole.insert(platedHole)
+    if (hasHoleOffset) {
+      // Circle plated holes have no hole_offset fields; keep the copper at the
+      // pad center and represent the offset drill as circular_hole_with_rect_pad.
+      const platedHole: PcbHoleCircularWithRectPad = {
+        type: "pcb_plated_hole",
+        shape: "circular_hole_with_rect_pad",
+        pcb_component_id: componentId,
+        pcb_port_id: pcbPortId,
+        pcb_plated_hole_id: getNextPcbPlatedHoleId(ctx),
+        x: pos.x,
+        y: pos.y,
+        port_hints: [pad.number?.toString()],
+        hole_shape: "circle",
+        pad_shape: "rect",
+        hole_diameter: holeDiameter,
+        rect_pad_width: Math.max(outerWidth, outerHeight),
+        rect_pad_height: Math.max(outerWidth, outerHeight),
+        hole_offset_x: holeOffset.hole_offset_x,
+        hole_offset_y: holeOffset.hole_offset_y,
+        layers,
+      } as PcbHoleCircularWithRectPad
+      ctx.db.pcb_plated_hole.insert(platedHole)
+    } else {
+      // Circular pad with circular hole
+      const platedHole: PcbPlatedHoleCircle = {
+        type: "pcb_plated_hole",
+        shape: "circle",
+        pcb_component_id: componentId,
+        pcb_port_id: pcbPortId,
+        x: pos.x,
+        y: pos.y,
+        port_hints: [pad.number?.toString()],
+        hole_diameter: holeDiameter,
+        outer_diameter: Math.max(outerWidth, outerHeight),
+        layers,
+      } as PcbPlatedHoleCircle
+      ctx.db.pcb_plated_hole.insert(platedHole)
+    }
   } else if (padShape === "oval") {
     // Oval/pill-shaped pad with pill hole
     const platedHole: PcbPlatedHoleOval = {
@@ -734,8 +772,8 @@ export function createPlatedHole(params: {
           hole_height: drillX,
           rect_pad_width: outerWidth,
           rect_pad_height: outerHeight,
-          hole_offset_x: 0,
-          hole_offset_y: 0,
+          hole_offset_x: holeOffset.hole_offset_x,
+          hole_offset_y: holeOffset.hole_offset_y,
           layers,
         } as PcbHolePillWithRectPad
         if (padShape === "roundrect") {
@@ -763,8 +801,8 @@ export function createPlatedHole(params: {
           rect_ccw_rotation: normalizedCcwRotationDegrees,
           rect_pad_width: outerWidth,
           rect_pad_height: outerHeight,
-          hole_offset_x: 0,
-          hole_offset_y: 0,
+          hole_offset_x: holeOffset.hole_offset_x,
+          hole_offset_y: holeOffset.hole_offset_y,
           layers,
         } as PcbHoleRotatedPillWithRectPad
         if (padShape === "roundrect") {
@@ -792,8 +830,8 @@ export function createPlatedHole(params: {
         rect_ccw_rotation: pad.at?.angle || 0,
         rect_pad_width: outerWidth,
         rect_pad_height: outerHeight,
-        hole_offset_x: 0,
-        hole_offset_y: 0,
+        hole_offset_x: holeOffset.hole_offset_x,
+        hole_offset_y: holeOffset.hole_offset_y,
         layers,
       } as PcbHoleCircularWithRectPad
       if (padShape === "roundrect") {
