@@ -61,6 +61,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   const sourceComponentData: any = {
     name: refdes ?? "",
     ftype: ftype,
+    ...(value ? { display_value: value } : {}),
     ...(manufacturerPartNumber
       ? { manufacturer_part_number: manufacturerPartNumber }
       : {}),
