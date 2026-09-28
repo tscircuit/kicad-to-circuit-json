@@ -179,6 +179,10 @@ export class CollectSourceTracesStage extends ConverterStage {
       } as any)
     }
 
+    if (pad.pintype?.split("+").includes("no_connect")) {
+      this.ctx.db.source_port.update(sourcePortId, { do_not_connect: true })
+    }
+
     return sourcePortId
   }
 
