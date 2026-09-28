@@ -1,5 +1,6 @@
 import { test, expect } from "bun:test"
 import "bun-match-svg"
+import { applyToPoint, inverse } from "transformation-matrix"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
@@ -32,6 +33,7 @@ test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
     kicadFilePath: kicadPcbPath,
     kicadFileType: "pcb",
     generatePng: false,
+    pcbSnapshotBounds: "circuit-json",
   })
   const sourceSvg = Object.values(sourceSnapshot.generatedFileContent)[0]!
 
@@ -47,10 +49,18 @@ test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
 
   const width = Number(circuitJsonSvg.match(/\bwidth="([\d.]+)"/)![1])
   const height = Number(circuitJsonSvg.match(/\bheight="([\d.]+)"/)![1])
+  const board = circuitJson.find((item) => item.type === "pcb_board")
+  if (!board?.width || !board.height) throw new Error("Missing board bounds")
+  const center = applyToPoint(inverse(converter.ctx!.k2cMatPcb!), board.center)
+  // Frame the source from board dimensions rather than KiCad's auto-cropped page.
+  const sourceViewBox = `${center.x - board.width / 2 - 1} ${center.y - board.height / 2 - 1} ${board.width + 2} ${board.height + 2}`
   // Inline vectors avoid the XML reader's size limit on base64 image attributes.
-  const panel = (svg: string, x: number, comparison: string) => {
-    const viewBox =
-      svg.match(/\bviewBox="([^"]+)"/)?.[1] ?? `0 0 ${width} ${height}`
+  const panel = (
+    svg: string,
+    x: number,
+    comparison: string,
+    viewBox: string,
+  ) => {
     const contents = svg
       .replace(/^[\s\S]*?<svg\b[^>]*>/, "")
       .replace(/<\/svg>\s*$/, "")
@@ -59,8 +69,8 @@ test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
   }
   const sideBySideSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width * 2}" height="${height}" viewBox="0 0 ${width * 2} ${height}">
 <rect width="100%" height="100%" fill="#000"/>
-${panel(sourceSvg.toString("utf8"), 0, "source")}
-${panel(circuitJsonSvg, width, "converted")}
+${panel(sourceSvg.toString("utf8"), 0, "source", sourceViewBox)}
+${panel(circuitJsonSvg, width, "converted", `0 0 ${width} ${height}`)}
 </svg>`
   expect(sideBySideSvg).toContain('data-comparison="source"')
   expect(sideBySideSvg).toContain('data-comparison="converted"')
