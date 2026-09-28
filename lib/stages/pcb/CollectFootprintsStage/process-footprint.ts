@@ -54,6 +54,21 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
     )
   }
 
+  for (const [index, model] of footprint.models.entries()) {
+    if (index > 0) {
+      ;(ctx.warnings ??= []).push(
+        `Footprint ${refdes || uuid}: additional 3D model ${JSON.stringify(model.path)} was not imported; Circuit JSON footprint metadata supports one model per footprint.`,
+      )
+    } else if (
+      model.hide ||
+      (model.opacity !== undefined && model.opacity !== 1)
+    ) {
+      ;(ctx.warnings ??= []).push(
+        `Footprint ${refdes || uuid}: 3D model ${JSON.stringify(model.path)} has unsupported visibility or opacity settings; its path and transforms were imported without those settings.`,
+      )
+    }
+  }
+
   // Infer component type from reference prefix
   const ftype = inferComponentType(refdes, footprint)
 
@@ -163,16 +178,32 @@ function getFootprintMetadata(
   footprint: Footprint,
 ): PcbComponentMetadata | undefined {
   const attr = footprint.attr
-  if (!attr) return undefined
-
-  if (!attr.excludeFromPosFiles && !attr.excludeFromBom) return undefined
+  const model = footprint.models[0]
+  const hasAttributes = attr?.excludeFromPosFiles || attr?.excludeFromBom
+  if (!hasAttributes && !model) return undefined
 
   return {
     kicad_footprint: {
-      attributes: {
-        ...(attr.excludeFromPosFiles ? { exclude_from_pos_files: true } : {}),
-        ...(attr.excludeFromBom ? { exclude_from_bom: true } : {}),
-      },
+      ...(hasAttributes
+        ? {
+            attributes: {
+              ...(attr?.excludeFromPosFiles
+                ? { exclude_from_pos_files: true }
+                : {}),
+              ...(attr?.excludeFromBom ? { exclude_from_bom: true } : {}),
+            },
+          }
+        : {}),
+      ...(model
+        ? {
+            model: {
+              path: model.path,
+              offset: model.offset,
+              scale: model.scale,
+              rotate: model.rotate,
+            },
+          }
+        : {}),
     },
   }
 }
