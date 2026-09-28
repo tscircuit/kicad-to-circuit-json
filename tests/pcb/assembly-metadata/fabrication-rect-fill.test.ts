@@ -72,7 +72,9 @@ test("repro4948: OCuLink board loses all 3 filled fabrication polarity marks", a
   const centerX = sample.footprint.position!.x - sample.component.center.x
   const centerY = sample.footprint.position!.y + sample.component.center.y
   const importedSvg = convertCircuitJsonToPcbSvg(
-    circuitJson.filter((e) => !e.type.startsWith("pcb_silkscreen")),
+    circuitJson.filter(
+      (e) => !e.type.startsWith("pcb_silkscreen") && !e.type.endsWith("_text"),
+    ),
     {
       width,
       height,
@@ -103,8 +105,9 @@ test("repro4948: OCuLink board loses all 3 filled fabrication polarity marks", a
     const cx = sample.actual.center.x
     const cy = sample.actual.center.y
     const color = preserved === marks.length ? "#8fd6a7" : "#ff8585"
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940">
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1320" viewBox="0 0 1440 1320">
 <rect width="100%" height="100%" fill="#101820"/>
+<style>#source .stroked-text, #source text { display: none; }</style>
 <defs><g id="source">${contents(sourceSvg)}</g><g id="imported">${contents(importedSvg)}</g></defs>
 <g font-family="sans-serif" fill="white">
 <text x="24" y="38" font-size="26">OCuLink to PCIe Adapter — filled fabrication polarity marks</text>
@@ -112,16 +115,16 @@ test("repro4948: OCuLink board loses all 3 filled fabrication polarity marks", a
 <text x="732" y="78" font-size="21">Current Circuit JSON import · full board</text>
 <text x="24" y="108" font-size="18" fill="#8fd6a7">3 filled marks · D7, D8, D9</text>
 <text x="732" y="108" font-size="18" fill="${color}">${preserved} fills preserved · ${marks.length - preserved} lost</text>
-<text x="24" y="490" font-size="21">D9 polarity mark · original · filled</text>
-<text x="732" y="490" font-size="21">D9 polarity mark · imported · ${sample.actual.is_filled ? "filled" : "outline only"}</text>
-<text x="24" y="522" font-size="18">0.25 × 1.75 mm</text>
-<text x="732" y="522" font-size="18">Same position, dimensions and stroke; fill is ${sample.actual.is_filled ? "preserved" : "missing"}</text>
-<text x="24" y="918" font-size="17">Both close-ups show the same 6 × 3 mm area centered on the vertical polarity mark.</text>
+<text x="24" y="870" font-size="21">D9 polarity mark · original · filled</text>
+<text x="732" y="870" font-size="21">D9 polarity mark · imported · ${sample.actual.is_filled ? "filled" : "outline only"}</text>
+<text x="24" y="902" font-size="18">0.25 × 1.75 mm</text>
+<text x="732" y="902" font-size="18">Same position, dimensions and stroke; fill is ${sample.actual.is_filled ? "preserved" : "missing"}</text>
+<text x="24" y="1298" font-size="17">Text hidden in both panels to inspect fabrication geometry. Same 6 × 3 mm close-up area.</text>
 </g>
-${panel("source", 24, 128, 320, `${centerX - width / 2} ${centerY - height / 2} ${width} ${height}`)}
-${panel("imported", 732, 128, 320, `0 0 ${width} ${height}`)}
-${panel("source", 24, 542, 345, `${centerX + cx - 3} ${centerY - cy - 1.5} 6 3`)}
-${panel("imported", 732, 542, 345, `${cx + width / 2 - 3} ${height / 2 - cy - 1.5} 6 3`)}
+${panel("source", 24, 128, 700, `${centerX - width / 2} ${centerY - height / 2} ${width} ${height}`)}
+${panel("imported", 732, 128, 700, `0 0 ${width} ${height}`)}
+${panel("source", 24, 922, 345, `${centerX + cx - 3} ${centerY - cy - 1.5} 6 3`)}
+${panel("imported", 732, 922, 345, `${cx + width / 2 - 3} ${height / 2 - cy - 1.5} 6 3`)}
 </svg>`
     await expect(svg).toMatchSvgSnapshot(import.meta.path)
   } finally {
