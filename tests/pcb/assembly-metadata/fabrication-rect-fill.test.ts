@@ -12,7 +12,7 @@ import { KicadToCircuitJsonConverter } from "../../../lib"
 const contents = (svg: string) =>
   svg.replace(/^[\s\S]*?<svg\b[^>]*>/, "").replace(/<\/svg>\s*$/, "")
 
-test("repro4948: OCuLink board loses all 3 filled fabrication polarity marks", async () => {
+test("repro4948: OCuLink board preserves all 3 filled fabrication polarity marks", async () => {
   const filename = "tests/assets/oculink-to-pcie-adapter.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -47,7 +47,7 @@ test("repro4948: OCuLink board loses all 3 filled fabrication polarity marks", a
     expect(imported).toHaveLength(sourceRects.length)
     return sourceRects.flatMap((rect, index) => {
       const actual = imported[index]!
-      expect(actual.is_filled).toBe(false)
+      expect(actual.is_filled).toBe(rect.fill === true)
       if (!rect.fill) return []
       if (!rect.start || !rect.end) throw new Error("Missing mark endpoints")
       expect(actual).toMatchObject({
@@ -63,7 +63,7 @@ test("repro4948: OCuLink board loses all 3 filled fabrication polarity marks", a
   })
   expect(marks.map((m) => m.reference).sort()).toEqual(["D7", "D8", "D9"])
   const preserved = marks.filter((m) => m.actual.is_filled).length
-  expect(preserved).toBe(0)
+  expect(preserved).toBe(3)
   const sample = marks.find((m) => m.reference === "D9")!
   const board = circuitJson.find((e) => e.type === "pcb_board")
   if (!board?.width || !board.height) throw new Error("Missing board bounds")
