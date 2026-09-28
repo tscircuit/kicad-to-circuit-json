@@ -18,6 +18,14 @@ const boards = [
     width: 1.3,
     height: 1.1,
     center: { x: 154.57852, y: 103.303569 },
+    // Native KiCad PAD.TransformShapeToPolygon, zero clearance, 0.001 mm error.
+    nativePolygon: [
+      { x: 153.729992, y: 103.37428 },
+      { x: 154.649231, y: 102.455041 },
+      { x: 155.427048, y: 103.232858 },
+      { x: 154.663373, y: 103.996534 },
+      { x: 154.352246, y: 103.996534 },
+    ],
   },
   {
     name: "OCuLink to PCIe Adapter",
@@ -29,11 +37,18 @@ const boards = [
     width: 2.1,
     height: 1.4,
     center: { x: 140.303, y: 63 },
+    nativePolygon: [
+      { x: 139.603, y: 64.05 },
+      { x: 139.603, y: 62.23 },
+      { x: 139.883, y: 61.95 },
+      { x: 141.003, y: 61.95 },
+      { x: 141.003, y: 64.05 },
+    ],
   },
 ]
 
 test.each(boards)(
-  "repro4948: $name retains pad identity but fills its chamfer on import",
+  "repro4948: $name preserves chamfered pad copper and identity on import",
   async (fixture) => {
     const content = readFileSync(
       `tests/assets/${fixture.filename}.kicad_pcb`,
@@ -92,23 +107,30 @@ test.each(boards)(
     expect(port.x).toBeCloseTo(expectedCenter.x, 5)
     expect(port.y).toBeCloseTo(expectedCenter.y, 5)
     expect(pad.layer).toBe("top")
-    expect(pad.shape).toBe(fixture.angle === 45 ? "rotated_rect" : "rect")
+    expect(pad.shape).toBe("polygon")
+    if (pad.shape !== "polygon") throw new Error("Missing chamfered polygon")
+    expect(pad.points).toHaveLength(fixture.nativePolygon.length)
+    for (const nativePoint of fixture.nativePolygon) {
+      const expected = applyToPoint(converter.ctx!.k2cMatPcb!, nativePoint)
+      expect(
+        pad.points.some(
+          (point) =>
+            Math.hypot(point.x - expected.x, point.y - expected.y) < 0.00001,
+        ),
+      ).toBe(true)
+    }
 
     const sourceArea =
       fixture.width * fixture.height -
       (Math.min(fixture.width, fixture.height) * 0.2) ** 2 / 2
     const importedArea =
-      pad.shape === "polygon"
-        ? Math.abs(
-            pad.points.reduce((sum, point, index) => {
-              const next = pad.points[(index + 1) % pad.points.length]!
-              return sum + point.x * next.y - next.x * point.y
-            }, 0),
-          ) / 2
-        : "width" in pad
-          ? pad.width * pad.height
-          : 0
-    expect(importedArea).toBeCloseTo(fixture.width * fixture.height, 8)
+      Math.abs(
+        pad.points.reduce((sum, point, index) => {
+          const next = pad.points[(index + 1) % pad.points.length]!
+          return sum + point.x * next.y - next.x * point.y
+        }, 0),
+      ) / 2
+    expect(importedArea).toBeCloseTo(sourceArea, 8)
     const chamferPreserved = Math.abs(importedArea - sourceArea) < 0.00001
 
     const center = applyToPoint(

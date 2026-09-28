@@ -59,11 +59,27 @@ test("GMSL serializer preserves footprint rotations on both board sides", () => 
         element.pcb_component_id === component.pcb_component_id &&
         element.port_hints?.includes("1"),
     )
-    if (pad?.type !== "pcb_smtpad" || pad.shape !== "rotated_rect") {
-      throw new Error(`Expected a rotated rectangular pad at ${reference}.1`)
+    if (pad?.type !== "pcb_smtpad") {
+      throw new Error(`Missing pad at ${reference}.1`)
     }
-    expect(pad.x - component.center.x).toBeCloseTo(dx, 8)
-    expect(pad.y - component.center.y).toBeCloseTo(dy, 8)
-    expect(pad).toMatchObject({ layer, ccw_rotation: 45 })
+    const port = circuitJson.find(
+      (element) =>
+        element.type === "pcb_port" && element.pcb_port_id === pad.pcb_port_id,
+    )
+    if (port?.type !== "pcb_port")
+      throw new Error(`Missing port at ${reference}.1`)
+    expect(port.x - component.center.x).toBeCloseTo(dx, 8)
+    expect(port.y - component.center.y).toBeCloseTo(dy, 8)
+    expect(pad.layer).toBe(layer)
+    if (reference === "Y1") {
+      // Y1.1 has a chamfer; its world-space vertices are checked in chamfered-pads.test.ts.
+      expect(pad.shape).toBe("polygon")
+    } else {
+      expect(pad).toMatchObject({ shape: "rotated_rect", ccw_rotation: 45 })
+      if (pad.shape !== "rotated_rect")
+        throw new Error("Expected C28.1 rectangle")
+      expect(pad.x - component.center.x).toBeCloseTo(dx, 8)
+      expect(pad.y - component.center.y).toBeCloseTo(dy, 8)
+    }
   }
 })
