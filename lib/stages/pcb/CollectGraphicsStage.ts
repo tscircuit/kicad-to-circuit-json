@@ -220,6 +220,7 @@ export class CollectGraphicsStage extends ConverterStage {
     )
     const points = boardContour.points
     const numLayers = getPcbCopperLayerCount(this.ctx.kicadPcb)
+    const thickness = this.ctx.kicadPcb?.general?.thickness
 
     for (const contour of contours) {
       if (contour === boardContour) continue
@@ -235,6 +236,7 @@ export class CollectGraphicsStage extends ConverterStage {
       existingBoard.width = this.calculateWidth(points)
       existingBoard.height = this.calculateHeight(points)
       existingBoard.num_layers = numLayers
+      if (thickness !== undefined) existingBoard.thickness = thickness
     } else {
       // Create new board
       this.ctx.db.insert({
@@ -244,6 +246,7 @@ export class CollectGraphicsStage extends ConverterStage {
         width: this.calculateWidth(points),
         height: this.calculateHeight(points),
         num_layers: numLayers,
+        thickness,
       })
     }
   }

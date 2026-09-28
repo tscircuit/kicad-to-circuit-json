@@ -7,7 +7,7 @@ import { applyToPoint, inverse } from "transformation-matrix"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 
-test("repro4948: USB-C Power Adapter preserves 4 layers but loses board thickness on import", async () => {
+test("repro4948: USB-C Power Adapter preserves 4 layers and board thickness on import", async () => {
   const content = readFileSync(
     "tests/assets/usb-c-power-adapter.kicad_pcb",
     "utf8",
@@ -21,7 +21,7 @@ test("repro4948: USB-C Power Adapter preserves 4 layers but loses board thicknes
   if (!board?.width || !board.height) throw new Error("Missing board bounds")
   expect(source.general?.thickness).toBe(1.59)
   expect(board.num_layers).toBe(4)
-  expect(board.thickness).toBeUndefined()
+  expect(board.thickness).toBe(1.59)
 
   const center = applyToPoint(inverse(converter.ctx!.k2cMatPcb!), board.center)
   const width = board.width + 4

@@ -5,7 +5,7 @@
 <text x="24" y="78" font-size="22">Original KiCad · full board</text>
 <text x="616" y="78" font-size="22">Current Circuit JSON import · full board</text>
 <text x="24" y="108" font-size="19" fill="#8fd6a7">4 copper layers · thickness 1.59 mm</text>
-<text x="616" y="108" font-size="19" fill="#ff8585">4 copper layers · thickness missing</text>
+<text x="616" y="108" font-size="19" fill="#8fd6a7">4 copper layers · thickness 1.59 mm</text>
 <text x="24" y="854" font-size="18">Board thickness is manufacturing metadata; the top-view geometry alone cannot reveal this loss.</text>
 </g>
 <svg x="24" y="125" width="560" height="690" viewBox="79.52599999999998 56.569359000000006 25.886229999999998 56.480641" preserveAspectRatio="xMidYMid meet">
