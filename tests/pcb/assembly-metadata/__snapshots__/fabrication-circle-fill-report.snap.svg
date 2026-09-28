@@ -63668,9 +63668,9 @@ L166.6500 120.8500
 <g font-family="sans-serif" fill="white">
 <text x="24" y="38" font-size="26">GMSL Serializer — filled fabrication circle diagnostic</text>
 <text x="24" y="78" font-size="21">Original KiCad · full board</text><text x="732" y="78" font-size="21">Current Circuit JSON import · full board</text>
-<text x="24" y="108" font-size="18" fill="#8fd6a7">U6: 1 filled fabrication circle</text><text x="732" y="108" font-size="18" fill="#ff8585">Fill omitted · 0 warnings · 1 silent losses</text>
+<text x="24" y="108" font-size="18" fill="#8fd6a7">U6: 1 filled fabrication circle</text><text x="732" y="108" font-size="18" fill="#f9d56e">Fill omitted · 1 warnings · 0 silent losses</text>
 <text x="24" y="590" font-size="21">U6 original · solid fill · radius 0.050 mm</text><text x="732" y="590" font-size="21">U6 imported · outline only</text>
-<text x="24" y="620" font-size="18">Same 4 × 2 mm area centered on the circle</text><text x="732" y="620" font-size="18" fill="#ff8585">Fill disappears without a diagnostic</text>
+<text x="24" y="620" font-size="18">Same 4 × 2 mm area centered on the circle</text><text x="732" y="620" font-size="18" fill="#f9d56e">Loss reported with reference, layer and graphic ID</text>
 <text x="24" y="1000" font-size="17">Text hidden. The wide stroke covers the center in both views; the omitted solid-fill flag still needs a diagnostic.</text>
 </g>
 <rect x="24" y="128" width="684" height="420" fill="black" stroke="#425563"/><svg x="24" y="128" width="684" height="420" viewBox="120.65 74.85 49 49" preserveAspectRatio="xMidYMid meet"><use href="#source"/></svg>

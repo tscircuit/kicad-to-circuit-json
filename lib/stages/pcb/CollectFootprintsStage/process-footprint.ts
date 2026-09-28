@@ -149,6 +149,7 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   processFootprintGraphics({
     ctx,
     footprint,
+    footprintReference: refdes || uuid,
     componentId,
     footprintPlacement,
   })
