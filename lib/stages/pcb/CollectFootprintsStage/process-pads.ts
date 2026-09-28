@@ -275,12 +275,11 @@ export function createSmdPad({
         y: padKicadPos.y + rotated.y,
       })
     })
-    const smtpad: PcbSmtPadPolygon = {
+    const smtpad: Omit<PcbSmtPadPolygon, "pcb_smtpad_id"> = {
       type: "pcb_smtpad",
       shape: "polygon",
       pcb_component_id: componentId,
       pcb_port_id: pcbPortId,
-      pcb_smtpad_id: getNextPcbSmtPadId(ctx),
       layer,
       port_hints: [pad.number.toString()],
       points,
