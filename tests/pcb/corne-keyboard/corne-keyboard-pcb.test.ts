@@ -2,7 +2,6 @@ import { test, expect } from "bun:test"
 import "bun-match-svg"
 import { readFileSync } from "node:fs"
 import { KicadToCircuitJsonConverter } from "../../../lib"
-import { createSideBySideSvg } from "../../fixtures/create-side-by-side-svg"
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 
 test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
@@ -46,10 +45,23 @@ test("kicad-to-circuit-json: corne-keyboard PCB", async () => {
     circuitJsonSvg,
   )
 
-  const sideBySideSvg = createSideBySideSvg(
-    sourceSvg.toString("utf8"),
-    circuitJsonSvg,
-  )
+  const width = Number(circuitJsonSvg.match(/\bwidth="([\d.]+)"/)![1])
+  const height = Number(circuitJsonSvg.match(/\bheight="([\d.]+)"/)![1])
+  // Inline vectors avoid the XML reader's size limit on base64 image attributes.
+  const panel = (svg: string, x: number, comparison: string) => {
+    const viewBox =
+      svg.match(/\bviewBox="([^"]+)"/)?.[1] ?? `0 0 ${width} ${height}`
+    const contents = svg
+      .replace(/^[\s\S]*?<svg\b[^>]*>/, "")
+      .replace(/<\/svg>\s*$/, "")
+      .replace(/<title>[\s\S]*?<\/title>/, "")
+    return `<svg data-comparison="${comparison}" x="${x}" y="0" width="${width}" height="${height}" viewBox="${viewBox}" preserveAspectRatio="xMidYMid meet">${contents}</svg>`
+  }
+  const sideBySideSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width * 2}" height="${height}" viewBox="0 0 ${width * 2} ${height}">
+<rect width="100%" height="100%" fill="#000"/>
+${panel(sourceSvg.toString("utf8"), 0, "source")}
+${panel(circuitJsonSvg, width, "converted")}
+</svg>`
   expect(sideBySideSvg).toContain('data-comparison="source"')
   expect(sideBySideSvg).toContain('data-comparison="converted"')
   await expect(sideBySideSvg).toMatchSvgSnapshot(import.meta.path)
