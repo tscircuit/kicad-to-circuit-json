@@ -28,7 +28,7 @@ for (const fixture of [
     lost: 12,
   },
 ]) {
-  test(`repro4948: ${fixture.name} loses fabrication rectangle rotation`, async () => {
+  test(`repro4948: ${fixture.name} preserves fabrication rectangle rotation`, async () => {
     const filename = `tests/assets/${fixture.file}.kicad_pcb`
     const content = readFileSync(filename, "utf8")
     const source = parseKicadPcb(content)
@@ -95,8 +95,8 @@ for (const fixture of [
         expect(importedRect.layer).toBe(
           rect.layer?.names.includes("B.Fab") ? "bottom" : "top",
         )
-        expect(importedRect.width).toBeCloseTo(width, 6)
-        expect(importedRect.height).toBeCloseTo(height, 6)
+        expect(importedRect.width).toBeCloseTo(worldWidth, 6)
+        expect(importedRect.height).toBeCloseTo(worldHeight, 6)
         return {
           reference,
           component,
@@ -114,7 +114,7 @@ for (const fixture of [
         Math.abs(row.importedRect.width - row.worldWidth) > 1e-6 ||
         Math.abs(row.importedRect.height - row.worldHeight) > 1e-6,
     ).length
-    expect(lost).toBe(fixture.lost)
+    expect(lost).toBe(0)
     const sample = rows.find((r) => r.reference === fixture.sample)!
     const board = circuitJson.find((e) => e.type === "pcb_board")
     if (!board?.width || !board.height) throw new Error("Missing board bounds")
