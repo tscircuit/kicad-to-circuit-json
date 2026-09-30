@@ -2,6 +2,8 @@ import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
 import { parseKicadPcb, parseKicadSch, parseKicadSym } from "kicadts"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
+import { CollectBoardGeometryStage } from "./stages/pcb/CollectBoardGeometryStage"
+import { CollectGraphicPathsStage } from "./stages/pcb/CollectGraphicPathsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
 import { CollectSourceTracesStage } from "./stages/pcb/CollectSourceTracesStage"
@@ -94,6 +96,9 @@ export class KicadToCircuitJsonConverter {
         new CollectTracesStage(this.ctx),
         new CollectViasStage(this.ctx),
         new CollectZonesStage(this.ctx),
+        // Keep the graphics insertion order used by existing Circuit JSON snapshots.
+        new CollectGraphicPathsStage(this.ctx),
+        new CollectBoardGeometryStage(this.ctx),
         new CollectGraphicsStage(this.ctx),
       )
     }
