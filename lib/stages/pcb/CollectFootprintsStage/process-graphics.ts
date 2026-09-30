@@ -277,18 +277,30 @@ export function createFootprintRect(params: {
     return
   }
 
-  if (renderLayer.endsWith("_fabrication_note")) {
+  const { componentCcwRotationDegrees } = footprintPlacement
+  if (
+    renderLayer.endsWith("_fabrication_note") &&
+    componentCcwRotationDegrees % 90 === 0
+  ) {
+    // Fabrication rectangles are axis-aligned; quarter turns exchange axes.
+    const swapAxes = componentCcwRotationDegrees % 180 !== 0
     ctx.db.pcb_fabrication_note_rect.insert({
       pcb_component_id: componentId,
       center: centerPos,
-      width,
-      height,
+      width: swapAxes ? height : width,
+      height: swapAxes ? width : height,
       layer,
       stroke_width: strokeWidth,
       is_filled: rect.fill?.filled === true,
       has_stroke: true,
     })
     return
+  }
+
+  if (renderLayer.endsWith("_fabrication_note") && rect.fill === true) {
+    ;(ctx.warnings ??= []).push(
+      `Component ${componentId}: fabrication rectangle at ${componentCcwRotationDegrees}° is imported as an outline because rotated fills are not supported.`,
+    )
   }
 
   const corners = [
