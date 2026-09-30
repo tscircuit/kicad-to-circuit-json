@@ -15,7 +15,7 @@ const contents = (svg: string) =>
 const escapeXml = (text: string) =>
   text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 
-test("repro4948: HDMI EDID board retains passive values but loses 53 component Value labels", async () => {
+test("repro4948: HDMI EDID board preserves all component Value labels separately from MPNs", async () => {
   const content = readFileSync(
     "tests/assets/hdmi-edid-debug-board.kicad_pcb",
     "utf8",
@@ -35,7 +35,7 @@ test("repro4948: HDMI EDID board retains passive values but loses 53 component V
     if (!component) throw new Error(`Missing ${properties.Reference}`)
     const value = properties.Value!
     expect(value).toBeTruthy()
-    expect(component.display_value).toBeUndefined()
+    expect(component.display_value).toBe(value)
     expect(source_component_base.parse(component).display_value).toEqual(
       component.display_value,
     )
@@ -64,7 +64,7 @@ test("repro4948: HDMI EDID board retains passive values but loses 53 component V
   ).length
   expect(parts).toHaveLength(110)
   expect(generic).toHaveLength(53)
-  expect(preserved).toBe(0)
+  expect(preserved).toBe(53)
   const samples = ["J5", "D1", "Q1"].map(
     (ref) => parts.find((p) => p.reference === ref)!,
   )
