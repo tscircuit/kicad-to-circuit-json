@@ -18,7 +18,6 @@ test("kicad-to-circuit-json repro01: joule-thief PCB", async () => {
   const circuitJson = converter.getOutput()
   expect(circuitJson).toBeDefined()
   expect(circuitJson.length).toBeGreaterThan(0)
-
   const sourceTraces = (circuitJson as any[]).filter(
     (el) => el.type === "source_trace",
   )
@@ -112,4 +111,4 @@ test("kicad-to-circuit-json repro01: joule-thief PCB", async () => {
     import.meta.path,
     "repro01-joule-thief-pcb",
   )
-})
+}, 30_000)

@@ -18,13 +18,13 @@ test("kicad-to-circuit-json repro: Arduino Mega 2560 PCB", () => {
   expect(circuitJson.some((el: any) => el.type === "pcb_component")).toBe(true)
   expect(circuitJson.some((el: any) => el.type === "pcb_trace")).toBe(true)
 
-  const mechanicalHoles = circuitJson.filter(
+  const mechanicalCutouts = circuitJson.filter(
     (el: any) =>
-      el.type === "pcb_hole" &&
-      el.hole_shape === "circle" &&
-      Math.abs(el.hole_diameter - 3.2) < 1e-6,
+      el.type === "pcb_cutout" &&
+      el.shape === "circle" &&
+      Math.abs(el.radius - 1.6) < 1e-6,
   )
-  expect(mechanicalHoles).toHaveLength(6)
+  expect(mechanicalCutouts).toHaveLength(6)
 
   const circuitJsonSvg = convertCircuitJsonToPcbSvg(circuitJson as any, {
     showCourtyards: true,

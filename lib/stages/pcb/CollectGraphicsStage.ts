@@ -617,7 +617,7 @@ export class CollectGraphicsStage extends ConverterStage {
   private createEdgeCutCutout(contour: BoardContour) {
     const [circle] = contour.primitives
     if (circle?.type === "circle" && contour.primitives.length === 1) {
-      this.createEdgeCutCircleHole(circle)
+      this.createEdgeCutCircleCutout(circle)
       return
     }
 
@@ -627,7 +627,7 @@ export class CollectGraphicsStage extends ConverterStage {
     } as any)
   }
 
-  private createEdgeCutCircleHole(
+  private createEdgeCutCircleCutout(
     circle: Extract<BoardPrimitive, { type: "circle" }>,
   ) {
     if (!this.ctx.k2cMatPcb) return
@@ -638,11 +638,10 @@ export class CollectGraphicsStage extends ConverterStage {
       circle.end.y - circle.center.y,
     )
 
-    this.ctx.db.pcb_hole.insert({
-      hole_shape: "circle",
-      hole_diameter: radius * 2,
-      x: center.x,
-      y: center.y,
+    this.ctx.db.pcb_cutout.insert({
+      shape: "circle",
+      center,
+      radius,
     } as any)
   }
 
