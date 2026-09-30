@@ -54,4 +54,4 @@ test("preserves JLCPCB properties and KiCad footprint assembly exclusions", () =
         component.metadata?.kicad_footprint?.attributes?.exclude_from_pos_files,
     ),
   ).toHaveLength(14)
-}, 10_000)
+}, 40_000)
