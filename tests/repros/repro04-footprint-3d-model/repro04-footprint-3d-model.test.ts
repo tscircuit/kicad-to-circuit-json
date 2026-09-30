@@ -44,18 +44,27 @@ test.failing("repro04: KiCad footprint 3D model survives import", async () => {
   )
   expect(component).toBeDefined()
 
-  const retainedModel = circuitJson.find(
+  const cadModel = circuitJson.find(
     (element) =>
       element.type === "cad_component" &&
       element.pcb_component_id === component?.pcb_component_id &&
       (element.model_step_url === originalModelPath ||
         element.model_wrl_url === originalModelPath),
   )
+  const retainedModelPath =
+    (component?.type === "pcb_component"
+      ? component.metadata?.kicad_footprint?.model?.path
+      : undefined) ??
+    (cadModel?.type === "cad_component"
+      ? (cadModel.model_step_url ?? cadModel.model_wrl_url)
+      : undefined)
 
   // Render only the model links carried through Circuit JSON. The right panel
-  // currently has a bare board because the importer emits no cad_component.
+  // currently has a bare board because the importer drops the model link.
   const importedPcb = parseKicadPcb(sourceText)
-  if (!retainedModel) importedPcb.footprints[0]!.models = []
+  if (retainedModelPath !== originalModelPath) {
+    importedPcb.footprints[0]!.models = []
+  }
 
   const temporaryDir = await mkdtemp(join(tmpdir(), "kicad-model-repro-"))
   try {
@@ -102,7 +111,7 @@ test.failing("repro04: KiCad footprint 3D model survives import", async () => {
 
     // Preserve the currently broken image as evidence. Once import starts
     // retaining the model, the assertion below must make test.failing fail.
-    if (!retainedModel) {
+    if (retainedModelPath !== originalModelPath) {
       expect(comparison).toMatchPngSnapshot(
         import.meta.path,
         "repro04-footprint-3d-model",
@@ -112,5 +121,5 @@ test.failing("repro04: KiCad footprint 3D model survives import", async () => {
     await rm(temporaryDir, { recursive: true, force: true })
   }
 
-  expect(retainedModel).toBeDefined()
+  expect(retainedModelPath).toBe(originalModelPath)
 }, 30_000)
