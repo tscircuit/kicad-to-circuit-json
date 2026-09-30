@@ -12,7 +12,7 @@ const svgContents = (svg: string) =>
     .replace(/<\/svg>\s*$/, "")
     .replace(/<title>[\s\S]*?<\/title>/, "")
 
-test("repro4948: Corne Keyboard retains pad nets but loses 6 explicit no-connect flags", async () => {
+test("repro4948: Corne Keyboard preserves all 6 explicit no-connect flags and pad nets", async () => {
   const filename = "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -58,7 +58,7 @@ test("repro4948: Corne Keyboard retains pad nets but loses 6 explicit no-connect
         item.name === (pad.number === "2" ? "pin2" : pad.number),
     )!
     expect(port).toBeDefined()
-    expect(port.do_not_connect).toBeUndefined()
+    expect(port.do_not_connect).toBe(true)
     const pcbPort = pcbPorts.find(
       (item) => item.source_port_id === port.source_port_id,
     )!
@@ -89,7 +89,7 @@ test("repro4948: Corne Keyboard retains pad nets but loses 6 explicit no-connect
     return { reference, pad, footprint, pcbComponent, port, pcbPort, net }
   })
   const markedPorts = sourcePorts.filter((port) => port.do_not_connect)
-  expect(markedPorts).toHaveLength(0)
+  expect(markedPorts).toHaveLength(sourcePads.length)
   const ncIds = new Set(imported.map(({ port }) => port.source_port_id))
   expect(
     sourcePorts.filter(
