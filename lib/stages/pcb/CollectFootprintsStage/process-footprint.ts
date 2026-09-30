@@ -49,8 +49,16 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   )?.trim()
 
   if (manufacturer) {
-    ;(ctx.warnings ??= []).push(
+    ctx.warnings ??= []
+    ctx.warnings.push(
       `Footprint ${refdes || uuid}: Manufacturer ${JSON.stringify(manufacturer)} is not supported by Circuit JSON and was not imported.`,
+    )
+  }
+
+  if (footprint.models.length > 1) {
+    ctx.warnings ??= []
+    ctx.warnings.push(
+      `Footprint ${refdes || uuid}: Circuit JSON KiCad footprint metadata supports one 3D model; ${footprint.models.length - 1} additional model(s) were not imported.`,
     )
   }
 
@@ -164,16 +172,35 @@ function getFootprintMetadata(
   footprint: Footprint,
 ): PcbComponentMetadata | undefined {
   const attr = footprint.attr
-  if (!attr) return undefined
+  const model = footprint.models.find((candidate) => candidate.path)
+  const hasAttributes = Boolean(
+    attr?.excludeFromPosFiles || attr?.excludeFromBom,
+  )
 
-  if (!attr.excludeFromPosFiles && !attr.excludeFromBom) return undefined
+  if (!hasAttributes && !model) return undefined
 
   return {
     kicad_footprint: {
-      attributes: {
-        ...(attr.excludeFromPosFiles ? { exclude_from_pos_files: true } : {}),
-        ...(attr.excludeFromBom ? { exclude_from_bom: true } : {}),
-      },
+      ...(hasAttributes
+        ? {
+            attributes: {
+              ...(attr?.excludeFromPosFiles
+                ? { exclude_from_pos_files: true }
+                : {}),
+              ...(attr?.excludeFromBom ? { exclude_from_bom: true } : {}),
+            },
+          }
+        : {}),
+      ...(model
+        ? {
+            model: {
+              path: model.path,
+              ...(model.offset ? { offset: model.offset } : {}),
+              ...(model.scale ? { scale: model.scale } : {}),
+              ...(model.rotate ? { rotate: model.rotate } : {}),
+            },
+          }
+        : {}),
     },
   }
 }

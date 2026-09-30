@@ -31,7 +31,12 @@ test("preserves JLCPCB properties and KiCad footprint assembly exclusions", () =
   const u1PcbComponent = pcbComponents.find(
     (component) => component.source_component_id === u1.source_component_id,
   )
-  expect(u1PcbComponent?.metadata?.kicad_footprint).toBeUndefined()
+  expect(u1PcbComponent?.metadata?.kicad_footprint?.attributes).toBeUndefined()
+  expect(
+    u1PcbComponent?.metadata?.kicad_footprint?.model?.path.endsWith(
+      "/Package_DFN_QFN.3dshapes/QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm.step",
+    ),
+  ).toBe(true)
 
   const bt3 = sourceComponents.find((component) => component.name === "BT3")
   const bt3PcbComponent = pcbComponents.find(
