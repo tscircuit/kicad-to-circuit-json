@@ -38,6 +38,7 @@ import {
   type PcbSmtPadPolygonWithContours,
   type PolygonContour,
 } from "./custom-pad-polygon-contours"
+import { getChamferedPadPoints } from "./get-chamfered-pad-points"
 import { getSupportedPadType } from "./get-supported-pad-type"
 import { determineLayerFromLayers } from "./layer-utils"
 import { orderOverlappingFootprintPads } from "./order-overlapping-footprint-pads"
@@ -253,6 +254,40 @@ export function createSmdPad({
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
+
+  const chamferRatio = pad.chamferRatio
+  const chamferCorners = pad.chamferCorners
+  if (shape === "roundrect" && chamferRatio && chamferCorners?.length) {
+    const points = getChamferedPadPoints({
+      width: size.x,
+      height: size.y,
+      chamferRatio,
+      chamferCorners,
+      roundrectRatio: pad.roundrectRatio ?? 0,
+    }).map((point) => {
+      // Pad angles are absolute KiCad CCW; rotate in Y-down space before reflection.
+      const rotated = rotatePoint({
+        point,
+        ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
+      })
+      return applyToPoint(ctx.k2cMatPcb!, {
+        x: padKicadPos.x + rotated.x,
+        y: padKicadPos.y + rotated.y,
+      })
+    })
+    const smtpad: Omit<PcbSmtPadPolygon, "pcb_smtpad_id"> = {
+      type: "pcb_smtpad",
+      shape: "polygon",
+      pcb_component_id: componentId,
+      pcb_port_id: pcbPortId,
+      layer,
+      port_hints: [pad.number.toString()],
+      points,
+    }
+    ctx.db.pcb_smtpad.insert(smtpad)
+    if (ctx.stats) ctx.stats.pads = (ctx.stats.pads || 0) + 1
+    return
+  }
 
   if (shape === "custom") {
     const primitives = pad.primitives?.graphics ?? []
