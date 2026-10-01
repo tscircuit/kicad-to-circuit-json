@@ -254,7 +254,7 @@ export function createSmdPad({
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
-  const maskMargin =
+  const maskMargin: { soldermask_margin?: number } =
     pad.solderMaskMargin === undefined
       ? {}
       : { soldermask_margin: pad.solderMaskMargin }

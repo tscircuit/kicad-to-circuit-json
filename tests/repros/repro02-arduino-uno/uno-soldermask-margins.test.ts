@@ -43,7 +43,7 @@ test("Arduino Uno keeps explicit pad solder mask margins", () => {
         ? []
         : [
             [
-              `${componentNames.get(pad.pcb_component_id)}:${pad.port_hints?.[0] ?? ""}`,
+              `${componentNames.get(pad.pcb_component_id ?? "")}:${pad.port_hints?.[0] ?? ""}`,
               pad.soldermask_margin,
             ] as const,
           ],
