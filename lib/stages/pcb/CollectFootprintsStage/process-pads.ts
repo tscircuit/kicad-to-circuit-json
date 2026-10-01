@@ -254,6 +254,15 @@ export function createSmdPad({
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
+  const insertSmtPad = (
+    smtpad: Parameters<typeof ctx.db.pcb_smtpad.insert>[0],
+  ) =>
+    ctx.db.pcb_smtpad.insert({
+      ...smtpad,
+      ...(pad.solderMaskMargin !== undefined
+        ? { soldermask_margin: pad.solderMaskMargin }
+        : {}),
+    })
 
   const chamferRatio = pad.chamferRatio
   const chamferCorners = pad.chamferCorners
@@ -284,7 +293,7 @@ export function createSmdPad({
       port_hints: [pad.number.toString()],
       points,
     }
-    ctx.db.pcb_smtpad.insert(smtpad)
+    insertSmtPad(smtpad)
     if (ctx.stats) ctx.stats.pads = (ctx.stats.pads || 0) + 1
     return
   }
@@ -353,7 +362,7 @@ export function createSmdPad({
             points: points,
           } as PcbSmtPadPolygonWithContours
 
-          const insertedPad = ctx.db.pcb_smtpad.insert(smtpad)
+          const insertedPad = insertSmtPad(smtpad)
           if (polygonContours.length > 1) {
             attachPadPolygonContours(
               insertedPad as PcbSmtPadPolygon,
@@ -404,7 +413,7 @@ export function createSmdPad({
           radius: radius,
         } as PcbSmtPadCircle
 
-        ctx.db.pcb_smtpad.insert(smtpad)
+        insertSmtPad(smtpad)
         primitivesProcessed++
       }
     }
@@ -462,7 +471,7 @@ export function createSmdPad({
 
     if (!anchorIsPlaceholder && anchorExtendsBeyondPrimitives) {
       if (anchorShape === "circle") {
-        ctx.db.pcb_smtpad.insert({
+        insertSmtPad({
           type: "pcb_smtpad",
           shape: "circle",
           pcb_component_id: componentId,
@@ -477,7 +486,7 @@ export function createSmdPad({
           radius: Math.max(size.x, size.y) / 2,
         } as PcbSmtPadCircle)
       } else if (anchorCcwRotation !== 0) {
-        ctx.db.pcb_smtpad.insert({
+        insertSmtPad({
           type: "pcb_smtpad",
           shape: "rotated_rect",
           pcb_component_id: componentId,
@@ -492,7 +501,7 @@ export function createSmdPad({
           ccw_rotation: anchorCcwRotation,
         } as PcbSmtPadRotatedRect)
       } else {
-        ctx.db.pcb_smtpad.insert({
+        insertSmtPad({
           type: "pcb_smtpad",
           shape: "rect",
           pcb_component_id: componentId,
@@ -535,7 +544,7 @@ export function createSmdPad({
       shape: "circle",
       radius: Math.max(size.x, size.y) / 2,
     } as PcbSmtPadCircle
-    ctx.db.pcb_smtpad.insert(smtpad)
+    insertSmtPad(smtpad)
   } else if (shape === "oval") {
     const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
     const rightAngleTurns = getRightAngleTurns(normalizedCcwRotation)
@@ -556,7 +565,7 @@ export function createSmdPad({
         shape: "rotated_pill",
         ccw_rotation: normalizedCcwRotation,
       } as PcbSmtPadRotatedPill
-      ctx.db.pcb_smtpad.insert(rotatedSmtPad)
+      insertSmtPad(rotatedSmtPad)
       return
     }
 
@@ -577,7 +586,7 @@ export function createSmdPad({
       shape: "pill",
     } as PcbSmtPadPill
 
-    ctx.db.pcb_smtpad.insert(smtpad)
+    insertSmtPad(smtpad)
   } else {
     // Rectangle fallbacks need the same rotation handling as ordinary pads.
     // A zero-delta trapezoid is exactly a rectangle. For a tapered trapezoid,
@@ -622,7 +631,7 @@ export function createSmdPad({
         ccw_rotation: normalizedCcwRotation,
         corner_radius: cornerRadius,
       } as PcbSmtPadRotatedRect
-      ctx.db.pcb_smtpad.insert(rotatedsmtpad)
+      insertSmtPad(rotatedsmtpad)
       if (ctx.stats) {
         ctx.stats.pads = (ctx.stats.pads || 0) + 1
       }
@@ -646,7 +655,7 @@ export function createSmdPad({
       corner_radius: cornerRadius,
     } as PcbSmtPadRect
 
-    ctx.db.pcb_smtpad.insert(smtpad)
+    insertSmtPad(smtpad)
   }
 
   if (ctx.stats) {
