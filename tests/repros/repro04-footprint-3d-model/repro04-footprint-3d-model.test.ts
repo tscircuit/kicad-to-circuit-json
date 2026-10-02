@@ -29,11 +29,12 @@ function renderBoard(boardPath: string, imagePath: string): void {
   ])
 }
 
-test.failing("repro04: KiCad footprint 3D model survives import", async () => {
+test("repro04: KiCad footprint 3D model survives import", async () => {
   const sourceText = await readFile(sourcePath, "utf8")
   const sourcePcb = parseKicadPcb(sourceText)
-  const originalModelPath = sourcePcb.footprints[0]?.models[0]?.path
-  expect(originalModelPath).toBeDefined()
+  const originalModel = sourcePcb.footprints[0]?.models[0]
+  const originalModelPath = originalModel?.path
+  if (!originalModelPath) throw new Error("Expected one KiCad 3D model")
 
   const converter = new KicadToCircuitJsonConverter()
   converter.addFile("footprint-3d-model.kicad_pcb", sourceText)
@@ -58,9 +59,19 @@ test.failing("repro04: KiCad footprint 3D model survives import", async () => {
     (cadModel?.type === "cad_component"
       ? (cadModel.model_step_url ?? cadModel.model_wrl_url)
       : undefined)
+  const importedModelMetadata =
+    component?.type === "pcb_component"
+      ? component.metadata?.kicad_footprint?.model
+      : undefined
+  expect(importedModelMetadata).toEqual({
+    path: originalModelPath,
+    offset: originalModel?.offset,
+    scale: originalModel?.scale,
+    rotate: originalModel?.rotate,
+  })
 
   // Render only the model links carried through Circuit JSON. The right panel
-  // currently has a bare board because the importer drops the model link.
+  // becomes bare if the importer drops the model link again.
   const importedPcb = parseKicadPcb(sourceText)
   if (retainedModelPath !== originalModelPath) {
     importedPcb.footprints[0]!.models = []
@@ -80,10 +91,14 @@ test.failing("repro04: KiCad footprint 3D model survives import", async () => {
     // KiCad's basic renderer makes this black battery holder quite dark.
     const sourceImage = await sharp(await readFile(sourceImagePath))
       .modulate({ brightness: 1.8 })
+      .resize({ width: 336 })
+      .blur(2)
       .png()
       .toBuffer()
     const importedImage = await sharp(await readFile(importedImagePath))
       .modulate({ brightness: 1.8 })
+      .resize({ width: 336 })
+      .blur(2)
       .png()
       .toBuffer()
     const { width, height } = await sharp(sourceImage).metadata()
@@ -109,14 +124,10 @@ test.failing("repro04: KiCad footprint 3D model survives import", async () => {
       .png()
       .toBuffer()
 
-    // Preserve the currently broken image as evidence. Once import starts
-    // retaining the model, the assertion below must make test.failing fail.
-    if (retainedModelPath !== originalModelPath) {
-      expect(comparison).toMatchPngSnapshot(
-        import.meta.path,
-        "repro04-footprint-3d-model",
-      )
-    }
+    expect(comparison).toMatchPngSnapshot(
+      import.meta.path,
+      "repro04-footprint-3d-model",
+    )
   } finally {
     await rm(temporaryDir, { recursive: true, force: true })
   }
