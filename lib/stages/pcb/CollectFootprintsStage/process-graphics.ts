@@ -97,6 +97,7 @@ export function rotatePoint(params: {
 export function processFootprintGraphics(params: {
   ctx: ConverterContext
   footprint: Footprint
+  footprintReference: string
   componentId: string
   footprintPlacement: FootprintPlacement
 }) {
@@ -135,6 +136,14 @@ export function processFootprintGraphics(params: {
       ? [circles]
       : []
   for (const circle of circleArray) {
+    if (
+      circle.fill === true &&
+      mapKicadLayerToPcbRenderLayer(circle.layer)?.endsWith("_fabrication_note")
+    ) {
+      ;(ctx.warnings ??= []).push(
+        `Footprint ${params.footprintReference}: filled fabrication circle ${circle.uuid ?? "without UUID"} on ${circle.layer?.names.join(", ")} was imported as an unfilled outline; solid fill is not preserved by this conversion.`,
+      )
+    }
     createFootprintCircle({
       ctx,
       circle,

@@ -15,7 +15,7 @@ const contents = (svg: string) =>
     .replace(/<\/svg>\s*$/, "")
     .replace(/<title>[\s\S]*?<\/title>/, "")
 
-test("repro4948: GMSL serializer omits fabrication circle fill without a warning", async () => {
+test("repro4948: GMSL serializer reports omitted fabrication circle fill", async () => {
   const filename = "tests/assets/gmsl-serializer.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -86,7 +86,9 @@ test("repro4948: GMSL serializer omits fabrication circle fill without a warning
   const warnings = converter
     .getWarnings()
     .filter((message) => message.includes("filled fabrication circle"))
-  expect(warnings).toEqual([])
+  expect(warnings).toEqual([
+    `Footprint ${reference}: filled fabrication circle ${circle.uuid} on F.Fab was imported as an unfilled outline; solid fill is not preserved by this conversion.`,
+  ])
   const board = circuitJson.find((e) => e.type === "pcb_board")
   if (!board?.width || !board.height) throw new Error("Missing board bounds")
   const width = board.width + 6
