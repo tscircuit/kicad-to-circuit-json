@@ -291,7 +291,7 @@ export function createFootprintRect(params: {
       height: swapAxes ? width : height,
       layer,
       stroke_width: strokeWidth,
-      is_filled: rect.fill?.filled === true,
+      is_filled: rect.fill === true,
       has_stroke: true,
     })
     return
