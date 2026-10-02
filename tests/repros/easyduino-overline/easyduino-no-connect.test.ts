@@ -10,7 +10,7 @@ import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 const svgContents = (svg: string) =>
   svg.replace(/^[\s\S]*?<svg\b[^>]*>/, "").replace(/<\/svg>\s*$/, "")
 
-test("repro4948: Easyduino schematic draws NC markers but loses 16 electrical NC constraints", async () => {
+test("repro4948: Easyduino schematic preserves all 16 electrical NC constraints", async () => {
   const filename = "tests/assets/Easyduino_ESP32.kicad_sch"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadSch(content)
@@ -69,7 +69,7 @@ test("repro4948: Easyduino schematic draws NC markers but loses 16 electrical NC
   const ncPorts = ncPinNumbers.map((number) => {
     const port = u1Ports.find((port) => port.pin_number === number)!
     expect(port).toBeDefined()
-    expect(port.do_not_connect).toBeUndefined()
+    expect(port.do_not_connect).toBe(true)
     const schematicPort = schematicPorts.find(
       (item) => item.source_port_id === port.source_port_id,
     )!
@@ -85,7 +85,7 @@ test("repro4948: Easyduino schematic draws NC markers but loses 16 electrical NC
     return port
   })
   const markedPorts = sourcePorts.filter((port) => port.do_not_connect)
-  expect(markedPorts).toHaveLength(0)
+  expect(markedPorts).toHaveLength(ncPinNumbers.length)
   expect(converter.getWarnings()).toEqual([])
   const ncIds = new Set(ncPorts.map((port) => port.source_port_id))
   expect(
