@@ -56,11 +56,6 @@ const circuitJson = converter.getOutput()
 Legacy KiCad 5 standalone footprints are handled through a separate best-effort
 upgrade step before parsing.
 
-Board and standalone footprint imports preserve the first 3D model's original
-path, offset, scale, and rotation in
-`pcb_component.metadata.kicad_footprint.model`. Additional models produce a warning
-because Circuit JSON footprint metadata currently supports one model.
-
 For a single `.kicad_sym` symbol library, use the dedicated symbol converter:
 
 ```typescript
