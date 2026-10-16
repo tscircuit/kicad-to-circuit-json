@@ -52,8 +52,32 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     }
     for (const text of kicadSch.texts) this.processText(text)
     for (const sheet of kicadSch.sheets) this.processSheet(sheet)
+
+    const portIdsByPosition: Record<string, string | null> = {}
+    if (kicadSch.noConnects.length > 0) {
+      for (const port of this.ctx.db.schematic_port.list()) {
+        const key = getSchematicPointKey(port.center)
+        const existingId = portIdsByPosition[key]
+        // Multiple physical ports may share one logical terminal. Distinct
+        // source ports at the same point are ambiguous, never interchangeable.
+        portIdsByPosition[key] =
+          existingId === undefined || existingId === port.source_port_id
+            ? port.source_port_id
+            : null
+      }
+    }
     for (const noConnect of kicadSch.noConnects) {
-      if (noConnect.at) this.processNoConnect(noConnect.at)
+      if (!noConnect.at) continue
+      const center = applyToPoint(k2cMatSch, noConnect.at)
+      const sourcePortId = portIdsByPosition[getSchematicPointKey(center)]
+      if (sourcePortId) {
+        this.ctx.db.source_port.update(sourcePortId, { do_not_connect: true })
+      } else {
+        ;(this.ctx.warnings ??= []).push(
+          `No-connect marker ${noConnect.uuid?.value ?? "without UUID"} at (${noConnect.at.x}, ${noConnect.at.y}) has ${sourcePortId === null ? "ambiguous" : "no matching"} logical terminals; its electrical constraint was not imported. Resolve the marker-to-pin association before routing.`,
+        )
+      }
+      this.processNoConnect(noConnect.at)
     }
     for (const rectangle of kicadSch.rectangles) {
       this.processRectangle(rectangle)
@@ -323,6 +347,10 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     })
   }
 }
+
+// Remove transform round-off at a precision much finer than the schematic grid.
+const getSchematicPointKey = ({ x, y }: Point): string =>
+  `${Math.round(x * 1e6)},${Math.round(y * 1e6)}`
 
 const decodeKicadText = (text: string): string =>
   text.replaceAll("{slash}", "/")

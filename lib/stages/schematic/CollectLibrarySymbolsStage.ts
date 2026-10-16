@@ -174,6 +174,9 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       })
       const sourcePort = this.ctx.db.source_port.insert({
         source_component_id: sourceComponentId,
+        ...(pin.pinElectricalType === "no_connect"
+          ? { do_not_connect: true }
+          : {}),
         name:
           (pin.name ? getSourcePortNameFromKicadText(pin.name) : undefined) ||
           (/^\d+$/.test(pinNumberText) ? `pin${pinNumberText}` : pinNumberText),
