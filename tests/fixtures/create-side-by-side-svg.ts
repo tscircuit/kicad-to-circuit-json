@@ -1,3 +1,5 @@
+import { normalizeSvgPrecision } from "./normalize-svg-precision"
+
 type SvgSize = {
   height: number
   width: number
@@ -17,7 +19,7 @@ function readSvgSize(svg: string): SvgSize {
 }
 
 function toSvgDataUrl(svg: string): string {
-  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`
+  return `data:image/svg+xml;base64,${Buffer.from(normalizeSvgPrecision(svg)).toString("base64")}`
 }
 
 export function createSideBySideSvg(

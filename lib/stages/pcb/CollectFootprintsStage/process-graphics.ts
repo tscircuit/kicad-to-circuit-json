@@ -636,6 +636,27 @@ export function createFootprintPoly(params: {
     return applyToPoint(ctx.k2cMatPcb!, kicadPos)
   })
 
+  let route = transformedPts
+  if (renderLayer.endsWith("_silkscreen") && poly.fill?.filled === true) {
+    ctx.db.pcb_silkscreen_graphic.insert({
+      pcb_component_id: componentId,
+      layer,
+      shape: "brep",
+      brep_shape: {
+        outer_ring: { vertices: transformedPts },
+        inner_rings: [],
+      },
+    })
+
+    // The graphic supplies the interior; retain any explicit outline separately.
+    if (strokeWidth === 0) return
+    const first = transformedPts[0]!
+    const last = transformedPts[transformedPts.length - 1]!
+    if (first.x !== last.x || first.y !== last.y) {
+      route = [...transformedPts, first]
+    }
+  }
+
   if (renderLayer.endsWith("_courtyard")) {
     ctx.db.pcb_courtyard_outline.insert({
       pcb_component_id: componentId,
@@ -650,7 +671,7 @@ export function createFootprintPoly(params: {
     componentId,
     layer,
     renderLayer,
-    route: transformedPts,
+    route,
     strokeWidth,
   })
 }
