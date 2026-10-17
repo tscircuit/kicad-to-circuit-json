@@ -190,7 +190,11 @@ test("kicad footprint converter: converts current KiCad QFN-60 footprint with uu
     width: 3.4,
     height: 3.4,
   })
-  expect(silkscreenPaths.some((path: any) => path.route?.length === 3)).toBe(
+  const pinOneMark = output.find(
+    (el: any) => el.type === "pcb_silkscreen_graphic",
+  )
+  expect(pinOneMark.brep_shape.outer_ring.vertices).toHaveLength(3)
+  expect(silkscreenPaths.some((path: any) => path.route?.length === 4)).toBe(
     true,
   )
   expect(fabPaths.some((path: any) => path.route?.length === 5)).toBe(true)
