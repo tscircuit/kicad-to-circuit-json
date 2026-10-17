@@ -1,5 +1,13 @@
-import type { PcbRenderLayer } from "circuit-json"
-import type { Footprint, FpArc, FpCircle, FpLine, FpPoly } from "kicadts"
+import type { PcbRenderLayer, PcbSmtPadPolygon } from "circuit-json"
+import {
+  type Footprint,
+  type FpArc,
+  type FpCircle,
+  type FpLine,
+  type FpPoly,
+  PtsArc,
+  Xy,
+} from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
   ConverterContext,
@@ -7,9 +15,11 @@ import type {
   Point,
 } from "../../../types"
 import {
+  getLayerRefsFromLayers,
   isPcbAnnotationRenderLayer,
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
+import { approximateArcPoints } from "../arc-utils"
 import { mapTextLayer } from "./layer-utils"
 
 function insertFootprintRoute(options: {
@@ -58,22 +68,6 @@ function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
     graphic._sxWidth?.value ??
     fallback
   )
-}
-
-function getPolyPoints(poly: FpPoly): any[] {
-  const rawPoly = poly as any
-  const pointCandidates = [
-    rawPoly.points?.points,
-    rawPoly._sxPts?.points,
-    rawPoly.pts,
-    rawPoly._points?.points,
-  ]
-
-  for (const points of pointCandidates) {
-    if (Array.isArray(points)) return points
-  }
-
-  return []
 }
 
 /**
@@ -171,6 +165,7 @@ export function processFootprintGraphics(params: {
     createFootprintPoly({
       ctx,
       poly,
+      footprintReference: params.footprintReference,
       componentId,
       footprintPlacement,
     })
@@ -601,6 +596,7 @@ export function createFootprintArc(params: {
 export function createFootprintPoly(params: {
   ctx: ConverterContext
   poly: FpPoly
+  footprintReference: string
   componentId: string
   footprintPlacement: FootprintPlacement
 }) {
@@ -608,25 +604,49 @@ export function createFootprintPoly(params: {
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(poly.layer)
-  if (!isPcbAnnotationRenderLayer(renderLayer)) return
+  const [copperLayer] = getLayerRefsFromLayers(poly.layer, ctx.kicadPcb)
+  if (
+    !renderLayer ||
+    (!copperLayer && !isPcbAnnotationRenderLayer(renderLayer))
+  ) {
+    return
+  }
 
-  // Extract points
-  const ptArray = getPolyPoints(poly)
-  if (ptArray.length === 0) return
+  const strokeWidth = getGraphicStrokeWidth(poly, copperLayer ? 0 : undefined)
+  if (copperLayer) {
+    if (strokeWidth > 0) {
+      ctx.warnings ??= []
+      ctx.warnings.push(
+        `Footprint ${params.footprintReference}: copper polygon outline stroke (${strokeWidth}mm) on ${poly.layer?.names.join(" ")} is not supported and was not imported.`,
+      )
+    }
+    if (!poly.fill?.filled) return
+  }
 
-  // Extract layer
-  const layer = mapTextLayer(poly.layer)
+  const points: Point[] = []
+  for (const point of poly.points?.points ?? []) {
+    if (point instanceof Xy) {
+      points.push({ x: point.x, y: point.y })
+    } else if (
+      point instanceof PtsArc &&
+      point.start &&
+      point.mid &&
+      point.end
+    ) {
+      points.push(
+        ...approximateArcPoints({
+          start: point.start,
+          mid: point.mid,
+          end: point.end,
+        }),
+      )
+    }
+  }
+  if (points.length === 0 || (copperLayer && points.length < 3)) return
 
-  // Extract stroke width
-  const strokeWidth = getGraphicStrokeWidth(poly)
-
-  // Map and transform points
-  const transformedPts = ptArray.map((p: any) => {
-    // Handle both {x, y} and {xy: {x, y}} or {token: 'xy', x, y}
-    const x = p.x ?? p.xy?.x ?? 0
-    const y = p.y ?? p.xy?.y ?? 0
+  const transformedPts = points.map((point) => {
     const rotated = rotatePoint({
-      point: { x, y },
+      point,
       ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
     })
     const kicadPos = {
@@ -635,6 +655,29 @@ export function createFootprintPoly(params: {
     }
     return applyToPoint(ctx.k2cMatPcb!, kicadPos)
   })
+
+  if (copperLayer) {
+    const copperPolygon: Omit<PcbSmtPadPolygon, "type" | "pcb_smtpad_id"> = {
+      pcb_component_id: componentId,
+      shape: "polygon",
+      points: transformedPts,
+      layer: copperLayer,
+      port_hints: [],
+    }
+    ctx.db.pcb_smtpad.insert(copperPolygon)
+    const maskWarning =
+      "Copper footprint polygon solder-mask coverage is not imported."
+    ctx.warnings ??= []
+    if (!ctx.warnings.includes(maskWarning)) {
+      ctx.warnings.push(maskWarning)
+    }
+    if (ctx.stats) {
+      ctx.stats.pads = (ctx.stats.pads ?? 0) + 1
+    }
+    return
+  }
+
+  const layer = mapTextLayer(poly.layer)
 
   if (renderLayer.endsWith("_courtyard")) {
     ctx.db.pcb_courtyard_outline.insert({

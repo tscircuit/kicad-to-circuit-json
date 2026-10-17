@@ -2,6 +2,7 @@ import { expect, test } from "bun:test"
 import "bun-match-svg"
 import { readFileSync } from "node:fs"
 import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
+import { parseKicadPcb } from "kicadts"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 import { createSideBySideSvg } from "../../fixtures/create-side-by-side-svg"
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
@@ -10,13 +11,33 @@ const fixtureDirectory = "tests/repros/repro05-footprint-copper-polygons"
 const kicadPcbPath = `${fixtureDirectory}/watchy-antenna.source.kicad_pcb`
 
 test("repro05: compare imported antenna copper against KiCad", async () => {
-  const converter = new KicadToCircuitJsonConverter()
-  converter.addFile(
-    "watchy-antenna.kicad_pcb",
-    readFileSync(kicadPcbPath, "utf8"),
+  const kicadPcbContent = readFileSync(kicadPcbPath, "utf8")
+  const kicadPcb = parseKicadPcb(kicadPcbContent)
+  const sourceCopperPolygons = kicadPcb.footprints.flatMap((footprint) =>
+    footprint.fpPolys.filter(
+      (poly) =>
+        poly.fill?.filled &&
+        poly.layer?.names.some((layer) => layer.endsWith(".Cu")),
+    ),
   )
+  expect(sourceCopperPolygons.length).toBeGreaterThan(0)
+  const converter = new KicadToCircuitJsonConverter()
+  converter.addFile("watchy-antenna.kicad_pcb", kicadPcbContent)
   converter.runUntilFinished()
   const circuitJson = converter.getOutput()
+  const polygons = circuitJson.filter(
+    (element) => element.type === "pcb_smtpad" && element.shape === "polygon",
+  )
+  expect(polygons).toHaveLength(sourceCopperPolygons.length)
+  const pcbComponent = circuitJson.find(
+    (element) => element.type === "pcb_component",
+  )
+  expect(pcbComponent).toBeDefined()
+  expect(
+    polygons.every(
+      (polygon) => polygon.pcb_component_id === pcbComponent?.pcb_component_id,
+    ),
+  ).toBe(true)
   const kicadSnapshot = await takeKicadSnapshot({
     kicadFilePath: kicadPcbPath,
     kicadFileType: "pcb",
@@ -38,7 +59,7 @@ test("repro05: compare imported antenna copper against KiCad", async () => {
     <text x="24" y="32" font-size="24">Left: KiCad source</text>
     <text x="${snapshotWidth + 24}" y="32" font-size="24">Right: Imported PCB</text>
     <text x="24" y="64" font-size="20">AE1: filled F.Cu footprint polygons form the antenna copper.</text>
-    <text x="${snapshotWidth + 24}" y="64" font-size="20">AE1: antenna copper polygons are missing; only the two pads remain.</text>
+    <text x="${snapshotWidth + 24}" y="64" font-size="20">AE1: all ${sourceCopperPolygons.length} antenna copper polygons and both pads are preserved.</text>
   </g>
   <g transform="translate(0 96)">${comparisonSvg}</g>
 </svg>`
