@@ -1,0 +1,264 @@
+(kicad_pcb (version 20221018) (generator pcbnew)
+  (general (thickness 1.6))
+  (paper "A4")
+  (layers (0 "F.Cu" signal) (31 "B.Cu" signal)
+    (36 "B.SilkS" user "b.silkscreen") (37 "F.SilkS" user "f.silkscreen")
+    (44 "Edge.Cuts" user))
+  (net 0 "") (net 1 "GND") (net 23 "Net-(AE1-FEED)")
+  (footprint
+  "Watchy:SWRA117D"
+  (layer F.Cu)
+  (tstamp 8f75fea9-eb23-4c61-9727-d298800a2ad7)
+  (at 74.255 79.18)
+  (path "/f9720163-7c79-47fa-bde6-40ecd2d98319")
+  (attr through_hole)
+  (property "Sheetfile" "Watchy.kicad_sch"
+  )
+  (property "Sheetname" ""
+  )
+  (property "ki_description" "Ceramic chip antenna with pin for PCB trace"
+  )
+  (property "ki_keywords" "antenna"
+  )
+  (fp_text
+    reference
+    "AE1"
+    (at 0.005 -2.31)
+    (layer F.SilkS)
+    hide
+    (effects
+      (font
+        (size 1.27 1.27)
+        (thickness 0.15)
+      )
+    )
+    (tstamp c4fa98b9-4f3e-4942-bc38-7b95e4c6f4fa)
+  )
+  (fp_text
+    value
+    "Antenna_Chip"
+    (at 17.02 0)
+    (layer F.SilkS)
+    hide
+    (effects
+      (font
+        (size 1.27 1.27)
+        (thickness 0.15)
+      )
+    )
+    (tstamp 94b76ec5-01c1-4e0c-aafb-436cc62b11c2)
+  )
+  (fp_poly
+    (pts
+      (xy 3.17 -4.4)
+      (xy 3.17 -0.46)
+      (xy 2.67 -0.46)
+      (xy 2.67 -4.4)
+      (xy 3.17 -4.4)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp afdafcf0-66f2-4bb9-ac10-ea6f4a2c033e)
+  )
+  (fp_poly
+    (pts
+      (xy 5.37 -4.9)
+      (xy 5.37 -4.4)
+      (xy 2.67 -4.4)
+      (xy 2.67 -4.9)
+      (xy 5.37 -4.9)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp 017a86de-37bd-4df9-8858-b03c9553e602)
+  )
+  (fp_poly
+    (pts
+      (xy 5.37 -4.4)
+      (xy 5.37 -1.76)
+      (xy 4.87 -1.76)
+      (xy 4.87 -4.4)
+      (xy 5.37 -4.4)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp d8dab47d-9b60-49bd-bc69-6598ea3a475b)
+  )
+  (fp_poly
+    (pts
+      (xy 7.37 -2.26)
+      (xy 7.37 -1.76)
+      (xy 5.37 -1.76)
+      (xy 5.37 -2.26)
+      (xy 7.37 -2.26)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp 252cc933-4db3-4f74-8ffe-ef581085f138)
+  )
+  (fp_poly
+    (pts
+      (xy 7.87 -4.4)
+      (xy 7.87 -1.76)
+      (xy 7.37 -1.76)
+      (xy 7.37 -4.4)
+      (xy 7.87 -4.4)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp c7c2c719-04f9-411e-ac54-3f78573d7b08)
+  )
+  (fp_poly
+    (pts
+      (xy 10.07 -4.9)
+      (xy 10.07 -4.4)
+      (xy 7.37 -4.4)
+      (xy 7.37 -4.9)
+      (xy 10.07 -4.9)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp efb084e2-d4d4-44ac-b7d1-423a8f5db414)
+  )
+  (fp_poly
+    (pts
+      (xy 10.07 -4.4)
+      (xy 10.07 -1.76)
+      (xy 9.57 -1.76)
+      (xy 9.57 -4.4)
+      (xy 10.07 -4.4)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp df28bf53-4e0b-4533-8092-c68d2b55e9e5)
+  )
+  (fp_poly
+    (pts
+      (xy 12.02 -2.26)
+      (xy 12.02 -1.76)
+      (xy 10.02 -1.76)
+      (xy 10.02 -2.26)
+      (xy 12.02 -2.26)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp 3c42a5ae-6bd6-4388-af70-7f1695f90fb8)
+  )
+  (fp_poly
+    (pts
+      (xy 12.52 -4.4)
+      (xy 12.52 -1.76)
+      (xy 12.02 -1.76)
+      (xy 12.02 -4.4)
+      (xy 12.52 -4.4)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp 06fca69b-4367-45bb-9811-f45cb103bfd5)
+  )
+  (fp_poly
+    (pts
+      (xy 14.72 -4.4)
+      (xy 14.72 0.5)
+      (xy 14.22 0.5)
+      (xy 14.22 -4.4)
+      (xy 14.72 -4.4)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp a1acf0ac-9b9b-4103-aa0f-4719ff0f9f80)
+  )
+  (fp_poly
+    (pts
+      (xy 17.02 -4.9)
+      (xy 17.02 -4.4)
+      (xy 12.02 -4.4)
+      (xy 12.02 -4.9)
+      (xy 17.02 -4.9)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp f2d74fde-a854-4137-b97f-775236e0dc5b)
+  )
+  (fp_poly
+    (pts
+      (xy 17.02 -4.4)
+      (xy 17.02 0.5)
+      (xy 16.12 0.5)
+      (xy 16.12 -4.4)
+      (xy 17.02 -4.4)
+    )
+    (layer F.Cu)
+    (stroke
+      (width 0)
+      (type solid)
+    )
+    (fill solid)
+    (tstamp 843e22ef-d095-4b83-a60d-d1593958c352)
+  )
+  (pad "1" smd rect
+    (at 14.47 0.25)
+    (size 0.5 0.5)
+    (layers F.Cu F.Paste F.Mask)
+    (net 23 "Net-(AE1-FEED)")
+    (pinfunction FEED)
+    (pintype input)
+    (tstamp d88c0053-23de-4378-b95b-1bc212d9080f)
+  )
+  (pad "2" smd rect
+    (at 16.57 0.25)
+    (size 0.9 0.5)
+    (layers F.Cu F.Paste F.Mask)
+    (net 1 "GND")
+    (pinfunction PCB_Trace)
+    (pintype passive)
+    (tstamp 4e3ec953-329e-4b52-856b-8ca0570bb243)
+  )
+)
+  (gr_rect (start 75 73) (end 93 81)
+    (stroke (width 0.05) (type default)) (fill none) (layer "Edge.Cuts"))
+)
