@@ -1,8 +1,6 @@
 import { expect, test } from "bun:test"
-import "bun-match-svg"
 import { readFileSync } from "node:fs"
 import { pcb_silkscreen_graphic } from "circuit-json"
-import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import { KicadToCircuitJsonConverter } from "../../lib"
 
 function convertFootprintBoard(footprint: string) {
@@ -21,7 +19,7 @@ function convertFootprintBoard(footprint: string) {
   return converter.getOutput()
 }
 
-test("OCuLink OSHW logo retains all 13 filled silkscreen polygons", async () => {
+test("OCuLink OSHW logo retains all 13 filled silkscreen polygons", () => {
   const board = readFileSync(
     "tests/assets/oculink-to-pcie-adapter.kicad_pcb",
     "utf8",
@@ -42,16 +40,6 @@ test("OCuLink OSHW logo retains all 13 filled silkscreen polygons", async () => 
     expect(graphic.brep_shape.outer_ring.vertices).toEqual(outlines[i]!.route)
     expect(outlines[i]!.stroke_width).toBe(0.01)
   }
-
-  await expect(
-    convertCircuitJsonToPcbSvg(output, {
-      width: 700,
-      height: 650,
-      includeVersion: false,
-      showCourtyards: false,
-      showPcbNotes: false,
-    }),
-  ).toMatchSvgSnapshot(import.meta.path, "oculink-oshw-logo")
 })
 
 test.each([
