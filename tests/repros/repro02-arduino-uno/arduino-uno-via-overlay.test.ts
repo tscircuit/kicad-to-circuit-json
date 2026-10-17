@@ -7,6 +7,7 @@ import { parseKicadPcb } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { sanitizeCircuitJsonNetName } from "../../../lib/stages/pcb/CollectNetsStage"
 import { KicadToCircuitJsonConverter } from "../../../lib"
+import { normalizeSvgPrecision } from "../../fixtures/normalize-svg-precision"
 
 const POINT_KEY_PRECISION = 1e6
 
@@ -123,7 +124,7 @@ function expectSvgSnapshot(
 }
 
 function normalizeTransientSvgIds(svg: string) {
-  return svg
+  return normalizeSvgPrecision(svg)
     .replaceAll(
       /silkscreen-knockout-mask-(pcb_silkscreen_text_\d+)-\d+/g,
       "silkscreen-knockout-mask-$1",
