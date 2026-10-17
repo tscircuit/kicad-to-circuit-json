@@ -645,12 +645,21 @@ export function createFootprintPoly(params: {
     return
   }
 
+  // KiCad polygons close implicitly, but Circuit JSON paths need the final
+  // segment explicitly. Preserve paths whose source already repeats the start.
+  const first = transformedPts[0]!
+  const last = transformedPts[transformedPts.length - 1]!
+  const route =
+    first.x === last.x && first.y === last.y
+      ? transformedPts
+      : [...transformedPts, first]
+
   insertFootprintRoute({
     ctx,
     componentId,
     layer,
     renderLayer,
-    route: transformedPts,
+    route,
     strokeWidth,
   })
 }

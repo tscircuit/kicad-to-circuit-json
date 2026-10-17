@@ -190,10 +190,14 @@ test("kicad footprint converter: converts current KiCad QFN-60 footprint with uu
     width: 3.4,
     height: 3.4,
   })
-  expect(silkscreenPaths.some((path: any) => path.route?.length === 3)).toBe(
-    true,
+  const pinOneOutline = silkscreenPaths.find(
+    (path: any) => path.route?.length === 4,
   )
-  expect(fabPaths.some((path: any) => path.route?.length === 5)).toBe(true)
+  expect(pinOneOutline).toBeDefined()
+  expect(pinOneOutline.route[3]).toEqual(pinOneOutline.route[0])
+  const bodyOutline = fabPaths.find((path: any) => path.route?.length === 6)
+  expect(bodyOutline).toBeDefined()
+  expect(bodyOutline.route[5]).toEqual(bodyOutline.route[0])
 })
 
 test("kicad footprint converter: DIP-10 SVG snapshot", async () => {
