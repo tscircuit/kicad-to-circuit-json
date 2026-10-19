@@ -20,8 +20,8 @@ const fixturePath = join(
 
 function makeRulerBoard(footprint: string) {
   const placedFootprint = upgradeKicad5FootprintToKicad6(footprint).replace(
-    "(at 0 0)",
-    "(at 0 0) (tstamp d3fc9057-d323-46af-a8de-8d7590990ac4)",
+    /\(at [^)]+\)/,
+    "$& (tstamp d3fc9057-d323-46af-a8de-8d7590990ac4)",
   )
   return `(kicad_pcb (version 20171130) (generator pcbnew)
     (general (thickness 1.6))
@@ -36,7 +36,7 @@ function makeRulerBoard(footprint: string) {
   )`
 }
 
-test("real KiCad copper ruler loses all 41 footprint strokes", async () => {
+test("real KiCad copper ruler preserves all 41 footprint strokes", async () => {
   const footprint = await readFile(fixturePath, "utf8")
   expect(createHash("sha256").update(footprint).digest("hex")).toBe(
     "05cc439b1389ffb2874ea342238d5337552d9ba39e7067200edaa605dd433492",
@@ -56,7 +56,10 @@ test("real KiCad copper ruler loses all 41 footprint strokes", async () => {
   footprintConverter.addFile("copper-ruler.kicad_mod", footprint)
   footprintConverter.runUntilFinished()
 
-  for (const converter of [boardConverter, footprintConverter]) {
+  for (const [converter, boardCenter] of [
+    [boardConverter, { x: 24, y: -20.5 }],
+    [footprintConverter, { x: 0, y: 0 }],
+  ] as const) {
     const output = converter.getOutput()
     expect(
       output.filter((element) => element.type === "pcb_component"),
@@ -70,9 +73,85 @@ test("real KiCad copper ruler loses all 41 footprint strokes", async () => {
         "pcb_copper_pour",
       ].includes(element.type),
     )
-    // Reproduction baseline: import succeeds, but none of the source copper survives.
-    // The stacked fix replaces this with checks for all 41 physical strokes.
-    expect(copper).toHaveLength(0)
+    expect(copper).toHaveLength(41)
+    const component = output.find(
+      (element) => element.type === "pcb_component",
+    )!
+    for (const [index, stroke] of copper.entries()) {
+      expect(stroke.type).toBe("pcb_smtpad")
+      if (stroke.type !== "pcb_smtpad")
+        throw new Error("Expected copper artwork")
+      expect(stroke.shape).toBe("rotated_pill")
+      if (stroke.shape !== "rotated_pill")
+        throw new Error("Expected round caps")
+      const source = sourceLines[index]!
+      const dx = source.end!.x - source.start!.x
+      const dy = source.start!.y - source.end!.y
+      expect(stroke.x).toBeCloseTo(
+        (source.start!.x + source.end!.x) / 2 - boardCenter.x,
+        6,
+      )
+      expect(stroke.y).toBeCloseTo(
+        boardCenter.y - (source.start!.y + source.end!.y) / 2,
+        6,
+      )
+      expect(stroke.width).toBeCloseTo(Math.hypot(dx, dy) + 0.381, 6)
+      expect(stroke.height).toBeCloseTo(0.381, 6)
+      expect(stroke.radius).toBeCloseTo(0.381 / 2, 6)
+      expect(stroke.ccw_rotation).toBeCloseTo(
+        (Math.atan2(dy, dx) * 180) / Math.PI,
+        6,
+      )
+      expect(stroke.layer).toBe("top")
+      expect(stroke.pcb_component_id).toBe(component.pcb_component_id)
+      expect(stroke.pcb_port_id).toBeUndefined()
+      expect(stroke.is_covered_with_solder_mask).toBe(true)
+    }
+  }
+
+  // Place the same real ruler on either copper face at orthogonal and oblique angles.
+  for (const [layer, angle] of [
+    ["F.Cu", 90],
+    ["F.Cu", 180],
+    ["B.Cu", 37],
+    ["B.Cu", 270],
+  ] as const) {
+    const placedSource = footprint
+      .replaceAll("(layer F.Cu)", `(layer ${layer})`)
+      .replace("(at 0 0)", `(at 18 11 ${angle})`)
+    const converter = new KicadToCircuitJsonConverter()
+    converter.addFile("placed-ruler.kicad_pcb", makeRulerBoard(placedSource))
+    converter.runUntilFinished()
+    const strokes = converter
+      .getOutput()
+      .filter((element) => element.type === "pcb_smtpad")
+    expect(strokes).toHaveLength(41)
+    const radians = (angle * Math.PI) / 180
+    for (const [index, stroke] of strokes.entries()) {
+      if (stroke.shape !== "rotated_pill")
+        throw new Error("Expected copper stroke")
+      const line = sourceLines[index]!
+      const localX = (line.start!.x + line.end!.x) / 2
+      const localY = (line.start!.y + line.end!.y) / 2
+      expect(stroke.x).toBeCloseTo(
+        localX * Math.cos(radians) + localY * Math.sin(radians) + 18 - 24,
+        6,
+      )
+      expect(stroke.y).toBeCloseTo(
+        localX * Math.sin(radians) - localY * Math.cos(radians) - 11 - 20.5,
+        6,
+      )
+      const sourceAngle =
+        (Math.atan2(line.start!.y - line.end!.y, line.end!.x - line.start!.x) *
+          180) /
+        Math.PI
+      const delta =
+        ((stroke.ccw_rotation - sourceAngle - angle) * Math.PI) / 180
+      expect(Math.cos(delta)).toBeCloseTo(1, 6)
+      expect(Math.sin(delta)).toBeCloseTo(0, 6)
+      expect(stroke.layer).toBe(layer === "F.Cu" ? "top" : "bottom")
+      expect(stroke.height).toBeCloseTo(0.381, 6)
+    }
   }
 
   const tempDir = await mkdtemp(join(tmpdir(), "kicad-copper-ruler-"))
@@ -123,7 +202,7 @@ test("real KiCad copper ruler loses all 41 footprint strokes", async () => {
       <rect width="1200" height="750" fill="#111820"/>
       <g fill="white" font-family="sans-serif">
         <text x="20" y="30" font-size="22">KiCad source: real 50 mm copper ruler</text>
-        <text x="620" y="30" font-size="22">Imported PCB: copper strokes missing</text>
+        <text x="620" y="30" font-size="22">Imported PCB: 41 copper strokes preserved</text>
         <text x="20" y="60" font-size="16">41 original copper strokes, 0.381 mm wide</text>
         <text x="620" y="60" font-size="16">Import succeeds without a warning</text>
       </g>

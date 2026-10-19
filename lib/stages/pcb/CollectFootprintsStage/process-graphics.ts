@@ -1,4 +1,4 @@
-import type { PcbRenderLayer } from "circuit-json"
+import type { PcbRenderLayer, PcbSmtPadRotatedPill } from "circuit-json"
 import type { Footprint, FpArc, FpCircle, FpLine, FpPoly } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
@@ -8,6 +8,7 @@ import type {
 } from "../../../types"
 import {
   isPcbAnnotationRenderLayer,
+  mapKicadLayerToLayerRef,
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
 import { mapTextLayer } from "./layer-utils"
@@ -190,7 +191,9 @@ export function createFootprintLine(params: {
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(line.layer)
-  if (!isPcbAnnotationRenderLayer(renderLayer)) return
+  if (!renderLayer) return
+  const isCopperLayer = renderLayer.endsWith("_copper")
+  if (!isCopperLayer && !isPcbAnnotationRenderLayer(renderLayer)) return
 
   const start = line.start || { x: 0, y: 0 }
   const end = line.end || { x: 0, y: 0 }
@@ -221,6 +224,28 @@ export function createFootprintLine(params: {
 
   const layer = mapTextLayer(line.layer)
   const strokeWidth = getGraphicStrokeWidth(line)
+
+  if (isCopperLayer) {
+    if (strokeWidth <= 0) return
+    const dx = endPos.x - startPos.x
+    const dy = endPos.y - startPos.y
+    const copperStroke: Omit<PcbSmtPadRotatedPill, "pcb_smtpad_id"> = {
+      type: "pcb_smtpad",
+      pcb_component_id: componentId,
+      shape: "rotated_pill",
+      x: (startPos.x + endPos.x) / 2,
+      y: (startPos.y + endPos.y) / 2,
+      width: Math.hypot(dx, dy) + strokeWidth,
+      height: strokeWidth,
+      radius: strokeWidth / 2,
+      ccw_rotation: (Math.atan2(dy, dx) * 180) / Math.PI,
+      layer: mapKicadLayerToLayerRef(line.layer),
+      // Copper artwork does not imply a solder-mask opening or electrical pin.
+      is_covered_with_solder_mask: true,
+    }
+    ctx.db.pcb_smtpad.insert(copperStroke)
+    return
+  }
 
   insertFootprintRoute({
     ctx,
