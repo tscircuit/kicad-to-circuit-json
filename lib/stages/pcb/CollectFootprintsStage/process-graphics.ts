@@ -1,4 +1,4 @@
-import type { PcbRenderLayer } from "circuit-json"
+import type { PcbCourtyardOutline, PcbRenderLayer } from "circuit-json"
 import type { Footprint, FpArc, FpCircle, FpLine, FpPoly } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
@@ -11,7 +11,13 @@ import {
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
 import { mapTextLayer } from "./layer-utils"
+import { joinFootprintCourtyardSegments } from "./join-footprint-courtyard-segments"
 
+/**
+ * Insert board-world route points in mm (+X right, +Y up, +Z above;
+ * right-handed). Placement translation is already applied. Return the inserted
+ * courtyard segment so the footprint can join its line/arc contours.
+ */
 function insertFootprintRoute(options: {
   ctx: ConverterContext
   componentId: string
@@ -42,7 +48,7 @@ function insertFootprintRoute(options: {
     return
   }
 
-  ctx.db.pcb_courtyard_outline.insert({
+  return ctx.db.pcb_courtyard_outline.insert({
     pcb_component_id: componentId,
     layer,
     outline: route,
@@ -103,17 +109,19 @@ export function processFootprintGraphics(params: {
 }) {
   const { ctx, footprint, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
+  const courtyardSegments: PcbCourtyardOutline[] = []
 
   // Process fp_line elements
   const lines = footprint.fpLines || []
   const lineArray = Array.isArray(lines) ? lines : lines ? [lines] : []
   for (const line of lineArray) {
-    createFootprintLine({
+    const courtyardSegment = createFootprintLine({
       ctx,
       line,
       componentId,
       footprintPlacement,
     })
+    if (courtyardSegment) courtyardSegments.push(courtyardSegment)
   }
 
   // Process fp_rect elements
@@ -156,13 +164,20 @@ export function processFootprintGraphics(params: {
   const arcs = footprint.fpArcs || []
   const arcArray = Array.isArray(arcs) ? arcs : arcs ? [arcs] : []
   for (const arc of arcArray) {
-    createFootprintArc({
+    const courtyardSegment = createFootprintArc({
       ctx,
       arc,
       componentId,
       footprintPlacement,
     })
+    if (courtyardSegment) courtyardSegments.push(courtyardSegment)
   }
+
+  joinFootprintCourtyardSegments({
+    ctx,
+    courtyardSegments,
+    footprintReference: params.footprintReference,
+  })
 
   // Process fp_poly elements
   const polys = footprint.fpPolys || []
@@ -178,7 +193,9 @@ export function processFootprintGraphics(params: {
 }
 
 /**
- * Creates a footprint line graphic on the matching output layer type
+ * Creates a footprint line graphic on the matching output layer type.
+ * Returned courtyard points are in board-world mm (+X right, +Y up, +Z above;
+ * right-handed), with placement translation applied.
  */
 export function createFootprintLine(params: {
   ctx: ConverterContext
@@ -222,7 +239,7 @@ export function createFootprintLine(params: {
   const layer = mapTextLayer(line.layer)
   const strokeWidth = getGraphicStrokeWidth(line)
 
-  insertFootprintRoute({
+  return insertFootprintRoute({
     ctx,
     componentId,
     layer,
@@ -456,7 +473,9 @@ function calculateArcCenter(params: {
 }
 
 /**
- * Creates a footprint arc graphic on the matching output layer type
+ * Creates a footprint arc graphic on the matching output layer type.
+ * Returned courtyard points are in board-world mm (+X right, +Y up, +Z above;
+ * right-handed), with placement translation applied.
  */
 export function createFootprintArc(params: {
   ctx: ConverterContext
@@ -516,7 +535,7 @@ export function createFootprintArc(params: {
     // If points are collinear, fall back to straight line
     const startPos = applyToPoint(ctx.k2cMatPcb, startKicadPos)
     const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
-    insertFootprintRoute({
+    return insertFootprintRoute({
       ctx,
       componentId,
       layer,
@@ -524,7 +543,6 @@ export function createFootprintArc(params: {
       route: [startPos, endPos],
       strokeWidth,
     })
-    return
   }
 
   const { center, radius } = arcInfo
@@ -588,7 +606,7 @@ export function createFootprintArc(params: {
     arcRoute.push(cjPoint)
   }
 
-  insertFootprintRoute({
+  return insertFootprintRoute({
     ctx,
     componentId,
     layer,
