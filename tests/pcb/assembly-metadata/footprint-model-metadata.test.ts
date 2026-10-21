@@ -15,7 +15,7 @@ const contents = (svg: string) =>
 const escapeXml = (text: string) =>
   text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 
-test("repro4948: HDMI EDID board loses 101 3D model references and transforms without warnings", async () => {
+test("repro4948: HDMI EDID board preserves 98 3D model records and reports 3 additional models", async () => {
   const filename = "tests/assets/hdmi-edid-debug-board.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -39,7 +39,16 @@ test("repro4948: HDMI EDID board loses 101 3D model references and transforms wi
     if (!component) throw new Error(`Missing ${reference}`)
     const model = footprint.models[0]
     const imported = component.metadata?.kicad_footprint?.model
-    expect(imported).toBeUndefined()
+    expect(imported).toEqual(
+      model
+        ? {
+            path: model.path,
+            offset: model.offset,
+            scale: model.scale,
+            rotate: model.rotate,
+          }
+        : undefined,
+    )
     expect(
       pcb_component.parse(component).metadata?.kicad_footprint?.model,
     ).toEqual(imported)
@@ -53,8 +62,18 @@ test("repro4948: HDMI EDID board loses 101 3D model references and transforms wi
   const warnings = converter.getWarnings().filter((w) => w.includes("3D model"))
   expect(sourceCount).toBe(101)
   expect(parts.filter((p) => p.model)).toHaveLength(98)
-  expect(preserved).toBe(0)
-  expect(warnings).toEqual([])
+  expect(preserved).toBe(98)
+  expect(warnings).toEqual(
+    parts.flatMap((part) =>
+      part.footprint.models
+        .slice(1)
+        .map(
+          (model) =>
+            `Footprint ${part.reference}: additional 3D model ${JSON.stringify(model.path)} was not imported; Circuit JSON footprint metadata supports one model per footprint.`,
+        ),
+    ),
+  )
+  expect(warnings).toHaveLength(3)
   const samples = ["R11", "J5", "J1"].map(
     (ref) => parts.find((p) => p.reference === ref)!,
   )
@@ -120,4 +139,34 @@ test("repro4948: HDMI EDID board loses 101 3D model references and transforms wi
 <rect x="732" y="140" width="684" height="540" fill="black" stroke="#425563"/><svg x="732" y="140" width="684" height="540" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">${contents(importedSvg)}</svg>
 </svg>`
   await expect(svg).toMatchSvgSnapshot(import.meta.path)
+}, 30_000)
+
+test("reports hidden 3D model settings on the real Corne board", () => {
+  const content = readFileSync(
+    "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb",
+    "utf8",
+  )
+  const source = parseKicadPcb(content)
+  const converter = new KicadToCircuitJsonConverter()
+  converter.addFile("corne-keyboard.kicad_pcb", content)
+  converter.runUntilFinished()
+  const hidden = source.footprints.flatMap((footprint) =>
+    footprint.models
+      .filter((model) => model.hide)
+      .map((model) => ({
+        model,
+        reference: footprint.fpTexts.find((text) => text.type === "reference")!
+          .text,
+      })),
+  )
+  expect(hidden.map((p) => p.reference).sort()).toEqual(["J4", "rJ4"])
+  const warnings = converter
+    .getWarnings()
+    .filter((message) => message.includes("unsupported visibility or opacity"))
+  expect(warnings).toEqual(
+    hidden.map(
+      ({ reference, model }) =>
+        `Footprint ${reference}: 3D model ${JSON.stringify(model.path)} has unsupported visibility or opacity settings; its path and transforms were imported without those settings.`,
+    ),
+  )
 }, 30_000)
