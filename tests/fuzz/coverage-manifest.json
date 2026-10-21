@@ -1,0 +1,562 @@
+{
+  "repository": "tscircuit/kicad-to-circuit-json",
+  "commit": "72514638cc52c9edca8ca9c2a2dfcd0e3651834a",
+  "status": "Representative generated element contracts; variant expansion tracked in README",
+  "elements": [
+    {
+      "type": "pcb_board",
+      "sources": [
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Closed and open Edge.Cuts; disconnected loops; arcs; nested holes; moved outline",
+      "planned_property": "Outer boundary, dimensions and normalized origin agree; internal loops become cutouts; degenerate outlines follow a declared policy.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb"
+      ]
+    },
+    {
+      "type": "pcb_component",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-footprint.ts"
+      ],
+      "planned_generator": "Footprint location, rotation, side, UUID and mixed pads",
+      "planned_property": "Transform and side are correct; source link resolves; bounds enclose supported geometry under the documented bounds policy.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_copper_pour",
+      "sources": [
+        "lib/stages/pcb/CollectZonesStage.ts"
+      ],
+      "planned_generator": "Net, copper layer, contours, holes, filled/unfilled zones",
+      "planned_property": "Preserve net and layer; compare filled region area and holes; do not silently treat unfilled boundaries as authoritative filled copper.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb"
+      ]
+    },
+    {
+      "type": "pcb_copper_text",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-text.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Front/back copper, angle, alignment, escapes, Unicode",
+      "planned_property": "Correct text, anchor, side and orientation; no accidental silk conversion.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_courtyard_circle",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-graphics.ts"
+      ],
+      "planned_generator": "Radius, center, front/back layer",
+      "planned_property": "Radius and transformed center match; correct side.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_courtyard_outline",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-graphics.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Concave polygon, winding, repeated endpoint, arc approximation",
+      "planned_property": "Preserve region and closure with explicit curve tolerance.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_courtyard_rect",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-graphics.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Non-square rectangle, rotation and side",
+      "planned_property": "Compare transformed corners, width and height rather than only bounding area.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_cutout",
+      "sources": [
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Inner Edge.Cuts loops, nested/disjoint holes",
+      "planned_property": "Preserve void geometry; never fill cutouts as board material.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb"
+      ]
+    },
+    {
+      "type": "pcb_fabrication_note_path",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-graphics.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Lines, curves, widths and fabrication layers",
+      "planned_property": "Path, stroke and side match after coordinate transform.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_fabrication_note_rect",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-graphics.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Rectangle corners, rotation, fill",
+      "planned_property": "Preserve transformed rectangle and supported style.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_fabrication_note_text",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-text.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Reference/value properties, visibility, rotation, text escapes",
+      "planned_property": "Content and placement match; hidden/unsupported style follows explicit policy.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_hole",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-pads.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "NPTH circle, oval drill, offset, anonymous number",
+      "planned_property": "Drill geometry survives; no unintended conductive connection.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_plated_hole",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/create-custom-plated-hole.ts",
+        "lib/stages/pcb/CollectFootprintsStage/process-pads.ts"
+      ],
+      "planned_generator": "Circle, slot, rectangular/custom copper, drill offsets, layer span",
+      "planned_property": "Drill and copper envelopes both match; correct port/net ownership and layers.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_port",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-ports.ts"
+      ],
+      "planned_generator": "Numbered, duplicate-number and anonymous pads; mixed sides",
+      "planned_property": "Pad/port positions and copper layers agree; references resolve according to import mode; duplicate physical pads may share one logical pin.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_silkscreen_circle",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-graphics.ts"
+      ],
+      "planned_generator": "Circle center, radius, stroke and side",
+      "planned_property": "Correct circle and layer; stroke retained.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_silkscreen_path",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-graphics.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Lines, arcs, polygon edges, rotated footprint graphics",
+      "planned_property": "Endpoints and curved shape agree within tolerance; no double transform.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_silkscreen_text",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-text.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "Reference/value text, justification, mirror, rotation",
+      "planned_property": "Text and anchor preserved under the documented visibility policy.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_smtpad",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-pads.ts",
+        "lib/stages/pcb/CollectGraphicsStage.ts"
+      ],
+      "planned_generator": "smd/connect; circle, rect, oval, roundrect, trapezoid and custom contours",
+      "planned_property": "Copper geometry, position, side and port match; verify corner radius independently; approximations produce a diagnostic.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "footprint"
+      ]
+    },
+    {
+      "type": "pcb_trace",
+      "sources": [
+        "lib/stages/pcb/CollectTracesStage.ts"
+      ],
+      "planned_generator": "Segments/arcs; branching nets; reversed segment order; multiple layers",
+      "planned_property": "Geometric endpoints and width survive; route may split/merge but preserves physical connectivity and net identity.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb"
+      ]
+    },
+    {
+      "type": "pcb_via",
+      "sources": [
+        "lib/stages/pcb/CollectViasStage.ts"
+      ],
+      "planned_generator": "Diameter, drill, through/blind/buried layer pairs, net 0",
+      "planned_property": "Preserve drill/copper and actual layer span; net 0 never becomes an invented ground connection.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb"
+      ]
+    },
+    {
+      "type": "schematic_arc",
+      "sources": [
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts",
+        "lib/stages/schematic/emitKicadSymbolGeometry.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Start/mid/end near collinear, reflected or rotated",
+      "planned_property": "Arc geometry and direction match; degeneracy is handled explicitly.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol",
+        "schematic"
+      ]
+    },
+    {
+      "type": "schematic_box",
+      "sources": [
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts"
+      ],
+      "planned_generator": "Text boxes, dimensions, rotations and margins",
+      "planned_property": "Bounds, anchor and supported text properties survive.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "schematic"
+      ]
+    },
+    {
+      "type": "schematic_circle",
+      "sources": [
+        "lib/stages/schematic/emitKicadSymbolGeometry.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Center, radius, fill, symbol transform",
+      "planned_property": "Correct transformed center/radius and supported style.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol"
+      ]
+    },
+    {
+      "type": "schematic_component",
+      "sources": [
+        "lib/stages/schematic/CollectLibrarySymbolsStage.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Instance rotation/mirror, units, reference, symbol lookup",
+      "planned_property": "Placement and source identity survive; pins from distinct units remain correctly associated.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol"
+      ]
+    },
+    {
+      "type": "schematic_line",
+      "sources": [
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts",
+        "lib/stages/schematic/emitKicadSymbolGeometry.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Reversed endpoints, negative positions, stroke",
+      "planned_property": "Transformed endpoints/stroke match; endpoint order alone is not semantic loss.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol"
+      ]
+    },
+    {
+      "type": "schematic_net_label",
+      "sources": [
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts"
+      ],
+      "planned_generator": "Local/global/hierarchical labels; direction; same name on distinct sheets",
+      "planned_property": "Label geometry and intended scope survive; no global merging of local nets.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "schematic"
+      ]
+    },
+    {
+      "type": "schematic_path",
+      "sources": [
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts",
+        "lib/stages/schematic/emitKicadSymbolGeometry.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Polylines, symbol contours, open/closed path",
+      "planned_property": "Correct points, closure and style after symbol and sheet transforms.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol",
+        "schematic"
+      ]
+    },
+    {
+      "type": "schematic_port",
+      "sources": [
+        "lib/stages/schematic/CollectLibrarySymbolsStage.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Pin number/name, length, orientation, hidden/power and multi-unit pins",
+      "planned_property": "Correct terminal position and source link; hidden pins remain electrically meaningful where supported.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol"
+      ]
+    },
+    {
+      "type": "schematic_rect",
+      "sources": [
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Reversed corners, non-square shape, rotation and fill",
+      "planned_property": "Compare all transformed corners and supported fill/stroke.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol",
+        "schematic"
+      ]
+    },
+    {
+      "type": "schematic_symbol",
+      "sources": [
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Library identifiers, inheritance, units, shared geometry",
+      "planned_property": "Definitions and instances remain associated; no duplicate/lost units; missing parent handled explicitly.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol"
+      ]
+    },
+    {
+      "type": "schematic_text",
+      "sources": [
+        "lib/stages/schematic/CollectLibrarySymbolsStage.ts",
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts",
+        "lib/stages/schematic/emitKicadSymbolGeometry.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Unicode/escaped text, angle, size, mirror and visibility",
+      "planned_property": "Text and orientation survive; unsupported style is accounted for.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "symbol",
+        "schematic"
+      ]
+    },
+    {
+      "type": "schematic_trace",
+      "sources": [
+        "lib/stages/schematic/CollectSchematicTracesStage.ts"
+      ],
+      "planned_generator": "T-junctions, crossings with/without junctions, labels, disconnected islands",
+      "planned_property": "Compare terminal connectivity partitions; a crossing without a junction must not acquire a connection.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "schematic"
+      ]
+    },
+    {
+      "type": "source_component",
+      "sources": [
+        "lib/stages/pcb/CollectFootprintsStage/process-footprint.ts",
+        "lib/stages/schematic/CollectLibrarySymbolsStage.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Reference/value prefixes, resistor/capacitor/inductor units, transistor forms",
+      "planned_property": "Correct identity and semantic value; do not merge distinct components by value or reference alone.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "symbol",
+        "footprint"
+      ]
+    },
+    {
+      "type": "source_net",
+      "sources": [
+        "lib/stages/pcb/CollectSourceTracesStage.ts",
+        "lib/stages/schematic/CollectSchematicAnnotationsStage.ts"
+      ],
+      "planned_generator": "Number/name permutations, no-net 0, Unicode labels and sheet scopes",
+      "planned_property": "Membership is invariant under consistent renaming; unrelated nets never merge.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "schematic"
+      ]
+    },
+    {
+      "type": "source_port",
+      "sources": [
+        "lib/stages/pcb/CollectSourceTracesStage.ts",
+        "lib/stages/schematic/CollectLibrarySymbolsStage.ts",
+        "lib/stages/symbol-library/CollectSymbolLibrarySymbolsStage.ts"
+      ],
+      "planned_generator": "Pin number/name, repeated pads, repeated units, component UUID",
+      "planned_property": "Logical terminal identity is preserved, with valid component ownership.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb",
+        "symbol",
+        "footprint"
+      ]
+    },
+    {
+      "type": "source_trace",
+      "sources": [
+        "lib/stages/pcb/CollectSourceTracesStage.ts"
+      ],
+      "planned_generator": "Nets with branches, isolated pads, labels, multi-layer connectivity",
+      "planned_property": "Same connected terminal sets as input; splitting records is allowed, adding/removing electrical connections is not.",
+      "oracle": "tests/fuzz/element-oracles.ts",
+      "tested_modes": [
+        "pcb"
+      ]
+    }
+  ],
+  "modes": {
+    "pcb": [
+      "source_component",
+      "pcb_component",
+      "pcb_port",
+      "pcb_smtpad",
+      "pcb_plated_hole",
+      "pcb_hole",
+      "pcb_silkscreen_text",
+      "pcb_fabrication_note_text",
+      "pcb_copper_text",
+      "pcb_silkscreen_path",
+      "pcb_fabrication_note_path",
+      "pcb_courtyard_outline",
+      "pcb_fabrication_note_rect",
+      "pcb_courtyard_rect",
+      "pcb_silkscreen_circle",
+      "pcb_courtyard_circle",
+      "source_port",
+      "source_net",
+      "source_trace",
+      "pcb_trace",
+      "pcb_via",
+      "pcb_copper_pour",
+      "pcb_cutout",
+      "pcb_board"
+    ],
+    "symbol": [
+      "schematic_symbol",
+      "source_component",
+      "source_port",
+      "schematic_component",
+      "schematic_port",
+      "schematic_line",
+      "schematic_path",
+      "schematic_rect",
+      "schematic_circle",
+      "schematic_arc",
+      "schematic_text"
+    ],
+    "schematic": [
+      "schematic_trace",
+      "source_net",
+      "schematic_net_label",
+      "schematic_text",
+      "schematic_box",
+      "schematic_rect",
+      "schematic_path",
+      "schematic_arc"
+    ],
+    "footprint": [
+      "source_component",
+      "pcb_component",
+      "source_port",
+      "pcb_port",
+      "pcb_smtpad",
+      "pcb_plated_hole",
+      "pcb_hole",
+      "pcb_silkscreen_text",
+      "pcb_fabrication_note_text",
+      "pcb_copper_text",
+      "pcb_silkscreen_path",
+      "pcb_fabrication_note_path",
+      "pcb_courtyard_outline",
+      "pcb_fabrication_note_rect",
+      "pcb_courtyard_rect",
+      "pcb_silkscreen_circle",
+      "pcb_courtyard_circle"
+    ]
+  }
+}
