@@ -69,3 +69,36 @@ function normalizeTransientSvgIds(svg: string) {
     )
     .replaceAll(/knockout-mask-(pcb_copper_text_\d+)-\d+/g, "knockout-mask-$1")
 }
+
+test.failing("V12: Arduino Mega fabrication circles stay within 0.001 mm", () => {
+  const converter = new KicadToCircuitJsonConverter()
+  converter.addFile(
+    "arduino-mega-2560.kicad_pcb",
+    readFileSync("tests/assets/Arduino Mega 2560.kicad_pcb", "utf8"),
+  )
+  converter.runUntilFinished()
+  const elements = converter.getOutput()
+  const sources = elements.filter((e) => e.type === "source_component")
+  const components = elements.filter((e) => e.type === "pcb_component")
+  const circles = elements.filter((e) => e.type === "pcb_fabrication_note_path")
+  for (const reference of ["FID1", "FID2", "FID3", "FID4"]) {
+    const source = sources.find((e) => e.name === reference)!
+    const component = components.find(
+      (e) => e.source_component_id === source.source_component_id,
+    )!
+    const circle = circles.find(
+      (e) =>
+        e.pcb_component_id === component.pcb_component_id &&
+        e.route.length >= 17,
+    )!
+    for (let i = 1; i < circle.route.length; i++) {
+      const start = circle.route[i - 1]!
+      const end = circle.route[i]!
+      const midpointRadius = Math.hypot(
+        (start.x + end.x) / 2 - component.center.x,
+        (start.y + end.y) / 2 - component.center.y,
+      )
+      expect(1.5 - midpointRadius).toBeLessThanOrEqual(0.001)
+    }
+  }
+})
