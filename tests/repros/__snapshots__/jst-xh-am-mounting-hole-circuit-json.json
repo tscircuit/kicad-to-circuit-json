@@ -281,70 +281,6 @@
     "stroke_width": 0.12
   },
   {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_0",
-    "pcb_component_id": "pcb_component_0",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 97.05,
-        "y": -97.15
-      },
-      {
-        "x": 97.05,
-        "y": -103.9
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_1",
-    "pcb_component_id": "pcb_component_0",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 97.05,
-        "y": -103.9
-      },
-      {
-        "x": 107.95,
-        "y": -103.9
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_2",
-    "pcb_component_id": "pcb_component_0",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 107.95,
-        "y": -103.9
-      },
-      {
-        "x": 107.95,
-        "y": -97.15
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_3",
-    "pcb_component_id": "pcb_component_0",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 107.95,
-        "y": -97.15
-      },
-      {
-        "x": 97.05,
-        "y": -97.15
-      }
-    ]
-  },
-  {
     "type": "pcb_fabrication_note_path",
     "pcb_fabrication_note_path_id": "pcb_fabrication_note_path_4",
     "pcb_component_id": "pcb_component_0",
@@ -717,5 +653,33 @@
       }
     ],
     "stroke_width": 0.12
+  },
+  {
+    "type": "pcb_courtyard_outline",
+    "pcb_courtyard_outline_id": "pcb_courtyard_outline_0",
+    "pcb_component_id": "pcb_component_0",
+    "layer": "top",
+    "outline": [
+      {
+        "x": 97.05,
+        "y": -97.15
+      },
+      {
+        "x": 97.05,
+        "y": -103.9
+      },
+      {
+        "x": 107.95,
+        "y": -103.9
+      },
+      {
+        "x": 107.95,
+        "y": -97.15
+      },
+      {
+        "x": 97.05,
+        "y": -97.15
+      }
+    ]
   }
 ]
