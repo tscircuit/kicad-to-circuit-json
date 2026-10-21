@@ -1,4 +1,3 @@
-import type { PcbRenderLayer } from "circuit-json"
 import type { Footprint, FpArc, FpCircle, FpLine, FpPoly } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
@@ -11,43 +10,7 @@ import {
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
 import { mapTextLayer } from "./layer-utils"
-
-function insertFootprintRoute(options: {
-  ctx: ConverterContext
-  componentId: string
-  layer: "top" | "bottom"
-  renderLayer: PcbRenderLayer
-  route: Array<{ x: number; y: number }>
-  strokeWidth: number
-}) {
-  const { ctx, componentId, layer, renderLayer, route, strokeWidth } = options
-
-  if (renderLayer.endsWith("_silkscreen")) {
-    ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: componentId,
-      layer,
-      route,
-      stroke_width: strokeWidth,
-    })
-    return
-  }
-
-  if (renderLayer.endsWith("_fabrication_note")) {
-    ctx.db.pcb_fabrication_note_path.insert({
-      pcb_component_id: componentId,
-      layer,
-      route,
-      stroke_width: strokeWidth,
-    })
-    return
-  }
-
-  ctx.db.pcb_courtyard_outline.insert({
-    pcb_component_id: componentId,
-    layer,
-    outline: route,
-  })
-}
+import { insertFootprintRoute } from "./insert-footprint-route"
 
 function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
   return (
