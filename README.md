@@ -38,6 +38,23 @@ console.log("Warnings:", converter.getWarnings())
 console.log("Stats:", converter.getStats())
 ```
 
+To include the schematic page and its title block, enable sheet output:
+
+```typescript
+const converter = new KicadToCircuitJsonConverter({
+  includeSchematicSheet: true,
+})
+```
+
+This creates a `schematic_sheet` and assigns the circuit, title-block border,
+title, date, revision, company, and comments to that sheet. The default output
+contains only the circuit; the entire document title block is omitted.
+Sheet output uses the source page center and the Circuit JSON sheet renderer's
+physical scale. Title-block annotations follow KiCad's default worksheet;
+custom worksheet templates are not imported. The current `circuit-to-svg`
+renderer draws an A4 landscape frame even for other paper sizes, although the
+output preserves their dimensions and title-block positions.
+
 For a single `.kicad_mod` footprint, use the dedicated footprint converter:
 
 ```typescript
@@ -80,6 +97,7 @@ The converter uses a staged pipeline architecture that mirrors the circuit-json-
 1. **InitializeSchematicContextStage** - Sets up coordinate transformations (KiCad → Circuit JSON)
 2. **CollectLibrarySymbolsStage** - Extracts symbols and creates `source_component` + `schematic_component` entries
 3. **CollectSchematicTracesStage** - Converts wires and junctions to `schematic_trace` elements
+4. **CollectSchematicAnnotationsStage** - Converts annotations and, when sheet output is enabled, the document title block
 
 ### PCB Pipeline
 
@@ -94,7 +112,7 @@ The converter uses a staged pipeline architecture that mirrors the circuit-json-
 
 The converter handles coordinate system differences between KiCad and Circuit JSON:
 
-- **Schematic**: `scale(1/15, -1/15)` with translation (inverse of CJ→KiCad transform)
+- **Schematic**: `scale(1/15, -1/15)` with translation (inverse of CJ→KiCad transform). With `includeSchematicSheet`, use `scale(1/(10.16/1.1), -1/(10.16/1.1))` centered on the source paper.
 - **PCB**: `scale(1, -1)` with translation
 
 ## Supported Features

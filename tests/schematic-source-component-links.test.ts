@@ -9,7 +9,9 @@ import "./fixtures/png-matcher"
 test("schematic components reference their inserted source components", async () => {
   const schematicPath = "tests/assets/hsp-usb-led.kicad_sch"
   const schematicContent = readFileSync(schematicPath, "utf8")
-  const converter = new KicadToCircuitJsonConverter()
+  const converter = new KicadToCircuitJsonConverter({
+    includeSchematicSheet: true,
+  })
   converter.addFile("hsp-usb-led.kicad_sch", schematicContent)
   converter.runUntilFinished()
 
@@ -74,9 +76,12 @@ test("schematic components reference their inserted source components", async ()
   expect(schematicTextValues).toContain("A9")
   expect(schematicTextValues).toContain("USB-C 2.0")
   expect(schematicTextValues).toContain("LED")
+  expect(schematicTextValues).toContain("Title: LED with USB-C")
+  expect(schematicTextValues).toContain("Date: 2026-02-04")
+  expect(schematicTextValues).toContain("Rev: v1.0.0")
   expect(
     circuitJson.filter((element) => element.type === "schematic_rect"),
-  ).toHaveLength(2)
+  ).toHaveLength(3)
   expect(
     schematicTextValues.some(
       (text) => text.startsWith("#PWR") || text.startsWith("#FLG"),
@@ -113,7 +118,9 @@ test("schematic components reference their inserted source components", async ()
         Math.hypot(
           port.center.x - component.center.x,
           port.center.y - component.center.y,
-        ) < 2
+        ) *
+          (10.16 / 1.1) <
+        30
       )
     }),
   ).toBe(true)

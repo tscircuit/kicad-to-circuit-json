@@ -19,6 +19,11 @@ import { CollectSymbolLibrarySymbolsStage } from "./stages/symbol-library/Collec
 import { InitializeSymbolLibraryContextStage } from "./stages/symbol-library/InitializeSymbolLibraryContextStage"
 import type { ConverterContext, ConverterStage } from "./types"
 
+export interface KicadToCircuitJsonConverterOptions {
+  /** Include the document sheet and its title block. Defaults to false. */
+  includeSchematicSheet?: boolean
+}
+
 export class KicadToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
   ctx?: ConverterContext
@@ -26,6 +31,8 @@ export class KicadToCircuitJsonConverter {
   currentStageIndex = 0
 
   pipeline?: ConverterStage[]
+
+  constructor(private options: KicadToCircuitJsonConverterOptions = {}) {}
 
   get currentStage() {
     return this.pipeline?.[this.currentStageIndex]
@@ -59,6 +66,7 @@ export class KicadToCircuitJsonConverter {
       kicadSymbolLib: symbolLibFile
         ? parseKicadSym(this.fsMap[symbolLibFile]!)
         : undefined,
+      includeSchematicSheet: this.options.includeSchematicSheet,
       warnings: [],
       stats: {},
     }

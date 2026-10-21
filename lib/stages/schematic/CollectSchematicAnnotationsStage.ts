@@ -16,6 +16,8 @@ import type {
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import { parseKicadOverlineText } from "../../utils/parse-kicad-overline-text"
+import { assignSchematicSheet } from "./assignSchematicSheet"
+import { emitSchematicTitleBlock } from "./emitSchematicTitleBlock"
 
 const GRAPHIC_COLOR = "rgb(0, 0, 132)"
 const TEXT_COLOR = "rgb(0, 0, 132)"
@@ -86,6 +88,8 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       this.processPolyline(polyline)
     }
     for (const arc of kicadSch.arcs) this.processArc(arc)
+    emitSchematicTitleBlock(this.ctx)
+    assignSchematicSheet(this.ctx)
 
     this.finished = true
     return false
