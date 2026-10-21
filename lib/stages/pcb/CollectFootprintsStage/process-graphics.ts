@@ -16,11 +16,7 @@ import {
   joinFootprintCourtyardSegments,
 } from "./join-footprint-courtyard-segments"
 
-/**
- * Process board-world route points in mm (+X right, +Y up, +Z above;
- * right-handed), with placement translation applied. Silkscreen/fabrication
- * paths are emitted directly; courtyard paths are returned for contour assembly.
- */
+/** Emit annotation paths, or return a courtyard segment for contour assembly. */
 function processFootprintRoute(options: {
   ctx: ConverterContext
   componentId: string
@@ -31,27 +27,19 @@ function processFootprintRoute(options: {
 }) {
   const { ctx, componentId, layer, renderLayer, route, strokeWidth } = options
 
+  const annotationPath = {
+    pcb_component_id: componentId,
+    layer,
+    route,
+    stroke_width: strokeWidth,
+  }
   if (renderLayer.endsWith("_silkscreen")) {
-    ctx.db.pcb_silkscreen_path.insert({
-      pcb_component_id: componentId,
-      layer,
-      route,
-      stroke_width: strokeWidth,
-    })
-    return
+    ctx.db.pcb_silkscreen_path.insert(annotationPath)
+  } else if (renderLayer.endsWith("_fabrication_note")) {
+    ctx.db.pcb_fabrication_note_path.insert(annotationPath)
+  } else {
+    return { layer, outline: route }
   }
-
-  if (renderLayer.endsWith("_fabrication_note")) {
-    ctx.db.pcb_fabrication_note_path.insert({
-      pcb_component_id: componentId,
-      layer,
-      route,
-      stroke_width: strokeWidth,
-    })
-    return
-  }
-
-  return { layer, outline: route }
 }
 
 function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
@@ -201,9 +189,7 @@ export function processFootprintGraphics(params: {
 }
 
 /**
- * Creates a footprint line graphic on the matching output layer type.
- * Returned courtyard points are in board-world mm (+X right, +Y up, +Z above;
- * right-handed), with placement translation applied.
+ * Creates a footprint line graphic on the matching output layer type
  */
 export function createFootprintLine(params: {
   ctx: ConverterContext
@@ -481,9 +467,7 @@ function calculateArcCenter(params: {
 }
 
 /**
- * Creates a footprint arc graphic on the matching output layer type.
- * Returned courtyard points are in board-world mm (+X right, +Y up, +Z above;
- * right-handed), with placement translation applied.
+ * Creates a footprint arc graphic on the matching output layer type
  */
 export function createFootprintArc(params: {
   ctx: ConverterContext
