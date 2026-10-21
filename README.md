@@ -93,13 +93,13 @@ The converter uses a staged pipeline architecture that mirrors the circuit-json-
 ## Coordinate Transformations
 
 The converter handles coordinate system differences between KiCad and Circuit JSON:
-
 - **Schematic**: `scale(1/15, -1/15)` with translation (inverse of CJ→KiCad transform)
 - **PCB**: `scale(1, -1)` with translation
 
 ## Supported Features
 
 ### Schematic
+
 - ✅ Symbols/Components
 - ✅ Symbol ports/pins
 - ✅ Wires/traces
@@ -109,6 +109,7 @@ The converter handles coordinate system differences between KiCad and Circuit JS
 - ⚠️ Power symbols (partial)
 
 ### PCB
+
 - ✅ Footprints/Components
 - ✅ SMD pads
 - ✅ Through-hole pads (plated holes)
@@ -122,7 +123,6 @@ The converter handles coordinate system differences between KiCad and Circuit JS
 ## MVP Limitations
 
 This is an MVP implementation. Some limitations include:
-
 - Component sizes are estimated (not derived from actual symbol geometry)
 - Port positions are simplified (not fully transformed relative to component)
 - Trace routing is basic (segments grouped by net/layer)
