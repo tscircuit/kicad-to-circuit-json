@@ -3,7 +3,9 @@
     "type": "source_component",
     "source_component_id": "source_component_0",
     "name": "J3",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "Conn_FFC_WE_68715014522_TWO-SIDES",
+    "manufacturer_part_number": "68715014522"
   },
   {
     "type": "pcb_component",
@@ -13,7 +15,7 @@
       "y": -4.75
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_0"
@@ -1740,6 +1742,8 @@
     "source_component_id": "source_component_1",
     "name": "R1",
     "ftype": "simple_resistor",
+    "display_value": "R_2k37_0402",
+    "manufacturer_part_number": "CR0402-FX-2371GLF",
     "resistance": "R_2k37_0402"
   },
   {
@@ -1753,7 +1757,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_1"
+    "source_component_id": "source_component_1",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -1912,6 +1925,8 @@
     "source_component_id": "source_component_2",
     "name": "R2",
     "ftype": "simple_resistor",
+    "display_value": "R_2k37_0402",
+    "manufacturer_part_number": "CR0402-FX-2371GLF",
     "resistance": "R_2k37_0402"
   },
   {
@@ -1925,7 +1940,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_2"
+    "source_component_id": "source_component_2",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -2084,6 +2108,8 @@
     "source_component_id": "source_component_3",
     "name": "R3",
     "ftype": "simple_resistor",
+    "display_value": "R_2k37_0402",
+    "manufacturer_part_number": "CR0402-FX-2371GLF",
     "resistance": "R_2k37_0402"
   },
   {
@@ -2097,7 +2123,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_3"
+    "source_component_id": "source_component_3",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -2256,6 +2291,8 @@
     "source_component_id": "source_component_4",
     "name": "R5",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -2269,7 +2306,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_4"
+    "source_component_id": "source_component_4",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -2427,7 +2473,9 @@
     "type": "source_component",
     "source_component_id": "source_component_5",
     "name": "U4",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "NTB0104BQ",
+    "manufacturer_part_number": "NTB0104BQ"
   },
   {
     "type": "pcb_component",
@@ -2437,7 +2485,7 @@
       "y": 0.7139999999999986
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_5"
@@ -3169,6 +3217,8 @@
     "source_component_id": "source_component_6",
     "name": "L2",
     "ftype": "simple_inductor",
+    "display_value": "MLP2012S3R3MT",
+    "manufacturer_part_number": "MLP2012S3R3MT",
     "inductance": "MLP2012S3R3MT"
   },
   {
@@ -3375,6 +3425,8 @@
     "source_component_id": "source_component_7",
     "name": "L1",
     "ftype": "simple_inductor",
+    "display_value": "MLP2012S3R3MT",
+    "manufacturer_part_number": "MLP2012S3R3MT",
     "inductance": "MLP2012S3R3MT"
   },
   {
@@ -3581,6 +3633,8 @@
     "source_component_id": "source_component_8",
     "name": "L3",
     "ftype": "simple_inductor",
+    "display_value": "MLP2012S3R3MT",
+    "manufacturer_part_number": "MLP2012S3R3MT",
     "inductance": "MLP2012S3R3MT"
   },
   {
@@ -3787,6 +3841,8 @@
     "source_component_id": "source_component_9",
     "name": "L4",
     "ftype": "simple_inductor",
+    "display_value": "MLP2012S3R3MT",
+    "manufacturer_part_number": "MLP2012S3R3MT",
     "inductance": "MLP2012S3R3MT"
   },
   {
@@ -3993,6 +4049,8 @@
     "source_component_id": "source_component_10",
     "name": "L5",
     "ftype": "simple_inductor",
+    "display_value": "MLP2012S3R3MT",
+    "manufacturer_part_number": "MLP2012S3R3MT",
     "inductance": "MLP2012S3R3MT"
   },
   {
@@ -4199,6 +4257,8 @@
     "source_component_id": "source_component_11",
     "name": "C12",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -4209,7 +4269,7 @@
       "y": -4.755737999999994
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_11"
@@ -4394,8 +4454,8 @@
       "x": 28,
       "y": -4.755737999999994
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -4406,6 +4466,8 @@
     "source_component_id": "source_component_12",
     "name": "C7",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -4612,6 +4674,8 @@
     "source_component_id": "source_component_13",
     "name": "C10",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -4818,6 +4882,8 @@
     "source_component_id": "source_component_14",
     "name": "C13",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -4828,7 +4894,7 @@
       "y": 2.799999999999997
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_14"
@@ -5013,8 +5079,8 @@
       "x": 27.02000000000001,
       "y": 2.799999999999997
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -5025,6 +5091,8 @@
     "source_component_id": "source_component_15",
     "name": "C19",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -5231,6 +5299,8 @@
     "source_component_id": "source_component_16",
     "name": "C21",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -5437,6 +5507,8 @@
     "source_component_id": "source_component_17",
     "name": "C8",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -5643,6 +5715,8 @@
     "source_component_id": "source_component_18",
     "name": "R7",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -5653,10 +5727,19 @@
       "y": 4.819999999999993
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_18"
+    "source_component_id": "source_component_18",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -5816,6 +5899,8 @@
     "source_component_id": "source_component_19",
     "name": "R20",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -5829,7 +5914,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_19"
+    "source_component_id": "source_component_19",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -5988,6 +6082,8 @@
     "source_component_id": "source_component_20",
     "name": "R9",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -5998,7 +6094,7 @@
       "y": -5.284000000000006
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_20"
@@ -6149,8 +6245,8 @@
       "x": 38.72200000000001,
       "y": -5.284000000000006
     },
-    "width": 1,
-    "height": 0.5,
+    "width": 0.5,
+    "height": 1,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -6161,6 +6257,8 @@
     "source_component_id": "source_component_21",
     "name": "R13",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -6171,7 +6269,7 @@
       "y": -5.280000000000001
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_21"
@@ -6322,8 +6420,8 @@
       "x": -30.873999999999995,
       "y": -5.280000000000001
     },
-    "width": 1,
-    "height": 0.5,
+    "width": 0.5,
+    "height": 1,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -6334,6 +6432,8 @@
     "source_component_id": "source_component_22",
     "name": "R16",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -6347,7 +6447,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_22"
+    "source_component_id": "source_component_22",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -6506,6 +6615,8 @@
     "source_component_id": "source_component_23",
     "name": "R17",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -6519,7 +6630,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_23"
+    "source_component_id": "source_component_23",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -6678,6 +6798,8 @@
     "source_component_id": "source_component_24",
     "name": "R8",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -6691,7 +6813,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_24"
+    "source_component_id": "source_component_24",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -6850,6 +6981,8 @@
     "source_component_id": "source_component_25",
     "name": "C9",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -6860,7 +6993,7 @@
       "y": -5.284000000000006
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_25"
@@ -7034,6 +7167,8 @@
     "source_component_id": "source_component_26",
     "name": "C31",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -7044,7 +7179,7 @@
       "y": -5.280000000000001
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_26"
@@ -7218,6 +7353,8 @@
     "source_component_id": "source_component_27",
     "name": "C20",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -7228,7 +7365,7 @@
       "y": -1
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_27"
@@ -7402,6 +7539,8 @@
     "source_component_id": "source_component_28",
     "name": "C16",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -7412,7 +7551,7 @@
       "y": -5.284000000000006
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_28"
@@ -7586,6 +7725,8 @@
     "source_component_id": "source_component_29",
     "name": "C23",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -7596,7 +7737,7 @@
       "y": -5.280000000000001
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_29"
@@ -7770,6 +7911,8 @@
     "source_component_id": "source_component_30",
     "name": "C14",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -7780,7 +7923,7 @@
       "y": -4.539738
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_30"
@@ -7954,6 +8097,8 @@
     "source_component_id": "source_component_31",
     "name": "L6",
     "ftype": "simple_inductor",
+    "display_value": "MLP2012S3R3MT",
+    "manufacturer_part_number": "MLP2012S3R3MT",
     "inductance": "MLP2012S3R3MT"
   },
   {
@@ -8160,6 +8305,8 @@
     "source_component_id": "source_component_32",
     "name": "C15",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -8170,7 +8317,7 @@
       "y": 2.450000000000003
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_32"
@@ -8344,6 +8491,8 @@
     "source_component_id": "source_component_33",
     "name": "C17",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -8354,7 +8503,7 @@
       "y": -5.284000000000006
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_33"
@@ -8528,6 +8677,8 @@
     "source_component_id": "source_component_34",
     "name": "C32",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -8538,7 +8689,7 @@
       "y": -5.280000000000001
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_34"
@@ -8712,6 +8863,8 @@
     "source_component_id": "source_component_35",
     "name": "C1",
     "ftype": "simple_capacitor",
+    "display_value": "C_4u7_0805",
+    "manufacturer_part_number": "0805X475K250CT",
     "capacitance": "C_4u7_0805"
   },
   {
@@ -8722,7 +8875,7 @@
       "y": -9.472999999999999
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_35"
@@ -8863,8 +9016,8 @@
       "x": -32.3,
       "y": -9.472999999999999
     },
-    "width": 1.9,
-    "height": 1.35,
+    "width": 1.35,
+    "height": 1.9,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -8875,6 +9028,8 @@
     "source_component_id": "source_component_36",
     "name": "C5",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -8885,7 +9040,7 @@
       "y": 8.459720000000004
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_36"
@@ -9070,8 +9225,8 @@
       "x": -37.81999999999999,
       "y": 8.459720000000004
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -9082,6 +9237,8 @@
     "source_component_id": "source_component_37",
     "name": "C4",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -9092,7 +9249,7 @@
       "y": -9.724000000000004
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_37"
@@ -9277,8 +9434,8 @@
       "x": -38.7,
       "y": -9.724000000000004
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -9289,6 +9446,8 @@
     "source_component_id": "source_component_38",
     "name": "C2",
     "ftype": "simple_capacitor",
+    "display_value": "C_4u7_0805",
+    "manufacturer_part_number": "0805X475K250CT",
     "capacitance": "C_4u7_0805"
   },
   {
@@ -9299,7 +9458,7 @@
       "y": 8.680000000000007
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_38"
@@ -9440,8 +9599,8 @@
       "x": -31.400000000000006,
       "y": 8.680000000000007
     },
-    "width": 1.9,
-    "height": 1.35,
+    "width": 1.35,
+    "height": 1.9,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -9452,6 +9611,8 @@
     "source_component_id": "source_component_39",
     "name": "C38",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -9658,6 +9819,8 @@
     "source_component_id": "source_component_40",
     "name": "C25",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -9864,6 +10027,8 @@
     "source_component_id": "source_component_41",
     "name": "C22",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -10070,6 +10235,8 @@
     "source_component_id": "source_component_42",
     "name": "C36",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -10080,7 +10247,7 @@
       "y": -3
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_42"
@@ -10265,8 +10432,8 @@
       "x": -43,
       "y": -3
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -10277,6 +10444,8 @@
     "source_component_id": "source_component_43",
     "name": "C28",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -10483,6 +10652,8 @@
     "source_component_id": "source_component_44",
     "name": "C37",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -10493,7 +10664,7 @@
       "y": -3.215999999999994
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_44"
@@ -10667,6 +10838,8 @@
     "source_component_id": "source_component_45",
     "name": "R21",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -10839,6 +11012,8 @@
     "source_component_id": "source_component_46",
     "name": "C29",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -10849,7 +11024,7 @@
       "y": -5.284000000000006
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_46"
@@ -11023,6 +11198,8 @@
     "source_component_id": "source_component_47",
     "name": "C30",
     "ftype": "simple_capacitor",
+    "display_value": "C_100n_6V3_0402",
+    "manufacturer_part_number": "0402X104K6R3CT",
     "capacitance": "C_100n_6V3_0402"
   },
   {
@@ -11033,7 +11210,7 @@
       "y": 1.3700000000000045
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_47"
@@ -11207,6 +11384,8 @@
     "source_component_id": "source_component_48",
     "name": "C27",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -11217,7 +11396,7 @@
       "y": -5.5
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_48"
@@ -11402,8 +11581,8 @@
       "x": -43,
       "y": -5.5
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -11414,6 +11593,8 @@
     "source_component_id": "source_component_49",
     "name": "C34",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -11424,7 +11605,7 @@
       "y": 4.980000000000004
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_49"
@@ -11621,6 +11802,8 @@
     "source_component_id": "source_component_50",
     "name": "C33",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -11631,7 +11814,7 @@
       "y": 4.799999999999997
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_50"
@@ -11828,6 +12011,8 @@
     "source_component_id": "source_component_51",
     "name": "R19",
     "ftype": "simple_resistor",
+    "display_value": "R_2k_0402",
+    "manufacturer_part_number": "CR0402-FX-2001GLF",
     "resistance": "R_2k_0402"
   },
   {
@@ -11838,7 +12023,7 @@
       "y": 8.441500000000005
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_51"
@@ -12000,6 +12185,8 @@
     "source_component_id": "source_component_52",
     "name": "Q1",
     "ftype": "simple_transistor",
+    "display_value": "BSS138AKA",
+    "manufacturer_part_number": "BSS138AKA",
     "transistor_type": "npn"
   },
   {
@@ -12244,262 +12431,6 @@
     "stroke_width": 0.15
   },
   {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_0",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 33.4649,
-        "y": 8.941000000000003
-      },
-      {
-        "x": 33.4649,
-        "y": 9.841000000000008
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_1",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 33.4649,
-        "y": 7.9410000000000025
-      },
-      {
-        "x": 34.364900000000006,
-        "y": 7.9410000000000025
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_2",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 33.4649,
-        "y": 7.040999999999997
-      },
-      {
-        "x": 33.4649,
-        "y": 7.9410000000000025
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_3",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 34.314899999999994,
-        "y": 10.040999999999997
-      },
-      {
-        "x": 34.314899999999994,
-        "y": 9.841000000000008
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_4",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 34.314899999999994,
-        "y": 10.040999999999997
-      },
-      {
-        "x": 36.03989999999999,
-        "y": 10.040999999999997
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_5",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 34.314899999999994,
-        "y": 9.841000000000008
-      },
-      {
-        "x": 33.4649,
-        "y": 9.841000000000008
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_6",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 34.364900000000006,
-        "y": 8.941000000000003
-      },
-      {
-        "x": 33.4649,
-        "y": 8.941000000000003
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_7",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 34.364900000000006,
-        "y": 7.9410000000000025
-      },
-      {
-        "x": 34.364900000000006,
-        "y": 8.941000000000003
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_8",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 34.364900000000006,
-        "y": 7.040999999999997
-      },
-      {
-        "x": 33.4649,
-        "y": 7.040999999999997
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_9",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 34.364900000000006,
-        "y": 6.790999999999997
-      },
-      {
-        "x": 34.364900000000006,
-        "y": 7.040999999999997
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_10",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 36.03989999999999,
-        "y": 10.040999999999997
-      },
-      {
-        "x": 36.03989999999999,
-        "y": 8.891000000000005
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_11",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 36.03989999999999,
-        "y": 8.891000000000005
-      },
-      {
-        "x": 36.9649,
-        "y": 8.891000000000005
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_12",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 36.064899999999994,
-        "y": 7.991
-      },
-      {
-        "x": 36.064899999999994,
-        "y": 6.790999999999997
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_13",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 36.064899999999994,
-        "y": 6.790999999999997
-      },
-      {
-        "x": 34.364900000000006,
-        "y": 6.790999999999997
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_14",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 36.9649,
-        "y": 8.891000000000005
-      },
-      {
-        "x": 36.9649,
-        "y": 7.991
-      }
-    ]
-  },
-  {
-    "type": "pcb_courtyard_outline",
-    "pcb_courtyard_outline_id": "pcb_courtyard_outline_15",
-    "pcb_component_id": "pcb_component_52",
-    "layer": "top",
-    "outline": [
-      {
-        "x": 36.9649,
-        "y": 7.991
-      },
-      {
-        "x": 36.064899999999994,
-        "y": 7.991
-      }
-    ]
-  },
-  {
     "type": "pcb_fabrication_note_path",
     "pcb_fabrication_note_path_id": "pcb_fabrication_note_path_53",
     "pcb_component_id": "pcb_component_52",
@@ -12585,10 +12516,88 @@
     "stroke_width": 0.15
   },
   {
+    "type": "pcb_courtyard_outline",
+    "pcb_courtyard_outline_id": "pcb_courtyard_outline_0",
+    "pcb_component_id": "pcb_component_52",
+    "layer": "top",
+    "outline": [
+      {
+        "x": 33.4649,
+        "y": 8.941000000000003
+      },
+      {
+        "x": 33.4649,
+        "y": 9.841000000000008
+      },
+      {
+        "x": 34.314899999999994,
+        "y": 9.841000000000008
+      },
+      {
+        "x": 34.314899999999994,
+        "y": 10.040999999999997
+      },
+      {
+        "x": 36.03989999999999,
+        "y": 10.040999999999997
+      },
+      {
+        "x": 36.03989999999999,
+        "y": 8.891000000000005
+      },
+      {
+        "x": 36.9649,
+        "y": 8.891000000000005
+      },
+      {
+        "x": 36.9649,
+        "y": 7.991
+      },
+      {
+        "x": 36.064899999999994,
+        "y": 7.991
+      },
+      {
+        "x": 36.064899999999994,
+        "y": 6.790999999999997
+      },
+      {
+        "x": 34.364900000000006,
+        "y": 6.790999999999997
+      },
+      {
+        "x": 34.364900000000006,
+        "y": 7.040999999999997
+      },
+      {
+        "x": 33.4649,
+        "y": 7.040999999999997
+      },
+      {
+        "x": 33.4649,
+        "y": 7.9410000000000025
+      },
+      {
+        "x": 34.364900000000006,
+        "y": 7.9410000000000025
+      },
+      {
+        "x": 34.364900000000006,
+        "y": 8.941000000000003
+      },
+      {
+        "x": 33.4649,
+        "y": 8.941000000000003
+      }
+    ]
+  },
+  {
     "type": "source_component",
     "source_component_id": "source_component_53",
     "name": "R18",
     "ftype": "simple_resistor",
+    "display_value": "R_10k_0402",
+    "manufacturer_part_number": "CR0402-FX-1002GLF",
     "resistance": "R_10k_0402"
   },
   {
@@ -12599,7 +12608,7 @@
       "y": 8.441000000000003
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_53"
@@ -12750,8 +12759,8 @@
       "x": 32.55000000000001,
       "y": 8.441000000000003
     },
-    "width": 1,
-    "height": 0.5,
+    "width": 0.5,
+    "height": 1,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -12762,6 +12771,8 @@
     "source_component_id": "source_component_54",
     "name": "R4",
     "ftype": "simple_resistor",
+    "display_value": "R_2k37_0402",
+    "manufacturer_part_number": "CR0402-FX-2371GLF",
     "resistance": "R_2k37_0402"
   },
   {
@@ -12775,7 +12786,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_54"
+    "source_component_id": "source_component_54",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -12933,7 +12953,9 @@
     "type": "source_component",
     "source_component_id": "source_component_55",
     "name": "MP4",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "Spacer_H3mm_9774030243R",
+    "manufacturer_part_number": "9774030243R"
   },
   {
     "type": "pcb_component",
@@ -13053,7 +13075,9 @@
     "type": "source_component",
     "source_component_id": "source_component_56",
     "name": "MP3",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "Spacer_H3mm_9774030243R",
+    "manufacturer_part_number": "9774030243R"
   },
   {
     "type": "pcb_component",
@@ -13173,7 +13197,9 @@
     "type": "source_component",
     "source_component_id": "source_component_57",
     "name": "MP2",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "Spacer_H3mm_9774030243R",
+    "manufacturer_part_number": "9774030243R"
   },
   {
     "type": "pcb_component",
@@ -13293,7 +13319,9 @@
     "type": "source_component",
     "source_component_id": "source_component_58",
     "name": "MP1",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "Spacer_H3mm_9774030243R",
+    "manufacturer_part_number": "9774030243R"
   },
   {
     "type": "pcb_component",
@@ -13414,6 +13442,8 @@
     "source_component_id": "source_component_59",
     "name": "C35",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -13620,6 +13650,8 @@
     "source_component_id": "source_component_60",
     "name": "C24",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -13826,6 +13858,8 @@
     "source_component_id": "source_component_61",
     "name": "C18",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -13836,7 +13870,7 @@
       "y": -0.875
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_61"
@@ -14021,8 +14055,8 @@
       "x": 28.44999999999999,
       "y": -0.875
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -14033,6 +14067,8 @@
     "source_component_id": "source_component_62",
     "name": "C6",
     "ftype": "simple_capacitor",
+    "display_value": "C_1u_0603",
+    "manufacturer_part_number": "0603YD105KAT2A",
     "capacitance": "C_1u_0603"
   },
   {
@@ -14043,7 +14079,7 @@
       "y": -9.439999999999998
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_62"
@@ -14228,8 +14264,8 @@
       "x": 31.525000000000006,
       "y": -9.439999999999998
     },
-    "width": 1.6,
-    "height": 0.8,
+    "width": 0.8,
+    "height": 1.6,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -14240,6 +14276,8 @@
     "source_component_id": "source_component_63",
     "name": "C3",
     "ftype": "simple_capacitor",
+    "display_value": "C_4u7_0805",
+    "manufacturer_part_number": "0805X475K250CT",
     "capacitance": "C_4u7_0805"
   },
   {
@@ -14250,7 +14288,7 @@
       "y": -9.090000000000003
     },
     "layer": "top",
-    "rotation": -90,
+    "rotation": 90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_63"
@@ -14391,8 +14429,8 @@
       "x": 37.877999999999986,
       "y": -9.090000000000003
     },
-    "width": 1.9,
-    "height": 1.35,
+    "width": 1.35,
+    "height": 1.9,
     "layer": "top",
     "stroke_width": 0.15,
     "is_filled": false,
@@ -14402,7 +14440,9 @@
     "type": "source_component",
     "source_component_id": "source_component_64",
     "name": "Y2",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "7C-24.000MBB-T",
+    "manufacturer_part_number": "7C-24.000MBB-T"
   },
   {
     "type": "pcb_component",
@@ -14412,7 +14452,7 @@
       "y": -0.008700000000004593
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_64"
@@ -14690,7 +14730,9 @@
     "type": "source_component",
     "source_component_id": "source_component_65",
     "name": "Y1",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "7C-24.000MBB-T",
+    "manufacturer_part_number": "7C-24.000MBB-T"
   },
   {
     "type": "pcb_component",
@@ -14700,7 +14742,7 @@
       "y": -0.008700000000004593
     },
     "layer": "top",
-    "rotation": 90,
+    "rotation": -90,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_65"
@@ -14979,6 +15021,8 @@
     "source_component_id": "source_component_66",
     "name": "R6",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -14989,10 +15033,19 @@
       "y": -4.299999999999997
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_66"
+    "source_component_id": "source_component_66",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -15152,6 +15205,8 @@
     "source_component_id": "source_component_67",
     "name": "R22",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -15165,7 +15220,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_67"
+    "source_component_id": "source_component_67",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -15323,7 +15387,8 @@
     "type": "source_component",
     "source_component_id": "source_component_68",
     "name": "N2",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "oshw_logo"
   },
   {
     "type": "pcb_component",
@@ -15336,13 +15401,22 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_68"
+    "source_component_id": "source_component_68",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "source_component",
     "source_component_id": "source_component_69",
     "name": "R12",
     "ftype": "simple_resistor",
+    "display_value": "R_0R_0402",
+    "manufacturer_part_number": "ERJ2GE0R00X",
     "resistance": "R_0R_0402"
   },
   {
@@ -15353,10 +15427,19 @@
       "y": -1.7999999999999972
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_69"
+    "source_component_id": "source_component_69",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_port",
@@ -15515,7 +15598,9 @@
     "type": "source_component",
     "source_component_id": "source_component_70",
     "name": "U3",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "NTS0104BQ",
+    "manufacturer_part_number": "NTS0104BQ"
   },
   {
     "type": "pcb_component",
@@ -16255,7 +16340,8 @@
     "type": "source_component",
     "source_component_id": "source_component_71",
     "name": "FID1",
-    "ftype": "simple_fiducial"
+    "ftype": "simple_fiducial",
+    "display_value": "Fiducial_1mm_Mask3mm"
   },
   {
     "type": "pcb_component",
@@ -16268,7 +16354,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_71"
+    "source_component_id": "source_component_71",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_smtpad",
@@ -16433,7 +16527,8 @@
     "type": "source_component",
     "source_component_id": "source_component_72",
     "name": "FID2",
-    "ftype": "simple_fiducial"
+    "ftype": "simple_fiducial",
+    "display_value": "Fiducial_1mm_Mask3mm"
   },
   {
     "type": "pcb_component",
@@ -16446,7 +16541,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_72"
+    "source_component_id": "source_component_72",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_smtpad",
@@ -16611,7 +16714,9 @@
     "type": "source_component",
     "source_component_id": "source_component_73",
     "name": "U7",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "TLV73328PDBVT",
+    "manufacturer_part_number": "TLV73328PDBVT"
   },
   {
     "type": "pcb_component",
@@ -16621,7 +16726,7 @@
       "y": -9.472999999999999
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_73"
@@ -16999,7 +17104,9 @@
     "type": "source_component",
     "source_component_id": "source_component_74",
     "name": "U6",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "TLV73312PDBVT",
+    "manufacturer_part_number": "TLV73312PDBVT"
   },
   {
     "type": "pcb_component",
@@ -17009,7 +17116,7 @@
       "y": -9.188999999999993
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_74"
@@ -17387,7 +17494,8 @@
     "type": "source_component",
     "source_component_id": "source_component_75",
     "name": "FID3",
-    "ftype": "simple_fiducial"
+    "ftype": "simple_fiducial",
+    "display_value": "Fiducial_1mm_Mask3mm"
   },
   {
     "type": "pcb_component",
@@ -17400,7 +17508,15 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_75"
+    "source_component_id": "source_component_75",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_smtpad",
@@ -17565,7 +17681,9 @@
     "type": "source_component",
     "source_component_id": "source_component_76",
     "name": "U5",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "TLV73318PDBVT",
+    "manufacturer_part_number": "TLV73318PDBVT"
   },
   {
     "type": "pcb_component",
@@ -17575,7 +17693,7 @@
       "y": 8.710719999999995
     },
     "layer": "top",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
     "source_component_id": "source_component_76"
@@ -17953,7 +18071,9 @@
     "type": "source_component",
     "source_component_id": "source_component_77",
     "name": "U1",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "ImageSensor_OV9281",
+    "manufacturer_part_number": "OV9281"
   },
   {
     "type": "pcb_component",
@@ -19868,7 +19988,9 @@
     "type": "source_component",
     "source_component_id": "source_component_78",
     "name": "U2",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "ImageSensor_OV9281",
+    "manufacturer_part_number": "OV9281"
   },
   {
     "type": "pcb_component",
@@ -21783,7 +21905,9 @@
     "type": "source_component",
     "source_component_id": "source_component_79",
     "name": "MP5",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "Camera_Lens_20mm",
+    "manufacturer_part_number": "U0756M10"
   },
   {
     "type": "pcb_component",
@@ -21796,7 +21920,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_79"
+    "source_component_id": "source_component_79",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -21911,7 +22044,9 @@
     "type": "source_component",
     "source_component_id": "source_component_80",
     "name": "MP6",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "Camera_Lens_20mm",
+    "manufacturer_part_number": "U0756M10"
   },
   {
     "type": "pcb_component",
@@ -21924,7 +22059,16 @@
     "rotation": 0,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_80"
+    "source_component_id": "source_component_80",
+    "do_not_place": true,
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_pos_files": true,
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "pcb_hole",
@@ -22039,7 +22183,8 @@
     "type": "source_component",
     "source_component_id": "source_component_81",
     "name": "N1",
-    "ftype": "simple_chip"
+    "ftype": "simple_chip",
+    "display_value": "antmicro_logo"
   },
   {
     "type": "pcb_component",
@@ -22049,38 +22194,49 @@
       "y": 3.8299999999999983
     },
     "layer": "bottom",
-    "rotation": -180,
+    "rotation": 180,
     "width": 0,
     "height": 0,
-    "source_component_id": "source_component_81"
+    "source_component_id": "source_component_81",
+    "metadata": {
+      "kicad_footprint": {
+        "attributes": {
+          "exclude_from_bom": true
+        }
+      }
+    }
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_1",
     "source_component_id": "source_component_0",
     "name": "pin1",
-    "pin_number": 1
+    "pin_number": 1,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_2",
     "source_component_id": "source_component_0",
     "name": "pin2",
-    "pin_number": 2
+    "pin_number": 2,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_3",
     "source_component_id": "source_component_0",
     "name": "pin3",
-    "pin_number": 3
+    "pin_number": 3,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_4",
     "source_component_id": "source_component_0",
     "name": "pin4",
-    "pin_number": 4
+    "pin_number": 4,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22143,14 +22299,16 @@
     "source_port_id": "pcb_component_0_port_13",
     "source_component_id": "source_component_0",
     "name": "pin13",
-    "pin_number": 13
+    "pin_number": 13,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_14",
     "source_component_id": "source_component_0",
     "name": "pin14",
-    "pin_number": 14
+    "pin_number": 14,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22164,14 +22322,16 @@
     "source_port_id": "pcb_component_0_port_16",
     "source_component_id": "source_component_0",
     "name": "pin16",
-    "pin_number": 16
+    "pin_number": 16,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_17",
     "source_component_id": "source_component_0",
     "name": "pin17",
-    "pin_number": 17
+    "pin_number": 17,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22185,28 +22345,32 @@
     "source_port_id": "pcb_component_0_port_19",
     "source_component_id": "source_component_0",
     "name": "pin19",
-    "pin_number": 19
+    "pin_number": 19,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_20",
     "source_component_id": "source_component_0",
     "name": "pin20",
-    "pin_number": 20
+    "pin_number": 20,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_21",
     "source_component_id": "source_component_0",
     "name": "pin21",
-    "pin_number": 21
+    "pin_number": 21,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_22",
     "source_component_id": "source_component_0",
     "name": "pin22",
-    "pin_number": 22
+    "pin_number": 22,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22269,7 +22433,8 @@
     "source_port_id": "pcb_component_0_port_31",
     "source_component_id": "source_component_0",
     "name": "pin31",
-    "pin_number": 31
+    "pin_number": 31,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22297,28 +22462,32 @@
     "source_port_id": "pcb_component_0_port_35",
     "source_component_id": "source_component_0",
     "name": "pin35",
-    "pin_number": 35
+    "pin_number": 35,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_36",
     "source_component_id": "source_component_0",
     "name": "pin36",
-    "pin_number": 36
+    "pin_number": 36,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_37",
     "source_component_id": "source_component_0",
     "name": "pin37",
-    "pin_number": 37
+    "pin_number": 37,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_38",
     "source_component_id": "source_component_0",
     "name": "pin38",
-    "pin_number": 38
+    "pin_number": 38,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22353,28 +22522,32 @@
     "source_port_id": "pcb_component_0_port_43",
     "source_component_id": "source_component_0",
     "name": "pin43",
-    "pin_number": 43
+    "pin_number": 43,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_44",
     "source_component_id": "source_component_0",
     "name": "pin44",
-    "pin_number": 44
+    "pin_number": 44,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_45",
     "source_component_id": "source_component_0",
     "name": "pin45",
-    "pin_number": 45
+    "pin_number": 45,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_46",
     "source_component_id": "source_component_0",
     "name": "pin46",
-    "pin_number": 46
+    "pin_number": 46,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22395,14 +22568,16 @@
     "source_port_id": "pcb_component_0_port_49",
     "source_component_id": "source_component_0",
     "name": "pin49",
-    "pin_number": 49
+    "pin_number": 49,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_0_port_50",
     "source_component_id": "source_component_0",
     "name": "pin50",
-    "pin_number": 50
+    "pin_number": 50,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22507,14 +22682,16 @@
     "source_port_id": "pcb_component_5_port_5",
     "source_component_id": "source_component_5",
     "name": "pin5",
-    "pin_number": 5
+    "pin_number": 5,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_5_port_6",
     "source_component_id": "source_component_5",
     "name": "pin6",
-    "pin_number": 6
+    "pin_number": 6,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22535,14 +22712,16 @@
     "source_port_id": "pcb_component_5_port_9",
     "source_component_id": "source_component_5",
     "name": "pin9",
-    "pin_number": 9
+    "pin_number": 9,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_5_port_10",
     "source_component_id": "source_component_5",
     "name": "pin10",
-    "pin_number": 10
+    "pin_number": 10,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -22577,7 +22756,8 @@
     "source_port_id": "pcb_component_5_port_15",
     "source_component_id": "source_component_5",
     "name": "pin15",
-    "pin_number": 15
+    "pin_number": 15,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23277,28 +23457,32 @@
     "source_port_id": "pcb_component_55_port_1",
     "source_component_id": "source_component_55",
     "name": "pin1",
-    "pin_number": 1
+    "pin_number": 1,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_56_port_1",
     "source_component_id": "source_component_56",
     "name": "pin1",
-    "pin_number": 1
+    "pin_number": 1,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_57_port_1",
     "source_component_id": "source_component_57",
     "name": "pin1",
-    "pin_number": 1
+    "pin_number": 1,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_58_port_1",
     "source_component_id": "source_component_58",
     "name": "pin1",
-    "pin_number": 1
+    "pin_number": 1,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23508,7 +23692,8 @@
     "source_port_id": "pcb_component_70_port_6",
     "source_component_id": "source_component_70",
     "name": "pin6",
-    "pin_number": 6
+    "pin_number": 6,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23529,7 +23714,8 @@
     "source_port_id": "pcb_component_70_port_9",
     "source_component_id": "source_component_70",
     "name": "pin9",
-    "pin_number": 9
+    "pin_number": 9,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23571,7 +23757,8 @@
     "source_port_id": "pcb_component_70_port_15",
     "source_component_id": "source_component_70",
     "name": "pin15",
-    "pin_number": 15
+    "pin_number": 15,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23599,7 +23786,8 @@
     "source_port_id": "pcb_component_73_port_4",
     "source_component_id": "source_component_73",
     "name": "pin4",
-    "pin_number": 4
+    "pin_number": 4,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23634,7 +23822,8 @@
     "source_port_id": "pcb_component_74_port_4",
     "source_component_id": "source_component_74",
     "name": "pin4",
-    "pin_number": 4
+    "pin_number": 4,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23669,7 +23858,8 @@
     "source_port_id": "pcb_component_76_port_4",
     "source_component_id": "source_component_76",
     "name": "pin4",
-    "pin_number": 4
+    "pin_number": 4,
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23683,7 +23873,8 @@
     "source_port_id": "pcb_component_77_port_A1",
     "source_component_id": "source_component_77",
     "name": "A1",
-    "pin_number": "A1"
+    "pin_number": "A1",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23718,7 +23909,8 @@
     "source_port_id": "pcb_component_77_port_A6",
     "source_component_id": "source_component_77",
     "name": "A6",
-    "pin_number": "A6"
+    "pin_number": "A6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23732,7 +23924,8 @@
     "source_port_id": "pcb_component_77_port_A8",
     "source_component_id": "source_component_77",
     "name": "A8",
-    "pin_number": "A8"
+    "pin_number": "A8",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23760,7 +23953,8 @@
     "source_port_id": "pcb_component_77_port_B4",
     "source_component_id": "source_component_77",
     "name": "B4",
-    "pin_number": "B4"
+    "pin_number": "B4",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23774,7 +23968,8 @@
     "source_port_id": "pcb_component_77_port_B6",
     "source_component_id": "source_component_77",
     "name": "B6",
-    "pin_number": "B6"
+    "pin_number": "B6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23802,21 +23997,24 @@
     "source_port_id": "pcb_component_77_port_C2",
     "source_component_id": "source_component_77",
     "name": "C2",
-    "pin_number": "C2"
+    "pin_number": "C2",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_77_port_C3",
     "source_component_id": "source_component_77",
     "name": "C3",
-    "pin_number": "C3"
+    "pin_number": "C3",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_77_port_C4",
     "source_component_id": "source_component_77",
     "name": "C4",
-    "pin_number": "C4"
+    "pin_number": "C4",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23830,14 +24028,16 @@
     "source_port_id": "pcb_component_77_port_C6",
     "source_component_id": "source_component_77",
     "name": "C6",
-    "pin_number": "C6"
+    "pin_number": "C6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_77_port_C7",
     "source_component_id": "source_component_77",
     "name": "C7",
-    "pin_number": "C7"
+    "pin_number": "C7",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23851,7 +24051,8 @@
     "source_port_id": "pcb_component_77_port_D1",
     "source_component_id": "source_component_77",
     "name": "D1",
-    "pin_number": "D1"
+    "pin_number": "D1",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23872,7 +24073,8 @@
     "source_port_id": "pcb_component_77_port_D4",
     "source_component_id": "source_component_77",
     "name": "D4",
-    "pin_number": "D4"
+    "pin_number": "D4",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -23886,7 +24088,8 @@
     "source_port_id": "pcb_component_77_port_D6",
     "source_component_id": "source_component_77",
     "name": "D6",
-    "pin_number": "D6"
+    "pin_number": "D6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24075,7 +24278,8 @@
     "source_port_id": "pcb_component_77_port_H1",
     "source_component_id": "source_component_77",
     "name": "H1",
-    "pin_number": "H1"
+    "pin_number": "H1",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24124,14 +24328,16 @@
     "source_port_id": "pcb_component_77_port_H8",
     "source_component_id": "source_component_77",
     "name": "H8",
-    "pin_number": "H8"
+    "pin_number": "H8",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_78_port_A1",
     "source_component_id": "source_component_78",
     "name": "A1",
-    "pin_number": "A1"
+    "pin_number": "A1",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24166,7 +24372,8 @@
     "source_port_id": "pcb_component_78_port_A6",
     "source_component_id": "source_component_78",
     "name": "A6",
-    "pin_number": "A6"
+    "pin_number": "A6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24180,7 +24387,8 @@
     "source_port_id": "pcb_component_78_port_A8",
     "source_component_id": "source_component_78",
     "name": "A8",
-    "pin_number": "A8"
+    "pin_number": "A8",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24208,7 +24416,8 @@
     "source_port_id": "pcb_component_78_port_B4",
     "source_component_id": "source_component_78",
     "name": "B4",
-    "pin_number": "B4"
+    "pin_number": "B4",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24222,7 +24431,8 @@
     "source_port_id": "pcb_component_78_port_B6",
     "source_component_id": "source_component_78",
     "name": "B6",
-    "pin_number": "B6"
+    "pin_number": "B6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24250,21 +24460,24 @@
     "source_port_id": "pcb_component_78_port_C2",
     "source_component_id": "source_component_78",
     "name": "C2",
-    "pin_number": "C2"
+    "pin_number": "C2",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_78_port_C3",
     "source_component_id": "source_component_78",
     "name": "C3",
-    "pin_number": "C3"
+    "pin_number": "C3",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_78_port_C4",
     "source_component_id": "source_component_78",
     "name": "C4",
-    "pin_number": "C4"
+    "pin_number": "C4",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24278,14 +24491,16 @@
     "source_port_id": "pcb_component_78_port_C6",
     "source_component_id": "source_component_78",
     "name": "C6",
-    "pin_number": "C6"
+    "pin_number": "C6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
     "source_port_id": "pcb_component_78_port_C7",
     "source_component_id": "source_component_78",
     "name": "C7",
-    "pin_number": "C7"
+    "pin_number": "C7",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24299,7 +24514,8 @@
     "source_port_id": "pcb_component_78_port_D1",
     "source_component_id": "source_component_78",
     "name": "D1",
-    "pin_number": "D1"
+    "pin_number": "D1",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24320,7 +24536,8 @@
     "source_port_id": "pcb_component_78_port_D4",
     "source_component_id": "source_component_78",
     "name": "D4",
-    "pin_number": "D4"
+    "pin_number": "D4",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24334,7 +24551,8 @@
     "source_port_id": "pcb_component_78_port_D6",
     "source_component_id": "source_component_78",
     "name": "D6",
-    "pin_number": "D6"
+    "pin_number": "D6",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24523,7 +24741,8 @@
     "source_port_id": "pcb_component_78_port_H1",
     "source_component_id": "source_component_78",
     "name": "H1",
-    "pin_number": "H1"
+    "pin_number": "H1",
+    "do_not_connect": true
   },
   {
     "type": "source_port",
@@ -24572,7 +24791,8 @@
     "source_port_id": "pcb_component_78_port_H8",
     "source_component_id": "source_component_78",
     "name": "H8",
-    "pin_number": "H8"
+    "pin_number": "H8",
+    "do_not_connect": true
   },
   {
     "type": "source_net",
@@ -45467,7 +45687,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45481,7 +45702,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45495,7 +45717,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45509,7 +45732,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45523,7 +45747,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45537,7 +45762,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45551,7 +45777,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45565,7 +45792,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45579,7 +45807,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45593,7 +45822,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45607,7 +45837,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45621,7 +45852,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45635,7 +45867,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45649,7 +45882,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45663,7 +45897,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45677,7 +45912,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45691,7 +45927,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45705,7 +45942,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45719,7 +45957,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45733,7 +45972,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45747,7 +45987,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45761,7 +46002,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45775,7 +46017,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45789,7 +46032,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45803,7 +46047,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45817,7 +46062,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45831,7 +46077,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45845,7 +46092,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45859,7 +46107,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45873,7 +46122,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45887,7 +46137,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45901,7 +46152,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45915,7 +46167,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45929,7 +46182,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45943,7 +46197,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45957,7 +46212,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45971,7 +46227,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45985,7 +46242,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -45999,7 +46257,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46013,7 +46272,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46027,7 +46287,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46041,7 +46302,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46055,7 +46317,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46069,7 +46332,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46083,7 +46347,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46097,7 +46362,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46111,7 +46377,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46125,7 +46392,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46139,7 +46407,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46153,7 +46422,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46167,7 +46437,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46181,7 +46452,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46195,7 +46467,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46209,7 +46482,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46223,7 +46497,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46237,7 +46512,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46251,7 +46527,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46265,7 +46542,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46279,7 +46557,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46293,7 +46572,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46307,7 +46587,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46321,7 +46602,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46335,7 +46617,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46349,7 +46632,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46363,7 +46647,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46377,7 +46662,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46391,7 +46677,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46405,7 +46692,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46419,7 +46707,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46433,7 +46722,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46447,7 +46737,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46461,7 +46752,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46475,7 +46767,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46489,7 +46782,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46503,7 +46797,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46517,7 +46812,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46531,7 +46827,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46545,7 +46842,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46559,7 +46857,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46573,7 +46872,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46587,7 +46887,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46601,7 +46902,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46615,7 +46917,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46629,7 +46932,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46643,7 +46947,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46657,7 +46962,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46671,7 +46977,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46685,7 +46992,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46699,7 +47007,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46713,7 +47022,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46727,7 +47037,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46741,7 +47052,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46755,7 +47067,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46769,7 +47082,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46783,7 +47097,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46797,7 +47112,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46811,7 +47127,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46825,7 +47142,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46839,7 +47157,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46853,7 +47172,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46867,7 +47187,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46881,7 +47202,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_8"
   },
   {
     "type": "pcb_via",
@@ -46895,7 +47217,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -46909,7 +47232,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -46923,7 +47247,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -46937,7 +47262,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -46951,7 +47277,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -46965,7 +47292,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -46979,7 +47307,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -46993,7 +47322,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -47007,7 +47337,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -47021,7 +47352,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -47035,7 +47367,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -47049,7 +47382,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -47063,7 +47397,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -47077,7 +47412,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_41"
   },
   {
     "type": "pcb_via",
@@ -47091,7 +47427,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_57"
   },
   {
     "type": "pcb_via",
@@ -47105,7 +47442,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_57"
   },
   {
     "type": "pcb_via",
@@ -47119,7 +47457,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_57"
   },
   {
     "type": "pcb_via",
@@ -47133,7 +47472,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47147,7 +47487,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47161,7 +47502,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47175,7 +47517,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47189,7 +47532,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47203,7 +47547,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47217,7 +47562,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47231,7 +47577,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47245,7 +47592,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_45"
   },
   {
     "type": "pcb_via",
@@ -47259,7 +47607,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_55"
   },
   {
     "type": "pcb_via",
@@ -47273,7 +47622,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_55"
   },
   {
     "type": "pcb_via",
@@ -47287,7 +47637,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_55"
   },
   {
     "type": "pcb_via",
@@ -47301,7 +47652,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_55"
   },
   {
     "type": "pcb_via",
@@ -47315,7 +47667,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_55"
   },
   {
     "type": "pcb_via",
@@ -47329,7 +47682,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_5"
   },
   {
     "type": "pcb_via",
@@ -47343,7 +47697,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_4"
   },
   {
     "type": "pcb_via",
@@ -47357,7 +47712,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_19"
   },
   {
     "type": "pcb_via",
@@ -47371,7 +47727,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_20"
   },
   {
     "type": "pcb_via",
@@ -47385,7 +47742,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_10"
   },
   {
     "type": "pcb_via",
@@ -47399,7 +47757,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_9"
   },
   {
     "type": "pcb_via",
@@ -47413,7 +47772,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_23"
   },
   {
     "type": "pcb_via",
@@ -47427,7 +47787,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_24"
   },
   {
     "type": "pcb_via",
@@ -47441,7 +47802,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_6"
   },
   {
     "type": "pcb_via",
@@ -47455,7 +47817,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_7"
   },
   {
     "type": "pcb_via",
@@ -47469,7 +47832,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_21"
   },
   {
     "type": "pcb_via",
@@ -47483,7 +47847,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_22"
   },
   {
     "type": "pcb_via",
@@ -47497,7 +47862,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_27"
   },
   {
     "type": "pcb_via",
@@ -47511,7 +47877,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_27"
   },
   {
     "type": "pcb_via",
@@ -47525,7 +47892,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47539,7 +47907,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47553,7 +47922,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47567,7 +47937,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47581,7 +47952,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47595,7 +47967,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47609,7 +47982,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47623,7 +47997,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_54"
   },
   {
     "type": "pcb_via",
@@ -47637,7 +48012,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_56"
   },
   {
     "type": "pcb_via",
@@ -47651,7 +48027,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_56"
   },
   {
     "type": "pcb_via",
@@ -47665,7 +48042,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_56"
   },
   {
     "type": "pcb_via",
@@ -47679,7 +48057,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_56"
   },
   {
     "type": "pcb_via",
@@ -47693,7 +48072,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_56"
   },
   {
     "type": "pcb_via",
@@ -47707,7 +48087,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_56"
   },
   {
     "type": "pcb_via",
@@ -47721,7 +48102,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_56"
   },
   {
     "type": "pcb_via",
@@ -47735,7 +48117,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_58"
   },
   {
     "type": "pcb_via",
@@ -47749,7 +48132,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_58"
   },
   {
     "type": "pcb_via",
@@ -47763,7 +48147,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_58"
   },
   {
     "type": "pcb_via",
@@ -47777,7 +48162,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_58"
   },
   {
     "type": "pcb_via",
@@ -47791,7 +48177,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_62"
   },
   {
     "type": "pcb_via",
@@ -47805,7 +48192,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_63"
   },
   {
     "type": "pcb_via",
@@ -47819,7 +48207,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_85"
   },
   {
     "type": "pcb_via",
@@ -47833,7 +48222,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_85"
   },
   {
     "type": "pcb_via",
@@ -47847,7 +48237,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_85"
   },
   {
     "type": "pcb_via",
@@ -47861,7 +48252,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_64"
   },
   {
     "type": "pcb_via",
@@ -47875,7 +48267,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_65"
   },
   {
     "type": "pcb_via",
@@ -47889,7 +48282,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_65"
   },
   {
     "type": "pcb_via",
@@ -47903,7 +48297,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_65"
   },
   {
     "type": "pcb_via",
@@ -47917,7 +48312,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_67"
   },
   {
     "type": "pcb_via",
@@ -47931,7 +48327,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_68"
   },
   {
     "type": "pcb_via",
@@ -47945,7 +48342,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_61"
   },
   {
     "type": "pcb_via",
@@ -47959,7 +48357,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_46"
   },
   {
     "type": "pcb_via",
@@ -47973,7 +48372,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_46"
   },
   {
     "type": "pcb_via",
@@ -47987,7 +48387,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_76"
   },
   {
     "type": "pcb_via",
@@ -48001,7 +48402,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_76"
   },
   {
     "type": "pcb_via",
@@ -48015,7 +48417,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_84"
   },
   {
     "type": "pcb_via",
@@ -48029,7 +48432,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_84"
   },
   {
     "type": "pcb_via",
@@ -48043,7 +48447,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_84"
   },
   {
     "type": "pcb_via",
@@ -48057,7 +48462,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_84"
   },
   {
     "type": "pcb_via",
@@ -48071,7 +48477,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_84"
   },
   {
     "type": "pcb_via",
@@ -48085,7 +48492,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48099,7 +48507,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48113,7 +48522,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48127,7 +48537,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48141,7 +48552,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48155,7 +48567,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48169,7 +48582,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48183,7 +48597,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48197,7 +48612,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_60"
   },
   {
     "type": "pcb_via",
@@ -48211,7 +48627,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48225,7 +48642,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48239,7 +48657,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48253,7 +48672,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48267,7 +48687,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48281,7 +48702,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48295,7 +48717,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48309,7 +48732,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48323,7 +48747,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_59"
   },
   {
     "type": "pcb_via",
@@ -48337,7 +48762,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_70"
   },
   {
     "type": "pcb_via",
@@ -48351,7 +48777,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_70"
   },
   {
     "type": "pcb_via",
@@ -48365,7 +48792,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_70"
   },
   {
     "type": "pcb_via",
@@ -48379,7 +48807,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_70"
   },
   {
     "type": "pcb_via",
@@ -48393,7 +48822,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_73"
   },
   {
     "type": "pcb_via",
@@ -48407,7 +48837,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_72"
   },
   {
     "type": "pcb_via",
@@ -48421,7 +48852,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_87"
   },
   {
     "type": "pcb_via",
@@ -48435,7 +48867,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_81"
   },
   {
     "type": "pcb_via",
@@ -48449,7 +48882,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_71"
   },
   {
     "type": "pcb_via",
@@ -48463,7 +48897,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_66"
   },
   {
     "type": "pcb_via",
@@ -48477,7 +48912,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_66"
   },
   {
     "type": "pcb_via",
@@ -48491,7 +48927,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_66"
   },
   {
     "type": "pcb_via",
@@ -48505,7 +48942,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_69"
   },
   {
     "type": "pcb_via",
@@ -48519,7 +48957,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_74"
   },
   {
     "type": "pcb_via",
@@ -48533,7 +48972,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_47"
   },
   {
     "type": "pcb_via",
@@ -48547,7 +48987,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_47"
   },
   {
     "type": "pcb_via",
@@ -48561,7 +49002,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_86"
   },
   {
     "type": "pcb_via",
@@ -48575,7 +49017,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_28"
   },
   {
     "type": "pcb_via",
@@ -48589,7 +49032,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_28"
   },
   {
     "type": "pcb_via",
@@ -48603,7 +49047,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_26"
   },
   {
     "type": "pcb_via",
@@ -48617,7 +49062,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_26"
   },
   {
     "type": "pcb_via",
@@ -48631,7 +49077,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_48"
   },
   {
     "type": "pcb_via",
@@ -48645,7 +49092,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_48"
   },
   {
     "type": "pcb_via",
@@ -48659,7 +49107,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_82"
   },
   {
     "type": "pcb_via",
@@ -48673,7 +49122,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_82"
   },
   {
     "type": "pcb_via",
@@ -48687,7 +49137,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_83"
   },
   {
     "type": "pcb_via",
@@ -48701,7 +49152,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_83"
   },
   {
     "type": "pcb_via",
@@ -48715,7 +49167,8 @@
       "inner1",
       "inner2",
       "bottom"
-    ]
+    ],
+    "source_net_id": "source_net_83"
   },
   {
     "type": "pcb_copper_pour",
@@ -103925,6 +104378,7 @@
     "width": 100,
     "height": 25,
     "num_layers": 4,
+    "thickness": 1.6,
     "pcb_board_id": "pcb_board_0"
   },
   {

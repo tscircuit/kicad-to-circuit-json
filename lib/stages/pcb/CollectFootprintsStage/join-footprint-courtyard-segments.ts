@@ -1,6 +1,14 @@
 import Flatten from "@flatten-js/core"
 import type { PcbCourtyardOutline } from "circuit-json"
-import type { ConverterContext, Point } from "../../../types"
+import type { Point } from "../../../types"
+
+/** Board-world points in mm (+X right, +Y up, +Z above; right-handed).
+ * Placement translation is already applied; no database record exists yet.
+ */
+export type FootprintCourtyardSegment = Pick<
+  PcbCourtyardOutline,
+  "layer" | "outline"
+>
 
 /** Compare board-world points (mm, +X right, +Y up, +Z above; right-handed).
  * Arc tessellation can introduce floating-point roundoff at shared endpoints.
@@ -11,7 +19,7 @@ const endpointsMatch = (a: Point, b: Point) =>
 /** Return board-world endpoint points (mm, +X right, +Y up, +Z above;
  * right-handed). Placement translation is already applied.
  */
-const getEndpoints = (segment: PcbCourtyardOutline) => [
+const getEndpoints = (segment: FootprintCourtyardSegment) => [
   segment.outline[0]!,
   segment.outline[segment.outline.length - 1]!,
 ]
@@ -21,18 +29,17 @@ const getEndpoints = (segment: PcbCourtyardOutline) => [
  * Input/output are points in Circuit JSON board world space, in mm: +X right,
  * +Y up, +Z above (right-handed). Placement/translation is already applied;
  * joining only reorders points and snaps matching endpoints. Layers never mix.
- * Open, branched, degenerate and self-intersecting chains are omitted with an
- * import warning.
+ * Open, branched, degenerate and self-intersecting chains are reported separately
+ * so the caller can warn without inserting invalid geometry.
  */
-export function joinFootprintCourtyardSegments({
-  ctx,
-  courtyardSegments,
-  footprintReference,
-}: {
-  ctx: ConverterContext
-  courtyardSegments: PcbCourtyardOutline[]
-  footprintReference: string
-}) {
+export function joinFootprintCourtyardSegments(
+  courtyardSegments: FootprintCourtyardSegment[],
+) {
+  const contours: FootprintCourtyardSegment[] = []
+  const invalidContours: Array<{
+    layer: FootprintCourtyardSegment["layer"]
+    reason: "invalid" | "open_or_branched"
+  }> = []
   const pendingSegments = [...courtyardSegments]
   while (pendingSegments.length > 0) {
     const firstSegment = pendingSegments.shift()!
@@ -88,22 +95,14 @@ export function joinFootprintCourtyardSegments({
     const isValidContour =
       polygon !== null && polygon.area() > 1e-12 && polygon.isValid()
 
-    for (const segment of connectedSegments) {
-      if (isValidContour && segment === firstSegment) continue
-      ctx.db.pcb_courtyard_outline.delete(segment.pcb_courtyard_outline_id)
-    }
     if (isValidContour) {
-      ctx.db.pcb_courtyard_outline.update(
-        firstSegment.pcb_courtyard_outline_id,
-        {
-          outline,
-        },
-      )
+      contours.push({ layer: firstSegment.layer, outline })
     } else {
-      const reason = isClosedChain ? "invalid" : "open or branched"
-      ;(ctx.warnings ??= []).push(
-        `Footprint ${footprintReference}: skipped an ${reason} courtyard contour on the ${firstSegment.layer} layer; courtyard overlap checks are unavailable for that contour.`,
-      )
+      invalidContours.push({
+        layer: firstSegment.layer,
+        reason: isClosedChain ? "invalid" : "open_or_branched",
+      })
     }
   }
+  return { contours, invalidContours }
 }

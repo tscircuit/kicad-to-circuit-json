@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
 import { Polygon } from "@flatten-js/core"
-import { FpLine, type Footprint } from "kicadts"
+import { FpArc, FpLine, type Footprint } from "kicadts"
 import {
   convertCourtyardBoard,
   convertCourtyardFootprint,
@@ -52,6 +52,35 @@ const malformedCourtyards: Array<{
       ]
     },
   },
+  {
+    name: "self-intersecting closed chain with nonzero signed area",
+    modify: (footprint) => {
+      const endpoints = footprint.fpLines
+        .filter(isCourtyardLine)
+        .flatMap((line) => [line.start!, line.end!])
+      const minX = Math.min(...endpoints.map((point) => point.x))
+      const maxX = Math.max(...endpoints.map((point) => point.x))
+      const minY = Math.min(...endpoints.map((point) => point.y))
+      const maxY = Math.max(...endpoints.map((point) => point.y))
+      const corners = [
+        { x: minX, y: minY },
+        { x: maxX, y: maxY },
+        { x: minX, y: maxY },
+        { x: maxX, y: (minY + maxY) / 2 },
+      ]
+      footprint.fpLines = [
+        ...footprint.fpLines.filter((line) => !isCourtyardLine(line)),
+        ...corners.map(
+          (start, index) =>
+            new FpLine({
+              start,
+              end: corners[(index + 1) % corners.length],
+              layer: "F.CrtYd",
+            }),
+        ),
+      ]
+    },
+  },
 ]
 
 test("stock KiCad line courtyard encloses a valid area for placement checks", async () => {
@@ -64,30 +93,53 @@ test("stock KiCad line courtyard encloses a valid area for placement checks", as
   ).toBeGreaterThan(0)
   for (const layer of ["top", "bottom"] as const) {
     for (const angle of [0, 90, 180, 270]) {
-      const { circuitJson } = convertCourtyardFootprint({
-        angle,
-        layer,
-        modify: (footprint) => {
-          // KiCad requires connected endpoints, not a particular file order.
-          footprint.fpLines = [...footprint.fpLines].reverse()
-          for (const [lineIndex, line] of footprint.fpLines.entries()) {
-            if (lineIndex % 2 === 0) {
-              const start = { x: line.start!.x, y: line.start!.y }
-              line.start = { x: line.end!.x, y: line.end!.y }
-              line.end = start
+      for (const useArc of [false, true]) {
+        const { circuitJson } = convertCourtyardFootprint({
+          angle,
+          layer,
+          modify: (footprint) => {
+            if (useArc) {
+              const edge = footprint.fpLines.find(isCourtyardLine)!
+              const start = { x: edge.start!.x, y: edge.start!.y }
+              const end = { x: edge.end!.x, y: edge.end!.y }
+              footprint.fpLines = footprint.fpLines.filter(
+                (line) => line !== edge,
+              )
+              footprint.fpArcs = [
+                ...footprint.fpArcs,
+                new FpArc({
+                  start,
+                  mid: {
+                    x: (start.x + end.x) / 2 - (end.y - start.y) / 4,
+                    y: (start.y + end.y) / 2 + (end.x - start.x) / 4,
+                  },
+                  end,
+                  layer: "F.CrtYd",
+                }),
+              ]
             }
-          }
-        },
-      })
-      const courtyards = circuitJson.filter(
-        (element) => element.type === "pcb_courtyard_outline",
-      )
-      expect(courtyards).toHaveLength(1)
-      const polygon = new Polygon(
-        courtyards[0]!.outline.map(({ x, y }) => [x, y]),
-      )
-      expect(polygon.area()).toBeGreaterThan(0)
-      expect(polygon.isValid()).toBe(true)
+            // KiCad requires connected endpoints, not a particular file order.
+            footprint.fpLines = [...footprint.fpLines].reverse()
+            for (const [lineIndex, line] of footprint.fpLines.entries()) {
+              if (lineIndex % 2 === 0) {
+                const start = { x: line.start!.x, y: line.start!.y }
+                line.start = { x: line.end!.x, y: line.end!.y }
+                line.end = start
+              }
+            }
+          },
+        })
+        const courtyards = circuitJson.filter(
+          (element) => element.type === "pcb_courtyard_outline",
+        )
+        expect(courtyards).toHaveLength(1)
+        const polygon = new Polygon(
+          courtyards[0]!.outline.map(({ x, y }) => [x, y]),
+        )
+        expect(polygon.area()).toBeGreaterThan(0)
+        expect(polygon.isValid()).toBe(true)
+        if (useArc) expect(courtyards[0]!.outline.length).toBeGreaterThan(5)
+      }
     }
   }
 
@@ -131,7 +183,8 @@ test("stock KiCad line courtyard encloses a valid area for placement checks", as
     modify: (footprint) => {
       const courtyardLines = footprint.fpLines.filter(isCourtyardLine)
       const xs = courtyardLines.flatMap((line) => [line.start!.x, line.end!.x])
-      const clearanceOffset = Math.max(...xs) - Math.min(...xs) + 1
+      // Distinct contours must stay separate even below Edge.Cuts' 0.01 mm tolerance.
+      const clearanceOffset = Math.max(...xs) - Math.min(...xs) + 0.001
       footprint.fpLines = [
         ...footprint.fpLines,
         ...courtyardLines.map(

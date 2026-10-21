@@ -1,4 +1,4 @@
-import type { PcbCourtyardOutline, PcbRenderLayer } from "circuit-json"
+import type { PcbRenderLayer } from "circuit-json"
 import type { Footprint, FpArc, FpCircle, FpLine, FpPoly } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type {
@@ -11,14 +11,17 @@ import {
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
 import { mapTextLayer } from "./layer-utils"
-import { joinFootprintCourtyardSegments } from "./join-footprint-courtyard-segments"
+import {
+  type FootprintCourtyardSegment,
+  joinFootprintCourtyardSegments,
+} from "./join-footprint-courtyard-segments"
 
 /**
- * Insert board-world route points in mm (+X right, +Y up, +Z above;
- * right-handed). Placement translation is already applied. Return the inserted
- * courtyard segment so the footprint can join its line/arc contours.
+ * Process board-world route points in mm (+X right, +Y up, +Z above;
+ * right-handed), with placement translation applied. Silkscreen/fabrication
+ * paths are emitted directly; courtyard paths are returned for contour assembly.
  */
-function insertFootprintRoute(options: {
+function processFootprintRoute(options: {
   ctx: ConverterContext
   componentId: string
   layer: "top" | "bottom"
@@ -48,11 +51,7 @@ function insertFootprintRoute(options: {
     return
   }
 
-  return ctx.db.pcb_courtyard_outline.insert({
-    pcb_component_id: componentId,
-    layer,
-    outline: route,
-  })
+  return { layer, outline: route }
 }
 
 function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
@@ -109,7 +108,7 @@ export function processFootprintGraphics(params: {
 }) {
   const { ctx, footprint, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
-  const courtyardSegments: PcbCourtyardOutline[] = []
+  const courtyardSegments: FootprintCourtyardSegment[] = []
 
   // Process fp_line elements
   const lines = footprint.fpLines || []
@@ -173,11 +172,20 @@ export function processFootprintGraphics(params: {
     if (courtyardSegment) courtyardSegments.push(courtyardSegment)
   }
 
-  joinFootprintCourtyardSegments({
-    ctx,
-    courtyardSegments,
-    footprintReference: params.footprintReference,
-  })
+  const { contours, invalidContours } =
+    joinFootprintCourtyardSegments(courtyardSegments)
+  for (const contour of contours) {
+    ctx.db.pcb_courtyard_outline.insert({
+      pcb_component_id: componentId,
+      ...contour,
+    })
+  }
+  for (const { layer, reason } of invalidContours) {
+    const description = reason === "invalid" ? "invalid" : "open or branched"
+    ;(ctx.warnings ??= []).push(
+      `Footprint ${params.footprintReference}: skipped an ${description} courtyard contour on the ${layer} layer; courtyard overlap checks are unavailable for that contour.`,
+    )
+  }
 
   // Process fp_poly elements
   const polys = footprint.fpPolys || []
@@ -239,7 +247,7 @@ export function createFootprintLine(params: {
   const layer = mapTextLayer(line.layer)
   const strokeWidth = getGraphicStrokeWidth(line)
 
-  return insertFootprintRoute({
+  return processFootprintRoute({
     ctx,
     componentId,
     layer,
@@ -348,7 +356,7 @@ export function createFootprintRect(params: {
     return applyToPoint(ctx.k2cMatPcb!, kicadPos)
   })
 
-  insertFootprintRoute({
+  processFootprintRoute({
     ctx,
     componentId,
     layer,
@@ -429,7 +437,7 @@ export function createFootprintCircle(params: {
     circleRoute.push({ x, y })
   }
 
-  insertFootprintRoute({
+  processFootprintRoute({
     ctx,
     componentId,
     layer,
@@ -535,7 +543,7 @@ export function createFootprintArc(params: {
     // If points are collinear, fall back to straight line
     const startPos = applyToPoint(ctx.k2cMatPcb, startKicadPos)
     const endPos = applyToPoint(ctx.k2cMatPcb, endKicadPos)
-    return insertFootprintRoute({
+    return processFootprintRoute({
       ctx,
       componentId,
       layer,
@@ -606,7 +614,7 @@ export function createFootprintArc(params: {
     arcRoute.push(cjPoint)
   }
 
-  return insertFootprintRoute({
+  return processFootprintRoute({
     ctx,
     componentId,
     layer,
@@ -663,7 +671,7 @@ export function createFootprintPoly(params: {
     return
   }
 
-  insertFootprintRoute({
+  processFootprintRoute({
     ctx,
     componentId,
     layer,
