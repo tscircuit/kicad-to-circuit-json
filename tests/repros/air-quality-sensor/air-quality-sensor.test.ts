@@ -3,8 +3,7 @@ import { readFileSync } from "node:fs"
 import { join } from "node:path"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 
-// kicadts rejects (suppress_zeroes yes), then board-level point tokens.
-test.failing("imports the air quality sensor KiCad 10 board", () => {
+test("imports the air quality sensor KiCad 10 board", () => {
   const kicadPcbContent = readFileSync(
     join(import.meta.dir, "air_quality_sensor.kicad_pcb"),
     "utf-8",
