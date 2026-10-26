@@ -100,6 +100,7 @@ The converter handles coordinate system differences between KiCad and Circuit JS
 ## Supported Features
 
 ### Schematic
+
 - ✅ Symbols/Components
 - ✅ Symbol ports/pins
 - ✅ Wires/traces
@@ -109,6 +110,7 @@ The converter handles coordinate system differences between KiCad and Circuit JS
 - ⚠️ Power symbols (partial)
 
 ### PCB
+
 - ✅ Footprints/Components
 - ✅ SMD pads
 - ✅ Through-hole pads (plated holes)
