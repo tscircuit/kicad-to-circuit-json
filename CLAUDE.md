@@ -60,7 +60,6 @@ Replicate that architecture for **KiCad→CJ**:
 ### Core types & context
 
 - **Context** (`ConverterContext`) should hold:
-
   - `db: cju([])` (write target),
   - parsed `kicadSch?`, `kicadPcb?`,
   - `k2cMatSch?`, `k2cMatPcb?`,
@@ -72,33 +71,27 @@ Replicate that architecture for **KiCad→CJ**:
 A good mirror for your schematic stages is:
 
 1. **InitializeSchematicContextStage**
-
    - Build `k2cMatSch` (inverse of CJ→KiCad: `scale(1/15, -1/15)` and matching translations so the schematic content centers in CJ space).
    - Seed any `pinPositions`/`wireConnections` maps you want to accumulate.
      _(Reference how CJ→KiCad selected paper & centered content in `CircuitJsonToKicadSchConverter`.)_
 
 2. **CollectLibrarySymbolsStage** (reverse of `AddLibrarySymbolsStage`)
-
    - From `lib_symbols` and placed symbol instances, create CJ `source_component` (with `ftype` heuristics) and `schematic_component`.
    - Ports: generate `schematic_port` by reading pins and projecting to CJ coordinates (`k2cMatSch`).
 
 3. **CollectSchematicSymbolsStage** (reverse of `AddSchematicSymbolsStage`)
-
    - Place components (`schematic_component.center`), set `name` (Reference) & `value`.
    - Record chip geometry (approximate `size.width/height`) from symbol primitives if available, otherwise infer from pin extents.
 
 4. **CollectNetLabelsStage** (reverse of `AddSchematicNetLabelsStage`)
-
    - Map power symbols (library `Custom:*` like `vcc_up`, `ground_down`) to CJ `schematic_net_label` with `symbol_name`, `text`, `anchor_position`, `anchor_side`.
    - Regular labels become `schematic_net_label` without `symbol_name`.
 
 5. **CollectSchematicTracesStage** (reverse of `AddSchematicTracesStage`)
-
    - Convert wires to `schematic_trace.edges` using `k2cMatSch`.
    - Junctions → `schematic_trace.junctions`.
 
 6. **FinalizeSchematicStage**
-
    - Compute CJ bounds/center (inverse of `getSchematicBoundsAndCenter`) for any downstream consumers.
 
 ### Stages (PCB)
@@ -106,39 +99,31 @@ A good mirror for your schematic stages is:
 Mirror your PCB stages:
 
 1. **InitializePcbContextStage**
-
    - Build `k2cMatPcb` (inverse of your CJ→KiCad PCB transform: you used `translate(100,100)` and `scale(1,-1)`, so invert appropriately).
 
 2. **CollectNetsStage** (reverse of `AddNetsStage`)
-
    - From KiCad `nets`, construct a mapping to CJ names. Prefer KiCad’s actual names; fall back to deterministic `Net-<n>` if empty. Store map for traces/vias.
 
 3. **CollectFootprintsStage** (reverse of `AddFootprintsStage`)
-
    - Each `Footprint` → CJ `pcb_component` with `center` and `rotation`.
    - `fp_text` → CJ `pcb_silkscreen_text` attached to the component; use inverse of your `createFpTextFromCircuitJson` logic to recover `anchor_position`, `layer`, `ccw_rotation`, etc.
    - `fp_pads`:
-
      - SMD pads → `pcb_smtpad` (`shape`, `width/height` or `radius`, `layer` top/bottom).
      - TH pads → `pcb_plated_hole` with `shape` (`circle`, `pill`, …) and outer diameters; map drill (`PadDrill`) to CJ `hole_*` fields (mirror of `CreateThruHolePadFromCircuitJson`).
      - NPTH pads → `pcb_hole` (mirror of `CreateNpthPadFromCircuitJson`).
 
 4. **CollectTracesStage** (reverse of `AddTracesStage`)
-
    - KiCad `Segment` → CJ `pcb_trace` with a `route` array (transform each segment endpoint through `k2cMatPcb`; group adjacent segments by net/layer).
 
 5. **CollectViasStage** (reverse of `AddViasStage`)
-
    - KiCad `Via` → CJ `pcb_via` (`x,y`, `outer_diameter`, `hole_diameter`, `net_name` from map).
 
 6. **CollectGraphicsStage** (reverse of `AddGraphicsStage`)
-
    - `gr_text` not bound to footprints → `pcb_silkscreen_text` (standalone).
    - `gr_line` on `Edge.Cuts` → `pcb_board.outline` polyline.
    - `gr_line` on silk layers → `pcb_silkscreen_path`.
 
 7. **FinalizePcbStage**
-
    - If outline absent, derive a rectangular board from `Edge.Cuts` extents.
 
 ---
@@ -194,14 +179,12 @@ Use your “create‑\*FromCircuitJson” functions as a **spec** for what CJ ex
 ### H) Testing strategy (you already have the tools)
 
 - **Visual parity**:
-
   1. KiCad input → (your solver) → Circuit JSON → PNG (`circuit-to-svg`).
   2. KiCad input → `kicad-cli ... export svg` → PNG.
   3. Stack/compare with your tolerant matcher + optional diff images.
      You already have `take-kicad-snapshot.ts`, `take-circuit-json-snapshot.ts`, `stackPngsVertically.ts`, and the cross‑platform `toMatchPngSnapshot` matcher. Use those directly.
 
 - **Fixtures to cover**:
-
   - Single‑sheet schematic (R‑C‑U) with net labels (VCC/GND, arrows on left/right).
   - PCB with one SMD footprint, one TH connector, vias, silk text top/bottom, edge cuts rectangle and non‑rectangular outline.
   - Rotated components, rotated oval pads, NPTH mounting holes.
@@ -300,7 +283,6 @@ This mirrors the structure you use on the other direction; you can even **share 
 
 - The **KiCad→CJ repo** already parses KiCad with `kicadts` and sets up a converter context; it only needs the staged pipeline and inverse transforms added.
 - The **CJ→KiCad repo** is a complete reference for:
-
   - what your context should carry,
   - how to map symbols, text, pads, vias, traces, nets, outlines, and
   - how to do all coordinate math consistently.
