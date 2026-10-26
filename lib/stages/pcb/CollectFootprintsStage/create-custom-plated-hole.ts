@@ -4,6 +4,7 @@ import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext, Point } from "../../../types"
 import { getCustomPadCopperOutline } from "./custom-pad-copper-outline"
 import { getNextPcbPlatedHoleId } from "./pad-element-ids"
+import { getCircuitJsonHoleOffset } from "./pad-drill-offset"
 import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
 import { rotatePoint } from "./process-graphics"
 
@@ -78,8 +79,10 @@ export function createCustomPlatedHole(params: {
     y: position.y,
     port_hints: [pad.number],
     hole_shape: drillIsOval ? "pill" : "circle",
-    hole_offset_x: 0,
-    hole_offset_y: 0,
+    ...getCircuitJsonHoleOffset({
+      drill: pad.drill,
+      padAngleDegrees: pad.at?.angle,
+    }),
     pad_outline: padOutline,
     layers,
   }
