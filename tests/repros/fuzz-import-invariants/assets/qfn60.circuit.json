@@ -43,7 +43,7 @@
       "1"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -70,7 +70,7 @@
       "2"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -97,7 +97,7 @@
       "3"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -124,7 +124,7 @@
       "4"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -151,7 +151,7 @@
       "5"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -178,7 +178,7 @@
       "6"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -205,7 +205,7 @@
       "7"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -232,7 +232,7 @@
       "8"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -259,7 +259,7 @@
       "9"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -286,7 +286,7 @@
       "10"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -313,7 +313,7 @@
       "11"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -340,7 +340,7 @@
       "12"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -367,7 +367,7 @@
       "13"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -394,7 +394,7 @@
       "14"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -421,7 +421,7 @@
       "15"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -448,7 +448,7 @@
       "16"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -475,7 +475,7 @@
       "17"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -502,7 +502,7 @@
       "18"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -529,7 +529,7 @@
       "19"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -556,7 +556,7 @@
       "20"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -583,7 +583,7 @@
       "21"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -610,7 +610,7 @@
       "22"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -637,7 +637,7 @@
       "23"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -664,7 +664,7 @@
       "24"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -691,7 +691,7 @@
       "25"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -718,7 +718,7 @@
       "26"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -745,7 +745,7 @@
       "27"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -772,7 +772,7 @@
       "28"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -799,7 +799,7 @@
       "29"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -826,7 +826,7 @@
       "30"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -853,7 +853,7 @@
       "31"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -880,7 +880,7 @@
       "32"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -907,7 +907,7 @@
       "33"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -934,7 +934,7 @@
       "34"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -961,7 +961,7 @@
       "35"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -988,7 +988,7 @@
       "36"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1015,7 +1015,7 @@
       "37"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1042,7 +1042,7 @@
       "38"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1069,7 +1069,7 @@
       "39"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1096,7 +1096,7 @@
       "40"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1123,7 +1123,7 @@
       "41"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1150,7 +1150,7 @@
       "42"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1177,7 +1177,7 @@
       "43"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1204,7 +1204,7 @@
       "44"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1231,7 +1231,7 @@
       "45"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1258,7 +1258,7 @@
       "46"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1285,7 +1285,7 @@
       "47"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1312,7 +1312,7 @@
       "48"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1339,7 +1339,7 @@
       "49"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1366,7 +1366,7 @@
       "50"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1393,7 +1393,7 @@
       "51"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1420,7 +1420,7 @@
       "52"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1447,7 +1447,7 @@
       "53"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1474,7 +1474,7 @@
       "54"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1501,7 +1501,7 @@
       "55"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1528,7 +1528,7 @@
       "56"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1555,7 +1555,7 @@
       "57"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1582,7 +1582,7 @@
       "58"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1609,7 +1609,7 @@
       "59"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1636,7 +1636,7 @@
       "60"
     ],
     "shape": "rect",
-    "corner_radius": 0.025
+    "corner_radius": 0.05
   },
   {
     "type": "pcb_port",
@@ -1680,7 +1680,7 @@
   },
   {
     "type": "pcb_fabrication_note_text",
-    "pcb_fabrication_note_text_id": "",
+    "pcb_fabrication_note_text_id": "pcb_fabrication_note_text_0",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
     "font_size": 1,
@@ -1694,7 +1694,7 @@
   },
   {
     "type": "pcb_fabrication_note_text",
-    "pcb_fabrication_note_text_id": "",
+    "pcb_fabrication_note_text_id": "pcb_fabrication_note_text_1",
     "pcb_component_id": "pcb_component_0",
     "font": "tscircuit2024",
     "font_size": 1,
@@ -2211,6 +2211,433 @@
       }
     ],
     "stroke_width": 0.1
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_1",
+    "source_component_id": "source_component_0",
+    "name": "pin1",
+    "pin_number": 1
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_2",
+    "source_component_id": "source_component_0",
+    "name": "pin2",
+    "pin_number": 2
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_3",
+    "source_component_id": "source_component_0",
+    "name": "pin3",
+    "pin_number": 3
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_4",
+    "source_component_id": "source_component_0",
+    "name": "pin4",
+    "pin_number": 4
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_5",
+    "source_component_id": "source_component_0",
+    "name": "pin5",
+    "pin_number": 5
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_6",
+    "source_component_id": "source_component_0",
+    "name": "pin6",
+    "pin_number": 6
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_7",
+    "source_component_id": "source_component_0",
+    "name": "pin7",
+    "pin_number": 7
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_8",
+    "source_component_id": "source_component_0",
+    "name": "pin8",
+    "pin_number": 8
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_9",
+    "source_component_id": "source_component_0",
+    "name": "pin9",
+    "pin_number": 9
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_10",
+    "source_component_id": "source_component_0",
+    "name": "pin10",
+    "pin_number": 10
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_11",
+    "source_component_id": "source_component_0",
+    "name": "pin11",
+    "pin_number": 11
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_12",
+    "source_component_id": "source_component_0",
+    "name": "pin12",
+    "pin_number": 12
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_13",
+    "source_component_id": "source_component_0",
+    "name": "pin13",
+    "pin_number": 13
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_14",
+    "source_component_id": "source_component_0",
+    "name": "pin14",
+    "pin_number": 14
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_15",
+    "source_component_id": "source_component_0",
+    "name": "pin15",
+    "pin_number": 15
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_16",
+    "source_component_id": "source_component_0",
+    "name": "pin16",
+    "pin_number": 16
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_17",
+    "source_component_id": "source_component_0",
+    "name": "pin17",
+    "pin_number": 17
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_18",
+    "source_component_id": "source_component_0",
+    "name": "pin18",
+    "pin_number": 18
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_19",
+    "source_component_id": "source_component_0",
+    "name": "pin19",
+    "pin_number": 19
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_20",
+    "source_component_id": "source_component_0",
+    "name": "pin20",
+    "pin_number": 20
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_21",
+    "source_component_id": "source_component_0",
+    "name": "pin21",
+    "pin_number": 21
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_22",
+    "source_component_id": "source_component_0",
+    "name": "pin22",
+    "pin_number": 22
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_23",
+    "source_component_id": "source_component_0",
+    "name": "pin23",
+    "pin_number": 23
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_24",
+    "source_component_id": "source_component_0",
+    "name": "pin24",
+    "pin_number": 24
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_25",
+    "source_component_id": "source_component_0",
+    "name": "pin25",
+    "pin_number": 25
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_26",
+    "source_component_id": "source_component_0",
+    "name": "pin26",
+    "pin_number": 26
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_27",
+    "source_component_id": "source_component_0",
+    "name": "pin27",
+    "pin_number": 27
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_28",
+    "source_component_id": "source_component_0",
+    "name": "pin28",
+    "pin_number": 28
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_29",
+    "source_component_id": "source_component_0",
+    "name": "pin29",
+    "pin_number": 29
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_30",
+    "source_component_id": "source_component_0",
+    "name": "pin30",
+    "pin_number": 30
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_31",
+    "source_component_id": "source_component_0",
+    "name": "pin31",
+    "pin_number": 31
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_32",
+    "source_component_id": "source_component_0",
+    "name": "pin32",
+    "pin_number": 32
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_33",
+    "source_component_id": "source_component_0",
+    "name": "pin33",
+    "pin_number": 33
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_34",
+    "source_component_id": "source_component_0",
+    "name": "pin34",
+    "pin_number": 34
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_35",
+    "source_component_id": "source_component_0",
+    "name": "pin35",
+    "pin_number": 35
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_36",
+    "source_component_id": "source_component_0",
+    "name": "pin36",
+    "pin_number": 36
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_37",
+    "source_component_id": "source_component_0",
+    "name": "pin37",
+    "pin_number": 37
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_38",
+    "source_component_id": "source_component_0",
+    "name": "pin38",
+    "pin_number": 38
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_39",
+    "source_component_id": "source_component_0",
+    "name": "pin39",
+    "pin_number": 39
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_40",
+    "source_component_id": "source_component_0",
+    "name": "pin40",
+    "pin_number": 40
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_41",
+    "source_component_id": "source_component_0",
+    "name": "pin41",
+    "pin_number": 41
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_42",
+    "source_component_id": "source_component_0",
+    "name": "pin42",
+    "pin_number": 42
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_43",
+    "source_component_id": "source_component_0",
+    "name": "pin43",
+    "pin_number": 43
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_44",
+    "source_component_id": "source_component_0",
+    "name": "pin44",
+    "pin_number": 44
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_45",
+    "source_component_id": "source_component_0",
+    "name": "pin45",
+    "pin_number": 45
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_46",
+    "source_component_id": "source_component_0",
+    "name": "pin46",
+    "pin_number": 46
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_47",
+    "source_component_id": "source_component_0",
+    "name": "pin47",
+    "pin_number": 47
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_48",
+    "source_component_id": "source_component_0",
+    "name": "pin48",
+    "pin_number": 48
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_49",
+    "source_component_id": "source_component_0",
+    "name": "pin49",
+    "pin_number": 49
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_50",
+    "source_component_id": "source_component_0",
+    "name": "pin50",
+    "pin_number": 50
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_51",
+    "source_component_id": "source_component_0",
+    "name": "pin51",
+    "pin_number": 51
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_52",
+    "source_component_id": "source_component_0",
+    "name": "pin52",
+    "pin_number": 52
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_53",
+    "source_component_id": "source_component_0",
+    "name": "pin53",
+    "pin_number": 53
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_54",
+    "source_component_id": "source_component_0",
+    "name": "pin54",
+    "pin_number": 54
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_55",
+    "source_component_id": "source_component_0",
+    "name": "pin55",
+    "pin_number": 55
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_56",
+    "source_component_id": "source_component_0",
+    "name": "pin56",
+    "pin_number": 56
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_57",
+    "source_component_id": "source_component_0",
+    "name": "pin57",
+    "pin_number": 57
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_58",
+    "source_component_id": "source_component_0",
+    "name": "pin58",
+    "pin_number": 58
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_59",
+    "source_component_id": "source_component_0",
+    "name": "pin59",
+    "pin_number": 59
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_60",
+    "source_component_id": "source_component_0",
+    "name": "pin60",
+    "pin_number": 60
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_61",
+    "source_component_id": "source_component_0",
+    "name": "pin61",
+    "pin_number": 61
   },
   {
     "type": "pcb_board",

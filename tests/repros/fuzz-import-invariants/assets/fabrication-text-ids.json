@@ -3,14 +3,14 @@
   "title": "Fabrication text: element identity",
   "kind": "ids",
   "description": "Two distinct text elements need distinct, nonempty IDs.",
-  "passing": false,
+  "passing": true,
   "expected": "Two unique IDs",
-  "actual": "Empty / duplicate IDs",
+  "actual": "Two unique IDs",
   "detail": "The strings below are the actual primary IDs emitted by the importer.",
   "values": {
     "ids": [
-      "",
-      ""
+      "pcb_fabrication_note_text_0",
+      "pcb_fabrication_note_text_1"
     ],
     "text": [
       "Fabrication note A",

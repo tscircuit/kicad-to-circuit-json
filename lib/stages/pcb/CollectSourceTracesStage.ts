@@ -115,13 +115,6 @@ export class CollectSourceTracesStage extends ConverterStage {
       const padNumber = pad.number?.toString()
       if (!padNumber) continue
 
-      // Get the net assignment for this pad
-      const netKey = getKicadNetKey(pad)
-      if (netKey === null || netKey === 0) {
-        // Net 0 or undefined typically means no connection
-        continue
-      }
-
       // Create a source_port for this pad if it doesn't exist
       const sourcePortId = this.getOrCreateSourcePort({
         componentId,
@@ -129,6 +122,11 @@ export class CollectSourceTracesStage extends ConverterStage {
         footprint,
         pad,
       })
+
+      // An unconnected numbered pad still owns a logical terminal. Create it
+      // above, but never invent a net/trace for KiCad's no-net value.
+      const netKey = getKicadNetKey(pad)
+      if (netKey === null || netKey === 0) continue
 
       // Add to the net mapping
       if (!netToPads.has(netKey)) {
