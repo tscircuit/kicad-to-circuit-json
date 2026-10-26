@@ -10,6 +10,8 @@ export interface ConverterContext {
   kicadSch?: KicadSch
   kicadSymbolLib?: KicadSym
   standaloneFootprintConversion?: boolean
+  includeSchematicSheet?: boolean
+  schematicSheetId?: string
 
   // Transformation matrices (KiCad → Circuit JSON)
   k2cMatSch?: Matrix

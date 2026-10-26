@@ -1,5 +1,9 @@
 import { ConverterStage } from "../../types"
-import { compose, scale, translate, type Matrix } from "transformation-matrix"
+import { compose, scale, translate } from "transformation-matrix"
+import {
+  getSchematicPaperSize,
+  SCHEMATIC_UNIT_TO_MM,
+} from "./getSchematicPaperSize"
 
 /**
  * InitializeSchematicContextStage sets up the coordinate transformation
@@ -8,6 +12,7 @@ import { compose, scale, translate, type Matrix } from "transformation-matrix"
  * KiCad→CJ schematic transform (inverse of CJ→KiCad):
  * - CJ→KiCad used: translate(KICAD_CENTER) ∘ scale(15, -15) ∘ translate(-center)
  * - KiCad→CJ uses: translate(center) ∘ scale(1/15, -1/15) ∘ translate(-KICAD_CENTER)
+ * Sheet output instead uses the source paper center and the renderer's scale.
  */
 export class InitializeSchematicContextStage extends ConverterStage {
   step(): boolean {
@@ -16,31 +21,28 @@ export class InitializeSchematicContextStage extends ConverterStage {
       return false
     }
 
-    // KiCad schematic paper center (typically A4 paper)
-    // Standard A4 is 210mm x 297mm, KiCad uses 0.1mil units
-    // Common paper center is around (105, 148.5) mm
-    const KICAD_CENTER_X = 105
-    const KICAD_CENTER_Y = 148.5
-
-    // Get the paper size from the schematic if available
-    // For now, use defaults - can be enhanced to parse from kicadSch.paper if needed
-    const kicadCenterX = KICAD_CENTER_X
-    const kicadCenterY = KICAD_CENTER_Y
-
-    // We'll compute the actual center of the schematic content later
-    // For now, assume centered at origin in CJ space
-    const cjCenterX = 0
-    const cjCenterY = 0
-
-    // Build the inverse transform:
-    // 1. Translate from KiCad paper center
-    // 2. Scale down and flip Y
-    // 3. Translate to CJ center
+    const { width, height } = getSchematicPaperSize(this.ctx.kicadSch.paper)
+    const withSheet = this.ctx.includeSchematicSheet === true
+    // Keep the existing circuit-only coordinates. Sheet views are centered on
+    // the actual paper and use the same physical scale as the sheet renderer.
+    const unitToMm = withSheet ? SCHEMATIC_UNIT_TO_MM : 15
     this.ctx.k2cMatSch = compose(
-      translate(cjCenterX, cjCenterY),
-      scale(1 / 15, -1 / 15),
-      translate(-kicadCenterX, -kicadCenterY),
+      scale(1 / unitToMm, -1 / unitToMm),
+      translate(
+        withSheet ? -width / 2 : -105,
+        withSheet ? -height / 2 : -148.5,
+      ),
     )
+
+    if (withSheet) {
+      const sheet = this.ctx.db.schematic_sheet.insert({
+        name: this.ctx.kicadSch.titleBlock?.title || "KiCad schematic",
+        sheet_index: 0,
+        sheet_width: width,
+        sheet_height: height,
+      })
+      this.ctx.schematicSheetId = sheet.schematic_sheet_id
+    }
 
     // Initialize tracking maps
     this.ctx.symbolUuidToComponentId = new Map()
