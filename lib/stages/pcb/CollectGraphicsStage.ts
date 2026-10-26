@@ -21,9 +21,11 @@ import {
   getPcbPoint,
 } from "./arc-utils"
 import { rotatePoint } from "./CollectFootprintsStage/process-graphics"
+import { createCopperCircle } from "./create-copper-circle"
 import { mapKicadJustifyToAnchorAlignment } from "./CollectFootprintsStage/text-utils"
 import {
   extractKicadLayerNames,
+  getLayerRefsFromLayers,
   getPcbCopperLayerCount,
   mapKicadLayerToLayerRef,
   mapKicadLayerToPcbRenderLayer,
@@ -143,6 +145,22 @@ export class CollectGraphicsStage extends ConverterStage {
     // Process gr_circle elements
     for (const circle of circleArray) {
       const layerStr = getGraphicLayerNames(circle).join(" ")
+      const [copperLayer] = getLayerRefsFromLayers(
+        circle.layer,
+        this.ctx.kicadPcb,
+      )
+      if (copperLayer) {
+        const { center, end } = getCircleCenterEnd(circle)
+        createCopperCircle({
+          ctx: this.ctx,
+          center: applyToPoint(this.ctx.k2cMatPcb, center),
+          radius: Math.hypot(end.x - center.x, end.y - center.y),
+          strokeWidth: circle.stroke?.width ?? circle.width ?? 0.12,
+          isFilled: circle.fill?.filled === true,
+          layer: copperLayer,
+        })
+        continue
+      }
       if (!layerStr.includes("Edge.Cuts")) continue
 
       const { center, end } = getCircleCenterEnd(circle)

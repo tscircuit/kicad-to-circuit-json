@@ -20,6 +20,7 @@ import {
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
 import { approximateArcPoints } from "../arc-utils"
+import { createCopperCircle } from "../create-copper-circle"
 import { mapTextLayer } from "./layer-utils"
 
 function insertFootprintRoute(options: {
@@ -349,7 +350,12 @@ export function createFootprintCircle(params: {
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(circle.layer)
-  if (!isPcbAnnotationRenderLayer(renderLayer)) return
+  const [copperLayer] = getLayerRefsFromLayers(circle.layer, ctx.kicadPcb)
+  if (
+    !renderLayer ||
+    (!copperLayer && !isPcbAnnotationRenderLayer(renderLayer))
+  )
+    return
 
   const center = circle.center || { x: 0, y: 0 }
   const end = circle.end || { x: 0, y: 0 }
@@ -374,6 +380,18 @@ export function createFootprintCircle(params: {
 
   const layer = mapTextLayer(circle.layer)
   const strokeWidth = getGraphicStrokeWidth(circle)
+
+  if (copperLayer) {
+    createCopperCircle({
+      ctx,
+      center: centerPos,
+      radius,
+      strokeWidth,
+      isFilled: circle.fill === true,
+      layer: copperLayer,
+    })
+    return
+  }
 
   if (renderLayer.endsWith("_courtyard")) {
     ctx.db.pcb_courtyard_circle.insert({

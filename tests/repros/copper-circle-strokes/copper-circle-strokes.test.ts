@@ -50,6 +50,7 @@ test("snapshot: Antmicro copper circles compared with native KiCad", async () =>
     height: 210,
     matchBoardAspectRatio: true,
     drawPaddingOutsideBoard: false,
+    showSolderMask: false,
     includeVersion: false,
   })
   const tempDir = await mkdtemp(join(tmpdir(), "kicad-copper-circles-"))

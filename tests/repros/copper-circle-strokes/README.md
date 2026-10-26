@@ -9,11 +9,12 @@ Fixture SHA-256: `849217fe122c34973e70e0628175dd17f304c347745b6148cbbb70d25b3072
 
 On F.Cu the logo contains nine filled polygons and eight unfilled circles,
 all with 0.13 mm strokes. Six circle radii are 0.089 mm; two are 0.117 mm.
-The importer emits the nine polygons and silently drops the eight circles.
+Before the fix, the importer emits the nine polygons and silently drops the eight circles.
 The dual-camera-to-GMSL adapter fixture contains the same copper logo.
 
 Run `bun test tests/repros/copper-circle-strokes`.
-The snapshot records the current import against a native KiCad copper export.
-The geometry regression deliberately expects the eight missing annuli and fails
-until the stacked fix is applied. Its scope excludes the connecting line strokes,
+The snapshot compares the import against a native KiCad copper export.
+The geometry regression expects all eight annuli in board and standalone imports;
+it fails on the reproduction branch and passes with the stacked fix. The updated
+snapshot shows 8/8 circles, including their open centers. Its scope excludes the connecting line strokes,
 which are tracked separately in #267.
