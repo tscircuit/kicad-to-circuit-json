@@ -96,8 +96,7 @@ test("renders the imported OrangeCrab C13 pad radius", async () => {
     includeVersion: false,
     viewport: { minX: -0.5, maxX: 0.5, minY: -0.45, maxY: 0.45 },
   })
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="420" viewBox="0 0 480 420"><rect width="480" height="420" fill="#111827"/><text x="16" y="24" fill="white" font-family="sans-serif" font-size="16">C13: imported radius ${pad.corner_radius} mm</text><text x="16" y="48" fill="white" font-family="sans-serif" font-size="14">0.59 × 0.64 mm; KiCad radius: 0.1475 mm</text><svg x="0" y="60" width="480" height="360">${pcb.replace(/^.*?<svg[^>]*>/s, "").replace(/<\/svg>\s*$/, "")}</svg></svg>`
-  await expect(svg).toMatchSvgSnapshot(
+  await expect(pcb).toMatchSvgSnapshot(
     import.meta.path,
     "orangecrab-roundrect-radius",
   )
