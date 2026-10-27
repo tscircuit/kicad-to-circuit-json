@@ -12,6 +12,16 @@ Run from the repository root with KiCad 10's `kicad-cli` on `PATH`:
 bun test tests/repros/schematic-passive-values/schematic-passive-values.test.ts
 ```
 
+The schematic snapshot compares the actual imported Circuit JSON (top) with
+native KiCad (bottom), using the existing schematic repro rendering and PNG
+matcher helpers. The source schematic is converted on its own, and the complete
+output JSON and SVG are saved alongside the PNG. Both drawings retain the value
+labels. A separate panel below them reports field presence and schema-validation
+results directly from the imported source components, making the missing
+electrical properties explicit without altering either drawing.
+
+![Circuit JSON and KiCad schematic comparison with schema checks](__snapshots__/passive-values-schematic.snap.png)
+
 The PCB test follows the existing repro snapshot workflow: `takeKicadSnapshot`,
 `takeCircuitJsonSnapshot`, `stackCircuitJsonKicadPngs`, and `toMatchPngSnapshot`.
 The committed PNG compares Circuit JSON (top) with KiCad (bottom), and the
@@ -28,7 +38,7 @@ To regenerate the snapshots after reviewing a change:
 BUN_UPDATE_SNAPSHOTS=1 bun test -u tests/repros/schematic-passive-values/schematic-passive-values.test.ts
 ```
 
-The ordinary test verifies that `kicadts` reads both values and that conversion
+The schema test verifies that `kicadts` reads both values and that conversion
 creates both components and all four schematic pins. Its snapshot records the
 actual source components and validation issues from this repository's
 `circuit-json` dependency:

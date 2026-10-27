@@ -2,7 +2,10 @@ import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { mkdir, writeFile } from "node:fs/promises"
 import { source_simple_capacitor, source_simple_resistor } from "circuit-json"
-import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
+import {
+  convertCircuitJsonToPcbSvg,
+  convertCircuitJsonToSchematicSvg,
+} from "circuit-to-svg"
 import { parseKicadSch } from "kicadts"
 import sharp from "sharp"
 import { KicadToCircuitJsonConverter } from "../../../lib"
@@ -93,6 +96,101 @@ test("repro: placed passive values are parsed but their required source properti
     },
   }).toMatchSnapshot()
 })
+
+test("repro: schematic snapshot compares KiCad with the imported circuit and schema status", async () => {
+  const snapshotsDir = new URL("./__snapshots__/", import.meta.url)
+  await mkdir(snapshotsDir, { recursive: true })
+  await writeFile(
+    new URL("passive-values-schematic-circuit-json.json", snapshotsDir),
+    JSON.stringify(circuitJson, null, 2),
+  )
+  const circuitJsonSvg = convertCircuitJsonToSchematicSvg(circuitJson, {
+    width: 1200,
+    height: 500,
+    includeVersion: false,
+  })
+    .replaceAll("sans-serif", "Arial, sans-serif")
+    .replace(/[ \t]+$/gm, "")
+  await writeFile(
+    new URL("passive-values-schematic-circuit-json.svg", snapshotsDir),
+    circuitJsonSvg,
+  )
+
+  const kicadSnapshot = await takeKicadSnapshot({
+    kicadFileContent: schematicContent,
+    kicadFileType: "sch",
+    generatePng: false,
+    excludeDrawingSheet: true,
+  })
+  const kicadSvg = Object.values(kicadSnapshot.generatedFileContent)[0]
+  if (!kicadSvg) throw new Error("Expected a KiCad schematic snapshot")
+  // Crop blank A4 paper in SVG coordinates before rasterization, retaining
+  // both fixture symbols, their pins, and their Reference/Value labels.
+  const croppedKicadSvg = kicadSvg
+    .toString()
+    .replace(
+      /width="[^"]+" height="[^"]+" viewBox="[^"]+"/,
+      'width="1200" height="500" viewBox="46 44 41 14"',
+    )
+
+  // Use the same trim-and-fit workflow as the schematic graphics repros.
+  const renderPreview = async (svg: Buffer) => {
+    const rendered = await sharp(svg, { density: 192 })
+      .flatten({ background: "#F5F4EF" })
+      .png()
+      .toBuffer()
+    const trimmed = await sharp(rendered)
+      .trim({ background: "#F5F4EF", threshold: 10 })
+      .png()
+      .toBuffer()
+    const padded = await sharp(trimmed)
+      .extend({
+        top: 30,
+        bottom: 30,
+        left: 30,
+        right: 30,
+        background: "#F5F4EF",
+      })
+      .png()
+      .toBuffer()
+    return sharp(padded)
+      .resize({
+        width: 1200,
+        height: 500,
+        fit: "contain",
+        background: "#F5F4EF",
+      })
+      .png()
+      .toBuffer()
+  }
+  const [circuitJsonPng, kicadPng] = await Promise.all([
+    renderPreview(Buffer.from(circuitJsonSvg)),
+    renderPreview(Buffer.from(croppedKicadSvg)),
+  ])
+  const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
+
+  // Visible Value text survives this bug. Show the actual source-field and
+  // schema checks separately, without altering either schematic rendering.
+  const schemaEvidence =
+    Buffer.from(`<svg width="1200" height="180" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="180" fill="#ffffff"/>
+    <g font-family="Arial, sans-serif" fill="#1f2937">
+      <text x="24" y="34" font-size="24" font-weight="bold">Source-component schema checks (separate from drawing)</text>
+      <text x="24" y="75" font-size="22">R1 / 10k: resistance ${resistor && "resistance" in resistor ? "present" : "MISSING"}; expected 10000 ohms; schema ${source_simple_resistor.safeParse(resistor).success ? "PASS" : "FAIL"}</text>
+      <text x="24" y="113" font-size="22">C1 / 100n: capacitance ${capacitor && "capacitance" in capacitor ? "present" : "MISSING"}; expected 1e-7 farads; schema ${source_simple_capacitor.safeParse(capacitor).success ? "PASS" : "FAIL"}</text>
+      <text x="24" y="154" font-size="20">Value labels can look correct while the required electrical properties are absent.</text>
+    </g>
+  </svg>`)
+  const snapshot = await sharp(stackedPng)
+    .extend({ bottom: 180, background: "#ffffff" })
+    .composite([{ input: schemaEvidence, left: 0, top: 1000 }])
+    .png()
+    .toBuffer()
+  await expect(snapshot).toMatchPngSnapshot(
+    import.meta.path,
+    "passive-values-schematic",
+  )
+}, 30_000)
 
 test("repro: companion PCB preserves passive values and matches the PCB snapshot", async () => {
   // The PCB path is a positive control. Keep it separate from the schematic
