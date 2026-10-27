@@ -57,7 +57,7 @@ const importPad = (variant: (typeof variants)[number], ratio: number) => {
 
 for (const variant of variants) {
   for (const ratio of [0.15, 0.25, 0.5]) {
-    test.failing(`${variant.name}: roundrect radius ratio ${ratio}`, () => {
+    test(`${variant.name}: roundrect radius ratio ${ratio}`, () => {
       const pad = importPad(variant, ratio)
       if (pad?.type === "pcb_smtpad" && "corner_radius" in pad) {
         expect(pad.corner_radius).toBeCloseTo(0.59 * ratio, 9)
