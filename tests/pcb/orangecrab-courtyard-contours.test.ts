@@ -126,7 +126,9 @@ for (const [name, graphics] of [
   test.failing(`warns and omits ${name} courtyard chains`, () => {
     const { converter, outlines } = convert([...graphics])
     expect(outlines).toHaveLength(0)
-    expect(converter.ctx?.warnings?.some((w) => /courtyard/i.test(w))).toBeTrue()
+    expect(
+      converter.ctx?.warnings?.some((w) => /courtyard/i.test(w)),
+    ).toBeTrue()
   })
 }
 
