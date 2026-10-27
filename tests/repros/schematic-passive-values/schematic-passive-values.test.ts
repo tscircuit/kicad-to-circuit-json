@@ -71,34 +71,20 @@ test("repro: placed passive values are parsed but their required source properti
       .success,
   ).toBe(true)
 
-  // Capture the current bug, including the field paths rejected by the actual
-  // circuit-json schemas. The follow-up fix should update this snapshot.
-  expect({
-    resistor: {
-      source_component: resistor,
-      validation: resistorValidation.success
-        ? { success: true }
-        : {
-            success: false,
-            issues: resistorValidation.error.issues.map(({ code, path }) => ({
-              code,
-              path,
-            })),
-          },
-    },
-    capacitor: {
-      source_component: capacitor,
-      validation: capacitorValidation.success
-        ? { success: true }
-        : {
-            success: false,
-            issues: capacitorValidation.error.issues.map(({ code, path }) => ({
-              code,
-              path,
-            })),
-          },
-    },
-  }).toMatchSnapshot()
+  // Assert the current bug directly. The follow-up fix should assert the
+  // preserved electrical values instead of these missing properties.
+  expect(resistor).toMatchObject({ manufacturer_part_number: "10k" })
+  expect(capacitor).toMatchObject({ manufacturer_part_number: "100n" })
+  expect(resistor).not.toHaveProperty("resistance")
+  expect(capacitor).not.toHaveProperty("capacitance")
+  expect(resistorValidation.success).toBe(false)
+  expect(capacitorValidation.success).toBe(false)
+  expect(resistorValidation.error?.issues.map(({ path }) => path)).toEqual([
+    ["resistance"],
+  ])
+  expect(capacitorValidation.error?.issues.map(({ path }) => path)).toEqual([
+    ["capacitance"],
+  ])
 })
 
 test("repro: schematic snapshot compares KiCad with the imported circuit and schema status", async () => {
