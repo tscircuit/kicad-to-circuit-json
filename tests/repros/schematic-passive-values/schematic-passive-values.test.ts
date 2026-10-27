@@ -14,6 +14,10 @@ import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapsh
 import { takeKicadSnapshot } from "../../fixtures/take-kicad-snapshot"
 import "../../fixtures/png-matcher"
 
+// Native KiCad rendering and font metrics differ between macOS and Linux CI.
+// Keep explicit baselines for both without relaxing the shared PNG matcher.
+const snapshotSuffix = process.platform === "darwin" ? "-darwin" : ""
+
 const schematicContent = readFileSync(
   new URL("./passive-values.kicad_sch", import.meta.url),
   "utf8",
@@ -188,7 +192,7 @@ test("repro: schematic snapshot compares KiCad with the imported circuit and sch
     .toBuffer()
   await expect(snapshot).toMatchPngSnapshot(
     import.meta.path,
-    "passive-values-schematic",
+    `passive-values-schematic${snapshotSuffix}`,
   )
 }, 30_000)
 
@@ -254,7 +258,7 @@ test("repro: companion PCB preserves passive values and matches the PCB snapshot
   const stackedPng = await stackCircuitJsonKicadPngs(circuitJsonPng, kicadPng)
   await expect(stackedPng).toMatchPngSnapshot(
     import.meta.path,
-    "passive-values-pcb",
+    `passive-values-pcb${snapshotSuffix}`,
   )
 }, 30_000)
 
