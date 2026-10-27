@@ -2,12 +2,30 @@
 
 This self-contained schematic places two components with embedded library
 symbols: R1 has `Value = 10k`, and C1 has `Value = 100n`. It needs no external
-symbol libraries, PCB, or schematic wires to reproduce the problem.
+symbol libraries or schematic wires to reproduce the problem. A companion PCB
+places the same two components and provides the PCB snapshot and a positive
+control for value conversion.
 
-Run from the repository root:
+Run from the repository root with KiCad 10's `kicad-cli` on `PATH`:
 
 ```sh
 bun test tests/repros/schematic-passive-values/schematic-passive-values.test.ts
+```
+
+The PCB test follows the existing repro snapshot workflow: `takeKicadSnapshot`,
+`takeCircuitJsonSnapshot`, `stackCircuitJsonKicadPngs`, and `toMatchPngSnapshot`.
+The committed PNG compares Circuit JSON (top) with KiCad (bottom), and the
+converted PCB JSON and SVG are saved alongside it. The PCB is converted
+separately and verifies that its source components retain valid electrical
+values. The missing properties occur in the schematic import and are proven by
+the schema assertions below; they do not change the PCB geometry.
+
+![Circuit JSON and KiCad PCB comparison](__snapshots__/passive-values-pcb.snap.png)
+
+To regenerate the snapshots after reviewing a change:
+
+```sh
+BUN_UPDATE_SNAPSHOTS=1 bun test -u tests/repros/schematic-passive-values/schematic-passive-values.test.ts
 ```
 
 The ordinary test verifies that `kicadts` reads both values and that conversion
