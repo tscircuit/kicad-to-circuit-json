@@ -143,7 +143,7 @@ test("retains explicit courtyard polygons", () => {
 })
 
 test("renders imported OrangeCrab courtyard outlines", async () => {
-  const { converter, outlines } = convert(lines(rectangle), 0)
+  const { converter } = convert(lines(rectangle), 0)
   const board = converter.getOutput().find((e) => e.type === "pcb_component")
   if (!board) throw new Error("Missing courtyard component")
   const pcb = convertCircuitJsonToPcbSvg(converter.getOutput(), {
@@ -158,8 +158,7 @@ test("renders imported OrangeCrab courtyard outlines", async () => {
       maxY: board.center.y + 0.8,
     },
   })
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360"><rect width="600" height="360" fill="#111827"/><text x="16" y="24" fill="white" font-family="sans-serif" font-size="16">C13: ${outlines.length} imported courtyard outlines</text><text x="16" y="48" fill="white" font-family="sans-serif" font-size="14">Vertices per outline: ${outlines.map((e) => e.outline.length).join(", ")} · expected: one closed rectangle</text><svg x="0" y="60" width="600" height="300">${pcb.replace(/^.*?<svg[^>]*>/s, "").replace(/<\/svg>\s*$/, "")}</svg></svg>`
-  await expect(svg).toMatchSvgSnapshot(
+  await expect(pcb).toMatchSvgSnapshot(
     import.meta.path,
     "orangecrab-courtyard-contours",
   )
