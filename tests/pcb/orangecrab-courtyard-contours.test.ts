@@ -47,7 +47,7 @@ const area = (points: Point[]) =>
 // C13 in OrangeCrab r0.2.1 has these courtyard dimensions, represented by
 // four separate fp_line records. This board is a minimal authored reduction.
 for (const angle of [0, 33, 90, 270]) {
-  test.failing(`joins the OrangeCrab C13 courtyard at ${angle} degrees`, () => {
+  test(`joins the OrangeCrab C13 courtyard at ${angle} degrees`, () => {
     const { outlines } = convert(lines(rectangle), angle)
     expect(outlines).toHaveLength(1)
     expect(area(outlines[0]!.outline)).toBeCloseTo(1.86 * 0.94, 8)
@@ -55,7 +55,7 @@ for (const angle of [0, 33, 90, 270]) {
   })
 }
 
-test.failing("keeps the front and back courtyard contours separate", () => {
+test("keeps the front and back courtyard contours separate", () => {
   const { outlines } = convert([
     ...lines(rectangle),
     ...lines(rectangle, "B.CrtYd"),
@@ -66,7 +66,7 @@ test.failing("keeps the front and back courtyard contours separate", () => {
     expect(area(outline.outline)).toBeCloseTo(1.7484, 8)
 })
 
-test.failing("joins shuffled and reversed edges on a bottom footprint", () => {
+test("joins shuffled and reversed edges on a bottom footprint", () => {
   const edges = lines([...rectangle].reverse(), "B.CrtYd")
   const { outlines } = convert(
     [edges[2]!, edges[0]!, edges[3]!, edges[1]!],
@@ -78,7 +78,7 @@ test.failing("joins shuffled and reversed edges on a bottom footprint", () => {
   expect(area(outlines[0]!.outline)).toBeCloseTo(1.7484, 8)
 })
 
-test.failing("preserves two disjoint courtyards", () => {
+test("preserves two disjoint courtyards", () => {
   const second = rectangle.map((p) => ({ x: p.x + 3, y: p.y }))
   const { outlines } = convert([...lines(rectangle), ...lines(second)])
   expect(outlines).toHaveLength(2)
@@ -86,7 +86,7 @@ test.failing("preserves two disjoint courtyards", () => {
     expect(area(outline.outline)).toBeCloseTo(1.7484, 8)
 })
 
-test.failing("joins an arc and line into one courtyard", () => {
+test("joins an arc and line into one courtyard", () => {
   const { outlines } = convert([
     '(fp_arc (start -1 0) (mid 0 -1) (end 1 0) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))',
     '(fp_line (start 1 0) (end -1 0) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))',
@@ -123,10 +123,12 @@ for (const [name, graphics] of [
     ],
   ],
 ] as const) {
-  test.failing(`warns and omits ${name} courtyard chains`, () => {
+  test(`warns and omits ${name} courtyard chains`, () => {
     const { converter, outlines } = convert([...graphics])
     expect(outlines).toHaveLength(0)
-    expect(converter.ctx?.warnings?.some((w) => /courtyard/i.test(w))).toBeTrue()
+    expect(
+      converter.ctx?.warnings?.some((w) => /courtyard/i.test(w)),
+    ).toBeTrue()
   })
 }
 
@@ -136,4 +138,38 @@ test("retains explicit courtyard polygons", () => {
   ])
   expect(outlines).toHaveLength(1)
   expect(area(outlines[0]!.outline)).toBeCloseTo(4, 8)
+})
+
+test("retains already closed courtyard polygons", () => {
+  const { outlines } = convert([
+    '(fp_poly (pts (xy -1 -1) (xy 1 -1) (xy 1 1) (xy -1 1) (xy -1 -1)) (stroke (width 0.05) (type solid)) (fill none) (layer "F.CrtYd"))',
+  ])
+  expect(outlines).toHaveLength(1)
+  expect(area(outlines[0]!.outline)).toBeCloseTo(4, 8)
+})
+
+test("a bad disconnected chain does not discard a valid courtyard", () => {
+  const { converter, outlines } = convert([
+    ...lines(rectangle),
+    '(fp_line (start 3 3) (end 4 3) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))',
+  ])
+  expect(outlines).toHaveLength(1)
+  expect(area(outlines[0]!.outline)).toBeCloseTo(1.7484, 8)
+  expect(converter.ctx?.warnings?.some((w) => /courtyard/i.test(w))).toBeTrue()
+})
+
+test("zero-length courtyard paths cannot crash conversion", () => {
+  const { outlines } = convert([
+    '(fp_line (start 0 0) (end 0 0) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))',
+  ])
+  expect(outlines).toHaveLength(0)
+})
+
+test("does not bridge the 0.05 mm gap present in OrangeCrab J5", () => {
+  const edges = lines(rectangle)
+  edges[3] =
+    '(fp_line (start -0.93 0.47) (end -0.88 -0.47) (stroke (width 0.05) (type solid)) (layer "F.CrtYd"))'
+  const { converter, outlines } = convert(edges)
+  expect(outlines).toHaveLength(0)
+  expect(converter.ctx?.warnings?.some((w) => /courtyard/i.test(w))).toBeTrue()
 })
