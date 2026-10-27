@@ -2,10 +2,10 @@
 
 The source board's `GND_PLANE` specifies **0.30 mm**, and the selected `EFUSE_IN` power zone specifies **0.16 mm**. Before this fix, importing either zone omitted its local clearance from every generated `pcb_copper_pour`.
 
-| Source zone | Layer | Native clearance | Imported before | Imported after |
-| --- | --- | --- | --- | --- |
-| `GND_PLANE` (two retained fill fragments) | In1.Cu | 0.30 mm | absent | 0.30 mm on both |
-| EFUSE_IN | B.Cu | 0.16 mm | absent | 0.16 mm |
+| Source zone                               | Layer  | Native clearance | Imported before | Imported after  |
+| ----------------------------------------- | ------ | ---------------- | --------------- | --------------- |
+| `GND_PLANE` (two retained fill fragments) | In1.Cu | 0.30 mm          | absent          | 0.30 mm on both |
+| EFUSE_IN                                  | B.Cu   | 0.16 mm          | absent          | 0.16 mm         |
 
 ## Real-board provenance
 
@@ -28,6 +28,6 @@ The tests exercise the full converter, multiple filled fragments, outline fallba
 
 A separate local check of the full original PCB produced 101 pour records: 87 at 0.16 mm, 9 at 0.30 mm (8 inner1 GND + 1 inner2 GND), and 5 at 0.20 mm. The new schema retained all those clearance values when parsing the records.
 
-Schema companion: [circuit-json#931](https://github.com/tscircuit/circuit-json/pull/931). The exporter also needs to consume this field; this importer change alone does not fix downloads made from already-published JSON lacking clearance.
+Schema companion: [circuit-json#931](https://github.com/tscircuit/circuit-json/pull/931). Exporter companion: [circuit-json-to-kicad#757](https://github.com/tscircuit/circuit-json-to-kicad/pull/757). The exporter also needs to consume this field; this importer change alone does not fix downloads made from already-published JSON lacking clearance.
 
 This field is the zone's local clearance setting, not the global copper-to-board-edge rule or the GND polygon's 0.50 mm edge inset. Preserving it does not certify all physical gaps, zone topology, connectivity or whole-board DRC.
