@@ -37,6 +37,20 @@ export class CollectZonesStage extends ConverterStage {
 
     // Process each filled zone
     for (const zone of zoneArray) {
+      if (zone.keepout) {
+        const id = zone.uuid?.value ?? zone.tstamp?.value ?? "without UUID"
+        const rules = [
+          `tracks=${zone.keepout.tracks ?? "unspecified"}`,
+          `vias=${zone.keepout.vias ?? "unspecified"}`,
+          `pads=${zone.keepout.pads ?? "unspecified"}`,
+          `copperpour=${zone.keepout.copperpour ?? "unspecified"}`,
+          `footprints=${zone.keepout.footprints ?? "unspecified"}`,
+        ].join(", ")
+        ;(this.ctx.warnings ??= []).push(
+          `KiCad rule area ${id} on ${this.getZoneLayerLabel(zone)} was not imported: selective restrictions (${rules}) are not supported. Recreate this rule area before routing or refilling copper.`,
+        )
+        continue
+      }
       // Only process zones that are filled
       if (this.isZoneFilled(zone)) {
         this.createCopperPourFromZone(zone)
