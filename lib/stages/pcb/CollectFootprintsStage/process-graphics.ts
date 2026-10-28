@@ -21,6 +21,9 @@ import {
 } from "../layer-mapping"
 import { approximateArcPoints } from "../arc-utils"
 import { mapTextLayer } from "./layer-utils"
+import { assembleCourtyardContours } from "./assemble-courtyard-contours"
+
+type CourtyardRoute = { layer: "top" | "bottom"; route: Point[] }
 
 function insertFootprintRoute(options: {
   ctx: ConverterContext
@@ -29,8 +32,17 @@ function insertFootprintRoute(options: {
   renderLayer: PcbRenderLayer
   route: Array<{ x: number; y: number }>
   strokeWidth: number
+  courtyardRoutes: CourtyardRoute[]
 }) {
-  const { ctx, componentId, layer, renderLayer, route, strokeWidth } = options
+  const {
+    ctx,
+    componentId,
+    layer,
+    renderLayer,
+    route,
+    strokeWidth,
+    courtyardRoutes,
+  } = options
 
   if (renderLayer.endsWith("_silkscreen")) {
     ctx.db.pcb_silkscreen_path.insert({
@@ -52,11 +64,7 @@ function insertFootprintRoute(options: {
     return
   }
 
-  ctx.db.pcb_courtyard_outline.insert({
-    pcb_component_id: componentId,
-    layer,
-    outline: route,
-  })
+  courtyardRoutes.push({ layer, route })
 }
 
 function getGraphicStrokeWidth(graphic: any, fallback = 0.12): number {
@@ -98,6 +106,8 @@ export function processFootprintGraphics(params: {
   const { ctx, footprint, componentId, footprintPlacement } = params
   if (!ctx.k2cMatPcb) return
 
+  const courtyardRoutes: CourtyardRoute[] = []
+
   // Process fp_line elements
   const lines = footprint.fpLines || []
   const lineArray = Array.isArray(lines) ? lines : lines ? [lines] : []
@@ -107,6 +117,7 @@ export function processFootprintGraphics(params: {
       line,
       componentId,
       footprintPlacement,
+      courtyardRoutes,
     })
   }
 
@@ -119,6 +130,7 @@ export function processFootprintGraphics(params: {
       rect,
       componentId,
       footprintPlacement,
+      courtyardRoutes,
     })
   }
 
@@ -143,6 +155,7 @@ export function processFootprintGraphics(params: {
       circle,
       componentId,
       footprintPlacement,
+      courtyardRoutes,
     })
   }
 
@@ -155,6 +168,7 @@ export function processFootprintGraphics(params: {
       arc,
       componentId,
       footprintPlacement,
+      courtyardRoutes,
     })
   }
 
@@ -168,7 +182,27 @@ export function processFootprintGraphics(params: {
       footprintReference: params.footprintReference,
       componentId,
       footprintPlacement,
+      courtyardRoutes,
     })
+  }
+  for (const layer of ["top", "bottom"] as const) {
+    const { outlines, invalidCount } = assembleCourtyardContours(
+      courtyardRoutes
+        .filter((path) => path.layer === layer)
+        .map((path) => path.route),
+    )
+    for (const outline of outlines) {
+      ctx.db.pcb_courtyard_outline.insert({
+        pcb_component_id: componentId,
+        layer,
+        outline,
+      })
+    }
+    if (invalidCount > 0) {
+      ;(ctx.warnings ??= []).push(
+        `Footprint ${params.footprintReference}: omitted ${invalidCount} invalid ${layer} courtyard contour(s); paths must form closed, simple, non-zero-area rings.`,
+      )
+    }
   }
 }
 
@@ -180,8 +214,9 @@ export function createFootprintLine(params: {
   line: FpLine
   componentId: string
   footprintPlacement: FootprintPlacement
+  courtyardRoutes: CourtyardRoute[]
 }) {
-  const { ctx, line, componentId, footprintPlacement } = params
+  const { ctx, line, componentId, footprintPlacement, courtyardRoutes } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(line.layer)
@@ -224,6 +259,7 @@ export function createFootprintLine(params: {
     renderLayer,
     route: [startPos, endPos],
     strokeWidth,
+    courtyardRoutes,
   })
 }
 
@@ -235,8 +271,9 @@ export function createFootprintRect(params: {
   rect: any
   componentId: string
   footprintPlacement: FootprintPlacement
+  courtyardRoutes: CourtyardRoute[]
 }) {
-  const { ctx, rect, componentId, footprintPlacement } = params
+  const { ctx, rect, componentId, footprintPlacement, courtyardRoutes } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(rect.layer)
@@ -333,6 +370,7 @@ export function createFootprintRect(params: {
     renderLayer,
     route,
     strokeWidth,
+    courtyardRoutes,
   })
 }
 
@@ -344,8 +382,10 @@ export function createFootprintCircle(params: {
   circle: FpCircle
   componentId: string
   footprintPlacement: FootprintPlacement
+  courtyardRoutes: CourtyardRoute[]
 }) {
-  const { ctx, circle, componentId, footprintPlacement } = params
+  const { ctx, circle, componentId, footprintPlacement, courtyardRoutes } =
+    params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(circle.layer)
@@ -414,6 +454,7 @@ export function createFootprintCircle(params: {
     renderLayer,
     route: circleRoute,
     strokeWidth,
+    courtyardRoutes,
   })
 }
 
@@ -458,8 +499,9 @@ export function createFootprintArc(params: {
   arc: FpArc
   componentId: string
   footprintPlacement: FootprintPlacement
+  courtyardRoutes: CourtyardRoute[]
 }) {
-  const { ctx, arc, componentId, footprintPlacement } = params
+  const { ctx, arc, componentId, footprintPlacement, courtyardRoutes } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(arc.layer)
@@ -518,6 +560,7 @@ export function createFootprintArc(params: {
       renderLayer,
       route: [startPos, endPos],
       strokeWidth,
+      courtyardRoutes,
     })
     return
   }
@@ -590,6 +633,7 @@ export function createFootprintArc(params: {
     renderLayer,
     route: arcRoute,
     strokeWidth,
+    courtyardRoutes,
   })
 }
 
@@ -599,8 +643,9 @@ export function createFootprintPoly(params: {
   footprintReference: string
   componentId: string
   footprintPlacement: FootprintPlacement
+  courtyardRoutes: CourtyardRoute[]
 }) {
-  const { ctx, poly, componentId, footprintPlacement } = params
+  const { ctx, poly, componentId, footprintPlacement, courtyardRoutes } = params
   if (!ctx.k2cMatPcb) return
 
   const renderLayer = mapKicadLayerToPcbRenderLayer(poly.layer)
@@ -680,10 +725,9 @@ export function createFootprintPoly(params: {
   const layer = mapTextLayer(poly.layer)
 
   if (renderLayer.endsWith("_courtyard")) {
-    ctx.db.pcb_courtyard_outline.insert({
-      pcb_component_id: componentId,
+    courtyardRoutes.push({
       layer,
-      outline: transformedPts,
+      route: [...transformedPts, transformedPts[0]!],
     })
     return
   }
@@ -695,5 +739,6 @@ export function createFootprintPoly(params: {
     renderLayer,
     route: transformedPts,
     strokeWidth,
+    courtyardRoutes,
   })
 }
