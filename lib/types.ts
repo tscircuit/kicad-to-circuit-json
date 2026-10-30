@@ -1,5 +1,5 @@
 import type { CircuitJsonUtilObjects } from "@tscircuit/circuit-json-util"
-import type { KicadPcb, KicadSch, KicadSym } from "kicadts"
+import type { GlobalLabel, KicadPcb, KicadSch, KicadSym, Wire } from "kicadts"
 import type { Matrix } from "transformation-matrix"
 
 export type KicadNetKey = number | string
@@ -10,6 +10,13 @@ export interface ConverterContext {
   kicadSch?: KicadSch
   kicadSymbolLib?: KicadSym
   standaloneFootprintConversion?: boolean
+  schematicInstancePath?: string
+  schematicOffsetX?: number
+  schematicHierarchicalLabels?: GlobalLabel[]
+  schematicNetIds?: Map<string, string>
+  schematicWireTraceIds?: Map<Wire, string>
+  schematicReferenceToSourceComponentId?: Map<string, string>
+  schematicSourcePortIds?: Map<string, string>
 
   // Transformation matrices (KiCad → Circuit JSON)
   k2cMatSch?: Matrix

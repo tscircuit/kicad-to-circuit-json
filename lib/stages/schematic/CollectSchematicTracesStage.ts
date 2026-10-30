@@ -69,10 +69,11 @@ export class CollectSchematicTracesStage extends ConverterStage {
     }
 
     // Create schematic trace
-    this.ctx.db.schematic_trace.insert({
+    const trace = this.ctx.db.schematic_trace.insert({
       edges,
       junctions,
     })
+    this.ctx.schematicWireTraceIds?.set(wire, trace.schematic_trace_id)
 
     // Update stats
     if (this.ctx.stats) {

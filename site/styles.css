@@ -149,6 +149,20 @@ h2 {
   background: #1f2937;
 }
 
+.root-schematic-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.root-schematic-picker select {
+  max-width: 100%;
+  padding: 8px;
+  font: inherit;
+}
+
 .secondary-button {
   border: 1px solid #d1d5db;
   border-radius: 999px;
@@ -199,6 +213,7 @@ h2 {
 
 .meta-card {
   display: grid;
+  min-width: 0;
   gap: 0.2rem;
   padding: 1rem;
 }
@@ -206,6 +221,10 @@ h2 {
 .meta-card strong,
 .stat-chip strong {
   font-size: 1.1rem;
+}
+
+.meta-card strong {
+  overflow-wrap: anywhere;
 }
 
 .meta-label {
