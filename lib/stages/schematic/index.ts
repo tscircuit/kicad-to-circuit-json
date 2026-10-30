@@ -2,3 +2,4 @@ export { InitializeSchematicContextStage } from "./InitializeSchematicContextSta
 export { CollectLibrarySymbolsStage } from "./CollectLibrarySymbolsStage"
 export { CollectSchematicTracesStage } from "./CollectSchematicTracesStage"
 export { CollectSchematicAnnotationsStage } from "./CollectSchematicAnnotationsStage"
+export { CollectSchematicConnectivityStage } from "./CollectSchematicConnectivityStage"
