@@ -41,7 +41,7 @@
     "circuit-json": "^0.0.480",
     "circuit-json-to-connectivity-map": "^0.0.25",
     "circuit-to-canvas": "^0.0.126",
-    "kicadts": "^0.0.59",
+    "kicadts": "^0.0.63",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
     "tscircuit": "^0.0.2040",
