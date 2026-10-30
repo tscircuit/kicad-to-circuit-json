@@ -25,12 +25,10 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
 
     const traces = db.schematic_trace.list()
     const ports = db.schematic_port.list()
-    const points = new Map<string, Point>()
     const parents = new Map<string, string>()
     const addPoint = (point: Point): string => {
       const key = pointKey(point)
-      if (!points.has(key)) {
-        points.set(key, point)
+      if (!parents.has(key)) {
         parents.set(key, key)
       }
       return key
@@ -72,6 +70,12 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
         addNamedPoint(label.value, applyToPoint(k2cMatSch, label.at))
       }
     }
+    const interiorConnections = [
+      ...junctions,
+      ...[...kicadSch.labels, ...kicadSch.globalLabels].flatMap((label) =>
+        label.at && label.value ? [applyToPoint(k2cMatSch, label.at)] : [],
+      ),
+    ]
 
     // Power symbols act as implicit net labels, including custom libraries.
     // A PWR_FLAG has a power_out pin and does not name or join remote nets.
@@ -98,13 +102,13 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
       }
     }
 
-    // Endpoints form T connections. Interior crossings only connect when an
-    // explicit junction (or a pin/label at the crossing) supplies a point.
+    // Junctions and labels attach inside a wire. A pin or another wire's
+    // endpoint touching its interior does not connect without a junction.
     for (const trace of traces) {
       for (const edge of trace.edges) {
-        for (const [key, point] of points) {
+        for (const point of interiorConnections) {
           if (isPointOnSegment(point, edge.from, edge.to)) {
-            connect(pointKey(edge.from), key)
+            connect(pointKey(edge.from), pointKey(point))
           }
         }
       }

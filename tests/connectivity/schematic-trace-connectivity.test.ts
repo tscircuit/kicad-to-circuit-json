@@ -103,15 +103,26 @@ test("a crossing joins only when it has a junction", () => {
   expect(joined.flatMap((trace) => trace.junctions)).toHaveLength(1)
 })
 
-test("T endpoints and diagonal wires connect without joining nearby wires", () => {
+test("T endpoints require a junction while shared wire endpoints connect", () => {
   const traces = convert(`
     ${wire(10, 10, 30, 30)}
     ${wire(20, 20, 30, 20)}
     ${wire(30, 30, 40, 30)}
     ${wire(20, 20.01, 20, 30)}`).ctx!.db.schematic_trace.list()
-  expect(traces[0]!.source_trace_id).toBe(traces[1]!.source_trace_id)
+  expect(traces[0]!.source_trace_id).not.toBe(traces[1]!.source_trace_id)
   expect(traces[0]!.source_trace_id).toBe(traces[2]!.source_trace_id)
   expect(traces[0]!.source_trace_id).not.toBe(traces[3]!.source_trace_id)
+})
+
+test("a pin touching a wire's interior does not connect without a junction", () => {
+  const contents = `${wire(10, 10, 30, 10)} ${terminal(20, 10, "J1")}`
+  const unjoined = convert(contents).ctx!.db
+  expect(unjoined.source_trace.list()[0]!.connected_source_port_ids).toEqual([])
+  const joined = convert(`${contents} (junction (at 20 10) (diameter 0))`).ctx!
+    .db
+  expect(joined.source_trace.list()[0]!.connected_source_port_ids).toHaveLength(
+    1,
+  )
 })
 
 test("junctions belong to their connected net even when another wire comes first", () => {
