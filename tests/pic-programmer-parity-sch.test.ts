@@ -1,12 +1,20 @@
 import { expect, test } from "bun:test"
 import { existsSync, readFileSync } from "node:fs"
-import { KicadToCircuitJsonConverter } from "../lib"
+import { cju } from "@tscircuit/circuit-json-util"
+import { parseKicadSch } from "kicadts"
+import {
+  CollectLibrarySymbolsStage,
+  CollectSchematicAnnotationsStage,
+  CollectSchematicTracesStage,
+  InitializeSchematicContextStage,
+  type ConverterContext,
+} from "../lib"
 import { stackCircuitJsonKicadPngs } from "./fixtures/stackCircuitJsonKicadPngs"
 import { takeCircuitJsonSnapshot } from "./fixtures/take-circuit-json-snapshot"
 import { takeKicadSnapshot } from "./fixtures/take-kicad-snapshot"
 import "./fixtures/png-matcher"
 
-test("kicad-to-circuit-json: pic_programmer schematic", async () => {
+test("kicad-to-circuit-json: pic_programmer root-page drawing stages", async () => {
   // Load the KiCad schematic file
   const kicadSchPath =
     "kicad-demos/demos/pic_programmer/pic_programmer.kicad_sch"
@@ -20,12 +28,23 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
 
   const kicadSchContent = readFileSync(kicadSchPath, "utf-8")
 
-  // Convert to Circuit JSON
-  const converter = new KicadToCircuitJsonConverter()
-  converter.addFile("pic_programmer.kicad_sch", kicadSchContent)
-  converter.runUntilFinished()
-
-  const circuitJson = converter.getOutput()
+  // Compare only the root page's drawing stages. The converter's rejection of
+  // unsupported hierarchies is covered by hierarchical-schematic-diagnostics.
+  const ctx: ConverterContext = {
+    db: cju([]),
+    kicadSch: parseKicadSch(kicadSchContent),
+    warnings: [],
+    stats: {},
+  }
+  for (const Stage of [
+    InitializeSchematicContextStage,
+    CollectLibrarySymbolsStage,
+    CollectSchematicTracesStage,
+    CollectSchematicAnnotationsStage,
+  ]) {
+    new Stage(ctx).runUntilFinished()
+  }
+  const circuitJson = ctx.db.toArray()
 
   // Verify we got some output
   expect(circuitJson).toBeDefined()
