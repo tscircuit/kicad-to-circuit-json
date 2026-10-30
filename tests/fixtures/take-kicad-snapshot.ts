@@ -25,6 +25,7 @@ export const takeKicadSnapshot = async (params: {
   generatePng?: boolean
   excludeDrawingSheet?: boolean
   pcbSnapshotBounds?: "board" | "circuit-json"
+  pcbLayers?: string[]
 }): Promise<KicadOutput> => {
   const {
     kicadFilePath,
@@ -33,6 +34,7 @@ export const takeKicadSnapshot = async (params: {
     generatePng = true,
     excludeDrawingSheet = false,
     pcbSnapshotBounds = "board",
+    pcbLayers = ["B.Cu", "F.Cu", "F.SilkS", "B.SilkS", "Edge.Cuts"],
   } = params
 
   // Check to make sure kicad-cli is installed
@@ -74,7 +76,7 @@ export const takeKicadSnapshot = async (params: {
     const exportCmd =
       kicadFileType === "sch"
         ? $`kicad-cli sch export svg ${inputFilePath} -o ${outputDir} --theme Modern ${schematicDrawingSheetArgs}`
-        : $`kicad-cli pcb export svg ${inputFilePath} -o ${join(outputDir, "temp_file.svg")} --layers B.Cu,F.Cu,F.SilkS,B.SilkS,Edge.Cuts --mode-single --page-size-mode ${pcbPageSizeMode} --exclude-drawing-sheet`
+        : $`kicad-cli pcb export svg ${inputFilePath} -o ${join(outputDir, "temp_file.svg")} --layers ${pcbLayers.join(",")} --mode-single --page-size-mode ${pcbPageSizeMode} --exclude-drawing-sheet`
 
     const exportResult = await exportCmd
 
