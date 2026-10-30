@@ -130,7 +130,12 @@ This is an MVP implementation. Some limitations include:
 - Trace routing is basic (segments grouped by net/layer)
 - Some pad shapes may not map perfectly
 - Power symbols and net labels need enhancement
-- Multi-sheet schematics not fully tested
+- Hierarchical and multi-file schematic imports are not supported
+
+Supplying multiple `.kicad_sch` files raises an unsupported-project error.
+Supplying only a root schematic that references child sheets also raises an
+error listing those files, since their contents would otherwise be omitted.
+Standalone schematics without child-sheet references can be converted normally.
 
 ## Development
 

@@ -40,6 +40,11 @@ export class KicadToCircuitJsonConverter {
       key.endsWith(extension),
     )
     if (filesWithExtension.length > 1) {
+      if (extension === ".kicad_sch") {
+        throw new Error(
+          `Multi-file schematic projects are not supported yet. Received ${filesWithExtension.length} .kicad_sch files: ${filesWithExtension.join(", ")}. Only standalone schematics without child sheets can be imported.`,
+        )
+      }
       throw new Error(
         `Expected 0 or 1 file with extension ${extension}, got ${filesWithExtension.length}. Files: ${filesWithExtension.join(", ")}`,
       )
@@ -51,11 +56,23 @@ export class KicadToCircuitJsonConverter {
     const pcbFile = this._findFileWithExtension(".kicad_pcb")
     const schFile = this._findFileWithExtension(".kicad_sch")
     const symbolLibFile = this._findFileWithExtension(".kicad_sym")
+    const kicadSch = schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined
+
+    if (kicadSch?.sheets.length) {
+      const childFiles = kicadSch.sheets.map(
+        (sheet) =>
+          sheet.properties.find((property) => property.key === "Sheetfile")
+            ?.value || "(missing Sheetfile)",
+      )
+      throw new Error(
+        `Hierarchical schematic import is not supported yet. "${schFile}" references child sheets: ${childFiles.join(", ")}. Importing this file alone would omit their contents.`,
+      )
+    }
 
     this.ctx = {
       db: cju([]),
       kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
-      kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
+      kicadSch,
       kicadSymbolLib: symbolLibFile
         ? parseKicadSym(this.fsMap[symbolLibFile]!)
         : undefined,
