@@ -29,7 +29,7 @@ export class InitializeSchematicContextStage extends ConverterStage {
 
     // We'll compute the actual center of the schematic content later
     // For now, assume centered at origin in CJ space
-    const cjCenterX = 0
+    const cjCenterX = this.ctx.schematicOffsetX ?? 0
     const cjCenterY = 0
 
     // Build the inverse transform:

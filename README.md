@@ -38,6 +38,33 @@ console.log("Warnings:", converter.getWarnings())
 console.log("Stats:", converter.getStats())
 ```
 
+For a hierarchical schematic project, add the root and **all referenced child
+schematics**, preserving their paths relative to the project directory:
+
+```typescript
+const converter = new KicadToCircuitJsonConverter()
+converter.addFile("motor.kicad_sch", rootContent)
+converter.addFile("sheets/power.kicad_sch", powerContent)
+converter.addFile("sheets/driver.kicad_sch", driverContent)
+
+// Optional when there is exactly one unreferenced schematic; required when
+// multiple independent root schematics have been supplied.
+converter.setRootSchematic("motor.kicad_sch")
+converter.runUntilFinished()
+console.log(converter.getRootSchematicPath()) // "motor.kicad_sch"
+const circuitJson = converter.getOutput()
+```
+
+Child paths resolve relative to the schematic that references them. The converter
+uses only the supplied file map; it does not read additional files from disk or
+fetch them. Missing children and cyclic hierarchies fail with contextual errors
+instead of returning a partial import. Selecting a root imports only its reachable
+sheets. Repeated child placements use their own instance annotations, and sheet
+drawings are placed side by side. Local labels remain scoped to each sheet
+instance; scalar hierarchical pins, global labels, and power symbols establish
+connections between sheets. Bus expansion remains subject to the parser's existing
+limitations; unsupported syntax is reported with its filename.
+
 For a single `.kicad_mod` footprint, use the dedicated footprint converter:
 
 ```typescript
@@ -130,7 +157,7 @@ This is an MVP implementation. Some limitations include:
 - Trace routing is basic (segments grouped by net/layer)
 - Some pad shapes may not map perfectly
 - Power symbols and net labels need enhancement
-- Multi-sheet schematics not fully tested
+- Schematic bus expansion is not supported
 
 ## Development
 
@@ -163,11 +190,17 @@ and demos.
 bun run dev
 ```
 
-The page accepts drag-and-drop `.kicad_pcb`, `.kicad_sch`, and `.kicad_sym`
+The page accepts drag-and-drop `.kicad_mod`, `.kicad_pcb`, `.kicad_sch`, and `.kicad_sym`
 files, converts them with the local library source, and renders the resulting
 Circuit JSON inside an embedded runframe iframe preview. PCB files open in the
 PCB preview, while schematic and symbol library files open in the schematic
 preview. The site does not need the runframe package installed locally.
+
+For a schematic project, select all its `.kicad_sch` files together or use
+**Choose project folder** to preserve nested paths. Dropping a folder also reads
+its nested sheets. When a folder contains schematics, the viewer imports those
+schematics rather than its boards and symbol libraries. Use the **Root schematic**
+selector if automatic root detection is ambiguous.
 
 ## Related Projects
 
