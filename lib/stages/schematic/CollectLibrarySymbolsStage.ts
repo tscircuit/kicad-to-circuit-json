@@ -1,3 +1,4 @@
+import { capacitance, inductance, resistance } from "circuit-json"
 import type { SchematicSymbol } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
@@ -62,11 +63,46 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     // Infer component type from library id
     const ftype = this.inferFtype(libId, reference)
 
-    const sourceComponent = this.ctx.db.source_component.insert({
+    const sourceComponentData: Record<string, unknown> = {
       name: libId || reference,
       ftype,
       manufacturer_part_number: value || undefined,
-    })
+    }
+    if (value) {
+      const sanitizedValue = value
+        .trim()
+        .replace(/,/g, ".")
+        .replace(
+          /^(\d+)([rRkKmMgGuUnNpP])(\d+)$/,
+          (_, intPart: string, prefix: string, fracPart: string) =>
+            `${intPart}.${fracPart}${prefix.toLowerCase() === "r" ? "" : prefix}`,
+        )
+        .replace(/^(\d+(?:\.\d+)?)[rR]$/, "$1")
+      try {
+        if (ftype === "simple_resistor") {
+          const parsed = resistance.parse(sanitizedValue)
+          if (typeof parsed === "number" && Number.isFinite(parsed)) {
+            sourceComponentData.resistance = parsed
+          }
+        } else if (ftype === "simple_capacitor") {
+          const parsed = capacitance.parse(sanitizedValue)
+          if (typeof parsed === "number" && Number.isFinite(parsed)) {
+            sourceComponentData.capacitance = parsed
+          }
+        } else if (ftype === "simple_inductor") {
+          const parsed = inductance.parse(sanitizedValue)
+          if (typeof parsed === "number" && Number.isFinite(parsed)) {
+            sourceComponentData.inductance = parsed
+          }
+        }
+      } catch {
+        // Ignore unparseable passive values so schematic symbol import still succeeds
+      }
+    }
+
+    const sourceComponent = this.ctx.db.source_component.insert(
+      sourceComponentData as any,
+    )
 
     // Create schematic_component
     const uuid = symbol.uuid
