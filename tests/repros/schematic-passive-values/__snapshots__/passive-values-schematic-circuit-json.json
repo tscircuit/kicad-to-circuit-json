@@ -1,0 +1,351 @@
+[
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_0",
+    "name": "Repro:R",
+    "ftype": "simple_resistor",
+    "manufacturer_part_number": "10k"
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_0",
+    "source_component_id": "source_component_0",
+    "center": {
+      "x": -3.6133333333333337,
+      "y": 6.513333333333334
+    },
+    "size": {
+      "width": 0.13333333333333375,
+      "height": 0.5079999999999991
+    },
+    "is_box_with_pins": false,
+    "symbol_display_value": "10k"
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "source_port_0",
+    "source_component_id": "source_component_0",
+    "name": "~",
+    "pin_number": 1
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_0",
+    "schematic_component_id": "schematic_component_0",
+    "source_port_id": "source_port_0",
+    "center": {
+      "x": -3.6133333333333337,
+      "y": 6.767333333333333
+    },
+    "facing_direction": "up",
+    "side_of_component": "top",
+    "pin_number": 1,
+    "distance_from_component_edge": 0.08733333333333333
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "source_port_1",
+    "source_component_id": "source_component_0",
+    "name": "~",
+    "pin_number": 2
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_1",
+    "schematic_component_id": "schematic_component_0",
+    "source_port_id": "source_port_1",
+    "center": {
+      "x": -3.6133333333333337,
+      "y": 6.259333333333334
+    },
+    "facing_direction": "down",
+    "side_of_component": "bottom",
+    "pin_number": 2,
+    "distance_from_component_edge": 0.08733333333333333
+  },
+  {
+    "type": "schematic_line",
+    "schematic_line_id": "schematic_line_0",
+    "schematic_component_id": "schematic_component_0",
+    "x1": -3.6133333333333337,
+    "y1": 6.767333333333333,
+    "x2": -3.6133333333333337,
+    "y2": 6.680000000000001,
+    "stroke_width": null,
+    "color": "rgb(132, 0, 0)",
+    "is_dashed": false
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_0",
+    "text": "1",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -3.5583000000000005,
+      "y": 6.7236666666666665
+    },
+    "rotation": 90,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "schematic_line",
+    "schematic_line_id": "schematic_line_1",
+    "schematic_component_id": "schematic_component_0",
+    "x1": -3.6133333333333337,
+    "y1": 6.259333333333334,
+    "x2": -3.6133333333333337,
+    "y2": 6.346666666666667,
+    "stroke_width": null,
+    "color": "rgb(132, 0, 0)",
+    "is_dashed": false
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_1",
+    "text": "2",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -3.668366666666667,
+      "y": 6.303000000000001
+    },
+    "rotation": -90,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_0",
+    "schematic_component_id": "schematic_component_0",
+    "points": [
+      {
+        "x": -3.6800000000000006,
+        "y": 6.346666666666667
+      },
+      {
+        "x": -3.546666666666667,
+        "y": 6.346666666666667
+      },
+      {
+        "x": -3.546666666666667,
+        "y": 6.680000000000001
+      },
+      {
+        "x": -3.6800000000000006,
+        "y": 6.680000000000001
+      },
+      {
+        "x": -3.6800000000000006,
+        "y": 6.346666666666667
+      }
+    ],
+    "stroke_width": 0.016933333333333335,
+    "stroke_color": "rgb(132, 0, 0)",
+    "is_dashed": false,
+    "is_filled": false
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_2",
+    "text": "R1",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -3.2746666666666666,
+      "y": 6.598000000000001
+    },
+    "rotation": 0,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_3",
+    "text": "10k",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -3.2746666666666666,
+      "y": 6.4286666666666665
+    },
+    "rotation": 0,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "source_component",
+    "source_component_id": "source_component_1",
+    "name": "Repro:C",
+    "ftype": "simple_capacitor",
+    "manufacturer_part_number": "100n"
+  },
+  {
+    "type": "schematic_component",
+    "schematic_component_id": "schematic_component_1",
+    "source_component_id": "source_component_1",
+    "center": {
+      "x": -1.92,
+      "y": 6.513333333333334
+    },
+    "size": {
+      "width": 0.2666666666666666,
+      "height": 0.5079999999999991
+    },
+    "is_box_with_pins": false,
+    "symbol_display_value": "100n"
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "source_port_2",
+    "source_component_id": "source_component_1",
+    "name": "~",
+    "pin_number": 1
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_2",
+    "schematic_component_id": "schematic_component_1",
+    "source_port_id": "source_port_2",
+    "center": {
+      "x": -1.92,
+      "y": 6.767333333333333
+    },
+    "facing_direction": "up",
+    "side_of_component": "top",
+    "pin_number": 1,
+    "distance_from_component_edge": 0.22066666666666668
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "source_port_3",
+    "source_component_id": "source_component_1",
+    "name": "~",
+    "pin_number": 2
+  },
+  {
+    "type": "schematic_port",
+    "schematic_port_id": "schematic_port_3",
+    "schematic_component_id": "schematic_component_1",
+    "source_port_id": "source_port_3",
+    "center": {
+      "x": -1.92,
+      "y": 6.259333333333334
+    },
+    "facing_direction": "down",
+    "side_of_component": "bottom",
+    "pin_number": 2,
+    "distance_from_component_edge": 0.22066666666666668
+  },
+  {
+    "type": "schematic_line",
+    "schematic_line_id": "schematic_line_2",
+    "schematic_component_id": "schematic_component_1",
+    "x1": -1.92,
+    "y1": 6.767333333333333,
+    "x2": -1.92,
+    "y2": 6.546666666666667,
+    "stroke_width": null,
+    "color": "rgb(132, 0, 0)",
+    "is_dashed": false
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_4",
+    "text": "1",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -1.8649666666666667,
+      "y": 6.657
+    },
+    "rotation": 90,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "schematic_line",
+    "schematic_line_id": "schematic_line_3",
+    "schematic_component_id": "schematic_component_1",
+    "x1": -1.92,
+    "y1": 6.259333333333334,
+    "x2": -1.92,
+    "y2": 6.48,
+    "stroke_width": null,
+    "color": "rgb(132, 0, 0)",
+    "is_dashed": false
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_5",
+    "text": "2",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -1.9750333333333332,
+      "y": 6.369666666666667
+    },
+    "rotation": -90,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_1",
+    "schematic_component_id": "schematic_component_1",
+    "points": [
+      {
+        "x": -2.0533333333333332,
+        "y": 6.546666666666667
+      },
+      {
+        "x": -1.7866666666666666,
+        "y": 6.546666666666667
+      }
+    ],
+    "stroke_width": 0.016933333333333335,
+    "stroke_color": "rgb(132, 0, 0)",
+    "is_dashed": false,
+    "is_filled": false
+  },
+  {
+    "type": "schematic_path",
+    "schematic_path_id": "schematic_path_2",
+    "schematic_component_id": "schematic_component_1",
+    "points": [
+      {
+        "x": -2.0533333333333332,
+        "y": 6.48
+      },
+      {
+        "x": -1.7866666666666666,
+        "y": 6.48
+      }
+    ],
+    "stroke_width": 0.016933333333333335,
+    "stroke_color": "rgb(132, 0, 0)",
+    "is_dashed": false,
+    "is_filled": false
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_6",
+    "text": "C1",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -1.5813333333333333,
+      "y": 6.598000000000001
+    },
+    "rotation": 0,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  },
+  {
+    "type": "schematic_text",
+    "schematic_text_id": "schematic_text_7",
+    "text": "100n",
+    "font_size": 0.08466666666666667,
+    "position": {
+      "x": -1.5813333333333333,
+      "y": 6.4286666666666665
+    },
+    "rotation": 0,
+    "anchor": "center",
+    "color": "rgb(132, 0, 0)"
+  }
+]

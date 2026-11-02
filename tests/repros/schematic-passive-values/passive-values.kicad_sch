@@ -1,0 +1,75 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (uuid "cf5767a8-0a2f-4588-bc13-0a0c5a6acfe1")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Repro:R"
+      (pin_names (offset 0))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "R" (at 2 0 90)
+        (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 90)
+        (effects (font (size 1.27 1.27))))
+      (symbol "R_0_1"
+        (rectangle (start -1 -2.5) (end 1 2.5)
+          (stroke (width 0.254) (type default))
+          (fill (type none))))
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.31)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive line (at 0 -3.81 90) (length 1.31)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+    (symbol "Repro:C"
+      (pin_names (offset 0))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "C" (at 2 0 90)
+        (effects (font (size 1.27 1.27))))
+      (property "Value" "C" (at 0 0 90)
+        (effects (font (size 1.27 1.27))))
+      (symbol "C_0_1"
+        (polyline (pts (xy -2 0.5) (xy 2 0.5))
+          (stroke (width 0.254) (type default))
+          (fill (type none)))
+        (polyline (pts (xy -2 -0.5) (xy 2 -0.5))
+          (stroke (width 0.254) (type default))
+          (fill (type none))))
+      (symbol "C_1_1"
+        (pin passive line (at 0 3.81 270) (length 3.31)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive line (at 0 -3.81 90) (length 3.31)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27)))))))
+  )
+  (symbol (lib_id "Repro:R") (at 50.8 50.8 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "b96c8787-5836-43ac-9a3c-aef41d7497c6")
+    (property "Reference" "R1" (at 55.88 49.53 0)
+      (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 55.88 52.07 0)
+      (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "9f9712a7-6e79-418e-a4f7-ab994b9e3abc"))
+    (pin "2" (uuid "d31c9468-7b97-4f3b-abfe-c56dc7c4b5fd"))
+    (instances
+      (project "passive-values"
+        (path "/cf5767a8-0a2f-4588-bc13-0a0c5a6acfe1"
+          (reference "R1") (unit 1)))))
+  (symbol (lib_id "Repro:C") (at 76.2 50.8 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "6ee04ce8-97d5-4d67-a2b3-a72d4bb28a6f")
+    (property "Reference" "C1" (at 81.28 49.53 0)
+      (effects (font (size 1.27 1.27))))
+    (property "Value" "100n" (at 81.28 52.07 0)
+      (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "dd24c534-6f8b-4979-a950-a2feccadf9e0"))
+    (pin "2" (uuid "7dbf9358-5278-41c1-82b8-858c3c7d16d1"))
+    (instances
+      (project "passive-values"
+        (path "/cf5767a8-0a2f-4588-bc13-0a0c5a6acfe1"
+          (reference "C1") (unit 1)))))
+)
