@@ -1,4 +1,8 @@
 import type { Point, SchematicPort, SchematicTrace } from "circuit-json"
+import {
+  ConnectivityMap,
+  findConnectedNetworks,
+} from "circuit-json-to-connectivity-map"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import { getPinsForSymbolInstance } from "./emitKicadSymbolGeometry"
@@ -25,45 +29,25 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
 
     const traces = db.schematic_trace.list()
     const ports = db.schematic_port.list()
-    const parents = new Map<string, string>()
-    const addPoint = (point: Point): string => {
-      const key = pointKey(point)
-      if (!parents.has(key)) {
-        parents.set(key, key)
-      }
-      return key
-    }
-    const root = (key: string): string => {
-      let current = key
-      while (current !== parents.get(current)) {
-        const parent = parents.get(current)!
-        const grandparent = parents.get(parent)!
-        parents.set(current, grandparent)
-        current = grandparent
-      }
-      return current
-    }
-    const connect = (a: string, b: string) => {
-      parents.set(root(b), root(a))
-    }
+    const connections: string[][] = []
 
     for (const trace of traces) {
       for (const edge of trace.edges) {
-        connect(addPoint(edge.from), addPoint(edge.to))
+        connections.push([pointKey(edge.from), pointKey(edge.to)])
       }
     }
-    for (const port of ports) addPoint(port.center)
+    for (const port of ports) connections.push([pointKey(port.center)])
     const junctions = kicadSch.junctions.flatMap((junction) =>
       junction.at ? [applyToPoint(k2cMatSch, junction.at)] : [],
     )
-    for (const junction of junctions) addPoint(junction)
+    for (const junction of junctions) connections.push([pointKey(junction)])
 
     const namedPoints: Array<{ name: string; key: string }> = []
     const addNamedPoint = (name: string, position: Point) => {
-      namedPoints.push({
-        name: name.replaceAll("{slash}", "/"),
-        key: addPoint(position),
-      })
+      const decodedName = name.replaceAll("{slash}", "/")
+      const key = pointKey(position)
+      namedPoints.push({ name: decodedName, key })
+      connections.push([key, `net:${decodedName}`])
     }
     for (const label of [...kicadSch.labels, ...kicadSch.globalLabels]) {
       if (label.at && label.value) {
@@ -108,21 +92,18 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
       for (const edge of trace.edges) {
         for (const point of interiorConnections) {
           if (isPointOnSegment(point, edge.from, edge.to)) {
-            connect(pointKey(edge.from), pointKey(point))
+            connections.push([pointKey(edge.from), pointKey(point)])
           }
         }
       }
     }
-    const firstPointByName = new Map<string, string>()
-    for (const { name, key } of namedPoints) {
-      const first = firstPointByName.get(name)
-      if (first) connect(first, key)
-      else firstPointByName.set(name, key)
-    }
+    const connectivityMap = new ConnectivityMap(
+      findConnectedNetworks(connections),
+    )
 
     const groups = new Map<string, ConnectedGroup>()
     const groupAt = (key: string): ConnectedGroup => {
-      const id = root(key)
+      const id = connectivityMap.getNetConnectedToId(key)!
       let group = groups.get(id)
       if (!group) {
         group = { traces: [], ports: [], junctions: [], netNames: new Set() }
