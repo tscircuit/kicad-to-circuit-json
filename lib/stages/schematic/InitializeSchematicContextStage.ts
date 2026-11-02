@@ -1,5 +1,5 @@
+import { compose, scale, translate } from "transformation-matrix"
 import { ConverterStage } from "../../types"
-import { compose, scale, translate, type Matrix } from "transformation-matrix"
 
 /**
  * InitializeSchematicContextStage sets up the coordinate transformation
@@ -44,6 +44,7 @@ export class InitializeSchematicContextStage extends ConverterStage {
 
     // Initialize tracking maps
     this.ctx.symbolUuidToComponentId = new Map()
+    this.ctx.schematicNetAnchors = { labels: [], powerSymbols: [] }
     this.ctx.warnings = this.ctx.warnings || []
     this.ctx.stats = this.ctx.stats || {}
 

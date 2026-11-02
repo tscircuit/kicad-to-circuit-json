@@ -16,6 +16,11 @@ import type {
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import { parseKicadOverlineText } from "../../utils/parse-kicad-overline-text"
+import {
+  decodeKicadText,
+  getOrCreateSchematicSourceNet,
+  getSchematicPointKey,
+} from "./utils/schematic-net-utils"
 
 const GRAPHIC_COLOR = "rgb(0, 0, 132)"
 const TEXT_COLOR = "rgb(0, 0, 132)"
@@ -37,8 +42,6 @@ type TextAnchor =
 
 /** Converts standalone schematic labels, text, sheets, and drawing primitives. */
 export class CollectSchematicAnnotationsStage extends ConverterStage {
-  private sourceNetIds = new Map<string, string>()
-
   step(): boolean {
     const { kicadSch, k2cMatSch } = this.ctx
     if (!kicadSch || !k2cMatSch) {
@@ -73,7 +76,8 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       if (sourcePortId) {
         this.ctx.db.source_port.update(sourcePortId, { do_not_connect: true })
       } else {
-        ;(this.ctx.warnings ??= []).push(
+        this.ctx.warnings ??= []
+        this.ctx.warnings.push(
           `No-connect marker ${noConnect.uuid?.value ?? "without UUID"} at (${noConnect.at.x}, ${noConnect.at.y}) has ${sourcePortId === null ? "ambiguous" : "no matching"} logical terminals; its electrical constraint was not imported. Resolve the marker-to-pin association before routing.`,
         )
       }
@@ -95,9 +99,11 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     if (!this.ctx.k2cMatSch || !label.at || !label.value) return
 
     const text = decodeKicadText(label.value)
-    this.getOrCreateSourceNetId(text)
+    const position = applyToPoint(this.ctx.k2cMatSch, label.at)
+    this.registerNetLabel(text, position)
     this.insertText(text, label.at, label.effects, {
       color: LOCAL_LABEL_COLOR,
+      position,
     })
 
     this.incrementLabelCount()
@@ -107,9 +113,8 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     if (!this.ctx.k2cMatSch || !label.at || !label.value) return
 
     const text = decodeKicadText(label.value)
-    const sourceNetId = this.getOrCreateSourceNetId(text)
-
     const position = applyToPoint(this.ctx.k2cMatSch, label.at)
+    const sourceNetId = this.registerNetLabel(text, position)
     this.ctx.db.schematic_net_label.insert({
       source_net_id: sourceNetId,
       center: position,
@@ -122,16 +127,9 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     this.incrementLabelCount()
   }
 
-  private getOrCreateSourceNetId(text: string): string {
-    const existingSourceNetId = this.sourceNetIds.get(text)
-    if (existingSourceNetId) return existingSourceNetId
-
-    const sourceNet = this.ctx.db.source_net.insert({
-      name: text,
-      member_source_group_ids: [],
-    } as any)
-    this.sourceNetIds.set(text, sourceNet.source_net_id)
-    return sourceNet.source_net_id
+  private registerNetLabel(name: string, position: Point): string {
+    this.ctx.schematicNetAnchors?.labels.push({ name, position })
+    return getOrCreateSchematicSourceNet(this.ctx.db, name).source_net_id
   }
 
   private incrementLabelCount() {
@@ -347,13 +345,6 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     })
   }
 }
-
-// Remove transform round-off at a precision much finer than the schematic grid.
-const getSchematicPointKey = ({ x, y }: Point): string =>
-  `${Math.round(x * 1e6)},${Math.round(y * 1e6)}`
-
-const decodeKicadText = (text: string): string =>
-  text.replaceAll("{slash}", "/")
 
 const angleToAnchorSide = (
   angle: number | undefined,

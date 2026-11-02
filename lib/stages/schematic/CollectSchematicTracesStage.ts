@@ -1,6 +1,6 @@
-import { ConverterStage } from "../../types"
-import { applyToPoint } from "transformation-matrix"
 import type { PtsArc, Wire, Xy } from "kicadts"
+import { applyToPoint } from "transformation-matrix"
+import { ConverterStage } from "../../types"
 
 const isXyPoint = (point: Xy | PtsArc): point is Xy =>
   "x" in point && "y" in point

@@ -1,5 +1,5 @@
-export { InitializeSchematicContextStage } from "./InitializeSchematicContextStage"
 export { CollectLibrarySymbolsStage } from "./CollectLibrarySymbolsStage"
-export { CollectSchematicTracesStage } from "./CollectSchematicTracesStage"
 export { CollectSchematicAnnotationsStage } from "./CollectSchematicAnnotationsStage"
 export { CollectSchematicConnectivityStage } from "./CollectSchematicConnectivityStage"
+export { CollectSchematicTracesStage } from "./CollectSchematicTracesStage"
+export { InitializeSchematicContextStage } from "./InitializeSchematicContextStage"

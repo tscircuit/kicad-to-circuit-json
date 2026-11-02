@@ -161,6 +161,17 @@ test("local and global labels link disconnected wire paths and net aliases", () 
   )
 })
 
+test("labels attach to diagonal and zero-length wires without joining nearby wires", () => {
+  const traces = convert(`
+    ${wire(10, 10, 30, 30)} ${label("SIGNAL", 20, 20)}
+    ${wire(10, 10.01, 30, 30.01)}
+    ${wire(50, 10, 60, 10)} ${label("SIGNAL", 50, 10, true)}
+    ${wire(80, 10, 80, 10)} ${label("SIGNAL", 80, 10)}`).ctx!.db.schematic_trace.list()
+  expect(traces[0]!.source_trace_id).toBe(traces[2]!.source_trace_id)
+  expect(traces[0]!.source_trace_id).toBe(traces[3]!.source_trace_id)
+  expect(traces[0]!.source_trace_id).not.toBe(traces[1]!.source_trace_id)
+})
+
 test("custom power symbols join their nets while power flags remain separate", () => {
   const traces = convert(`
     ${wire(10, 10, 20, 10)} ${terminal(10, 10, "G1", "Custom:GND")}
@@ -169,6 +180,18 @@ test("custom power symbols join their nets while power flags remain separate", (
     ${wire(70, 10, 80, 10)} ${terminal(70, 10, "F2", "Custom:PWR_FLAG")}`).ctx!.db.schematic_trace.list()
   expect(traces[0]!.source_trace_id).toBe(traces[1]!.source_trace_id)
   expect(traces[2]!.source_trace_id).not.toBe(traces[3]!.source_trace_id)
+})
+
+test("power symbols touching a wire interior still require a junction", () => {
+  const contents = `
+    ${wire(10, 10, 30, 10)} ${terminal(20, 10, "G1", "Custom:GND")}
+    ${wire(50, 10, 60, 10)} ${terminal(50, 10, "G2", "Custom:GND")}`
+  const unjoined = convert(contents).ctx!.db.schematic_trace.list()
+  expect(unjoined[0]!.source_trace_id).not.toBe(unjoined[1]!.source_trace_id)
+  const joined = convert(
+    `${contents} (junction (at 20 10) (diameter 0))`,
+  ).ctx!.db.schematic_trace.list()
+  expect(joined[0]!.source_trace_id).toBe(joined[1]!.source_trace_id)
 })
 
 test("touching pins and labels on pins retain connectivity without a wire", () => {

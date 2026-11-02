@@ -1,3 +1,4 @@
+import { pointToSegmentDistance } from "@tscircuit/math-utils"
 import type { Point, SchematicPort, SchematicTrace } from "circuit-json"
 import {
   ConnectivityMap,
@@ -5,11 +6,11 @@ import {
 } from "circuit-json-to-connectivity-map"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
-import { getPinsForSymbolInstance } from "./emitKicadSymbolGeometry"
-
-const POINT_TOLERANCE = 1e-6
-const pointKey = ({ x, y }: Point): string =>
-  `${Math.round(x / POINT_TOLERANCE)},${Math.round(y / POINT_TOLERANCE)}`
+import {
+  getOrCreateSchematicSourceNet,
+  getSchematicPointKey as pointKey,
+  SCHEMATIC_POINT_TOLERANCE,
+} from "./utils/schematic-net-utils"
 
 interface ConnectedGroup {
   traces: SchematicTrace[]
@@ -42,56 +43,25 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
     )
     for (const junction of junctions) connections.push([pointKey(junction)])
 
-    const namedPoints: Array<{ name: string; key: string }> = []
-    const addNamedPoint = (name: string, position: Point) => {
-      const decodedName = name.replaceAll("{slash}", "/")
-      const key = pointKey(position)
-      namedPoints.push({ name: decodedName, key })
-      connections.push([key, `net:${decodedName}`])
-    }
-    for (const label of [...kicadSch.labels, ...kicadSch.globalLabels]) {
-      if (label.at && label.value) {
-        addNamedPoint(label.value, applyToPoint(k2cMatSch, label.at))
-      }
+    const anchors = this.ctx.schematicNetAnchors!
+    const namedPoints = [...anchors.labels, ...anchors.powerSymbols]
+    for (const { name, position } of namedPoints) {
+      connections.push([pointKey(position), `net:${name}`])
     }
     const interiorConnections = [
       ...junctions,
-      ...[...kicadSch.labels, ...kicadSch.globalLabels].flatMap((label) =>
-        label.at && label.value ? [applyToPoint(k2cMatSch, label.at)] : [],
-      ),
+      ...anchors.labels.map((label) => label.position),
     ]
-
-    // Power symbols act as implicit net labels, including custom libraries.
-    // A PWR_FLAG has a power_out pin and does not name or join remote nets.
-    for (const symbol of kicadSch.symbols) {
-      const library = kicadSch.libSymbols?.symbols.find(
-        (library) => library.libraryId === symbol.libraryId,
-      )
-      if (!library?._sxPower) continue
-      const pins = getPinsForSymbolInstance(library, symbol)
-      if (pins.length !== 1 || pins[0]?.pinElectricalType !== "power_in") {
-        continue
-      }
-      const name = symbol.properties.find(
-        (property) => property.key === "Value",
-      )?.value
-      const componentId = symbol.uuid
-        ? this.ctx.symbolUuidToComponentId?.get(symbol.uuid)
-        : undefined
-      if (!name || !componentId) continue
-      for (const port of ports) {
-        if (port.schematic_component_id === componentId) {
-          addNamedPoint(name, port.center)
-        }
-      }
-    }
 
     // Junctions and labels attach inside a wire. A pin or another wire's
     // endpoint touching its interior does not connect without a junction.
     for (const trace of traces) {
       for (const edge of trace.edges) {
         for (const point of interiorConnections) {
-          if (isPointOnSegment(point, edge.from, edge.to)) {
+          if (
+            pointToSegmentDistance(point, edge.from, edge.to) <=
+            SCHEMATIC_POINT_TOLERANCE
+          ) {
             connections.push([pointKey(edge.from), pointKey(point)])
           }
         }
@@ -119,12 +89,10 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
     for (const junction of junctions) {
       groupAt(pointKey(junction)).junctions.push(junction)
     }
-    for (const { name, key } of namedPoints) groupAt(key).netNames.add(name)
-
-    const sourceNetsByName = new Map(
-      db.source_net.list().map((net) => [net.name, net]),
-    )
-    const netLabels = db.schematic_net_label.list()
+    for (const { name, position } of namedPoints) {
+      groupAt(pointKey(position)).netNames.add(name)
+    }
+    const sourceTraceIdByNetId = new Map<string, string>()
     for (const group of groups.values()) {
       const sourcePortIds = [
         ...new Set(group.ports.map((p) => p.source_port_id)),
@@ -136,14 +104,9 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
       ) {
         continue
       }
-      const sourceNetIds = [...group.netNames].map((name) => {
-        let net = sourceNetsByName.get(name)
-        if (!net) {
-          net = db.source_net.insert({ name, member_source_group_ids: [] })
-          sourceNetsByName.set(name, net)
-        }
-        return net.source_net_id
-      })
+      const sourceNetIds = [...group.netNames].map(
+        (name) => getOrCreateSchematicSourceNet(db, name).source_net_id,
+      )
       const sourceTrace = db.source_trace.insert({
         connected_source_port_ids: sourcePortIds,
         connected_source_net_ids: sourceNetIds,
@@ -153,6 +116,7 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
         subcircuit_connectivity_map_key: connectivityKey,
       })
       for (const sourceNetId of sourceNetIds) {
+        sourceTraceIdByNetId.set(sourceNetId, sourceTrace.source_trace_id)
         db.source_net.update(sourceNetId, {
           subcircuit_connectivity_map_key: connectivityKey,
         })
@@ -174,34 +138,17 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
           })),
         })
       }
-      for (const label of netLabels) {
-        if (sourceNetIds.includes(label.source_net_id)) {
-          db.schematic_net_label.update(label.schematic_net_label_id, {
-            source_trace_id: sourceTrace.source_trace_id,
-          })
-        }
+    }
+    for (const label of db.schematic_net_label.list()) {
+      const sourceTraceId = sourceTraceIdByNetId.get(label.source_net_id)
+      if (sourceTraceId) {
+        db.schematic_net_label.update(label.schematic_net_label_id, {
+          source_trace_id: sourceTraceId,
+        })
       }
     }
 
     this.finished = true
     return false
   }
-}
-
-const isPointOnSegment = (point: Point, from: Point, to: Point): boolean => {
-  const dx = to.x - from.x
-  const dy = to.y - from.y
-  const length = Math.hypot(dx, dy)
-  if (length < POINT_TOLERANCE) return pointKey(point) === pointKey(from)
-  if (
-    Math.abs((point.x - from.x) * dy - (point.y - from.y) * dx) >
-    POINT_TOLERANCE * length
-  ) {
-    return false
-  }
-  const projection =
-    ((point.x - from.x) * dx + (point.y - from.y) * dy) / length
-  return (
-    projection >= -POINT_TOLERANCE && projection <= length + POINT_TOLERANCE
-  )
 }

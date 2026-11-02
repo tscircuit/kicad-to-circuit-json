@@ -15,6 +15,7 @@ import {
   getPinsForSymbolInstance,
 } from "./emitKicadSymbolGeometry"
 import { inferSymbolName } from "./utils/inferSymbolName"
+import { decodeKicadText } from "./utils/schematic-net-utils"
 
 /**
  * CollectLibrarySymbolsStage extracts KiCad schematic symbols and creates:
@@ -161,6 +162,20 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       const pinAt = pin.at
       if (!pinAt) continue
       const portCenter = applyToPoint(transform, pinAt)
+      // Single-pin power symbols name their net; power_out flags do not.
+      if (
+        libSymbol._sxPower &&
+        allPins.length === 1 &&
+        pin.pinElectricalType === "power_in"
+      ) {
+        const name = this.getProperty(symbol, "Value")
+        if (name) {
+          this.ctx.schematicNetAnchors?.powerSymbols.push({
+            name: decodeKicadText(name),
+            position: portCenter,
+          })
+        }
+      }
       const pinAngle = ((pinAt.angle ?? 0) * Math.PI) / 180
       const innerPoint = applyToPoint(transform, {
         x: pinAt.x + Math.cos(pinAngle) * (pin.length || 1),
