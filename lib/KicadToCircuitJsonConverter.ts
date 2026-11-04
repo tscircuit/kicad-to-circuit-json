@@ -1,6 +1,10 @@
 import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
-import { parseKicadPcb, parseKicadSch, parseKicadSym } from "kicadts"
+import { parseKicadPcb, parseKicadSym, type SxClass } from "kicadts"
+import {
+  loadSchematicProject,
+  normalizeProjectPath,
+} from "./schematic-project/load-schematic-project"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
@@ -13,6 +17,10 @@ import { InitializePcbContextStage } from "./stages/pcb/InitializePcbContextStag
 import { CollectLibrarySymbolsStage } from "./stages/schematic/CollectLibrarySymbolsStage"
 import { CollectSchematicAnnotationsStage } from "./stages/schematic/CollectSchematicAnnotationsStage"
 import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematicTracesStage"
+import {
+  CollectSchematicProjectConnectivityStage,
+  type ProjectSheetContext,
+} from "./stages/schematic/CollectSchematicProjectConnectivityStage"
 // Import schematic stages
 import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
 import { CollectSymbolLibrarySymbolsStage } from "./stages/symbol-library/CollectSymbolLibrarySymbolsStage"
@@ -26,18 +34,30 @@ export class KicadToCircuitJsonConverter {
   currentStageIndex = 0
 
   pipeline?: ConverterStage[]
+  private rootSchematicPath?: string
+  private resolvedRootSchematicPath?: string
 
   get currentStage() {
     return this.pipeline?.[this.currentStageIndex]
   }
 
   addFile(filePath: string, content: string) {
-    this.fsMap[filePath] = content
+    this.fsMap[normalizeProjectPath(filePath)] = content
+  }
+
+  setRootSchematic(filePath: string) {
+    if (this.pipeline)
+      throw new Error("Select the root schematic before starting conversion.")
+    this.rootSchematicPath = normalizeProjectPath(filePath)
+  }
+
+  getRootSchematicPath() {
+    return this.resolvedRootSchematicPath ?? this.rootSchematicPath
   }
 
   _findFileWithExtension(extension: string) {
     const filesWithExtension = Object.keys(this.fsMap).filter((key) =>
-      key.endsWith(extension),
+      key.toLowerCase().endsWith(extension),
     )
     if (filesWithExtension.length > 1) {
       throw new Error(
@@ -49,13 +69,14 @@ export class KicadToCircuitJsonConverter {
 
   initializePipeline() {
     const pcbFile = this._findFileWithExtension(".kicad_pcb")
-    const schFile = this._findFileWithExtension(".kicad_sch")
+    const project = loadSchematicProject(this.fsMap, this.rootSchematicPath)
+    this.resolvedRootSchematicPath = project?.rootFilePath
     const symbolLibFile = this._findFileWithExtension(".kicad_sym")
 
     this.ctx = {
       db: cju([]),
       kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
-      kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
+      kicadSch: project?.instances[0]?.schematic,
       kicadSymbolLib: symbolLibFile
         ? parseKicadSym(this.fsMap[symbolLibFile]!)
         : undefined,
@@ -75,13 +96,62 @@ export class KicadToCircuitJsonConverter {
     }
 
     // Schematic stages (if schematic file exists)
-    if (this.ctx.kicadSch) {
-      this.pipeline.push(
-        new InitializeSchematicContextStage(this.ctx),
-        new CollectLibrarySymbolsStage(this.ctx),
-        new CollectSchematicTracesStage(this.ctx),
-        new CollectSchematicAnnotationsStage(this.ctx),
+    if (project) {
+      const isHierarchical =
+        project.instances.length > 1 ||
+        project.instances.some(
+          (instance) => instance.hierarchicalLabels.length > 0,
+        )
+      let maxX = 150
+      let maxExtent = 0
+      const measure = (node: SxClass) => {
+        if ("x" in node && typeof node.x === "number")
+          maxX = Math.max(maxX, Math.abs(node.x))
+        if ("width" in node && typeof node.width === "number")
+          maxExtent = Math.max(maxExtent, Math.abs(node.width))
+        if ("radius" in node && typeof node.radius === "number")
+          maxExtent = Math.max(maxExtent, Math.abs(node.radius))
+        for (const child of node.getChildren()) measure(child)
+      }
+      for (const instance of project.instances) {
+        measure(instance.schematic)
+        for (const label of instance.hierarchicalLabels) measure(label)
+      }
+      const spacing = (2 * (maxX + maxExtent) + 100) / 15
+      const references = new Map<string, string>()
+      const sourcePortIds = new Map<string, string>()
+      const sheets: ProjectSheetContext[] = project.instances.map(
+        (instance, index) => ({
+          instance,
+          ctx: isHierarchical
+            ? {
+                ...this.ctx!,
+                kicadSch: instance.schematic,
+                schematicInstancePath: instance.instancePath,
+                schematicOffsetX: index * spacing,
+                schematicHierarchicalLabels: instance.hierarchicalLabels,
+                schematicNetIds: new Map(),
+                schematicWireTraceIds: new Map(),
+                schematicReferenceToSourceComponentId: references,
+                schematicSourcePortIds: sourcePortIds,
+              }
+            : this.ctx!,
+        }),
       )
+      for (const sheet of sheets) {
+        this.pipeline.push(
+          new InitializeSchematicContextStage(sheet.ctx),
+          new CollectLibrarySymbolsStage(sheet.ctx),
+          new CollectSchematicTracesStage(sheet.ctx),
+        )
+      }
+      if (isHierarchical)
+        this.pipeline.push(
+          new CollectSchematicProjectConnectivityStage(this.ctx, sheets),
+        )
+      for (const sheet of sheets) {
+        this.pipeline.push(new CollectSchematicAnnotationsStage(sheet.ctx))
+      }
     }
 
     // PCB stages (if PCB file exists)

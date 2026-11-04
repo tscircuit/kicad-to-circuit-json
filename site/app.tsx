@@ -13,6 +13,11 @@ import {
   useRef,
   useState,
 } from "react"
+import {
+  getDroppedProjectFiles,
+  getSelectedProjectFiles,
+  type ProjectFile,
+} from "./project-files"
 
 type CircuitJson = ReturnType<KicadToCircuitJsonConverter["getOutput"]>
 type ConversionStats = NonNullable<
@@ -37,6 +42,9 @@ const runframeStandalonePreviewUrl =
 
 export function App() {
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const folderInputRef = useRef<HTMLInputElement>(null)
+  const [projectFiles, setProjectFiles] = useState<ProjectFile[]>([])
+  const [selectedRoot, setSelectedRoot] = useState("")
   const [circuitJson, setCircuitJson] = useState<CircuitJson | null>(null)
   const [simpleRouteJson, setSimpleRouteJson] =
     useState<SimpleRouteJson | null>(null)
@@ -92,22 +100,36 @@ export function App() {
   const handleDrop = (event: DragEvent<HTMLElement>) => {
     event.preventDefault()
     setIsDragging(false)
-    const [file] = Array.from(event.dataTransfer.files)
-    if (file) {
-      void convertFile(file)
-    }
+    void getDroppedProjectFiles(event.dataTransfer)
+      .then(loadFiles)
+      .catch((error) => {
+        setErrorMessage(
+          error instanceof Error
+            ? error.message
+            : "Could not read the dropped project.",
+        )
+      })
   }
 
   const handleFileSelection = (event: ChangeEvent<HTMLInputElement>) => {
-    const [file] = Array.from(event.target.files ?? [])
-    if (file) {
-      void convertFile(file)
-    }
+    const files = getSelectedProjectFiles(event.target.files ?? [])
+    if (files.length) loadFiles(files)
     event.target.value = ""
   }
 
-  const convertFile = async (file: File) => {
-    const nextFileName = file.name
+  const loadFiles = (files: ProjectFile[]) => {
+    const supported = files.filter(({ path }) => inferInputKind(path))
+    const schematics = supported.filter(
+      ({ path }) => inferInputKind(path) === "schematic",
+    )
+    const inputs = schematics.length ? schematics : supported
+    setProjectFiles(inputs)
+    setSelectedRoot("")
+    void convertFiles(inputs)
+  }
+
+  const convertFiles = async (files: ProjectFile[], rootPath?: string) => {
+    let nextFileName = rootPath || files[0]?.path || ""
     const inputKind = inferInputKind(nextFileName)
 
     setIsConverting(true)
@@ -131,7 +153,17 @@ export function App() {
     }
 
     try {
-      const fileContents = await file.text()
+      if (files.length > 1 && inputKind !== "schematic") {
+        throw new Error(
+          "Select a schematic project, or one footprint, PCB, or symbol library file.",
+        )
+      }
+      const contents = await Promise.all(
+        files.map(async ({ path, file }) => ({
+          path,
+          content: await file.text(),
+        })),
+      )
 
       await new Promise<void>((resolve) => {
         window.requestAnimationFrame(() => resolve())
@@ -143,8 +175,12 @@ export function App() {
           : inputKind === "symbol-library"
             ? new KicadSymbolToCircuitJsonConverter()
             : new KicadToCircuitJsonConverter()
-      converter.addFile(nextFileName, fileContents)
+      for (const { path, content } of contents) converter.addFile(path, content)
+      if (converter instanceof KicadToCircuitJsonConverter && rootPath)
+        converter.setRootSchematic(rootPath)
       converter.runUntilFinished()
+      if (converter instanceof KicadToCircuitJsonConverter)
+        nextFileName = converter.getRootSchematicPath() ?? nextFileName
 
       const nextCircuitJson = converter.getOutput()
       const nextWarnings = [...converter.getWarnings()]
@@ -179,7 +215,12 @@ export function App() {
         setCircuitJson(null)
         setSimpleRouteJson(null)
         setErrorMessage(
-          error instanceof Error ? error.message : "Conversion failed.",
+          error instanceof Error
+            ? error.message.replace(
+                "Use setRootSchematic(path) to select a root.",
+                "Choose the root schematic below.",
+              )
+            : "Conversion failed.",
         )
         setFileName(nextFileName)
         setFrameUrl(null)
@@ -218,26 +259,68 @@ export function App() {
             ref={fileInputRef}
             className="file-input"
             type="file"
+            multiple
             accept=".kicad_mod,.kicad_pcb,.kicad_sch,.kicad_sym"
+            onChange={handleFileSelection}
+          />
+          <input
+            ref={folderInputRef}
+            className="file-input"
+            type="file"
+            multiple
+            {...{ webkitdirectory: "" }}
             onChange={handleFileSelection}
           />
           <div className="dropzone-copy">
             <span className="dropzone-badge">Drag and drop</span>
-            <strong>
-              KiCad footprint, PCB, schematic, or symbol library files
-            </strong>
+            <strong>KiCad files or a schematic project folder</strong>
             <p>
-              or browse for a local footprint, board, schematic, or library file
+              Select all schematic files together, or choose their project
+              folder.
             </p>
           </div>
           <button
             className="primary-button"
             type="button"
+            disabled={isConverting}
             onClick={() => fileInputRef.current?.click()}
           >
-            Choose file
+            Choose files
+          </button>
+          <button
+            className="secondary-button"
+            type="button"
+            disabled={isConverting}
+            onClick={() => folderInputRef.current?.click()}
+          >
+            Choose project folder
           </button>
         </div>
+
+        {projectFiles.length > 1 &&
+        projectFiles.every(
+          ({ path }) => inferInputKind(path) === "schematic",
+        ) ? (
+          <label className="root-schematic-picker" htmlFor="root-schematic">
+            Root schematic
+            <select
+              id="root-schematic"
+              value={selectedRoot}
+              disabled={isConverting}
+              onChange={(event) => {
+                setSelectedRoot(event.target.value)
+                void convertFiles(projectFiles, event.target.value || undefined)
+              }}
+            >
+              <option value="">Detect automatically</option>
+              {projectFiles.map(({ path }) => (
+                <option key={path} value={path}>
+                  {path}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : null}
 
         <div className="meta-grid">
           <article className="meta-card">
@@ -434,7 +517,10 @@ function serializeForInlineScript(value: unknown) {
 
 function getOutputBaseName(fileName: string | null) {
   if (!fileName) return "board"
-  return fileName.replace(/\.(kicad_mod|kicad_pcb|kicad_sch|kicad_sym)$/i, "")
+  return fileName
+    .split(/[\\/]/)
+    .at(-1)!
+    .replace(/\.(kicad_mod|kicad_pcb|kicad_sch|kicad_sym)$/i, "")
 }
 
 function inferInputKind(

@@ -62,11 +62,31 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     // Infer component type from library id
     const ftype = this.inferFtype(libId, reference)
 
-    const sourceComponent = this.ctx.db.source_component.insert({
-      name: libId || reference,
-      ftype,
-      manufacturer_part_number: value || undefined,
-    })
+    const annotatedReference = symbol.instances?.projects.some((project) =>
+      project.paths.some(
+        (path) =>
+          path.value === this.ctx.schematicInstancePath &&
+          path.reference === reference,
+      ),
+    )
+    const componentKey = reference.includes("?")
+      ? `${this.ctx.schematicInstancePath}/${symbol.uuid}`
+      : annotatedReference
+        ? reference
+        : `${this.ctx.schematicInstancePath}/${reference}`
+    const existingId =
+      this.ctx.schematicReferenceToSourceComponentId?.get(componentKey)
+    const sourceComponent =
+      (existingId && this.ctx.db.source_component.get(existingId)) ||
+      this.ctx.db.source_component.insert({
+        name: this.ctx.schematicInstancePath ? reference : libId || reference,
+        ftype,
+        manufacturer_part_number: value || undefined,
+      })
+    this.ctx.schematicReferenceToSourceComponentId?.set(
+      componentKey,
+      sourceComponent.source_component_id,
+    )
 
     // Create schematic_component
     const uuid = symbol.uuid
@@ -114,7 +134,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     this.createPropertyTexts(symbol)
 
     // Update stats
-    if (this.ctx.stats) {
+    if (this.ctx.stats && !existingId) {
       this.ctx.stats.components = (this.ctx.stats.components || 0) + 1
     }
   }
@@ -172,18 +192,27 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
         x: portCenter.x - innerPoint.x,
         y: portCenter.y - innerPoint.y,
       })
-      const sourcePort = this.ctx.db.source_port.insert({
-        source_component_id: sourceComponentId,
-        ...(pin.pinElectricalType === "no_connect"
-          ? { do_not_connect: true }
-          : {}),
-        name:
-          (pin.name ? getSourcePortNameFromKicadText(pin.name) : undefined) ||
-          (/^\d+$/.test(pinNumberText) ? `pin${pinNumberText}` : pinNumberText),
-        ...(/^\d+$/.test(pinNumberText)
-          ? { pin_number: Number(pinNumberText) }
-          : { port_hints: pinNumberText ? [pinNumberText] : [] }),
-      })
+      const portKey = JSON.stringify([sourceComponentId, pinNumberText])
+      const existingPortId =
+        pinNumberText && this.ctx.schematicSourcePortIds?.get(portKey)
+      const sourcePort =
+        (existingPortId && this.ctx.db.source_port.get(existingPortId)) ||
+        this.ctx.db.source_port.insert({
+          source_component_id: sourceComponentId,
+          ...(pin.pinElectricalType === "no_connect"
+            ? { do_not_connect: true }
+            : {}),
+          name:
+            (pin.name ? getSourcePortNameFromKicadText(pin.name) : undefined) ||
+            (/^\d+$/.test(pinNumberText)
+              ? `pin${pinNumberText}`
+              : pinNumberText),
+          ...(/^\d+$/.test(pinNumberText)
+            ? { pin_number: Number(pinNumberText) }
+            : { port_hints: pinNumberText ? [pinNumberText] : [] }),
+        })
+      if (pinNumberText)
+        this.ctx.schematicSourcePortIds?.set(portKey, sourcePort.source_port_id)
 
       const sideOfComponent: "top" | "bottom" | "left" | "right" =
         facingDirection === "up"

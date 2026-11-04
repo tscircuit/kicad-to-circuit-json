@@ -50,6 +50,9 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     for (const label of kicadSch.globalLabels) {
       this.processGlobalLabel(label)
     }
+    for (const label of this.ctx.schematicHierarchicalLabels ?? []) {
+      this.processGlobalLabel(label)
+    }
     for (const text of kicadSch.texts) this.processText(text)
     for (const sheet of kicadSch.sheets) this.processSheet(sheet)
 
@@ -123,6 +126,8 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
   }
 
   private getOrCreateSourceNetId(text: string): string {
+    const projectNetId = this.ctx.schematicNetIds?.get(text)
+    if (projectNetId) return projectNetId
     const existingSourceNetId = this.sourceNetIds.get(text)
     if (existingSourceNetId) return existingSourceNetId
 
