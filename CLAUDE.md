@@ -5,21 +5,17 @@ Below is a practical, implementation‑oriented plan to build the **kicad‑to�
 ## 1) Implementation checklist (from MVP → robust)
 
 **A. Repository & scaffolding**
-
 - [ ] Reuse the existing `KicadToCircuitJsonConverter` shell and turn it into a staged pipeline (symmetry with your CJ→KiCad design).
 - [ ] Bring over the generic `ConverterStage<Input, Output>` base pattern from your CJ→KiCad repo (abstract class with `step()`, `runUntilFinished()`, `finished` flag, etc.) to replace the empty `ConverterStage` interface on the KiCad→CJ side. This keeps both directions consistent.
 
 **B. Inputs & parsing**
-
 - [ ] Accept a map of file paths → contents (already supported by `addFile()`), find exactly one `.kicad_sch` and one `.kicad_pcb` (or allow either one).
 - [ ] Parse with `kicadts` (`parseKicadSch`, `parseKicadPcb`) and create a `cju([])` database in your converter context.
 
 **C. Coordinate systems & transforms**
-
 - [ ] Define **KiCad→Circuit JSON** transforms for schematic and PCB. Your CJ→KiCad schematic used `scale(15, -15)` plus centering; the inverse is `scale(1/15, -1/15)` plus inverse translations. PCB used `scale(1, -1)`; inverse is `scale(1, -1)` again with appropriate translation. Keep these matrices in context as `k2cMatSch`, `k2cMatPcb`.
 
 **D. Schematic pipeline (KiCadSch → circuit-json)**
-
 - [ ] **InitializeSchematicContext** (paper size, UUID, transform). (mirror of `InitializeSchematicStage`)
 - [ ] **ExtractLibrarySymbols** → translate lib symbols and instance symbols to CJ `schematic_component` + `schematic_port` data. (mirror of `AddLibrarySymbolsStage` + `AddSchematicSymbolsStage`)
 - [ ] **ExtractNetLabels** → map power/ground symbols and regular labels into CJ `schematic_net_label` with `anchor_position`, `anchor_side`, etc. (mirror of `AddSchematicNetLabelsStage`)
@@ -27,7 +23,6 @@ Below is a practical, implementation‑oriented plan to build the **kicad‑to�
 - [ ] **FinalizeSchematic** → compute bounds/center for CJ using the inverse of your existing helper logic. (mirror of `getSchematicBoundsAndCenter`)
 
 **E. PCB pipeline (KicadPcb → circuit-json)**
-
 - [ ] **InitializePcbContext** (layers, general, setup ignored for CJ; keep transform). (mirror of `InitializePcbStage`)
 - [ ] **ExtractNets** → translate KiCad nets into CJ naming (you used `Net-<trace_id>` going _to_ KiCad; invert that on the way back, preferring meaningful names when available). (mirror of `AddNetsStage`)
 - [ ] **ExtractFootprints** → each KiCad `Footprint` becomes a `pcb_component` + associated pads/holes/text. You already have one‑way utilities for pads/text—use them as shape/field guides for the reverse direction. (mirror of `AddFootprintsStage` and `Create*FromCircuitJson` helpers)
@@ -35,12 +30,10 @@ Below is a practical, implementation‑oriented plan to build the **kicad‑to�
 - [ ] **ExtractGraphics & Board Outline** → convert `Edge.Cuts` and `gr_text`/`gr_line` into `pcb_board.outline` and `pcb_silkscreen_*`. (mirror of `AddGraphicsStage`)
 
 **F. Integration & output**
-
 - [ ] Compose a valid **CircuitJson** object from your `cju` db and return it.
 - [ ] Provide a `getOutput()` and `getOutputString()` like the CJ→KiCad converters.
 
 **G. Tests & visual diffs**
-
 - [ ] Use the existing snapshot harness: export KiCad to SVG/PNG with `kicad-cli` (your `take-kicad-snapshot.ts`) and export **your reconstructed CircuitJson** via `circuit-to-svg` (your `take-circuit-json-snapshot.ts`), then stack/compare PNGs with the tolerant matcher you already wrote.
 - [ ] Build specimen tests: flat‑hierarchy schematic, simple 2‑layer PCB, text/labels, edge cuts, vias, SMD/TH pads, power symbols, etc.
 - [ ] Use your PNG diff matcher (tolerance, CI knobs) for robust comparisons.
@@ -50,7 +43,6 @@ Below is a practical, implementation‑oriented plan to build the **kicad‑to�
 ## 2) General architecture (symmetry with your CJ→KiCad pipeline)
 
 You already have a clean, staged design for **CJ→KiCad** with:
-
 - A **context** that stores the `cju` DB, KiCad AST objects, and transformation matrices.
 - A **pipeline** of small, deterministic stages (`Initialize*`, `Add*Symbols`, `Add*Traces`, `Add*Graphics`, …).
 - Deterministic **coordinate transforms**: Circuit JSON ↔ KiCad via `transformation-matrix`.
@@ -69,7 +61,6 @@ Replicate that architecture for **KiCad→CJ**:
 ### Stages (schematic)
 
 A good mirror for your schematic stages is:
-
 1. **InitializeSchematicContextStage**
    - Build `k2cMatSch` (inverse of CJ→KiCad: `scale(1/15, -1/15)` and matching translations so the schematic content centers in CJ space).
    - Seed any `pinPositions`/`wireConnections` maps you want to accumulate.
@@ -97,7 +88,6 @@ A good mirror for your schematic stages is:
 ### Stages (PCB)
 
 Mirror your PCB stages:
-
 1. **InitializePcbContextStage**
    - Build `k2cMatPcb` (inverse of your CJ→KiCad PCB transform: you used `translate(100,100)` and `scale(1,-1)`, so invert appropriately).
 
@@ -152,7 +142,6 @@ Use the same `transformation-matrix` library you already use on CJ→KiCad. Keep
 ### D) Pads & holes (shape fidelity)
 
 Use your “create‑\*FromCircuitJson” functions as a **spec** for what CJ expects:
-
 - **SMD pad**: recover `shape` (`circle` vs `rect`), `radius` OR `width/height`, and **component‑relative** position (undo component rotation and center). That’s precisely the inverse of your SMD utility.
 - **TH pad / plated hole**: reconstitute the correct variant (`circle`, `oval/pill`, `*_with_rect_pad`, `rotated_*`) and its rotation. Your forward mapping handles all of these—mirror it back.
 - **NPTH**: map `PadDrill` (oval vs circle) and size back to CJ’s `pcb_hole`.
@@ -293,7 +282,6 @@ This mirrors the structure you use on the other direction; you can even **share 
 ### Quick mapping crib sheet
 
 **KiCad → Circuit JSON (schematic)**
-
 - `SchematicSymbol@at` → `schematic_component.center` (through `k2cMatSch`).
 - `SymbolProperty{Reference}` → `source_component.name` or `schematic_component.name`.
 - `pins[]` → `schematic_port[]` with positions relative to component.
@@ -301,7 +289,6 @@ This mirrors the structure you use on the other direction; you can even **share 
 - `Wire`, `Junction` → `schematic_trace.edges`, `junctions`.
 
 **KiCad → Circuit JSON (pcb)**
-
 - `Footprint@at` → `pcb_component.center/rotation`.
 - `FpText` (attached) → `pcb_silkscreen_text` with `anchor_position`, `layer`, `ccw_rotation`.
 - `FootprintPad` (SMD) → `pcb_smtpad` (shape + size). TH/NPTH pads → `pcb_plated_hole` / `pcb_hole`.
