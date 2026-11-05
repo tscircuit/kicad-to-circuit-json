@@ -8,6 +8,7 @@ import type {
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext, FootprintPlacement } from "../../../types"
 import {
+  extractKicadLayerNames,
   isPcbTextRenderLayer,
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
@@ -268,9 +269,13 @@ export function createGraphicText(params: {
   const justify =
     textElement._sxEffects?._sxJustify || textElement.effects?.justify
   const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
+  const isKnockout = extractKicadLayerNames(textElement.layer).includes(
+    "knockout",
+  )
+  const isMirrored = Boolean(justify?.mirror)
 
   if (renderLayer.endsWith("_silkscreen")) {
-    ctx.db.pcb_silkscreen_text.insert({
+    const silkscreenText = {
       pcb_component_id: componentId,
       font: "tscircuit2024",
       font_size: fontSize,
@@ -279,7 +284,11 @@ export function createGraphicText(params: {
       anchor_alignment: anchorAlignment,
       layer,
       ccw_rotation: ccwRotation || undefined,
-    } as PcbSilkscreenText)
+    } as PcbSilkscreenText
+    if (isKnockout) {
+      silkscreenText.is_knockout = true
+    }
+    ctx.db.pcb_silkscreen_text.insert(silkscreenText)
     return
   }
 
@@ -299,7 +308,7 @@ export function createGraphicText(params: {
   }
 
   if (renderLayer.endsWith("_copper")) {
-    ctx.db.pcb_copper_text.insert({
+    const copperText = {
       pcb_component_id: componentId,
       font: "tscircuit2024",
       font_size: fontSize,
@@ -308,6 +317,13 @@ export function createGraphicText(params: {
       anchor_alignment: anchorAlignment,
       layer: layer,
       ccw_rotation: ccwRotation || undefined,
-    } as PcbCopperText)
+    } as PcbCopperText
+    if (isKnockout) {
+      copperText.is_knockout = true
+    }
+    if (isMirrored) {
+      copperText.is_mirrored = true
+    }
+    ctx.db.pcb_copper_text.insert(copperText)
   }
 }

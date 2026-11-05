@@ -632,11 +632,26 @@ export class CollectTracesStage extends ConverterStage {
       )
     }
 
-    if (shape === "pill" || shape === "rotated_pill") {
+    if (shape === "pill" || shape === "rotated_pill" || shape === "oval") {
       const width = pad.width ?? pad.outer_width
       const height = pad.height ?? pad.outer_height
-      const rotation = shape === "rotated_pill" ? pad.ccw_rotation : 0
+      const rotation = pad.ccw_rotation ?? 0
       return this.isPointInsidePill(point, pad, width, height, rotation)
+    }
+
+    if (shape === "hole_with_polygon_pad") {
+      const outline = (pad.pad_outline as PolygonPoint[] | undefined)?.map(
+        (pt) => ({
+          x: (pad.x ?? 0) + pt.x,
+          y: (pad.y ?? 0) + pt.y,
+        }),
+      )
+      if (!outline || outline.length < 3) return false
+      return isPointInsidePolygonContours(
+        point,
+        [outline],
+        this.PORT_MATCH_TOLERANCE,
+      )
     }
 
     if (shape === "rect" || shape === "rotated_rect") {

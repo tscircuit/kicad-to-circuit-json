@@ -23,7 +23,12 @@ export function getPropertyValue(
 ): string | undefined {
   const properties = footprint.properties || []
   const propertyArray = Array.isArray(properties) ? properties : [properties]
-  const property = propertyArray.find((p: any) => p.key === propertyName)
+  const normalizedTarget = propertyName.toLowerCase()
+  const property = propertyArray.find(
+    (p: any) =>
+      String(p.key ?? p._key ?? p.name ?? "").toLowerCase() ===
+      normalizedTarget,
+  )
   return property?.value
 }
 
@@ -47,8 +52,20 @@ export function substituteKicadVariables(
     ""
 
   // Replace KiCad variables
-  result = result.replace(/\$\{REFERENCE\}/g, reference)
-  result = result.replace(/\$\{VALUE\}/g, value)
+  result = result.replace(/\$\{REFERENCE\}/gi, reference)
+  result = result.replace(/\$\{VALUE\}/gi, value)
+  result = result.replace(/\$\{([^}]+)\}/g, (match, varName: string) => {
+    const trimmed = varName.trim()
+    const propVal = getPropertyValue(footprint, trimmed)
+    if (propVal !== undefined) return propVal
+    if (trimmed.toUpperCase() === "FOOTPRINT" && footprint.libraryLink) {
+      return footprint.libraryLink
+    }
+    if (trimmed.toUpperCase() === "DESCRIPTION" && footprint.descr?.value) {
+      return footprint.descr.value
+    }
+    return match
+  })
 
   return result
 }
