@@ -488,12 +488,16 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     }
 
     for (const text of this.collectTexts(symbol)) {
-      if (!text.value) continue
+      if (!text.value || text.effects?.hiddenText) continue
 
+      const parsedLabel = parseKicadOverlineText(
+        text.value.replaceAll("{slash}", "/"),
+      )
       const textData: SchematicTextData = {
         schematic_component_id: schematicComponentId,
         schematic_symbol_id: schematicSymbolId,
-        text: text.value,
+        text: parsedLabel.text,
+        ...(parsedLabel.textParts ? { text_parts: parsedLabel.textParts } : {}),
         font_size: Math.max(0.1, this.getFontSize(text.effects) * scale),
         position: applyToPoint(transform, text.at ?? { x: 0, y: 0 }),
         rotation: -(text.at?.angle ?? 0),
@@ -515,7 +519,9 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     const scale = this.scaleOf(transform)
 
     for (const property of symbol.properties) {
-      if (property.hidden || !property.value) continue
+      if (property.hidden || property.effects?.hiddenText || !property.value) {
+        continue
+      }
       if (!this.shouldRenderProperty(property)) continue
 
       const textData: SchematicTextData = {

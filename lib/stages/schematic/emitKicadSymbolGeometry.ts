@@ -205,7 +205,13 @@ export const emitKicadSymbolGeometry = ({
   emitFillableGeometry("foreground")
 
   for (const text of symbolParts.flatMap((symbolPart) => symbolPart.texts)) {
-    emitSymbolText({ ctx, text, transform, scaleFactor })
+    emitSymbolText({
+      ctx,
+      schematicComponentId,
+      text,
+      transform,
+      scaleFactor,
+    })
   }
 
   if (transformedBoundsPoints.length === 0) {
@@ -406,15 +412,21 @@ const emitArc = (params: {
 
 const emitSymbolText = (params: {
   ctx: ConverterContext
+  schematicComponentId: string
   text: SymbolText
   transform: Matrix
   scaleFactor: number
 }) => {
-  const { ctx, text, transform, scaleFactor } = params
-  if (!text.value) return
+  const { ctx, schematicComponentId, text, transform, scaleFactor } = params
+  if (!text.value || text.effects?.hiddenText) return
 
+  const parsedLabel = parseKicadOverlineText(
+    text.value.replaceAll("{slash}", "/"),
+  )
   ctx.db.schematic_text.insert({
-    text: text.value,
+    schematic_component_id: schematicComponentId,
+    text: parsedLabel.text,
+    ...(parsedLabel.textParts ? { text_parts: parsedLabel.textParts } : {}),
     font_size: Math.max(0.05, getFontSize(text.effects) * scaleFactor),
     position: applyToPoint(transform, text.at ?? { x: 0, y: 0 }),
     rotation: -(text.at?.angle ?? 0),

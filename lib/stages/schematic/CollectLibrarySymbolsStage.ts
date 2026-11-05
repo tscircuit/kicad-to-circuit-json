@@ -156,6 +156,8 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       componentCenter,
       scaleFactor,
     )
+    const sourcePortIdByPinKey = new Map<string, string>()
+    let unnamedPinIndex = 0
 
     for (const pin of allPins) {
       const pinAt = pin.at
@@ -168,22 +170,30 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       })
       const pinNumberLabel = parseKicadOverlineText(pin.numberString || "")
       const pinNumberText = pinNumberLabel.text
+      const pinKey = pinNumberText || `unnamed_${unnamedPinIndex++}`
       const facingDirection = this.vectorToDirection({
         x: portCenter.x - innerPoint.x,
         y: portCenter.y - innerPoint.y,
       })
-      const sourcePort = this.ctx.db.source_port.insert({
-        source_component_id: sourceComponentId,
-        ...(pin.pinElectricalType === "no_connect"
-          ? { do_not_connect: true }
-          : {}),
-        name:
-          (pin.name ? getSourcePortNameFromKicadText(pin.name) : undefined) ||
-          (/^\d+$/.test(pinNumberText) ? `pin${pinNumberText}` : pinNumberText),
-        ...(/^\d+$/.test(pinNumberText)
-          ? { pin_number: Number(pinNumberText) }
-          : { port_hints: pinNumberText ? [pinNumberText] : [] }),
-      })
+      let sourcePortId = sourcePortIdByPinKey.get(pinKey)
+      if (!sourcePortId) {
+        const sourcePort = this.ctx.db.source_port.insert({
+          source_component_id: sourceComponentId,
+          ...(pin.pinElectricalType === "no_connect"
+            ? { do_not_connect: true }
+            : {}),
+          name:
+            (pin.name ? getSourcePortNameFromKicadText(pin.name) : undefined) ||
+            (/^\d+$/.test(pinNumberText)
+              ? `pin${pinNumberText}`
+              : pinNumberText),
+          ...(/^\d+$/.test(pinNumberText)
+            ? { pin_number: Number(pinNumberText) }
+            : { port_hints: pinNumberText ? [pinNumberText] : [] }),
+        })
+        sourcePortId = sourcePort.source_port_id
+        sourcePortIdByPinKey.set(pinKey, sourcePortId)
+      }
 
       const sideOfComponent: "top" | "bottom" | "left" | "right" =
         facingDirection === "up"
@@ -193,7 +203,7 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
             : facingDirection
       const schematicPort = {
         schematic_component_id: componentId,
-        source_port_id: sourcePort.source_port_id,
+        source_port_id: sourcePortId,
         center: portCenter,
         facing_direction: facingDirection,
         side_of_component: sideOfComponent,
