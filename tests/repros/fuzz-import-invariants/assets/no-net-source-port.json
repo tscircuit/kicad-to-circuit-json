@@ -1,0 +1,17 @@
+{
+  "name": "no-net-source-port",
+  "title": "No-net pin: terminal link",
+  "description": "An unconnected pin still needs a terminal, but no net or trace.",
+  "kind": "reference",
+  "passing": false,
+  "expected": "Reference resolves",
+  "actual": "Dangling reference",
+  "detail": "Logical nets: 0   |   Logical traces: 0",
+  "values": {
+    "pcbPortId": "pcb_port_0",
+    "sourcePortId": "pcb_component_0_port_1",
+    "sourceExists": false,
+    "nets": 0,
+    "traces": 0
+  }
+}
