@@ -16,7 +16,9 @@ import type {
 import {
   type Footprint,
   type FootprintPad,
+  PadPrimitiveGrArc,
   PadPrimitiveGrCircle,
+  PadPrimitiveGrLine,
   PadPrimitiveGrPoly,
 } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
@@ -32,6 +34,10 @@ import {
 } from "../layer-mapping"
 import { getSourcePortIdForPad } from "../pad-source-port-id"
 import { createCustomPlatedHole } from "./create-custom-plated-hole"
+import {
+  getArcPrimitiveOutlinePoints,
+  getLinePrimitiveOutlinePoints,
+} from "./custom-pad-copper-outline"
 import {
   attachPadPolygonContours,
   getCustomPadPolygonContours,
@@ -406,6 +412,47 @@ export function createSmdPad({
 
         ctx.db.pcb_smtpad.insert(smtpad)
         primitivesProcessed++
+      }
+
+      if (
+        primitive instanceof PadPrimitiveGrLine ||
+        primitive instanceof PadPrimitiveGrArc
+      ) {
+        const rawPoints =
+          primitive instanceof PadPrimitiveGrLine
+            ? getLinePrimitiveOutlinePoints(primitive)
+            : getArcPrimitiveOutlinePoints(primitive)
+
+        if (rawPoints && rawPoints.length >= 3) {
+          const transformedPoints: Point[] = []
+          for (const point of rawPoints) {
+            const rotatedPoint = rotatePoint({
+              point,
+              ccwRotationDegrees: customPrimitiveKicadRotationDegrees,
+            })
+            const kicadPosition = {
+              x: padKicadPos.x + rotatedPoint.x,
+              y: padKicadPos.y + rotatedPoint.y,
+            }
+            const globalPoint = applyToPoint(ctx.k2cMatPcb!, kicadPosition)
+            transformedPoints.push(globalPoint)
+            expandPrimBounds(globalPoint.x, globalPoint.y)
+          }
+
+          const smtpad: PcbSmtPadPolygonWithContours = {
+            type: "pcb_smtpad",
+            shape: "polygon",
+            pcb_component_id: componentId,
+            pcb_port_id: pcbPortId,
+            pcb_smtpad_id: getNextPcbSmtPadId(ctx),
+            layer,
+            port_hints: [pad.number.toString()],
+            points: transformedPoints,
+          } as PcbSmtPadPolygonWithContours
+
+          ctx.db.pcb_smtpad.insert(smtpad)
+          primitivesProcessed++
+        }
       }
     }
 
