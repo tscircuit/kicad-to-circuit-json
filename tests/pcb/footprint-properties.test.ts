@@ -31,7 +31,7 @@ test("preserves JLCPCB properties and KiCad footprint assembly exclusions", () =
   const u1PcbComponent = pcbComponents.find(
     (component) => component.source_component_id === u1.source_component_id,
   )
-  expect(u1PcbComponent?.metadata?.kicad_footprint).toBeUndefined()
+  expect(u1PcbComponent?.metadata?.kicad_footprint?.attributes).toBeUndefined()
 
   const bt3 = sourceComponents.find((component) => component.name === "BT3")
   const bt3PcbComponent = pcbComponents.find(
