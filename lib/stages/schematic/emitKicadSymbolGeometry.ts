@@ -205,7 +205,14 @@ export const emitKicadSymbolGeometry = ({
   emitFillableGeometry("foreground")
 
   for (const text of symbolParts.flatMap((symbolPart) => symbolPart.texts)) {
-    emitSymbolText({ ctx, text, transform, scaleFactor })
+    emitSymbolText({
+      ctx,
+      schematicComponentId,
+      instance,
+      text,
+      transform,
+      scaleFactor,
+    })
   }
 
   if (transformedBoundsPoints.length === 0) {
@@ -247,7 +254,7 @@ const emitPolyline = (params: {
       schematicComponentId,
       points,
       toStrokeWidth(polyline.stroke?.width, scaleFactor),
-      polyline.stroke?.type === "dash",
+      isDashedStroke(polyline.stroke?.type),
       true,
       fillType === "background" ? SYMBOL_FILL_COLOR : SYMBOL_STROKE_COLOR,
     )
@@ -259,7 +266,7 @@ const emitPolyline = (params: {
     schematicComponentId,
     points,
     toStrokeWidth(polyline.stroke?.width, scaleFactor),
-    polyline.stroke?.type === "dash",
+    isDashedStroke(polyline.stroke?.type),
     false,
   )
 }
@@ -291,7 +298,7 @@ const emitRectangle = (params: {
     schematicComponentId,
     points,
     toStrokeWidth(getShapeStroke(rectangle)?.width, scaleFactor),
-    getShapeStroke(rectangle)?.type === "dash",
+    isDashedStroke(getShapeStroke(rectangle)?.type),
     isFilled,
     isFilled
       ? fillType === "background"
@@ -337,7 +344,7 @@ const emitCircle = (params: {
         ? SYMBOL_FILL_COLOR
         : SYMBOL_STROKE_COLOR
       : undefined,
-    is_dashed: getShapeStroke(circle)?.type === "dash",
+    is_dashed: isDashedStroke(getShapeStroke(circle)?.type),
   }
   ctx.db.schematic_circle.insert(circleData)
 }
@@ -370,7 +377,7 @@ const emitArc = (params: {
       schematicComponentId,
       [transformedStart, transformedMid, transformedEnd],
       toStrokeWidth(getShapeStroke(arc)?.width, scaleFactor),
-      getShapeStroke(arc)?.type === "dash",
+      isDashedStroke(getShapeStroke(arc)?.type),
       false,
     )
     return
@@ -388,7 +395,7 @@ const emitArc = (params: {
       schematicComponentId,
       filledArcPoints,
       toStrokeWidth(getShapeStroke(arc)?.width, scaleFactor),
-      getShapeStroke(arc)?.type === "dash",
+      isDashedStroke(getShapeStroke(arc)?.type),
       true,
       fillType === "background" ? SYMBOL_FILL_COLOR : SYMBOL_STROKE_COLOR,
     )
@@ -399,28 +406,43 @@ const emitArc = (params: {
     ...geometry,
     stroke_width: toStrokeWidth(getShapeStroke(arc)?.width, scaleFactor),
     color: SYMBOL_STROKE_COLOR,
-    is_dashed: getShapeStroke(arc)?.type === "dash",
+    is_dashed: isDashedStroke(getShapeStroke(arc)?.type),
   }
   ctx.db.schematic_arc.insert(arcData)
 }
 
 const emitSymbolText = (params: {
   ctx: ConverterContext
+  schematicComponentId: string
+  instance: SchematicSymbol
   text: SymbolText
   transform: Matrix
   scaleFactor: number
 }) => {
-  const { ctx, text, transform, scaleFactor } = params
-  if (!text.value) return
+  const { ctx, schematicComponentId, instance, text, transform, scaleFactor } =
+    params
+  if (!text.value || text.effects?.hiddenText) return
 
-  ctx.db.schematic_text.insert({
-    text: text.value,
+  const parsedText = parseKicadOverlineText(
+    text.value.replaceAll("{slash}", "/"),
+  )
+  const rawAngle = text.at?.angle ?? 0
+  const textAngleDegrees =
+    Math.abs(rawAngle) > 360 && rawAngle % 10 === 0 ? rawAngle / 10 : rawAngle
+
+  const symbolText = {
+    schematic_component_id: schematicComponentId,
+    text: parsedText.text,
+    text_parts: parsedText.textParts,
     font_size: Math.max(0.05, getFontSize(text.effects) * scaleFactor),
     position: applyToPoint(transform, text.at ?? { x: 0, y: 0 }),
-    rotation: -(text.at?.angle ?? 0),
-    anchor: "center",
+    rotation: normalizeReadableRotation(
+      -(textAngleDegrees + (instance.at?.angle ?? 0)),
+    ),
+    anchor: "center" as const,
     color: SYMBOL_STROKE_COLOR,
-  })
+  }
+  ctx.db.schematic_text.insert(symbolText)
 }
 
 const emitPinTexts = (params: {
@@ -460,13 +482,17 @@ const emitPinTexts = (params: {
   }
 
   const pinNumber = pin.numberString
-  if (!pinNumbersHidden && pinNumber) {
+  if (!pinNumbersHidden && !pin._sxNumber?.effects?.hiddenText && pinNumber) {
+    const parsedPinNumber = parseKicadOverlineText(
+      pinNumber.replaceAll("{slash}", "/"),
+    )
     const fontSize = Math.max(
       0.05,
       getFontSize(pin._sxNumber?.effects) * scaleFactor,
     )
-    ctx.db.schematic_text.insert({
-      text: pinNumber,
+    const pinNumberText = {
+      text: parsedPinNumber.text,
+      text_parts: parsedPinNumber.textParts,
       font_size: fontSize,
       position: {
         x:
@@ -477,13 +503,21 @@ const emitPinTexts = (params: {
           normalAboveInCircuitJson.y * fontSize * 0.65,
       },
       rotation,
-      anchor: "center",
+      anchor: "center" as const,
       color: SYMBOL_STROKE_COLOR,
-    })
+    }
+    ctx.db.schematic_text.insert(pinNumberText)
   }
 
-  if (!pinNamesHidden && pin.name && pin.name !== "~") {
-    const pinNameLabel = parseKicadOverlineText(pin.name)
+  if (
+    !pinNamesHidden &&
+    !pin._sxName?.effects?.hiddenText &&
+    pin.name &&
+    pin.name !== "~"
+  ) {
+    const pinNameLabel = parseKicadOverlineText(
+      pin.name.replaceAll("{slash}", "/"),
+    )
     const fontSize = Math.max(
       0.05,
       getFontSize(pin._sxName?.effects) * scaleFactor,
@@ -579,6 +613,9 @@ const getShapeStroke = (shape: {
 
 const getShapeFillType = (shape: { getChildren(): unknown[] }) =>
   getShapeChild(shape, "fill")?.type
+
+const isDashedStroke = (strokeType: string | undefined): boolean =>
+  strokeType !== undefined && strokeType !== "default" && strokeType !== "solid"
 
 const toStrokeWidth = (
   width: number | undefined,
