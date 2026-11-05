@@ -713,7 +713,7 @@ export function createPlatedHole(params: {
   const outerHeight = size.y
 
   // Build plated hole object based on shape
-  if (padShape === "circle") {
+  if (padShape === "circle" && !drillIsOval) {
     // Circular pad with circular hole
     const platedHole: PcbPlatedHoleCircle = {
       type: "pcb_plated_hole",
@@ -728,8 +728,8 @@ export function createPlatedHole(params: {
       layers,
     } as PcbPlatedHoleCircle
     ctx.db.pcb_plated_hole.insert(platedHole)
-  } else if (padShape === "oval") {
-    // Oval/pill-shaped pad with pill hole
+  } else if (padShape === "oval" || padShape === "circle") {
+    // Equal outer dimensions retain circular copper around an oval drill.
     const platedHole: PcbPlatedHoleOval = {
       type: "pcb_plated_hole",
       shape: "pill",
