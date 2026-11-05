@@ -3,14 +3,14 @@
   "title": "Rounded pad: corner radius",
   "kind": "pad",
   "description": "KiCad pad: 4 x 3 mm, roundrect_rratio = 0.4.",
-  "passing": false,
+  "passing": true,
   "expected": "Radius 1.20 mm",
-  "actual": "Radius 0.60 mm",
+  "actual": "Radius 1.20 mm",
   "detail": "Same scale in both panels. Geometry is taken from imported Circuit JSON.",
   "values": {
     "width": 4,
     "height": 3,
     "expectedRadius": 1.2000000000000002,
-    "actualRadius": 0.6000000000000001
+    "actualRadius": 1.2000000000000002
   }
 }
