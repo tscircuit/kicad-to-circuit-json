@@ -12,7 +12,7 @@ const svgContents = (svg: string) =>
     .replace(/<\/svg>\s*$/, "")
     .replace(/<title>[\s\S]*?<\/title>/, "")
 
-test("repro4948: HDMI EDID board imports copper polygons but silently loses zone fill rules", async () => {
+test("repro4948: HDMI EDID board retains copper polygons and reports unsupported zone fill rules", async () => {
   const filename = "tests/assets/hdmi-edid-debug-board.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -81,7 +81,25 @@ test("repro4948: HDMI EDID board imports copper polygons but silently loses zone
   const warnings = converter
     .getWarnings()
     .filter((message) => message.includes("fill rules"))
-  expect(warnings).toHaveLength(0)
+  expect(warnings).toHaveLength(source.zones.length)
+  for (const zone of source.zones) {
+    const warning = warnings.find((message) =>
+      message.includes(zone.uuid!.value),
+    )
+    expect(warning).toContain(`clearance_mm=${zone.connectPads!.clearance}`)
+    expect(warning).toContain("connect_pads=thermal_relief")
+    expect(warning).toContain("minimum_thickness_mm=0.15")
+    expect(warning).toContain("thermal_gap_mm=0.5")
+    expect(warning).toContain("thermal_bridge_width_mm=0.5")
+    if (zone.priority !== undefined)
+      expect(warning).toContain(`priority=${zone.priority}`)
+    for (const layer of [
+      ...(zone.layer?.names ?? []),
+      ...(zone.layers?.names ?? []),
+    ])
+      expect(warning).toContain(layer)
+    expect(warning).toContain("Recreate these rules before refilling copper")
+  }
 
   const width = board.width + 6
   const height = board.height + 6

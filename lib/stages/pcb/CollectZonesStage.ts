@@ -65,6 +65,29 @@ export class CollectZonesStage extends ConverterStage {
       return
     }
 
+    const fillRules = Object.entries({
+      clearance_mm: zone.connectPads?.clearance,
+      connect_pads: zone.connectPads
+        ? (zone.connectPads.mode ?? "thermal_relief")
+        : undefined,
+      minimum_thickness_mm: zone.minThickness,
+      thermal_gap_mm: zone.fill?.thermalGap,
+      thermal_bridge_width_mm: zone.fill?.thermalBridgeWidth,
+      island_removal_mode: zone.fill?.islandRemovalMode,
+      minimum_island_area_mm2: zone.fill?.islandAreaMin,
+      smoothing: zone.fill?.smoothing,
+      smoothing_radius_mm: zone.fill?.radius,
+      priority: zone.priority,
+    })
+      .filter(([, value]) => value !== undefined)
+      .map(([name, value]) => `${name}=${value}`)
+    if (fillRules.length > 0) {
+      const id = zone.uuid?.value ?? zone.tstamp?.value ?? "without UUID"
+      ;(this.ctx.warnings ??= []).push(
+        `KiCad zone ${id} on ${this.getZoneLayerLabel(zone)}: fill rules (${fillRules.join(", ")}) were not imported; only copper polygons were imported. Recreate these rules before refilling copper.`,
+      )
+    }
+
     // Get net info
     const netKey = getKicadNetKey(zone)
     let netName = zone.netName || ""
