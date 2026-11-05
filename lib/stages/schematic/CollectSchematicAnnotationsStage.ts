@@ -9,8 +9,12 @@ import type {
   Polyline,
   SchematicArc,
   SchematicRectangle,
+  SchematicTable,
   SchematicText,
+  SchematicTextBox,
   Sheet,
+  Stroke,
+  TextBoxFill,
   TextEffects,
 } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
@@ -51,6 +55,8 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
       this.processGlobalLabel(label)
     }
     for (const text of kicadSch.texts) this.processText(text)
+    for (const textBox of kicadSch.textBoxes) this.processTextBox(textBox)
+    for (const table of kicadSch.tables) this.processTable(table)
     for (const sheet of kicadSch.sheets) this.processSheet(sheet)
 
     const portIdsByPosition: Record<string, string | null> = {}
@@ -143,6 +149,114 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
   private processText(text: SchematicText) {
     if (!text.at || !text.value || text.effects?.hiddenText) return
     this.insertText(text.value, text.at, text.effects)
+  }
+
+  private processTextBox(textBox: SchematicTextBox) {
+    const children = textBox.getChildren() as Array<{ token: string }>
+    const at = children.find((child): child is At => child.token === "at")
+    const size = children.find(
+      (child): child is { token: string; width: number; height: number } =>
+        child.token === "size",
+    )
+    const stroke = children.find(
+      (child): child is Stroke => child.token === "stroke",
+    )
+    const fill = children.find(
+      (child): child is TextBoxFill => child.token === "fill",
+    )
+    const effects = children.find(
+      (child): child is TextEffects => child.token === "effects",
+    )
+    this.processBoxedText({
+      text: textBox.text,
+      at,
+      size,
+      stroke,
+      fill,
+      effects,
+    })
+  }
+
+  private processTable(table: SchematicTable) {
+    for (const cell of table.cells) {
+      this.processBoxedText({
+        text: cell.text,
+        at: cell.at,
+        size: cell.size,
+        stroke: cell.stroke ?? table.separators?.stroke ?? table.border?.stroke,
+        fill: cell.fill,
+        effects: cell.effects,
+      })
+    }
+  }
+
+  private processBoxedText(params: {
+    text: string
+    at?: At
+    size?: { width: number; height: number }
+    stroke?: Stroke
+    fill?: TextBoxFill
+    effects?: TextEffects
+  }) {
+    const { text, at, size, stroke, fill, effects } = params
+    if (!this.ctx.k2cMatSch || !at) return
+    if (!size) {
+      if (text && !effects?.hiddenText) {
+        this.insertText(text, at, effects)
+      }
+      return
+    }
+
+    const start = applyToPoint(this.ctx.k2cMatSch, { x: at.x, y: at.y })
+    const end = applyToPoint(this.ctx.k2cMatSch, {
+      x: at.x + size.width,
+      y: at.y + size.height,
+    })
+    const fillType = getTextBoxFillType(fill)
+    const isFilled = fillType !== undefined && fillType !== "none"
+    const hasStroke = String(stroke?.type) !== "none"
+    if (hasStroke || isFilled) {
+      this.ctx.db.schematic_rect.insert({
+        center: {
+          x: (start.x + end.x) / 2,
+          y: (start.y + end.y) / 2,
+        },
+        width: Math.abs(end.x - start.x),
+        height: Math.abs(end.y - start.y),
+        rotation: 0,
+        stroke_width: hasStroke
+          ? toStrokeWidth(stroke?.width, this.ctx.k2cMatSch.a)
+          : 0,
+        color: GRAPHIC_COLOR,
+        is_filled: isFilled,
+        fill_color: isFilled ? GRAPHIC_COLOR : undefined,
+        is_dashed: isDashed(stroke?.type),
+      })
+    }
+
+    if (!text || effects?.hiddenText) return
+
+    const minX = Math.min(start.x, end.x)
+    const maxX = Math.max(start.x, end.x)
+    const minY = Math.min(start.y, end.y)
+    const maxY = Math.max(start.y, end.y)
+    const horizontal = effects?.justify?.horizontal ?? "center"
+    const vertical = effects?.justify?.vertical ?? "center"
+    const position = {
+      x:
+        horizontal === "left"
+          ? minX
+          : horizontal === "right"
+            ? maxX
+            : (minX + maxX) / 2,
+      y:
+        vertical === "top"
+          ? maxY
+          : vertical === "bottom"
+            ? minY
+            : (minY + maxY) / 2,
+    }
+    this.insertText(text, at, effects, { position })
   }
 
   private processSheet(sheet: Sheet) {
@@ -388,6 +502,20 @@ const toStrokeWidth = (
 
 const isDashed = (strokeType: string | undefined): boolean =>
   strokeType !== undefined && strokeType !== "default" && strokeType !== "solid"
+
+const getTextBoxFillType = (
+  fill: TextBoxFill | undefined,
+): string | undefined => {
+  if (!fill) return undefined
+  const typeChild = (
+    fill.getChildren() as Array<{
+      token: string
+      value?: string
+      type?: string
+    }>
+  ).find((child) => child.token === "type")
+  return typeChild?.value ?? typeChild?.type
+}
 
 const getArcGeometry = (
   start: Point,
