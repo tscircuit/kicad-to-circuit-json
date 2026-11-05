@@ -143,15 +143,22 @@ export class CollectGraphicsStage extends ConverterStage {
     // Process gr_circle elements
     for (const circle of circleArray) {
       const layerStr = getGraphicLayerNames(circle).join(" ")
-      if (!layerStr.includes("Edge.Cuts")) continue
-
-      const { center, end } = getCircleCenterEnd(circle)
-      edgeCutPrimitives.push({
-        type: "circle",
-        center,
-        start: end,
-        end,
-      })
+      if (layerStr.includes("Edge.Cuts")) {
+        const { center, end } = getCircleCenterEnd(circle)
+        edgeCutPrimitives.push({
+          type: "circle",
+          center,
+          start: end,
+          end,
+        })
+      } else if (
+        layerStr.includes("SilkS") ||
+        layerStr.includes("Fab") ||
+        layerStr.includes("CrtYd")
+      ) {
+        const renderLayer = mapKicadLayerToPcbRenderLayer(circle.layer)
+        if (renderLayer) this.createGraphicCircle(circle, renderLayer)
+      }
     }
 
     // Process gr_curve elements
@@ -697,6 +704,65 @@ export class CollectGraphicsStage extends ConverterStage {
       renderLayer,
       pcbComponentId: "",
       route,
+      strokeWidth,
+    })
+  }
+
+  private createGraphicCircle(circle: any, renderLayer: PcbRenderLayer) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const { center, end } = getCircleCenterEnd(circle)
+    const centerPos = applyToPoint(this.ctx.k2cMatPcb, center)
+    const radius = Math.hypot(end.x - center.x, end.y - center.y)
+    const layer = mapKicadLayerToVisibleLayer(circle.layer)
+    const strokeWidth =
+      circle.stroke?.width ??
+      circle._sxStroke?._sxWidth?.value ??
+      circle.width ??
+      0.15
+    const isFilled =
+      circle.fill === true ||
+      circle.fill?.filled === true ||
+      circle._sxFill?.isFilled === true ||
+      String(circle._sxFill ?? "").includes("fill yes")
+
+    if (renderLayer.endsWith("_courtyard")) {
+      this.ctx.db.pcb_courtyard_circle.insert({
+        pcb_component_id: "",
+        center: centerPos,
+        radius,
+        layer,
+      })
+      return
+    }
+
+    if (renderLayer.endsWith("_silkscreen")) {
+      this.ctx.db.pcb_silkscreen_circle.insert({
+        pcb_component_id: "",
+        center: centerPos,
+        radius,
+        layer,
+        stroke_width: strokeWidth,
+        is_filled: isFilled,
+      })
+      return
+    }
+
+    const numPoints = 16
+    const circleRoute: Array<{ x: number; y: number }> = []
+    for (let i = 0; i <= numPoints; i++) {
+      const angle = (i / numPoints) * 2 * Math.PI
+      circleRoute.push({
+        x: centerPos.x + radius * Math.cos(angle),
+        y: centerPos.y + radius * Math.sin(angle),
+      })
+    }
+
+    this.insertRouteGraphic({
+      layer,
+      renderLayer,
+      pcbComponentId: "",
+      route: circleRoute,
       strokeWidth,
     })
   }
