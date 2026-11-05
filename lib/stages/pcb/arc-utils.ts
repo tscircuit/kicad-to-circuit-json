@@ -1,4 +1,5 @@
 import type {
+  FpCurve,
   GrArc,
   GrCircle,
   GrCurve,
@@ -127,7 +128,7 @@ export function approximateArcPoints(params: {
   return points
 }
 
-export function getCurvePoints(curve: GrCurve): {
+export function getCurvePoints(curve: GrCurve | FpCurve): {
   start: PcbPoint
   control1: PcbPoint
   control2: PcbPoint
