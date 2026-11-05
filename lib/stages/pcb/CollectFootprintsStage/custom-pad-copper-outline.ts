@@ -1,11 +1,13 @@
 import Flatten from "@flatten-js/core"
 import {
   FootprintPad,
+  PadPrimitiveGrArc,
   PadPrimitiveGrCircle,
   PadPrimitiveGrLine,
   PadPrimitiveGrPoly,
 } from "kicadts"
 import type { Point } from "../../../types"
+import { approximateArcPoints } from "../arc-utils"
 import { getCustomPadPolygonContours } from "./custom-pad-polygon-contours"
 
 type FlattenPolygon = InstanceType<typeof Flatten.Polygon>
@@ -127,6 +129,105 @@ function createCirclePrimitiveOutline(
   })
 }
 
+function createStrokedPolylinePolygon(params: {
+  points: Point[]
+  width: number
+  capSegments?: number
+}): FlattenPolygon | undefined {
+  const { points, width, capSegments = 8 } = params
+  if (width <= 0) return undefined
+
+  const distinctPoints: Point[] = []
+  for (const point of points) {
+    const prev = distinctPoints[distinctPoints.length - 1]
+    if (!prev || Math.hypot(point.x - prev.x, point.y - prev.y) >= 1e-9) {
+      distinctPoints.push(point)
+    }
+  }
+
+  if (distinctPoints.length === 0) return undefined
+  if (distinctPoints.length === 1) {
+    return createEllipsePolygon({
+      center: distinctPoints[0]!,
+      width,
+      height: width,
+      segments: capSegments * 2,
+    })
+  }
+  if (distinctPoints.length === 2) {
+    return createCapsulePolygon({
+      start: distinctPoints[0]!,
+      end: distinctPoints[1]!,
+      width,
+      capSegments,
+    })
+  }
+
+  const radius = width / 2
+  const lastIndex = distinctPoints.length - 1
+  const unitTangents: Point[] = distinctPoints.map((point, index) => {
+    if (index === 0) {
+      const next = distinctPoints[1]!
+      const len = Math.hypot(next.x - point.x, next.y - point.y) || 1
+      return { x: (next.x - point.x) / len, y: (next.y - point.y) / len }
+    }
+    if (index === lastIndex) {
+      const prev = distinctPoints[lastIndex - 1]!
+      const len = Math.hypot(point.x - prev.x, point.y - prev.y) || 1
+      return { x: (point.x - prev.x) / len, y: (point.y - prev.y) / len }
+    }
+    const prev = distinctPoints[index - 1]!
+    const next = distinctPoints[index + 1]!
+    const len1 = Math.hypot(point.x - prev.x, point.y - prev.y) || 1
+    const len2 = Math.hypot(next.x - point.x, next.y - point.y) || 1
+    const tx = (point.x - prev.x) / len1 + (next.x - point.x) / len2
+    const ty = (point.y - prev.y) / len1 + (next.y - point.y) / len2
+    const tLen = Math.hypot(tx, ty)
+    if (tLen < 1e-9) {
+      return { x: (next.x - point.x) / len2, y: (next.y - point.y) / len2 }
+    }
+    return { x: tx / tLen, y: ty / tLen }
+  })
+
+  const vertices: Array<[number, number]> = []
+
+  for (let index = 1; index < lastIndex; index += 1) {
+    const point = distinctPoints[index]!
+    const tangent = unitTangents[index]!
+    vertices.push([point.x + radius * tangent.y, point.y - radius * tangent.x])
+  }
+
+  const endPoint = distinctPoints[lastIndex]!
+  const endTangent = unitTangents[lastIndex]!
+  const endDirection = Math.atan2(endTangent.y, endTangent.x)
+  for (let index = 0; index <= capSegments; index += 1) {
+    const angle = endDirection - Math.PI / 2 + (index / capSegments) * Math.PI
+    vertices.push([
+      endPoint.x + radius * Math.cos(angle),
+      endPoint.y + radius * Math.sin(angle),
+    ])
+  }
+
+  for (let index = lastIndex - 1; index >= 1; index -= 1) {
+    const point = distinctPoints[index]!
+    const tangent = unitTangents[index]!
+    vertices.push([point.x - radius * tangent.y, point.y + radius * tangent.x])
+  }
+
+  const startPoint = distinctPoints[0]!
+  const startTangent = unitTangents[0]!
+  const startDirection = Math.atan2(startTangent.y, startTangent.x)
+  for (let index = 0; index <= capSegments; index += 1) {
+    const angle = startDirection + Math.PI / 2 + (index / capSegments) * Math.PI
+    vertices.push([
+      startPoint.x + radius * Math.cos(angle),
+      startPoint.y + radius * Math.sin(angle),
+    ])
+  }
+
+  return new Flatten.Polygon(vertices)
+}
+
 function createLinePrimitiveOutline(
   primitive: PadPrimitiveGrLine,
 ): FlattenPolygon | undefined {
@@ -137,6 +238,40 @@ function createLinePrimitiveOutline(
     end: primitive.end,
     width: primitive.width,
   })
+}
+
+function createArcPrimitiveOutline(
+  primitive: PadPrimitiveGrArc,
+): FlattenPolygon | undefined {
+  if (!primitive.start || !primitive.mid || !primitive.end || !primitive.width)
+    return undefined
+
+  const arcPoints = approximateArcPoints({
+    start: primitive.start,
+    mid: primitive.mid,
+    end: primitive.end,
+    segmentLength: Math.max(primitive.width / 2, 0.1),
+    minSegments: 8,
+  })
+
+  return createStrokedPolylinePolygon({
+    points: arcPoints,
+    width: primitive.width,
+  })
+}
+
+export function getLinePrimitiveOutlinePoints(
+  primitive: PadPrimitiveGrLine,
+): Point[] | undefined {
+  const outline = createLinePrimitiveOutline(primitive)
+  return outline?.vertices.map(({ x, y }) => ({ x, y }))
+}
+
+export function getArcPrimitiveOutlinePoints(
+  primitive: PadPrimitiveGrArc,
+): Point[] | undefined {
+  const outline = createArcPrimitiveOutline(primitive)
+  return outline?.vertices.map(({ x, y }) => ({ x, y }))
 }
 
 export function getCustomPadCopperOutline(params: {
@@ -164,6 +299,12 @@ export function getCustomPadCopperOutline(params: {
 
     if (primitive instanceof PadPrimitiveGrLine) {
       const outline = createLinePrimitiveOutline(primitive)
+      if (outline) copperPolygons.push(outline)
+      continue
+    }
+
+    if (primitive instanceof PadPrimitiveGrArc) {
+      const outline = createArcPrimitiveOutline(primitive)
       if (outline) copperPolygons.push(outline)
     }
   }
