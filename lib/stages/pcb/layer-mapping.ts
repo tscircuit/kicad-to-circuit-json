@@ -7,6 +7,22 @@ function dedupeLayerRefs(layers: LayerRef[]): LayerRef[] {
   return [...new Set(layers)]
 }
 
+function getCopperLayerStackRank(layer: LayerRef): number {
+  if (layer === "top") return 0
+  if (layer === "bottom") return Number.POSITIVE_INFINITY
+  if (layer.startsWith("inner")) {
+    const innerIndex = Number.parseInt(layer.slice("inner".length), 10)
+    if (Number.isFinite(innerIndex)) return innerIndex
+  }
+  return Number.MAX_SAFE_INTEGER
+}
+
+function sortCopperLayerRefsInStackOrder(layers: LayerRef[]): LayerRef[] {
+  return [...layers].sort(
+    (a, b) => getCopperLayerStackRank(a) - getCopperLayerStackRank(b),
+  )
+}
+
 export function extractKicadLayerNames(layer: any): string[] {
   if (!layer) return []
   if (typeof layer === "string") return [layer]
@@ -121,7 +137,7 @@ export function getPcbCopperLayerRefs(kicadPcb?: KicadPcb): LayerRef[] {
     .filter((layer: LayerRef | undefined): layer is LayerRef => Boolean(layer))
 
   if (copperLayers.length > 0) {
-    return dedupeLayerRefs(copperLayers)
+    return sortCopperLayerRefsInStackOrder(dedupeLayerRefs(copperLayers))
   }
 
   return ["top", "bottom"]
@@ -147,6 +163,24 @@ export function getLayerRefsFromLayers(
   for (const layerName of layerNames) {
     if (layerName === "*.Cu") {
       mappedLayers.push(...getPcbCopperLayerRefs(kicadPcb))
+      continue
+    }
+
+    if (layerName === "F&B.Cu") {
+      mappedLayers.push(
+        ...getPcbCopperLayerRefs(kicadPcb).filter(
+          (layer) => layer === "top" || layer === "bottom",
+        ),
+      )
+      continue
+    }
+
+    if (layerName === "In*.Cu") {
+      mappedLayers.push(
+        ...getPcbCopperLayerRefs(kicadPcb).filter((layer) =>
+          layer.startsWith("inner"),
+        ),
+      )
       continue
     }
 
@@ -185,6 +219,11 @@ export function getCopperSpanLayerRefsFromLayers(
   layers: any,
   kicadPcb?: KicadPcb,
 ): LayerRef[] {
+  const layerNames = extractKicadLayerNames(layers)
+  if (layerNames.includes("F&B.Cu") || layerNames.includes("In*.Cu")) {
+    return getLayerRefsFromLayers(layers, kicadPcb)
+  }
+
   return expandCopperLayerSpan(
     getLayerRefsFromLayers(layers, kicadPcb),
     kicadPcb,

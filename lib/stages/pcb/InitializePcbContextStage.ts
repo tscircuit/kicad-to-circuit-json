@@ -5,13 +5,14 @@ import {
   approximateCirclePoints,
   approximateCubicBezierPoints,
   getArcStartMidEnd,
+  getCircleCenterEnd,
+  getCurvePoints,
   getGraphicArcs,
   getGraphicCircles,
   getGraphicCurves,
-  getCircleCenterEnd,
-  getCurvePoints,
   getGraphicLayerNames,
   getLineStartEnd,
+  getPcbPoint,
 } from "./arc-utils"
 
 /**
@@ -136,6 +137,155 @@ export class InitializePcbContextStage extends ConverterStage {
       ys.push(start.y, end.y)
     }
 
+    const footprints = this.ctx.kicadPcb.footprints || []
+    const footprintArray = Array.isArray(footprints) ? footprints : [footprints]
+
+    for (const footprint of footprintArray) {
+      const position = footprint.position
+      const footprintPosition = getPcbPoint(position)
+      const footprintRotation = (position as any)?.angle ?? 0
+
+      const fpLines = footprint.fpLines || []
+      const fpLineArray = Array.isArray(fpLines) ? fpLines : [fpLines]
+      for (const line of fpLineArray) {
+        const layerStr = getGraphicLayerNames(line).join(" ")
+        if (!layerStr.includes("Edge.Cuts")) continue
+
+        const { start, end } = getLineStartEnd(line as any)
+        const transformedStart = this.transformFootprintPoint(
+          start,
+          footprintPosition,
+          footprintRotation,
+        )
+        const transformedEnd = this.transformFootprintPoint(
+          end,
+          footprintPosition,
+          footprintRotation,
+        )
+        xs.push(transformedStart.x, transformedEnd.x)
+        ys.push(transformedStart.y, transformedEnd.y)
+      }
+
+      const fpArcs = footprint.fpArcs || []
+      const fpArcArray = Array.isArray(fpArcs) ? fpArcs : [fpArcs]
+      for (const arc of fpArcArray) {
+        const layerStr = getGraphicLayerNames(arc).join(" ")
+        if (!layerStr.includes("Edge.Cuts")) continue
+
+        const { start, mid, end } = getArcStartMidEnd(arc as any)
+        for (const point of approximateArcPoints({
+          start: this.transformFootprintPoint(
+            start,
+            footprintPosition,
+            footprintRotation,
+          ),
+          mid: this.transformFootprintPoint(
+            mid,
+            footprintPosition,
+            footprintRotation,
+          ),
+          end: this.transformFootprintPoint(
+            end,
+            footprintPosition,
+            footprintRotation,
+          ),
+          segmentLength: 0.25,
+          minSegments: 16,
+        })) {
+          xs.push(point.x)
+          ys.push(point.y)
+        }
+      }
+
+      const fpCircles = footprint.fpCircles || []
+      const fpCircleArray = Array.isArray(fpCircles) ? fpCircles : [fpCircles]
+      for (const circle of fpCircleArray) {
+        const layerStr = getGraphicLayerNames(circle).join(" ")
+        if (!layerStr.includes("Edge.Cuts")) continue
+
+        const { center, end } = getCircleCenterEnd(circle as any)
+        for (const point of approximateCirclePoints({
+          center: this.transformFootprintPoint(
+            center,
+            footprintPosition,
+            footprintRotation,
+          ),
+          end: this.transformFootprintPoint(
+            end,
+            footprintPosition,
+            footprintRotation,
+          ),
+          segmentLength: 0.25,
+          minSegments: 16,
+        })) {
+          xs.push(point.x)
+          ys.push(point.y)
+        }
+      }
+
+      const fpCurves = (footprint as any).fpCurves || []
+      const fpCurveArray = Array.isArray(fpCurves) ? fpCurves : [fpCurves]
+      for (const curve of fpCurveArray) {
+        const layerStr = getGraphicLayerNames(curve).join(" ")
+        if (!layerStr.includes("Edge.Cuts")) continue
+
+        const points = getCurvePoints(curve)
+        if (!points) continue
+
+        for (const point of approximateCubicBezierPoints({
+          start: this.transformFootprintPoint(
+            points.start,
+            footprintPosition,
+            footprintRotation,
+          ),
+          control1: this.transformFootprintPoint(
+            points.control1,
+            footprintPosition,
+            footprintRotation,
+          ),
+          control2: this.transformFootprintPoint(
+            points.control2,
+            footprintPosition,
+            footprintRotation,
+          ),
+          end: this.transformFootprintPoint(
+            points.end,
+            footprintPosition,
+            footprintRotation,
+          ),
+          segmentLength: 0.25,
+          minSegments: 16,
+        })) {
+          xs.push(point.x)
+          ys.push(point.y)
+        }
+      }
+
+      const fpRects = footprint.fpRects || []
+      const fpRectArray = Array.isArray(fpRects) ? fpRects : [fpRects]
+      for (const rect of fpRectArray) {
+        const layerStr = getGraphicLayerNames(rect).join(" ")
+        if (!layerStr.includes("Edge.Cuts")) continue
+
+        const { start, end } = this.getRectStartEnd(rect)
+        const corners = [
+          { x: start.x, y: start.y },
+          { x: end.x, y: start.y },
+          { x: end.x, y: end.y },
+          { x: start.x, y: end.y },
+        ]
+        for (const corner of corners) {
+          const transformedCorner = this.transformFootprintPoint(
+            corner,
+            footprintPosition,
+            footprintRotation,
+          )
+          xs.push(transformedCorner.x)
+          ys.push(transformedCorner.y)
+        }
+      }
+    }
+
     if (xs.length === 0 || ys.length === 0) {
       // No edge cuts found, use a default center
       return { x: 0, y: 0 }
@@ -168,6 +318,20 @@ export class InitializePcbContextStage extends ConverterStage {
         x: rect.end?.x ?? rect._sxEnd?._x ?? 0,
         y: rect.end?.y ?? rect._sxEnd?._y ?? 0,
       },
+    }
+  }
+
+  private transformFootprintPoint(
+    point: { x: number; y: number },
+    footprintPosition: { x: number; y: number },
+    footprintCcwRotationDegrees: number,
+  ): { x: number; y: number } {
+    const radians = (-footprintCcwRotationDegrees * Math.PI) / 180
+    const cos = Math.cos(radians)
+    const sin = Math.sin(radians)
+    return {
+      x: footprintPosition.x + (point.x * cos - point.y * sin),
+      y: footprintPosition.y + (point.x * sin + point.y * cos),
     }
   }
 }

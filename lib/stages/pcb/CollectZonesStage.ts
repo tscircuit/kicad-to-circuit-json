@@ -135,6 +135,10 @@ export class CollectZonesStage extends ConverterStage {
 
   private getZoneLayers(zone: Zone): LayerRef[] {
     if (zone.layer) {
+      const layers = getLayerRefsFromLayers(zone.layer, this.ctx.kicadPcb)
+      if (layers.length > 0) {
+        return layers
+      }
       return [mapKicadLayerToLayerRef(zone.layer)]
     }
 
