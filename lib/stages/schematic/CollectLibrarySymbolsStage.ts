@@ -1,3 +1,4 @@
+import { capacitance, inductance, resistance } from "circuit-json"
 import type { SchematicSymbol } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
@@ -61,12 +62,14 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const rotation = at?.angle ?? 0
     // Infer component type from library id
     const ftype = this.inferFtype(libId, reference)
+    const passiveValueProps = this.getPassiveValueProps(ftype, value)
 
     const sourceComponent = this.ctx.db.source_component.insert({
       name: libId || reference,
       ftype,
       manufacturer_part_number: value || undefined,
-    })
+      ...passiveValueProps,
+    } as any)
 
     // Create schematic_component
     const uuid = symbol.uuid
@@ -136,6 +139,60 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
       name: libId,
       reference,
     })
+  }
+
+  private getPassiveValueProps(
+    ftype: SupportedSourceComponentFtype,
+    rawValue: string,
+  ):
+    | { resistance: number }
+    | { capacitance: number }
+    | { inductance: number }
+    | Record<string, never> {
+    if (!rawValue) return {}
+
+    const normalized = rawValue
+      .trim()
+      .replace(/,/g, ".")
+      .replace(/[µμ]/g, "u")
+      .replace(/[ΩΩ]|ohms?/gi, "")
+      .replace(
+        /^(\d+)([rRkKmMgGuUnNpP])(\d+)(?:[fFhH])?$/,
+        (_, intPart: string, prefix: string, fracPart: string) =>
+          `${intPart}.${fracPart}${prefix.toLowerCase() === "r" ? "" : prefix}`,
+      )
+      .replace(/^(\d+(?:\.\d+)?)[rR]$/, "$1")
+
+    if (ftype === "simple_resistor") {
+      const parsed = resistance.safeParse(normalized)
+      if (
+        parsed.success &&
+        typeof parsed.data === "number" &&
+        Number.isFinite(parsed.data)
+      ) {
+        return { resistance: parsed.data }
+      }
+    } else if (ftype === "simple_capacitor") {
+      const parsed = capacitance.safeParse(normalized)
+      if (
+        parsed.success &&
+        typeof parsed.data === "number" &&
+        Number.isFinite(parsed.data)
+      ) {
+        return { capacitance: parsed.data }
+      }
+    } else if (ftype === "simple_inductor") {
+      const parsed = inductance.safeParse(normalized)
+      if (
+        parsed.success &&
+        typeof parsed.data === "number" &&
+        Number.isFinite(parsed.data)
+      ) {
+        return { inductance: parsed.data }
+      }
+    }
+
+    return {}
   }
 
   private createPorts(
