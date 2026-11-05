@@ -254,6 +254,10 @@ export function createSmdPad({
 }) {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
+  const maskMargin: { soldermask_margin?: number } =
+    pad.solderMaskMargin === undefined
+      ? {}
+      : { soldermask_margin: pad.solderMaskMargin }
 
   const chamferRatio = pad.chamferRatio
   const chamferCorners = pad.chamferCorners
@@ -279,6 +283,7 @@ export function createSmdPad({
       type: "pcb_smtpad",
       shape: "polygon",
       pcb_component_id: componentId,
+      ...maskMargin,
       pcb_port_id: pcbPortId,
       layer,
       port_hints: [pad.number.toString()],
@@ -346,6 +351,7 @@ export function createSmdPad({
             type: "pcb_smtpad",
             shape: "polygon",
             pcb_component_id: componentId,
+            ...maskMargin,
             pcb_port_id: pcbPortId,
             pcb_smtpad_id: getNextPcbSmtPadId(ctx),
             layer: layer,
@@ -393,6 +399,7 @@ export function createSmdPad({
           type: "pcb_smtpad",
           shape: "circle",
           pcb_component_id: componentId,
+          ...maskMargin,
           pcb_port_id: pcbPortId,
           pcb_smtpad_id: getNextPcbSmtPadId(ctx),
           layer: layer,
@@ -466,6 +473,7 @@ export function createSmdPad({
           type: "pcb_smtpad",
           shape: "circle",
           pcb_component_id: componentId,
+          ...maskMargin,
           pcb_port_id: pcbPortId,
           pcb_smtpad_id: getNextPcbSmtPadId(ctx),
           layer,
@@ -481,6 +489,7 @@ export function createSmdPad({
           type: "pcb_smtpad",
           shape: "rotated_rect",
           pcb_component_id: componentId,
+          ...maskMargin,
           pcb_port_id: pcbPortId,
           pcb_smtpad_id: getNextPcbSmtPadId(ctx),
           layer,
@@ -496,6 +505,7 @@ export function createSmdPad({
           type: "pcb_smtpad",
           shape: "rect",
           pcb_component_id: componentId,
+          ...maskMargin,
           pcb_port_id: pcbPortId,
           pcb_smtpad_id: getNextPcbSmtPadId(ctx),
           layer,
@@ -524,6 +534,7 @@ export function createSmdPad({
     const smtpad: PcbSmtPadCircle = {
       type: "pcb_smtpad",
       pcb_component_id: componentId,
+      ...maskMargin,
       pcb_smtpad_id: getNextPcbSmtPadId(ctx),
       x: pos.x,
       y: pos.y,
@@ -545,6 +556,7 @@ export function createSmdPad({
       const rotatedSmtPad: PcbSmtPadRotatedPill = {
         type: "pcb_smtpad",
         pcb_component_id: componentId,
+        ...maskMargin,
         x: pos.x,
         y: pos.y,
         width: size.x,
@@ -566,6 +578,7 @@ export function createSmdPad({
     const smtpad: PcbSmtPadPill = {
       type: "pcb_smtpad",
       pcb_component_id: componentId,
+      ...maskMargin,
       x: pos.x,
       y: pos.y,
       width: shouldSwapDimensions ? size.y : size.x,
@@ -611,6 +624,7 @@ export function createSmdPad({
       const rotatedsmtpad: PcbSmtPadRotatedRect = {
         type: "pcb_smtpad",
         pcb_component_id: componentId,
+        ...maskMargin,
         x: pos.x,
         y: pos.y,
         width: rectangleSize.x,
@@ -635,6 +649,7 @@ export function createSmdPad({
     const smtpad: PcbSmtPadRect = {
       type: "pcb_smtpad",
       pcb_component_id: componentId,
+      ...maskMargin,
       x: pos.x,
       y: pos.y,
       width: shouldSwapDimensions ? rectangleSize.y : rectangleSize.x,

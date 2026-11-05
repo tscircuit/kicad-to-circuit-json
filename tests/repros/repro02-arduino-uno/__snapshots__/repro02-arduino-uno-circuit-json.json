@@ -4752,7 +4752,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_port",
@@ -4778,7 +4779,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_silkscreen_text",
@@ -11090,7 +11092,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_port",
@@ -11116,7 +11119,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_port",
@@ -11142,7 +11146,8 @@
     "port_hints": [
       "3"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_port",
@@ -11168,7 +11173,8 @@
     "port_hints": [
       "4"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_port",
@@ -11194,7 +11200,8 @@
     "port_hints": [
       "5"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_silkscreen_text",
@@ -13065,7 +13072,8 @@
       ""
     ],
     "shape": "circle",
-    "radius": 0.5
+    "radius": 0.5,
+    "soldermask_margin": 1
   },
   {
     "type": "pcb_fabrication_note_text",
@@ -16058,7 +16066,8 @@
       ""
     ],
     "shape": "circle",
-    "radius": 0.5
+    "radius": 0.5,
+    "soldermask_margin": 1
   },
   {
     "type": "pcb_fabrication_note_text",
@@ -19612,7 +19621,8 @@
       ""
     ],
     "shape": "circle",
-    "radius": 0.5
+    "radius": 0.5,
+    "soldermask_margin": 1
   },
   {
     "type": "pcb_fabrication_note_text",
@@ -20610,7 +20620,8 @@
     "port_hints": [
       "1"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_port",
@@ -20636,7 +20647,8 @@
     "port_hints": [
       "2"
     ],
-    "shape": "rect"
+    "shape": "rect",
+    "soldermask_margin": 0.102
   },
   {
     "type": "pcb_silkscreen_text",
