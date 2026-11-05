@@ -157,18 +157,25 @@ export class CollectGraphicsStage extends ConverterStage {
     // Process gr_curve elements
     for (const curve of curveArray) {
       const layerStr = getGraphicLayerNames(curve).join(" ")
-      if (!layerStr.includes("Edge.Cuts")) continue
+      if (layerStr.includes("Edge.Cuts")) {
+        const points = getCurvePoints(curve)
+        if (!points) continue
 
-      const points = getCurvePoints(curve)
-      if (!points) continue
-
-      edgeCutPrimitives.push({
-        type: "curve",
-        start: points.start,
-        control1: points.control1,
-        control2: points.control2,
-        end: points.end,
-      })
+        edgeCutPrimitives.push({
+          type: "curve",
+          start: points.start,
+          control1: points.control1,
+          control2: points.control2,
+          end: points.end,
+        })
+      } else if (
+        layerStr.includes("SilkS") ||
+        layerStr.includes("Fab") ||
+        layerStr.includes("CrtYd")
+      ) {
+        const renderLayer = mapKicadLayerToPcbRenderLayer(curve.layer)
+        if (renderLayer) this.createGraphicCurve(curve, renderLayer)
+      }
     }
 
     for (const rect of rectArray) {
@@ -330,6 +337,30 @@ export class CollectGraphicsStage extends ConverterStage {
               center,
               start: end,
               end,
+            },
+            footprintPosition,
+            footprintCcwRotationDegrees: footprintRotation,
+          }),
+        )
+      }
+
+      const fpCurves = footprint.fpCurves || []
+      const fpCurveArray = Array.isArray(fpCurves) ? fpCurves : [fpCurves]
+      for (const curve of fpCurveArray) {
+        const layerStr = getGraphicLayerNames(curve).join(" ")
+        if (!layerStr.includes("Edge.Cuts")) continue
+
+        const points = getCurvePoints(curve)
+        if (!points) continue
+
+        primitives.push(
+          this.transformFootprintPrimitive({
+            primitive: {
+              type: "curve",
+              start: points.start,
+              control1: points.control1,
+              control2: points.control2,
+              end: points.end,
             },
             footprintPosition,
             footprintCcwRotationDegrees: footprintRotation,
@@ -691,6 +722,37 @@ export class CollectGraphicsStage extends ConverterStage {
     const layer = mapKicadLayerToVisibleLayer(arc.layer)
     const strokeWidth =
       arc.stroke?.width ?? arc._sxStroke?._sxWidth?.value ?? arc.width ?? 0.15
+
+    this.insertRouteGraphic({
+      layer,
+      renderLayer,
+      pcbComponentId: "",
+      route,
+      strokeWidth,
+    })
+  }
+
+  private createGraphicCurve(curve: any, renderLayer: PcbRenderLayer) {
+    if (!this.ctx.k2cMatPcb) return
+
+    const points = getCurvePoints(curve)
+    if (!points) return
+
+    const route = approximateCubicBezierPoints({
+      start: points.start,
+      control1: points.control1,
+      control2: points.control2,
+      end: points.end,
+      segmentLength: 0.1,
+      minSegments: 8,
+    }).map((point) => applyToPoint(this.ctx.k2cMatPcb!, point))
+
+    const layer = mapKicadLayerToVisibleLayer(curve.layer)
+    const strokeWidth =
+      curve.stroke?.width ??
+      curve._sxStroke?._sxWidth?.value ??
+      curve.width ??
+      0.15
 
     this.insertRouteGraphic({
       layer,

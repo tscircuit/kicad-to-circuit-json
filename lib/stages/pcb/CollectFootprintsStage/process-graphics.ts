@@ -3,6 +3,7 @@ import {
   type Footprint,
   type FpArc,
   type FpCircle,
+  type FpCurve,
   type FpLine,
   type FpPoly,
   PtsArc,
@@ -15,13 +16,17 @@ import type {
   Point,
 } from "../../../types"
 import {
+  approximateArcPoints,
+  approximateCubicBezierPoints,
+  getCurvePoints,
+} from "../arc-utils"
+import {
   getLayerRefsFromLayers,
   isPcbAnnotationRenderLayer,
   mapKicadLayerToPcbRenderLayer,
 } from "../layer-mapping"
-import { approximateArcPoints } from "../arc-utils"
-import { mapTextLayer } from "./layer-utils"
 import { assembleCourtyardContours } from "./assemble-courtyard-contours"
+import { mapTextLayer } from "./layer-utils"
 
 type CourtyardRoute = { layer: "top" | "bottom"; route: Point[] }
 
@@ -166,6 +171,19 @@ export function processFootprintGraphics(params: {
     createFootprintArc({
       ctx,
       arc,
+      componentId,
+      footprintPlacement,
+      courtyardRoutes,
+    })
+  }
+
+  // Process fp_curve elements
+  const curves = footprint.fpCurves || []
+  const curveArray = Array.isArray(curves) ? curves : curves ? [curves] : []
+  for (const curve of curveArray) {
+    createFootprintCurve({
+      ctx,
+      curve,
       componentId,
       footprintPlacement,
       courtyardRoutes,
@@ -632,6 +650,58 @@ export function createFootprintArc(params: {
     layer,
     renderLayer,
     route: arcRoute,
+    strokeWidth,
+    courtyardRoutes,
+  })
+}
+
+export function createFootprintCurve(params: {
+  ctx: ConverterContext
+  curve: FpCurve
+  componentId: string
+  footprintPlacement: FootprintPlacement
+  courtyardRoutes: CourtyardRoute[]
+}) {
+  const { ctx, curve, componentId, footprintPlacement, courtyardRoutes } =
+    params
+  if (!ctx.k2cMatPcb) return
+
+  const renderLayer = mapKicadLayerToPcbRenderLayer(curve.layer)
+  if (!isPcbAnnotationRenderLayer(renderLayer)) return
+
+  const points = getCurvePoints(curve)
+  if (!points) return
+
+  const bezierPoints = approximateCubicBezierPoints({
+    start: points.start,
+    control1: points.control1,
+    control2: points.control2,
+    end: points.end,
+    segmentLength: 0.1,
+    minSegments: 8,
+  })
+
+  const route = bezierPoints.map((point) => {
+    const rotated = rotatePoint({
+      point,
+      ccwRotationDegrees: -footprintPlacement.componentCcwRotationDegrees,
+    })
+    const kicadPos = {
+      x: footprintPlacement.kicadComponentPos.x + rotated.x,
+      y: footprintPlacement.kicadComponentPos.y + rotated.y,
+    }
+    return applyToPoint(ctx.k2cMatPcb!, kicadPos)
+  })
+
+  const layer = mapTextLayer(curve.layer)
+  const strokeWidth = getGraphicStrokeWidth(curve)
+
+  insertFootprintRoute({
+    ctx,
+    componentId,
+    layer,
+    renderLayer,
+    route,
     strokeWidth,
     courtyardRoutes,
   })
