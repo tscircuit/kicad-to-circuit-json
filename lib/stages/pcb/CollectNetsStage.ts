@@ -101,12 +101,14 @@ export class CollectNetsStage extends ConverterStage {
   }) {
     if (!usedNetNames.has(sanitizedNetName)) return sanitizedNetName
 
-    if (typeof netKey === "number") {
-      return `${sanitizedNetName}_${netKey}`
-    }
+    const fallbackName =
+      typeof netKey === "number"
+        ? `${sanitizedNetName}_${netKey}`
+        : sanitizedNetName
+    if (!usedNetNames.has(fallbackName)) return fallbackName
 
     let suffix = 2
-    while (usedNetNames.has(`${sanitizedNetName}_${suffix}`)) suffix++
-    return `${sanitizedNetName}_${suffix}`
+    while (usedNetNames.has(`${fallbackName}_${suffix}`)) suffix++
+    return `${fallbackName}_${suffix}`
   }
 }
