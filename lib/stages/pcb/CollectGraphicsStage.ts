@@ -1,4 +1,5 @@
 import type {
+  PcbBoard,
   PcbCopperText,
   PcbFabricationNoteText,
   PcbRenderLayer,
@@ -239,15 +240,19 @@ export class CollectGraphicsStage extends ConverterStage {
       if (thickness !== undefined) existingBoard.thickness = thickness
     } else {
       // Create new board
-      this.ctx.db.insert({
-        type: "pcb_board",
+      const board = {
         center: { x: 0, y: 0 },
         outline: points,
         width: this.calculateWidth(points),
         height: this.calculateHeight(points),
         num_layers: numLayers,
         thickness,
-      })
+      }
+      // The table API types parsed defaults as required. Preserve the imported
+      // optional fields instead of injecting material or thickness defaults.
+      this.ctx.db.pcb_board.insert(
+        board as Omit<PcbBoard, "type" | "pcb_board_id">,
+      )
     }
   }
 

@@ -1,9 +1,9 @@
-import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
 import { parseKicadSym } from "kicadts"
 import { CollectSymbolLibrarySymbolsStage } from "./stages/symbol-library/CollectSymbolLibrarySymbolsStage"
 import { InitializeSymbolLibraryContextStage } from "./stages/symbol-library/InitializeSymbolLibraryContextStage"
 import type { ConverterContext, ConverterStage } from "./types"
+import { createConverterDb } from "./utils/create-converter-db"
 
 export class KicadSymbolToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
@@ -40,7 +40,7 @@ export class KicadSymbolToCircuitJsonConverter {
     }
 
     this.ctx = {
-      db: cju([]),
+      db: createConverterDb(),
       kicadSymbolLib: parseKicadSym(this.fsMap[symbolLibFile]!),
       warnings: [],
       stats: {},
