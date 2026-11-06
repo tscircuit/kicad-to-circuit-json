@@ -63,8 +63,7 @@ test("repro06: snapshots a copper-only KiCad rule area", async () => {
   await expect(snapshot).toMatchSvgSnapshot(import.meta.path, "copper-only")
 })
 
-// This expected failure must become a normal test in the stacked fix.
-test.failing("repro06: preserves a copper-only KiCad rule area", async () => {
+test("repro06: preserves a copper-only KiCad rule area", async () => {
   const { imported, keepouts } = await importFixture()
   expect(keepouts).toHaveLength(1)
   expect(keepouts[0]).toMatchObject({
