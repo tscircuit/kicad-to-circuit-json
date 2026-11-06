@@ -1,0 +1,1082 @@
+(kicad_sch
+  (version 20250114) (generator "eeschema")
+  (uuid "c69d7726-cbcc-43d3-ad79-1576ecdc390a") (paper "A4")
+  (lib_symbols
+  (symbol "Device:R"
+    (pin_numbers
+      (hide yes)
+    )
+    (pin_names
+      (offset 0)
+    )
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "R"
+      (at 2.032 0 90)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Value" "R"
+      (at 0 0 90)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Description" "Resistor"
+      (at 0 0 0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (symbol "R_0_1"
+      (rectangle
+        (start -1.016 -2.54)
+        (end 1.016 2.54)
+        (stroke
+          (width 0.254)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+    )
+    (symbol "R_1_1"
+      (pin passive line
+        (at 0 3.81 270)
+        (length 1.27)
+        (name ""
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at 0 -3.81 90)
+        (length 1.27)
+        (name ""
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+    )
+    (embedded_fonts no)
+  )
+  (symbol "Device:C"
+    (pin_numbers
+      (hide yes)
+    )
+    (pin_names
+      (offset 0.254)
+    )
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "C"
+      (at 0.635 2.54 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+        (justify left)
+      )
+    )
+    (property "Value" "C"
+      (at 0.635 -2.54 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+        (justify left)
+      )
+    )
+    (property "Description" "Unpolarized capacitor"
+      (at 0 0 0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (symbol "C_0_1"
+      (polyline
+        (pts
+          (xy -2.032 0.762)
+          (xy 2.032 0.762)
+        )
+        (stroke
+          (width 0.508)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy -2.032 -0.762)
+          (xy 2.032 -0.762)
+        )
+        (stroke
+          (width 0.508)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+    )
+    (symbol "C_1_1"
+      (pin passive line
+        (at 0 3.81 270)
+        (length 2.794)
+        (name ""
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at 0 -3.81 90)
+        (length 2.794)
+        (name ""
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+    )
+    (embedded_fonts no)
+  )
+  (symbol "Device:L"
+    (pin_numbers
+      (hide yes)
+    )
+    (pin_names
+      (offset 1.016)
+      (hide yes)
+    )
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "L"
+      (at -1.27 0 90)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Value" "L"
+      (at 1.905 0 90)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Description" "Inductor"
+      (at 0 0 0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (symbol "L_0_1"
+      (arc
+        (start 0 2.54)
+        (mid 0.6323 1.905)
+        (end 0 1.27)
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (arc
+        (start 0 1.27)
+        (mid 0.6323 0.635)
+        (end 0 0)
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (arc
+        (start 0 0)
+        (mid 0.6323 -0.635)
+        (end 0 -1.27)
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (arc
+        (start 0 -1.27)
+        (mid 0.6323 -1.905)
+        (end 0 -2.54)
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+    )
+    (symbol "L_1_1"
+      (pin passive line
+        (at 0 3.81 270)
+        (length 1.27)
+        (name "1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at 0 -3.81 90)
+        (length 1.27)
+        (name "2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+    )
+    (embedded_fonts no)
+  )
+  (symbol "Device:Q_NPN"
+    (pin_numbers
+      (hide yes)
+    )
+    (pin_names
+      (offset 0)
+      (hide yes)
+    )
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "Q"
+      (at 5.08 1.27 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+        (justify left)
+      )
+    )
+    (property "Value" "Q_NPN"
+      (at 5.08 -1.27 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+        (justify left)
+      )
+    )
+    (property "Description" "NPN bipolar junction transistor"
+      (at 0 0 0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (symbol "Q_NPN_0_1"
+      (polyline
+        (pts
+          (xy -2.54 0)
+          (xy 0.635 0)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 0.635 1.905)
+          (xy 0.635 -1.905)
+        )
+        (stroke
+          (width 0.508)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 0.635 0.635)
+          (xy 2.54 2.54)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 0.635 -0.635)
+          (xy 2.54 -2.54)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 1.27 -1.778)
+          (xy 1.778 -1.27)
+          (xy 2.286 -2.286)
+          (xy 1.27 -1.778)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type outline)
+        )
+      )
+      (circle
+        (center 1.27 0)
+        (radius 2.8194)
+        (stroke
+          (width 0.254)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+    )
+    (symbol "Q_NPN_1_1"
+      (pin input line
+        (at -5.08 0 0)
+        (length 2.54)
+        (name "B"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "B"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at 2.54 5.08 270)
+        (length 2.54)
+        (name "C"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "C"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at 2.54 -5.08 90)
+        (length 2.54)
+        (name "E"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "E"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+    )
+    (embedded_fonts no)
+  )
+  (symbol "Device:Q_PNP"
+    (pin_numbers
+      (hide yes)
+    )
+    (pin_names
+      (offset 0)
+      (hide yes)
+    )
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "Q"
+      (at 5.08 1.27 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+        (justify left)
+      )
+    )
+    (property "Value" "Q_PNP"
+      (at 5.08 -1.27 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+        (justify left)
+      )
+    )
+    (property "Description" "PNP bipolar junction transistor"
+      (at 0 0 0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (symbol "Q_PNP_0_1"
+      (polyline
+        (pts
+          (xy -2.54 0)
+          (xy 0.635 0)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 0.635 1.905)
+          (xy 0.635 -1.905)
+        )
+        (stroke
+          (width 0.508)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 0.635 0.635)
+          (xy 2.54 2.54)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 0.635 -0.635)
+          (xy 2.54 -2.54)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (polyline
+        (pts
+          (xy 2.286 -1.778)
+          (xy 1.778 -2.286)
+          (xy 1.27 -1.27)
+          (xy 2.286 -1.778)
+        )
+        (stroke
+          (width 0)
+          (type default)
+        )
+        (fill
+          (type outline)
+        )
+      )
+      (circle
+        (center 1.27 0)
+        (radius 2.8194)
+        (stroke
+          (width 0.254)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+    )
+    (symbol "Q_PNP_1_1"
+      (pin input line
+        (at -5.08 0 0)
+        (length 2.54)
+        (name "B"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "B"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at 2.54 5.08 270)
+        (length 2.54)
+        (name "C"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "C"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at 2.54 -5.08 90)
+        (length 2.54)
+        (name "E"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "E"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+    )
+    (embedded_fonts no)
+  )
+  (symbol "Connector_Generic:Conn_01x04"
+    (pin_names
+      (offset 1.016)
+      (hide yes)
+    )
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "J"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Value" "Conn_01x04"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+      (at 0 0 0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (symbol "Conn_01x04_1_1"
+      (pin passive line
+        (at -5.08 2.54 0)
+        (length 3.81)
+        (name "Pin_1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at -5.08 0 0)
+        (length 3.81)
+        (name "Pin_2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at -5.08 -2.54 0)
+        (length 3.81)
+        (name "Pin_3"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "3"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at -5.08 -5.08 0)
+        (length 3.81)
+        (name "Pin_4"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "4"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (rectangle
+        (start -1.27 3.81)
+        (end 1.27 -6.35)
+        (stroke
+          (width 0.254)
+          (type default)
+        )
+        (fill
+          (type background)
+        )
+      )
+      (rectangle
+        (start -1.27 2.667)
+        (end 0 2.413)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (rectangle
+        (start -1.27 0.127)
+        (end 0 -0.127)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (rectangle
+        (start -1.27 -2.413)
+        (end 0 -2.667)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (rectangle
+        (start -1.27 -4.953)
+        (end 0 -5.207)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+    )
+    (embedded_fonts no)
+  )
+  (symbol "Connector:Conn_01x04_Socket"
+    (pin_names
+      (offset 1.016)
+      (hide yes)
+    )
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "J"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Value" "Conn_01x04"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+      (at 0 0 0)
+      (hide yes)
+      (effects
+        (font
+          (size 1.27 1.27)
+        )
+      )
+    )
+    (symbol "Conn_01x04_Socket_1_1"
+      (pin passive line
+        (at -5.08 2.54 0)
+        (length 3.81)
+        (name "Pin_1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "1"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at -5.08 0 0)
+        (length 3.81)
+        (name "Pin_2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "2"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at -5.08 -2.54 0)
+        (length 3.81)
+        (name "Pin_3"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "3"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (pin passive line
+        (at -5.08 -5.08 0)
+        (length 3.81)
+        (name "Pin_4"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+        (number "4"
+          (effects
+            (font
+              (size 1.27 1.27)
+            )
+          )
+        )
+      )
+      (rectangle
+        (start -1.27 3.81)
+        (end 1.27 -6.35)
+        (stroke
+          (width 0.254)
+          (type default)
+        )
+        (fill
+          (type background)
+        )
+      )
+      (rectangle
+        (start -1.27 2.667)
+        (end 0 2.413)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (rectangle
+        (start -1.27 0.127)
+        (end 0 -0.127)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (rectangle
+        (start -1.27 -2.413)
+        (end 0 -2.667)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+      (rectangle
+        (start -1.27 -4.953)
+        (end 0 -5.207)
+        (stroke
+          (width 0.1524)
+          (type default)
+        )
+        (fill
+          (type none)
+        )
+      )
+    )
+    (embedded_fonts no)
+  )
+)
+  (symbol (lib_id "Device:R") (at 50 50 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "abf4152f-5ef5-4fdb-b14c-000000000001")
+    (property "Reference" "R1" (at 55 47.46 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "10k" (at 55 50 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "RC0603FR-0710KL" (at 50 50 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances (project "components"
+      (path "/c69d7726-cbcc-43d3-ad79-1576ecdc390a" (reference "R1") (unit 1)))))
+  (symbol (lib_id "Device:C") (at 80 50 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "abf4152f-5ef5-4fdb-b14c-000000000002")
+    (property "Reference" "C1" (at 85 47.46 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "1uF" (at 85 50 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "GRM188R61C105KA12D" (at 80 50 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances (project "components"
+      (path "/c69d7726-cbcc-43d3-ad79-1576ecdc390a" (reference "C1") (unit 1)))))
+  (symbol (lib_id "Device:L") (at 110 50 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "abf4152f-5ef5-4fdb-b14c-000000000003")
+    (property "Reference" "L1" (at 115 47.46 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "2mH" (at 115 50 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "LQH43MN222K03L" (at 110 50 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances (project "components"
+      (path "/c69d7726-cbcc-43d3-ad79-1576ecdc390a" (reference "L1") (unit 1)))))
+  (symbol (lib_id "Device:Q_NPN") (at 50 80 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "abf4152f-5ef5-4fdb-b14c-000000000004")
+    (property "Reference" "Q1" (at 55 77.46 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "2N3904" (at 55 80 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "MMBT3904-7-F" (at 50 80 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances (project "components"
+      (path "/c69d7726-cbcc-43d3-ad79-1576ecdc390a" (reference "Q1") (unit 1)))))
+  (symbol (lib_id "Device:Q_PNP") (at 80 80 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "abf4152f-5ef5-4fdb-b14c-000000000005")
+    (property "Reference" "Q2" (at 85 77.46 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "2N3906" (at 85 80 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "MMBT3906-7-F" (at 80 80 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances (project "components"
+      (path "/c69d7726-cbcc-43d3-ad79-1576ecdc390a" (reference "Q2") (unit 1)))))
+  (symbol (lib_id "Connector_Generic:Conn_01x04") (at 110 80 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "abf4152f-5ef5-4fdb-b14c-000000000006")
+    (property "Reference" "J1" (at 115 77.46 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "Header 1x4" (at 115 80 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "68004-104HLF" (at 110 80 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances (project "components"
+      (path "/c69d7726-cbcc-43d3-ad79-1576ecdc390a" (reference "J1") (unit 1)))))
+  (symbol (lib_id "Connector:Conn_01x04_Socket") (at 140 80 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "abf4152f-5ef5-4fdb-b14c-000000000007")
+    (property "Reference" "J2" (at 145 77.46 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "Socket 1x4" (at 145 80 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "PPTC041LFBN-RC" (at 140 80 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances (project "components"
+      (path "/c69d7726-cbcc-43d3-ad79-1576ecdc390a" (reference "J2") (unit 1)))))
+  (embedded_fonts no))
