@@ -11,12 +11,20 @@ export function inferSymbolName({
 }): string | undefined {
   // Map KiCad library IDs to schematic-symbols symbol names
   const lower = libId.toLowerCase()
+  const symbolPart = lower.includes(":")
+    ? lower.slice(lower.indexOf(":") + 1)
+    : lower
+  const refUpper = (reference ?? "").trim().toUpperCase()
   const direction = rotationToDirection(rotation)
 
   // Resistors
   if (
     lower.includes(":r_") ||
-    (lower.includes(":r") && reference.startsWith("R"))
+    (lower.includes(":r") &&
+      refUpper.startsWith("R") &&
+      !symbolPart.startsWith("relay") &&
+      !symbolPart.startsWith("resonator") &&
+      !symbolPart.startsWith("reg"))
   ) {
     return `boxresistor_${direction}`
   }
@@ -24,7 +32,11 @@ export function inferSymbolName({
   // Capacitors
   if (
     lower.includes(":c_") ||
-    (lower.includes(":c") && reference.startsWith("C"))
+    lower.includes(":cp") ||
+    (lower.includes(":c") &&
+      refUpper.startsWith("C") &&
+      !symbolPart.startsWith("conn") &&
+      !symbolPart.startsWith("crystal"))
   ) {
     if (lower.includes("polarized") || lower.includes("_pol")) {
       return `capacitor_${direction}`
@@ -35,7 +47,10 @@ export function inferSymbolName({
   // Inductors
   if (
     lower.includes(":l_") ||
-    (lower.includes(":l") && reference.startsWith("L"))
+    (lower.includes(":l") &&
+      refUpper.startsWith("L") &&
+      !refUpper.startsWith("LED") &&
+      !lower.includes("led"))
   ) {
     return `inductor_${direction}`
   }
@@ -44,9 +59,11 @@ export function inferSymbolName({
   if (
     lower.includes(":d_") ||
     lower.includes("diode") ||
-    reference.startsWith("D")
+    lower.includes("led") ||
+    refUpper.startsWith("D") ||
+    refUpper.startsWith("LED")
   ) {
-    if (lower.includes("led")) {
+    if (lower.includes("led") || refUpper.startsWith("LED")) {
       return `led_${direction}`
     }
     if (lower.includes("schottky")) {
@@ -59,7 +76,7 @@ export function inferSymbolName({
   }
 
   // Transistors
-  if (lower.includes(":q_") || reference.startsWith("Q")) {
+  if (lower.includes(":q_") || refUpper.startsWith("Q")) {
     if (lower.includes("npn")) {
       return `npn_bipolar_transistor_${direction}`
     }

@@ -15,6 +15,18 @@ export function getChamferedPadPoints({
   chamferCorners: readonly string[]
   roundrectRatio: number
 }): Point[] {
+  const clampRatio = (ratio: number) =>
+    Number.isFinite(ratio) ? Math.max(0, Math.min(0.5, ratio)) : 0
+  const safeChamferRatio = clampRatio(chamferRatio)
+  const safeRoundrectRatio = clampRatio(roundrectRatio)
+  const minDim = Math.max(
+    0,
+    Math.min(
+      Number.isFinite(width) ? width : 0,
+      Number.isFinite(height) ? height : 0,
+    ),
+  )
+
   const corners = [
     { name: "top_left", x: -width / 2, y: -height / 2 },
     { name: "top_right", x: width / 2, y: -height / 2 },
@@ -22,15 +34,26 @@ export function getChamferedPadPoints({
     { name: "bottom_left", x: -width / 2, y: height / 2 },
   ]
   const points: Point[] = []
+  const pushUniquePoint = (pt: Point) => {
+    const prev = points[points.length - 1]
+    if (
+      prev &&
+      Math.abs(prev.x - pt.x) < 1e-9 &&
+      Math.abs(prev.y - pt.y) < 1e-9
+    ) {
+      return
+    }
+    points.push(pt)
+  }
   for (let i = 0; i < corners.length; i++) {
     const corner = corners[i]!
     const previous = corners[(i + 3) % 4]!
     const next = corners[(i + 1) % 4]!
     const chamfered = chamferCorners.includes(corner.name)
     const distance =
-      Math.min(width, height) * (chamfered ? chamferRatio : roundrectRatio)
-    if (distance === 0) {
-      points.push({ x: corner.x, y: corner.y })
+      minDim * (chamfered ? safeChamferRatio : safeRoundrectRatio)
+    if (distance <= 0) {
+      pushUniquePoint({ x: corner.x, y: corner.y })
       continue
     }
     const incoming = {
@@ -50,20 +73,31 @@ export function getChamferedPadPoints({
       y: corner.y + outgoing.y * distance,
     }
     if (chamfered) {
-      points.push(start, end)
+      pushUniquePoint(start)
+      pushUniquePoint(end)
     } else {
       // A rounded corner's 45-degree point lies r - r/sqrt(2) from its vertex.
       const inset = distance * (1 - 1 / Math.SQRT2)
-      points.push(
-        ...approximateArcPoints({
-          start,
-          end,
-          mid: {
-            x: corner.x + (incoming.x + outgoing.x) * inset,
-            y: corner.y + (incoming.y + outgoing.y) * inset,
-          },
-        }),
-      )
+      for (const pt of approximateArcPoints({
+        start,
+        end,
+        mid: {
+          x: corner.x + (incoming.x + outgoing.x) * inset,
+          y: corner.y + (incoming.y + outgoing.y) * inset,
+        },
+      })) {
+        pushUniquePoint(pt)
+      }
+    }
+  }
+  if (points.length > 1) {
+    const first = points[0]!
+    const last = points[points.length - 1]!
+    if (
+      Math.abs(first.x - last.x) < 1e-9 &&
+      Math.abs(first.y - last.y) < 1e-9
+    ) {
+      points.pop()
     }
   }
   return points

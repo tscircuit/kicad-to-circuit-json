@@ -43,15 +43,19 @@ export function findFootprintPropertyValue(
 export function getFootprintReference(
   footprint: Footprint,
 ): string | undefined {
-  const propertyValue = findFootprintPropertyValue(footprint, "Reference")
+  const propertyValue = findFootprintPropertyValue(
+    footprint,
+    "Reference",
+  )?.trim()
   if (propertyValue) return propertyValue
 
   const textItems = footprint.fpTexts || []
   const textArray = Array.isArray(textItems) ? textItems : [textItems]
 
   for (const text of textArray) {
-    if ((text as any).type === "reference" && text.text) {
-      return text.text
+    const trimmed = typeof text.text === "string" ? text.text.trim() : ""
+    if ((text as any).type === "reference" && trimmed) {
+      return trimmed
     }
   }
 
