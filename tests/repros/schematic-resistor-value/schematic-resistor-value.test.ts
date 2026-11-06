@@ -24,14 +24,12 @@ function convert(contents = schematic) {
   return { resistor }
 }
 
-// Expected failures document the bug without leaving the reproduction PR red.
-// The fix PR must turn these into normal regression tests.
 for (const [value, ohms] of [
   ["10k", 10_000],
   ["5,1K", 5_100],
   ["0", 0],
 ] as const) {
-  test.failing(`imports ${value} as a valid resistor with ${ohms} ohms`, () => {
+  test(`imports ${value} as a valid resistor with ${ohms} ohms`, () => {
     const { resistor } = convert(
       schematic.replace('"Value" "10k"', `"Value" "${value}"`),
     )
@@ -45,13 +43,13 @@ for (const [value, ohms] of [
 }
 
 for (const property of ["MPN", "Manufacturer Part Number"]) {
-  test.failing(`preserves an explicit resistor ${property} separately from Value`, () => {
+  test(`preserves an explicit resistor ${property} separately from Value`, () => {
     const { resistor } = convert(schematic.replace('"MPN"', `"${property}"`))
     expect(resistor.manufacturer_part_number).toBe("RC0603FR-0710KL")
   })
 }
 
-test.failing("does not use resistor Value as an MPN when MPN is absent", () => {
+test("does not use resistor Value as an MPN when MPN is absent", () => {
   const { resistor } = convert(schematic.replace('"MPN"', '"Other"'))
   expect(resistor.manufacturer_part_number).toBeUndefined()
 })

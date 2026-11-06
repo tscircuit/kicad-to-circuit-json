@@ -5,10 +5,7 @@ import {
   getSourcePortNameFromKicadText,
   parseKicadOverlineText,
 } from "../../utils/parse-kicad-overline-text"
-import {
-  inferSourceComponentFtype,
-  type SupportedSourceComponentFtype,
-} from "../symbol-library/infer-source-component-ftype"
+import { createSchematicSourceComponentData } from "./create-source-component-data"
 import {
   createSymbolTransform,
   emitKicadSymbolGeometry,
@@ -59,15 +56,6 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const cjPos = applyToPoint(this.ctx.k2cMatSch, kicadPos)
 
     const rotation = at?.angle ?? 0
-    // Infer component type from library id
-    const ftype = this.inferFtype(libId, reference)
-
-    const sourceComponent = this.ctx.db.source_component.insert({
-      name: libId || reference,
-      ftype,
-      manufacturer_part_number: value || undefined,
-    })
-
     // Create schematic_component
     const uuid = symbol.uuid
     if (!uuid) return
@@ -76,6 +64,12 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
       (librarySymbol) => librarySymbol.libraryId === libId,
     )
+    const { data, warning } = createSchematicSourceComponentData(
+      symbol,
+      libSymbol,
+    )
+    if (warning) (this.ctx.warnings ??= []).push(warning)
+    const sourceComponent = this.ctx.db.source_component.insert(data)
 
     const inserted = this.ctx.db.schematic_component.insert({
       source_component_id: sourceComponent.source_component_id,
@@ -126,16 +120,6 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const props = symbol.properties || []
     const prop = props.find((p: any) => p.key === propName)
     return prop?.value
-  }
-
-  private inferFtype(
-    libId: string,
-    reference: string,
-  ): SupportedSourceComponentFtype {
-    return inferSourceComponentFtype({
-      name: libId,
-      reference,
-    })
   }
 
   private createPorts(
