@@ -4,7 +4,7 @@ import type { CircuitJson } from "circuit-json"
 import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import { KicadToCircuitJsonConverter } from "../../../lib"
 
-test("repro06: preserves a copper-only KiCad rule area", async () => {
+async function importFixture() {
   const content = await Bun.file(
     new URL("./copper-only-keepout.kicad_pcb", import.meta.url),
   ).text()
@@ -13,6 +13,12 @@ test("repro06: preserves a copper-only KiCad rule area", async () => {
   converter.runUntilFinished()
   const imported = converter.getOutput()
   const keepouts = imported.filter((element) => element.type === "pcb_keepout")
+
+  return { imported, keepouts }
+}
+
+test("repro06: snapshots a copper-only KiCad rule area", async () => {
+  const { imported, keepouts } = await importFixture()
 
   // The 20 x 12 mm board centers (10, 6) at (0, 0). Its authored
   // (6, 4)..(14, 8) rule area is therefore an 8 x 4 mm centered rectangle.
@@ -55,8 +61,11 @@ test("repro06: preserves a copper-only KiCad rule area", async () => {
   <g transform="translate(480 72)">${convertCircuitJsonToPcbSvg(imported, options)}</g>
 </svg>`
   await expect(snapshot).toMatchSvgSnapshot(import.meta.path, "copper-only")
+})
 
-  // Keep the assertion after the snapshot so the repro PR records the loss.
+// This expected failure must become a normal test in the stacked fix.
+test.failing("repro06: preserves a copper-only KiCad rule area", async () => {
+  const { imported, keepouts } = await importFixture()
   expect(keepouts).toHaveLength(1)
   expect(keepouts[0]).toMatchObject({
     shape: "rect",
