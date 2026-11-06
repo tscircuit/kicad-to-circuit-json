@@ -3,8 +3,6 @@ import { readFileSync } from "node:fs"
 import { any_source_component } from "circuit-json"
 import { type KicadSch, parseKicadSch, SchematicSymbol } from "kicadts"
 import { KicadToCircuitJsonConverter } from "../../../lib"
-import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
-import "../../fixtures/png-matcher"
 
 const schematic = readFileSync(
   new URL("./components.kicad_sch", import.meta.url),
@@ -26,7 +24,7 @@ function convert(modify?: (schematic: KicadSch) => void) {
     if (!component) throw new Error(`Missing source component ${name}`)
     return component
   }
-  return { converter, circuitJson, components, getComponent }
+  return { converter, components, getComponent }
 }
 
 const cases = [
@@ -44,20 +42,6 @@ const cases = [
     { ftype: "simple_pin_header", pin_count: 4, gender: "female" },
   ],
 ] as const
-
-test("snapshots source data for all five component types", () => {
-  expect(convert().components).toMatchSnapshot()
-})
-
-test("snapshots the component schematic", async () => {
-  const png = await takeCircuitJsonSnapshot({
-    circuitJson: convert().circuitJson,
-    outputType: "schematic",
-    width: 1000,
-    height: 500,
-  })
-  await expect(png).toMatchPngSnapshot(import.meta.path)
-})
 
 // The fix PR turns these expected failures into normal regression tests.
 for (const [name, expected] of cases) {

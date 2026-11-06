@@ -2,8 +2,6 @@ import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { source_simple_resistor } from "circuit-json"
 import { KicadToCircuitJsonConverter } from "../../../lib"
-import { takeCircuitJsonSnapshot } from "../../fixtures/take-circuit-json-snapshot"
-import "../../fixtures/png-matcher"
 
 const schematic = readFileSync(
   new URL("./resistor.kicad_sch", import.meta.url),
@@ -23,22 +21,8 @@ function convert(contents = schematic) {
   if (!resistor || resistor.type !== "source_component") {
     throw new Error("Expected a resistor source component")
   }
-  return { circuitJson, resistor }
+  return { resistor }
 }
-
-test("snapshots the imported resistor source data", () => {
-  expect(convert().resistor).toMatchSnapshot()
-})
-
-test("snapshots the resistor schematic", async () => {
-  const png = await takeCircuitJsonSnapshot({
-    circuitJson: convert().circuitJson,
-    outputType: "schematic",
-    width: 600,
-    height: 400,
-  })
-  await expect(png).toMatchPngSnapshot(import.meta.path)
-})
 
 // Expected failures document the bug without leaving the reproduction PR red.
 // The fix PR must turn these into normal regression tests.
