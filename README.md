@@ -79,7 +79,24 @@ The converter uses a staged pipeline architecture that mirrors the circuit-json-
 
 1. **InitializeSchematicContextStage** - Sets up coordinate transformations (KiCad → Circuit JSON)
 2. **CollectLibrarySymbolsStage** - Extracts symbols and creates `source_component` + `schematic_component` entries
-3. **CollectSchematicTracesStage** - Converts wires and junctions to `schematic_trace` elements
+3. **CollectSchematicTracesStage** - Preserves individual wire drawing paths
+4. **CollectSchematicAnnotationsStage** - Imports labels, text, drawings, and no-connect constraints
+5. **CollectSchematicConnectivityStage** - Resolves electrical nets and links the drawing paths to logical `source_trace` records
+
+Schematic connectivity is resolved by a pure function with explicit wire, pin,
+junction, label, and implicit-power inputs. It uses `circuit-json-to-connectivity-map`
+for grouping and `@tscircuit/math-utils` for geometry. Rendering stages do not
+populate shared connectivity caches. Hidden `power_in` pins join the net named
+by their pin name; dedicated power symbols use their Value. Power flags do not
+name remote nets. A pin or wire endpoint touching another wire's interior needs
+an explicit junction.
+
+All import paths share source-component construction and terminal creation.
+Numbered copper pads have source ports even without net assignments. When a
+schematic and PCB are imported together, footprints reuse the schematic's source
+identity through their symbol path, or an unambiguous reference when no path is
+present. Shared terminals connect the schematic and PCB net records. Nonnumeric
+pin identifiers are preserved in `source_port.port_hints`.
 
 ### PCB Pipeline
 

@@ -2,10 +2,7 @@ import type { LayerRef } from "circuit-json"
 import type { ConverterContext } from "../../../types"
 
 export interface PadPortInfo {
-  padNumber: string
-  sourcePortId?: string
-  /** KiCad's "connect" pad type is a surface copper contact without paste. */
-  padType: "smd" | "connect" | "thru_hole" | "np_thru_hole"
+  sourcePortId: string
   layers: string[]
   position: { x: number; y: number }
 }
@@ -23,13 +20,9 @@ export function createPcbPort({
     return undefined
   }
 
-  // Generate the source_port_id that will be created by CollectSourceTracesStage
-  const sourcePortId =
-    padInfo.sourcePortId ?? `${componentId}_port_${padInfo.padNumber}`
-
   const insertedPort = ctx.db.pcb_port.insert({
     pcb_component_id: componentId,
-    source_port_id: sourcePortId,
+    source_port_id: padInfo.sourcePortId,
     x: padInfo.position.x,
     y: padInfo.position.y,
     layers: padInfo.layers as LayerRef[],

@@ -1,4 +1,5 @@
 import type { Footprint } from "kicadts"
+import type { ImportedComponentFtype } from "../../../utils/create-source-component-data"
 import { findFootprintPropertyValue } from "./footprint-properties"
 
 /**
@@ -7,7 +8,7 @@ import { findFootprintPropertyValue } from "./footprint-properties"
 export function inferComponentType(
   reference: string | undefined,
   footprint?: Footprint,
-): string {
+): ImportedComponentFtype {
   if (!reference && !footprint) return "simple_chip"
 
   const normalizedReference = reference?.trim()

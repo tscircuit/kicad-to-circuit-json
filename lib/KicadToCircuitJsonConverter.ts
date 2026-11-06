@@ -1,4 +1,3 @@
-import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
 import { parseKicadPcb, parseKicadSch, parseKicadSym } from "kicadts"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
@@ -12,12 +11,14 @@ import { CollectZonesStage } from "./stages/pcb/CollectZonesStage"
 import { InitializePcbContextStage } from "./stages/pcb/InitializePcbContextStage"
 import { CollectLibrarySymbolsStage } from "./stages/schematic/CollectLibrarySymbolsStage"
 import { CollectSchematicAnnotationsStage } from "./stages/schematic/CollectSchematicAnnotationsStage"
+import { CollectSchematicConnectivityStage } from "./stages/schematic/CollectSchematicConnectivityStage"
 import { CollectSchematicTracesStage } from "./stages/schematic/CollectSchematicTracesStage"
 // Import schematic stages
 import { InitializeSchematicContextStage } from "./stages/schematic/InitializeSchematicContextStage"
 import { CollectSymbolLibrarySymbolsStage } from "./stages/symbol-library/CollectSymbolLibrarySymbolsStage"
 import { InitializeSymbolLibraryContextStage } from "./stages/symbol-library/InitializeSymbolLibraryContextStage"
 import type { ConverterContext, ConverterStage } from "./types"
+import { createConverterDb } from "./utils/create-converter-db"
 
 export class KicadToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
@@ -53,7 +54,7 @@ export class KicadToCircuitJsonConverter {
     const symbolLibFile = this._findFileWithExtension(".kicad_sym")
 
     this.ctx = {
-      db: cju([]),
+      db: createConverterDb(),
       kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
       kicadSymbolLib: symbolLibFile
@@ -81,6 +82,7 @@ export class KicadToCircuitJsonConverter {
         new CollectLibrarySymbolsStage(this.ctx),
         new CollectSchematicTracesStage(this.ctx),
         new CollectSchematicAnnotationsStage(this.ctx),
+        new CollectSchematicConnectivityStage(this.ctx),
       )
     }
 

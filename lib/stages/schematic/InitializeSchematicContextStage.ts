@@ -1,5 +1,5 @@
+import { compose, scale, translate } from "transformation-matrix"
 import { ConverterStage } from "../../types"
-import { compose, scale, translate, type Matrix } from "transformation-matrix"
 
 /**
  * InitializeSchematicContextStage sets up the coordinate transformation

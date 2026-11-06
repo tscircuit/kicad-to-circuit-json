@@ -239,14 +239,14 @@ export class CollectGraphicsStage extends ConverterStage {
       if (thickness !== undefined) existingBoard.thickness = thickness
     } else {
       // Create new board
-      this.ctx.db.insert({
-        type: "pcb_board",
+      this.ctx.db.pcb_board.insert({
         center: { x: 0, y: 0 },
         outline: points,
         width: this.calculateWidth(points),
         height: this.calculateHeight(points),
         num_layers: numLayers,
-        thickness,
+        thickness: thickness ?? 1.6,
+        material: "fr4",
       })
     }
   }

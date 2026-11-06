@@ -1,13 +1,9 @@
-export type SupportedSourceComponentFtype =
-  | "simple_resistor"
-  | "simple_capacitor"
-  | "simple_inductor"
-  | "simple_diode"
-  | "simple_led"
-  | "simple_test_point"
-  | "simple_transistor"
-  | "simple_chip"
-  | "simple_pin_header"
+import type { ImportedComponentFtype } from "../../utils/create-source-component-data"
+
+export type SupportedSourceComponentFtype = Exclude<
+  ImportedComponentFtype,
+  "simple_switch" | "simple_fiducial"
+>
 
 export function inferSourceComponentFtype(params: {
   name?: string
