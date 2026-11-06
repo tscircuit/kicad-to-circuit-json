@@ -1,15 +1,9 @@
-import type { Footprint, FootprintPad } from "kicadts"
+import type { Footprint } from "kicadts"
 import { ConverterStage, type KicadNetKey } from "../../types"
 import { getTopLevelCopperArcs } from "./arc-utils"
 import { getFootprintReference } from "./CollectFootprintsStage/footprint-properties"
 import { getKicadNetKey } from "./net-utils"
 import { getSourcePortIdForPad } from "./pad-source-port-id"
-
-interface NetPadConnection {
-  componentId: string
-  padNumber: string
-  sourcePortId: string
-}
 
 /**
  * CollectSourceTracesStage extracts logical nets from KiCad PCB by analyzing net
@@ -18,7 +12,7 @@ interface NetPadConnection {
  * This stage:
  * 1. Iterates through all footprints and their pads
  * 2. Builds a mapping of nets to connected pads
- * 3. Creates source_port elements for each pad
+ * 3. Reuses source_port elements already created with pads
  * 4. Creates one source_net and one source_trace element for each net.
  */
 export class CollectSourceTracesStage extends ConverterStage {
@@ -30,11 +24,9 @@ export class CollectSourceTracesStage extends ConverterStage {
       return false
     }
 
-    // Build a map of net -> list of (component_id, pad_number, source_port_id)
-    const netToPads = new Map<KicadNetKey, NetPadConnection[]>()
+    // Associate each declared PCB net with its existing source terminals.
+    const netToPads = new Map<KicadNetKey, Set<string>>()
 
-    // Extract all footprints from KiCad PCB
-    // Process each footprint and its pads
     for (const footprint of this.ctx.kicadPcb.footprints) {
       this.processFootprintPads(footprint, netToPads)
     }
@@ -49,12 +41,9 @@ export class CollectSourceTracesStage extends ConverterStage {
         continue
       }
 
-      const sourcePortIds = this.getUniqueSourcePortIds(
-        pads.map((p) => p.sourcePortId),
-      )
+      const sourcePortIds = [...pads]
       this.ctx.netNumToSourcePortIds?.set(netKey, sourcePortIds)
-      const sourceNetId = this.createSourceNet(netKey)
-      this.createSourceTrace(netKey, sourceNetId, sourcePortIds)
+      this.createSourceTrace(netKey, sourcePortIds)
       this.processedNets.add(netKey)
     }
 
@@ -62,40 +51,26 @@ export class CollectSourceTracesStage extends ConverterStage {
     return false
   }
 
-  private collectNetsFromCopper(
-    netToPads: Map<KicadNetKey, NetPadConnection[]>,
-  ) {
+  private collectNetsFromCopper(netToPads: Map<KicadNetKey, Set<string>>) {
     if (!this.ctx.kicadPcb) return
 
-    for (const segment of this.ctx.kicadPcb.segments) {
-      const netKey = getKicadNetKey(segment)
+    const copper = [
+      ...this.ctx.kicadPcb.segments,
+      ...getTopLevelCopperArcs(this.ctx.kicadPcb),
+      ...this.ctx.kicadPcb.vias,
+    ]
+    for (const element of copper) {
+      const netKey = getKicadNetKey(element)
       if (netKey === null || netKey === 0) continue
       if (!netToPads.has(netKey)) {
-        netToPads.set(netKey, [])
-      }
-    }
-
-    const arcArray = getTopLevelCopperArcs(this.ctx.kicadPcb)
-    for (const arc of arcArray) {
-      const netKey = getKicadNetKey(arc)
-      if (netKey === null || netKey === 0) continue
-      if (!netToPads.has(netKey)) {
-        netToPads.set(netKey, [])
-      }
-    }
-
-    for (const via of this.ctx.kicadPcb.vias) {
-      const netKey = getKicadNetKey(via)
-      if (netKey === null || netKey === 0) continue
-      if (!netToPads.has(netKey)) {
-        netToPads.set(netKey, [])
+        netToPads.set(netKey, new Set())
       }
     }
   }
 
   private processFootprintPads(
     footprint: Footprint,
-    netToPads: Map<KicadNetKey, NetPadConnection[]>,
+    netToPads: Map<KicadNetKey, Set<string>>,
   ) {
     // Anonymous footprints are board-only copper/mechanical features, not
     // addressable source components. Keep their PCB geometry but do not invent
@@ -122,93 +97,117 @@ export class CollectSourceTracesStage extends ConverterStage {
         continue
       }
 
-      // Create a source_port for this pad if it doesn't exist
-      const sourcePortId = this.getOrCreateSourcePort({
+      const sourcePortId = getSourcePortIdForPad({
+        ctx: this.ctx,
         componentId,
-        padNumber,
         footprint,
         pad,
       })
+      if (!sourcePortId || !this.ctx.db.source_port.get(sourcePortId)) continue
 
       // Add to the net mapping
       if (!netToPads.has(netKey)) {
-        netToPads.set(netKey, [])
+        netToPads.set(netKey, new Set())
       }
 
-      netToPads.get(netKey)!.push({
-        componentId,
-        padNumber,
-        sourcePortId,
-      })
+      netToPads.get(netKey)!.add(sourcePortId)
     }
   }
 
-  private getOrCreateSourcePort(params: {
-    componentId: string
-    padNumber: string
-    footprint: Footprint
-    pad: FootprintPad
-  }): string {
-    const { componentId, padNumber, footprint, pad } = params
-    const sourcePortId = getSourcePortIdForPad({
-      componentId,
-      footprint,
-      pad,
-    })
-    if (!sourcePortId) return `${componentId}_port_${padNumber}`
-
-    // Check if source_port already exists
-    const existingPort = this.ctx.db.source_port
-      .list()
-      .find((sp: any) => sp.source_port_id === sourcePortId)
-
-    if (!existingPort) {
-      // Get the source_component_id from the footprint UUID mapping
-      const footprintUuid = footprint.uuid?.value || footprint.tstamp?.value
-      const sourceComponentId =
-        footprintUuid && this.ctx.footprintUuidToSourceComponentId
-          ? this.ctx.footprintUuidToSourceComponentId.get(footprintUuid)
-          : undefined
-
-      // Create the source_port
-      this.ctx.db.source_port.insert({
-        source_port_id: sourcePortId,
-        source_component_id: sourceComponentId || componentId,
-        name: this.getSourcePortName(padNumber),
-        pin_number: this.getSourcePortPinNumber(padNumber),
-      } as any)
-    }
-
-    if (pad.pintype?.split("+").includes("no_connect")) {
-      this.ctx.db.source_port.update(sourcePortId, { do_not_connect: true })
-    }
-
-    return sourcePortId
-  }
-
-  private getSourcePortName(padNumber: string): string {
-    if (/^\d+$/.test(padNumber)) {
-      return `pin${Number(padNumber)}`
-    }
-
-    return padNumber
-  }
-
-  private getSourcePortPinNumber(padNumber: string): number | string {
-    if (/^\d+$/.test(padNumber)) {
-      return Number(padNumber)
-    }
-
-    return padNumber
-  }
-
-  private createSourceNet(netKey: KicadNetKey) {
+  private createSourceTrace(netKey: KicadNetKey, sourcePortIds: string[]) {
+    const { db } = this.ctx
     const netName = this.ctx.netNumToName?.get(netKey) || `Net-${netKey}`
-
-    const sourceNet = this.ctx.db.source_net.insert({
+    const existingTraces = this.ctx.kicadSch
+      ? db.source_trace
+          .list()
+          .filter(
+            (trace) =>
+              trace.connected_source_port_ids.some((id) =>
+                sourcePortIds.includes(id),
+              ) ||
+              trace.connected_source_net_ids.some(
+                (id) => db.source_net.get(id)?.name === netName,
+              ),
+          )
+      : []
+    let sourceNet = existingTraces[0]?.connected_source_net_ids[0]
+      ? db.source_net.get(existingTraces[0].connected_source_net_ids[0])
+      : undefined
+    if (!sourceNet && this.ctx.kicadSch) {
+      sourceNet = db.source_net.getWhere({ name: netName })
+    }
+    sourceNet ??= db.source_net.insert({
       name: netName,
       member_source_group_ids: [],
-    } as any)
+    })
+    const connectedSourcePortIds = [
+      ...new Set([
+        ...existingTraces.flatMap((trace) => trace.connected_source_port_ids),
+        ...sourcePortIds,
+      ]),
+    ]
+    const connectedSourceNetIds = [
+      ...new Set([
+        ...existingTraces.flatMap((trace) => trace.connected_source_net_ids),
+        sourceNet.source_net_id,
+      ]),
+    ]
+    const data = {
+      connected_source_port_ids: connectedSourcePortIds,
+      connected_source_net_ids: connectedSourceNetIds,
+    }
+    const sourceTrace = existingTraces[0]
+      ? db.source_trace.update(existingTraces[0].source_trace_id, data)
+      : db.source_trace.insert({ ...data, display_name: netName })
+
+    // Board copper may connect multiple drawn schematic paths. Keep every
+    // drawing reference on the retained logical trace when those nets merge.
+    if (existingTraces.length) {
+      const mergedIds = new Set(
+        existingTraces.map((trace) => trace.source_trace_id),
+      )
+      for (const trace of db.schematic_trace.list()) {
+        if (trace.source_trace_id && mergedIds.has(trace.source_trace_id)) {
+          db.schematic_trace.update(trace.schematic_trace_id, {
+            source_trace_id: sourceTrace.source_trace_id,
+            subcircuit_connectivity_map_key: sourceTrace.source_trace_id,
+          })
+        }
+      }
+      for (const label of db.schematic_net_label.list()) {
+        if (label.source_trace_id && mergedIds.has(label.source_trace_id)) {
+          db.schematic_net_label.update(label.schematic_net_label_id, {
+            source_trace_id: sourceTrace.source_trace_id,
+          })
+        }
+      }
+      for (const trace of db.pcb_trace.list()) {
+        if (
+          trace.pcb_trace_id &&
+          trace.source_trace_id &&
+          mergedIds.has(trace.source_trace_id)
+        ) {
+          db.pcb_trace.update(trace.pcb_trace_id, {
+            source_trace_id: sourceTrace.source_trace_id,
+          })
+        }
+      }
+      db.source_trace.update(sourceTrace.source_trace_id, {
+        subcircuit_connectivity_map_key: sourceTrace.source_trace_id,
+      })
+      for (const netId of connectedSourceNetIds) {
+        db.source_net.update(netId, {
+          subcircuit_connectivity_map_key: sourceTrace.source_trace_id,
+        })
+      }
+      for (const trace of existingTraces.slice(1)) {
+        db.source_trace.delete(trace.source_trace_id)
+      }
+      for (const [key, id] of this.ctx.netNumToSourceTraceId ?? []) {
+        if (mergedIds.has(id))
+          this.ctx.netNumToSourceTraceId?.set(key, sourceTrace.source_trace_id)
+      }
+    }
 
     this.ctx.netNumToSourceNetId?.set(netKey, sourceNet.source_net_id)
 
@@ -217,32 +216,6 @@ export class CollectSourceTracesStage extends ConverterStage {
       this.ctx.stats.traces = (this.ctx.stats.traces || 0) + 1
     }
 
-    return sourceNet.source_net_id
-  }
-
-  private createSourceTrace(
-    netKey: KicadNetKey,
-    sourceNetId: string,
-    sourcePortIds: string[],
-  ) {
-    const netName = this.ctx.netNumToName?.get(netKey) || `Net-${netKey}`
-    const sourceTrace = this.ctx.db.source_trace.insert({
-      connected_source_port_ids: sourcePortIds,
-      connected_source_net_ids: [sourceNetId],
-      display_name: netName,
-    })
-
     this.ctx.netNumToSourceTraceId?.set(netKey, sourceTrace.source_trace_id)
-  }
-
-  private getUniqueSourcePortIds(sourcePortIds: string[]) {
-    const uniqueSourcePortIds: string[] = []
-    for (const sourcePortId of sourcePortIds) {
-      if (!uniqueSourcePortIds.includes(sourcePortId)) {
-        uniqueSourcePortIds.push(sourcePortId)
-      }
-    }
-
-    return uniqueSourcePortIds
   }
 }

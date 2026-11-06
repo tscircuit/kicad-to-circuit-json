@@ -44,7 +44,6 @@ export class InitializeSchematicContextStage extends ConverterStage {
 
     // Initialize tracking maps
     this.ctx.symbolUuidToComponentId = new Map()
-    this.ctx.schematicNetAnchors = { labels: [], powerSymbols: [] }
     this.ctx.warnings = this.ctx.warnings || []
     this.ctx.stats = this.ctx.stats || {}
 

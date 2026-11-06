@@ -23,10 +23,6 @@ export interface ConverterContext {
   footprintUuidToComponentId?: Map<string, string>
   footprintUuidToSourceComponentId?: Map<string, string>
   symbolUuidToComponentId?: Map<string, string>
-  schematicNetAnchors?: {
-    labels: Array<{ name: string; position: Point }>
-    powerSymbols: Array<{ name: string; position: Point }>
-  }
 
   // Diagnostics
   warnings?: string[]

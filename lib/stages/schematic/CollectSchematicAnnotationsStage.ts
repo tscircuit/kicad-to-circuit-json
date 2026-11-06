@@ -100,7 +100,7 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
 
     const text = decodeKicadText(label.value)
     const position = applyToPoint(this.ctx.k2cMatSch, label.at)
-    this.registerNetLabel(text, position)
+    getOrCreateSchematicSourceNet(this.ctx.db, text)
     this.insertText(text, label.at, label.effects, {
       color: LOCAL_LABEL_COLOR,
       position,
@@ -114,7 +114,10 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
 
     const text = decodeKicadText(label.value)
     const position = applyToPoint(this.ctx.k2cMatSch, label.at)
-    const sourceNetId = this.registerNetLabel(text, position)
+    const sourceNetId = getOrCreateSchematicSourceNet(
+      this.ctx.db,
+      text,
+    ).source_net_id
     this.ctx.db.schematic_net_label.insert({
       source_net_id: sourceNetId,
       center: position,
@@ -125,11 +128,6 @@ export class CollectSchematicAnnotationsStage extends ConverterStage {
     })
 
     this.incrementLabelCount()
-  }
-
-  private registerNetLabel(name: string, position: Point): string {
-    this.ctx.schematicNetAnchors?.labels.push({ name, position })
-    return getOrCreateSchematicSourceNet(this.ctx.db, name).source_net_id
   }
 
   private incrementLabelCount() {

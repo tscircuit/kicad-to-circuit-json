@@ -1,23 +1,18 @@
-import { pointToSegmentDistance } from "@tscircuit/math-utils"
-import type { Point, SchematicPort, SchematicTrace } from "circuit-json"
-import {
-  ConnectivityMap,
-  findConnectedNetworks,
-} from "circuit-json-to-connectivity-map"
+import type { SchematicPort } from "circuit-json"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import { sourcePortMatchesPin } from "../../utils/get-or-create-source-port"
+import { parseKicadOverlineText } from "../../utils/parse-kicad-overline-text"
+import { getPinsForSymbolInstance } from "./emitKicadSymbolGeometry"
 import {
+  resolveSchematicConnectivity,
+  type SchematicNetAnchor,
+} from "./resolve-schematic-connectivity"
+import {
+  decodeKicadText,
   getOrCreateSchematicSourceNet,
   getSchematicPointKey as pointKey,
-  SCHEMATIC_POINT_TOLERANCE,
 } from "./utils/schematic-net-utils"
-
-interface ConnectedGroup {
-  traces: SchematicTrace[]
-  ports: SchematicPort[]
-  junctions: Point[]
-  netNames: Set<string>
-}
 
 /** Links drawn wires to their electrical nets without changing their paths. */
 export class CollectSchematicConnectivityStage extends ConverterStage {
@@ -30,70 +25,29 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
 
     const traces = db.schematic_trace.list()
     const ports = db.schematic_port.list()
-    const connections: string[][] = []
-
-    for (const trace of traces) {
-      for (const edge of trace.edges) {
-        connections.push([pointKey(edge.from), pointKey(edge.to)])
-      }
-    }
-    for (const port of ports) connections.push([pointKey(port.center)])
     const junctions = kicadSch.junctions.flatMap((junction) =>
       junction.at ? [applyToPoint(k2cMatSch, junction.at)] : [],
     )
-    for (const junction of junctions) connections.push([pointKey(junction)])
-
-    const anchors = this.ctx.schematicNetAnchors!
-    const namedPoints = [...anchors.labels, ...anchors.powerSymbols]
-    for (const { name, position } of namedPoints) {
-      connections.push([pointKey(position), `net:${name}`])
-    }
-    const interiorConnections = [
-      ...junctions,
-      ...anchors.labels.map((label) => label.position),
-    ]
-
-    // Junctions and labels attach inside a wire. A pin or another wire's
-    // endpoint touching its interior does not connect without a junction.
-    for (const trace of traces) {
-      for (const edge of trace.edges) {
-        for (const point of interiorConnections) {
-          if (
-            pointToSegmentDistance(point, edge.from, edge.to) <=
-            SCHEMATIC_POINT_TOLERANCE
-          ) {
-            connections.push([pointKey(edge.from), pointKey(point)])
-          }
-        }
-      }
-    }
-    const connectivityMap = new ConnectivityMap(
-      findConnectedNetworks(connections),
+    const labels = [...kicadSch.labels, ...kicadSch.globalLabels].flatMap(
+      (label) =>
+        label.at && label.value
+          ? [
+              {
+                name: decodeKicadText(label.value),
+                position: applyToPoint(k2cMatSch, label.at),
+              },
+            ]
+          : [],
     )
-
-    const groups = new Map<string, ConnectedGroup>()
-    const groupAt = (key: string): ConnectedGroup => {
-      const id = connectivityMap.getNetConnectedToId(key)!
-      let group = groups.get(id)
-      if (!group) {
-        group = { traces: [], ports: [], junctions: [], netNames: new Set() }
-        groups.set(id, group)
-      }
-      return group
-    }
-    for (const trace of traces) {
-      const firstEdge = trace.edges[0]
-      if (firstEdge) groupAt(pointKey(firstEdge.from)).traces.push(trace)
-    }
-    for (const port of ports) groupAt(pointKey(port.center)).ports.push(port)
-    for (const junction of junctions) {
-      groupAt(pointKey(junction)).junctions.push(junction)
-    }
-    for (const { name, position } of namedPoints) {
-      groupAt(pointKey(position)).netNames.add(name)
-    }
+    const groups = resolveSchematicConnectivity({
+      traces,
+      ports,
+      junctions,
+      labels,
+      implicitLabels: this.getImplicitLabels(ports),
+    })
     const sourceTraceIdByNetId = new Map<string, string>()
-    for (const group of groups.values()) {
+    for (const group of groups) {
       const sourcePortIds = [
         ...new Set(group.ports.map((p) => p.source_port_id)),
       ]
@@ -150,5 +104,55 @@ export class CollectSchematicConnectivityStage extends ConverterStage {
 
     this.finished = true
     return false
+  }
+
+  private getImplicitLabels(
+    ports: readonly SchematicPort[],
+  ): SchematicNetAnchor[] {
+    const { db, kicadSch, symbolUuidToComponentId } = this.ctx
+    const libraries = new Map(
+      kicadSch!.libSymbols?.symbols.map((symbol) => [symbol.libraryId, symbol]),
+    )
+    const sourcePorts = new Map(
+      db.source_port.list().map((port) => [port.source_port_id, port]),
+    )
+    const anchors: SchematicNetAnchor[] = []
+    const portsByComponent = new Map<string, SchematicPort[]>()
+    for (const port of ports) {
+      if (!port.schematic_component_id) continue
+      const componentPorts =
+        portsByComponent.get(port.schematic_component_id) ?? []
+      componentPorts.push(port)
+      portsByComponent.set(port.schematic_component_id, componentPorts)
+    }
+    for (const symbol of kicadSch!.symbols) {
+      const library = libraries.get(symbol.libraryId)
+      const componentId =
+        symbol.uuid && symbolUuidToComponentId?.get(symbol.uuid)
+      if (!library || !componentId) continue
+      const pins = getPinsForSymbolInstance(library, symbol)
+      const componentPorts = portsByComponent.get(componentId) ?? []
+      for (const pin of pins) {
+        if (pin.pinElectricalType !== "power_in") continue
+        const powerSymbol = library._sxPower && pins.length === 1
+        let name: string | undefined
+        if (powerSymbol) {
+          name = symbol.properties.find(
+            (property) => property.key === "Value",
+          )?.value
+        } else if (pin.hidden) {
+          name = pin.name
+        }
+        if (!name) continue
+        const pinNumber = parseKicadOverlineText(pin.numberString ?? "").text
+        for (const port of componentPorts) {
+          const sourcePort = sourcePorts.get(port.source_port_id)
+          if (sourcePort && sourcePortMatchesPin(sourcePort, pinNumber)) {
+            anchors.push({ name: decodeKicadText(name), position: port.center })
+          }
+        }
+      }
+    }
+    return anchors
   }
 }

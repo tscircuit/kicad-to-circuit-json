@@ -2,6 +2,7 @@ import { expect } from "bun:test"
 import { execFileSync } from "node:child_process"
 import { existsSync } from "node:fs"
 import { getFullConnectivityMapFromCircuitJson } from "circuit-json-to-connectivity-map"
+import { getSourcePortPinNumber } from "../../lib/utils/get-or-create-source-port"
 
 const KICAD_PCBNEW_SCRIPT = `
 import json
@@ -86,7 +87,7 @@ function getCircuitJsonPhysicalConnectivityGroups(circuitJson: any[]) {
 
     nodeKeyBySourcePortId.set(
       port.source_port_id,
-      `${refdes}.${String(port.pin_number)}`,
+      `${refdes}.${getSourcePortPinNumber(port) ?? ""}`,
     )
   }
 

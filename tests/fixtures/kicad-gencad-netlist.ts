@@ -4,6 +4,7 @@ import { copyFileSync, existsSync, mkdtempSync, readFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import path from "node:path"
 import { getSourcePortConnectivityMapFromCircuitJson } from "circuit-json-to-connectivity-map"
+import { getSourcePortPinNumber } from "../../lib/utils/get-or-create-source-port"
 
 export function hasKicadCli() {
   try {
@@ -204,7 +205,7 @@ export function getCircuitJsonSourceConnectivityGroups(circuitJson: any[]) {
 
     nodeKeyBySourcePortId.set(
       port.source_port_id,
-      getNodeKey(refdes, String(port.pin_number)),
+      getNodeKey(refdes, getSourcePortPinNumber(port) ?? ""),
     )
   }
 
