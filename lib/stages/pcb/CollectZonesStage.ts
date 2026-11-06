@@ -9,6 +9,7 @@ import {
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import { approximateArcPoints } from "./arc-utils"
+import { collectZoneKeepouts } from "./collect-zone-keepouts"
 import {
   getLayerRefsFromLayers,
   mapKicadLayerToLayerRef,
@@ -22,8 +23,7 @@ type ZonePolygonRecord = {
 }
 
 /**
- * CollectZonesStage converts KiCad zones with filled copper into Circuit JSON pcb_copper_pour elements.
- * Zones define copper pours/planes that are typically used for ground and power nets.
+ * CollectZonesStage imports rule-area keepouts and filled copper zones.
  */
 export class CollectZonesStage extends ConverterStage {
   step(): boolean {
@@ -35,8 +35,13 @@ export class CollectZonesStage extends ConverterStage {
     const zones = this.ctx.kicadPcb.zones || []
     const zoneArray = Array.isArray(zones) ? zones : [zones]
 
-    // Process each filled zone
     for (const zone of zoneArray) {
+      // Rule areas constrain placement/routing without containing filled copper.
+      // They must never be imported as conductive copper, even with saved fills.
+      if (zone.keepout) {
+        collectZoneKeepouts(zone, this.ctx)
+        continue
+      }
       // Only process zones that are filled
       if (this.isZoneFilled(zone)) {
         this.createCopperPourFromZone(zone)
