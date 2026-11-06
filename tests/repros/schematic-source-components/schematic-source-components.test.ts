@@ -43,9 +43,8 @@ const cases = [
   ],
 ] as const
 
-// The fix PR turns these expected failures into normal regression tests.
 for (const [name, expected] of cases) {
-  test.failing(`imports schema-valid ${name} data`, () => {
+  test(`imports schema-valid ${name} data`, () => {
     const component = convert().getComponent(name)
     expect(component).toMatchObject({ ftype: expected.ftype })
     expect(any_source_component.parse(component)).toMatchObject(expected)
@@ -64,7 +63,7 @@ for (const [name, value, expected] of [
   ["Device:C", "4,7uF", { capacitance: 4.7e-6 }],
   ["Device:L", "2,2mH", { inductance: 2.2e-3 }],
 ] as const) {
-  test.failing(`normalizes decimal commas for ${name}`, () => {
+  test(`normalizes decimal commas for ${name}`, () => {
     const component = convert((input) => {
       input.symbols
         .find((symbol) => symbol.libraryId === name)!
@@ -75,7 +74,7 @@ for (const [name, value, expected] of [
   })
 }
 
-test.failing("does not treat Value as MPN for any component type", () => {
+test("does not treat Value as MPN for any component type", () => {
   const { components } = convert((input) => {
     for (const symbol of input.symbols) {
       symbol.properties = symbol.properties.filter(
@@ -89,7 +88,7 @@ test.failing("does not treat Value as MPN for any component type", () => {
   }
 })
 
-test.failing("counts unique header pins across units and body styles", () => {
+test("counts unique header pins across units and body styles", () => {
   const component = convert((input) => {
     const header = input.libSymbols!.symbols.find(
       (symbol) => symbol.libraryId === "Connector_Generic:Conn_01x04",
@@ -107,7 +106,7 @@ test.failing("counts unique header pins across units and body styles", () => {
 })
 
 for (const name of ["Device:R", "Device:C", "Device:L"]) {
-  test.failing(`does not invent an electrical value for ${name}`, () => {
+  test(`does not invent an electrical value for ${name}`, () => {
     const { converter, getComponent } = convert((input) => {
       const instance = input.symbols.find(
         (symbol) => symbol.libraryId === name,
@@ -124,7 +123,7 @@ for (const name of ["Device:R", "Device:C", "Device:L"]) {
     ).toBe(true)
   })
 
-  test.failing(`keeps an unparseable ${name} Value without inventing a quantity`, () => {
+  test(`keeps an unparseable ${name} Value without inventing a quantity`, () => {
     const { converter, getComponent } = convert((input) => {
       input.symbols
         .find((symbol) => symbol.libraryId === name)!
@@ -141,7 +140,7 @@ for (const name of ["Device:R", "Device:C", "Device:L"]) {
   })
 }
 
-test.failing("does not guess NPN for an unidentified transistor", () => {
+test("does not guess NPN for an unidentified transistor", () => {
   const { converter, getComponent } = convert((input) => {
     const instance = input.symbols.find(
       (symbol) => symbol.libraryId === "Device:Q_NPN",
@@ -155,7 +154,7 @@ test.failing("does not guess NPN for an unidentified transistor", () => {
   ).toBe(true)
 })
 
-test.failing("reads BJT polarity from library metadata for a named part", () => {
+test("reads BJT polarity from library metadata for a named part", () => {
   const component = convert((input) => {
     const name = "Transistor_BJT:BC557"
     input.symbols.find(
@@ -174,7 +173,7 @@ test.failing("reads BJT polarity from library metadata for a named part", () => 
   })
 })
 
-test.failing("uses header dimensions when the library definition is unavailable", () => {
+test("uses header dimensions when the library definition is unavailable", () => {
   const component = convert((input) => {
     input.libSymbols!.symbols = input.libSymbols!.symbols.filter(
       (symbol) => symbol.libraryId !== "Connector_Generic:Conn_01x04",
@@ -183,7 +182,7 @@ test.failing("uses header dimensions when the library definition is unavailable"
   expect(component).toMatchObject({ ftype: "simple_pin_header", pin_count: 4 })
 })
 
-test.failing("does not guess a pin count for an unidentified header", () => {
+test("does not guess a pin count for an unidentified header", () => {
   const { converter, getComponent } = convert((input) => {
     const instance = input.symbols.find(
       (symbol) => symbol.libraryId === "Connector_Generic:Conn_01x04",
@@ -204,7 +203,7 @@ for (const [name, reference, ftype] of [
   ["Custom:IC", "U1", "simple_chip"],
   ["Connector:TestPoint", "TP1", "simple_test_point"],
 ] as const) {
-  test.failing(`preserves common metadata for ${ftype}`, () => {
+  test(`preserves common metadata for ${ftype}`, () => {
     const component = convert((input) => {
       const instance = input.symbols.find(
         (symbol) => symbol.libraryId === "Device:C",
