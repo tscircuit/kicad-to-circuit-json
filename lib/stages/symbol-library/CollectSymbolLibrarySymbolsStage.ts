@@ -17,6 +17,7 @@ import type {
   SourceSimpleLed,
   SourceSimplePinHeader,
   SourceSimpleResistor,
+  SourceSimpleSwitch,
   SourceSimpleTestPoint,
   SourceSimpleTransistor,
 } from "circuit-json"
@@ -74,6 +75,7 @@ type SymbolLibrarySourceComponentData =
   | Omit<SourceSimpleInductor, "type" | "source_component_id">
   | Omit<SourceSimpleLed, "type" | "source_component_id">
   | Omit<SourceSimpleDiode, "type" | "source_component_id">
+  | Omit<SourceSimpleSwitch, "type" | "source_component_id">
   | Omit<SourceSimpleTransistor, "type" | "source_component_id">
   | Omit<SourceSimplePinHeader, "type" | "source_component_id">
   | Omit<SourceSimpleTestPoint, "type" | "source_component_id">
@@ -806,6 +808,8 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
         return { ...base, ftype, inductance: 0 }
       case "simple_transistor":
         return { ...base, ftype, transistor_type: "npn" }
+      case "simple_switch":
+        return { ...base, ftype }
       case "simple_pin_header":
         return {
           ...base,
