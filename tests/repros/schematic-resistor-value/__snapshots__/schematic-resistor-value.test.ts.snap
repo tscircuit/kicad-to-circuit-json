@@ -1,0 +1,11 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`snapshots the imported resistor source data 1`] = `
+{
+  "ftype": "simple_resistor",
+  "manufacturer_part_number": "10k",
+  "name": "Device:R",
+  "source_component_id": "source_component_0",
+  "type": "source_component",
+}
+`;
