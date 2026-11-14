@@ -4,9 +4,38 @@ import type { Matrix } from "transformation-matrix"
 
 export type KicadNetKey = number | string
 
+export interface KicadProjectNetClass {
+  name?: string
+  track_width?: number
+}
+
+export interface KicadProjectNetClassPattern {
+  netclass?: string
+  pattern?: string
+}
+
+export interface KicadProjectNetSettings {
+  classes?: KicadProjectNetClass[]
+  netclass_assignments?: Record<string, string | string[]> | null
+  netclass_patterns?: KicadProjectNetClassPattern[] | null
+}
+
+/**
+ * The parts of a KiCad project file (.kicad_pro) that the converter reads.
+ */
+export interface KicadProject {
+  board?: {
+    design_settings?: {
+      rules?: Record<string, unknown>
+    }
+  }
+  net_settings?: KicadProjectNetSettings
+}
+
 export interface ConverterContext {
   db: CircuitJsonUtilObjects
   kicadPcb?: KicadPcb
+  kicadProject?: KicadProject
   kicadSch?: KicadSch
   kicadSymbolLib?: KicadSym
   standaloneFootprintConversion?: boolean
@@ -17,6 +46,7 @@ export interface ConverterContext {
 
   // Legacy field names: KiCad 10 may use a net name instead of a net number.
   netNumToName?: Map<KicadNetKey, string>
+  netNumToKicadNetName?: Map<KicadNetKey, string>
   netNumToSourceNetId?: Map<KicadNetKey, string>
   netNumToSourceTraceId?: Map<KicadNetKey, string>
   netNumToSourcePortIds?: Map<KicadNetKey, string[]>

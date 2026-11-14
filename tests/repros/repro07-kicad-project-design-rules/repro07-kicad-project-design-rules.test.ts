@@ -164,8 +164,7 @@ test("repro07: snapshots KiCad project design rules", async () => {
   await expect(snapshot).toMatchSvgSnapshot(import.meta.path, "design-rules")
 })
 
-// This expected failure must become a normal test in the stacked fix.
-test.failing("repro07: imports KiCad project design rules", async () => {
+test("repro07: imports KiCad project design rules", async () => {
   const { importedDesignRules } = await importFixture()
   expect(importedDesignRules).toEqual(expectedDesignRules)
 })
