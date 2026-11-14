@@ -4,20 +4,31 @@ import type { Matrix } from "transformation-matrix"
 
 export type KicadNetKey = number | string
 
-export interface KicadProjectNetClass {
+export interface KicadNetClass {
   name?: string
+  /** KiCad 9+: the lowest number wins when a net has several classes. */
+  priority?: number
+  /** KiCad 9+ omits the track width of a class that does not set one. */
   track_width?: number
+  /** KiCad 6 lists the member nets inside the class. */
+  nets?: string[]
 }
 
-export interface KicadProjectNetClassPattern {
+export interface KicadNetClassPattern {
   netclass?: string
   pattern?: string
 }
 
-export interface KicadProjectNetSettings {
-  classes?: KicadProjectNetClass[]
+/**
+ * meta.version is KiCad's net settings schema: 2 is KiCad 6 (member lists),
+ * 3 is KiCad 7 and 8 (assignments and patterns, one class per net) and 4 or
+ * higher is KiCad 9+ (several prioritized classes per net).
+ */
+export interface KicadNetSettings {
+  meta?: { version?: number }
+  classes?: KicadNetClass[]
   netclass_assignments?: Record<string, string | string[]> | null
-  netclass_patterns?: KicadProjectNetClassPattern[] | null
+  netclass_patterns?: KicadNetClassPattern[] | null
 }
 
 /**
@@ -29,7 +40,7 @@ export interface KicadProject {
       rules?: Record<string, unknown>
     }
   }
-  net_settings?: KicadProjectNetSettings
+  net_settings?: KicadNetSettings
 }
 
 export interface ConverterContext {
