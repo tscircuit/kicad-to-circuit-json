@@ -61,6 +61,7 @@ export class CollectNetsStage extends ConverterStage {
 
       // Store mapping
       this.ctx.netNumToName.set(netKey, netName)
+      if (rawNetName) this.ctx.netNumToKicadNetName?.set(netKey, rawNetName)
     }
 
     // Special case: net 0 is typically "no connection" or sometimes GND

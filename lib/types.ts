@@ -4,9 +4,49 @@ import type { Matrix } from "transformation-matrix"
 
 export type KicadNetKey = number | string
 
+export interface KicadNetClass {
+  name?: string
+  /** KiCad 9+: the lowest number wins when a net has several classes. */
+  priority?: number
+  /** KiCad 9+ omits the track width of a class that does not set one. */
+  track_width?: number
+  /** KiCad 6 lists the member nets inside the class. */
+  nets?: string[]
+}
+
+export interface KicadNetClassPattern {
+  netclass?: string
+  pattern?: string
+}
+
+/**
+ * meta.version is KiCad's net settings schema: 2 is KiCad 6 (member lists),
+ * 3 is KiCad 7 and 8 (assignments and patterns, one class per net) and 4 or
+ * higher is KiCad 9+ (several prioritized classes per net).
+ */
+export interface KicadNetSettings {
+  meta?: { version?: number }
+  classes?: KicadNetClass[]
+  netclass_assignments?: Record<string, string | string[]> | null
+  netclass_patterns?: KicadNetClassPattern[] | null
+}
+
+/**
+ * The parts of a KiCad project file (.kicad_pro) that the converter reads.
+ */
+export interface KicadProject {
+  board?: {
+    design_settings?: {
+      rules?: Record<string, unknown>
+    }
+  }
+  net_settings?: KicadNetSettings
+}
+
 export interface ConverterContext {
   db: CircuitJsonUtilObjects
   kicadPcb?: KicadPcb
+  kicadProject?: KicadProject
   kicadSch?: KicadSch
   kicadSymbolLib?: KicadSym
   standaloneFootprintConversion?: boolean
@@ -17,6 +57,7 @@ export interface ConverterContext {
 
   // Legacy field names: KiCad 10 may use a net name instead of a net number.
   netNumToName?: Map<KicadNetKey, string>
+  netNumToKicadNetName?: Map<KicadNetKey, string>
   netNumToSourceNetId?: Map<KicadNetKey, string>
   netNumToSourceTraceId?: Map<KicadNetKey, string>
   netNumToSourcePortIds?: Map<KicadNetKey, string[]>

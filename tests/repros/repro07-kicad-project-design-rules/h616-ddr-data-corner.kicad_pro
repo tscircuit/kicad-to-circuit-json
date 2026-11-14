@@ -1,0 +1,70 @@
+{
+  "board": {
+    "design_settings": {
+      "rules": {
+        "min_clearance": 0,
+        "min_copper_edge_clearance": 0,
+        "min_hole_clearance": 0.1,
+        "min_hole_to_hole": 0.25,
+        "min_through_hole_diameter": 0.15,
+        "min_track_width": 0,
+        "min_via_annular_width": 0.1,
+        "min_via_diameter": 0.35
+      }
+    }
+  },
+  "meta": {
+    "filename": "h616-ddr-data-corner.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "clearance": 0.1,
+        "name": "Default",
+        "track_width": 0.1,
+        "via_diameter": 0.35,
+        "via_drill": 0.15
+      },
+      {
+        "clearance": 0.1,
+        "name": "DDR3_DATA_HB",
+        "track_width": 0.0975,
+        "via_diameter": 0.35,
+        "via_drill": 0.15
+      },
+      {
+        "clearance": 0.1,
+        "name": "DDR3_DATA_LB",
+        "track_width": 0.0975,
+        "via_diameter": 0.35,
+        "via_drill": 0.15
+      },
+      {
+        "clearance": 0.1,
+        "name": "DDR3_OTHER",
+        "track_width": 0.0975,
+        "via_diameter": 0.35,
+        "via_drill": 0.15
+      }
+    ],
+    "meta": {
+      "version": 3
+    },
+    "netclass_assignments": null,
+    "netclass_patterns": [
+      {
+        "netclass": "DDR3_OTHER",
+        "pattern": "/DRAM/SDQM*"
+      },
+      {
+        "netclass": "DDR3_DATA_HB",
+        "pattern": "/DRAM/DQ[8-9]"
+      },
+      {
+        "netclass": "DDR3_DATA_LB",
+        "pattern": "/DRAM/DQ[0-7]"
+      }
+    ]
+  }
+}

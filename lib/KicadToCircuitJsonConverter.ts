@@ -4,6 +4,7 @@ import { parseKicadPcb, parseKicadSch, parseKicadSym } from "kicadts"
 import { CollectFootprintsStage } from "./stages/pcb/CollectFootprintsStage"
 import { CollectGraphicsStage } from "./stages/pcb/CollectGraphicsStage"
 import { CollectNetsStage } from "./stages/pcb/CollectNetsStage"
+import { CollectProjectDesignRulesStage } from "./stages/pcb/CollectProjectDesignRulesStage"
 import { CollectSourceTracesStage } from "./stages/pcb/CollectSourceTracesStage"
 import { CollectTracesStage } from "./stages/pcb/CollectTracesStage"
 import { CollectViasStage } from "./stages/pcb/CollectViasStage"
@@ -49,12 +50,16 @@ export class KicadToCircuitJsonConverter {
 
   initializePipeline() {
     const pcbFile = this._findFileWithExtension(".kicad_pcb")
+    const projectFile = this._findFileWithExtension(".kicad_pro")
     const schFile = this._findFileWithExtension(".kicad_sch")
     const symbolLibFile = this._findFileWithExtension(".kicad_sym")
 
     this.ctx = {
       db: cju([]),
       kicadPcb: pcbFile ? parseKicadPcb(this.fsMap[pcbFile]!) : undefined,
+      kicadProject: projectFile
+        ? JSON.parse(this.fsMap[projectFile]!)
+        : undefined,
       kicadSch: schFile ? parseKicadSch(this.fsMap[schFile]!) : undefined,
       kicadSymbolLib: symbolLibFile
         ? parseKicadSym(this.fsMap[symbolLibFile]!)
@@ -95,6 +100,7 @@ export class KicadToCircuitJsonConverter {
         new CollectViasStage(this.ctx),
         new CollectZonesStage(this.ctx),
         new CollectGraphicsStage(this.ctx),
+        new CollectProjectDesignRulesStage(this.ctx),
       )
     }
   }
