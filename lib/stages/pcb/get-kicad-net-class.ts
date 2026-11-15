@@ -122,3 +122,47 @@ export function getKicadNetClasses({
     ...defaultNetClasses,
   ]
 }
+
+/**
+ * Returns the width KiCad routes a net at, from the net classes that
+ * getKicadNetClasses returns for it.
+ *
+ * KiCad turns every net class into two implicit design rules
+ * (DRC_ENGINE::loadImplicitRules): "netclass" sets the track width of the
+ * class, and "netclass (diff pair)" sets its differential pair width for the
+ * nets of the class that are in a differential pair. The second rule is
+ * evaluated last and overrides the first.
+ *
+ * - KiCad 6 to 8 only make the diff pair rule for the class of the net
+ *   itself, and only when its differential pair width is not zero.
+ * - KiCad 9+ take the differential pair width from the first class of the
+ *   net that sets one, like the track width.
+ */
+export function getKicadNetTraceWidth({
+  netSettings,
+  netClasses,
+  isDifferentialPairNet,
+}: {
+  netSettings: KicadNetSettings
+  netClasses: KicadNetClass[]
+  isDifferentialPairNet: boolean
+}): number | undefined {
+  if (isDifferentialPairNet) {
+    const schemaVersion = netSettings.meta?.version ?? 0
+    const diffPairNetClasses =
+      schemaVersion < 4 ? netClasses.slice(0, 1) : netClasses
+    const diffPairWidth = diffPairNetClasses.find(
+      (netClass) => typeof netClass.diff_pair_width === "number",
+    )?.diff_pair_width
+    if (diffPairWidth !== undefined && diffPairWidth > 0) return diffPairWidth
+  }
+
+  // KiCad 9+ classes may leave the track width unset, which defers to the
+  // next class of the net.
+  const trackWidth = netClasses.find(
+    (netClass) => typeof netClass.track_width === "number",
+  )?.track_width
+  if (trackWidth === undefined || trackWidth <= 0) return undefined
+
+  return trackWidth
+}

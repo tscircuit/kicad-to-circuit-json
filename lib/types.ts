@@ -10,6 +10,8 @@ export interface KicadNetClass {
   priority?: number
   /** KiCad 9+ omits the track width of a class that does not set one. */
   track_width?: number
+  /** Track width of a net that is one side of a differential pair. */
+  diff_pair_width?: number
   /** KiCad 6 lists the member nets inside the class. */
   nets?: string[]
 }

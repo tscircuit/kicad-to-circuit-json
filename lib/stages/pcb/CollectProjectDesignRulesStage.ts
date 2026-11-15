@@ -1,7 +1,9 @@
 import type { ManufacturingDrcProperties } from "circuit-json"
 import { ConverterStage } from "../../types"
+import { isKicadDifferentialPairNet } from "./get-kicad-differential-pair-partner-name"
 import {
   getKicadNetClasses,
+  getKicadNetTraceWidth,
   isNetClassRegexSupported,
 } from "./get-kicad-net-class"
 
@@ -39,7 +41,8 @@ const PCB_BOARD_FIELDS_BY_KICAD_RULE = {
  * CollectProjectDesignRulesStage imports the design rules that KiCad 6+ keeps
  * in the project file (.kicad_pro) instead of the board file:
  * - Board Setup > Constraints → pcb_board min_* rules
- * - Net class track widths → source_net.trace_width
+ * - Net class track widths, and differential pair widths for the nets of a
+ *   differential pair → source_net.trace_width
  */
 export class CollectProjectDesignRulesStage extends ConverterStage {
   step(): boolean {
@@ -79,17 +82,20 @@ export class CollectProjectDesignRulesStage extends ConverterStage {
       )
     }
 
+    const kicadNetNames = new Set(this.ctx.netNumToKicadNetName?.values())
     for (const [netKey, sourceNetId] of this.ctx.netNumToSourceNetId) {
       const kicadNetName = this.ctx.netNumToKicadNetName?.get(netKey)
       if (!kicadNetName) continue
 
-      // KiCad 9+ classes may leave the track width unset, which defers to the
-      // next class of the net.
-      const netClasses = getKicadNetClasses({ netSettings, kicadNetName })
-      const traceWidth = netClasses.find(
-        (netClass) => typeof netClass.track_width === "number",
-      )?.track_width
-      if (traceWidth === undefined || traceWidth <= 0) continue
+      const traceWidth = getKicadNetTraceWidth({
+        netSettings,
+        netClasses: getKicadNetClasses({ netSettings, kicadNetName }),
+        isDifferentialPairNet: isKicadDifferentialPairNet({
+          kicadNetName,
+          kicadNetNames,
+        }),
+      })
+      if (traceWidth === undefined) continue
 
       this.ctx.db.source_net.update(sourceNetId, { trace_width: traceWidth })
     }
