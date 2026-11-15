@@ -2,6 +2,8 @@ import type { PcbComponentMetadata } from "circuit-json"
 import type { Footprint } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext, FootprintPlacement } from "../../../types"
+import { createSourceComponentData } from "../../../utils/create-source-component-data"
+import { findSchematicSourceComponent } from "../../../utils/find-schematic-source-component"
 import {
   findFootprintPropertyValue,
   getFootprintReference,
@@ -49,58 +51,45 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
   )?.trim()
 
   if (manufacturer) {
-    ;(ctx.warnings ??= []).push(
+    ctx.warnings ??= []
+    ctx.warnings.push(
       `Footprint ${refdes || uuid}: Manufacturer ${JSON.stringify(manufacturer)} is not supported by Circuit JSON and was not imported.`,
     )
   }
 
   // Infer component type from reference prefix
+  const schematicSourceComponent = findSchematicSourceComponent(ctx, {
+    symbolUuid: footprint.path?.value.split("/").filter(Boolean).at(-1),
+    reference: refdes,
+  })
   const ftype = inferComponentType(refdes, footprint)
 
   // Create source_component with type-specific properties
-  const sourceComponentData: any = {
+  const sourceComponentData = createSourceComponentData({
     name: refdes ?? "",
-    ftype: ftype,
-    ...(value ? { display_value: value } : {}),
+    ftype,
+    value,
+    manufacturerPartNumber,
+    transistorType: inferTransistorTypeFromFootprint(footprint, value),
+  })
+
+  const assemblyProperties = {
     ...(manufacturerPartNumber
       ? { manufacturer_part_number: manufacturerPartNumber }
       : {}),
+    ...(jlcpcbPartNumbers
+      ? { supplier_part_numbers: { jlcpcb: jlcpcbPartNumbers } }
+      : {}),
   }
-
-  // For simple transistors, we must provide a transistor_type
-  if (ftype === "simple_transistor") {
-    sourceComponentData.transistor_type = inferTransistorTypeFromFootprint(
-      footprint,
-      value,
-    )
-  }
-
-  if (jlcpcbPartNumbers) {
-    sourceComponentData.supplier_part_numbers = {
-      jlcpcb: jlcpcbPartNumbers,
-    }
-  }
-
-  // Add type-specific value properties based on ftype
-  if (value) {
-    // Sanitize value: replace comma with dot for numeric parsing (e.g., "5,1K" -> "5.1K")
-    const sanitizedValue = value.replace(/,/g, ".")
-
-    switch (ftype) {
-      case "simple_resistor":
-        sourceComponentData.resistance = sanitizedValue
-        break
-      case "simple_capacitor":
-        sourceComponentData.capacitance = sanitizedValue
-        break
-      case "simple_inductor":
-        sourceComponentData.inductance = sanitizedValue
-        break
-      // For other types (chips, diodes, transistors, etc.), don't add value properties
-    }
-  }
-
-  const sourceComponent = ctx.db.source_component.insert(sourceComponentData)
+  const sourceComponent = schematicSourceComponent
+    ? ctx.db.source_component.update(
+        schematicSourceComponent.source_component_id,
+        assemblyProperties,
+      )
+    : ctx.db.source_component.insert({
+        ...sourceComponentData,
+        ...assemblyProperties,
+      })
 
   const sourceComponentId = sourceComponent.source_component_id
   const footprintMetadata = getFootprintMetadata(footprint)

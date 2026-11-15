@@ -1,6 +1,9 @@
 import type { SchematicSymbol } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import { createSourceComponentData } from "../../utils/create-source-component-data"
+import { findSchematicSourceComponent } from "../../utils/find-schematic-source-component"
+import { getOrCreateSourcePort } from "../../utils/get-or-create-source-port"
 import {
   getSourcePortNameFromKicadText,
   parseKicadOverlineText,
@@ -62,12 +65,6 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     // Infer component type from library id
     const ftype = this.inferFtype(libId, reference)
 
-    const sourceComponent = this.ctx.db.source_component.insert({
-      name: libId || reference,
-      ftype,
-      manufacturer_part_number: value || undefined,
-    })
-
     // Create schematic_component
     const uuid = symbol.uuid
     if (!uuid) return
@@ -76,6 +73,27 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
       (librarySymbol) => librarySymbol.libraryId === libId,
     )
+    const pinCount = libSymbol
+      ? new Set(
+          [libSymbol, ...libSymbol.subSymbols].flatMap((part) =>
+            part.pins.map((pin) => pin.numberString),
+          ),
+        ).size
+      : undefined
+    const sourceComponent =
+      findSchematicSourceComponent(this.ctx, { reference }) ??
+      this.ctx.db.source_component.insert(
+        createSourceComponentData({
+          name: libId || reference,
+          ftype,
+          value: value || undefined,
+          manufacturerPartNumber:
+            this.getProperty(symbol, "MPN") ||
+            this.getProperty(symbol, "Manufacturer Part Number") ||
+            undefined,
+          pinCount,
+        }),
+      )
 
     const inserted = this.ctx.db.schematic_component.insert({
       source_component_id: sourceComponent.source_component_id,
@@ -172,17 +190,14 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
         x: portCenter.x - innerPoint.x,
         y: portCenter.y - innerPoint.y,
       })
-      const sourcePort = this.ctx.db.source_port.insert({
-        source_component_id: sourceComponentId,
-        ...(pin.pinElectricalType === "no_connect"
-          ? { do_not_connect: true }
-          : {}),
+      const sourcePort = getOrCreateSourcePort({
+        db: this.ctx.db,
+        sourceComponentId,
+        pinNumber: pinNumberText,
+        doNotConnect: pin.pinElectricalType === "no_connect",
         name:
           (pin.name ? getSourcePortNameFromKicadText(pin.name) : undefined) ||
           (/^\d+$/.test(pinNumberText) ? `pin${pinNumberText}` : pinNumberText),
-        ...(/^\d+$/.test(pinNumberText)
-          ? { pin_number: Number(pinNumberText) }
-          : { port_hints: pinNumberText ? [pinNumberText] : [] }),
       })
 
       const sideOfComponent: "top" | "bottom" | "left" | "right" =

@@ -3,6 +3,7 @@ import { execFileSync } from "node:child_process"
 import { copyFileSync, existsSync, mkdtempSync, readFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import path from "node:path"
+import { getSourcePortPinNumber } from "../../lib/utils/get-or-create-source-port"
 
 interface Ipc2581Primitive {
   shape: "circle" | "oval" | "rect"
@@ -381,7 +382,7 @@ function getCircuitPorts(circuitJson: any[]) {
 
     nodeKeyBySourcePortId.set(
       sourcePort.source_port_id,
-      getNodeKey(componentName, String(sourcePort.pin_number)),
+      getNodeKey(componentName, getSourcePortPinNumber(sourcePort) ?? ""),
     )
   }
 

@@ -25,6 +25,7 @@ import type {
   FootprintPlacement,
   Point,
 } from "../../../types"
+import { getOrCreateSourcePort } from "../../../utils/get-or-create-source-port"
 import {
   getCopperSpanLayerRefsFromLayers,
   getLayerRefsFromLayers,
@@ -45,7 +46,7 @@ import { orderOverlappingFootprintPads } from "./order-overlapping-footprint-pad
 import { getNextPcbPlatedHoleId, getNextPcbSmtPadId } from "./pad-element-ids"
 import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
 import { rotatePoint } from "./process-graphics"
-import { createPcbPort, type PadPortInfo } from "./process-ports"
+import { createPcbPort } from "./process-ports"
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -152,6 +153,7 @@ export function processPad({
   let sourcePortId: string | undefined
   if (padNumber && shouldCreatePorts) {
     sourcePortId = getSourcePortIdForPad({
+      ctx,
       componentId,
       footprint,
       pad,
@@ -163,21 +165,26 @@ export function processPad({
           ? copperLayers
           : []
 
-    const padPortInfo: PadPortInfo = {
-      padNumber,
-      sourcePortId,
-      padType,
-      layers: padLayers,
-      position: globalPos,
+    if (padLayers.length === 0) {
+      sourcePortId = undefined
+    } else {
+      const sourceComponentId =
+        ctx.db.pcb_component.get(componentId)!.source_component_id
+      const sourcePort = getOrCreateSourcePort({
+        db: ctx.db,
+        sourceComponentId,
+        sourcePortId,
+        pinNumber: padNumber,
+        name: /^\d+$/.test(padNumber) ? `pin${Number(padNumber)}` : padNumber,
+        doNotConnect: pad.pintype?.split("+").includes("no_connect"),
+      })
+      sourcePortId = sourcePort.source_port_id
+      pcbPortId = createPcbPort({
+        ctx,
+        componentId,
+        padInfo: { sourcePortId, layers: padLayers, position: globalPos },
+      })
     }
-
-    pcbPortId = createPcbPort({
-      ctx,
-      componentId,
-      padInfo: padPortInfo,
-    })
-
-    if (!pcbPortId) sourcePortId = undefined
   }
 
   // Determine pad type and create appropriate CJ element
@@ -591,7 +598,8 @@ export function createSmdPad({
           x: size.x + Math.abs(deltaY),
           y: size.y + Math.abs(deltaX),
         }
-        ;(ctx.warnings ??= []).push(
+        ctx.warnings ??= []
+        ctx.warnings.push(
           `Trapezoid pad ${pad.number} on ${componentId} has nonzero rect_delta; using its conservative rotated rectangle envelope`,
         )
       }
@@ -859,9 +867,8 @@ export function createNpthHole(params: {
 }) {
   const { ctx, componentId, pos, drill, ccwRotationDegrees } = params
   if (drill?.oval) {
-    ctx.db.insert({
-      type: "pcb_hole",
-      hole_shape: "rotated_pill",
+    const hole = {
+      hole_shape: "rotated_pill" as const,
       pcb_component_id: componentId,
       x: pos.x,
       y: pos.y,
@@ -869,7 +876,8 @@ export function createNpthHole(params: {
       hole_height: drill.width ?? drill.diameter,
       // KiCad pad angles are already absolute board angles, including on B.Cu.
       ccw_rotation: ccwRotationDegrees,
-    })
+    }
+    ctx.db.pcb_hole.insert(hole)
     return
   }
   const holeDiameter = drill?.diameter ?? 1

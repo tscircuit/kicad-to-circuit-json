@@ -102,10 +102,11 @@ test("pcb source ports preserve nonnumeric pad names as local aliases", () => {
   const j2R = sourcePorts.find(
     (port) =>
       port.source_component_id === j2.source_component_id &&
-      port.pin_number === "R",
+      port.port_hints?.includes("R"),
   )
   expect(j2R).toBeDefined()
   expect(j2R.name).toBe("R")
+  expect(j2R.pin_number).toBeUndefined()
 })
 
 test("duplicate pad labels on different nets use distinct source ports", () => {
@@ -131,7 +132,7 @@ test("duplicate pad labels on different nets use distinct source ports", () => {
     const mpPorts = sourcePorts.filter(
       (sourcePort) =>
         sourcePort.source_component_id === component.source_component_id &&
-        sourcePort.pin_number === "MP",
+        sourcePort.port_hints?.includes("MP"),
     )
     expect(mpPorts).toHaveLength(2)
     expect(new Set(mpPorts.map((port) => port.source_port_id)).size).toBe(2)

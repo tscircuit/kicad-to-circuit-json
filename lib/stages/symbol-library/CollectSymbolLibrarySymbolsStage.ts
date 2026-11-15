@@ -9,16 +9,6 @@ import type {
   SchematicPort,
   SchematicRect,
   SchematicText,
-  SourcePort,
-  SourceSimpleCapacitor,
-  SourceSimpleChip,
-  SourceSimpleDiode,
-  SourceSimpleInductor,
-  SourceSimpleLed,
-  SourceSimplePinHeader,
-  SourceSimpleResistor,
-  SourceSimpleTestPoint,
-  SourceSimpleTransistor,
 } from "circuit-json"
 import type {
   SchematicSymbol as KicadSchematicSymbol,
@@ -38,6 +28,8 @@ import {
   translate,
 } from "transformation-matrix"
 import { ConverterStage } from "../../types"
+import { createSourceComponentData } from "../../utils/create-source-component-data"
+import { getOrCreateSourcePort } from "../../utils/get-or-create-source-port"
 import {
   getSourcePortNameFromKicadText,
   type ParsedKicadTextPart,
@@ -68,18 +60,7 @@ const PREVIEW_CELL_FILL_RATIO = 0.95
 const DEFAULT_STROKE_COLOR = "rgb(132, 0, 0)"
 const DEFAULT_FILL_COLOR = "rgb(255, 255, 194)"
 
-type SymbolLibrarySourceComponentData =
-  | Omit<SourceSimpleResistor, "type" | "source_component_id">
-  | Omit<SourceSimpleCapacitor, "type" | "source_component_id">
-  | Omit<SourceSimpleInductor, "type" | "source_component_id">
-  | Omit<SourceSimpleLed, "type" | "source_component_id">
-  | Omit<SourceSimpleDiode, "type" | "source_component_id">
-  | Omit<SourceSimpleTransistor, "type" | "source_component_id">
-  | Omit<SourceSimplePinHeader, "type" | "source_component_id">
-  | Omit<SourceSimpleTestPoint, "type" | "source_component_id">
-  | Omit<SourceSimpleChip, "type" | "source_component_id">
 type SymbolLibrarySourceFtype = SupportedSourceComponentFtype
-type SourcePortData = Omit<SourcePort, "type" | "source_port_id">
 type SchematicComponentData = Omit<
   SchematicComponent,
   "type" | "schematic_component_id"
@@ -161,12 +142,13 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       if (seenPinNumbers.has(pinNumber)) continue
       seenPinNumbers.add(pinNumber)
 
-      const sourcePortData: SourcePortData = {
-        source_component_id: sourceComponent.source_component_id,
+      const sourcePort = getOrCreateSourcePort({
+        db: this.ctx.db,
+        sourceComponentId: sourceComponent.source_component_id,
+        pinNumber,
         name: this.getPortName(pin, pinNumber),
-        ...this.getSourcePortPinMetadata(pinNumber),
-      }
-      const sourcePort = this.ctx.db.source_port.insert(sourcePortData)
+        doNotConnect: pin.pinElectricalType === "no_connect",
+      })
       sourcePortIdByPinNumber.set(pinNumber, sourcePort.source_port_id)
     }
 
@@ -790,41 +772,14 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
   private createSourceComponentData(
     symbol: KicadSchematicSymbol,
     pins: SymbolPin[],
-  ): SymbolLibrarySourceComponentData {
-    const base = {
+  ) {
+    return createSourceComponentData({
       name: this.getSymbolName(symbol),
-      manufacturer_part_number: this.getManufacturerPartNumber(symbol),
-    }
-    const ftype = this.inferFtype(symbol)
-
-    switch (ftype) {
-      case "simple_resistor":
-        return { ...base, ftype, resistance: 0 }
-      case "simple_capacitor":
-        return { ...base, ftype, capacitance: 0 }
-      case "simple_inductor":
-        return { ...base, ftype, inductance: 0 }
-      case "simple_transistor":
-        return { ...base, ftype, transistor_type: "npn" }
-      case "simple_pin_header":
-        return {
-          ...base,
-          ftype,
-          pin_count:
-            this.getUniquePinCount(pins) ||
-            this.inferPinHeaderPinCountFromName(symbol) ||
-            1,
-          gender: this.inferPinHeaderGender(symbol),
-        }
-      case "simple_test_point":
-      case "simple_led":
-      case "simple_diode":
-      case "simple_chip":
-        return { ...base, ftype }
-    }
-
-    const exhaustiveCheck: never = ftype
-    throw new Error(`Unsupported source component ftype: ${exhaustiveCheck}`)
+      manufacturerPartNumber: this.getManufacturerPartNumber(symbol),
+      ftype: this.inferFtype(symbol),
+      pinCount: this.getUniquePinCount(pins),
+      gender: this.inferPinHeaderGender(symbol),
+    })
   }
 
   private inferFtype(symbol: KicadSchematicSymbol): SymbolLibrarySourceFtype {
@@ -872,37 +827,10 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     return "male"
   }
 
-  private inferPinHeaderPinCountFromName(
-    symbol: KicadSchematicSymbol,
-  ): number | undefined {
-    const name = this.getSymbolName(symbol)
-    if (!name) return undefined
-
-    const match = name.match(/(?:pin(?:header|socket)|conn)_(\d+)x(\d+)/i)
-    if (!match) return undefined
-
-    const rows = Number.parseInt(match[1]!, 10)
-    const columns = Number.parseInt(match[2]!, 10)
-
-    if (!Number.isFinite(rows) || !Number.isFinite(columns)) return undefined
-
-    return rows * columns
-  }
-
   private getPortName(pin: SymbolPin, pinNumber: string): string {
     if (pin.name) return getSourcePortNameFromKicadText(pin.name)
     if (/^\d+$/.test(pinNumber)) return `pin${Number(pinNumber)}`
     return pinNumber
-  }
-
-  private getSourcePortPinMetadata(
-    pinNumber: string,
-  ): Partial<Pick<SourcePortData, "pin_number" | "port_hints">> {
-    if (/^\d+$/.test(pinNumber)) {
-      return { pin_number: Number(pinNumber) }
-    }
-
-    return { port_hints: [pinNumber] }
   }
 
   private getSchematicPortPinMetadata(params: {

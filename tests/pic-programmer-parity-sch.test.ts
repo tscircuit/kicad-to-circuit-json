@@ -111,7 +111,7 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
   const sourceNets = circuitJson.filter(
     (element) => element.type === "source_net",
   )
-  expect(sourceNets).toHaveLength(7)
+  expect(sourceNets).toHaveLength(9)
   expect(new Set(sourceNets.map((sourceNet) => sourceNet.name))).toEqual(
     new Set([
       "DATA-RB7",
@@ -121,6 +121,8 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
       "VPP/MCLR",
       "VPP_ON",
       "PC-CLOCK-OUT",
+      "GND",
+      "VCC",
     ]),
   )
   const localLabelTexts = schematicTexts.filter(
@@ -131,7 +133,11 @@ test("kicad-to-circuit-json: pic_programmer schematic", async () => {
   expect(localLabelTexts).toHaveLength(10)
   expect(localLabelTexts.every((label) => label.rotation === 0)).toBe(true)
   expect(new Set(localLabelTexts.map((label) => label.text))).toEqual(
-    new Set(sourceNets.map((sourceNet) => sourceNet.name)),
+    new Set(
+      sourceNets
+        .map((sourceNet) => sourceNet.name)
+        .filter((name) => name !== "GND" && name !== "VCC"),
+    ),
   )
   expect(
     circuitJson.filter(
