@@ -10,8 +10,9 @@ import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import { approximateArcPoints } from "./arc-utils"
 import {
+  extractKicadLayerNames,
   getLayerRefsFromLayers,
-  mapKicadLayerToLayerRef,
+  mapKicadLayerNameToLayerRef,
 } from "./layer-mapping"
 import { getKicadNetKey } from "./net-utils"
 
@@ -53,6 +54,15 @@ export class CollectZonesStage extends ConverterStage {
 
   private createCopperPourFromZone(zone: Zone) {
     if (!this.ctx.k2cMatPcb || !this.ctx.netNumToName) return
+
+    // A zone on a technical layer, such as a solder mask opening on F.Mask,
+    // has no copper.
+    if (this.getZoneLayers(zone).length === 0) {
+      this.ctx.warnings?.push(
+        `Zone on layer ${this.getZoneLayerLabel(zone)} is not on a copper layer and was not imported as a copper pour`,
+      )
+      return
+    }
 
     const polygonRecords = this.getZonePolygonRecords(zone)
     if (polygonRecords.length === 0) {
@@ -127,7 +137,7 @@ export class CollectZonesStage extends ConverterStage {
 
   private getPolygonLayers(zone: Zone, polygon: ZoneFilledPolygon): LayerRef[] {
     if (polygon.layer) {
-      return [mapKicadLayerToLayerRef(polygon.layer)]
+      return this.getCopperLayerRefs(polygon.layer)
     }
 
     return this.getZoneLayers(zone)
@@ -135,7 +145,7 @@ export class CollectZonesStage extends ConverterStage {
 
   private getZoneLayers(zone: Zone): LayerRef[] {
     if (zone.layer) {
-      return [mapKicadLayerToLayerRef(zone.layer)]
+      return this.getCopperLayerRefs(zone.layer)
     }
 
     if (zone.layers) {
@@ -146,6 +156,13 @@ export class CollectZonesStage extends ConverterStage {
     }
 
     return []
+  }
+
+  /** The copper layers among the KiCad layers of a zone or of its fill. */
+  private getCopperLayerRefs(layer: unknown): LayerRef[] {
+    return extractKicadLayerNames(layer)
+      .map((layerName) => mapKicadLayerNameToLayerRef(layerName))
+      .filter((layerRef): layerRef is LayerRef => layerRef !== undefined)
   }
 
   private getZoneLayerLabel(zone: Zone): string {

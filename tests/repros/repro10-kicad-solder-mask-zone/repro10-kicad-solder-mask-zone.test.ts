@@ -71,7 +71,7 @@ test("repro10: snapshots KiCad solder mask zones", async () => {
   )
 })
 
-test.failing("repro10: does not import a KiCad solder mask zone as copper", async () => {
+test("repro10: does not import a KiCad solder mask zone as copper", async () => {
   const { importedPourLayers } = await importFixture()
   expect(importedPourLayers).toEqual([])
 })
