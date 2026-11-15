@@ -1,0 +1,47 @@
+(kicad_sch
+  (version 20250114)
+  (generator "eeschema")
+  (uuid "f847a0ec-6905-49b8-a7c8-27f9ed2b5ab7")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "R" (at 2.032 0 90)
+        (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 90)
+        (effects (font (size 1.27 1.27))))
+      (symbol "R_0_1"
+        (rectangle (start -1.016 -2.54) (end 1.016 2.54)
+          (stroke (width 0.254) (type default))
+          (fill (type none))))
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive line (at 0 -3.81 90) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))))))
+  (symbol
+    (lib_id "Device:R")
+    (at 50.8 50.8 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "3a810ad7-e3cb-4854-a156-761aaab9297f")
+    (property "Reference" "R1" (at 53.34 49.53 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "10k" (at 53.34 52.07 0)
+      (effects (font (size 1.27 1.27)) (justify left)))
+    (property "MPN" "RC0603FR-0710KL" (at 50.8 50.8 0)
+      (effects (font (size 1.27 1.27)) (hide yes)))
+    (instances
+      (project "resistor"
+        (path "/f847a0ec-6905-49b8-a7c8-27f9ed2b5ab7"
+          (reference "R1")
+          (unit 1)))))
+  (embedded_fonts no)
+)
