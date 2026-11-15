@@ -122,10 +122,7 @@ test("repro08: snapshots KiCad differential pair trace widths", async () => {
   )
 })
 
-test.failing(
-  "repro08: imports the differential pair width of a KiCad net class",
-  async () => {
-    const { importedTraceWidthByNetName } = await importFixture()
-    expect(importedTraceWidthByNetName).toEqual(expectedTraceWidthByNetName)
-  },
-)
+test.failing("repro08: imports the differential pair width of a KiCad net class", async () => {
+  const { importedTraceWidthByNetName } = await importFixture()
+  expect(importedTraceWidthByNetName).toEqual(expectedTraceWidthByNetName)
+})
