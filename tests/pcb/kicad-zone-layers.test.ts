@@ -26,7 +26,7 @@ function importZone(zoneLayers: string) {
   for (const element of converter.getOutput()) {
     if (element.type === "pcb_copper_pour") pourLayers.push(element.layer)
   }
-  const warnings = converter.ctx.warnings ?? []
+  const warnings = converter.ctx?.warnings ?? []
 
   return { pourLayers: pourLayers.sort(), warnings }
 }
