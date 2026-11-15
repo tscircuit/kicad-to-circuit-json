@@ -12476,7 +12476,7 @@
     "source_component_id": "source_component_20",
     "name": "MK-11C04-G013",
     "manufacturer_part_number": "MK-11C04-G013",
-    "ftype": "simple_chip"
+    "ftype": "simple_switch"
   },
   {
     "type": "source_port",
@@ -14142,7 +14142,7 @@
     "source_component_id": "source_component_28",
     "name": "SW_Push",
     "manufacturer_part_number": "SW_Push",
-    "ftype": "simple_chip"
+    "ftype": "simple_switch"
   },
   {
     "type": "source_port",
@@ -15425,7 +15425,7 @@
     "source_component_id": "source_component_31",
     "name": "TS-1010A-B",
     "manufacturer_part_number": "TS-1010A-B",
-    "ftype": "simple_chip"
+    "ftype": "simple_switch"
   },
   {
     "type": "source_port",
