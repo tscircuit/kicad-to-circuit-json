@@ -55,23 +55,16 @@ export class CollectZonesStage extends ConverterStage {
   private createCopperPourFromZone(zone: Zone) {
     if (!this.ctx.k2cMatPcb || !this.ctx.netNumToName) return
 
-    // A zone on a technical layer, such as a solder mask opening on F.Mask,
-    // has no copper.
-    if (this.getZoneLayers(zone).length === 0) {
-      this.ctx.warnings?.push(
-        `Zone on layer ${this.getZoneLayerLabel(zone)} is not on a copper layer and was not imported as a copper pour`,
-      )
-      return
-    }
-
     const polygonRecords = this.getZonePolygonRecords(zone)
     if (polygonRecords.length === 0) {
-      // No valid polygon found, skip this zone
-      if (this.ctx.warnings) {
-        this.ctx.warnings.push(
-          `Zone on layer ${this.getZoneLayerLabel(zone)} has no valid polygon points`,
-        )
-      }
+      // A zone on a technical layer, such as a solder mask opening on
+      // F.Mask, has no copper. Any other zone here has no usable polygon.
+      const reason = this.isZoneOnCopper(zone)
+        ? "has no valid polygon points"
+        : "is not on a copper layer and was not imported as a copper pour"
+      this.ctx.warnings?.push(
+        `Zone on layer ${this.getZoneLayerLabel(zone)} ${reason}`,
+      )
       return
     }
 
@@ -144,25 +137,29 @@ export class CollectZonesStage extends ConverterStage {
   }
 
   private getZoneLayers(zone: Zone): LayerRef[] {
-    if (zone.layer) {
-      return this.getCopperLayerRefs(zone.layer)
-    }
+    const layers = this.getCopperLayerRefs(zone.layer)
+    if (layers.length > 0) return layers
 
-    if (zone.layers) {
-      const layers = getLayerRefsFromLayers(zone.layers, this.ctx.kicadPcb)
-      if (layers.length > 0) {
-        return layers
-      }
-    }
+    return getLayerRefsFromLayers(zone.layers, this.ctx.kicadPcb)
+  }
 
-    return []
+  private isZoneOnCopper(zone: Zone): boolean {
+    const layerSources = [
+      zone.layer,
+      zone.layers,
+      ...zone.filledPolygons.map((filledPolygon) => filledPolygon.layer),
+    ]
+    return layerSources
+      .flatMap((layerSource) => extractKicadLayerNames(layerSource))
+      .some((layerName) => layerName.endsWith(".Cu"))
   }
 
   /** The copper layers among the KiCad layers of a zone or of its fill. */
   private getCopperLayerRefs(layer: unknown): LayerRef[] {
-    return extractKicadLayerNames(layer)
+    const layerRefs = extractKicadLayerNames(layer)
       .map((layerName) => mapKicadLayerNameToLayerRef(layerName))
       .filter((layerRef): layerRef is LayerRef => layerRef !== undefined)
+    return [...new Set(layerRefs)]
   }
 
   private getZoneLayerLabel(zone: Zone): string {
