@@ -231,7 +231,7 @@ export function approximateCirclePoints(params: {
   return points
 }
 
-function getArcGeometry(params: {
+export function getArcGeometry(params: {
   start: PcbPoint
   mid: PcbPoint
   end: PcbPoint
