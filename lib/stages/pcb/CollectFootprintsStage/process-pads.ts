@@ -859,9 +859,8 @@ export function createNpthHole(params: {
 }) {
   const { ctx, componentId, pos, drill, ccwRotationDegrees } = params
   if (drill?.oval) {
-    ctx.db.insert({
-      type: "pcb_hole",
-      hole_shape: "rotated_pill",
+    const hole = {
+      hole_shape: "rotated_pill" as const,
       pcb_component_id: componentId,
       x: pos.x,
       y: pos.y,
@@ -869,7 +868,8 @@ export function createNpthHole(params: {
       hole_height: drill.width ?? drill.diameter,
       // KiCad pad angles are already absolute board angles, including on B.Cu.
       ccw_rotation: ccwRotationDegrees,
-    })
+    }
+    ctx.db.pcb_hole.insert(hole)
     return
   }
   const holeDiameter = drill?.diameter ?? 1
