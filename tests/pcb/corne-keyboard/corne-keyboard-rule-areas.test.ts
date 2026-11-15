@@ -12,7 +12,7 @@ const svgContents = (svg: string) =>
     .replace(/<\/svg>\s*$/, "")
     .replace(/<title>[\s\S]*?<\/title>/, "")
 
-test("repro4948: Corne Keyboard silently drops 8 rule areas on import", async () => {
+test("repro4948: Corne Keyboard reports all 8 unsupported rule areas on import", async () => {
   const filename = "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb"
   const content = readFileSync(filename, "utf8")
   const source = parseKicadPcb(content)
@@ -40,7 +40,19 @@ test("repro4948: Corne Keyboard silently drops 8 rule areas on import", async ()
   const warnings = converter
     .getWarnings()
     .filter((text) => text.includes("rule area"))
-  expect(warnings).toHaveLength(0)
+  expect(warnings).toHaveLength(areas.length)
+  for (const area of areas) {
+    const warning = warnings.find((message) =>
+      message.includes(area.tstamp!.value),
+    )
+    expect(warning).toContain("on F.Cu")
+    expect(warning).toContain("tracks=allowed, vias=allowed, pads=allowed")
+    expect(warning).toContain("copperpour=not_allowed")
+    expect(warning).toContain(`footprints=${area.keepout!.footprints}`)
+    expect(warning).toContain(
+      "Recreate this rule area before routing or refilling copper",
+    )
+  }
 
   const board = circuitJson.find((item) => item.type === "pcb_board")
   const component = circuitJson.find((item) => item.type === "pcb_component")
