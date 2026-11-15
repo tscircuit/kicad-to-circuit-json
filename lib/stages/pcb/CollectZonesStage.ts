@@ -71,6 +71,12 @@ export class CollectZonesStage extends ConverterStage {
     if (netKey !== null) {
       netName = this.ctx.netNumToName!.get(netKey) || netName
     }
+    // The source net of the zone's net, which connects the pour to the pads,
+    // traces and vias of that net. Net 0 is KiCad's "no net".
+    const sourceNetId =
+      netKey !== null && netKey !== 0
+        ? this.ctx.netNumToSourceNetId?.get(netKey)
+        : undefined
 
     // Create a copper pour for each filled polygon
     for (const polygonRecord of polygonRecords) {
@@ -83,6 +89,7 @@ export class CollectZonesStage extends ConverterStage {
       this.ctx.db.pcb_copper_pour.insert({
         layer: polygonRecord.layer,
         net_name: netName,
+        source_net_id: sourceNetId,
         points: transformedPoints,
         shape: "polygon",
       } as any)

@@ -81,7 +81,7 @@ test("repro09: snapshots the net of a KiCad zone", async () => {
   await expect(snapshot).toMatchSvgSnapshot(import.meta.path, "zone-net")
 })
 
-test.failing("repro09: connects a KiCad zone to the source net it is on", async () => {
+test("repro09: connects a KiCad zone to the source net it is on", async () => {
   const { importedPourNetNames } = await importFixture()
   expect(importedPourNetNames).toEqual(expectedPourNetNames)
 })
