@@ -92,6 +92,9 @@ export class CollectZonesStage extends ConverterStage {
         source_net_id: sourceNetId,
         points: transformedPoints,
         shape: "polygon",
+        ...(zone.connectPads?.clearance !== undefined
+          ? { clearance: zone.connectPads.clearance }
+          : {}),
       } as any)
 
       // Update stats if available
