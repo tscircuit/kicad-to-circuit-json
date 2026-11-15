@@ -28,7 +28,7 @@ export function getPropertyValue(
 }
 
 /**
- * Substitutes KiCad variables (e.g., ${REFERENCE}, ${VALUE}) in text with actual values
+ * Replaces KiCad variables (${REFERENCE}, %R, ${VALUE}, %V) in footprint text
  */
 export function substituteKicadVariables(
   text: string,
@@ -48,7 +48,9 @@ export function substituteKicadVariables(
 
   // Replace KiCad variables
   result = result.replace(/\$\{REFERENCE\}/g, reference)
+  result = result.replace(/%R(?![A-Za-z0-9_])/g, reference)
   result = result.replace(/\$\{VALUE\}/g, value)
+  result = result.replace(/%V(?![A-Za-z0-9_])/g, value)
 
   return result
 }
