@@ -12,7 +12,7 @@ const svgContents = (svg: string) =>
     .replace(/<\/svg>\s*$/, "")
     .replace(/<title>[\s\S]*?<\/title>/, "")
 
-test("repro4948: Corne Keyboard preserves circular copper pads but loses 20 plated slots on import", async () => {
+test("repro4948: Corne Keyboard preserves circular copper pads and all 20 plated slots on import", async () => {
   const content = readFileSync(
     "tests/assets/corne-keyboard/corne-keyboard.kicad_pcb",
     "utf8",
@@ -87,9 +87,12 @@ test("repro4948: Corne Keyboard preserves circular copper pads but loses 20 plat
       )
       expect(hole.layers).toEqual(["top", "bottom"])
       expect(hole).toMatchObject({
-        shape: "circle",
-        hole_diameter: 1,
-        outer_diameter: 1.2,
+        shape: "pill",
+        hole_width: pad.drill!.diameter,
+        hole_height: pad.drill!.width,
+        outer_width: pad.size!.width,
+        outer_height: pad.size!.height,
+        ccw_rotation: pad.at?.angle ?? 0,
       })
       const port = ports.find((item) => item.pcb_port_id === hole.pcb_port_id)!
       const connectedNets = traces
@@ -115,7 +118,7 @@ test("repro4948: Corne Keyboard preserves circular copper pads but loses 20 plat
     "rEXSW2",
   ])
   const preservedSlots = slots.filter(({ hole }) => hole.shape === "pill")
-  expect(preservedSlots).toHaveLength(0)
+  expect(preservedSlots).toHaveLength(slots.length)
 
   const sample = slots.find(
     ({ reference, pad }) => reference === "EXSW1" && pad.number === "C",
