@@ -9,11 +9,7 @@ import {
 import { applyToPoint } from "transformation-matrix"
 import { ConverterStage } from "../../types"
 import { approximateArcPoints } from "./arc-utils"
-import {
-  extractKicadLayerNames,
-  getLayerRefsFromLayers,
-  mapKicadLayerNameToLayerRef,
-} from "./layer-mapping"
+import { extractKicadLayerNames, getLayerRefsFromLayers } from "./layer-mapping"
 import { getKicadNetKey } from "./net-utils"
 
 type KicadPoint = { x: number; y: number }
@@ -137,10 +133,7 @@ export class CollectZonesStage extends ConverterStage {
   }
 
   private getZoneLayers(zone: Zone): LayerRef[] {
-    const layers = this.getCopperLayerRefs(zone.layer)
-    if (layers.length > 0) return layers
-
-    return getLayerRefsFromLayers(zone.layers, this.ctx.kicadPcb)
+    return this.getCopperLayerRefs(zone.layer ?? zone.layers)
   }
 
   private isZoneOnCopper(zone: Zone): boolean {
@@ -149,17 +142,21 @@ export class CollectZonesStage extends ConverterStage {
       zone.layers,
       ...zone.filledPolygons.map((filledPolygon) => filledPolygon.layer),
     ]
-    return layerSources
-      .flatMap((layerSource) => extractKicadLayerNames(layerSource))
-      .some((layerName) => layerName.endsWith(".Cu"))
+    return layerSources.some(
+      (layerSource) => this.getCopperLayerRefs(layerSource).length > 0,
+    )
   }
 
-  /** The copper layers among the KiCad layers of a zone or of its fill. */
+  /**
+   * The copper layers that the KiCad layers of a zone or of its fill name.
+   * "*.Cu" is every copper layer of the board and the legacy "F&B.Cu" is
+   * both outer layers; a technical layer such as F.Mask is none.
+   */
   private getCopperLayerRefs(layer: unknown): LayerRef[] {
-    const layerRefs = extractKicadLayerNames(layer)
-      .map((layerName) => mapKicadLayerNameToLayerRef(layerName))
-      .filter((layerRef): layerRef is LayerRef => layerRef !== undefined)
-    return [...new Set(layerRefs)]
+    const layerNames = extractKicadLayerNames(layer).flatMap((layerName) =>
+      layerName === "F&B.Cu" ? ["F.Cu", "B.Cu"] : [layerName],
+    )
+    return getLayerRefsFromLayers(layerNames, this.ctx.kicadPcb)
   }
 
   private getZoneLayerLabel(zone: Zone): string {
