@@ -11,6 +11,8 @@
     "dist"
   ],
   "scripts": {
+    "test:fuzz": "bun test tests/fuzz",
+    "test:fuzz:kicad": "FUZZ_KICAD=1 bun test tests/fuzz/kicad-differential.fuzz.test.ts",
     "build": "bun run build:lib",
     "build:lib": "tsup-node lib/index.ts --format esm --dts",
     "build:site": "vite build --config vite.config.ts",
@@ -25,7 +27,8 @@
     "vercel-build": "bun run build:site"
   },
   "devDependencies": {
-    "circuit-to-svg": "0.0.370",
+    "fast-check": "4.10.0",
+    "circuit-json": "0.0.446",
     "@biomejs/biome": "^2.2.7",
     "@flatten-js/core": "^1.6.12",
     "@napi-rs/canvas": "^0.1.88",
@@ -49,7 +52,8 @@
     "tsup": "^8.5.0",
     "vercel": "^50.42.0",
     "vite": "^8.0.8",
-    "schematic-symbols": "^0.0.231"
+    "schematic-symbols": "^0.0.231",
+    "circuit-to-svg": "0.0.370"
   },
   "peerDependencies": {
     "typescript": "^5"

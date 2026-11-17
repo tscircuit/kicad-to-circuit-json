@@ -3,14 +3,14 @@
   "title": "Standalone footprint: terminal link",
   "description": "A numbered physical pad needs a logical source port.",
   "kind": "reference",
-  "passing": false,
+  "passing": true,
   "expected": "Reference resolves",
-  "actual": "Dangling reference",
+  "actual": "Reference resolves",
   "detail": "Logical nets: 0   |   Logical traces: 0",
   "values": {
     "pcbPortId": "pcb_port_0",
     "sourcePortId": "pcb_component_0_port_1",
-    "sourceExists": false,
+    "sourceExists": true,
     "nets": 0,
     "traces": 0
   }

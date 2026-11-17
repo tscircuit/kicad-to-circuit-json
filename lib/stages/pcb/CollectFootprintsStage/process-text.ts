@@ -286,7 +286,6 @@ export function createGraphicText(params: {
   if (renderLayer.endsWith("_fabrication_note")) {
     ctx.db.pcb_fabrication_note_text.insert({
       type: "pcb_fabrication_note_text",
-      pcb_fabrication_note_text_id: "",
       pcb_component_id: componentId,
       font: "tscircuit2024",
       font_size: fontSize,

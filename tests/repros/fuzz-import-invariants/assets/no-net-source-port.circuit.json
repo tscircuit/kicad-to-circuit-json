@@ -57,5 +57,12 @@
     },
     "anchor_alignment": "center",
     "layer": "top"
+  },
+  {
+    "type": "source_port",
+    "source_port_id": "pcb_component_0_port_1",
+    "source_component_id": "source_component_0",
+    "name": "pin1",
+    "pin_number": 1
   }
 ]
