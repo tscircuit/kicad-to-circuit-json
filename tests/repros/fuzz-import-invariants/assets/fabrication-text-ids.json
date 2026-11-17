@@ -1,0 +1,20 @@
+{
+  "name": "fabrication-text-ids",
+  "title": "Fabrication text: element identity",
+  "kind": "ids",
+  "description": "Two distinct text elements need distinct, nonempty IDs.",
+  "passing": false,
+  "expected": "Two unique IDs",
+  "actual": "Empty / duplicate IDs",
+  "detail": "The strings below are the actual primary IDs emitted by the importer.",
+  "values": {
+    "ids": [
+      "",
+      ""
+    ],
+    "text": [
+      "Fabrication note A",
+      "Fabrication note B"
+    ]
+  }
+}

@@ -25,6 +25,7 @@
     "vercel-build": "bun run build:site"
   },
   "devDependencies": {
+    "circuit-to-svg": "0.0.370",
     "@biomejs/biome": "^2.2.7",
     "@flatten-js/core": "^1.6.12",
     "@napi-rs/canvas": "^0.1.88",
