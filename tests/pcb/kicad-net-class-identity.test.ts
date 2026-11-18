@@ -56,7 +56,7 @@ test("snapshot imported class identities alongside resolved widths", async () =>
   await expect(svg).toMatchSvgSnapshot(import.meta.path, "class-identity")
 })
 
-test.failing("import retains distinct same-width classes, unused classes and ordered assignments", async () => {
+test("import retains distinct same-width classes, unused classes and ordered assignments", async () => {
   const circuitJson = await importClasses()
   const classes = circuitJson.filter(
     (element) => element.type === "source_net_class",
