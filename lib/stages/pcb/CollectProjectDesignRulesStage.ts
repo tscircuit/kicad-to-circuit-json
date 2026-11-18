@@ -1,5 +1,5 @@
-import type { ManufacturingDrcProperties, SourceNetClass } from "circuit-json"
-import { ConverterStage, type KicadNetClass } from "../../types"
+import type { ManufacturingDrcProperties } from "circuit-json"
+import { ConverterStage } from "../../types"
 import {
   getKicadNetClasses,
   isNetClassRegexSupported,
@@ -70,35 +70,16 @@ export class CollectProjectDesignRulesStage extends ConverterStage {
 
   private collectNetTraceWidths() {
     const netSettings = this.ctx.kicadProject?.net_settings
-    if (!netSettings || !this.ctx.netNumToSourceNetId) return
+    if (!netSettings) return
 
-    // Keep definitions independently of their resolved width: unused classes,
-    // inherited widths and distinct classes with equal widths all carry intent.
-    const sourceNetClassIds = new Map<
-      KicadNetClass,
-      SourceNetClass["source_net_class_id"]
-    >()
-    for (const netClass of netSettings.classes ?? []) {
-      if (!netClass.name) continue
-      const traceWidth = netClass.track_width
-      const priority = netClass.priority
-      const sourceNetClass = this.ctx.db.source_net_class.insert({
-        name: netClass.name,
-        trace_width:
-          typeof traceWidth === "number" &&
-          Number.isFinite(traceWidth) &&
-          traceWidth > 0
-            ? traceWidth
-            : undefined,
-        priority:
-          typeof priority === "number" &&
-          Number.isInteger(priority) &&
-          priority >= 0
-            ? priority
-            : undefined,
-      })
-      sourceNetClassIds.set(netClass, sourceNetClass.source_net_class_id)
-    }
+    // Preserve format-specific rules without making them native routing rules.
+    // Keep unused definitions and fields this converter does not interpret.
+    this.ctx.db.source_project_metadata.insert({
+      metadata: {
+        kicad_project: { net_settings: structuredClone(netSettings) },
+      },
+    })
+    if (!this.ctx.netNumToSourceNetId) return
 
     for (const { pattern } of netSettings.netclass_patterns ?? []) {
       if (pattern === undefined || isNetClassRegexSupported(pattern)) continue
@@ -111,16 +92,20 @@ export class CollectProjectDesignRulesStage extends ConverterStage {
       const kicadNetName = this.ctx.netNumToKicadNetName?.get(netKey)
       if (!kicadNetName) continue
 
+      const sourceNet = this.ctx.db.source_net.get(sourceNetId)!
+      this.ctx.db.source_net.update(sourceNetId, {
+        metadata: {
+          ...sourceNet.metadata,
+          kicad_net: {
+            name: kicadNetName,
+            circuit_json_name: sourceNet.name,
+          },
+        },
+      })
+
       // KiCad 9+ classes may leave the track width unset, which defers to the
       // next class of the net.
       const netClasses = getKicadNetClasses({ netSettings, kicadNetName })
-      const source_net_class_ids = netClasses.flatMap((netClass) => {
-        const id = sourceNetClassIds.get(netClass)
-        return id === undefined ? [] : [id]
-      })
-      if (source_net_class_ids.length > 0) {
-        this.ctx.db.source_net.update(sourceNetId, { source_net_class_ids })
-      }
       const traceWidth = netClasses.find(
         (netClass) => typeof netClass.track_width === "number",
       )?.track_width

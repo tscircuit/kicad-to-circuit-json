@@ -60,7 +60,7 @@ test("snapshot imported KiCad metadata alongside native widths", async () => {
   await expect(svg).toMatchSvgSnapshot(import.meta.path, "class-identity")
 })
 
-test.failing("import preserves raw project settings and original names without native classes", async () => {
+test("import preserves raw project settings and original names without native classes", async () => {
   const circuitJson = await importClasses()
   expect(
     circuitJson.find((element) => element.type === "source_project_metadata")

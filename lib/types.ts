@@ -24,7 +24,7 @@ export interface KicadNetClassPattern {
  * 3 is KiCad 7 and 8 (assignments and patterns, one class per net) and 4 or
  * higher is KiCad 9+ (several prioritized classes per net).
  */
-export interface KicadNetSettings {
+export interface KicadNetSettings extends Record<string, unknown> {
   meta?: { version?: number }
   classes?: KicadNetClass[]
   netclass_assignments?: Record<string, string | string[]> | null
