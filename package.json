@@ -38,17 +38,17 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "bun-match-svg": "^0.0.14",
-    "circuit-json": "^0.0.534",
+    "circuit-json": "https://pkg.pr.new/circuit-json@334e0cc5718dc02106a7f6f92214f9484da8e2e9",
     "circuit-json-to-connectivity-map": "^0.0.25",
     "circuit-to-canvas": "^0.0.126",
     "kicadts": "^0.0.64",
     "react": "^19.2.0",
     "react-dom": "^19.2.5",
+    "schematic-symbols": "^0.0.231",
     "tscircuit": "^0.0.2040",
     "tsup": "^8.5.0",
     "vercel": "^50.42.0",
-    "vite": "^8.0.8",
-    "schematic-symbols": "^0.0.231"
+    "vite": "^8.0.8"
   },
   "peerDependencies": {
     "typescript": "^5"
