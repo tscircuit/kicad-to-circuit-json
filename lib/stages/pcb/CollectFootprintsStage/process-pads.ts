@@ -46,6 +46,7 @@ import { getNextPcbPlatedHoleId, getNextPcbSmtPadId } from "./pad-element-ids"
 import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
 import { rotatePoint } from "./process-graphics"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
+import { processSolderPaste } from "./process-solder-paste"
 
 /**
  * Processes all pads in a footprint and creates Circuit JSON pad elements
@@ -180,13 +181,33 @@ export function processPad({
     if (!pcbPortId) sourcePortId = undefined
   }
 
+  if (padType !== "smd" && padType !== "connect") {
+    processSolderPaste({
+      ctx,
+      footprint,
+      pad,
+      componentId,
+      position: globalPos,
+      hasCopper: copperLayers.length > 0,
+    })
+  }
+
   // Determine pad type and create appropriate CJ element
   // KiCad's "connect" type represents a surface copper contact, commonly used
   // for exposed connector or test contacts, so it maps to an SMT pad in CJ.
   if (padType === "smd" || padType === "connect") {
     if (copperLayers.length === 0) {
+      processSolderPaste({
+        ctx,
+        footprint,
+        pad,
+        componentId,
+        position: globalPos,
+        hasCopper: false,
+      })
       return
     }
+    const previousPadCount = ctx.db.pcb_smtpad.list().length
 
     createSmdPad({
       ctx,
@@ -199,6 +220,18 @@ export function processPad({
       sourcePortId,
       padKicadPos,
       customPrimitiveKicadRotationDegrees,
+    })
+    const createdPads = ctx.db.pcb_smtpad.list().slice(previousPadCount)
+    const pcbSmtPadId =
+      createdPads.length === 1 ? createdPads[0]!.pcb_smtpad_id : undefined
+    processSolderPaste({
+      ctx,
+      footprint,
+      pad,
+      componentId,
+      position: globalPos,
+      hasCopper: true,
+      pcbSmtPadId,
     })
   } else if (padType === "np_thru_hole") {
     createNpthHole({
