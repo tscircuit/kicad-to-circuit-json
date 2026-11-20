@@ -27,3 +27,10 @@ export function getNextPcbPlatedHoleId(ctx: ConverterContext): string {
 
   return getNextUnusedId(usedIds, "pcb_plated_hole")
 }
+
+export function getNextPcbSolderPasteId(ctx: ConverterContext): string {
+  const usedIds = new Set(
+    ctx.db.pcb_solder_paste.list().map((paste) => paste.pcb_solder_paste_id),
+  )
+  return getNextUnusedId(usedIds, "pcb_solder_paste")
+}

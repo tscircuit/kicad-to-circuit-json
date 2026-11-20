@@ -70,7 +70,7 @@ beforeAll(async () => {
   }
 })
 
-test.failing("USB1046 import preserves all six real stencil apertures", () => {
+test("USB1046 import preserves all six real stencil apertures", () => {
   const paste = converter
     .getOutput()
     .filter((element) => element.type === "pcb_solder_paste")
