@@ -1,3 +1,5 @@
+import { inferRotarySwitchDimensions } from "../../utils/rotary-switch"
+
 export type SupportedSourceComponentFtype =
   | "simple_resistor"
   | "simple_capacitor"
@@ -8,17 +10,29 @@ export type SupportedSourceComponentFtype =
   | "simple_transistor"
   | "simple_chip"
   | "simple_pin_header"
+  | "simple_rotary_switch"
 
 export function inferSourceComponentFtype(params: {
   name?: string
   reference?: string
   metadata?: string
+  pinIdentifiers?: Array<string | number | undefined | null>
 }): SupportedSourceComponentFtype {
   const name = params.name || ""
   const reference = params.reference?.trim() || ""
   const metadata = params.metadata || ""
   const lowerName = name.toLowerCase()
   const prefix = reference.match(/^([A-Z]+)/i)?.[1]?.toUpperCase()
+
+  if (
+    inferRotarySwitchDimensions({
+      name,
+      metadata,
+      pinIdentifiers: params.pinIdentifiers,
+    })
+  ) {
+    return "simple_rotary_switch"
+  }
 
   if (isPinHeaderLike({ name, metadata })) {
     return "simple_pin_header"

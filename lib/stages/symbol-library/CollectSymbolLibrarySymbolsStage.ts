@@ -44,6 +44,10 @@ import {
   parseKicadOverlineText,
 } from "../../utils/parse-kicad-overline-text"
 
+import {
+  inferRotarySwitchDimensions,
+  type SourceSimpleRotarySwitchData,
+} from "../../utils/rotary-switch"
 import { rotationToDirection } from "../schematic/utils/rotationToDirection"
 import {
   inferSourceComponentFtype,
@@ -78,6 +82,10 @@ type SymbolLibrarySourceComponentData =
   | Omit<SourceSimplePinHeader, "type" | "source_component_id">
   | Omit<SourceSimpleTestPoint, "type" | "source_component_id">
   | Omit<SourceSimpleChip, "type" | "source_component_id">
+  | Omit<
+      SourceSimpleRotarySwitchData,
+      "display_value" | "supplier_part_numbers"
+    >
 type SymbolLibrarySourceFtype = SupportedSourceComponentFtype
 type SourcePortData = Omit<SourcePort, "type" | "source_port_id">
 type SchematicComponentData = Omit<
@@ -149,8 +157,11 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       this.ctx.db.schematic_symbol.insert(schematicSymbolData)
 
     const sourceComponentData = this.createSourceComponentData(symbol, pins)
-    const sourceComponent =
-      this.ctx.db.source_component.insert(sourceComponentData)
+    const sourceComponent = this.ctx.db.source_component.insert(
+      sourceComponentData as Parameters<
+        typeof this.ctx.db.source_component.insert
+      >[0],
+    )
 
     const seenPinNumbers = new Set<string>()
     let unnamedPinIndex = 0
@@ -795,7 +806,7 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
       name: this.getSymbolName(symbol),
       manufacturer_part_number: this.getManufacturerPartNumber(symbol),
     }
-    const ftype = this.inferFtype(symbol)
+    const ftype = this.inferFtype(symbol, pins)
 
     switch (ftype) {
       case "simple_resistor":
@@ -816,6 +827,21 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
             1,
           gender: this.inferPinHeaderGender(symbol),
         }
+      case "simple_rotary_switch": {
+        const dims = inferRotarySwitchDimensions({
+          name: this.getSymbolName(symbol),
+          metadata: this.getSymbolMetadataText(symbol),
+          pinIdentifiers: pins.map(
+            (pin) => pin.numberString || pin._sxNumber?.value,
+          ),
+        })
+        return {
+          ...base,
+          ftype,
+          poles: dims?.poles ?? 1,
+          positions: dims?.positions ?? 2,
+        }
+      }
       case "simple_test_point":
       case "simple_led":
       case "simple_diode":
@@ -827,11 +853,17 @@ export class CollectSymbolLibrarySymbolsStage extends ConverterStage {
     throw new Error(`Unsupported source component ftype: ${exhaustiveCheck}`)
   }
 
-  private inferFtype(symbol: KicadSchematicSymbol): SymbolLibrarySourceFtype {
+  private inferFtype(
+    symbol: KicadSchematicSymbol,
+    pins: SymbolPin[],
+  ): SymbolLibrarySourceFtype {
     return inferSourceComponentFtype({
       name: this.getSymbolName(symbol),
       reference: this.getSymbolProperties(symbol).Reference ?? "",
       metadata: this.getSymbolMetadataText(symbol),
+      pinIdentifiers: pins.map(
+        (pin) => pin.numberString || pin._sxNumber?.value,
+      ),
     })
   }
 

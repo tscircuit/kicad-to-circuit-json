@@ -7,6 +7,7 @@ import {
   getFootprintReference,
   parseSupplierPartNumbers,
 } from "./footprint-properties"
+import { inferRotarySwitchFromFootprint } from "../../../utils/rotary-switch"
 import {
   inferComponentType,
   inferTransistorTypeFromFootprint,
@@ -73,6 +74,12 @@ export function processFootprint(ctx: ConverterContext, footprint: Footprint) {
       footprint,
       value,
     )
+  }
+
+  if (ftype === "simple_rotary_switch") {
+    const rotaryDimensions = inferRotarySwitchFromFootprint(footprint)
+    sourceComponentData.poles = rotaryDimensions?.poles ?? 1
+    sourceComponentData.positions = rotaryDimensions?.positions ?? 2
   }
 
   if (jlcpcbPartNumbers) {

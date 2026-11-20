@@ -1,4 +1,5 @@
 import type { Footprint } from "kicadts"
+import { inferRotarySwitchFromFootprint } from "../../../utils/rotary-switch"
 import { findFootprintPropertyValue } from "./footprint-properties"
 
 /**
@@ -25,6 +26,9 @@ export function inferComponentType(
     isTestPointFootprint(footprint)
   ) {
     return "simple_test_point"
+  }
+  if (inferRotarySwitchFromFootprint(footprint)) {
+    return "simple_rotary_switch"
   }
 
   switch (prefix) {
