@@ -1,7 +1,11 @@
-import type { PcbSolderPaste, PcbSmtPad } from "circuit-json"
+import type { PcbSmtPad, PcbSolderPaste } from "circuit-json"
 import type { Footprint, FootprintPad } from "kicadts"
 import type { ConverterContext, Point } from "../../../types"
-import { extractKicadLayerNames } from "../layer-mapping"
+import {
+  extractKicadLayerNames,
+  mapKicadLayerToVisibleLayer,
+} from "../layer-mapping"
+import { getPadShape } from "./get-pad-shape"
 import { getNextPcbSolderPasteId } from "./pad-element-ids"
 import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
 
@@ -41,37 +45,35 @@ export function processSolderPaste({
 
   const size = pad.size
   if (!size) return
-  const margin = hasCopper
-    ? (pad.solderPasteMargin ?? footprint.solderPasteMargin?.value ?? 0)
-    : 0
-  const ratio = hasCopper
-    ? (pad.solderPasteMarginRatio ??
+  let margin = 0
+  let ratio = 0
+  if (hasCopper) {
+    margin = pad.solderPasteMargin ?? footprint.solderPasteMargin?.value ?? 0
+    ratio =
+      pad.solderPasteMarginRatio ??
       footprint.solderPasteMarginRatio?.value ??
       footprint.solderPasteRatio?.value ??
-      0)
-    : 0
+      0
+  }
   const marginX = margin + size.width * ratio
   const marginY = margin + size.height * ratio
-  let width = Math.max(0, size.width + 2 * marginX)
-  let height = Math.max(0, size.height + 2 * marginY)
+  const width = Math.max(0, size.width + 2 * marginX)
+  const height = Math.max(0, size.height + 2 * marginY)
   if (width === 0 || height === 0) return
 
-  const rotation = normalizeRotationDegrees(pad.at?.angle)
-  const quarterTurns = getRightAngleTurns(rotation)
-  const radius =
-    pad.shape === "oval"
-      ? Math.min(width, height) / 2
-      : Math.max(
-          0,
-          Math.min(
-            Math.min(size.width, size.height) * (pad.roundrectRatio ?? 0) +
-              Math.min(marginX, marginY),
-            width / 2,
-            height / 2,
-          ),
-        )
-  if (quarterTurns !== null && quarterTurns % 2 !== 0) {
-    ;[width, height] = [height, width]
+  let radius: number | undefined
+  if (pad.shape === "oval") {
+    radius = Math.min(width, height) / 2
+  } else if (pad.shape === "roundrect") {
+    radius = Math.max(
+      0,
+      Math.min(
+        Math.min(size.width, size.height) * (pad.roundrectRatio ?? 0) +
+          Math.min(marginX, marginY),
+        width / 2,
+        height / 2,
+      ),
+    )
   }
 
   for (const pasteLayer of pasteLayers) {
@@ -82,44 +84,29 @@ export function processSolderPaste({
       pcb_smtpad_id: pcbSmtPadId,
       x: position.x,
       y: position.y,
-      layer: pasteLayer === "F.Paste" ? ("top" as const) : ("bottom" as const),
+      layer: mapKicadLayerToVisibleLayer(pasteLayer),
     }
     let aperture: PcbSolderPaste
     if (pad.shape === "circle") {
+      const turns = getRightAngleTurns(normalizeRotationDegrees(pad.at?.angle))
+      let diameter = width
+      if (turns !== null && turns % 2 !== 0) diameter = height
       aperture = {
         ...base,
         shape: "circle",
-        radius: width / 2,
-      }
-    } else if (pad.shape === "oval" || pad.shape === "roundrect") {
-      if (quarterTurns === null) {
-        aperture = {
-          ...base,
-          shape: "rotated_pill",
-          width,
-          height,
-          radius,
-          ccw_rotation: rotation,
-        }
-      } else {
-        aperture = {
-          ...base,
-          shape: "pill",
-          width,
-          height,
-          radius,
-        }
-      }
-    } else if (quarterTurns === null) {
-      aperture = {
-        ...base,
-        shape: "rotated_rect",
-        width,
-        height,
-        ccw_rotation: rotation,
+        radius: diameter / 2,
       }
     } else {
-      aperture = { ...base, shape: "rect", width, height }
+      aperture = {
+        ...base,
+        ...getPadShape({
+          shape: radius === undefined ? "rect" : "pill",
+          width,
+          height,
+          radius,
+          ccwRotationDegrees: pad.at?.angle,
+        }),
+      }
     }
     ctx.db.pcb_solder_paste.insert(aperture)
   }

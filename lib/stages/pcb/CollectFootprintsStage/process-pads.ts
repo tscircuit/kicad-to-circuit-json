@@ -6,11 +6,10 @@ import type {
   PcbHoleRotatedPillWithRectPad,
   PcbPlatedHoleCircle,
   PcbPlatedHoleOval,
+  PcbSmtPad,
   PcbSmtPadCircle,
-  PcbSmtPadPill,
   PcbSmtPadPolygon,
   PcbSmtPadRect,
-  PcbSmtPadRotatedPill,
   PcbSmtPadRotatedRect,
 } from "circuit-json"
 import {
@@ -39,11 +38,12 @@ import {
   type PolygonContour,
 } from "./custom-pad-polygon-contours"
 import { getChamferedPadPoints } from "./get-chamfered-pad-points"
+import { getPadShape } from "./get-pad-shape"
 import { getSupportedPadType } from "./get-supported-pad-type"
 import { determineLayerFromLayers } from "./layer-utils"
 import { orderOverlappingFootprintPads } from "./order-overlapping-footprint-pads"
 import { getNextPcbPlatedHoleId, getNextPcbSmtPadId } from "./pad-element-ids"
-import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
+import { normalizeRotationDegrees } from "./pad-rotation"
 import { rotatePoint } from "./process-graphics"
 import { createPcbPort, type PadPortInfo } from "./process-ports"
 import { processSolderPaste } from "./process-solder-paste"
@@ -181,35 +181,10 @@ export function processPad({
     if (!pcbPortId) sourcePortId = undefined
   }
 
-  if (padType !== "smd" && padType !== "connect") {
-    processSolderPaste({
-      ctx,
-      footprint,
-      pad,
-      componentId,
-      position: globalPos,
-      hasCopper: copperLayers.length > 0,
-    })
-  }
-
-  // Determine pad type and create appropriate CJ element
-  // KiCad's "connect" type represents a surface copper contact, commonly used
-  // for exposed connector or test contacts, so it maps to an SMT pad in CJ.
-  if (padType === "smd" || padType === "connect") {
-    if (copperLayers.length === 0) {
-      processSolderPaste({
-        ctx,
-        footprint,
-        pad,
-        componentId,
-        position: globalPos,
-        hasCopper: false,
-      })
-      return
-    }
-    const previousPadCount = ctx.db.pcb_smtpad.list().length
-
-    createSmdPad({
+  const isSurfacePad = padType === "smd" || padType === "connect"
+  let pcbSmtPadId: string | undefined
+  if (isSurfacePad && copperLayers.length > 0) {
+    pcbSmtPadId = createSmdPad({
       ctx,
       pad,
       componentId,
@@ -221,19 +196,19 @@ export function processPad({
       padKicadPos,
       customPrimitiveKicadRotationDegrees,
     })
-    const createdPads = ctx.db.pcb_smtpad.list().slice(previousPadCount)
-    const pcbSmtPadId =
-      createdPads.length === 1 ? createdPads[0]!.pcb_smtpad_id : undefined
-    processSolderPaste({
-      ctx,
-      footprint,
-      pad,
-      componentId,
-      position: globalPos,
-      hasCopper: true,
-      pcbSmtPadId,
-    })
-  } else if (padType === "np_thru_hole") {
+  }
+  processSolderPaste({
+    ctx,
+    footprint,
+    pad,
+    componentId,
+    position: globalPos,
+    hasCopper: copperLayers.length > 0,
+    pcbSmtPadId,
+  })
+  if (isSurfacePad) return
+
+  if (padType === "np_thru_hole") {
     createNpthHole({
       ctx,
       componentId,
@@ -284,7 +259,7 @@ export function createSmdPad({
   sourcePortId?: string
   padKicadPos: { x: number; y: number }
   customPrimitiveKicadRotationDegrees?: number
-}) {
+}): string | undefined {
   const layers = pad.layers || []
   const layer = determineLayerFromLayers(layers)
 
@@ -317,9 +292,9 @@ export function createSmdPad({
       port_hints: [pad.number.toString()],
       points,
     }
-    ctx.db.pcb_smtpad.insert(smtpad)
+    const insertedPad = ctx.db.pcb_smtpad.insert(smtpad)
     if (ctx.stats) ctx.stats.pads = (ctx.stats.pads || 0) + 1
-    return
+    return insertedPad.pcb_smtpad_id
   }
 
   if (shape === "custom") {
@@ -550,9 +525,7 @@ export function createSmdPad({
     return
   }
 
-  // A placed pad's angle already includes the footprint rotation.
-  const ccwRotationDegrees = pad.at?.angle
-
+  let pcbSmtPadId: string
   if (shape === "circle") {
     const smtpad: PcbSmtPadCircle = {
       type: "pcb_smtpad",
@@ -562,59 +535,34 @@ export function createSmdPad({
       y: pos.y,
       width: size.x,
       height: size.y,
-      layer: layer,
+      layer,
       pcb_port_id: pcbPortId,
       port_hints: [pad.number?.toString()],
       shape: "circle",
       radius: Math.max(size.x, size.y) / 2,
     } as PcbSmtPadCircle
-    ctx.db.pcb_smtpad.insert(smtpad)
+    pcbSmtPadId = ctx.db.pcb_smtpad.insert(smtpad).pcb_smtpad_id
   } else if (shape === "oval") {
-    const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
-    const rightAngleTurns = getRightAngleTurns(normalizedCcwRotation)
-    const radius = Math.min(size.x, size.y) / 2
-
-    if (rightAngleTurns === null && normalizedCcwRotation !== 0) {
-      const rotatedSmtPad: PcbSmtPadRotatedPill = {
-        type: "pcb_smtpad",
-        pcb_component_id: componentId,
-        x: pos.x,
-        y: pos.y,
-        width: size.x,
-        height: size.y,
-        radius,
-        layer: layer,
-        pcb_port_id: pcbPortId,
-        port_hints: [pad.number.toString()],
-        shape: "rotated_pill",
-        ccw_rotation: normalizedCcwRotation,
-      } as PcbSmtPadRotatedPill
-      ctx.db.pcb_smtpad.insert(rotatedSmtPad)
-      return
-    }
-
-    const shouldSwapDimensions =
-      rightAngleTurns !== null && Math.abs(rightAngleTurns) % 2 === 1
-
-    const smtpad: PcbSmtPadPill = {
+    const geometry = getPadShape({
+      shape: "pill",
+      width: size.x,
+      height: size.y,
+      ccwRotationDegrees: pad.at?.angle,
+    })
+    const smtpad: PcbSmtPad = {
       type: "pcb_smtpad",
+      pcb_smtpad_id: getNextPcbSmtPadId(ctx),
       pcb_component_id: componentId,
-      x: pos.x,
-      y: pos.y,
-      width: shouldSwapDimensions ? size.y : size.x,
-      height: shouldSwapDimensions ? size.x : size.y,
-      radius,
-      layer: layer,
       pcb_port_id: pcbPortId,
       port_hints: [pad.number.toString()],
-      shape: "pill",
-    } as PcbSmtPadPill
-
-    ctx.db.pcb_smtpad.insert(smtpad)
+      x: pos.x,
+      y: pos.y,
+      layer,
+      ...geometry,
+    }
+    pcbSmtPadId = ctx.db.pcb_smtpad.insert(smtpad).pcb_smtpad_id
+    if (geometry.shape === "rotated_pill") return pcbSmtPadId
   } else {
-    // Rectangle fallbacks need the same rotation handling as ordinary pads.
-    // A zero-delta trapezoid is exactly a rectangle. For a tapered trapezoid,
-    // retain its full copper envelope and report the approximation explicitly.
     let rectangleSize = size
     if (shape === "trapezoid") {
       const deltaX = pad.rectDelta?.x ?? 0
@@ -624,7 +572,8 @@ export function createSmdPad({
           x: size.x + Math.abs(deltaY),
           y: size.y + Math.abs(deltaX),
         }
-        ;(ctx.warnings ??= []).push(
+        ctx.warnings ??= []
+        ctx.warnings.push(
           `Trapezoid pad ${pad.number} on ${componentId} has nonzero rect_delta; using its conservative rotated rectangle envelope`,
         )
       }
@@ -637,54 +586,30 @@ export function createSmdPad({
       cornerRadius = minDimension * roundrectRatio
     }
 
-    const normalizedCcwRotation = normalizeRotationDegrees(ccwRotationDegrees)
-    const rightAngleTurns = getRightAngleTurns(normalizedCcwRotation)
-
-    if (rightAngleTurns === null && normalizedCcwRotation !== 0) {
-      const rotatedsmtpad: PcbSmtPadRotatedRect = {
-        type: "pcb_smtpad",
-        pcb_component_id: componentId,
-        x: pos.x,
-        y: pos.y,
-        width: rectangleSize.x,
-        height: rectangleSize.y,
-        layer: layer,
-        pcb_port_id: pcbPortId,
-        port_hints: [pad.number?.toString()],
-        shape: "rotated_rect",
-        ccw_rotation: normalizedCcwRotation,
-        corner_radius: cornerRadius,
-      } as PcbSmtPadRotatedRect
-      ctx.db.pcb_smtpad.insert(rotatedsmtpad)
-      if (ctx.stats) {
-        ctx.stats.pads = (ctx.stats.pads || 0) + 1
-      }
-      return
-    }
-
-    const shouldSwapDimensions =
-      rightAngleTurns !== null && Math.abs(rightAngleTurns) % 2 === 1
-
-    const smtpad: PcbSmtPadRect = {
+    const smtpad: PcbSmtPad = {
       type: "pcb_smtpad",
+      pcb_smtpad_id: getNextPcbSmtPadId(ctx),
       pcb_component_id: componentId,
-      x: pos.x,
-      y: pos.y,
-      width: shouldSwapDimensions ? rectangleSize.y : rectangleSize.x,
-      height: shouldSwapDimensions ? rectangleSize.x : rectangleSize.y,
-      layer: layer,
       pcb_port_id: pcbPortId,
       port_hints: [pad.number?.toString()],
-      shape: "rect",
+      x: pos.x,
+      y: pos.y,
+      layer,
+      ...getPadShape({
+        shape: "rect",
+        width: rectangleSize.x,
+        height: rectangleSize.y,
+        ccwRotationDegrees: pad.at?.angle,
+      }),
       corner_radius: cornerRadius,
-    } as PcbSmtPadRect
-
-    ctx.db.pcb_smtpad.insert(smtpad)
+    }
+    pcbSmtPadId = ctx.db.pcb_smtpad.insert(smtpad).pcb_smtpad_id
   }
 
   if (ctx.stats) {
     ctx.stats.pads = (ctx.stats.pads || 0) + 1
   }
+  return pcbSmtPadId
 }
 
 /**
