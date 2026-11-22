@@ -19,13 +19,16 @@ import {
 
 function convertKiCadAngleToCircuitJsonCcwRotation(
   rotationDegrees: number | undefined,
+  unlocked = false,
 ): number {
   if (!rotationDegrees) return 0
 
-  const circuitJsonRotation = rotationDegrees % 360
-  return circuitJsonRotation < 0
-    ? circuitJsonRotation + 360
-    : circuitJsonRotation
+  const circuitJsonRotation = ((rotationDegrees % 360) + 360) % 360
+  // KiCad keeps locked footprint text upright; unlocked text retains its angle.
+  if (!unlocked && circuitJsonRotation > 90 && circuitJsonRotation <= 270) {
+    return (circuitJsonRotation + 180) % 360
+  }
+  return circuitJsonRotation
 }
 
 function isKicadTextHidden(text: any): boolean {
@@ -138,6 +141,7 @@ export function processFootprintText(params: {
     // Create a properly structured text element with _sxPosition mapped to at
     const textElement = {
       text: text.text,
+      unlocked: text.unlocked,
       at: getKiCadTextAnchor(text), // Use _sxPosition for position
       layer: text.layer,
       effects: (text as any)._sxEffects || text.effects,
@@ -186,6 +190,7 @@ export function processFootprintProperties(params: {
     // Property structure uses _sxAt for position (kicadts internal field)
     const textElement = {
       text: property.value,
+      unlocked: property.unlocked,
       at: getKiCadTextAnchor(property),
       layer: property.layer,
       effects: (property as any)._sxEffects || property.effects,
@@ -264,7 +269,7 @@ export function createGraphicText(params: {
   const fontSize = kicadFontSize * KICAD_TEXT_HEIGHT_TO_CIRCUIT_JSON_FONT_SIZE
   const ccwRotation = isReferenceText
     ? 0
-    : convertKiCadAngleToCircuitJsonCcwRotation(at?.angle)
+    : convertKiCadAngleToCircuitJsonCcwRotation(at?.angle, textElement.unlocked)
   const justify =
     textElement._sxEffects?._sxJustify || textElement.effects?.justify
   const anchorAlignment = mapKicadJustifyToAnchorAlignment(justify)
@@ -294,6 +299,7 @@ export function createGraphicText(params: {
       anchor_position: pos,
       anchor_alignment: anchorAlignment,
       layer: layer,
+      ccw_rotation: ccwRotation || undefined,
     } as PcbFabricationNoteText)
     return
   }

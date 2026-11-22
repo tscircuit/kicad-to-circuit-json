@@ -26,7 +26,7 @@ beforeAll(async () => {
   ).toMatchSvgSnapshot(import.meta.path)
 }, 30_000)
 
-test.failing("Arduino Uno preserves text angles and KiCad keep-upright behavior", () => {
+test("Arduino Uno preserves text angles and KiCad keep-upright behavior", () => {
   const fabricationTexts = converter
     .getOutput()
     .filter((element) => element.type === "pcb_fabrication_note_text")
