@@ -1,10 +1,10 @@
-import { cju } from "@tscircuit/circuit-json-util"
 import type { AnyCircuitElement } from "circuit-json"
 import { type Footprint, parseKicadMod } from "kicadts"
 import { compose, scale, translate } from "transformation-matrix"
 import { upgradeKicad5FootprintToKicad6 } from "./kicad5/upgradeKicad5FootprintToKicad6"
 import { processFootprint } from "./stages/pcb/CollectFootprintsStage/process-footprint"
 import type { ConverterContext } from "./types"
+import { createConverterDb } from "./utils/create-converter-db"
 
 export class KicadFootprintToCircuitJsonConverter {
   fsMap: Record<string, string> = {}
@@ -42,7 +42,7 @@ export class KicadFootprintToCircuitJsonConverter {
     }
 
     this.ctx = {
-      db: cju([]),
+      db: createConverterDb(),
       k2cMatPcb: compose(
         scale(1, -1),
         translate(-footprintOrigin.x, -footprintOrigin.y),
