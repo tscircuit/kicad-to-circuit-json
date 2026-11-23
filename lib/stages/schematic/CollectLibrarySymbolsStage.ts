@@ -5,6 +5,7 @@ import {
   getSourcePortNameFromKicadText,
   parseKicadOverlineText,
 } from "../../utils/parse-kicad-overline-text"
+import { inferRotarySwitchDimensions } from "../../utils/rotary-switch"
 import {
   inferSourceComponentFtype,
   type SupportedSourceComponentFtype,
@@ -59,23 +60,49 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
     const cjPos = applyToPoint(this.ctx.k2cMatSch, kicadPos)
 
     const rotation = at?.angle ?? 0
+    const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
+      (librarySymbol) => librarySymbol.libraryId === libId,
+    )
+    const metadata = [
+      ...(symbol.properties || []).map((p: any) => p.value),
+      ...(libSymbol?.properties || []).map((p: any) => p.value),
+    ]
+      .filter(Boolean)
+      .join(" ")
+    const pinIdentifiers = libSymbol
+      ? getPinsForSymbolInstance(libSymbol, symbol).map(
+          (pin) => pin.numberString || pin._sxNumber?.value,
+        )
+      : undefined
+
     // Infer component type from library id
-    const ftype = this.inferFtype(libId, reference)
+    const ftype = this.inferFtype(libId, reference, metadata, pinIdentifiers)
+    const rotaryDimensions =
+      ftype === "simple_rotary_switch"
+        ? inferRotarySwitchDimensions({
+            name: libId,
+            metadata,
+            pinIdentifiers,
+          })
+        : null
 
     const sourceComponent = this.ctx.db.source_component.insert({
       name: libId || reference,
       ftype,
       manufacturer_part_number: value || undefined,
-    })
+      ...(rotaryDimensions
+        ? {
+            poles: rotaryDimensions.poles,
+            positions: rotaryDimensions.positions,
+          }
+        : {}),
+    } as Parameters<typeof this.ctx.db.source_component.insert>[0])
 
     // Create schematic_component
     const uuid = symbol.uuid
     if (!uuid) return
 
     const symbolName = inferSymbolName({ libId, reference, rotation })
-    const libSymbol = this.ctx.kicadSch?.libSymbols?.symbols?.find(
-      (librarySymbol) => librarySymbol.libraryId === libId,
-    )
 
     const inserted = this.ctx.db.schematic_component.insert({
       source_component_id: sourceComponent.source_component_id,
@@ -131,10 +158,14 @@ export class CollectLibrarySymbolsStage extends ConverterStage {
   private inferFtype(
     libId: string,
     reference: string,
+    metadata?: string,
+    pinIdentifiers?: Array<string | number | undefined | null>,
   ): SupportedSourceComponentFtype {
     return inferSourceComponentFtype({
       name: libId,
       reference,
+      metadata,
+      pinIdentifiers,
     })
   }
 
