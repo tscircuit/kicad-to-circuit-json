@@ -83,7 +83,7 @@ function isPinHeaderLike(params: {
   return (
     /(?:^|:)pinheader_\d+x\d+/i.test(name) ||
     /(?:^|:)pinsocket_\d+x\d+/i.test(name) ||
-    /^conn_\d+x\d+(?:_|$)/i.test(name) ||
+    /(?:^|:)conn_\d+x\d+(?:_|$)/i.test(name) ||
     combined.includes("pin header") ||
     combined.includes("pinsocket") ||
     combined.includes("pin socket")
