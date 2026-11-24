@@ -3,6 +3,7 @@ import type { FootprintPad } from "kicadts"
 import { applyToPoint } from "transformation-matrix"
 import type { ConverterContext, Point } from "../../../types"
 import { getCustomPadCopperOutline } from "./custom-pad-copper-outline"
+import { getDrillOffsetInCircuitJsonSpace } from "./drill-offset"
 import { getNextPcbPlatedHoleId } from "./pad-element-ids"
 import { getRightAngleTurns, normalizeRotationDegrees } from "./pad-rotation"
 import { rotatePoint } from "./process-graphics"
@@ -67,6 +68,10 @@ export function createCustomPlatedHole(params: {
   const drillIsOval = Math.abs(drillLength - drillDiameter) > 1e-9
   const normalizedRotation = normalizeRotationDegrees(pad.at?.angle)
   const rightAngleTurns = getRightAngleTurns(normalizedRotation)
+  const holeOffset = getDrillOffsetInCircuitJsonSpace({
+    drill: pad.drill,
+    padAngleDegrees: pad.at?.angle,
+  })
 
   const platedHole: PcbHoleWithPolygonPad = {
     type: "pcb_plated_hole",
@@ -78,8 +83,8 @@ export function createCustomPlatedHole(params: {
     y: position.y,
     port_hints: [pad.number],
     hole_shape: drillIsOval ? "pill" : "circle",
-    hole_offset_x: 0,
-    hole_offset_y: 0,
+    hole_offset_x: holeOffset.x,
+    hole_offset_y: holeOffset.y,
     pad_outline: padOutline,
     layers,
   }
