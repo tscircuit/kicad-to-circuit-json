@@ -37,6 +37,7 @@ import {
   type PcbSmtPadPolygonWithContours,
   type PolygonContour,
 } from "./custom-pad-polygon-contours"
+import { getDrillOffsetInCircuitJsonSpace } from "./drill-offset"
 import { getChamferedPadPoints } from "./get-chamfered-pad-points"
 import { getPadShape } from "./get-pad-shape"
 import { getSupportedPadType } from "./get-supported-pad-type"
@@ -667,6 +668,11 @@ export function createPlatedHole(params: {
   // Determine drill shape (circular or oval)
   const drillIsOval = drill?.oval ?? Math.abs(drillX - drillY) > 1e-9
 
+  const holeOffset = getDrillOffsetInCircuitJsonSpace({
+    drill,
+    padAngleDegrees: pad.at?.angle,
+  })
+
   const outerWidth = size.x
   const outerHeight = size.y
 
@@ -727,8 +733,8 @@ export function createPlatedHole(params: {
           hole_height: drillX,
           rect_pad_width: outerWidth,
           rect_pad_height: outerHeight,
-          hole_offset_x: 0,
-          hole_offset_y: 0,
+          hole_offset_x: holeOffset.x,
+          hole_offset_y: holeOffset.y,
           layers,
         } as PcbHolePillWithRectPad
         if (padShape === "roundrect") {
@@ -756,8 +762,8 @@ export function createPlatedHole(params: {
           rect_ccw_rotation: normalizedCcwRotationDegrees,
           rect_pad_width: outerWidth,
           rect_pad_height: outerHeight,
-          hole_offset_x: 0,
-          hole_offset_y: 0,
+          hole_offset_x: holeOffset.x,
+          hole_offset_y: holeOffset.y,
           layers,
         } as PcbHoleRotatedPillWithRectPad
         if (padShape === "roundrect") {
@@ -785,8 +791,8 @@ export function createPlatedHole(params: {
         rect_ccw_rotation: pad.at?.angle || 0,
         rect_pad_width: outerWidth,
         rect_pad_height: outerHeight,
-        hole_offset_x: 0,
-        hole_offset_y: 0,
+        hole_offset_x: holeOffset.x,
+        hole_offset_y: holeOffset.y,
         layers,
       } as PcbHoleCircularWithRectPad
       if (padShape === "roundrect") {
@@ -816,13 +822,18 @@ export function createNpthHole(params: {
   ccwRotationDegrees: number
 }) {
   const { ctx, componentId, pos, drill, ccwRotationDegrees } = params
+  const holeOffset = getDrillOffsetInCircuitJsonSpace({
+    drill,
+    padAngleDegrees: ccwRotationDegrees,
+  })
+  const holePos = { x: pos.x + holeOffset.x, y: pos.y + holeOffset.y }
   if (drill?.oval) {
     ctx.db.insert({
       type: "pcb_hole",
       hole_shape: "rotated_pill",
       pcb_component_id: componentId,
-      x: pos.x,
-      y: pos.y,
+      x: holePos.x,
+      y: holePos.y,
       hole_width: drill.diameter,
       hole_height: drill.width ?? drill.diameter,
       // KiCad pad angles are already absolute board angles, including on B.Cu.
@@ -836,8 +847,8 @@ export function createNpthHole(params: {
     type: "pcb_hole",
     hole_shape: "circle",
     pcb_component_id: componentId,
-    x: pos.x,
-    y: pos.y,
+    x: holePos.x,
+    y: holePos.y,
     hole_diameter: holeDiameter,
   } as PcbHoleCircle
 
